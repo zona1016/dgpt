@@ -1,6 +1,10 @@
 
 import 'package:aida/firebase_options.dart';
 import 'package:aida/models/app_language.dart';
+import 'package:aida/services/auth_service.dart';
+import 'package:aida/services/system_service.dart';
+import 'package:aida/utils/api/api_client.dart';
+import 'package:aida/utils/constants/app_configurations.dart';
 import 'package:aida/utils/constants/storage_keys.dart';
 import 'package:aida/utils/controllers/theme_controller.dart';
 import 'package:aida/utils/controllers/user_controller.dart';
@@ -22,6 +26,7 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/services.dart';
+import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,15 +39,30 @@ void main() async {
   //     ignoreSsl:
   //     true // option: set to false to disable working with http links (default: false)
   // );
+  GetInstance().lazyPut<ApiClient>(
+          () => ApiClientImpl(baseUrl: AppConfigurations.baseUrl),
+      fenix: false,
+      permanent: true);
 
   //Controllers
   GetInstance().lazyPut(() => UserController(), fenix: false, permanent: true);
   GetInstance().lazyPut(() => ThemeController(), fenix: false, permanent: true);
 
   // Service
-  // GetInstance().lazyPut<SystemService>(() => SystemServiceImpl(),
-  //     fenix: false, permanent: true);
+  GetInstance().lazyPut<SystemService>(() => SystemServiceImpl(),
+      fenix: false, permanent: true);
+  GetInstance().lazyPut<AuthService>(() => AuthServiceImpl(),
+      fenix: false, permanent: true);
 
+  // IM
+  TIMUIKitCore.getInstance().init(
+      sdkAppID: 20002781,
+      // Replace 0 with the SDKAppID of your IM application when integrating
+      // language: LanguageEnum.en, // 界面语言配置，若不配置，则跟随系统语言
+      loglevel: LogLevelEnum.V2TIM_LOG_DEBUG,
+      onTUIKitCallbackListener: (TIMCallback callbackValue) {},
+      // [建议配置，详见此部分](https://cloud.tencent.com/document/product/269/70746#callback)
+      listener: V2TimSDKListener());
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(LocalizationWrapper(

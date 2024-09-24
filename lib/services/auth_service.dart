@@ -35,7 +35,7 @@ class AuthServiceImpl extends AuthService {
     try {
       return await _apiClient.request(ApiEndpoints.login,
           data: {
-            'username': username,
+            'account': username,
             'password': password,
           },
           deserializer: (data) =>

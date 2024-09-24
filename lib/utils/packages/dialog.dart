@@ -216,7 +216,7 @@ class DialogUtils {
       TimeOutException() => tr("error.connection_timout"),
       NoInternetException() => tr("error.no_internet_connection"),
       CancelExecption() => "",
-      ServerResponseException() => e.response.error,
+      ServerResponseException() => e.response.msg,
       ApiUnknownException() || Exception() => tr("error.unknown_error"),
     };
     if (msg.isNotEmpty) {

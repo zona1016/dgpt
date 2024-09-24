@@ -85,16 +85,16 @@ class UserController extends BaseController {
 
   getProfileProgress() {
     int progress = 1;
-    if (userInfo.name != null && userInfo.name!.isNotEmpty) {
+    if (userInfo.username != null && userInfo.username!.isNotEmpty) {
       progress = 2;
     }
-    if (userInfo.phone != null && userInfo.phone!.isNotEmpty) {
+    if (userInfo.mobile != null && userInfo.mobile!.isNotEmpty) {
       progress = 3;
     }
-    if (userInfo.bio != null && userInfo.bio!.isNotEmpty) {
+    if (userInfo.email != null && userInfo.email!.isNotEmpty) {
       progress = 4;
     }
-    if (userInfo.profileImg != null && userInfo.profileImg!.isNotEmpty) {
+    if (userInfo.avatar != null && userInfo.avatar!.isNotEmpty) {
       progress = 5;
     }
 

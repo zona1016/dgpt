@@ -68,7 +68,7 @@ class ApiClientImpl implements ApiClient {
       if (data.isEmpty) {
         data = {};
       }
-      headers['X-API-KEY'] = AppConfigurations.apiKey;
+      // headers['X-API-KEY'] = AppConfigurations.apiKey;
       headers['Accept'] = 'application/json';
       headers['Accept-Language'] =
           Get.find<UserController>().selectedLanguage.apiKey;
@@ -108,7 +108,7 @@ class ApiClientImpl implements ApiClient {
           } catch (_) {
             throw ServerResponseException(BaseResponse(
                 code: e.response?.statusCode ?? 400,
-                error: e.response?.data['message'] ?? ''));
+                msg: e.response?.data['msg'] ?? ''));
           }
         case DioExceptionType.cancel:
           throw CancelExecption();

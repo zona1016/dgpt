@@ -2,19 +2,19 @@ import 'package:flutter/widgets.dart';
 
 class BaseResponse<T> {
   final int code;
-  final String error;
+  final String msg;
   final T? data;
-  BaseResponse({required this.code, required this.error, this.data});
+  BaseResponse({required this.code, required this.msg, this.data});
 
   BaseResponse<T> copyWith({int? code, String? error, T? data}) {
-    return BaseResponse<T>(code: this.code, error: this.error, data: this.data);
+    return BaseResponse<T>(code: this.code, msg: this.msg, data: this.data);
   }
 
-  bool get isSuccess => code == 200;
+  bool get isSuccess => code == 1;
 
   factory BaseResponse.fromMap(Map<String, dynamic> map,
       {T Function(dynamic data)? deserializer}) {
-    final results = map['results'];
+    final results = map['data'];
     debugPrint(results.runtimeType.toString());
     final data = deserializer != null
         ? results.runtimeType == String && (results as String).isEmpty
@@ -23,9 +23,9 @@ class BaseResponse<T> {
         : null;
     return BaseResponse<T>(
         code: map['code'] as int,
-        error: map['errors'] is Map
-            ? (map['errors'] as Map<String, dynamic>).values.first[0] as String
-            : map['errors'] as String,
+        msg: map['msg'] is Map
+            ? (map['msg'] as Map<String, dynamic>).values.first[0] as String
+            : map['msg'] as String,
         data: data);
   }
 }

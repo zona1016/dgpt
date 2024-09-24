@@ -1,11 +1,14 @@
 import 'package:aida/models/update/app_update_info.dart';
 import 'package:aida/screens/auth/welcome_screen_controller.dart';
+import 'package:aida/services/auth_service.dart';
+import 'package:aida/utils/constants/app_enums.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:aida/utils/packages/dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainScreenBindings implements Bindings {
@@ -24,14 +27,15 @@ class MainScreenBindings implements Bindings {
 class MainScreenController extends BaseController {
   late PageController pageController;
   InAppWebViewController? webViewController;
+  final AuthService authService = Get.find();
 
   final selectedTabIndex = 0.obs;
 
   @override
   void onInit() {
-    super.onInit();
-    // _checkForceUpdate();
+    login();
     pageController = PageController(initialPage: selectedTabIndex.value);
+    super.onInit();
   }
 
   @override
@@ -40,6 +44,16 @@ class MainScreenController extends BaseController {
     webViewController?.dispose();
     super.dispose();
   }
+
+  void login() async {
+    final result = await fetchData(
+        request: () => authService.login(username: 'czzona', password: 'q123456'),
+        loadingState: AppLoadingState.backgroundWithoutError);
+    if (result != null) {
+       await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
+    }
+  }
+
   void _checkForceUpdate() async {
     // final result = await fetchData(
     //     request: () => systemService.checkForceUpdate(),

@@ -5,6 +5,7 @@ import 'package:aida/utils/controllers/user_controller.dart';
 import 'package:aida/utils/extensions/context_extension.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
+import 'package:aida/widget/base/base_auth_app_bar.dart';
 import 'package:aida/widget/base/base_auto_keep_alive.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,14 @@ class MainScreen extends GetView<MainScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: context.appTheme.lightPrimaryColor,
+        appBar: BaseAuthAppBar(
+          actions: [
+            GestureDetector(
+              onTap: controller.login,
+              child: Text('data'),
+            )
+          ],
+        ),
         body: SafeArea(
           child: InAppWebView(
             initialUrlRequest: URLRequest(url: WebUri("https://master.d2y6t2vezku3nd.amplifyapp.com/")),

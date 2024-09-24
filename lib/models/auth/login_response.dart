@@ -1,16 +1,18 @@
 import 'package:aida/models/user/user_info.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'login_response.freezed.dart';
 part 'login_response.g.dart';
 
-@freezed
-class LoginResponse with _$LoginResponse {
-  factory LoginResponse({
-    @JsonKey(name: 'user_info') UserInfo? userInfo,
-    @JsonKey(name: 'access_token') String? accessToken,
-  }) = _LoginResponse;
+@JsonSerializable()
+class LoginResponse extends Object {
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseFromJson(json);
+  @JsonKey(name: 'userinfo')
+  UserInfo userInfo;
+
+  LoginResponse(this.userInfo,);
+
+  factory LoginResponse.fromJson(Map<String, dynamic> srcJson) => _$LoginResponseFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
+
 }
