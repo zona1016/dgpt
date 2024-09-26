@@ -65,12 +65,12 @@ class LandingScreen extends StatelessWidget {
                           fontSize: 14, color: context.appTheme.weakTextColor)),
                   const SizedBox(height: 30),
                   BaseButton(
-                      onPressed: () => Get.toNamed(AppRoutes.login),
+                      onPressed: () {},
                       text: tr("button.login")),
                   const SizedBox(height: 28),
                   BaseButton(
                       type: BaseButtonType.secondary,
-                      onPressed: () => Get.toNamed(AppRoutes.register),
+                      onPressed: (){},
                       text: tr("button.create_account"),
                       textColor: context.appTheme.textColor),
                   const SizedBox(height: 30),

@@ -1,5 +1,13 @@
-import 'package:aida/screens/auth/landing_screen.dart';
-import 'package:aida/screens/auth/welcome_screen.dart';
+import 'package:aida/screens/chat/chat_main_screen.dart';
+import 'package:aida/screens/chat/chat_main_screen_controller.dart';
+import 'package:aida/screens/chat/conversation_screen.dart';
+import 'package:aida/screens/chat/conversation_screen_controller.dart';
+import 'package:aida/screens/chat/group_profile_screen.dart';
+import 'package:aida/screens/chat/group_profile_screen_controller.dart';
+import 'package:aida/screens/chat/profile_screen.dart';
+import 'package:aida/screens/chat/profile_screen_controller.dart';
+import 'package:aida/screens/chat/search_screen.dart';
+import 'package:aida/screens/chat/search_screen_controller.dart';
 import 'package:aida/screens/main/main_screen.dart';
 import 'package:aida/screens/main/main_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -7,37 +15,43 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 class AppRoutes {
   AppRoutes._();
 
-  static String welcome = "/welcome";
   static String main = "/main";
-  static String landing = "/landing";
-  static String editInterest = "/edit-interest";
-  static String login = "/landing";
-  static String register = "/edit-interest";
+  static String conversation = "/conversation";
+  static String chat = "/chat";
+  static String search = "/search";
+  static String profile = "/profile";
+  static String groupProfile = "/group_profile";
 
   static final List<GetPage> routes = [
     GetPage(
-      name: welcome,
-      page: () => const WelcomeScreen(),
-    ),
-    GetPage(
         name: main,
         page: () => const MainScreen(),
-        binding: MainScreenBindings()),
-    GetPage(
-      name: landing,
-      page: () => const WelcomeScreen(),
+        binding: MainScreenBindings()
     ),
     GetPage(
-      name: editInterest,
-      page: () => const WelcomeScreen(),
+        name: chat,
+        page: () => const ChatMainScreen(),
+        binding: ChatMainScreenBindings(),
     ),
     GetPage(
-      name: login,
-      page: () => const LandingScreen(),
+        name: conversation,
+        page: () => const ConversationScreen(),
+        binding: ConversationScreenBindings()
     ),
     GetPage(
-      name: register,
-      page: () => const LandingScreen(),
+        name: search,
+        page: () => const SearchScreen(),
+        binding: SearchScreenBindings()
+    ),
+    GetPage(
+        name: profile,
+        page: () => const ProfileScreen(),
+        binding: ProfileScreenBindings()
+    ),
+    GetPage(
+        name: groupProfile,
+        page: () => const GroupProfileScreen(),
+        binding: GroupProfileScreenBindings()
     ),
   ];
 }

@@ -51,7 +51,6 @@ class BaseScreen extends StatelessWidget {
           decoration:
           backgroundImage != null || decorationBackgroundImage != null
               ? BoxDecoration(
-              color: context.appTheme.backgroundColor,
               image: decorationBackgroundImage ??
                   DecorationImage(
                       fit: BoxFit.cover,

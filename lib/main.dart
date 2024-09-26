@@ -63,6 +63,7 @@ void main() async {
       onTUIKitCallbackListener: (TIMCallback callbackValue) {},
       // [建议配置，详见此部分](https://cloud.tencent.com/document/product/269/70746#callback)
       listener: V2TimSDKListener());
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(LocalizationWrapper(
@@ -120,17 +121,6 @@ class MainApp extends StatelessWidget {
     final UserController userController = Get.find<UserController>();
     // if (userController.isLogin) {
     return AppRoutes.main;
-    if (userController.isLogin) {
-      return AppRoutes.editInterest;
-    }
-    // else if (userController.userInfo.dob == null) {
-    //   return AppRoutes.editDob;
-    // }
-    else {
-      return AppRoutes.main;
-    }
-    // }
-    // return AppRoutes.welcome;
   }
 }
 

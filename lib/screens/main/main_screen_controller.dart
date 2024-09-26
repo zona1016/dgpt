@@ -4,6 +4,7 @@ import 'package:aida/services/auth_service.dart';
 import 'package:aida/utils/constants/app_enums.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:aida/utils/packages/dialog.dart';
+import 'package:aida/utils/routes/app_routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -50,7 +51,10 @@ class MainScreenController extends BaseController {
         request: () => authService.login(username: 'czzona', password: 'q123456'),
         loadingState: AppLoadingState.backgroundWithoutError);
     if (result != null) {
+      print(result.userInfo.imId!);
+      print(result.userInfo.userSign!);
        await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
+       Get.toNamed(AppRoutes.conversation);
     }
   }
 

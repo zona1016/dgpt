@@ -40,11 +40,11 @@ class UserController extends BaseController {
   checkLoginStatus(
       {void Function()? onVerified, Future Function()? onAuthenticated}) async {
     if (!isLogin) {
-      final result = await Get.toNamed(AppRoutes.landing);
-      if (result != null && result == "success") {
-        await onAuthenticated?.call();
-        onVerified?.call();
-      }
+      // final result = await Get.toNamed(AppRoutes.landing);
+      // if (result != null && result == "success") {
+      //   await onAuthenticated?.call();
+      //   onVerified?.call();
+      // }
     } else {
       onVerified?.call();
     }
@@ -120,12 +120,12 @@ class UserController extends BaseController {
   }
 
   backToMain() {
-    Get.until((route) => Get.currentRoute == AppRoutes.landing);
-    if (Get.key.currentState?.canPop() ?? false) {
-      Get.back(result: "success");
-    } else {
-      Get.offAndToNamed(AppRoutes.main);
-    }
+    // Get.until((route) => Get.currentRoute == AppRoutes.landing);
+    // if (Get.key.currentState?.canPop() ?? false) {
+    //   Get.back(result: "success");
+    // } else {
+    //   Get.offAndToNamed(AppRoutes.main);
+    // }
   }
 
   clearUser() {
@@ -133,7 +133,7 @@ class UserController extends BaseController {
     StorageUtils.remove(StorageKeys.userInfo);
     setUserInfo(null);
     _token.value = null;
-    Get.offAllNamed(AppRoutes.landing);
+    // Get.offAllNamed(AppRoutes.landing);
   }
 
   void _loadWatchedLessons() {
