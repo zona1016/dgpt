@@ -1739,8 +1739,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: a5f525b
-      resolved-ref: a5f525bc134271b12cef209430910287f391aee7
+      ref: "7e71f88"
+      resolved-ref: "7e71f8882b7002ae24a32db801a28c93a15f111e"
       url: "https://github.com/zona1016/chat-uikit-flutter.git"
     source: git
     version: "2.7.1"
