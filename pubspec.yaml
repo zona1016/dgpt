@@ -31,10 +31,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+#  tencent_cloud_chat_uikit:
+#    git:
+#      url: https://github.com/zona1016/chat-uikit-flutter.git
+#      ref: 419614f
   tencent_cloud_chat_uikit:
-    git:
-      url: https://github.com/zona1016/chat-uikit-flutter.git
-      ref: 7e71f88
+    path: /Users/wanxue/Desktop/demo/chat_aida
 
   tencent_cloud_chat_sdk: 8.1.6122
   get: ^4.6.6

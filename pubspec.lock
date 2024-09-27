@@ -1738,11 +1738,9 @@ packages:
   tencent_cloud_chat_uikit:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "7e71f88"
-      resolved-ref: "7e71f8882b7002ae24a32db801a28c93a15f111e"
-      url: "https://github.com/zona1016/chat-uikit-flutter.git"
-    source: git
+      path: "/Users/wanxue/Desktop/demo/chat_aida"
+      relative: false
+    source: path
     version: "2.7.1"
   tencent_cloud_uikit_core:
     dependency: transitive

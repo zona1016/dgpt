@@ -1,10 +1,14 @@
+import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/search_screen_controller.dart';
+import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
+import 'package:tencent_cloud_chat_sdk/models/v2_tim_conversation.dart';
+import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitSearch/tim_uikit_search.dart';
+import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitSearch/tim_uikit_search_msg_detail.dart';
 
 class SearchScreen extends GetView<SearchScreenController> {
   const SearchScreen({super.key});
@@ -12,45 +16,30 @@ class SearchScreen extends GetView<SearchScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-        backgroundColor: BaseColors.whiteGray,
+        backgroundColor: Colors.transparent,
+        backgroundImage: 'assets/image/base/background.png',
         body: TIMUIKitSearch(
           onTapConversation: (conv, message) {
+            Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: conv));
           },
-          onEnterConversation: (V2TimConversation conversation, String keyword) {},
+          onEnterSearchInConversation: (V2TimConversation conversation, String keyword) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BaseScreen(
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: 'assets/image/base/background.png',
+                    body: TIMUIKitSearchMsgDetail(
+                      currentConversation: conversation,
+                      keyword: keyword,
+                      onTapConversation: (conv, message) {
+                        Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: conv));
+                      },
+                    ),
+                  ),
+                ));
+          },
         )
-    );
-  }
-
-  Widget _topBar(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15)
-              .copyWith(top: MediaQuery.of(context).padding.top),
-          child: Row(
-            children: [
-              Text(
-                '消息',
-                style: fontSFProBold.copyWith(
-                    fontSize: 20,
-                    color: BaseColors.primaryColor
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Expanded(child: Container()),
-              GestureDetector(
-                onTap: (){},
-                child: Image.asset(
-                  "assets/image/base/add.png",
-                  width: 22,
-                  height: 22,
-                ),
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }

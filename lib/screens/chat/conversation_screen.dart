@@ -32,14 +32,14 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.transparent, // 背景颜色为灰色
+                  color: Colors.transparent,
                   border: Border.all(
-                    color: BaseColors.primaryColor, // 设置边框颜色为白色
-                    width: 0.5, // 设置边框宽度
+                    color: BaseColors.primaryColor,
+                    width: 0.5,
                   ),
-                  borderRadius: BorderRadius.circular(5), // 设置圆角为5
+                  borderRadius: BorderRadius.circular(5),
                 ),
-                child: GestureDetector(
+                child: InkWell(
                   onTap: (){
                     Get.toNamed(AppRoutes.search);
                   },

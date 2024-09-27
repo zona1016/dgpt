@@ -1,4 +1,3 @@
-
 import 'package:aida/screens/chat/profile_screen.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';

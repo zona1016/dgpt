@@ -51,7 +51,7 @@ class ChatMainScreen extends GetView<ChatMainScreenController> {
         customAppBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: BaseColors.primaryColor,), // 自定义返回图标
+            icon: const Icon(Icons.arrow_back_ios, color: BaseColors.primaryColor,),
             onPressed: () {
               Get.back(); // 返回上一页
             },
@@ -80,6 +80,8 @@ class ChatMainScreen extends GetView<ChatMainScreenController> {
                     }
                   }
                 },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 icon: Image.asset(
                   'assets/image/base/more.png',
                   height: 34,
