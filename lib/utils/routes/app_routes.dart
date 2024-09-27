@@ -1,3 +1,5 @@
+import 'package:aida/screens/chat/add_friend_detail_screen.dart';
+import 'package:aida/screens/chat/add_friend_detail_screen_controller.dart';
 import 'package:aida/screens/chat/add_friend_screen.dart';
 import 'package:aida/screens/chat/add_friend_screen_controller.dart';
 import 'package:aida/screens/chat/add_group_screen.dart';
@@ -27,6 +29,7 @@ class AppRoutes {
   static String groupProfile = "/group_profile";
   static String addFriend = "/add_friend";
   static String addGroup = "/add_group";
+  static String addFriendDetail = "/add_friend_detail";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -68,6 +71,11 @@ class AppRoutes {
         name: addGroup,
         page: () => const AddGroupScreen(),
         binding: AddGroupScreenBindings()
+    ),
+    GetPage(
+        name: addFriendDetail,
+        page: () => const AddFriendDetailScreen(),
+        binding: AddFriendDetailScreenBindings()
     ),
   ];
 }

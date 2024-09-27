@@ -1,4 +1,6 @@
 import 'package:aida/screens/chat/add_group_screen_controller.dart';
+import 'package:aida/screens/chat/group_profile_screen.dart';
+import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,15 @@ class AddGroupScreen extends GetView<AddGroupScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      appBar: BaseAppBar(
+      backgroundColor: Colors.transparent,
+      backgroundImage: 'assets/image/base/background.png',
+      appBar: const BaseAppBar(
         title: '添加群组',
       ),
       body: TIMUIKitAddGroup(
         onTapExistGroup: (groupID, conversation) {
+          Get.toNamed(AppRoutes.groupProfile,
+              arguments: GroupProfileScreenArgs(groupID: groupID));
         },
       ),
     );

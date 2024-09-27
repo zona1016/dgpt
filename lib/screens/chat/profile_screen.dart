@@ -7,8 +7,8 @@ import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitProfile/tim_uikit_prof
 
 class ProfileScreenArgs {
   final String userID;
-
-  ProfileScreenArgs({required this.userID});
+  final String? title;
+  ProfileScreenArgs({required this.userID, this.title});
 }
 
 class ProfileScreen extends GetView<ProfileScreenController> {
@@ -17,8 +17,10 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
+      backgroundColor: Colors.transparent,
+      backgroundImage: 'assets/image/base/background.png',
       appBar: BaseAppBar(
-        title: '个人中心',
+        title: controller.args!.title ?? '详细资料',
       ),
       body: TIMUIKitProfile(
         userID: controller.args!.userID,
