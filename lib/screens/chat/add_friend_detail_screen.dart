@@ -1,4 +1,5 @@
 import 'package:aida/screens/chat/add_friend_detail_screen_controller.dart';
+import 'package:aida/utils/packages/dialog.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
@@ -22,16 +23,26 @@ class AddFriendDetailScreen extends GetView<AddFriendDetailScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.transparent,
-      backgroundImage: 'assets/image/base/background.png',
-      appBar: BaseAppBar(
-        title: TIM_t("添加好友"),
-        color: BaseColors.primaryColor,
-      ),
-      body: SendApplication(
-          isShowDefaultGroup: false,
+        backgroundColor: Colors.transparent,
+        backgroundImage: 'assets/image/base/background.png',
+        appBar: BaseAppBar(
+          title: TIM_t("添加好友"),
+          color: BaseColors.primaryColor,
+        ),
+        body: SendApplication(
+          isShowDefaultGroup: true,
           friendInfo: controller.args!.friendInfo,
-          model: controller.args!.selfInfoViewModel)
-    );
+          model: controller.args!.selfInfoViewModel,
+          addResult: (result) {
+            DialogUtils.showBaseDialog(
+              title: result,
+              confirmText: TIM_t("确定"),
+              onConfirmPressed: () {
+                Get.back();
+                Get.back();
+              }
+            );
+          },
+        ));
   }
 }

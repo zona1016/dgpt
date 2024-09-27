@@ -50,27 +50,15 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = this.borderRadius ?? BorderRadius.circular(30);
-    return Container(
-      width: isDynamicWidth ? null : width ?? double.infinity,
-      height: height,
-      decoration: getButtonDecoration(context, borderRadius),
-      child: ElevatedButton(
-        onPressed: enabled ? onPressed : null,
-        style: ButtonStyle(
-            padding: WidgetStatePropertyAll(padding ??
-                EdgeInsets.symmetric(
-                    horizontal: type == BaseButtonType.primary ? 12 : 6)),
-            elevation: const WidgetStatePropertyAll(1),
-            surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-            backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
-            shadowColor: const WidgetStatePropertyAll(Colors.transparent),
-            overlayColor: const WidgetStatePropertyAll(Colors.black12),
-            shape: WidgetStatePropertyAll(isCircleShape
-                ? const CircleBorder()
-                : RoundedRectangleBorder(borderRadius: borderRadius))),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        alignment: Alignment.center,
+        width: isDynamicWidth ? null : width ?? double.infinity,
+        height: height,
         child: child ??
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Flexible(
@@ -97,25 +85,12 @@ class BaseButton extends StatelessWidget {
       BuildContext context, BorderRadiusGeometry borderRadius) {
     switch (type) {
       case BaseButtonType.primary:
-        return !enabled && disabledDecoration != null
-            ? disabledDecoration
-            : customDecoration ?? BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-                color: Colors.black26,
-                offset: Offset(0, 4),
-                blurRadius: 5.0)
-          ],
-          color: enabled
-              ? null
-              : context.appTheme.secondaryGradientStartColor,
-          gradient: enabled
-              ? const LinearGradient(colors: [
-            BaseColors.primaryGradientStartColor,
-            BaseColors.primaryGradientEndColor
-          ])
-              : null,
+        return BoxDecoration(
           borderRadius: borderRadius,
+          image: const DecorationImage(
+            image: AssetImage('assets/image/base/button_bg.png'),
+            fit: BoxFit.fill,
+          ),
         );
       case BaseButtonType.secondary:
         return !enabled && disabledDecoration != null
@@ -149,7 +124,7 @@ class BaseButton extends StatelessWidget {
   Color getTextColor() {
     switch (type) {
       case BaseButtonType.primary:
-        return enabled ? Colors.white : BaseColors.lightGray;
+        return enabled ? BaseColors.secondPrimaryColor : BaseColors.secondPrimaryColor;
       case BaseButtonType.secondary:
         return BaseColors.primaryColor;
       case BaseButtonType.custom:

@@ -1,6 +1,7 @@
 import 'package:aida/screens/chat/add_friend_detail_screen.dart';
 import 'package:aida/screens/chat/add_friend_screen_controller.dart';
 import 'package:aida/screens/chat/profile_screen.dart';
+import 'package:aida/utils/packages/dialog.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
@@ -33,11 +34,14 @@ class AddFriendScreen extends GetView<AddFriendScreenController> {
         if (checkFriend != null) {
           final res = checkFriend.first;
           if (res.resultCode == 0 && res.resultType != 0) {
+            Get.toNamed(AppRoutes.profile,
+                arguments: ProfileScreenArgs(userID: friendInfo.userID!));
             return;
           }
         }
 
         if (friendInfo.userID! == controller.selfInfoViewModel.loginInfo?.userID) {
+
           return;
         }
         final isDesktopScreen =

@@ -29,14 +29,19 @@ class DialogUtils {
       builder: (BuildContext context) {
         return AlertDialog(
           shadowColor: Colors.transparent,
-          backgroundColor: context.appTheme.lightPrimaryColor,
-          surfaceTintColor: context.appTheme.lightPrimaryColor,
-          contentPadding: const EdgeInsets.all(28),
-          content: SizedBox(
+          backgroundColor: BaseColors.primaryColor,
+          surfaceTintColor: BaseColors.primaryColor,
+          contentPadding: EdgeInsets.zero,
+          content: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: BaseColors.primaryColor,
+            ),
             width: Get.width * 0.6,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 25,),
                 imageWidget ?? Container(),
                 if (image != null)
                   FractionallySizedBox(
@@ -46,7 +51,7 @@ class DialogUtils {
                   title,
                   textAlign: TextAlign.center,
                   style: fontBold.copyWith(
-                      fontSize: 17, color: context.appTheme.textColor),
+                      fontSize: 17, color: BaseColors.white),
                 ),
                 if (desc != null)
                   Padding(
@@ -77,16 +82,21 @@ class DialogUtils {
                   ),
                 if (child != null) child,
                 const SizedBox(height: 25),
-                FractionallySizedBox(
-                  widthFactor:
-                  confirmText != null && cancelText != null ? 1 : 0.6,
+                Container(
+                  decoration: const BoxDecoration(
+                    color: BaseColors.white,
+                    borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(5),
+                        bottomLeft: Radius.circular(5)),
+                  ),
+                  height: 40,
                   child: Row(
                     children: [
                       if (confirmText != null)
                         Expanded(
-                            flex: 3,
                             child: BaseButton(
                               onPressed: () {
+                                print('object');
                                 onConfirmPressed?.call();
                               },
                               text: confirmText,
@@ -95,7 +105,6 @@ class DialogUtils {
                         const SizedBox(width: 10),
                       if (cancelText != null)
                         Expanded(
-                            flex: 2,
                             child: BaseButton(
                                 type: BaseButtonType.secondary,
                                 onPressed: () {
@@ -104,7 +113,7 @@ class DialogUtils {
                                 text: cancelText)),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
