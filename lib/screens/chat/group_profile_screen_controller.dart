@@ -7,7 +7,7 @@ class GroupProfileScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut<GroupProfileScreenController>(() => GroupProfileScreenController(), fenix: false, permanent: true);
+        .lazyPut<GroupProfileScreenController>(() => GroupProfileScreenController(), fenix: false, permanent: false);
   }
 }
 

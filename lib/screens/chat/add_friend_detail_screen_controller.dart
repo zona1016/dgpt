@@ -8,7 +8,7 @@ class AddFriendDetailScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut<AddFriendDetailScreenController>(() => AddFriendDetailScreenController(), fenix: false, permanent: true);
+        .lazyPut<AddFriendDetailScreenController>(() => AddFriendDetailScreenController(), fenix: false, permanent: false);
   }
 }
 

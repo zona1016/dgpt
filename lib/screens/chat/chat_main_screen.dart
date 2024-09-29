@@ -84,8 +84,8 @@ class ChatMainScreen extends GetView<ChatMainScreenController> {
                 highlightColor: Colors.transparent,
                 icon: Image.asset(
                   'assets/image/base/more.png',
-                  height: 34,
-                  width: 34,
+                  height: 24,
+                  width: 24,
                 ))
           ],
         ),

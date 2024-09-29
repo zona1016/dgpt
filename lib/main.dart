@@ -1,4 +1,3 @@
-
 import 'package:aida/firebase_options.dart';
 import 'package:aida/models/app_language.dart';
 import 'package:aida/services/auth_service.dart';
@@ -26,6 +25,7 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/services.dart';
+import 'package:tencent_calls_uikit/tencent_calls_uikit.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 void main() async {
@@ -40,7 +40,7 @@ void main() async {
   //     true // option: set to false to disable working with http links (default: false)
   // );
   GetInstance().lazyPut<ApiClient>(
-          () => ApiClientImpl(baseUrl: AppConfigurations.baseUrl),
+      () => ApiClientImpl(baseUrl: AppConfigurations.baseUrl),
       fenix: false,
       permanent: true);
 
@@ -87,6 +87,7 @@ class MainApp extends StatelessWidget {
     final TransitionBuilder fToastBuilder = FToastBuilder();
     return RestartWidget(
         child: GetMaterialApp(
+      navigatorObservers: [TUICallKit.navigatorObserver],
       scrollBehavior: AppScrollbehavior(),
       localizationsDelegates: [
         ...context.localizationDelegates,
@@ -127,10 +128,10 @@ class MainApp extends StatelessWidget {
 class AppScrollbehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context,
-      Widget child,
-      ScrollableDetails details,
-      ) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     return child;
   }
 }

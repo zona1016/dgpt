@@ -10,7 +10,7 @@ class AddFriendScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut<AddFriendScreenController>(() => AddFriendScreenController(), fenix: false, permanent: true);
+        .lazyPut<AddFriendScreenController>(() => AddFriendScreenController(), fenix: false, permanent: false);
   }
 }
 

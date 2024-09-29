@@ -1,4 +1,5 @@
 import 'package:aida/screens/chat/profile_screen_controller.dart';
+import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,11 @@ class ProfileScreen extends GetView<ProfileScreenController> {
       backgroundImage: 'assets/image/base/background.png',
       appBar: BaseAppBar(
         title: controller.args!.title ?? '详细资料',
+        color: BaseColors.primaryColor,
       ),
       body: TIMUIKitProfile(
         userID: controller.args!.userID,
+
       ),
     );
   }

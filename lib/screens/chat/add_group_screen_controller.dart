@@ -6,7 +6,7 @@ class AddGroupScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut<AddGroupScreenController>(() => AddGroupScreenController(), fenix: false, permanent: true);
+        .lazyPut<AddGroupScreenController>(() => AddGroupScreenController(), fenix: false, permanent: false);
   }
 }
 

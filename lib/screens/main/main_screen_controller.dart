@@ -4,11 +4,13 @@ import 'package:aida/services/auth_service.dart';
 import 'package:aida/utils/constants/app_enums.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:aida/utils/packages/dialog.dart';
+import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:tencent_calls_uikit/tuicall_kit.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -51,9 +53,11 @@ class MainScreenController extends BaseController {
         request: () => authService.login(username: 'czzona', password: 'q123456'),
         loadingState: AppLoadingState.backgroundWithoutError);
     if (result != null) {
-      print(result.userInfo.imId!);
-      print(result.userInfo.userSign!);
+
        await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
+       await TUICallKit.instance.login(20002781,
+           result.userInfo.imId!,
+           result.userInfo.userSign!);
        Get.toNamed(AppRoutes.conversation);
     }
   }

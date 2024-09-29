@@ -8,7 +8,7 @@ class ChatMainScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut<ChatMainScreenController>(() => ChatMainScreenController(), fenix: false, permanent: true);
+        .lazyPut<ChatMainScreenController>(() => ChatMainScreenController(), fenix: false, permanent: false);
   }
 }
 

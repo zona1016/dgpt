@@ -1719,6 +1719,22 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.3.0+2"
+  tencent_calls_engine:
+    dependency: transitive
+    description:
+      name: tencent_calls_engine
+      sha256: e2f965cd04501108e3c103a97b3470a7fa71ace5e7e3fe0f0eed90c774475c13
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.5.0"
+  tencent_calls_uikit:
+    dependency: "direct main"
+    description:
+      name: tencent_calls_uikit
+      sha256: aa3890f9c92f7d4af5707fcc507afa1d1424afacd2378339f87dd058ff3d148c
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.5.2"
   tencent_chat_i18n_tool:
     dependency: transitive
     description:
@@ -1743,7 +1759,7 @@ packages:
     source: path
     version: "2.7.1"
   tencent_cloud_uikit_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: tencent_cloud_uikit_core
       sha256: b111f43404b4b3e9452932cc87fe1ec3581fe4ae26346d8a00cf2b236c7b0e88

@@ -39,6 +39,13 @@ dependencies:
     path: /Users/wanxue/Desktop/demo/chat_aida
 
   tencent_cloud_chat_sdk: 8.1.6122
+  tencent_calls_uikit: ^2.5.0
+  tencent_cloud_uikit_core: ^1.6.0
+  #  tencent_chat_push_for_china: ^3.1.1
+#  tim_ui_kit_push_plugin: ^3.1.1
+#  tencent_cloud_chat_vote_plugin: ^1.0.2
+#  tencent_cloud_chat_customer_service_plugin: ^0.0.2
+
   get: ^4.6.6
   get_storage: ^2.1.1
   dio: ^5.4.2+1

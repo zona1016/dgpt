@@ -16,24 +16,17 @@ class ToastUtils {
 
   static void showToast({required String title, Widget? icon, FToast? fToast}) {
     (fToast ?? _fToast).showToast(
-      gravity: ToastGravity.TOP,
+      gravity: ToastGravity.BOTTOM,
       toastDuration: const Duration(seconds: 2),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: gap, vertical: 10),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            gradient: const LinearGradient(colors: [
-              BaseColors.primaryGradientStartColor,
-              BaseColors.primaryGradientEndColor
-            ])),
+            borderRadius: BorderRadius.circular(5),
+          color: BaseColors.weakTextColor
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            icon ??
-                Image.asset(
-                  "assets/image/icons/ic_rounded_check.png",
-                  width: 14,
-                ),
             const SizedBox(width: 5),
             Text(title,
                 style: fontMedium.copyWith(

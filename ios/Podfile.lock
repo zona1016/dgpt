@@ -133,12 +133,21 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - SnapKit (5.7.1)
   - sqflite (0.0.3):
     - Flutter
     - FlutterMacOS
   - store_checker (0.0.1):
     - Flutter
   - SwiftyGif (5.4.5)
+  - tencent_calls_engine (0.0.1):
+    - Flutter
+    - TUICallEngine/Professional (~> 2.5.0.1025)
+  - tencent_calls_uikit (0.0.1):
+    - Flutter
+    - SnapKit
+    - TUICallEngine/Professional
+    - TUICore (>= 8.1.6103)
   - tencent_cloud_chat_sdk (8.0.0):
     - Flutter
     - HydraAsync
@@ -146,7 +155,22 @@ PODS:
   - tencent_cloud_uikit_core (0.0.1):
     - Flutter
   - Toast (4.1.1)
+  - TUICallEngine/Professional (2.5.0.1036):
+    - TXIMSDK_Plus_iOS_XCFramework (>= 8.0.5895)
+    - TXLiteAVSDK_Professional (>= 11.7.12001)
+  - TUICore (8.1.6116):
+    - SDWebImage
+    - TUICore/ImSDK_Plus (= 8.1.6116)
+  - TUICore/Base (8.1.6116):
+    - SDWebImage
+  - TUICore/ImSDK_Plus (8.1.6116):
+    - SDWebImage
+    - TUICore/Base
+    - TXIMSDK_Plus_iOS_XCFramework
   - TXIMSDK_Plus_iOS_XCFramework (8.1.6122)
+  - TXLiteAVSDK_Professional (12.1.16597):
+    - TXLiteAVSDK_Professional/Professional (= 12.1.16597)
+  - TXLiteAVSDK_Professional/Professional (12.1.16597)
   - url_launcher_ios (0.0.1):
     - Flutter
   - video_player_avfoundation (0.0.1):
@@ -182,6 +206,8 @@ DEPENDENCIES:
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/darwin`)
   - store_checker (from `.symlinks/plugins/store_checker/ios`)
+  - tencent_calls_engine (from `.symlinks/plugins/tencent_calls_engine/ios`)
+  - tencent_calls_uikit (from `.symlinks/plugins/tencent_calls_uikit/ios`)
   - tencent_cloud_chat_sdk (from `.symlinks/plugins/tencent_cloud_chat_sdk/ios`)
   - tencent_cloud_uikit_core (from `.symlinks/plugins/tencent_cloud_uikit_core/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -197,8 +223,12 @@ SPEC REPOS:
     - Mantle
     - SDWebImage
     - SDWebImageWebPCoder
+    - SnapKit
     - SwiftyGif
+    - TUICallEngine
+    - TUICore
     - TXIMSDK_Plus_iOS_XCFramework
+    - TXLiteAVSDK_Professional
   trunk:
     - Firebase
     - FirebaseCore
@@ -261,6 +291,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/darwin"
   store_checker:
     :path: ".symlinks/plugins/store_checker/ios"
+  tencent_calls_engine:
+    :path: ".symlinks/plugins/tencent_calls_engine/ios"
+  tencent_calls_uikit:
+    :path: ".symlinks/plugins/tencent_calls_uikit/ios"
   tencent_cloud_chat_sdk:
     :path: ".symlinks/plugins/tencent_cloud_chat_sdk/ios"
   tencent_cloud_uikit_core:
@@ -310,13 +344,19 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   sensors_plus: 18a9b346c43e157da17d2c8e99def703f9efb9d8
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
   store_checker: a7be624ac44a4ba88e7917e71afe8433f197161e
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
+  tencent_calls_engine: a945510ac8b892c3f70523412fbc5312e2867e3b
+  tencent_calls_uikit: 1afe5474693f081424295848c827e3c893e3c8b0
   tencent_cloud_chat_sdk: 439e91de2b82117d0c45b1d38cd539c405202f91
   tencent_cloud_uikit_core: c0140985a33df7b3948d2ebe0a0d7eeb780447f2
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
+  TUICallEngine: 517e5731a28504db1b53d1017a551c76510fcc8c
+  TUICore: 23f2d58027b594b137d3a4e6242d9a0651620271
   TXIMSDK_Plus_iOS_XCFramework: ac5d9374b27706d6c7064b956061ff35e1775733
+  TXLiteAVSDK_Professional: adafd7d52404aa6ee15d062351dcd4086f359de0
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   video_player_avfoundation: 7c6c11d8470e1675df7397027218274b6d2360b3
   wakelock_plus: 78ec7c5b202cab7761af8e2b2b3d0671be6c4ae1
