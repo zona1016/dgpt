@@ -1,4 +1,5 @@
 import 'package:aida/screens/chat/group_profile_screen_controller.dart';
+import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class GroupProfileScreen extends GetView<GroupProfileScreenController> {
     return BaseScreen(
       appBar: const BaseAppBar(
         title: '群组资料',
+        color: BaseColors.primaryColor,
       ),
       body: TIMUIKitGroupProfile(
         groupID: controller.args!.groupID,

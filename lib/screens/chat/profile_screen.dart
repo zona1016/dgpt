@@ -18,15 +18,12 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.transparent,
-      backgroundImage: 'assets/image/base/background.png',
       appBar: BaseAppBar(
         title: controller.args!.title ?? '详细资料',
         color: BaseColors.primaryColor,
       ),
       body: TIMUIKitProfile(
         userID: controller.args!.userID,
-
       ),
     );
   }

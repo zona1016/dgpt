@@ -16,8 +16,6 @@ class SearchScreen extends GetView<SearchScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-        backgroundColor: Colors.transparent,
-        backgroundImage: 'assets/image/base/background.png',
         body: TIMUIKitSearch(
           onTapConversation: (conv, message) {
             Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: conv));
@@ -27,8 +25,6 @@ class SearchScreen extends GetView<SearchScreenController> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => BaseScreen(
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: 'assets/image/base/background.png',
                     body: TIMUIKitSearchMsgDetail(
                       currentConversation: conversation,
                       keyword: keyword,

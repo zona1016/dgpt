@@ -23,8 +23,6 @@ class AddFriendDetailScreen extends GetView<AddFriendDetailScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-        backgroundColor: Colors.transparent,
-        backgroundImage: 'assets/image/base/background.png',
         appBar: BaseAppBar(
           title: TIM_t("添加好友"),
           color: BaseColors.primaryColor,

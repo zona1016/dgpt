@@ -13,8 +13,6 @@ class AddGroupScreen extends GetView<AddGroupScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.transparent,
-      backgroundImage: 'assets/image/base/background.png',
       appBar: const BaseAppBar(
         title: '添加群组',
       ),

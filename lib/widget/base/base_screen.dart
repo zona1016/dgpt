@@ -1,4 +1,5 @@
 import 'package:aida/utils/extensions/context_extension.dart';
+import 'package:aida/utils/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -58,7 +59,7 @@ class BaseScreen extends StatelessWidget {
                       alignment: Alignment.center))
               : null,
           child: Scaffold(
-            backgroundColor: backgroundColor ?? Colors.white,
+            backgroundColor: BaseColors.whiteGray,
             appBar: appBar,
             drawer: drawer,
             endDrawer: endDrawer,
