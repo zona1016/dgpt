@@ -19,7 +19,7 @@ class GroupProfileScreen extends GetView<GroupProfileScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       appBar: const BaseAppBar(
-        title: '群组资料',
+        title: '群聊信息',
         color: BaseColors.primaryColor,
       ),
       body: TIMUIKitGroupProfile(

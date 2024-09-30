@@ -27,20 +27,25 @@ class AddFriendDetailScreen extends GetView<AddFriendDetailScreenController> {
           title: TIM_t("添加好友"),
           color: BaseColors.primaryColor,
         ),
-        body: SendApplication(
-          isShowDefaultGroup: true,
-          friendInfo: controller.args!.friendInfo,
-          model: controller.args!.selfInfoViewModel,
-          addResult: (result) {
-            DialogUtils.showBaseDialog(
-              title: result,
-              confirmText: TIM_t("确定"),
-              onConfirmPressed: () {
-                Get.back();
-                Get.back();
-              }
-            );
-          },
-        ));
+        body: Column(
+          children: [
+            SendApplication(
+              isShowDefaultGroup: true,
+              friendInfo: controller.args!.friendInfo,
+              model: controller.args!.selfInfoViewModel,
+              addResult: (result) {
+                DialogUtils.showBaseDialog(
+                    title: result,
+                    confirmText: TIM_t("确定"),
+                    onConfirmPressed: () {
+                      Get.back();
+                      Get.back();
+                    }
+                );
+              },
+            )
+          ],
+        )
+    );
   }
 }
