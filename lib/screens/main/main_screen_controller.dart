@@ -34,6 +34,8 @@ class MainScreenController extends BaseController {
 
   final selectedTabIndex = 0.obs;
 
+
+
   @override
   void onInit() {
     login();
@@ -50,7 +52,7 @@ class MainScreenController extends BaseController {
 
   void login() async {
     final result = await fetchData(
-        request: () => authService.login(username: 'czzona', password: 'q123456'),
+        request: () => authService.login(username: 'czzona1', password: 'q123456'),
         loadingState: AppLoadingState.backgroundWithoutError);
     if (result != null) {
 
@@ -58,7 +60,7 @@ class MainScreenController extends BaseController {
        await TUICallKit.instance.login(20002781,
            result.userInfo.imId!,
            result.userInfo.userSign!);
-       Get.toNamed(AppRoutes.conversation);
+       // Get.toNamed(AppRoutes.conversation);
     }
   }
 

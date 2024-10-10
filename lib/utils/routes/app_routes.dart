@@ -16,6 +16,8 @@ import 'package:aida/screens/chat/search_screen.dart';
 import 'package:aida/screens/chat/search_screen_controller.dart';
 import 'package:aida/screens/main/main_screen.dart';
 import 'package:aida/screens/main/main_screen_controller.dart';
+import 'package:aida/screens/qr_code/qr_code_screen.dart';
+import 'package:aida/screens/qr_code/qr_code_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRoutes {
@@ -30,6 +32,7 @@ class AppRoutes {
   static String addFriend = "/add_friend";
   static String addGroup = "/add_group";
   static String addFriendDetail = "/add_friend_detail";
+  static String qrCode = "/qr_code";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -76,6 +79,11 @@ class AppRoutes {
         name: addFriendDetail,
         page: () => const AddFriendDetailScreen(),
         binding: AddFriendDetailScreenBindings()
+    ),
+    GetPage(
+        name: qrCode,
+        page: () => const QrCodeScreen(),
+        binding: QrCodeScreenBindings()
     ),
   ];
 }

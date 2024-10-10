@@ -7,7 +7,11 @@ import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tencent_cloud_chat_customer_service_plugin/tencent_cloud_chat_customer_service_plugin.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_conversation.dart';
+import 'package:tencent_cloud_chat_sdk/models/v2_tim_message.dart';
+import 'package:tencent_cloud_chat_uikit/business_logic/life_cycle/chat_life_cycle.dart';
+import 'package:tencent_cloud_chat_uikit/ui/utils/calling_message/calling_message_data_provider.dart';
 import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitChat/tim_uikit_chat.dart';
 import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitChat/tim_uikit_chat_config.dart';
 
@@ -31,8 +35,46 @@ class ChatMainScreen extends GetView<ChatMainScreenController> {
                 showName: "Chat",
                 type: 1),
         customStickerPanel: controller.renderCustomStickerPanel,
+        lifeCycle: ChatLifeCycle(newMessageWillMount: (V2TimMessage message) async {
+          // ChannelPush.displayDefaultNotificationForMessage(message);
+          if (TencentCloudChatCustomerServicePlugin.isCustomerServiceMessage(message)) {
+            // if (TencentCloudChatCustomerServicePlugin.isTypingCustomerServiceMessage(message)) {
+            //   setState(() {
+            //     customerServiceTyping = TIM_t("对方正在输入中...");
+            //   });
+            // }
+            // if (TencentCloudChatCustomerServicePlugin.isCanSendEvaluateMessage(message) && !TencentCloudChatCustomerServicePlugin.isCanSendEvaluate(message) && canSendEvaluate == true) {
+            //   setState(() {
+            //     canSendEvaluate = false;
+            //   });
+            // } else if (TencentCloudChatCustomerServicePlugin.isCanSendEvaluateMessage(message) && TencentCloudChatCustomerServicePlugin.isCanSendEvaluate(message) && canSendEvaluate == false) {
+            //   setState(() {
+            //     canSendEvaluate = true;
+            //   });
+            // }
+          } else {
+            // setState(() {
+            //   customerServiceTyping = null;
+            // });
+          }
+
+          return message;
+        }, messageShouldMount: (V2TimMessage message) {
+          if (TencentCloudChatCustomerServicePlugin.isCustomerServiceMessageInvisible(message) && TencentCloudChatCustomerServicePlugin.isCustomerServiceMessage(message)) {
+            return false;
+          }
+          return true;
+        }, messageListShouldMount: (messageList) {
+          List<V2TimMessage> list = [];
+          for (V2TimMessage message in messageList) {
+            CallingMessageDataProvider provide = CallingMessageDataProvider(message);
+            if (!provide.isCallingSignal || !provide.excludeFromHistory) {
+              list.add(message);
+            }
+          }
+          return list;
+        }),
         config: const TIMUIKitChatConfig(
-          // 仅供演示，非全部配置项，实际使用中，可只传和默认项不同的参数，无需传入所有开关
           isAllowClickAvatar: true,
           isUseDefaultEmoji: true,
           isAllowLongPressMessage: true,
