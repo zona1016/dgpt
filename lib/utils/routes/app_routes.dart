@@ -8,6 +8,10 @@ import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/chat_main_screen_controller.dart';
 import 'package:aida/screens/chat/conversation_screen.dart';
 import 'package:aida/screens/chat/conversation_screen_controller.dart';
+import 'package:aida/screens/chat/create_group_introduction_screen.dart';
+import 'package:aida/screens/chat/create_group_introduction_screen_controller.dart';
+import 'package:aida/screens/chat/create_group_screen.dart';
+import 'package:aida/screens/chat/create_group_screen_controller.dart';
 import 'package:aida/screens/chat/group_profile_screen.dart';
 import 'package:aida/screens/chat/group_profile_screen_controller.dart';
 import 'package:aida/screens/chat/profile_screen.dart';
@@ -33,6 +37,8 @@ class AppRoutes {
   static String addGroup = "/add_group";
   static String addFriendDetail = "/add_friend_detail";
   static String qrCode = "/qr_code";
+  static String createGroupIntroduction = "/create_group_introduction";
+  static String createGroup = "/create_group";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -84,6 +90,16 @@ class AppRoutes {
         name: qrCode,
         page: () => const QrCodeScreen(),
         binding: QrCodeScreenBindings()
+    ),
+    GetPage(
+        name: createGroupIntroduction,
+        page: () => const CreateGroupIntroductionScreen(),
+        binding: CreateGroupIntroductionScreenBindings()
+    ),
+    GetPage(
+        name: createGroup,
+        page: () => const CreateGroupScreen(),
+        binding: CreateGroupScreenBindings()
     ),
   ];
 }
