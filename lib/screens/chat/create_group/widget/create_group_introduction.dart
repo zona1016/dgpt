@@ -1,6 +1,5 @@
-import 'package:aida/main.dart';
-import 'package:aida/screens/chat/create_group_screen.dart';
-import 'package:aida/screens/chat/widget/create_group.dart';
+import 'package:aida/screens/chat/create_group/create_group_screen.dart';
+import 'package:aida/screens/chat/create_group/widget/create_group.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/core/tim_uikit_wide_modal_operation_key.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
-import 'package:provider/provider.dart';
 import 'package:tencent_cloud_chat_uikit/ui/utils/screen_utils.dart';
 import 'package:tencent_cloud_chat_uikit/ui/widgets/wide_popup.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,10 +100,7 @@ class _CreateGroupIntroductionState extends State<CreateGroupIntroduction> {
         createGroupFunc(GroupTypeForUIKit.chat);
         break;
       case GroupType.Community:
-        launchUrl(
-          Uri.parse("https://zhiliao.qq.com/#/"),
-          mode: LaunchMode.externalApplication,
-        );
+        createGroupFunc(GroupTypeForUIKit.community);
         break;
     }
   }

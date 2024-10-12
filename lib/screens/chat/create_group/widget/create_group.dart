@@ -1,17 +1,20 @@
 import 'dart:convert';
 
 import 'package:aida/screens/chat/chat_main_screen.dart';
+import 'package:aida/screens/chat/create_group/tool/image_uploader.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 import 'package:tencent_cloud_chat_uikit/ui/utils/screen_utils.dart';
+import 'package:uuid/uuid.dart';
 
-enum GroupTypeForUIKit { single, work, chat, meeting, public }
+enum GroupTypeForUIKit { single, work, chat, meeting, public, community }
 
 GlobalKey<_CreateGroup> createGroupKey = GlobalKey();
 
@@ -28,6 +31,7 @@ class CreateGroup extends StatefulWidget {
 
 class _CreateGroup extends State<CreateGroup> {
   final V2TIMManager _sdkInstance = TIMUIKitCore.getSDKInstance();
+  final ImagePicker _picker = ImagePicker();
   List<V2TimFriendInfo> friendList = [];
   List<V2TimFriendInfo> selectedFriendList = [];
 
@@ -122,6 +126,12 @@ class _CreateGroup extends State<CreateGroup> {
 
       return V2TimGroupMember(role: roleEnum, userID: e.userID);
     }).toList();
+    // final map = await ImageUploader().handleImageUpload();
+    // if (map != null) {
+    //   print(map);
+    // }
+    // return;
+
     final res = await _sdkInstance.getGroupManager().createGroup(
         groupType: groupType,
         groupName: groupName,
@@ -160,6 +170,8 @@ class _CreateGroup extends State<CreateGroup> {
     _getConversationList();
   }
 
+
+
   void onSubmit() {
     if (selectedFriendList.isNotEmpty) {
       switch (widget.convType) {
@@ -177,6 +189,8 @@ class _CreateGroup extends State<CreateGroup> {
           break;
         case GroupTypeForUIKit.public:
           _createGroup(GroupType.Public);
+        case GroupTypeForUIKit.community:
+          _createGroup(GroupType.Community);
           break;
       }
     }

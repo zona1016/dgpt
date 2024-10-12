@@ -1,6 +1,5 @@
 import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/conversation_screen_controller.dart';
-import 'package:aida/screens/chat/widget/create_group_introduction.dart';
 import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
