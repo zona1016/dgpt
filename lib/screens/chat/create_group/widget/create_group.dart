@@ -170,8 +170,6 @@ class _CreateGroup extends State<CreateGroup> {
     _getConversationList();
   }
 
-
-
   void onSubmit() {
     if (selectedFriendList.isNotEmpty) {
       switch (widget.convType) {

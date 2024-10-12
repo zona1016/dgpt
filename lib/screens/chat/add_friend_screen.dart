@@ -1,7 +1,6 @@
 import 'package:aida/screens/chat/add_friend_detail_screen.dart';
 import 'package:aida/screens/chat/add_friend_screen_controller.dart';
 import 'package:aida/screens/chat/profile_screen.dart';
-import 'package:aida/utils/packages/dialog.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';

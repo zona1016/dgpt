@@ -1,6 +1,5 @@
 import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/conversation_screen_controller.dart';
-import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
@@ -8,10 +7,8 @@ import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tencent_cloud_chat_uikit/data_services/core/tim_uikit_wide_modal_operation_key.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitConversation/tim_uikit_conversation.dart';
-import 'package:tencent_cloud_chat_uikit/ui/widgets/wide_popup.dart';
 
 class ConversationScreen extends GetView<ConversationScreenController> {
   const ConversationScreen({super.key});

@@ -1,6 +1,4 @@
 import 'package:aida/screens/main/main_screen_controller.dart';
-import 'package:aida/screens/qr_code/qr_code.dart';
-import 'package:aida/utils/extensions/context_extension.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
