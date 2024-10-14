@@ -20,7 +20,7 @@ class ImageUploader {
   }
 
   String generateUniqueImageName() {
-    var uuid = Uuid();
+    var uuid = const Uuid();
     return uuid.v4();  // 使用UUID生成唯一ID
   }
 

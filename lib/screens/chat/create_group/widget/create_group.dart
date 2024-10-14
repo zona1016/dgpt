@@ -31,7 +31,6 @@ class CreateGroup extends StatefulWidget {
 
 class _CreateGroup extends State<CreateGroup> {
   final V2TIMManager _sdkInstance = TIMUIKitCore.getSDKInstance();
-  final ImagePicker _picker = ImagePicker();
   List<V2TimFriendInfo> friendList = [];
   List<V2TimFriendInfo> selectedFriendList = [];
 

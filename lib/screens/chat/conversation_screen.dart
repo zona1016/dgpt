@@ -181,6 +181,28 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                       ],
                     ),
                   ),
+                  PopupMenuItem(
+                    value: 4,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.settings,
+                          color: BaseColors.primaryColor,
+                          size: 16,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          '设置',
+                          style: fontSFProMedium.copyWith(
+                              fontSize: 14,
+                              color: BaseColors.weakTextColor
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
                 onSelected: (value) {
                   // 点击菜单项的处理逻辑
@@ -190,6 +212,8 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                     Get.toNamed(AppRoutes.addGroup);
                   } else if (value == 3) {
                     Get.toNamed(AppRoutes.createGroupIntroduction);
+                  } else if (value == 4) {
+                    Get.toNamed(AppRoutes.profileSetting);
                   }
                 },
               ),

@@ -14,6 +14,8 @@ import 'package:aida/screens/chat/create_group/create_group_screen.dart';
 import 'package:aida/screens/chat/create_group/create_group_screen_controller.dart';
 import 'package:aida/screens/chat/group_profile_screen.dart';
 import 'package:aida/screens/chat/group_profile_screen_controller.dart';
+import 'package:aida/screens/chat/profile/profile_setting_screen.dart';
+import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
 import 'package:aida/screens/chat/profile_screen.dart';
 import 'package:aida/screens/chat/profile_screen_controller.dart';
 import 'package:aida/screens/chat/search_screen.dart';
@@ -39,6 +41,7 @@ class AppRoutes {
   static String qrCode = "/qr_code";
   static String createGroupIntroduction = "/create_group_introduction";
   static String createGroup = "/create_group";
+  static String profileSetting = "/profile_Setting";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -100,6 +103,11 @@ class AppRoutes {
         name: createGroup,
         page: () => const CreateGroupScreen(),
         binding: CreateGroupScreenBindings()
+    ),
+    GetPage(
+        name: profileSetting,
+        page: () => const ProfileSettingScreen(),
+        binding: ProfileSettingScreenBindings()
     ),
   ];
 }
