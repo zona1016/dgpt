@@ -1,10 +1,19 @@
+import 'package:aida/models/web/web_message_received_info.dart';
 import 'package:aida/screens/main/main_screen_controller.dart';
+import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+
+import 'dart:convert'; // 用于 JSON 解析
+import 'dart:io'; // 用于文件操作
+import 'dart:typed_data'; // 用于处理二进制数据
+import 'package:path_provider/path_provider.dart';
+import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
@@ -29,12 +38,28 @@ class MainScreen extends GetView<MainScreenController> {
               // 注册 JavaScript Handler
               webController.addJavaScriptHandler(
                 handlerName: 'onMessageReceived',
-                callback: (args) {
-                  // args 是从 JavaScript 传递的消息，通常是一个列表
+                callback: (args) async {
                   if (args.isNotEmpty) {
-                    String message = args[0]; // 获取传递的第一个参数
+                    Map<String, dynamic> parsedMessage = jsonDecode(args.first);
+                    WebMessageReceivedInfo info = WebMessageReceivedInfo.fromJson(parsedMessage);
+                    WebMessageReceivedInfoType? infoType = info.data.stringToEnum(info.data.type);
+                    if (infoType == WebMessageReceivedInfoType.qrScan) {
+                      Get.toNamed(AppRoutes.qrCode);
+                    } else if (infoType == WebMessageReceivedInfoType.downLoadImg) {
+                      // 下载图片
+                      if (info.data.base64 != null) {
+
+                        bool permission = await requestPermission(context);
+                        if (permission) {
+                          if (info.data.base64!.contains("data:image")) {
+                            info.data.base64 = info.data.base64!.split(",").last;
+                          }
+                          await saveImageFromBase64(info.data.base64!);
+                          ToastUtils.showToast(title: '图片保存成功');
+                        }
+                      }
+                    }
                   }
-                  Get.toNamed(AppRoutes.qrCode);
                 },
               );
 
@@ -52,5 +77,77 @@ class MainScreen extends GetView<MainScreenController> {
           ),
         )
     );
+  }
+
+  // 请求权限的函数
+  Future<bool> requestPermission(BuildContext context) async {
+    PermissionStatus status = await Permission.storage.request();
+    if (status.isGranted) {
+      return true;
+    } else if (status.isDenied) {
+      // 权限被拒绝时，提示用户授予权限
+      _showPermissionDeniedDialog(context);
+    } else if (status.isPermanentlyDenied) {
+      // 用户选择了 "Don't ask again"，引导用户到设置页面
+      _showOpenSettingsDialog(context);
+    }
+
+    return false;
+  }
+
+// 弹窗提示用户授予权限
+  void _showPermissionDeniedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('权限被拒绝'),
+          content: const Text('请授予存储权限以保存图片到相册。'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('关闭'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+// 弹窗引导用户手动打开设置页面
+  void _showOpenSettingsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('权限被永久拒绝'),
+          content: const Text('请在设置中手动开启存储权限。'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('前往设置'),
+              onPressed: () {
+                openAppSettings();  // 打开系统设置页面
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('关闭'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> saveImageFromBase64(String base64Image) async {
+
+    Uint8List bytes = base64Decode(base64Image);
+
+    await ImageGallerySaver.saveImage(bytes, name: "image_${DateTime.now().millisecondsSinceEpoch}");
   }
 }

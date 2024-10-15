@@ -34,8 +34,6 @@ class MainScreenController extends BaseController {
 
   final selectedTabIndex = 0.obs;
 
-
-
   @override
   void onInit() {
     login();
@@ -48,6 +46,13 @@ class MainScreenController extends BaseController {
     webViewController?.clearCache();
     webViewController?.dispose();
     super.dispose();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    ToastUtils.init(Get.context!);
   }
 
   void login() async {
