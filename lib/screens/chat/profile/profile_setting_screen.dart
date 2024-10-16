@@ -1,16 +1,13 @@
-import 'dart:io';
-
 import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
+import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'package:tencent_cloud_chat_uikit/ui/utils/screen_utils.dart';
-import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitGroupProfile/tim_uikit_group_profile.dart';
 import 'package:tencent_cloud_chat_uikit/ui/widgets/avatar.dart';
 
 class ProfileSettingScreenArgs {
@@ -35,7 +32,9 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
         actions: [
           IconButton(
               padding: const EdgeInsets.only(left: 8, right: 8),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(AppRoutes.profileQRCode);
+              },
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               icon: Image.asset(
@@ -132,6 +131,13 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Text(
+                        'AIDAV2 ID: ',
+                        style: fontBold.copyWith(
+                            color: BaseColors.primaryColor,
+                            fontSize: 14
+                        ),
+                      ),
                       Text(
                         userID,
                         style: fontBold.copyWith(
