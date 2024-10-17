@@ -110,9 +110,9 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
                       const SizedBox(width: 4,),
                       if (controller.userFullInfo.gender != null && controller.userFullInfo.gender != 0)
                         Image.asset(
-                          controller.userFullInfo.gender == 1
-                              ? 'assets/image/base/profile_male.png'
-                              : 'assets/image/base/profile_female.png',
+                          controller.userFullInfo.gender == 2
+                              ? 'assets/image/base/profile_female.png'
+                              : 'assets/image/base/profile_male.png',
                           height: 12,
                           width: 12,
                         )

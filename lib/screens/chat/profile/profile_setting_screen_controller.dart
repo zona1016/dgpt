@@ -58,10 +58,25 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
     ToastUtils.init(Get.context!);
   }
 
-  updateUserInfo(String faceUrl) {
-    faceUrl = faceUrl.contains('http') ? faceUrl
-        : 'https://$faceUrl';
-    userFullInfo.faceUrl = faceUrl;
+  updateUserInfo({String? faceUrl,String? nickName,String? selfSignature, int? gender, int? birthday}) {
+    if (faceUrl != null) {
+      faceUrl = faceUrl.contains('http') ? faceUrl
+          : 'https://$faceUrl';
+      userFullInfo.faceUrl = faceUrl;
+    }
+
+    if (nickName != null) {
+      userFullInfo.nickName = nickName;
+    }
+
+    if (selfSignature != null) {
+      userFullInfo.selfSignature = selfSignature;
+    }
+
+    if (gender != null) {
+      userFullInfo.gender = gender;
+    }
+
     update();
   }
 }

@@ -61,8 +61,8 @@ class SelectedAvatarScreenController extends BaseController {
       "faceUrl": faceUrl,
     }));
 
-    Get.find<MyProfileDetailScreenController>().updateUserInfo(faceUrl);
-    Get.find<ProfileSettingScreenController>().updateUserInfo(faceUrl);
+    Get.find<MyProfileDetailScreenController>().updateUserInfo(faceUrl: faceUrl);
+    Get.find<ProfileSettingScreenController>().updateUserInfo(faceUrl: faceUrl);
     Get.back();
   }
 }
