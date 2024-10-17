@@ -33,15 +33,9 @@ class SelectedAvatarScreen extends GetView<SelectedAvatarScreenController> {
                 behavior: HitTestBehavior.opaque,
                 onTap: () async {
                   if (index == 12)  {
-                    Get.context!.loaderOverlay.show();
-                    final result = await ImageUploader().handleImageUpload();
-                    Get.context!.loaderOverlay.hide();
-                    if (result != null) {
-                      controller.setFaceUrl(result);
-                    }
-
+                    controller.imageUpload();
                   } else {
-
+                    controller.loadFile(index);
                   }
                 },
                 child: Container(

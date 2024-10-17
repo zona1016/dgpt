@@ -52,8 +52,13 @@ class ImageUploader {
     return null; // 如果无法压缩到所需大小，返回 null
   }
 
-  Future<String?> handleImageUpload() async {
-    File? image = await pickImage();
+  Future<String?> handleImageUpload({File? file}) async {
+    File? image;
+    if (file != null) {
+      image = file;
+    } else {
+      image = await pickImage();
+    }
     if (image != null) {
       String imageName = generateUniqueImageName();
       File? compressedImage = await compressLargeImage(image, 256);
