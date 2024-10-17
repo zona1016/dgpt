@@ -14,10 +14,14 @@ import 'package:aida/screens/chat/create_group/create_group_screen.dart';
 import 'package:aida/screens/chat/create_group/create_group_screen_controller.dart';
 import 'package:aida/screens/chat/group_profile_screen.dart';
 import 'package:aida/screens/chat/group_profile_screen_controller.dart';
+import 'package:aida/screens/chat/profile/my_profile_detail_screen.dart';
+import 'package:aida/screens/chat/profile/my_profile_detail_screen_controller.dart';
 import 'package:aida/screens/chat/profile/profile_qr_code_screen.dart';
 import 'package:aida/screens/chat/profile/profile_qr_code_screen_controller.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
+import 'package:aida/screens/chat/profile/selected_avatar_screen.dart';
+import 'package:aida/screens/chat/profile/selected_avatar_screen_controller.dart';
 import 'package:aida/screens/chat/profile_screen.dart';
 import 'package:aida/screens/chat/profile_screen_controller.dart';
 import 'package:aida/screens/chat/search_screen.dart';
@@ -45,6 +49,8 @@ class AppRoutes {
   static String createGroup = "/create_group";
   static String profileSetting = "/profile_setting";
   static String profileQRCode = "/profile_qr_code";
+  static String profileDetail = "/profile_detail";
+  static String selectedAvatar = "/elected_avatar";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -116,6 +122,16 @@ class AppRoutes {
         name: profileQRCode,
         page: () => const ProfileQrCodeScreen(),
         binding: ProfileQrCodeScreenBindings()
+    ),
+    GetPage(
+        name: profileDetail,
+        page: () => const MyProfileDetailScreen(),
+        binding: MyProfileDetailScreenBindings()
+    ),
+    GetPage(
+        name: selectedAvatar,
+        page: () => const SelectedAvatarScreen(),
+        binding: SelectedAvatarScreenBindings()
     ),
   ];
 }

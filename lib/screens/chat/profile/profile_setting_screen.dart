@@ -21,10 +21,7 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
   @override
   Widget build(BuildContext context) {
     final isDesktopScreen = TUIKitScreenUtils.getFormFactor(context) == DeviceType.Desktop;
-    String? faceUrl = TIMUIKitCore.getInstance().loginUserInfo?.faceUrl;
-    int? gender = TIMUIKitCore.getInstance().loginUserInfo?.gender;
-    String? userID = TIMUIKitCore.getInstance().loginUserInfo?.userID;
-    String? selfSignature = TIMUIKitCore.getInstance().loginUserInfo?.selfSignature;
+
     return BaseScreen(
       appBar: BaseAppBar(
         title: '',
@@ -55,192 +52,193 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 17),
-              child: Center(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // 图片部分
-                    const SizedBox(width: 20,),
-                    Container(
-                      padding: const EdgeInsets.only(top: 0, bottom: 2, right: 0),
-                      child: SizedBox(
-                        width: isDesktopScreen ? 60 : 65,
-                        height: isDesktopScreen ? 60 : 65,
-                        child: Avatar(
-                          borderRadius: BorderRadius.all(Radius.circular(isDesktopScreen ? 30 : 32.5)),
-                          faceUrl: (faceUrl == null)
-                              ? ''
-                              : faceUrl.contains('http')
-                              ? faceUrl
-                              : 'https://$faceUrl',
-                          showName: '',
-                          type: 1,
+        child: GetBuilder<ProfileSettingScreenController>(
+          builder: (_) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30, bottom: 17),
+                  child: Center(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // 图片部分
+                        const SizedBox(width: 20,),
+                        Container(
+                          padding: const EdgeInsets.only(top: 0, bottom: 2, right: 0),
+                          child: SizedBox(
+                            width: isDesktopScreen ? 60 : 65,
+                            height: isDesktopScreen ? 60 : 65,
+                            child: Avatar(
+                              borderRadius: BorderRadius.all(Radius.circular(isDesktopScreen ? 30 : 32.5)),
+                              faceUrl: controller.userFullInfo.faceUrl ?? '',
+                              showName: '',
+                              type: 1,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 4,),
-                    // 颜色块部分，位于图片右侧
-                    GestureDetector(
-                      onTap: (){},
-                      child: Image.asset(
-                        'assets/image/base/profile_edit.png',
-                        height: 16,
-                        width: 16,
-                        color: BaseColors.primaryColor,
-                      )
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Center(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    TIMUIKitCore.getInstance().loginUserInfo?.nickName ?? '',
-                    style: fontBold.copyWith(
-                      color: BaseColors.primaryColor,
-                      fontSize: 14
+                        const SizedBox(width: 4,),
+                        GestureDetector(
+                            onTap: (){
+                              Get.toNamed(AppRoutes.profileDetail);
+                            },
+                            child: Image.asset(
+                              'assets/image/base/profile_edit.png',
+                              height: 16,
+                              width: 16,
+                              color: BaseColors.primaryColor,
+                            )
+                        )
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 4,),
-                  if (gender != null)
-                    Image.asset(
-                      gender == 2
-                          ? 'assets/image/base/profile_male.png'
-                          : 'assets/image/base/profile_female.png',
-                      height: 12,
-                      width: 12,
-                    )
-                ],
-              ),
-            ),
-            if (userID != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Center(
+                ),
+                Center(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'AIDAV2 ID: ',
-                        style: fontBold.copyWith(
-                            color: BaseColors.primaryColor,
-                            fontSize: 14
-                        ),
-                      ),
-                      Text(
-                        userID,
+                        TIMUIKitCore.getInstance().loginUserInfo?.nickName ?? '',
                         style: fontBold.copyWith(
                             color: BaseColors.primaryColor,
                             fontSize: 14
                         ),
                       ),
                       const SizedBox(width: 4,),
-                      Image.asset(
-                        'assets/image/base/profile_copy.png',
-                        height: 12,
-                        width: 12,
-                      )
+                      if (controller.userFullInfo.gender != null && controller.userFullInfo.gender != 0)
+                        Image.asset(
+                          controller.userFullInfo.gender == 1
+                              ? 'assets/image/base/profile_male.png'
+                              : 'assets/image/base/profile_female.png',
+                          height: 12,
+                          width: 12,
+                        )
                     ],
                   ),
                 ),
-              ),
-            Center(
-              child: Text(
-                selfSignature ?? '暂无个人简介',
-                style: fontMedium.copyWith(
-                    color: selfSignature != null ? BaseColors.primaryColor : BaseColors.weakTextColor,
-                    fontSize: 12
-                ),
-              ),
-            ),
-            const SizedBox(height: 60,),
-            ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 4,
-              itemBuilder: (_, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: GestureDetector(
-                    onTap: () {
-                      print('objectdddddd');
-                    },
-                    child: Container(
-                      height: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color(0xFF00E0E5).withOpacity(0.5),
-                            const Color(0xFF00BFBF).withOpacity(0.5)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
+                if (controller.userFullInfo.userID != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'AIDAV2 ID: ',
+                            style: fontBold.copyWith(
+                                color: BaseColors.primaryColor,
+                                fontSize: 14
+                            ),
+                          ),
+                          Text(
+                            controller.userFullInfo.userID ?? '',
+                            style: fontBold.copyWith(
+                                color: BaseColors.primaryColor,
+                                fontSize: 14
+                            ),
+                          ),
+                          const SizedBox(width: 4,),
+                          Image.asset(
+                            'assets/image/base/profile_copy.png',
+                            height: 12,
+                            width: 12,
+                          )
+                        ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
+                    ),
+                  ),
+                Center(
+                  child: Text(
+                    controller.userFullInfo.selfSignature ?? '暂无个人简介',
+                    style: fontMedium.copyWith(
+                        color: controller.userFullInfo.selfSignature != null ? BaseColors.primaryColor : BaseColors.weakTextColor,
+                        fontSize: 12
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 60,),
+                ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (_, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: GestureDetector(
+                        onTap: () {
+                          print('objectdddddd');
+                        },
                         child: Container(
-                          height: 60,
+                          height: 70,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF00E0E5), Color(0xFF00BFBF)],
+                            gradient: LinearGradient(
+                              colors: [
+                                const Color(0xFF00E0E5).withOpacity(0.5),
+                                const Color(0xFF00BFBF).withOpacity(0.5)
+                              ],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 38, right: 18),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  controller.cellImageList[index],
-                                  height: 15,
-                                  width: 15,
-                                  color: BaseColors.white,
+                            padding: const EdgeInsets.all(5),
+                            child: Container(
+                              height: 60,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                gradient: const LinearGradient(
+                                  colors: [Color(0xFF00E0E5), Color(0xFF00BFBF)],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
                                 ),
-                                const SizedBox(width: 16,),
-                                Text(
-                                  controller.cellTitleList[index],
-                                  style: fontMedium.copyWith(
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 38, right: 18),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      controller.cellImageList[index],
+                                      height: 15,
+                                      width: 15,
                                       color: BaseColors.white,
-                                      fontSize: 14
-                                  ),
+                                    ),
+                                    const SizedBox(width: 16,),
+                                    Text(
+                                      controller.cellTitleList[index],
+                                      style: fontMedium.copyWith(
+                                          color: BaseColors.white,
+                                          fontSize: 14
+                                      ),
+                                    ),
+                                    Expanded(child: Container()),
+                                    const Icon(
+                                      Icons.chevron_right,
+                                      size: 30,
+                                      color: BaseColors.white,
+                                    )
+                                  ],
                                 ),
-                                Expanded(child: Container()),
-                                const Icon(
-                                  Icons.chevron_right,
-                                  size: 30,
-                                  color: BaseColors.white,
-                                )
-                              ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                );
-              },
-              separatorBuilder: (_, index) {
-                return Container(
-                  height: 30,
-                );
-              },
-            )
-          ],
+                    );
+                  },
+                  separatorBuilder: (_, index) {
+                    return Container(
+                      height: 30,
+                    );
+                  },
+                )
+              ],
+            );
+          },
         ),
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:aida/screens/chat/profile/profile_qr_code_screen_controller.dart';
+import 'package:aida/screens/qr_code/qr_code_screen.dart';
+import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
@@ -152,36 +154,41 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
             Row(
               children: [
                 Expanded(child: Container()),
-                Column(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: BaseColors.primaryColor.withOpacity(0.5),  // Border color
-                          width: 0.5,          // Border width
-                        )
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Image.asset(
-                          'assets/image/base/profile_qr_code_scan.png',
-                          height: 20,
-                          width: 20,
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.qrCode, arguments: QrCodeScreenArgs(type: QrCodeType.profileScan));
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: BaseColors.primaryColor.withOpacity(0.5),  // Border color
+                            width: 0.5,          // Border width
+                          )
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Image.asset(
+                            'assets/image/base/profile_qr_code_scan.png',
+                            height: 20,
+                            width: 20,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8,),
-                    Text(
-                      '扫一扫',
-                      style: fontBold.copyWith(
-                          color: BaseColors.primaryColor,
-                          fontSize: 14
+                      const SizedBox(height: 8,),
+                      Text(
+                        '扫一扫',
+                        style: fontBold.copyWith(
+                            color: BaseColors.primaryColor,
+                            fontSize: 14
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Expanded(child: Container()),
                 GestureDetector(

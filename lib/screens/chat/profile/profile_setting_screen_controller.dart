@@ -18,6 +18,7 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
   final CoreServicesImpl _coreServices = serviceLocator<CoreServicesImpl>();
 
   V2TimConversation? selectedConversation;
+  late V2TimUserFullInfo userFullInfo;
 
   final cellTitleList = [
     '邀请好友',
@@ -37,6 +38,12 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
   void onInit() {
     super.onInit();
 
+    V2TimUserFullInfo result = TIMUIKitCore.getInstance().loginUserInfo ?? V2TimUserFullInfo();
+    String? faceUrl = result.faceUrl;
+    result.faceUrl = faceUrl != null ? faceUrl.contains('http') ? faceUrl
+        : 'https://$faceUrl' : '';
+    userFullInfo = result;
+
     _coreServices.onCallback = (TIMCallback callbackValue) {
       if (callbackValue.infoRecommendText != null) {
         ToastUtils.showToast(title: callbackValue.infoRecommendText!);
@@ -49,5 +56,12 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
     // TODO: implement onReady
     super.onReady();
     ToastUtils.init(Get.context!);
+  }
+
+  updateUserInfo(String faceUrl) {
+    faceUrl = faceUrl.contains('http') ? faceUrl
+        : 'https://$faceUrl';
+    userFullInfo.faceUrl = faceUrl;
+    update();
   }
 }

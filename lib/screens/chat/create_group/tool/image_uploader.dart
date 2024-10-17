@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:aida/models/user/image_uploader_info.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -51,15 +52,22 @@ class ImageUploader {
     return null; // 如果无法压缩到所需大小，返回 null
   }
 
-  Future<Map?> handleImageUpload() async {
+  Future<String?> handleImageUpload() async {
     File? image = await pickImage();
     if (image != null) {
       String imageName = generateUniqueImageName();
       File? compressedImage = await compressLargeImage(image, 256);
       if (compressedImage != null) {
         Uint8List result = await getHTTPBodyWithServerImageName(imageName, compressedImage);
-        Map? map = await sendImageWithDio(result);
-        return map;
+        Map<String, dynamic>? map = await sendImageWithDio(result);
+        if (map != null) {
+          ImageUploaderInfo uploaderInfo = ImageUploaderInfo.fromJson(map);
+          if (uploaderInfo.code == 1) {
+            return uploaderInfo.data.fullUrl;
+          } else {
+            return null;
+          }
+        }
       } else {
         return null;
       }
@@ -96,7 +104,7 @@ class ImageUploader {
     return data.toBytes();
   }
 
-  Future<Map?> sendImageWithDio(Uint8List body) async {
+  Future<Map<String, dynamic>?> sendImageWithDio(Uint8List body) async {
     Dio dio = Dio();
 
     // 设置请求头

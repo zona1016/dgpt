@@ -1,4 +1,5 @@
 import 'package:aida/models/update/app_update_info.dart';
+import 'package:aida/models/user/user_info.dart';
 import 'package:aida/screens/auth/welcome_screen_controller.dart';
 import 'package:aida/services/auth_service.dart';
 import 'package:aida/utils/constants/app_enums.dart';
@@ -31,6 +32,7 @@ class MainScreenController extends BaseController {
   late PageController pageController;
   InAppWebViewController? webViewController;
   final AuthService authService = Get.find();
+  UserInfo? userInfo;
 
   final selectedTabIndex = 0.obs;
 
@@ -60,12 +62,12 @@ class MainScreenController extends BaseController {
         request: () => authService.login(username: 'czzona', password: 'q123456'),
         loadingState: AppLoadingState.backgroundWithoutError);
     if (result != null) {
-
-       await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
-       await TUICallKit.instance.login(20002781,
+      userInfo = result.userInfo;
+      await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
+      await TUICallKit.instance.login(20002781,
            result.userInfo.imId!,
            result.userInfo.userSign!);
-       Get.toNamed(AppRoutes.conversation);
+      Get.toNamed(AppRoutes.conversation);
     }
   }
 

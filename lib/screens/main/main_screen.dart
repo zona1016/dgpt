@@ -1,5 +1,6 @@
 import 'package:aida/models/web/web_message_received_info.dart';
 import 'package:aida/screens/main/main_screen_controller.dart';
+import 'package:aida/screens/qr_code/qr_code_screen.dart';
 import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
@@ -44,7 +45,7 @@ class MainScreen extends GetView<MainScreenController> {
                     WebMessageReceivedInfo info = WebMessageReceivedInfo.fromJson(parsedMessage);
                     WebMessageReceivedInfoType? infoType = info.data.stringToEnum(info.data.type);
                     if (infoType == WebMessageReceivedInfoType.qrScan) {
-                      Get.toNamed(AppRoutes.qrCode);
+                      Get.toNamed(AppRoutes.qrCode, arguments: QrCodeScreenArgs(type: QrCodeType.webScan));
                     } else if (infoType == WebMessageReceivedInfoType.downLoadImg) {
                       // 下载图片
                       if (info.data.base64 != null) {
