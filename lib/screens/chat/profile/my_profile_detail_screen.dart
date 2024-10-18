@@ -223,7 +223,7 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                 ),
                 InkWell(
                   onTap: () {
-
+                    Get.toNamed(AppRoutes.blackList);
                   },
                   child: TIMUIKitOperationItem(
                     isEmpty: false,
@@ -277,6 +277,7 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
   showDatePicker(BuildContext context, TUITheme? theme) {
     showModalBottomSheet(
       context: context,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(0.0))),
       builder: (BuildContext context) {
         return SafeArea(
           child: Container(

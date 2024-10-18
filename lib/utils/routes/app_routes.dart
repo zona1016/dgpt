@@ -4,6 +4,8 @@ import 'package:aida/screens/chat/add_friend_screen.dart';
 import 'package:aida/screens/chat/add_friend_screen_controller.dart';
 import 'package:aida/screens/chat/add_group_screen.dart';
 import 'package:aida/screens/chat/add_group_screen_controller.dart';
+import 'package:aida/screens/chat/black_list_screen.dart';
+import 'package:aida/screens/chat/black_list_screen_controller.dart';
 import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/chat_main_screen_controller.dart';
 import 'package:aida/screens/chat/conversation_screen.dart';
@@ -51,6 +53,7 @@ class AppRoutes {
   static String profileQRCode = "/profile_qr_code";
   static String profileDetail = "/profile_detail";
   static String selectedAvatar = "/elected_avatar";
+  static String blackList = "/black_list";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -132,6 +135,11 @@ class AppRoutes {
         name: selectedAvatar,
         page: () => const SelectedAvatarScreen(),
         binding: SelectedAvatarScreenBindings()
+    ),
+    GetPage(
+        name: blackList,
+        page: () => const BlackListScreen(),
+        binding: BlackListScreenBindings()
     ),
   ];
 }
