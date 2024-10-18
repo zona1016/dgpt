@@ -2,11 +2,14 @@ import 'dart:math';
 
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:aida/screens/chat/profile/my_profile_detail_screen_controller.dart';
+import 'package:aida/screens/chat/profile/widget/application_type_widget.dart';
+import 'package:aida/screens/chat/profile/widget/gender_chose_widget.dart';
+import 'package:aida/utils/bottom_sheet.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
+import 'package:aida/widget/base/custom_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +45,13 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                     height: 120,
                     child: Row(
                       children: [
-                        const SizedBox(width: 16,),
+                        const SizedBox(
+                          width: 16,
+                        ),
                         Text(
                           TIM_t("头像"),
-                          style: const TextStyle(fontSize: 14, color: BaseColors.primaryColor),
+                          style: const TextStyle(
+                              fontSize: 14, color: BaseColors.primaryColor),
                         ),
                         Expanded(child: Container()),
                         SizedBox(
@@ -54,17 +60,25 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                           child: Avatar(
                               faceUrl: controller.userFullInfo.faceUrl ?? "",
                               showName: controller.userFullInfo.nickName ?? "",
-                              borderRadius: BorderRadius.circular(48)
-                          ),
+                              borderRadius: BorderRadius.circular(48)),
                         ),
-                        const SizedBox(width: 4,),
-                        const Icon(Icons.keyboard_arrow_right, color: Color(0xFF00BBBD),),
-                        const SizedBox(width: 16,),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        const Icon(
+                          Icons.keyboard_arrow_right,
+                          color: Color(0xFF00BBBD),
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 InkWell(
                   onTapDown: (details) async {
                     showTextInputBottomSheet(
@@ -82,30 +96,38 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                         theme: const TUITheme());
                   },
                   child: TIMUIKitOperationItem(
-                    isEmpty: !TencentUtils.isTextNotEmpty(controller.userFullInfo.nickName),
+                    isEmpty: !TencentUtils.isTextNotEmpty(
+                        controller.userFullInfo.nickName),
                     operationName: TIM_t("昵称"),
                     operationRightWidget: Text(
-                        TencentUtils.isTextNotEmpty(controller.userFullInfo.nickName)
+                        TencentUtils.isTextNotEmpty(
+                                controller.userFullInfo.nickName)
                             ? controller.userFullInfo.nickName!
                             : isWideScreen
-                            ? ""
-                            : TIM_t("未填写"),
+                                ? ""
+                                : TIM_t("未填写"),
                         textAlign: isWideScreen ? null : TextAlign.end),
                   ),
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 TIMUIKitOperationItem(
-                  isEmpty: !TencentUtils.isTextNotEmpty(controller.userFullInfo.userID),
+                  isEmpty: !TencentUtils.isTextNotEmpty(
+                      controller.userFullInfo.userID),
                   operationName: TIM_t("账号"),
                   operationRightWidget: Text(
-                      TencentUtils.isTextNotEmpty(controller.userFullInfo.userID)
+                      TencentUtils.isTextNotEmpty(
+                              controller.userFullInfo.userID)
                           ? controller.userFullInfo.userID!
                           : isWideScreen
-                          ? ""
-                          : "",
+                              ? ""
+                              : "",
                       textAlign: isWideScreen ? null : TextAlign.end),
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 InkWell(
                     onTapDown: (details) async {
                       showTextInputBottomSheet(
@@ -127,93 +149,95 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                             controller.userFullInfo.selfSignature),
                         operationName: TIM_t("个性签名"),
                         operationRightWidget: Text(
-                            TencentUtils.isTextNotEmpty(controller.userFullInfo.selfSignature)
+                            TencentUtils.isTextNotEmpty(
+                                    controller.userFullInfo.selfSignature)
                                 ? controller.userFullInfo.selfSignature!
                                 : isWideScreen
-                                ? ""
-                                : TIM_t("未填写"),
+                                    ? ""
+                                    : TIM_t("未填写"),
                             textAlign: isWideScreen ? null : TextAlign.end))),
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 InkWell(
-                    onTapDown: (details) {
-                      showGenderChoseSheet(context, const TUITheme());
-                      // if (isWideScreen) {
-                      //   TUIKitWidePopup.showPopupWindow(
-                      //       isDarkBackground: false,
-                      //       operationKey: TUIKitWideModalOperationKey
-                      //           .secondaryClickUserAvatar,
-                      //       borderRadius:
-                      //       const BorderRadius.all(Radius.circular(4)),
-                      //       context: context,
-                      //       offset: Offset(details.globalPosition.dx,
-                      //           details.globalPosition.dy),
-                      //       child: (closeFunc) => TUIKitColumnMenu(
-                      //         data: [
-                      //           ColumnMenuItem(
-                      //               label: TIM_t("男"),
-                      //               onClick: () async {
-                      //                 final res = await widget.controller
-                      //                     ?.updateGender(1);
-                      //                 if (res?.code == 0) {
-                      //                   setState(() {
-                      //                     userProfile?.gender = 1;
-                      //                   });
-                      //                 }
-                      //                 closeFunc();
-                      //               }),
-                      //           ColumnMenuItem(
-                      //               label: TIM_t("女"),
-                      //               onClick: () async {
-                      //                 final res = await widget.controller
-                      //                     ?.updateGender(2);
-                      //                 if (res?.code == 0) {
-                      //                   setState(() {
-                      //                     userProfile?.gender = 2;
-                      //                   });
-                      //                 }
-                      //                 closeFunc();
-                      //               }),
-                      //         ],
-                      //       ));
-                      // } else {
-                      //
-                      // }
-                    },
-                    child: TIMUIKitProfileWidget.genderBarWithArrow(
-                        controller.userFullInfo.gender ?? 0, false)),
-                const SizedBox(height: 16,),
-                InkWell(
-                  onTapDown: (details) async {
-                    showDatePicker(context, const TUITheme());
+                  onTapDown: (details) {
+                    showGenderChoseSheet(context);
                   },
-                  child: TIMUIKitOperationItem(
-                      isEmpty: !TencentUtils.isTextNotEmpty(
-                          controller.userFullInfo.birthday.toString()),
-                      operationName: TIM_t("生日"),
-                      operationRightWidget: Text(
-                          TencentUtils.isTextNotEmpty(controller.userFullInfo.birthday.toString())
-                              ? controller.userFullInfo.birthday.toString()
-                              : isWideScreen
-                              ? ""
-                              : TIM_t("未设置"),
-                          textAlign: isWideScreen ? null : TextAlign.end))),
-                const SizedBox(height: 16,),
+                  child: TIMUIKitProfileWidget.genderBarWithArrow(
+                      controller.userFullInfo.gender ?? 0, false)),
+                const SizedBox(
+                  height: 16,
+                ),
+                InkWell(
+                    onTapDown: (details) async {
+                      showDatePicker(context, const TUITheme());
+                    },
+                    child: TIMUIKitOperationItem(
+                        isEmpty: !TencentUtils.isTextNotEmpty(
+                            controller.userFullInfo.birthday.toString()),
+                        operationName: TIM_t("生日"),
+                        operationRightWidget: Text(
+                            TencentUtils.isTextNotEmpty(
+                                    controller.userFullInfo.birthday.toString())
+                                ? controller.userFullInfo.birthday.toString()
+                                : isWideScreen
+                                    ? ""
+                                    : TIM_t("未设置"),
+                            textAlign: isWideScreen ? null : TextAlign.end))),
+                const SizedBox(
+                  height: 16,
+                ),
                 TIMUIKitOperationItem(
-                  isEmpty: !TencentUtils.isTextNotEmpty(controller.mainScreenController.userInfo?.email),
+                  isEmpty: !TencentUtils.isTextNotEmpty(
+                      controller.mainScreenController.userInfo?.email),
                   operationName: TIM_t("邮箱"),
                   operationRightWidget: Text(
-                      TencentUtils.isTextNotEmpty(controller.mainScreenController.userInfo?.email)
-                          ? controller.mainScreenController.userInfo?.email ?? ''
+                      TencentUtils.isTextNotEmpty(
+                              controller.mainScreenController.userInfo?.email)
+                          ? controller.mainScreenController.userInfo?.email ??
+                              ''
                           : isWideScreen
-                          ? ""
-                          : "",
+                              ? ""
+                              : "",
                       textAlign: isWideScreen ? null : TextAlign.end),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                InkWell(
+                  onTap: () {
+                    showApplicationTypeSheet(context);
+                  },
+                  child: TIMUIKitOperationItem(
+                    isEmpty: false,
+                    operationName: TIM_t("加我为好友的方式"),
+                    operationRightWidget: Text(
+                      controller
+                          .getAllowText(controller.userFullInfo.allowType),
+                      textAlign: isWideScreen ? null : TextAlign.end,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                InkWell(
+                  onTap: () {
+
+                  },
+                  child: TIMUIKitOperationItem(
+                    isEmpty: false,
+                    operationName: TIM_t("黑名单"),
+                    operationRightWidget: Text(
+                      '',
+                      textAlign: isWideScreen ? null : TextAlign.end,
+                    ),
+                  ),
                 ),
               ],
             );
           },
-        )
-    );
+        ));
   }
 
   showTextInputBottomSheet({
@@ -235,33 +259,22 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
         initText: initText);
   }
 
-  showGenderChoseSheet(BuildContext context, TUITheme? theme) {
-    showAdaptiveActionSheet(
+  showGenderChoseSheet(BuildContext context) {
+    BottomSheetUtils.showBaseBottomSheet(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+      title: TIM_t("性别"),
+      isDynamicHeight: true,
       context: context,
-      title: Text(TIM_t("性别")),
-      actions: <BottomSheetAction>[
-        BottomSheetAction(
-          title: Text(TIM_t("男"), style: TextStyle(color: theme?.primaryColor)),
-          onPressed: (_) async { // 1
-            controller.updateGender(1);
-            Navigator.pop(context);
-          },
-        ),
-        BottomSheetAction(
-          title: Text(TIM_t("女"), style: TextStyle(color: theme?.primaryColor)),
-          onPressed: (_) async { // 2
-            controller.updateGender(2);
-            Navigator.pop(context);
-          },
-        ),
-      ],
-      cancelAction: CancelAction(
-        title: Text(TIM_t("取消")),
-      ), // onPressed parameter is optional by default will dismiss the ActionSheet
+      showCancel: false,
+      child: GenderChoseWidget(
+        callback: (gender) {
+          controller.updateGender(gender);
+        },
+      ),
     );
   }
 
-  void showDatePicker(BuildContext context, TUITheme? theme) {
+  showDatePicker(BuildContext context, TUITheme? theme) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -279,9 +292,7 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Theme
-                          .of(context)
-                          .primaryColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
@@ -291,59 +302,24 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                     mode: CupertinoDatePickerMode.date,
                     initialDateTime: DateTime.now(),
                     onDateTimeChanged: (DateTime newDateTime) {
-                      String formattedDate = DateFormat('yyyyMMdd').format(newDateTime);
+                      String formattedDate =
+                          DateFormat('yyyyMMdd').format(newDateTime);
                       controller.birthday = int.parse(formattedDate);
                     },
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: GestureDetector(
-                    onTap: () {
+                  child: CustomButton(
+                    text: TIM_t("确认"),
+                    callback: () {
                       if (controller.birthday != null) {
                         controller.updateBirthday(controller.birthday!);
                       }
                       Navigator.of(context).pop();
                     },
-                    child: Container(
-                      height: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color(0xFF00E0E5).withOpacity(0.5),
-                            const Color(0xFF00BFBF).withOpacity(0.5)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF00E0E5), Color(0xFF00BFBF)],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              TIM_t("确认"),
-                              style: fontMedium.copyWith(
-                                  color: BaseColors.white,
-                                  fontSize: 14
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -352,4 +328,18 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
     );
   }
 
+  showApplicationTypeSheet(BuildContext context) {
+    BottomSheetUtils.showBaseBottomSheet(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+      title: TIM_t("权限管理"),
+      isDynamicHeight: true,
+      context: context,
+      showCancel: false,
+      child: ApplicationTypeWidget(
+        callback: (type) {
+          controller.updateAllowType(type);
+        },
+      ),
+    );
+  }
 }

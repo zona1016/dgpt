@@ -8,13 +8,15 @@ import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 class ProfileSettingScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut<ProfileSettingScreenController>(() => ProfileSettingScreenController(), fenix: false, permanent: false);
+    GetInstance().lazyPut<ProfileSettingScreenController>(
+        () => ProfileSettingScreenController(),
+        fenix: false,
+        permanent: false);
   }
 }
 
-class ProfileSettingScreenController extends BaseController<GroupProfileScreenArgs> {
-
+class ProfileSettingScreenController
+    extends BaseController<GroupProfileScreenArgs> {
   final CoreServicesImpl _coreServices = serviceLocator<CoreServicesImpl>();
 
   V2TimConversation? selectedConversation;
@@ -38,10 +40,14 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
   void onInit() {
     super.onInit();
 
-    V2TimUserFullInfo result = TIMUIKitCore.getInstance().loginUserInfo ?? V2TimUserFullInfo();
+    V2TimUserFullInfo result =
+        TIMUIKitCore.getInstance().loginUserInfo ?? V2TimUserFullInfo();
     String? faceUrl = result.faceUrl;
-    result.faceUrl = faceUrl != null ? faceUrl.contains('http') ? faceUrl
-        : 'https://$faceUrl' : '';
+    result.faceUrl = faceUrl != null
+        ? faceUrl.contains('http')
+            ? faceUrl
+            : 'https://$faceUrl'
+        : '';
     userFullInfo = result;
 
     _coreServices.onCallback = (TIMCallback callbackValue) {
@@ -58,10 +64,15 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
     ToastUtils.init(Get.context!);
   }
 
-  updateUserInfo({String? faceUrl,String? nickName,String? selfSignature, int? gender, int? birthday}) {
+  updateUserInfo(
+      {String? faceUrl,
+      String? nickName,
+      String? selfSignature,
+      int? gender,
+      int? birthday,
+      int? allowType}) {
     if (faceUrl != null) {
-      faceUrl = faceUrl.contains('http') ? faceUrl
-          : 'https://$faceUrl';
+      faceUrl = faceUrl.contains('http') ? faceUrl : 'https://$faceUrl';
       userFullInfo.faceUrl = faceUrl;
     }
 
@@ -75,6 +86,10 @@ class ProfileSettingScreenController extends BaseController<GroupProfileScreenAr
 
     if (gender != null) {
       userFullInfo.gender = gender;
+    }
+
+    if (allowType != null) {
+      userFullInfo.allowType = allowType;
     }
 
     update();

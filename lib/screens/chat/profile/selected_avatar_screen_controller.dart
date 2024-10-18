@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aida/screens/chat/conversation_screen_controller.dart';
 import 'package:aida/screens/chat/create_group/tool/image_uploader.dart';
 import 'package:aida/screens/chat/profile/my_profile_detail_screen_controller.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';

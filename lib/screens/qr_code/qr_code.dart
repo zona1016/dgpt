@@ -1,4 +1,3 @@
-import 'package:aida/screens/main/main_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/foundation.dart';
 class QRViewExample extends StatefulWidget {
 
   void Function(String? result)? callback;
-  QRViewExample({this.callback});
+  QRViewExample({super.key, this.callback});
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
 }

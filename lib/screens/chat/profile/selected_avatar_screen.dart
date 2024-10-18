@@ -1,13 +1,9 @@
-import 'package:aida/models/user/image_uploader_info.dart';
-import 'package:aida/screens/chat/create_group/tool/image_uploader.dart';
 import 'package:aida/screens/chat/profile/selected_avatar_screen_controller.dart';
-import 'package:aida/utils/packages/dialog.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 class SelectedAvatarScreen extends GetView<SelectedAvatarScreenController> {
