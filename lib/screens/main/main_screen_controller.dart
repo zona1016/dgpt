@@ -38,7 +38,6 @@ class MainScreenController extends BaseController {
 
   @override
   void onInit() {
-    login();
     pageController = PageController(initialPage: selectedTabIndex.value);
     super.onInit();
   }
@@ -55,20 +54,6 @@ class MainScreenController extends BaseController {
     // TODO: implement onReady
     super.onReady();
     ToastUtils.init(Get.context!);
-  }
-
-  void login() async {
-    final result = await fetchData(
-        request: () => authService.login(username: 'czzona', password: 'q123456'),
-        loadingState: AppLoadingState.backgroundWithoutError);
-    if (result != null) {
-      userInfo = result.userInfo;
-      await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
-      await TUICallKit.instance.login(20002781,
-           result.userInfo.imId!,
-           result.userInfo.userSign!);
-      Get.toNamed(AppRoutes.conversation);
-    }
   }
 
   void _checkForceUpdate() async {

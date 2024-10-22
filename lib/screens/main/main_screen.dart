@@ -14,6 +14,7 @@ import 'dart:convert'; // 用于 JSON 解析
 import 'dart:io'; // 用于文件操作
 import 'dart:typed_data'; // 用于处理二进制数据
 import 'package:path_provider/path_provider.dart';
+import 'package:tencent_calls_uikit/tencent_calls_uikit.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 class MainScreen extends GetView<MainScreenController> {
@@ -23,14 +24,6 @@ class MainScreen extends GetView<MainScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: BaseColors.white,
-        appBar: BaseAppBar(
-          actions: [
-            GestureDetector(
-              onTap: controller.login,
-              child: const Text('data'),
-            )
-          ],
-        ),
         body: SafeArea(
           child: InAppWebView(
             initialUrlRequest: URLRequest(url: WebUri("https://master.d2y6t2vezku3nd.amplifyapp.com/")),
@@ -45,6 +38,7 @@ class MainScreen extends GetView<MainScreenController> {
                     WebMessageReceivedInfo info = WebMessageReceivedInfo.fromJson(parsedMessage);
                     WebMessageReceivedInfoType? infoType = info.data.stringToEnum(info.data.type);
                     if (infoType == WebMessageReceivedInfoType.qrScan) {
+                      // 二维码扫描
                       Get.toNamed(AppRoutes.qrCode, arguments: QrCodeScreenArgs(type: QrCodeType.webScan));
                     } else if (infoType == WebMessageReceivedInfoType.downLoadImg) {
                       // 下载图片
@@ -58,6 +52,13 @@ class MainScreen extends GetView<MainScreenController> {
                           await saveImageFromBase64(info.data.base64!);
                           ToastUtils.showToast(title: '图片保存成功');
                         }
+                      }
+                    } else if (infoType == WebMessageReceivedInfoType.toMessage) {
+                      if (info.data.chatUserId != null && info.data.chatUserSig != null) {
+                        final result =  await TUICallKit.instance.login(20002781,
+                            info.data.chatUserId!,
+                            info.data.chatUserSig!);
+                        Get.toNamed(AppRoutes.conversation);
                       }
                     }
                   }

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'web_message_received_info.g.dart';
 
-enum WebMessageReceivedInfoType {downLoadImg, qrScan}
+enum WebMessageReceivedInfoType {downLoadImg, qrScan, toMessage}
 
 @JsonSerializable()
 class WebMessageReceivedInfo extends Object {
@@ -12,7 +12,7 @@ class WebMessageReceivedInfo extends Object {
   @JsonKey(name: 'data')
   Data data;
 
-  WebMessageReceivedInfo(this.type,this.data,);
+  WebMessageReceivedInfo(this.type,this.data);
 
   factory WebMessageReceivedInfo.fromJson(Map<String, dynamic> srcJson) => _$WebMessageReceivedInfoFromJson(srcJson);
 
@@ -29,18 +29,29 @@ class Data extends Object {
   @JsonKey(name: 'base64')
   String? base64;
 
+  @JsonKey(name: 'token')
+  String? token;
+
+  @JsonKey(name: 'chatUserId')
+  String? chatUserId;
+
+  @JsonKey(name: 'chatUserSig')
+  String? chatUserSig;
+
   WebMessageReceivedInfoType? stringToEnum(String type) {
     switch (type) {
       case 'downLoadImg':
         return WebMessageReceivedInfoType.downLoadImg;
       case 'qrScan':
         return WebMessageReceivedInfoType.qrScan;
+      case 'toMessage':
+        return WebMessageReceivedInfoType.toMessage;
       default:
         return null; // Return null or handle the invalid case
     }
   }
 
-  Data(this.type,this.base64,);
+  Data(this.type,this.base64,this.token,this.chatUserId, this.chatUserSig,);
 
   factory Data.fromJson(Map<String, dynamic> srcJson) => _$DataFromJson(srcJson);
 
