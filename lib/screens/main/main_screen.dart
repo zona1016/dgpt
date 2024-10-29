@@ -58,7 +58,7 @@ class MainScreen extends GetView<MainScreenController> {
                         final result =  await TUICallKit.instance.login(20002781,
                             info.data.chatUserId!,
                             info.data.chatUserSig!);
-                        if (result.code == '0') {
+                        if (result.message == 'success') {
                           Get.toNamed(AppRoutes.conversation);
                         } else {
                           ToastUtils.showToast(title: result.message ?? '');
