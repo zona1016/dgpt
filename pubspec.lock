@@ -1842,7 +1842,7 @@ packages:
   tencent_cloud_chat_uikit:
     dependency: "direct main"
     description:
-      path: "/Users/wanxue/Desktop/demo/chat_aida"
+      path: "/Users/wangbo/Desktop/demo/im"
       relative: false
     source: path
     version: "2.7.1"

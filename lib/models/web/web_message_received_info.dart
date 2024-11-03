@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'web_message_received_info.g.dart';
 
-enum WebMessageReceivedInfoType {downLoadImg, qrScan, toMessage}
+enum WebMessageReceivedInfoType {downLoadImg, qrScan, toMessage, changeLanguage}
 
 @JsonSerializable()
 class WebMessageReceivedInfo extends Object {
@@ -35,6 +35,9 @@ class Data extends Object {
   @JsonKey(name: 'chatUserId')
   String? chatUserId;
 
+  @JsonKey(name: 'language')
+  String? language;
+
   @JsonKey(name: 'chatUserSig')
   String? chatUserSig;
 
@@ -46,6 +49,8 @@ class Data extends Object {
         return WebMessageReceivedInfoType.qrScan;
       case 'toMessage':
         return WebMessageReceivedInfoType.toMessage;
+      case 'changeLanguage':
+        return WebMessageReceivedInfoType.changeLanguage;
       default:
         return null; // Return null or handle the invalid case
     }

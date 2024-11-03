@@ -26,6 +26,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/services.dart';
 import 'package:tencent_calls_uikit/tencent_calls_uikit.dart';
+import 'package:tencent_cloud_chat_uikit/data_services/core/core_services.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 void main() async {
@@ -54,11 +55,16 @@ void main() async {
   GetInstance().lazyPut<AuthService>(() => AuthServiceImpl(),
       fenix: false, permanent: true);
 
+  final locale = StorageUtils.read(StorageKeys.currentLocale);
+  LanguageEnum languageEnum = LanguageEnum.zhHans;
+  if (locale == 'en') {
+    languageEnum = LanguageEnum.en;
+  }
   // IM
   TIMUIKitCore.getInstance().init(
       sdkAppID: 20002781,
       // Replace 0 with the SDKAppID of your IM application when integrating
-      // language: LanguageEnum.en, // 界面语言配置，若不配置，则跟随系统语言
+      language: languageEnum,
       loglevel: LogLevelEnum.V2TIM_LOG_DEBUG,
       onTUIKitCallbackListener: (TIMCallback callbackValue) {},
       // [建议配置，详见此部分](https://cloud.tencent.com/document/product/269/70746#callback)

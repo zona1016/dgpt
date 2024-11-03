@@ -3,6 +3,7 @@ import 'package:aida/utils/packages/dialog.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_user_full_info.dart';
@@ -27,24 +28,20 @@ class AddFriendDetailScreen extends GetView<AddFriendDetailScreenController> {
           title: TIM_t("添加好友"),
           color: BaseColors.primaryColor,
         ),
-        body: Column(
-          children: [
-            SendApplication(
-              isShowDefaultGroup: true,
-              friendInfo: controller.args!.friendInfo,
-              model: controller.args!.selfInfoViewModel,
-              addResult: (result) {
-                DialogUtils.showBaseDialog(
-                    title: result,
-                    confirmText: TIM_t("确定"),
-                    onConfirmPressed: () {
-                      Get.back();
-                      Get.back();
-                    }
-                );
-              },
-            )
-          ],
+        body: SendApplication(
+          isShowDefaultGroup: true,
+          friendInfo: controller.args!.friendInfo,
+          model: controller.args!.selfInfoViewModel,
+          addResult: (result) {
+            DialogUtils.showBaseDialog(
+                title: result,
+                confirmText: TIM_t("确定"),
+                onConfirmPressed: () {
+                  Get.back();
+                  Get.back();
+                }
+            );
+          },
         )
     );
   }

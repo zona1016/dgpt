@@ -5,6 +5,7 @@ import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
@@ -91,7 +92,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
           child: Row(
             children: [
               Text(
-                '消息',
+                tr('chat.message'),
                 style: fontSFProBold.copyWith(
                   fontSize: 20,
                   color: BaseColors.primaryColor
