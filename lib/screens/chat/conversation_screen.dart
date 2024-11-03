@@ -56,7 +56,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                       ),
                       const SizedBox(width: 8,),
                       Text(
-                        '搜索',
+                        TIM_t('搜索'),
                         style: fontSFProMedium.copyWith(
                             fontSize: 14,
                             color: BaseColors.weakTextColor
@@ -92,7 +92,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
           child: Row(
             children: [
               Text(
-                tr('chat.message'),
+                TIM_t('消息'),
                 style: fontSFProBold.copyWith(
                   fontSize: 20,
                   color: BaseColors.primaryColor
@@ -127,7 +127,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '添加好友',
+                          TIM_t('添加好友'),
                           style: fontSFProMedium.copyWith(
                               fontSize: 14,
                               color: BaseColors.weakTextColor
@@ -149,7 +149,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '添加群聊',
+                          TIM_t('添加群聊'),
                           style: fontSFProMedium.copyWith(
                               fontSize: 14,
                               color: BaseColors.weakTextColor
@@ -171,7 +171,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '创建群聊',
+                          TIM_t('创建群聊'),
                           style: fontSFProMedium.copyWith(
                               fontSize: 14,
                               color: BaseColors.weakTextColor
@@ -193,7 +193,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          '设置',
+                          TIM_t('设置'),
                           style: fontSFProMedium.copyWith(
                               fontSize: 14,
                               color: BaseColors.weakTextColor
