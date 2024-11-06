@@ -5,6 +5,7 @@ import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'package:tencent_cloud_chat_uikit/ui/utils/screen_utils.dart';
 
 class CreateGroupIntroductionScreenArgs {
@@ -24,9 +25,9 @@ class CreateGroupIntroductionScreen extends GetView<GroupProfileScreenController
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: const CreateGroupIntroduction(),
         ),
-        defaultWidget: const BaseScreen(
+        defaultWidget: BaseScreen(
           appBar: BaseAppBar(
-            title: "群聊类型",
+            title: TIM_t("群聊类型"),
             color: BaseColors.primaryColor,
           ),
           body: CreateGroupIntroduction(),
