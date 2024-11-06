@@ -61,9 +61,9 @@ class MainScreen extends GetView<MainScreenController> {
                     } else if (infoType == WebMessageReceivedInfoType.toMessage) {
 
                       final locale = StorageUtils.read(StorageKeys.currentLocale);
-                      LanguageEnum languageEnum = LanguageEnum.zhHans;
-                      if (locale == 'en') {
-                        languageEnum = LanguageEnum.en;
+                      LanguageEnum languageEnum = LanguageEnum.en;
+                      if (locale == 'zh-cn') {
+                        languageEnum = LanguageEnum.zhHans;
                       }
                       Future.delayed(const Duration(milliseconds: 1), () {
                         I18nUtils(null, languageEnumToString[languageEnum]);
@@ -84,9 +84,9 @@ class MainScreen extends GetView<MainScreenController> {
                       }
                     } else if (infoType == WebMessageReceivedInfoType.changeLanguage) {
                       StorageUtils.write(StorageKeys.currentLocale, info.data.language);
-                      Locale locale =  const Locale.fromSubtags(languageCode: 'zh', scriptCode: "Hans");
-                      if (info.data.language == 'en') {
-                        locale = const Locale.fromSubtags(languageCode: "en");
+                      Locale locale =  const Locale.fromSubtags(languageCode: "en");
+                      if (info.data.language == 'zh-cn') {
+                        locale = const Locale.fromSubtags(languageCode: 'zh', scriptCode: "Hans");
                       }
                       context.setLocale(locale);
                       Get.updateLocale(locale);

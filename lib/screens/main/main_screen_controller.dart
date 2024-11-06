@@ -56,41 +56,19 @@ class MainScreenController extends BaseController {
     ToastUtils.init(Get.context!);
   }
 
-  void _checkForceUpdate() async {
-    // final result = await fetchData(
-    //     request: () => systemService.checkForceUpdate(),
-    //     loadingState: AppLoadingState.backgroundWithoutError);
-    // if (result != null) {
-    //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    //   Source installationSource = await StoreChecker.getSource;
-    //   int buildNumber = int.parse(packageInfo.buildNumber);
-    //   bool isValidSource =
-    //   (installationSource == Source.IS_INSTALLED_FROM_PLAY_STORE ||
-    //       installationSource == Source.IS_INSTALLED_FROM_APP_STORE);
-    //   bool shouldUpdate =
-    //       (GetPlatform.isAndroid && (buildNumber < result.androidVersion)) ||
-    //           (GetPlatform.isIOS && (buildNumber < result.iosVersion));
-    //   if (result.popup && shouldUpdate && isValidSource) {
-    //     if (result.force) {
-    //       _showUpdateDialog(result);
-    //     } else {
-    //       int launchCount =
-    //           StorageUtils.read<int>(StorageKeys.launchCount) ?? 0;
-    //       if (launchCount == 0) {
-    //         _showUpdateDialog(result);
-    //         StorageUtils.write(StorageKeys.launchCount, launchCount + 1);
-    //       }
-    //     }
-    //   } else {
-    //     StorageUtils.write(StorageKeys.launchCount, 0);
-    //   }
-    // }
-  }
-
-  selectTab(int index) {
-    selectedTabIndex(index);
-    if (pageController.hasClients) {
-      pageController.jumpToPage(index);
+  void login() async {
+    final result = await fetchData(
+        request: () => authService.login(username: 'czzona', password: 'q123456'),
+        loadingState: AppLoadingState.backgroundWithoutError);
+    if (result != null) {
+      userInfo = result.userInfo;
+      final timResult = await TIMUIKitCore.getInstance().login(userID: result.userInfo.imId!, userSig: result.userInfo.userSign!);
+      await TUICallKit.instance.login(20002781,
+          result.userInfo.imId!,
+          result.userInfo.userSign!);
+      print(timResult.code);
+      Get.toNamed(AppRoutes.conversation);
     }
   }
+
 }

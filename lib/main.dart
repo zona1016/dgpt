@@ -56,9 +56,9 @@ void main() async {
       fenix: false, permanent: true);
 
   final locale = StorageUtils.read(StorageKeys.currentLocale);
-  LanguageEnum languageEnum = LanguageEnum.zhHans;
-  if (locale == 'en') {
-    languageEnum = LanguageEnum.en;
+  LanguageEnum languageEnum = LanguageEnum.en;
+  if (locale == 'zh-cn') {
+    languageEnum = LanguageEnum.zhHans;
   }
   // IM
   TIMUIKitCore.getInstance().init(
