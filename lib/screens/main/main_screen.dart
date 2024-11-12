@@ -32,6 +32,10 @@ class MainScreen extends GetView<MainScreenController> {
         body: SafeArea(
           child: InAppWebView(
             initialUrlRequest: URLRequest(url: WebUri("https://master.d2y6t2vezku3nd.amplifyapp.com/")),
+            initialSettings: InAppWebViewSettings(
+              allowsInlineMediaPlayback: true,  // 允许内嵌视频播放
+              mediaPlaybackRequiresUserGesture: false,  // 自动播放视频不需要用户手势
+            ),
             onWebViewCreated: (webController) {
               controller.webViewController = webController;
               // 注册 JavaScript Handler
