@@ -6,6 +6,7 @@ import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -141,7 +142,7 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                     ),
                   ),
                   Text(
-                    '扫一扫，加我为好友',
+                    tr('chat.scan_to_add_me_as_a_friend'),
                     style: fontBold.copyWith(
                         color: BaseColors.weakTextColor,
                         fontSize: 14
@@ -181,7 +182,7 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                       ),
                       const SizedBox(height: 8,),
                       Text(
-                        '扫一扫',
+                        tr('chat.scan'),
                         style: fontBold.copyWith(
                             color: BaseColors.primaryColor,
                             fontSize: 14
@@ -204,7 +205,7 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                       ),
                       const SizedBox(height: 8,),
                       Text(
-                        '下载',
+                        tr('chat.download'),
                         style: fontBold.copyWith(
                             color: BaseColors.primaryColor,
                             fontSize: 14

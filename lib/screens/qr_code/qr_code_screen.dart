@@ -23,17 +23,15 @@ class QrCodeScreen extends GetView<QrCodeScreenController> {
         appBar: const BaseAppBar(
 
         ),
-        body: QRViewExample(
+        body: QrCode(
           callback: (result) async {
             QrCodeType type = controller.args!.type;
-
             switch (type) {
               case QrCodeType.webScan:
                 MainScreenController mainScreenController = Get.find<MainScreenController>();
                 await mainScreenController.webViewController?.evaluateJavascript(
                     source: 'window["webViewHandler"]("$result")');
               case QrCodeType.profileScan:
-                print(result);
               default:
             }
           },

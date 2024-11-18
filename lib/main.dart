@@ -57,7 +57,9 @@ void main() async {
 
   final locale = StorageUtils.read(StorageKeys.currentLocale);
   LanguageEnum languageEnum = LanguageEnum.en;
+  StorageUtils.write(StorageKeys.currentLocale, 'en');
   if (locale == 'zh-cn') {
+    StorageUtils.write(StorageKeys.currentLocale, 'zh');
     languageEnum = LanguageEnum.zhHans;
   }
   // IM

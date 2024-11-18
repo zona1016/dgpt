@@ -59,18 +59,21 @@ class MainScreen extends GetView<MainScreenController> {
                             info.data.base64 = info.data.base64!.split(",").last;
                           }
                           await saveImageFromBase64(info.data.base64!);
-                          ToastUtils.showToast(title: '图片保存成功');
+                          ToastUtils.showToast(title: tr('chat.image_saved_successfully'));
                         }
                       }
                     } else if (infoType == WebMessageReceivedInfoType.toMessage) {
                       if (info.data.chatUserId != null && info.data.chatUserSig != null) {
-                        final result =  await TUICallKit.instance.login(20002781,
-                            info.data.chatUserId!,
-                            info.data.chatUserSig!);
-                        if (result.message == 'success') {
+
+                        final CoreServicesImpl coreInstance = TIMUIKitCore.getInstance();
+                        final result = await coreInstance.login(userID: info.data.chatUserId!, userSig: info.data.chatUserSig!);
+                        if (result.code == 0) {
+                          await TUICallKit.instance.login(20002781,
+                              info.data.chatUserId!,
+                              info.data.chatUserSig!);
                           Get.toNamed(AppRoutes.conversation);
                         } else {
-                          ToastUtils.showToast(title: result.message ?? '');
+                          ToastUtils.showToast(title: result.desc);
                         }
                       } else {
                         ToastUtils.showToast(title: 'chatUserId 或 chatUserSig为空');

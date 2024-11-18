@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/foundation.dart';
 
-class QRViewExample extends StatefulWidget {
+class QrCode extends StatefulWidget {
 
   void Function(String? result)? callback;
-  QRViewExample({super.key, this.callback});
+  QrCode({super.key, this.callback});
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
 }
 
-class _QRViewExampleState extends State<QRViewExample> {
+class _QRViewExampleState extends State<QrCode> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   String? qrText;
@@ -63,7 +63,7 @@ class _QRViewExampleState extends State<QRViewExample> {
       if (widget.callback != null) {
         widget.callback!(scanData.code);
       }
-      Get.back();
+      Get.back(result: scanData.code);
     });
   }
 

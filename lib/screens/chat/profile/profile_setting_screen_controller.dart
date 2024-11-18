@@ -2,6 +2,7 @@ import 'package:aida/screens/chat/group_profile_screen.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:aida/utils/packages/toast.dart';
 import 'package:get/get.dart';
+import 'package:tencent_cloud_chat_uikit/business_logic/view_models/tui_self_info_view_model.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/services_locatar.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
@@ -18,6 +19,8 @@ class ProfileSettingScreenBindings implements Bindings {
 class ProfileSettingScreenController
     extends BaseController<GroupProfileScreenArgs> {
   final CoreServicesImpl _coreServices = serviceLocator<CoreServicesImpl>();
+  final TUISelfInfoViewModel selfInfoViewModel =
+  serviceLocator<TUISelfInfoViewModel>();
 
   V2TimConversation? selectedConversation;
   late V2TimUserFullInfo userFullInfo;

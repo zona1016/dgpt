@@ -285,11 +285,10 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
             color: Colors.transparent, // 背景透明
             child: Column(
               children: [
-                // 标题
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(
-                    '选择日期',
+                    TIM_t("选择日期"),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,

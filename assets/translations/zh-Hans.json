@@ -1,7 +1,13 @@
 {
   "app_name": "AIDAV2",
   "chat": {
-    "message": "消息"
+    "message": "消息",
+    "copy_success": "复制成功",
+    "no_personal_introduction_available": "暂无个人简介",
+    "image_saved_successfully": "图片保存成功",
+    "download": "下载",
+    "scan": "扫一扫",
+    "scan_to_add_me_as_a_friend": "扫一扫，加我为好友"
   }
 
 }
