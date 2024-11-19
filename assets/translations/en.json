@@ -7,6 +7,10 @@
     "image_saved_successfully": "Image saved successfully",
     "download": "Download",
     "scan": "Scan",
-    "scan_to_add_me_as_a_friend": "Scan to add me as a friend"
+    "scan_to_add_me_as_a_friend": "Scan to add me as a friend",
+    "avatar_selection": "Avatar Selection",
+    "select_date": "Select Date",
+    "email": "Email",
+    "permission_management": "Permission Management"
   }
 }

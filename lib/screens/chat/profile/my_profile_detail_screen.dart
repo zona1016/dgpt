@@ -190,7 +190,7 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                 TIMUIKitOperationItem(
                   isEmpty: !TencentUtils.isTextNotEmpty(
                       controller.mainScreenController.userInfo?.email),
-                  operationName: TIM_t("邮箱"),
+                  operationName: tr('chat.email'),
                   operationRightWidget: Text(
                       TencentUtils.isTextNotEmpty(
                               controller.mainScreenController.userInfo?.email)
@@ -288,7 +288,7 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(
-                    TIM_t("选择日期"),
+                    tr('chat.select_date'),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -331,7 +331,7 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
   showApplicationTypeSheet(BuildContext context) {
     BottomSheetUtils.showBaseBottomSheet(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-      title: TIM_t("权限管理"),
+      title: tr('chat.permission_management'),
       isDynamicHeight: true,
       context: context,
       showCancel: false,

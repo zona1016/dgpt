@@ -23,7 +23,11 @@ class CodegenLoader extends AssetLoader{
     "image_saved_successfully": "Image saved successfully",
     "download": "Download",
     "scan": "Scan",
-    "scan_to_add_me_as_a_friend": "Scan to add me as a friend"
+    "scan_to_add_me_as_a_friend": "Scan to add me as a friend",
+    "avatar_selection": "Avatar Selection",
+    "select_date": "Select Date",
+    "email": "Email",
+    "permission_management": "Permission Management"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -35,7 +39,11 @@ static const Map<String,dynamic> zh_Hans = {
     "image_saved_successfully": "图片保存成功",
     "download": "下载",
     "scan": "扫一扫",
-    "scan_to_add_me_as_a_friend": "扫一扫，加我为好友"
+    "scan_to_add_me_as_a_friend": "扫一扫，加我为好友",
+    "avatar_selection": "头像选择",
+    "select_date": "选择日期",
+    "email": "邮箱",
+    "permission_management": "权限管理"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};
