@@ -6,8 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 extension ContextExtension on BuildContext {
-  AppTheme get appTheme =>
-      Theme.of(this).extension<AppTheme>() ?? DefTheme.darkTheme.extension();
+  AppTheme get appTheme => AppTheme();
 
   copyText(String text) async {
     if (mounted) {

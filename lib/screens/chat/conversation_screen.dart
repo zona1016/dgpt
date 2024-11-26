@@ -19,7 +19,6 @@ class ConversationScreen extends GetView<ConversationScreenController> {
     return BaseScreen(
         appBar: BaseAppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
           title: '',
           flexibleSpace: _topBar(context),
         ),

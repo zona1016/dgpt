@@ -47,7 +47,7 @@ class BaseScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: statusBarTheme,
+        value: SystemUiOverlayStyle.dark,
         child: Container(
           decoration:
           backgroundImage != null || decorationBackgroundImage != null

@@ -47,7 +47,7 @@ void main() async {
 
   //Controllers
   GetInstance().lazyPut(() => UserController(), fenix: false, permanent: true);
-  GetInstance().lazyPut(() => ThemeController(), fenix: false, permanent: true);
+  // GetInstance().lazyPut(() => ThemeController(), fenix: false, permanent: true);
 
   // Service
   GetInstance().lazyPut<SystemService>(() => SystemServiceImpl(),
@@ -72,6 +72,13 @@ void main() async {
       // [建议配置，详见此部分](https://cloud.tencent.com/document/product/269/70746#callback)
       listener: V2TimSDKListener());
 
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(LocalizationWrapper(
@@ -80,6 +87,7 @@ void main() async {
       builder: (context) => const MainApp(),
     )));
   });
+
   int launchCount = StorageUtils.read<int>(StorageKeys.launchCount) ?? 0;
   if (launchCount > 0) {
     StorageUtils.write(
@@ -104,9 +112,9 @@ class MainApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       fallbackLocale: AppLanguage.defaultLanguage.locale,
-      themeMode: Get.find<ThemeController>().currentThemeMode,
+      themeMode: ThemeMode.light,
       theme: DefTheme.lightTheme,
-      darkTheme: DefTheme.darkTheme,
+      darkTheme: DefTheme.lightTheme,
       title: "AIDA",
       initialRoute: getInitialRoute(),
       getPages: AppRoutes.routes,

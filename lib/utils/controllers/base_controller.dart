@@ -6,6 +6,7 @@ import 'package:aida/utils/controllers/user_controller.dart';
 import 'package:aida/utils/packages/dialog.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -26,6 +27,12 @@ class BaseController<S> extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
     _args = Get.arguments as S?;
     hasLoadMore.listen((val) {
       refreshController.finishLoad(hasLoadMore.isTrue

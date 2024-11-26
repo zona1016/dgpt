@@ -32,7 +32,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: automaticallyImplyLeading,
       surfaceTintColor: context.appTheme.lightPrimaryColor,
-      backgroundColor: backgroundColor ?? context.appTheme.backgroundColor,
+      backgroundColor: backgroundColor ?? Colors.white.withOpacity(0.1),
       iconTheme:
       IconThemeData(color: color ?? context.appTheme.textColor, size: 20),
       flexibleSpace: flexibleSpace,
