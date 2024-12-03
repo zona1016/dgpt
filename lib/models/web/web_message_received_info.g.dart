@@ -26,6 +26,7 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       json['token'] as String?,
       json['chatUserId'] as String?,
       json['chatUserSig'] as String?,
+      json['url'] as String?,
     )..language = json['language'] as String?;
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
@@ -35,4 +36,5 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'chatUserId': instance.chatUserId,
       'language': instance.language,
       'chatUserSig': instance.chatUserSig,
+      'url': instance.url,
     };

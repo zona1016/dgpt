@@ -21,6 +21,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:tencent_calls_uikit/tencent_calls_uikit.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/core/core_services.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
@@ -62,6 +63,9 @@ class MainScreen extends GetView<MainScreenController> {
                           ToastUtils.showToast(title: tr('chat.image_saved_successfully'));
                         }
                       }
+                    } else if (infoType == WebMessageReceivedInfoType.openOutLink) {
+                      // 跳转到浏览器
+                      launchUrl(Uri.parse(info.data.url ?? ''));
                     } else if (infoType == WebMessageReceivedInfoType.toMessage) {
                       if (info.data.chatUserId != null && info.data.chatUserSig != null) {
 
