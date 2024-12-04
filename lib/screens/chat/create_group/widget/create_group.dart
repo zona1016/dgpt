@@ -56,11 +56,8 @@ class _CreateGroup extends State<CreateGroup> {
       if (widget.directToChat != null) {
         widget.directToChat!(conversation);
       } else {
-        // Navigator.pushReplacement(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) =>
-        //             Chat(selectedConversation: conversation)));
+        Get.back();
+        Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: conversation));
       }
     }
   }
@@ -156,7 +153,7 @@ class _CreateGroup extends State<CreateGroup> {
         if (widget.directToChat != null) {
           widget.directToChat!(conversation);
         } else {
-          Get.offNamed(AppRoutes.conversation);
+          Get.close(2);
           Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: conversation));
         }
       }

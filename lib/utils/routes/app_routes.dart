@@ -8,6 +8,8 @@ import 'package:aida/screens/chat/black_list_screen.dart';
 import 'package:aida/screens/chat/black_list_screen_controller.dart';
 import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/chat_main_screen_controller.dart';
+import 'package:aida/screens/chat/contact/new_contact_screen.dart';
+import 'package:aida/screens/chat/contact/new_contact_screen_controller.dart';
 import 'package:aida/screens/chat/conversation_screen.dart';
 import 'package:aida/screens/chat/conversation_screen_controller.dart';
 import 'package:aida/screens/chat/create_group/create_group_introduction_screen.dart';
@@ -28,6 +30,8 @@ import 'package:aida/screens/chat/profile_screen.dart';
 import 'package:aida/screens/chat/profile_screen_controller.dart';
 import 'package:aida/screens/chat/search_screen.dart';
 import 'package:aida/screens/chat/search_screen_controller.dart';
+import 'package:aida/screens/main/chat_home_screen.dart';
+import 'package:aida/screens/main/chat_home_screen_controller.dart';
 import 'package:aida/screens/main/main_screen.dart';
 import 'package:aida/screens/main/main_screen_controller.dart';
 import 'package:aida/screens/qr_code/qr_code_screen.dart';
@@ -37,6 +41,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 class AppRoutes {
   AppRoutes._();
 
+  static String home = "/home";
   static String main = "/main";
   static String conversation = "/conversation";
   static String chat = "/chat";
@@ -54,8 +59,19 @@ class AppRoutes {
   static String profileDetail = "/profile_detail";
   static String selectedAvatar = "/elected_avatar";
   static String blackList = "/black_list";
+  static String newContact = "/new_contact";
 
   static final List<GetPage> routes = [
+    GetPage(
+        name: home,
+        page: () => const ChatHomeScreen(),
+        binding: ChatHomeScreenBindings()
+    ),
+    GetPage(
+        name: newContact,
+        page: () => const NewContactScreen(),
+        binding: NewContactScreenBindings()
+    ),
     GetPage(
         name: main,
         page: () => const MainScreen(),

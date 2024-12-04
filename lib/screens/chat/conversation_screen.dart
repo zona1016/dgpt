@@ -126,73 +126,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          TIM_t('添加好友'),
-                          style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 2,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/image/base/chat_addG.png",
-                          width: 16,
-                          height: 16,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          TIM_t('添加群聊'),
-                          style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 3,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/image/base/chat_creatG.png",
-                          width: 16,
-                          height: 16,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          TIM_t('创建群聊'),
-                          style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 4,
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.settings,
-                          color: BaseColors.primaryColor,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          TIM_t('设置'),
+                          TIM_t('发起会话'),
                           style: fontSFProMedium.copyWith(
                               fontSize: 14,
                               color: BaseColors.weakTextColor
@@ -207,7 +141,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                 onSelected: (value) {
                   // 点击菜单项的处理逻辑
                   if (value == 1) {
-                    Get.toNamed(AppRoutes.addFriend);
+                    Get.toNamed(AppRoutes.newContact);
                   } else if (value == 2) {
                     Get.toNamed(AppRoutes.addGroup);
                   } else if (value == 3) {

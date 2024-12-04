@@ -54,6 +54,7 @@ class MainScreenController extends BaseController {
     // TODO: implement onReady
     super.onReady();
     ToastUtils.init(Get.context!);
+    // login();
   }
 
   void login() async {
@@ -67,7 +68,7 @@ class MainScreenController extends BaseController {
           result.userInfo.imId!,
           result.userInfo.userSign!);
       print(timResult.code);
-      Get.toNamed(AppRoutes.conversation);
+      Get.toNamed(AppRoutes.home);
     }
   }
 
