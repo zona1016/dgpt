@@ -1,6 +1,7 @@
 import 'package:aida/models/user/user_info.dart';
 import 'package:aida/screens/chat/contact/contact_main_screen_controller.dart';
 import 'package:aida/screens/chat/conversation_screen_controller.dart';
+import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:aida/utils/packages/toast.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class ChatHomeScreenBindings implements Bindings {
         .lazyPut(() => ChatHomeScreenController(), permanent: false, fenix: false);
     ConversationScreenBindings().dependencies();
     ContactMainScreenBindings().dependencies();
+    ProfileSettingScreenBindings().dependencies();
   }
 }
 

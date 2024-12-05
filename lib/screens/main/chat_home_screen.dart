@@ -1,5 +1,6 @@
 import 'package:aida/screens/chat/contact/contact_main_screen.dart';
 import 'package:aida/screens/chat/conversation_screen.dart';
+import 'package:aida/screens/chat/profile/profile_setting_screen.dart';
 import 'package:aida/screens/main/chat_home_screen_controller.dart';
 import 'package:aida/utils/extensions/context_extension.dart';
 import 'package:aida/utils/theme/color.dart';
@@ -87,6 +88,17 @@ class ChatHomeScreen extends GetView<ChatHomeScreenController> {
                           width: 20,
                           color: BaseColors.secondPrimaryColor,
                         )),
+                    BottomNavigationBarItem(
+                        label: '',
+                        icon: Image.asset(
+                          "assets/image/tab/profile_active.png",
+                          width: 20,
+                        ),
+                        activeIcon: Image.asset(
+                          "assets/image/tab/profile_active.png",
+                          width: 20,
+                          color: BaseColors.secondPrimaryColor,
+                        )),
                   ],
                 ),
               ))
@@ -99,6 +111,7 @@ class ChatHomeScreen extends GetView<ChatHomeScreenController> {
     return [
       const ConversationScreen(),
       const ContactMainScreen(),
+      const ProfileSettingScreen(),
     ];
   }
 }

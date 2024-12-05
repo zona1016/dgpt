@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:aida/screens/chat/profile/my_profile_detail_screen_controller.dart';
 import 'package:aida/screens/chat/profile/widget/application_type_widget.dart';
 import 'package:aida/screens/chat/profile/widget/gender_chose_widget.dart';
@@ -203,36 +202,6 @@ class MyProfileDetailScreen extends GetView<MyProfileDetailScreenController> {
                 ),
                 const SizedBox(
                   height: 16,
-                ),
-                InkWell(
-                  onTap: () {
-                    showApplicationTypeSheet(context);
-                  },
-                  child: TIMUIKitOperationItem(
-                    isEmpty: false,
-                    operationName: TIM_t("加我为好友的方式"),
-                    operationRightWidget: Text(
-                      controller
-                          .getAllowText(controller.userFullInfo.allowType),
-                      textAlign: isWideScreen ? null : TextAlign.end,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.blackList);
-                  },
-                  child: TIMUIKitOperationItem(
-                    isEmpty: false,
-                    operationName: TIM_t("黑名单"),
-                    operationRightWidget: Text(
-                      '',
-                      textAlign: isWideScreen ? null : TextAlign.end,
-                    ),
-                  ),
                 ),
               ],
             );

@@ -1,6 +1,7 @@
 import 'package:aida/screens/chat/group_profile_screen.dart';
 import 'package:aida/utils/controllers/base_controller.dart';
 import 'package:aida/utils/packages/toast.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 import 'package:tencent_cloud_chat_uikit/business_logic/view_models/tui_self_info_view_model.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/services_locatar.dart';
@@ -26,15 +27,11 @@ class ProfileSettingScreenController
   late V2TimUserFullInfo userFullInfo;
 
   final cellTitleList = [
-    '邀请好友',
-    '获取注册码',
-    '设置',
-    '帮助中心',
+    TIM_t('设置'),
+    tr('chat.help_center'),
   ];
 
   final cellImageList = [
-    'assets/image/base/profile_cell_hy.png',
-    'assets/image/base/profile_cell_qr_code.png',
     'assets/image/base/profile_cell_sz.png',
     'assets/image/base/profile_cell_bz.png',
   ];
@@ -72,8 +69,7 @@ class ProfileSettingScreenController
       String? nickName,
       String? selfSignature,
       int? gender,
-      int? birthday,
-      int? allowType}) {
+      int? birthday}) {
     if (faceUrl != null) {
       faceUrl = faceUrl.contains('http') ? faceUrl : 'https://$faceUrl';
       userFullInfo.faceUrl = faceUrl;
@@ -89,10 +85,6 @@ class ProfileSettingScreenController
 
     if (gender != null) {
       userFullInfo.gender = gender;
-    }
-
-    if (allowType != null) {
-      userFullInfo.allowType = allowType;
     }
 
     update();

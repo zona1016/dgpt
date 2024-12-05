@@ -146,8 +146,6 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                     Get.toNamed(AppRoutes.addGroup);
                   } else if (value == 3) {
                     Get.toNamed(AppRoutes.createGroupIntroduction);
-                  } else if (value == 4) {
-                    Get.toNamed(AppRoutes.profileSetting);
                   }
                 },
               ),

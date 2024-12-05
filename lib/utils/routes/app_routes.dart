@@ -18,10 +18,14 @@ import 'package:aida/screens/chat/create_group/create_group_screen.dart';
 import 'package:aida/screens/chat/create_group/create_group_screen_controller.dart';
 import 'package:aida/screens/chat/group_profile_screen.dart';
 import 'package:aida/screens/chat/group_profile_screen_controller.dart';
+import 'package:aida/screens/chat/profile/help_screen.dart';
+import 'package:aida/screens/chat/profile/help_screen_controller.dart';
 import 'package:aida/screens/chat/profile/my_profile_detail_screen.dart';
 import 'package:aida/screens/chat/profile/my_profile_detail_screen_controller.dart';
 import 'package:aida/screens/chat/profile/profile_qr_code_screen.dart';
 import 'package:aida/screens/chat/profile/profile_qr_code_screen_controller.dart';
+import 'package:aida/screens/chat/profile/profile_setting_detail_screen.dart';
+import 'package:aida/screens/chat/profile/profile_setting_detail_screen_controller.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
 import 'package:aida/screens/chat/profile/selected_avatar_screen.dart';
@@ -54,12 +58,13 @@ class AppRoutes {
   static String qrCode = "/qr_code";
   static String createGroupIntroduction = "/create_group_introduction";
   static String createGroup = "/create_group";
-  static String profileSetting = "/profile_setting";
   static String profileQRCode = "/profile_qr_code";
   static String profileDetail = "/profile_detail";
   static String selectedAvatar = "/elected_avatar";
   static String blackList = "/black_list";
   static String newContact = "/new_contact";
+  static String profileSettingDetail = "/profile_setting_detail";
+  static String help = "/help";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -76,6 +81,11 @@ class AppRoutes {
         name: main,
         page: () => const MainScreen(),
         binding: MainScreenBindings()
+    ),
+    GetPage(
+        name: help,
+        page: () => const HelpScreen(),
+        binding: HelpScreenBindings()
     ),
     GetPage(
         name: chat,
@@ -133,11 +143,6 @@ class AppRoutes {
         binding: CreateGroupScreenBindings()
     ),
     GetPage(
-        name: profileSetting,
-        page: () => const ProfileSettingScreen(),
-        binding: ProfileSettingScreenBindings()
-    ),
-    GetPage(
         name: profileQRCode,
         page: () => const ProfileQrCodeScreen(),
         binding: ProfileQrCodeScreenBindings()
@@ -156,6 +161,11 @@ class AppRoutes {
         name: blackList,
         page: () => const BlackListScreen(),
         binding: BlackListScreenBindings()
+    ),
+    GetPage(
+        name: profileSettingDetail,
+        page: () => const ProfileSettingDetailScreen(),
+        binding: ProfileSettingDetailScreenBindings()
     ),
   ];
 }

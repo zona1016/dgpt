@@ -120,8 +120,7 @@ class MyProfileDetailScreenController extends BaseController {
         nickName: nickName,
         selfSignature: selfSignature,
         gender: gender,
-        birthday: birthday,
-        allowType: allowType);
+        birthday: birthday);
     update();
   }
 }

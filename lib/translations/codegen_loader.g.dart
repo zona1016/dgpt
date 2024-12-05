@@ -27,7 +27,8 @@ class CodegenLoader extends AssetLoader{
     "avatar_selection": "Avatar Selection",
     "select_date": "Select Date",
     "email": "Email",
-    "permission_management": "Permission Management"
+    "permission_management": "Permission Management",
+    "help_center": "Help Center"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -43,7 +44,8 @@ static const Map<String,dynamic> zh_Hans = {
     "avatar_selection": "头像选择",
     "select_date": "选择日期",
     "email": "邮箱",
-    "permission_management": "权限管理"
+    "permission_management": "权限管理",
+    "help_center": "帮助中心"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

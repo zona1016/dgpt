@@ -1,4 +1,4 @@
-import 'package:aida/screens/chat/profile/my_profile_detail_screen_controller.dart';
+import 'package:aida/screens/chat/profile/profile_setting_detail_screen_controller.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class ApplicationTypeWidget extends StatefulWidget {
 
 class _ApplicationTypeWidgetState extends State<ApplicationTypeWidget> {
   int? allowType =
-      Get.find<MyProfileDetailScreenController>().userFullInfo.allowType;
+      Get.find<ProfileSettingDetailScreenController>().userFullInfo.allowType;
 
   @override
   Widget build(BuildContext context) {

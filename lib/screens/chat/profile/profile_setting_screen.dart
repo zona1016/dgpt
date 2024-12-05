@@ -1,5 +1,6 @@
 import 'package:aida/screens/chat/add_friend_detail_screen.dart';
 import 'package:aida/screens/chat/chat_main_screen.dart';
+import 'package:aida/screens/chat/profile/profile_setting_detail_screen.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
 import 'package:aida/screens/qr_code/qr_code_screen.dart';
 import 'package:aida/utils/packages/toast.dart';
@@ -51,13 +52,16 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
               padding: const EdgeInsets.only(left: 8, right: 16),
               onPressed: () async {
                 final result = Get.toNamed(AppRoutes.qrCode,
-                    arguments: QrCodeScreenArgs(type: QrCodeType.profileScan)) as String;
-                final imInfo = await TencentImSDKPlugin.v2TIMManager.getUsersInfo(userIDList: [result]);
+                        arguments:
+                            QrCodeScreenArgs(type: QrCodeType.profileScan))
+                    as String;
+                final imInfo = await TencentImSDKPlugin.v2TIMManager
+                    .getUsersInfo(userIDList: [result]);
                 if (imInfo.data != null && imInfo.data!.isNotEmpty) {
-                  Get.toNamed(AppRoutes.addFriendDetail, arguments: AddFriendDetailScreenArgs(
-                      friendInfo: imInfo.data?.first,
-                      selfInfoViewModel: controller.selfInfoViewModel
-                  ));
+                  Get.toNamed(AppRoutes.addFriendDetail,
+                      arguments: AddFriendDetailScreenArgs(
+                          friendInfo: imInfo.data?.first,
+                          selfInfoViewModel: controller.selfInfoViewModel));
                 } else {
                   ToastUtils.showToast(title: imInfo.desc);
                 }
@@ -201,13 +205,19 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 4,
+                  itemCount: controller.cellTitleList.length,
                   itemBuilder: (_, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: GestureDetector(
                         onTap: () {
-                          ToastUtils.showToast(title: '功能暂未开放');
+                          if (index == 0) {
+                            Get.toNamed(AppRoutes.profileSettingDetail,
+                                arguments: ProfileSettingDetailScreenArgs(
+                                    userFullInfo: controller.userFullInfo));
+                          } else if (index == 1) {
+                            Get.toNamed(AppRoutes.help);
+                          }
                         },
                         child: Container(
                           height: 70,
