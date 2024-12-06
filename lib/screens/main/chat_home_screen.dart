@@ -70,33 +70,33 @@ class ChatHomeScreen extends GetView<ChatHomeScreenController> {
                   items: [
                     BottomNavigationBarItem(
                         label: '',
-                        icon: Image.asset("assets/image/tab/chat_active.png",
-                            width: 20),
+                        icon: Image.asset("assets/image/tab/chat.png",
+                            width: 23),
                         activeIcon: Image.asset(
                           "assets/image/tab/chat_active.png",
-                          width: 20,
+                          width: 23,
                           color: BaseColors.secondPrimaryColor,
                         )),
                     BottomNavigationBarItem(
                         label: '',
                         icon: Image.asset(
-                          "assets/image/tab/contacts_active.png",
-                          width: 20,
+                          "assets/image/tab/contacts.png",
+                          width: 23,
                         ),
                         activeIcon: Image.asset(
                           "assets/image/tab/contacts_active.png",
-                          width: 20,
+                          width: 23,
                           color: BaseColors.secondPrimaryColor,
                         )),
                     BottomNavigationBarItem(
                         label: '',
                         icon: Image.asset(
-                          "assets/image/tab/profile_active.png",
-                          width: 20,
+                          "assets/image/tab/profile.png",
+                          width: 23,
                         ),
                         activeIcon: Image.asset(
                           "assets/image/tab/profile_active.png",
-                          width: 20,
+                          width: 23,
                           color: BaseColors.secondPrimaryColor,
                         )),
                   ],

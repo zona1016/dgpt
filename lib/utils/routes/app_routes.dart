@@ -8,6 +8,10 @@ import 'package:aida/screens/chat/black_list_screen.dart';
 import 'package:aida/screens/chat/black_list_screen_controller.dart';
 import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/chat_main_screen_controller.dart';
+import 'package:aida/screens/chat/contact/group_list_screen.dart';
+import 'package:aida/screens/chat/contact/group_list_screen_controller.dart';
+import 'package:aida/screens/chat/contact/new_chat_screen.dart';
+import 'package:aida/screens/chat/contact/new_chat_screen_controller.dart';
 import 'package:aida/screens/chat/contact/new_contact_screen.dart';
 import 'package:aida/screens/chat/contact/new_contact_screen_controller.dart';
 import 'package:aida/screens/chat/conversation_screen.dart';
@@ -62,9 +66,11 @@ class AppRoutes {
   static String profileDetail = "/profile_detail";
   static String selectedAvatar = "/elected_avatar";
   static String blackList = "/black_list";
+  static String newChat = "/new_chat";
   static String newContact = "/new_contact";
   static String profileSettingDetail = "/profile_setting_detail";
   static String help = "/help";
+  static String groupList = "/group_list";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -73,9 +79,9 @@ class AppRoutes {
         binding: ChatHomeScreenBindings()
     ),
     GetPage(
-        name: newContact,
-        page: () => const NewContactScreen(),
-        binding: NewContactScreenBindings()
+        name: newChat,
+        page: () => const NewChatScreen(),
+        binding: NewChatScreenBindings()
     ),
     GetPage(
         name: main,
@@ -166,6 +172,16 @@ class AppRoutes {
         name: profileSettingDetail,
         page: () => const ProfileSettingDetailScreen(),
         binding: ProfileSettingDetailScreenBindings()
+    ),
+    GetPage(
+        name: newContact,
+        page: () => const NewContactScreen(),
+        binding: NewContactScreenBindings()
+    ),
+    GetPage(
+        name: groupList,
+        page: () => const GroupListScreen(),
+        binding: GroupListScreenBindings()
     ),
   ];
 }

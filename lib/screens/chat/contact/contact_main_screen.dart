@@ -1,12 +1,15 @@
+import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/contact/contact_main_screen_controller.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
+import 'package:tencent_cloud_chat_uikit/ui/utils/screen_utils.dart';
 import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitContact/tim_uikit_contact.dart';
 
 class ContactMainScreen extends GetView<ContactMainScreenController> {
@@ -26,14 +29,36 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
           children: [
             Expanded(
               child: TIMUIKitContact(
-                onTapItem: (value) {
-
+                topList: [
+                  TopListItem(
+                      name: TIM_t('新的联系人'),
+                      id: "newContact",
+                      icon: Image.asset('assets/image/contact/new_friend.png'),
+                      onTap: () {
+                        Get.toNamed(AppRoutes.newContact);
+                      }),
+                  TopListItem(
+                      name: TIM_t('我的群聊'),
+                      id: "groupList",
+                      icon: Image.asset('assets/image/contact/group.png'),
+                      onTap: () {
+                        Get.toNamed(AppRoutes.groupList);
+                      }),
+                ],
+                onTapItem: (V2TimFriendInfo item) {
+                  Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: V2TimConversation(
+                      conversationID: "c2c_${item.userID}",
+                      userID: item.userID,
+                      showName: item.friendRemark ?? item.userProfile?.nickName,
+                      type: 1)));
                 },
+                emptyBuilder: (context) => Center(
+                  child: Text(TIM_t('无联系人')),
+                ),
               ),
             ),
           ],
-        )
-    );
+        ));
   }
 
   Widget _topBar(BuildContext context) {
@@ -47,9 +72,7 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
               Text(
                 TIM_t('通讯录'),
                 style: fontSFProBold.copyWith(
-                    fontSize: 20,
-                    color: BaseColors.primaryColor
-                ),
+                    fontSize: 20, color: BaseColors.primaryColor),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -66,8 +89,7 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
                     side: const BorderSide(
                       color: BaseColors.primaryColor,
                       width: 0.5,
-                    )
-                ),
+                    )),
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: 1,
@@ -82,9 +104,7 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
                         Text(
                           TIM_t('添加好友'),
                           style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
+                              fontSize: 14, color: BaseColors.weakTextColor),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -104,9 +124,7 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
                         Text(
                           TIM_t('添加群聊'),
                           style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
+                              fontSize: 14, color: BaseColors.weakTextColor),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -126,9 +144,7 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
                         Text(
                           TIM_t('创建群聊'),
                           style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
+                              fontSize: 14, color: BaseColors.weakTextColor),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

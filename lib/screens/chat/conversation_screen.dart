@@ -141,7 +141,7 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                 onSelected: (value) {
                   // 点击菜单项的处理逻辑
                   if (value == 1) {
-                    Get.toNamed(AppRoutes.newContact);
+                    Get.toNamed(AppRoutes.newChat);
                   } else if (value == 2) {
                     Get.toNamed(AppRoutes.addGroup);
                   } else if (value == 3) {
