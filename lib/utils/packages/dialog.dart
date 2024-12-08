@@ -96,7 +96,6 @@ class DialogUtils {
                         Expanded(
                             child: BaseButton(
                               onPressed: () {
-                                print('object');
                                 onConfirmPressed?.call();
                               },
                               text: confirmText,

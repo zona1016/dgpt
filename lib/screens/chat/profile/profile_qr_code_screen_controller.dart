@@ -6,6 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:tencent_cloud_chat_uikit/business_logic/view_models/tui_self_info_view_model.dart';
+import 'package:tencent_cloud_chat_uikit/data_services/friendShip/friendship_services.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/services_locatar.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'dart:ui' as ui;
@@ -21,6 +23,10 @@ class ProfileQrCodeScreenBindings implements Bindings {
 class ProfileQrCodeScreenController extends BaseController<GroupProfileScreenArgs> {
 
   final CoreServicesImpl _coreServices = serviceLocator<CoreServicesImpl>();
+  final TUISelfInfoViewModel selfInfoViewModel =
+  serviceLocator<TUISelfInfoViewModel>();
+  final FriendshipServices friendshipServices =
+  serviceLocator<FriendshipServices>();
   GlobalKey globalKey = GlobalKey();
 
   V2TimConversation? selectedConversation;

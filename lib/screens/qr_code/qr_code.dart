@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 
 class QrCode extends StatefulWidget {
 
-  void Function(String? result)? callback;
-  QrCode({super.key, this.callback});
+  void Function(String? result) callback;
+  QrCode({super.key, required this.callback});
   @override
   State<StatefulWidget> createState() => _QRViewExampleState();
 }
@@ -43,15 +43,7 @@ class _QRViewExampleState extends State<QrCode> {
                 cutOutSize: 300,
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: (qrText != null)
-                  ? Text('Scan result: $qrText')
-                  : const Text('Scan a code'),
-            ),
-          ),
+          )
         ],
       ),
     );
@@ -59,11 +51,11 @@ class _QRViewExampleState extends State<QrCode> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
+    bool isProcessing = false;
     controller.scannedDataStream.listen((scanData) async {
-      if (widget.callback != null) {
-        widget.callback!(scanData.code);
-      }
-      Get.back(result: scanData.code);
+      if (isProcessing) return;
+      isProcessing = true;
+      widget.callback(scanData.code);
     });
   }
 

@@ -49,7 +49,9 @@ class MainScreen extends GetView<MainScreenController> {
                     WebMessageReceivedInfoType? infoType = info.data.stringToEnum(info.data.type);
                     if (infoType == WebMessageReceivedInfoType.qrScan) {
                       // 二维码扫描
-                      Get.toNamed(AppRoutes.qrCode, arguments: QrCodeScreenArgs(type: QrCodeType.webScan));
+                      final result = await Get.toNamed(AppRoutes.qrCode, arguments: QrCodeScreenArgs(type: QrCodeType.webScan));
+                      controller.webViewController?.evaluateJavascript(
+                          source: 'window["webViewHandler"]("$result")');
                     } else if (infoType == WebMessageReceivedInfoType.downLoadImg) {
                       // 下载图片
                       if (info.data.base64 != null) {

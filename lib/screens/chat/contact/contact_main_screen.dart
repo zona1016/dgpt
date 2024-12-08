@@ -8,8 +8,7 @@ import 'package:aida/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
-import 'package:tencent_cloud_chat_uikit/ui/utils/screen_utils.dart';
+import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart' ;
 import 'package:tencent_cloud_chat_uikit/ui/views/TIMUIKitContact/tim_uikit_contact.dart';
 
 class ContactMainScreen extends GetView<ContactMainScreenController> {

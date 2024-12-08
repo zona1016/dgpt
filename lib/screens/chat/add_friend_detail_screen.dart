@@ -34,6 +34,7 @@ class AddFriendDetailScreen extends GetView<AddFriendDetailScreenController> {
           model: controller.args!.selfInfoViewModel,
           addResult: (result) {
             DialogUtils.showBaseDialog(
+                barrierDismissible: false,
                 title: result,
                 confirmText: TIM_t("确定"),
                 onConfirmPressed: () {

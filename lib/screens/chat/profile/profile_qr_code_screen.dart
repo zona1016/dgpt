@@ -1,5 +1,8 @@
+import 'package:aida/screens/chat/add_friend_detail_screen.dart';
 import 'package:aida/screens/chat/profile/profile_qr_code_screen_controller.dart';
 import 'package:aida/screens/qr_code/qr_code_screen.dart';
+import 'package:aida/utils/packages/dialog.dart';
+import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
@@ -19,7 +22,8 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktopScreen = TUIKitScreenUtils.getFormFactor(context) == DeviceType.Desktop;
+    final isDesktopScreen =
+        TUIKitScreenUtils.getFormFactor(context) == DeviceType.Desktop;
     String? faceUrl = TIMUIKitCore.getInstance().loginUserInfo?.faceUrl;
     String? userID = TIMUIKitCore.getInstance().loginUserInfo?.userID;
     return BaseScreen(
@@ -43,17 +47,19 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            padding: const EdgeInsets.only(top: 0, bottom: 2, right: 0),
+                            padding: const EdgeInsets.only(
+                                top: 0, bottom: 2, right: 0),
                             child: SizedBox(
                               width: isDesktopScreen ? 60 : 65,
                               height: isDesktopScreen ? 60 : 65,
                               child: Avatar(
-                                borderRadius: BorderRadius.all(Radius.circular(isDesktopScreen ? 30 : 32.5)),
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                    isDesktopScreen ? 30 : 32.5)),
                                 faceUrl: (faceUrl == null)
                                     ? ''
                                     : faceUrl.contains('http')
-                                    ? faceUrl
-                                    : 'https://$faceUrl',
+                                        ? faceUrl
+                                        : 'https://$faceUrl',
                                 showName: '',
                                 type: 1,
                               ),
@@ -69,11 +75,10 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          TIMUIKitCore.getInstance().loginUserInfo?.nickName ?? '',
+                          TIMUIKitCore.getInstance().loginUserInfo?.nickName ??
+                              '',
                           style: fontBold.copyWith(
-                              color: BaseColors.primaryColor,
-                              fontSize: 14
-                          ),
+                              color: BaseColors.primaryColor, fontSize: 14),
                         ),
                       ],
                     ),
@@ -90,15 +95,13 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                               'AIDAV2 ID: ',
                               style: fontBold.copyWith(
                                   color: BaseColors.weakTextColor,
-                                  fontSize: 14
-                              ),
+                                  fontSize: 14),
                             ),
                             Text(
                               userID,
                               style: fontBold.copyWith(
                                   color: BaseColors.weakTextColor,
-                                  fontSize: 14
-                              ),
+                                  fontSize: 14),
                             )
                           ],
                         ),
@@ -114,10 +117,13 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                             imageUrl: (faceUrl == null)
                                 ? ''
                                 : faceUrl.contains('http')
-                                ? faceUrl
-                                : 'https://$faceUrl',
-                            placeholder: (context, url) => const CircularProgressIndicator(), // 占位图
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                    ? faceUrl
+                                    : 'https://$faceUrl',
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            // 占位图
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                             imageBuilder: (context, imageProvider) {
                               return Container(
                                 width: 210,
@@ -130,7 +136,8 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                                   data: userID ?? '',
                                   size: 200,
                                   embeddedImage: imageProvider, // 将下载的图片嵌入二维码中
-                                  embeddedImageStyle: const QrEmbeddedImageStyle(
+                                  embeddedImageStyle:
+                                      const QrEmbeddedImageStyle(
                                     size: Size(40, 40), // 设置圆角
                                   ),
                                 ),
@@ -144,9 +151,7 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                   Text(
                     tr('chat.scan_to_add_me_as_a_friend'),
                     style: fontBold.copyWith(
-                        color: BaseColors.weakTextColor,
-                        fontSize: 14
-                    ),
+                        color: BaseColors.weakTextColor, fontSize: 14),
                   ),
                 ],
               ),
@@ -156,8 +161,51 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
               children: [
                 Expanded(child: Container()),
                 GestureDetector(
-                  onTap: () {
-                    Get.toNamed(AppRoutes.qrCode, arguments: QrCodeScreenArgs(type: QrCodeType.profileScan));
+                  onTap: () async {
+                    final result = await Get.toNamed(AppRoutes.qrCode,
+                        arguments:
+                        QrCodeScreenArgs(type: QrCodeType.profileScan));
+                    final imInfo = await TencentImSDKPlugin.v2TIMManager
+                        .getUsersInfo(userIDList: [result]);
+
+                    final checkFriend = await controller.friendshipServices.checkFriend(
+                        userIDList: [result],
+                        checkType: FriendTypeEnum.V2TIM_FRIEND_TYPE_SINGLE);
+                    if (checkFriend != null) {
+                      final res = checkFriend.first;
+                      if (res.resultCode == 0 && res.resultType != 0) {
+                        DialogUtils.showBaseDialog(
+                            barrierDismissible: false,
+                            title: TIM_t("该用户已是好友"),
+                            confirmText: TIM_t("确认"),
+                            onConfirmPressed: () {
+                              Get.back();
+                            }
+                        );
+                        return;
+                      }
+                    }
+
+                    if (result == controller.selfInfoViewModel.loginInfo?.userID) {
+                      DialogUtils.showBaseDialog(
+                          barrierDismissible: false,
+                          title: TIM_t("该用户已是好友"),
+                          confirmText: TIM_t("确认"),
+                          onConfirmPressed: () {
+                            Get.back();
+                          }
+                      );
+                      return;
+                    }
+
+                    if (imInfo.data != null && imInfo.data!.isNotEmpty) {
+                      Get.toNamed(AppRoutes.addFriendDetail,
+                          arguments: AddFriendDetailScreenArgs(
+                              friendInfo: imInfo.data?.first,
+                              selfInfoViewModel: controller.selfInfoViewModel));
+                    } else {
+                      ToastUtils.showToast(title: imInfo.desc);
+                    }
                   },
                   child: Column(
                     children: [
@@ -165,12 +213,12 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: BaseColors.primaryColor.withOpacity(0.5),  // Border color
-                            width: 0.5,          // Border width
-                          )
-                        ),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: BaseColors.primaryColor.withOpacity(0.5),
+                              // Border color
+                              width: 0.5, // Border width
+                            )),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Image.asset(
@@ -180,13 +228,13 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8,),
+                      const SizedBox(
+                        height: 8,
+                      ),
                       Text(
                         tr('chat.scan'),
                         style: fontBold.copyWith(
-                            color: BaseColors.primaryColor,
-                            fontSize: 14
-                        ),
+                            color: BaseColors.primaryColor, fontSize: 14),
                       ),
                     ],
                   ),
@@ -203,13 +251,13 @@ class ProfileQrCodeScreen extends GetView<ProfileQrCodeScreenController> {
                         height: 40,
                         width: 40,
                       ),
-                      const SizedBox(height: 8,),
+                      const SizedBox(
+                        height: 8,
+                      ),
                       Text(
                         tr('chat.download'),
                         style: fontBold.copyWith(
-                            color: BaseColors.primaryColor,
-                            fontSize: 14
-                        ),
+                            color: BaseColors.primaryColor, fontSize: 14),
                       ),
                     ],
                   ),

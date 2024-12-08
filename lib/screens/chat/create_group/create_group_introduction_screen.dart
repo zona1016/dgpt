@@ -30,7 +30,7 @@ class CreateGroupIntroductionScreen extends GetView<GroupProfileScreenController
             title: TIM_t("群聊类型"),
             color: BaseColors.primaryColor,
           ),
-          body: CreateGroupIntroduction(),
+          body: const CreateGroupIntroduction(),
         ));
   }
 }

@@ -4,6 +4,7 @@ import 'package:aida/utils/packages/toast.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 import 'package:tencent_cloud_chat_uikit/business_logic/view_models/tui_self_info_view_model.dart';
+import 'package:tencent_cloud_chat_uikit/data_services/friendShip/friendship_services.dart';
 import 'package:tencent_cloud_chat_uikit/data_services/services_locatar.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
@@ -20,6 +21,8 @@ class ProfileSettingScreenBindings implements Bindings {
 class ProfileSettingScreenController
     extends BaseController<GroupProfileScreenArgs> {
   final CoreServicesImpl _coreServices = serviceLocator<CoreServicesImpl>();
+  final FriendshipServices friendshipServices =
+  serviceLocator<FriendshipServices>();
   final TUISelfInfoViewModel selfInfoViewModel =
   serviceLocator<TUISelfInfoViewModel>();
 

@@ -54,7 +54,7 @@ class MainScreenController extends BaseController {
     // TODO: implement onReady
     super.onReady();
     ToastUtils.init(Get.context!);
-    // login();
+    login();
   }
 
   void login() async {

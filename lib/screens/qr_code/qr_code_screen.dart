@@ -28,10 +28,9 @@ class QrCodeScreen extends GetView<QrCodeScreenController> {
             QrCodeType type = controller.args!.type;
             switch (type) {
               case QrCodeType.webScan:
-                MainScreenController mainScreenController = Get.find<MainScreenController>();
-                await mainScreenController.webViewController?.evaluateJavascript(
-                    source: 'window["webViewHandler"]("$result")');
+                Get.back(result: result);
               case QrCodeType.profileScan:
+                Get.back(result: result);
               default:
             }
           },

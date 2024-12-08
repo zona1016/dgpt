@@ -144,7 +144,7 @@ class _CreateGroupIntroductionState extends State<CreateGroupIntroduction> {
                             .groupTypeDescriptionMap[groupType]!),
                         style: const TextStyle(
                           fontSize: 12,
-                          color: BaseColors.weakTextColor,
+                          color: BaseColors.whiteGray,
                         ),
                       )
                     ],

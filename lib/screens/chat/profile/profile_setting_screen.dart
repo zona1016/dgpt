@@ -3,6 +3,7 @@ import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/profile/profile_setting_detail_screen.dart';
 import 'package:aida/screens/chat/profile/profile_setting_screen_controller.dart';
 import 'package:aida/screens/qr_code/qr_code_screen.dart';
+import 'package:aida/utils/packages/dialog.dart';
 import 'package:aida/utils/packages/toast.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
@@ -51,12 +52,42 @@ class ProfileSettingScreen extends GetView<ProfileSettingScreenController> {
           IconButton(
               padding: const EdgeInsets.only(left: 8, right: 16),
               onPressed: () async {
-                final result = Get.toNamed(AppRoutes.qrCode,
+                final result = await Get.toNamed(AppRoutes.qrCode,
                         arguments:
-                            QrCodeScreenArgs(type: QrCodeType.profileScan))
-                    as String;
+                            QrCodeScreenArgs(type: QrCodeType.profileScan));
                 final imInfo = await TencentImSDKPlugin.v2TIMManager
                     .getUsersInfo(userIDList: [result]);
+
+                final checkFriend = await controller.friendshipServices.checkFriend(
+                    userIDList: [result],
+                    checkType: FriendTypeEnum.V2TIM_FRIEND_TYPE_SINGLE);
+                if (checkFriend != null) {
+                  final res = checkFriend.first;
+                  if (res.resultCode == 0 && res.resultType != 0) {
+                    DialogUtils.showBaseDialog(
+                        barrierDismissible: false,
+                        title: TIM_t("该用户已是好友"),
+                        confirmText: TIM_t("确认"),
+                        onConfirmPressed: () {
+                          Get.back();
+                        }
+                    );
+                    return;
+                  }
+                }
+
+                if (result == controller.selfInfoViewModel.loginInfo?.userID) {
+                  DialogUtils.showBaseDialog(
+                      barrierDismissible: false,
+                      title: TIM_t("该用户已是好友"),
+                      confirmText: TIM_t("确认"),
+                      onConfirmPressed: () {
+                        Get.back();
+                      }
+                  );
+                  return;
+                }
+
                 if (imInfo.data != null && imInfo.data!.isNotEmpty) {
                   Get.toNamed(AppRoutes.addFriendDetail,
                       arguments: AddFriendDetailScreenArgs(
