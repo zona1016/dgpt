@@ -70,21 +70,6 @@ class MainScreen extends GetView<MainScreenController> {
                       launchUrl(Uri.parse(info.data.url ?? ''));
                     } else if (infoType == WebMessageReceivedInfoType.toMessage) {
                       if (info.data.chatUserId != null && info.data.chatUserSig != null) {
-
-                        // 设置语言
-                        StorageUtils.write(StorageKeys.currentLocale, info.data.language);
-                        LanguageEnum languageEnum = LanguageEnum.en;
-                        Locale locale =  const Locale.fromSubtags(languageCode: "en");
-                        if (info.data.language == 'zh-cn') {
-                          locale = const Locale.fromSubtags(languageCode: 'zh', scriptCode: "Hans");
-                          languageEnum = LanguageEnum.zhHans;
-                        }
-                        context.setLocale(locale);
-                        Get.updateLocale(locale);
-                        Future.delayed(const Duration(milliseconds: 1), () {
-                          I18nUtils(null, languageEnumToString[languageEnum]);
-                        });
-
                         final CoreServicesImpl coreInstance = TIMUIKitCore.getInstance();
                         final result = await coreInstance.login(userID: info.data.chatUserId!, userSig: info.data.chatUserSig!);
                         if (result.code == 0) {
@@ -111,8 +96,7 @@ class MainScreen extends GetView<MainScreenController> {
                       Future.delayed(const Duration(milliseconds: 1), () {
                         I18nUtils(null, languageEnumToString[languageEnum]);
                       });
-
-                      RestartWidget.restartApp(context);
+                      // RestartWidget.restartApp(context);
                     }
                   }
                 },
