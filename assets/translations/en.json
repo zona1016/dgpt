@@ -13,6 +13,9 @@
     "email": "Email",
     "permission_management": "Permission Management",
     "help_center": "Help Center",
-    "new_friend": "New Friend"
+    "new_friend": "New Friend",
+    "go_to_settings": "Go to Settings",
+    "camera_permission_required": "Camera Permission Required",
+    "camera_access_required_message": "This feature requires access to your camera. Please go to Settings to enable the permission."
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:aida/models/web/web_message_received_info.dart';
 import 'package:aida/screens/main/main_screen_controller.dart';
 import 'package:aida/screens/qr_code/qr_code_screen.dart';
@@ -97,6 +99,8 @@ class MainScreen extends GetView<MainScreenController> {
                         I18nUtils(null, languageEnumToString[languageEnum]);
                       });
                       // RestartWidget.restartApp(context);
+                    } else if (infoType == WebMessageReceivedInfoType.logout) {
+                      await TencentImSDKPlugin.v2TIMManager.logout();
                     }
                   }
                 },

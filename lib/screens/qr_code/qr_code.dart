@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 class QrCode extends StatefulWidget {
 
@@ -42,6 +44,7 @@ class _QRViewExampleState extends State<QrCode> {
                 borderWidth: 10,
                 cutOutSize: 300,
               ),
+              onPermissionSet: _checkAndRequestCameraPermission,
             ),
           )
         ],
@@ -57,6 +60,54 @@ class _QRViewExampleState extends State<QrCode> {
       isProcessing = true;
       widget.callback(scanData.code);
     });
+  }
+
+  void _checkAndRequestCameraPermission(QRViewController ctrl, bool p) async {
+    PermissionStatus status = await Permission.camera.status;
+
+    if (status.isGranted) {
+
+    } else if (status.isDenied || status.isPermanentlyDenied) {
+
+      final result = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(tr('chat.camera_permission_required')),
+          content: Text(tr('chat.camera_access_required_message')),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, false);
+                Get.back();
+              },
+              child: Text(TIM_t('取消')),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context, true);
+              },
+              child: Text(tr('chat.go_to_settings')),
+            ),
+          ],
+        ),
+      );
+
+      if (result == true) {
+        // 如果用户选择前往设置
+        if (status.isPermanentlyDenied) {
+          // 引导用户打开设置
+          await openAppSettings();
+        } else {
+          // 请求权限
+          final newStatus = await Permission.camera.request();
+          if (newStatus.isGranted) {
+
+          }
+        }
+      }
+
+    }
+
   }
 
   @override

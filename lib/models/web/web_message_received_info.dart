@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'web_message_received_info.g.dart';
 
-enum WebMessageReceivedInfoType {downLoadImg, qrScan, toMessage, changeLanguage, openOutLink}
+enum WebMessageReceivedInfoType {downLoadImg, qrScan, toMessage, changeLanguage, openOutLink, logout}
 
 @JsonSerializable()
 class WebMessageReceivedInfo extends Object {
@@ -56,6 +56,8 @@ class Data extends Object {
         return WebMessageReceivedInfoType.changeLanguage;
       case 'openOutLink':
         return WebMessageReceivedInfoType.openOutLink;
+      case 'logout':
+        return WebMessageReceivedInfoType.logout;
       default:
         return null; // Return null or handle the invalid case
     }
