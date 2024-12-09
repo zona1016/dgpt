@@ -100,7 +100,9 @@ class MainScreen extends GetView<MainScreenController> {
                       });
                       // RestartWidget.restartApp(context);
                     } else if (infoType == WebMessageReceivedInfoType.logout) {
+                      await TIMUIKitCore.getInstance().logout();
                       await TencentImSDKPlugin.v2TIMManager.logout();
+                      await TUICallKit.instance.logout();
                     }
                   }
                 },
