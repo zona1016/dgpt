@@ -32,6 +32,7 @@ class MainScreenController extends BaseController {
   late PageController pageController;
   InAppWebViewController? webViewController;
   final AuthService authService = Get.find();
+  String loginImId = '';
   UserInfo? userInfo;
 
   final selectedTabIndex = 0.obs;
