@@ -6,6 +6,7 @@ import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/widget/base/base_app_bar.dart';
 import 'package:aida/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -153,7 +154,7 @@ class _CreateGroup extends State<CreateGroup> {
         if (widget.directToChat != null) {
           widget.directToChat!(conversation);
         } else {
-          Get.close(2);
+          Get.back();
           Get.toNamed(AppRoutes.chat, arguments: ChatMainScreenArgs(selectedConversation: conversation));
         }
       }
@@ -217,7 +218,7 @@ class _CreateGroup extends State<CreateGroup> {
         ),
         defaultWidget: BaseScreen(
           appBar: BaseAppBar(
-            title: '联系人列表',
+            title: tr('chat.contact_list'),
             color: BaseColors.primaryColor,
             actions: [
               TextButton(

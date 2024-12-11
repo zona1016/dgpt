@@ -76,92 +76,92 @@ class ContactMainScreen extends GetView<ContactMainScreenController> {
                 overflow: TextOverflow.ellipsis,
               ),
               Expanded(child: Container()),
-              PopupMenuButton<int>(
-                icon: Image.asset(
-                  "assets/image/base/user_add.png",
-                  width: 22,
-                  height: 22,
-                ),
-                offset: const Offset(0, 50),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: const BorderSide(
-                      color: BaseColors.primaryColor,
-                      width: 0.5,
-                    )),
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: 1,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/image/base/chat_addF.png",
-                          width: 16,
-                          height: 16,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          TIM_t('添加好友'),
-                          style: fontSFProMedium.copyWith(
-                              fontSize: 14, color: BaseColors.weakTextColor),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 2,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/image/base/chat_addG.png",
-                          width: 16,
-                          height: 16,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          TIM_t('添加群聊'),
-                          style: fontSFProMedium.copyWith(
-                              fontSize: 14, color: BaseColors.weakTextColor),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 3,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/image/base/chat_creatG.png",
-                          width: 16,
-                          height: 16,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          TIM_t('创建群聊'),
-                          style: fontSFProMedium.copyWith(
-                              fontSize: 14, color: BaseColors.weakTextColor),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-                onSelected: (value) {
-                  // 点击菜单项的处理逻辑
-                  if (value == 1) {
-                    Get.toNamed(AppRoutes.addFriend);
-                  } else if (value == 2) {
-                    Get.toNamed(AppRoutes.addGroup);
-                  } else if (value == 3) {
-                    Get.toNamed(AppRoutes.createGroupIntroduction);
-                  }
-                },
-              ),
+              // PopupMenuButton<int>(
+              //   icon: Image.asset(
+              //     "assets/image/base/user_add.png",
+              //     width: 22,
+              //     height: 22,
+              //   ),
+              //   offset: const Offset(0, 50),
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //       side: const BorderSide(
+              //         color: BaseColors.primaryColor,
+              //         width: 0.5,
+              //       )),
+              //   itemBuilder: (context) => [
+              //     PopupMenuItem(
+              //       value: 1,
+              //       child: Row(
+              //         children: [
+              //           Image.asset(
+              //             "assets/image/base/chat_addF.png",
+              //             width: 16,
+              //             height: 16,
+              //           ),
+              //           const SizedBox(width: 10),
+              //           Text(
+              //             TIM_t('添加好友'),
+              //             style: fontSFProMedium.copyWith(
+              //                 fontSize: 14, color: BaseColors.weakTextColor),
+              //             maxLines: 1,
+              //             overflow: TextOverflow.ellipsis,
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     PopupMenuItem(
+              //       value: 2,
+              //       child: Row(
+              //         children: [
+              //           Image.asset(
+              //             "assets/image/base/chat_addG.png",
+              //             width: 16,
+              //             height: 16,
+              //           ),
+              //           const SizedBox(width: 10),
+              //           Text(
+              //             TIM_t('添加群聊'),
+              //             style: fontSFProMedium.copyWith(
+              //                 fontSize: 14, color: BaseColors.weakTextColor),
+              //             maxLines: 1,
+              //             overflow: TextOverflow.ellipsis,
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     PopupMenuItem(
+              //       value: 3,
+              //       child: Row(
+              //         children: [
+              //           Image.asset(
+              //             "assets/image/base/chat_creatG.png",
+              //             width: 16,
+              //             height: 16,
+              //           ),
+              //           const SizedBox(width: 10),
+              //           Text(
+              //             TIM_t('创建群聊'),
+              //             style: fontSFProMedium.copyWith(
+              //                 fontSize: 14, color: BaseColors.weakTextColor),
+              //             maxLines: 1,
+              //             overflow: TextOverflow.ellipsis,
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              //   onSelected: (value) {
+              //     // 点击菜单项的处理逻辑
+              //     if (value == 1) {
+              //       Get.toNamed(AppRoutes.addFriend);
+              //     } else if (value == 2) {
+              //       Get.toNamed(AppRoutes.addGroup);
+              //     } else if (value == 3) {
+              //       Get.toNamed(AppRoutes.createGroupIntroduction);
+              //     }
+              //   },
+              // ),
             ],
           ),
         );

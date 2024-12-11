@@ -1,5 +1,7 @@
 import 'package:aida/screens/chat/chat_main_screen.dart';
 import 'package:aida/screens/chat/conversation_screen_controller.dart';
+import 'package:aida/screens/chat/create_group/create_group_screen.dart';
+import 'package:aida/screens/chat/create_group/widget/create_group.dart';
 import 'package:aida/utils/routes/app_routes.dart';
 import 'package:aida/utils/theme/color.dart';
 import 'package:aida/utils/theme/typography.dart';
@@ -108,12 +110,11 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                 ),
                 offset: const Offset(0, 50),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  side: const BorderSide(
-                    color: BaseColors.primaryColor,
-                    width: 0.5,
-                  )
-                ),
+                    borderRadius: BorderRadius.circular(8),
+                    side: const BorderSide(
+                      color: BaseColors.primaryColor,
+                      width: 0.5,
+                    )),
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     value: 1,
@@ -126,11 +127,49 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          TIM_t('发起会话'),
+                          TIM_t('添加好友'),
                           style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor
-                          ),
+                              fontSize: 14, color: BaseColors.weakTextColor),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 2,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/image/base/chat_addG.png",
+                          width: 16,
+                          height: 16,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          TIM_t('添加群聊'),
+                          style: fontSFProMedium.copyWith(
+                              fontSize: 14, color: BaseColors.weakTextColor),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 3,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/image/base/chat_creatG.png",
+                          width: 16,
+                          height: 16,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          TIM_t('创建群聊'),
+                          style: fontSFProMedium.copyWith(
+                              fontSize: 14, color: BaseColors.weakTextColor),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -141,11 +180,11 @@ class ConversationScreen extends GetView<ConversationScreenController> {
                 onSelected: (value) {
                   // 点击菜单项的处理逻辑
                   if (value == 1) {
-                    Get.toNamed(AppRoutes.newChat);
+                    Get.toNamed(AppRoutes.addFriend);
                   } else if (value == 2) {
                     Get.toNamed(AppRoutes.addGroup);
                   } else if (value == 3) {
-                    Get.toNamed(AppRoutes.createGroupIntroduction);
+                    Get.toNamed(AppRoutes.createGroup, arguments: CreateGroupScreenArgs(convType: GroupTypeForUIKit.community));
                   }
                 },
               ),

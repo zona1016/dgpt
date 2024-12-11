@@ -31,12 +31,12 @@ class ProfileSettingScreenController
 
   final cellTitleList = [
     TIM_t('设置'),
-    tr('chat.help_center'),
+    // tr('chat.help_center'),
   ];
 
   final cellImageList = [
     'assets/image/base/profile_cell_sz.png',
-    'assets/image/base/profile_cell_bz.png',
+    // 'assets/image/base/profile_cell_bz.png',
   ];
 
   @override
