@@ -25,6 +25,8 @@ import 'package:tencent_cloud_chat_uikit/data_services/core/core_services.dart';
 import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// 正式线 https://prod.d2y6t2vezku3nd.amplifyapp.com/
+/// 测试线 https://master.d2y6t2vezku3nd.amplifyapp.com/
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
 
@@ -35,7 +37,7 @@ class MainScreen extends GetView<MainScreenController> {
         body: SafeArea(
           child: InAppWebView(
               initialUrlRequest: URLRequest(
-                  url: WebUri("https://master.d2y6t2vezku3nd.amplifyapp.com/")),
+                  url: WebUri("https://prod.d2y6t2vezku3nd.amplifyapp.com/")),
               initialSettings: InAppWebViewSettings(
                 allowsInlineMediaPlayback: true, // 允许内嵌视频播放
                 mediaPlaybackRequiresUserGesture: false, // 自动播放视频不需要用户手势
