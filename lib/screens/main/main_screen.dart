@@ -58,7 +58,8 @@ class MainScreen extends GetView<MainScreenController> {
         // 自定义逻辑：比如显示弹窗或回到上一页
         if (controller.webViewController != null) {
           if (await controller.webViewController!.canGoBack()) {
-            controller.webViewController!.goBack();
+            controller.webViewController?.evaluateJavascript(
+                source: 'window["webViewHandler"]("back")');
             return false;
           }
         }
