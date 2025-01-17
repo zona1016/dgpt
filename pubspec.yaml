@@ -36,8 +36,8 @@ dependencies:
 #      url: https://github.com/zona1016/chat-uikit-flutter.git
 #      ref: 419614f
   tencent_cloud_chat_uikit:
-    path: /Users/wanxue/Desktop/demo/chat_aida
-#    path: /Users/wangbo/Desktop/demo/im
+#    path: /Users/wanxue/Desktop/demo/chat_aida
+    path: /Users/wangbo/Desktop/demo/im
 
   tencent_cloud_chat_sdk: ^8.2.6325
   tencent_calls_uikit: ^2.5.0
