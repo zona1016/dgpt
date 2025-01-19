@@ -1,4 +1,4 @@
-name: aida
+name: dgpt
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -30,24 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-#  tencent_cloud_chat_uikit:
-#    git:
-#      url: https://github.com/zona1016/chat-uikit-flutter.git
-#      ref: 419614f
-  tencent_cloud_chat_uikit:
-#    path: /Users/wanxue/Desktop/demo/chat_aida
-    path: /Users/wangbo/Desktop/demo/im
-
-  tencent_cloud_chat_sdk: ^8.2.6325
-  tencent_calls_uikit: ^2.5.0
-  #  tencent_chat_push_for_china: ^3.1.1
-#  tim_ui_kit_push_plugin: ^3.1.1
-#  tencent_cloud_chat_vote_plugin: ^1.0.2
-#  tencent_cloud_chat_customer_service_plugin: ^0.0.2
-  tencent_cloud_chat_push: ^8.0.6897
-  tencent_cloud_chat_vote_plugin: ^1.2.0
-  tencent_cloud_chat_customer_service_plugin: ^0.1.0
 
   qr_code_scanner: ^1.0.1
   get: ^4.6.6

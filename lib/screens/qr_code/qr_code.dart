@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/foundation.dart';
-import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 class QrCode extends StatefulWidget {
 
@@ -80,7 +80,7 @@ class _QRViewExampleState extends State<QrCode> {
                 Navigator.pop(context, false);
                 Get.back();
               },
-              child: Text(TIM_t('取消')),
+              child: Text('取消'),
             ),
             TextButton(
               onPressed: () async {

@@ -1,8 +1,8 @@
-import 'package:aida/screens/auth/welcome_screen_controller.dart';
-import 'package:aida/utils/extensions/context_extension.dart';
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/typography.dart';
-import 'package:aida/widget/base/base_screen.dart';
+import 'package:dgpt/screens/auth/welcome_screen_controller.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';

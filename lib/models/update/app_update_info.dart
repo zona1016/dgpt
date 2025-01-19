@@ -1,6 +1,6 @@
 
-import 'package:aida/utils/converters/boolean_converter.dart';
-import 'package:aida/utils/converters/integer_converter.dart';
+import 'package:dgpt/utils/converters/boolean_converter.dart';
+import 'package:dgpt/utils/converters/integer_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_update_info.freezed.dart';

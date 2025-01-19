@@ -1,4 +1,4 @@
-import 'package:aida/models/user/user_info.dart';
+import 'package:dgpt/models/user/user_info.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'login_response.g.dart';

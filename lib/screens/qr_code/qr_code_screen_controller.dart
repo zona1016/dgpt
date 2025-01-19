@@ -1,5 +1,5 @@
-import 'package:aida/screens/qr_code/qr_code_screen.dart';
-import 'package:aida/utils/controllers/base_controller.dart';
+import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
+import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
 class QrCodeScreenBindings implements Bindings {

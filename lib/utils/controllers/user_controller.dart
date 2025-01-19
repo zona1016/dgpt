@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:aida/models/app_language.dart';
-import 'package:aida/models/user/user_info.dart';
-import 'package:aida/utils/constants/storage_keys.dart';
-import 'package:aida/utils/controllers/base_controller.dart';
-import 'package:aida/utils/packages/storage_utils.dart';
-import 'package:aida/utils/routes/app_routes.dart';
+import 'package:dgpt/models/app_language.dart';
+import 'package:dgpt/models/user/user_info.dart';
+import 'package:dgpt/utils/constants/storage_keys.dart';
+import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/packages/storage_utils.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

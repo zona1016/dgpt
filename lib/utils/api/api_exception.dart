@@ -1,4 +1,4 @@
-import 'package:aida/utils/api/base_response.dart';
+import 'package:dgpt/utils/api/base_response.dart';
 
 class ApiUnknownException implements Exception {}
 

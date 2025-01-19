@@ -1,6 +1,5 @@
-
-import 'package:aida/utils/extensions/color_extension.dart';
-import 'package:aida/utils/theme/color.dart';
+import 'package:dgpt/utils/extensions/color_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

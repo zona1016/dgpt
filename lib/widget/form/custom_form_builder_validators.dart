@@ -1,4 +1,4 @@
-import 'package:aida/translations/locale_keys.g.dart';
+import 'package:dgpt/translations/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';

@@ -1,7 +1,7 @@
 
-import 'package:aida/utils/api/api_client.dart';
-import 'package:aida/utils/api/base_response.dart';
-import 'package:aida/utils/constants/api_endpoints.dart';
+import 'package:dgpt/utils/api/api_client.dart';
+import 'package:dgpt/utils/api/base_response.dart';
+import 'package:dgpt/utils/constants/api_endpoints.dart';
 import 'package:get/get.dart';
 
 abstract class SystemService {

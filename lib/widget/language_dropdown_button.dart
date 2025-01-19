@@ -1,9 +1,9 @@
-import 'package:aida/models/app_language.dart';
-import 'package:aida/utils/controllers/user_controller.dart';
-import 'package:aida/utils/extensions/context_extension.dart';
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/typography.dart';
-import 'package:aida/widget/restart_widget.dart';
+import 'package:dgpt/models/app_language.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/restart_widget.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

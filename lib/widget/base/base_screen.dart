@@ -1,5 +1,5 @@
-import 'package:aida/utils/extensions/context_extension.dart';
-import 'package:aida/utils/theme/color.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

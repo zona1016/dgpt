@@ -1,7 +1,6 @@
-
-import 'package:aida/utils/constants/app_default_size.dart';
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/typography.dart';
+import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

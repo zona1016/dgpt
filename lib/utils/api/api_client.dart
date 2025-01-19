@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:aida/utils/api/api_exception.dart';
-import 'package:aida/utils/api/base_response.dart';
-import 'package:aida/utils/constants/app_configurations.dart';
-import 'package:aida/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/api/api_exception.dart';
+import 'package:dgpt/utils/api/base_response.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';

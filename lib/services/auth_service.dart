@@ -1,9 +1,9 @@
 
-import 'package:aida/models/auth/login_response.dart';
-import 'package:aida/utils/api/api_client.dart';
-import 'package:aida/utils/api/base_response.dart';
-import 'package:aida/utils/constants/api_endpoints.dart';
-import 'package:aida/utils/controllers/user_controller.dart';
+import 'package:dgpt/models/auth/login_response.dart';
+import 'package:dgpt/utils/api/api_client.dart';
+import 'package:dgpt/utils/api/base_response.dart';
+import 'package:dgpt/utils/constants/api_endpoints.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:get/get.dart';
 
 abstract class AuthService {

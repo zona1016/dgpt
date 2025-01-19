@@ -1,10 +1,10 @@
-import 'package:aida/utils/extensions/context_extension.dart';
-import 'package:aida/utils/routes/app_routes.dart';
-import 'package:aida/utils/theme/typography.dart';
-import 'package:aida/widget/base/base_auth_app_bar.dart';
-import 'package:aida/widget/base/base_button.dart';
-import 'package:aida/widget/base/base_screen.dart';
-import 'package:aida/widget/language_dropdown_button.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_auth_app_bar.dart';
+import 'package:dgpt/widget/base/base_button.dart';
+import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:dgpt/widget/language_dropdown_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
-import 'package:aida/models/app_language.dart';
-import 'package:aida/translations/codegen_loader.g.dart';
+import 'package:dgpt/models/app_language.dart';
+import 'package:dgpt/translations/codegen_loader.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

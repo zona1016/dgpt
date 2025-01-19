@@ -1,8 +1,8 @@
-import 'package:aida/screens/main/main_screen_controller.dart';
-import 'package:aida/screens/qr_code/qr_code.dart';
-import 'package:aida/screens/qr_code/qr_code_screen_controller.dart';
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/widget/base/base_app_bar.dart';
+import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/qr_code/qr_code.dart';
+import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,20 +1,20 @@
-import 'package:aida/firebase_options.dart';
-import 'package:aida/models/app_language.dart';
-import 'package:aida/services/auth_service.dart';
-import 'package:aida/services/system_service.dart';
-import 'package:aida/utils/api/api_client.dart';
-import 'package:aida/utils/constants/app_configurations.dart';
-import 'package:aida/utils/constants/storage_keys.dart';
-import 'package:aida/utils/controllers/theme_controller.dart';
-import 'package:aida/utils/controllers/user_controller.dart';
-import 'package:aida/utils/packages/app_link.dart';
-import 'package:aida/utils/packages/storage_utils.dart';
-import 'package:aida/utils/packages/toast.dart';
-import 'package:aida/utils/routes/app_routes.dart';
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/theme.dart';
-import 'package:aida/widget/localization_wrapper.dart';
-import 'package:aida/widget/restart_widget.dart';
+import 'package:dgpt/firebase_options.dart';
+import 'package:dgpt/models/app_language.dart';
+import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/services/system_service.dart';
+import 'package:dgpt/utils/api/api_client.dart';
+import 'package:dgpt/utils/constants/app_configurations.dart';
+import 'package:dgpt/utils/constants/storage_keys.dart';
+import 'package:dgpt/utils/controllers/theme_controller.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/packages/app_link.dart';
+import 'package:dgpt/utils/packages/storage_utils.dart';
+import 'package:dgpt/utils/packages/toast.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/theme.dart';
+import 'package:dgpt/widget/localization_wrapper.dart';
+import 'package:dgpt/widget/restart_widget.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,9 +25,6 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/services.dart';
-import 'package:tencent_calls_uikit/tencent_calls_uikit.dart';
-import 'package:tencent_cloud_chat_uikit/data_services/core/core_services.dart';
-import 'package:tencent_cloud_chat_uikit/tencent_cloud_chat_uikit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,22 +53,6 @@ void main() async {
       fenix: false, permanent: true);
 
   final locale = StorageUtils.read(StorageKeys.currentLocale);
-  LanguageEnum languageEnum = LanguageEnum.en;
-  StorageUtils.write(StorageKeys.currentLocale, 'en');
-  if (locale == 'zh-cn') {
-    StorageUtils.write(StorageKeys.currentLocale, 'zh');
-    languageEnum = LanguageEnum.zhHans;
-  }
-  // IM
-  TIMUIKitCore.getInstance().init(
-      sdkAppID: 20002781,
-      // Replace 0 with the SDKAppID of your IM application when integrating
-      language: languageEnum,
-      loglevel: LogLevelEnum.V2TIM_LOG_DEBUG,
-      onTUIKitCallbackListener: (TIMCallback callbackValue) {},
-      // [建议配置，详见此部分](https://cloud.tencent.com/document/product/269/70746#callback)
-      listener: V2TimSDKListener());
-
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
@@ -103,7 +84,7 @@ class MainApp extends StatelessWidget {
     final TransitionBuilder fToastBuilder = FToastBuilder();
     return RestartWidget(
         child: GetMaterialApp(
-      navigatorObservers: [TUICallKit.navigatorObserver],
+      navigatorObservers: [],
       scrollBehavior: AppScrollbehavior(),
       localizationsDelegates: [
         ...context.localizationDelegates,
@@ -115,7 +96,7 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: DefTheme.lightTheme,
       darkTheme: DefTheme.lightTheme,
-      title: "AIDA",
+      title: "DGPT",
       initialRoute: getInitialRoute(),
       getPages: AppRoutes.routes,
       onReady: () async {

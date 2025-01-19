@@ -1,6 +1,6 @@
-import 'package:aida/utils/extensions/context_extension.dart';
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/typography.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 

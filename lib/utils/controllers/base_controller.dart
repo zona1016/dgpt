@@ -1,9 +1,9 @@
-import 'package:aida/models/api/pagination_response.dart';
-import 'package:aida/utils/api/api_exception.dart';
-import 'package:aida/utils/api/base_response.dart';
-import 'package:aida/utils/constants/app_enums.dart';
-import 'package:aida/utils/controllers/user_controller.dart';
-import 'package:aida/utils/packages/dialog.dart';
+import 'package:dgpt/models/api/pagination_response.dart';
+import 'package:dgpt/utils/api/api_exception.dart';
+import 'package:dgpt/utils/api/base_response.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/packages/dialog.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

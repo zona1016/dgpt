@@ -1,5 +1,5 @@
-import 'package:aida/utils/theme/color.dart';
-import 'package:aida/utils/theme/typography.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {

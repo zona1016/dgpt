@@ -1,4 +1,4 @@
-import 'package:aida/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

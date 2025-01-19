@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:aida/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:app_links/app_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
