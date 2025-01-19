@@ -1,3 +1,5 @@
+import 'package:dgpt/screens/home/home_screen.dart';
+import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
@@ -35,6 +37,11 @@ class AppRoutes {
         name: main,
         page: () => const MainScreen(),
         binding: MainScreenBindings()
+    ),
+    GetPage(
+        name: home,
+        page: () => const HomeScreen(),
+        binding: HomeScreenBindings()
     ),
     GetPage(
         name: qrCode,

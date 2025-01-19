@@ -1,93 +1,163 @@
+import 'package:dgpt/screens/ai/ai_screen.dart';
+import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/power/power_screen.dart';
+import 'package:dgpt/screens/profile/profile_screen.dart';
+import 'package:dgpt/screens/task/task_screen.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 
-import 'dart:convert'; // 用于 JSON 解析
-import 'dart:typed_data';
-
-import 'package:permission_handler/permission_handler.dart'; // 用于处理二进制数据
-
-/// 正式线 https://prod.d2y6t2vezku3nd.amplifyapp.com/
-/// 测试线 https://master.d2y6t2vezku3nd.amplifyapp.com/
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(body: Container(color: Colors.red,));
+    return GetBuilder<MainScreenController>(
+      builder: (_) {
+        return Scaffold(
+          body: PageView(
+            controller: controller.pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: getScreens()
+                .map((e) => BaseAutomaticKeepAlive(child: e))
+                .toList(),
+          ),
+          bottomNavigationBar: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                height: 80,
+                decoration: BoxDecoration(
+                    color: context.appTheme.containerColor,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5)),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.cyan,
+                          offset: Offset(0, 0),
+                          spreadRadius: 2,
+                          blurRadius: 4)
+                    ]),
+              ),
+              Positioned(
+                  top: 10,
+                  left: 0,
+                  right: 0,
+                  child: BottomNavigationBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    selectedFontSize: 0,
+                    unselectedFontSize: 0,
+                    type: BottomNavigationBarType.fixed,
+                    showUnselectedLabels: true,
+                    selectedItemColor: BaseColors.primaryColor,
+                    unselectedItemColor: BaseColors.lightGray,
+                    selectedLabelStyle:
+                        fontMSYaHei.copyWith(fontSize: 12, height: 2),
+                    unselectedLabelStyle:
+                        fontMSYaHei.copyWith(fontSize: 12, height: 2),
+                    currentIndex: controller.selectedTabIndex.value,
+                    onTap: (value) {
+                      controller.selectedTabIndex(value);
+                      controller.pageController.jumpToPage(value);
+                      controller.update();
+                    },
+                    items: [
+                      BottomNavigationBarItem(
+                          label: 'Task',
+                          icon: Image.asset(
+                            "assets/images/tab/home_inactive.png",
+                            width: 20,
+                          ),
+                          activeIcon: Image.asset(
+                              "assets/images/tab/home_active.png",
+                              width: 20)),
+                      BottomNavigationBarItem(
+                          label: 'Power',
+                          icon: Image.asset(
+                              "assets/images/tab/tutorial_inactive.png",
+                              width: 20),
+                          activeIcon: Image.asset(
+                              "assets/images/tab/tutorial_active.png",
+                              width: 20)),
+                      BottomNavigationBarItem(
+                          label: "Home",
+                          icon: Image.asset(
+                            "assets/images/tab/event_inactive.png",
+                            width: 20,
+                          ),
+                          activeIcon: Image.asset(
+                            "assets/images/tab/event_active.png",
+                            width: 20,
+                          )),
+                      BottomNavigationBarItem(
+                          label: 'AI',
+                          icon: Image.asset(
+                              "assets/images/tab/data_inactive.png",
+                              width: 20),
+                          activeIcon: Image.asset(
+                              "assets/images/tab/data_active.png",
+                              width: 20)),
+                      BottomNavigationBarItem(
+                          label: 'Profile',
+                          icon: Image.asset(
+                              "assets/images/tab/profile_inactive.png",
+                              width: 20),
+                          activeIcon: Image.asset(
+                              "assets/images/tab/profile_active.png",
+                              width: 20)),
+                    ],
+                  )),
+              Positioned(
+                top: 0,
+                // Position the arc above the BottomNavigationBar
+                left: controller.selectedTabIndex.value * 80.0,
+                // Calculate position based on selected tab index
+                child: CustomPaint(
+                  size: Size(80, 25), // Adjust the size of the arc
+                  painter: ArcPainter(),
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
-  // 请求权限的函数
-  Future<bool> requestPermission(BuildContext context) async {
-    PermissionStatus status = await Permission.storage.request();
-    if (status.isGranted) {
-      return true;
-    } else if (status.isDenied) {
-      // 权限被拒绝时，提示用户授予权限
-      _showPermissionDeniedDialog(context);
-    } else if (status.isPermanentlyDenied) {
-      // 用户选择了 "Don't ask again"，引导用户到设置页面
-      _showOpenSettingsDialog(context);
-    }
+  List<Widget> getScreens() {
+    return [
+      const TaskScreen(),
+      const PowerScreen(),
+      const HomeScreen(),
+      const AiScreen(),
+      const ProfileScreen(),
+    ];
+  }
+}
 
+class ArcPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = Colors.cyan // Set the color of the arc
+      ..style = PaintingStyle.fill;
+
+    final Path path = Path()
+      ..moveTo(0, 0)
+      ..quadraticBezierTo(size.width / 2, -20, size.width,
+          0); // Create the arc with quadraticBezierTo
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
-  }
-
-// 弹窗提示用户授予权限
-  void _showPermissionDeniedDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('权限被拒绝'),
-          content: const Text('请授予存储权限以保存图片到相册。'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('关闭'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-// 弹窗引导用户手动打开设置页面
-  void _showOpenSettingsDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('权限被永久拒绝'),
-          content: const Text('请在设置中手动开启存储权限。'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('前往设置'),
-              onPressed: () {
-                openAppSettings(); // 打开系统设置页面
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('关闭'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> saveImageFromBase64(String base64Image) async {
-    Uint8List bytes = base64Decode(base64Image);
-
-    await ImageGallerySaver.saveImage(bytes,
-        name: "image_${DateTime.now().millisecondsSinceEpoch}");
   }
 }

@@ -136,7 +136,4 @@ flutter:
   uses-material-design: true
   assets:
   - assets/translations/
-  - assets/image/tab/
-  - assets/image/base/
-  - assets/image/profile/
-  - assets/image/contact/
+  - assets/images/tab/

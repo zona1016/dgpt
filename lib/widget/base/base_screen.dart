@@ -59,7 +59,7 @@ class BaseScreen extends StatelessWidget {
                       alignment: Alignment.center))
               : null,
           child: Scaffold(
-            backgroundColor: BaseColors.whiteGray,
+            backgroundColor: backgroundColor,
             appBar: appBar,
             drawer: drawer,
             endDrawer: endDrawer,
