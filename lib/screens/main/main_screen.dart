@@ -31,12 +31,12 @@ class MainScreen extends GetView<MainScreenController> {
             children: [
               Container(
                 height: 80,
-                decoration: BoxDecoration(
-                    color: context.appTheme.containerColor,
-                    borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(5),
                         topRight: Radius.circular(5)),
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
                           color: Colors.cyan,
                           offset: Offset(0, 0),
@@ -49,7 +49,7 @@ class MainScreen extends GetView<MainScreenController> {
                   left: 0,
                   right: 0,
                   child: BottomNavigationBar(
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: Colors.black,
                     elevation: 0,
                     selectedFontSize: 0,
                     unselectedFontSize: 0,

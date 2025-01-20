@@ -51,7 +51,7 @@ class AppTheme extends ThemeExtension<AppTheme> {
         this.loginBg = "assets/image/background/login_bg.png",
         this.commonBg = "assets/image/background/common_bg.png",
         this.bottomSheetBg = "assets/image/background/bottom_sheet_bg.png",
-        this.emptyImg = "assets/image/placeholder/empty.png",
+        this.emptyImg = "assets/images/tab/home_inactive.png",
         this.comingSoonImg = "assets/image/placeholder/coming_soon.png"});
 
   @override
