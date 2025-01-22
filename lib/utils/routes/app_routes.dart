@@ -1,5 +1,7 @@
 import 'package:dgpt/screens/auth/login_screen.dart';
 import 'package:dgpt/screens/auth/login_screen_controller.dart';
+import 'package:dgpt/screens/auth/register_screen.dart';
+import 'package:dgpt/screens/auth/register_screen_controller.dart';
 import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
@@ -17,6 +19,7 @@ class AppRoutes {
 
   static String splash = "/splash";
   static String login = "/login";
+  static String register = "/register";
   static String home = "/home";
   static String main = "/main";
   static String taskHistory = "/task_history";
@@ -32,6 +35,11 @@ class AppRoutes {
         name: login,
         page: () => const LoginScreen(),
         binding: LoginScreenBindings()
+    ),
+    GetPage(
+        name: register,
+        page: () => const RegisterScreen(),
+        binding: RegisterScreenBindings()
     ),
     GetPage(
         name: main,

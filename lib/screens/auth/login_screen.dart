@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/auth/login_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_button.dart';
@@ -60,13 +61,18 @@ class LoginScreen extends GetView<LoginScreenController> {
                 ),
               ),
               const Spacer(),
-              Text(
-                'No account?Register',
-                style: fontSFProMedium.copyWith(
-                    fontSize: 14,
-                    color: BaseColors.lightGray,
-                    decoration: TextDecoration.underline,
-                    decorationColor: BaseColors.white),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.register);
+                },
+                child: Text(
+                  'No account?Register',
+                  style: fontSFProMedium.copyWith(
+                      fontSize: 14,
+                      color: BaseColors.lightGray,
+                      decoration: TextDecoration.underline,
+                      decorationColor: BaseColors.white),
+                ),
               ),
             ],
           ),
