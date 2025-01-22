@@ -2,22 +2,20 @@ import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
-class LoginScreenBindings implements Bindings {
+class SplashScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut(() => LoginScreenController(), permanent: false, fenix: false);
+        .lazyPut(() => SplashScreenController(), permanent: false, fenix: false);
   }
 }
 
-class LoginScreenController extends BaseController {
+class SplashScreenController extends BaseController {
 
   final AuthService authService = Get.find();
 
   String userName = '';
   String password = '';
-
-  RxBool canLogin = false.obs;
 
   @override
   void onInit() {

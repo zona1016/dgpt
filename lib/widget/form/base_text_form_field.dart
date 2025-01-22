@@ -1,4 +1,5 @@
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -148,7 +149,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Image.asset(
-                    "assets/image/icons/ic_${showObscure ? "hide" : "show"}.png",
+                    "assets/images/icons/ic_${showObscure ? "hide" : "show"}.png",
                     width: 18),
               ),
             )
@@ -164,7 +165,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
               fontSize: 14,
               color: widget.readOnly
                   ? context.appTheme.weakTextColor
-                  : context.appTheme.textColor),
+                  : BaseColors.white),
       focusNode: widget.focusNode,
       inputFormatters: widget.inputFormatters,
       enabled: widget.enabled,

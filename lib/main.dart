@@ -117,8 +117,11 @@ class MainApp extends StatelessWidget {
 
   String getInitialRoute() {
     final UserController userController = Get.find<UserController>();
-    // if (userController.isLogin) {
-    return AppRoutes.main;
+    if (!userController.isLogin) {
+      return AppRoutes.main;
+    } else {
+      return AppRoutes.splash;
+    }
   }
 }
 
