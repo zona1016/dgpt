@@ -118,7 +118,7 @@ class PowerScreen extends GetView<PowerScreenController> {
         ? Column(children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Container(
+              child: SizedBox(
                 height: 200,
                 width: double.infinity,
                 child: CarouselSlider.builder(

@@ -85,7 +85,7 @@ class MainApp extends StatelessWidget {
     return RestartWidget(
         child: GetMaterialApp(
       navigatorObservers: [],
-      scrollBehavior: AppScrollbehavior(),
+      scrollBehavior: AppScrollBehavior(),
       localizationsDelegates: [
         ...context.localizationDelegates,
         FormBuilderLocalizations.delegate
@@ -125,7 +125,7 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class AppScrollbehavior extends ScrollBehavior {
+class AppScrollBehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
     BuildContext context,
