@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/packages/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -56,6 +57,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                           break;
                         case 1:
                           Get.toNamed(AppRoutes.tutorial);
+                          break;
+                        case 2:
+                          DialogUtils.showBaseDialog(title: 'title');
                           break;
                         default:
                       }
@@ -195,6 +199,8 @@ class HomeScreen extends GetView<HomeScreenController> {
               onTap: () {
                 onTap(index);
               },
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
               child: Column(
                 children: [
                   Image.asset(
