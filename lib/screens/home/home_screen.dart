@@ -25,6 +25,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           slivers: [
             SliverToBoxAdapter(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DefaultNavigationHeader(
                     defaultLeftTitle: 'Welcome To DGPT',
@@ -47,8 +48,19 @@ class HomeScreen extends GetView<HomeScreenController> {
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: _collectionOfFeatures(onTap: (index) {}),
-                  )
+                    child: _collectionOfFeatures(onTap: (index) {
+                      print(index);
+                    }),
+                  ),
+                  _training(context),
+                  Padding(
+                    padding:
+                    const EdgeInsets.symmetric(vertical: defaultPadding),
+                    child: _makeProfitAndNodePartner(context, onTap: (index) {
+                      print(index);
+                    }),
+                  ),
+                  _partners(),
                 ],
               ),
             ),
@@ -68,16 +80,20 @@ class HomeScreen extends GetView<HomeScreenController> {
         ? Column(children: [
             Container(
                 height: 200,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20)
-                      .copyWith(topRight: const Radius.circular(75)),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.red
                 ),
                 child: CarouselSlider.builder(
                     carouselController: controller.carouselSliderController,
                     itemCount: banners.length,
                     itemBuilder: (context, index, realIndex) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          print(index);
+                          print(realIndex);
+                        },
                         child: BaseNetworkImage(
                           imageURL: banners[index] ?? '',
                           fit: BoxFit.cover,
@@ -192,6 +208,266 @@ class HomeScreen extends GetView<HomeScreenController> {
           ),
         );
       }),
+    );
+  }
+
+  _training(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: Row(
+          children: [
+            _trainingItem(
+              imagePath: "assets/images/tab/home_inactive.png",
+              title: 'Daily Yield',
+              desc: '0.011USDT',
+            ),
+            const Spacer(),
+            _trainingItem(
+              imagePath: "assets/images/tab/home_inactive.png",
+              title: 'Total Yield',
+              desc: '22.222USDT',
+            ),
+            const Spacer(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _trainingItem({
+    required String imagePath,
+    required String title,
+    required String desc,
+  }) {
+    return Row(
+      children: [
+        Image.asset(
+          imagePath,
+          width: 20,
+        ),
+        const SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: fontSFProMedium.copyWith(
+                fontSize: 14,
+                color: BaseColors.white,
+              ),
+            ),
+            Text(
+              desc,
+              style: fontSFProMedium.copyWith(
+                fontSize: 14,
+                color: BaseColors.primaryColor,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  _makeProfitAndNodePartner(BuildContext context, {required Function(int index) onTap}) {
+    return Row(
+      children: [
+        Expanded(child: _makeProfit(context,onTap: onTap)),
+        const SizedBox(width: defaultPadding,),
+        Expanded(child: _nodePartner(context, onTap: onTap)),
+      ],
+    );
+  }
+
+  _makeProfit(BuildContext context, {required Function(int index) onTap}) {
+    return Container(
+      height: 100,
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: BaseColors.black
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Make profit',
+            style: fontSFProMedium.copyWith(
+              fontSize: 14,
+              color: BaseColors.white,
+            ),
+          ),
+          const Spacer(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Image.asset(
+                'assets/images/tab/home_inactive.png',
+                width: 40,
+                height: 40,
+              ),
+              const Spacer(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'Macintosh',
+                    style: fontSFProMedium.copyWith(
+                      fontSize: 10,
+                      color: BaseColors.weakTextColor,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
+                    child: Row(
+                      children: [
+                        Text(
+                          '0.013 ',
+                          style: fontSFProMedium.copyWith(
+                            fontSize: 14,
+                            color: BaseColors.white,
+                          ),
+                        ),
+                        Text(
+                          'USDT',
+                          style: fontSFProMedium.copyWith(
+                            fontSize: 10,
+                            color: BaseColors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => onTap(0),
+                    child: Text(
+                      'Claimed >',
+                      style: fontSFProMedium.copyWith(
+                        fontSize: 10,
+                        color: BaseColors.primaryColor,
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  _nodePartner(BuildContext context, {required Function(int index) onTap}) {
+    return Container(
+      height: 100,
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: BaseColors.black
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Node Partner',
+            style: fontSFProMedium.copyWith(
+              fontSize: 14,
+              color: BaseColors.white,
+            ),
+          ),
+          const Spacer(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Image.asset(
+                'assets/images/tab/home_inactive.png',
+                width: 40,
+                height: 40,
+              ),
+              const Spacer(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    '2000K',
+                    style: fontSFProMedium.copyWith(
+                      fontSize: 12,
+                      color: BaseColors.white,
+                    ),
+                  ),
+                  const SizedBox(height: defaultPadding / 4,),
+                  GestureDetector(
+                    onTap: () => onTap(0),
+                    child: Text(
+                      'Node Partner >',
+                      style: fontSFProMedium.copyWith(
+                        fontSize: 12,
+                        color: BaseColors.primaryColor,
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  _partners() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Make profit',
+          style: fontSFProMedium.copyWith(
+            fontSize: 14,
+            color: BaseColors.white,
+          ),
+        ),
+        Container(
+          height: 2,
+          width: 20,
+          color: BaseColors.primaryColor,
+        ),
+        const SizedBox(height: defaultPadding,),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 60,
+                color: BaseColors.primaryColor,
+              ),
+            ),
+            const SizedBox(width: defaultPadding,),
+            Expanded(
+              child: Container(
+                height: 60,
+                color: BaseColors.primaryColor,
+              ),
+            ),
+            const SizedBox(width: defaultPadding,),
+            Expanded(
+              child: Container(
+                height: 60,
+                color: BaseColors.primaryColor,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

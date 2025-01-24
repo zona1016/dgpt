@@ -7,6 +7,7 @@ import 'package:dgpt/screens/task/task_screen.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,19 @@ class MainScreen extends GetView<MainScreenController> {
 
   @override
   Widget build(BuildContext context) {
+
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    double aspectRatio = 9 / 16;
+
+    double desiredWidth = height * aspectRatio;
+    double finalWidth = width > desiredWidth ? desiredWidth : width;
+
+    if (!kIsWeb) {
+      finalWidth = MediaQuery.of(context).size.width;
+    }
+
     return GetBuilder<MainScreenController>(
       builder: (_) {
         return Scaffold(
@@ -115,10 +129,10 @@ class MainScreen extends GetView<MainScreenController> {
               Positioned(
                 top: 0,
                 // Position the arc above the BottomNavigationBar
-                left: controller.selectedTabIndex.value * 80.0,
+                left: controller.selectedTabIndex.value * (finalWidth / 5.0),
                 // Calculate position based on selected tab index
                 child: CustomPaint(
-                  size: Size(80, 25), // Adjust the size of the arc
+                  size: const Size(80, 25), // Adjust the size of the arc
                   painter: ArcPainter(),
                 ),
               )
@@ -141,11 +155,17 @@ class MainScreen extends GetView<MainScreenController> {
 }
 
 class ArcPainter extends CustomPainter {
+
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.cyan // Set the color of the arc
+      ..color = Colors.black // Set the color of the arc
       ..style = PaintingStyle.fill;
+
+    final Paint borderPaint = Paint()
+      ..color = Colors.cyan // Border color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.0; // Border width
 
     final Path path = Path()
       ..moveTo(0, 0)
@@ -153,6 +173,7 @@ class ArcPainter extends CustomPainter {
           0); // Create the arc with quadraticBezierTo
 
     canvas.drawPath(path, paint);
+    canvas.drawPath(path, borderPaint);
   }
 
   @override
