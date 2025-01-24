@@ -54,6 +54,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                         case 0:
                           Get.toNamed(AppRoutes.taskCenter);
                           break;
+                        case 1:
+                          Get.toNamed(AppRoutes.tutorial);
+                          break;
                         default:
                       }
                     }),

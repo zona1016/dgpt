@@ -14,6 +14,10 @@ import 'package:dgpt/screens/task/task_centre_screen.dart';
 import 'package:dgpt/screens/task/task_centre_screen_controller.dart';
 import 'package:dgpt/screens/task/task_history_screen.dart';
 import 'package:dgpt/screens/task/task_history_screen_controller.dart';
+import 'package:dgpt/screens/tutorial/tutorial_detail_screen.dart';
+import 'package:dgpt/screens/tutorial/tutorial_detail_screen_controller.dart';
+import 'package:dgpt/screens/tutorial/tutorials_screen.dart';
+import 'package:dgpt/screens/tutorial/tutorials_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRoutes {
@@ -28,6 +32,9 @@ class AppRoutes {
 
   static String taskHistory = "/task_history";
   static String taskCenter = "/task_center";
+
+  static String tutorial = "/tutorial";
+  static String tutorialDetail = "/tutorial_detail";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -64,6 +71,16 @@ class AppRoutes {
         name: taskCenter,
         page: () => const TaskCentreScreen(),
         binding: TaskCentreScreenBindings()
+    ),
+    GetPage(
+        name: tutorial,
+        page: () => const TutorialsScreen(),
+        binding: TutorialsScreenBindings()
+    ),
+    GetPage(
+        name: tutorialDetail,
+        page: () => const TutorialDetailScreen(),
+        binding: TutorialDetailScreenBindings()
     ),
     GetPage(
         name: qrCode,
