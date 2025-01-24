@@ -4,7 +4,6 @@ import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/power/power_screen.dart';
 import 'package:dgpt/screens/profile/profile_screen.dart';
 import 'package:dgpt/screens/task/task_screen.dart';
-import 'package:dgpt/utils/extensions/context_extension.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_auto_keep_alive.dart';

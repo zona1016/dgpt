@@ -335,7 +335,7 @@ packages:
     source: hosted
     version: "3.4.0"
   extended_image:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: extended_image
       sha256: "69d4299043334ecece679996e47d0b0891cd8c29d8da0034868443506f1d9a78"
@@ -374,6 +374,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "12.0.0"
+  fading_edge_scrollview:
+    dependency: transitive
+    description:
+      name: fading_edge_scrollview
+      sha256: "1f84fe3ea8e251d00d5735e27502a6a250e4aa3d3b330d3fdcb475af741464ef"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.1.1"
   fake_async:
     dependency: transitive
     description:
@@ -430,30 +438,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.9.3+3"
-  firebase_core:
-    dependency: "direct main"
-    description:
-      name: firebase_core
-      sha256: "26de145bb9688a90962faec6f838247377b0b0d32cc0abecd9a4e43525fc856c"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.32.0"
-  firebase_core_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_core_platform_interface
-      sha256: e30da58198a6d4b49d5bce4e852f985c32cb10db329ebef9473db2b9f09ce810
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "5.3.0"
-  firebase_core_web:
-    dependency: transitive
-    description:
-      name: firebase_core_web
-      sha256: f967a7138f5d2ffb1ce15950e2a382924239eaa521150a8f144af34e68b3b3e5
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.18.1"
   fixnum:
     dependency: transitive
     description:
@@ -593,7 +577,7 @@ packages:
     source: hosted
     version: "5.2.1"
   flutter_svg:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_svg
       sha256: c200fd79c918a40c5cd50ea0877fa13f81bdaf6f0a5d3dbcc2a13e3285d6aa1b
@@ -890,6 +874,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2-main.4"
+  marquee:
+    dependency: "direct main"
+    description:
+      name: marquee
+      sha256: a87e7e80c5d21434f90ad92add9f820cf68be374b226404fe881d2bba7be0862
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.3.0"
   matcher:
     dependency: transitive
     description:

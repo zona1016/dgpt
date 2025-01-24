@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/widget/default_navigation_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,13 @@ class TaskScreen extends GetView<TaskScreenController> {
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: Column(
             children: [
-              _buildHeader(),
+              DefaultNavigationHeader(
+                defaultLeftTitle: 'My Power',
+                rightImages: const ['assets/images/tab/home_inactive.png'],
+                onRightImageTaps: (index) {
+                  Get.toNamed(AppRoutes.taskHistory);
+                },
+              ),
               _buildSummaryCard(),
               _buildTabBar(context),
               Padding(
@@ -38,37 +45,6 @@ class TaskScreen extends GetView<TaskScreenController> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return SafeArea(
-      child: Row(
-        children: [
-          Image.asset(
-            "assets/images/tab/home_inactive.png",
-            width: 20,
-          ),
-          const SizedBox(width: defaultPadding / 2),
-          Text(
-            'My Power',
-            style: fontSFProMedium.copyWith(
-              fontSize: 14,
-              color: BaseColors.white,
-            ),
-          ),
-          const Spacer(),
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoutes.taskHistory);
-            },
-            child: Image.asset(
-              "assets/images/tab/home_inactive.png",
-              width: 20,
-            ),
-          ),
-        ],
       ),
     );
   }

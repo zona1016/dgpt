@@ -6,11 +6,10 @@ import 'package:dgpt/screens/power/widgets/accelerator_tab_widget.dart';
 import 'package:dgpt/screens/power/widgets/super_computing_tab.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
-import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:dgpt/widget/default_empty_view.dart';
+import 'package:dgpt/widget/default_navigation_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +27,18 @@ class PowerScreen extends GetView<PowerScreenController> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                  child: _buildHeader(),
+                  child: DefaultNavigationHeader(
+                    defaultLeftTitle: 'Numerical Center',
+                    rightImages: const ['assets/images/tab/home_inactive.png'],
+                    showRightTitle: true,
+                    rightTitle: 'Rules',
+                    onRightImageTaps: (index) {
+
+                    },
+                    onRightTap: () {
+
+                    },
+                  ),
                 ),
                 const SizedBox(
                   height: defaultPadding,
