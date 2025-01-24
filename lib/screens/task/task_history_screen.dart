@@ -4,8 +4,18 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:dgpt/widget/form/base_dropdown_checkbox_form_field.dart';
+import 'package:dgpt/widget/form/base_dropdown_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+enum TaskHistoryType { task, taskCenter }
+
+class TaskHistoryScreenArgs {
+  final TaskHistoryType historyType;
+
+  TaskHistoryScreenArgs({required this.historyType});
+}
 
 class TaskHistoryScreen extends GetView<TaskHistoryScreenController> {
   const TaskHistoryScreen({super.key});
@@ -29,30 +39,25 @@ class TaskHistoryScreen extends GetView<TaskHistoryScreenController> {
             children: [
               Row(
                 children: [
-                  Text(
-                    'Training tasks',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                              width: 0.5, color: BaseColors.primaryColor)),
-                      child: Text(
-                        '  ALL >  ',
-                        style: fontSFProMedium.copyWith(
-                          fontSize: 14,
-                          color: BaseColors.primaryColor,
-                        ),
+                  Expanded(
+                    child: Text(
+                      'Data overview',
+                      style: fontSFProMedium.copyWith(
+                        fontSize: 14,
+                        color: BaseColors.white,
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    width: 120,
+                    height: 44,
+                    child: BaseDropDownFormField(
+                        items: controller.historyTypes,
+                        radius: 10,
+                        name: 'historyTypes',
+                        hintText: '  ALL >  ',
+                        menuMaxHeight: 250),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -75,56 +80,78 @@ class TaskHistoryScreen extends GetView<TaskHistoryScreenController> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             // 垂直对齐元素
                             children: [
-                              Text(
-                                'Category',
-                                style: fontSFProMedium.copyWith(
-                                  fontSize: 14,
-                                  color: BaseColors.white,
+                              Expanded(
+                                child: Text(
+                                  'Category',
+                                  style: fontSFProMedium.copyWith(
+                                    fontSize: 14,
+                                    color: BaseColors.white,
+                                  ),
+                                  textAlign: TextAlign.start,
                                 ),
                               ),
-                              Text(
-                                'Amount',
-                                style: fontSFProMedium.copyWith(
-                                  fontSize: 14,
-                                  color: BaseColors.primaryColor,
+                              const SizedBox(width: defaultPadding,),
+                              Expanded(
+                                child: Text(
+                                  'Amount',
+                                  style: fontSFProMedium.copyWith(
+                                    fontSize: 14,
+                                    color: BaseColors.primaryColor,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
-                              Text(
-                                'Time',
-                                style: fontSFProMedium.copyWith(
-                                  fontSize: 14,
-                                  color: BaseColors.primaryColor,
+                              const SizedBox(width: defaultPadding,),
+                              Expanded(
+                                child: Text(
+                                  'Time',
+                                  style: fontSFProMedium.copyWith(
+                                    fontSize: 14,
+                                    color: BaseColors.primaryColor,
+                                  ),
+                                  textAlign: TextAlign.end,
                                 ),
                               ),
                             ],
                           )
                         : SizedBox(
-                            height: 44,
+                            height: 60,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               // 用于在水平方向上对齐元素
                               crossAxisAlignment: CrossAxisAlignment.center,
                               // 垂直对齐元素
                               children: [
-                                Text(
-                                  '${index}',
-                                  style: fontSFProMedium.copyWith(
-                                    fontSize: 14,
-                                    color: BaseColors.white,
+                                Expanded(
+                                  child: Text(
+                                    '$index',
+                                    style: fontSFProMedium.copyWith(
+                                      fontSize: 14,
+                                      color: BaseColors.white,
+                                    ),
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
-                                Text(
-                                  'Amount',
-                                  style: fontSFProMedium.copyWith(
-                                    fontSize: 14,
-                                    color: BaseColors.primaryColor,
+                                const SizedBox(width: defaultPadding,),
+                                Expanded(
+                                  child: Text(
+                                    'Amount',
+                                    style: fontSFProMedium.copyWith(
+                                      fontSize: 14,
+                                      color: BaseColors.primaryColor,
+                                    ),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ),
-                                Text(
-                                  '2025-01-20 20:36:29',
-                                  style: fontSFProMedium.copyWith(
-                                    fontSize: 14,
-                                    color: BaseColors.primaryColor,
+                                const SizedBox(width: defaultPadding,),
+                                Expanded(
+                                  child: Text(
+                                    '2025-01-20 20:36:29',
+                                    style: fontSFProMedium.copyWith(
+                                      fontSize: 14,
+                                      color: BaseColors.primaryColor,
+                                    ),
+                                    textAlign: TextAlign.end,
                                   ),
                                 ),
                               ],

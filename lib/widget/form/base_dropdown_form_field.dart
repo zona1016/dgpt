@@ -77,18 +77,18 @@ class BaseDropDownFormField extends StatelessWidget {
             hint: hintText != null
                 ? Text(hintText!,
                 style: fontMedium.copyWith(
-                    fontSize: 14, color: context.appTheme.weakTextColor))
+                    fontSize: 14, color: BaseColors.white))
                 : null,
             decoration: decoration ??
                 InputDecoration(
                     labelStyle: fontMedium.copyWith(
-                        fontSize: 14, color: context.appTheme.weakTextColor),
+                        fontSize: 14, color: BaseColors.white),
                     errorStyle:
                     fontRegular.copyWith(fontSize: 12, color: Colors.red),
                     filled: true,
-                    fillColor: context.appTheme.inputFillColor,
+                    fillColor: BaseColors.black,
                     contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     prefix: const Padding(padding: EdgeInsets.only(left: 20)),
                     suffix: const Padding(padding: EdgeInsets.only(left: 20)),
                     border: OutlineInputBorder(
@@ -115,7 +115,8 @@ class BaseDropDownFormField extends StatelessWidget {
                   decoration: item == field.value
                       ? BoxDecoration(
                       borderRadius: BorderRadius.circular(radius),
-                      gradient: gradient)
+                    color: Colors.black
+                  )
                       : null,
                   child: Text(
                     item.label,
@@ -134,7 +135,7 @@ class BaseDropDownFormField extends StatelessWidget {
                     child: Text(
                       item.label,
                       style: fontMedium.copyWith(
-                          fontSize: 14, color: context.appTheme.textColor),
+                          fontSize: 14, color: BaseColors.white),
                       overflow: TextOverflow.ellipsis,
                     ))
               ],
@@ -143,7 +144,7 @@ class BaseDropDownFormField extends StatelessWidget {
             validator: (value) => field.errorText,
             style: style ??
                 fontMedium.copyWith(
-                    fontSize: 14, color: context.appTheme.textColor),
+                    fontSize: 14, color: BaseColors.white),
             isDense: isDense,
             onChanged: (value) {
               field.didChange(value);
@@ -155,10 +156,11 @@ class BaseDropDownFormField extends StatelessWidget {
             dropdownStyleData: DropdownStyleData(
               elevation: 0,
               maxHeight: menuMaxHeight,
+              width: 200,
               offset: const Offset(0, -10),
               decoration: BoxDecoration(
-                  color: context.appTheme.containerColor,
-                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
                         color: Color(0x1A333333),
@@ -170,9 +172,9 @@ class BaseDropDownFormField extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 0)),
             iconStyleData: IconStyleData(
                 icon: Image.asset(
-                  "assets/image/arrow_right.png",
+                  "assets/images/icons/arrow_right.png",
                   width: 6,
-                  color: context.appTheme.textColor,
+                  color: BaseColors.white,
                 )),
           );
         },

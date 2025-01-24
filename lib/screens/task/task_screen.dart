@@ -1,4 +1,6 @@
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/task/task_history_screen.dart';
+import 'package:dgpt/screens/task/widgets/task_item_widget.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/widget/default_navigation_header.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,9 @@ class TaskScreen extends GetView<TaskScreenController> {
                 defaultLeftTitle: 'My Power',
                 rightImages: const ['assets/images/tab/home_inactive.png'],
                 onRightImageTaps: (index) {
-                  Get.toNamed(AppRoutes.taskHistory);
+                  Get.toNamed(AppRoutes.taskHistory, arguments: TaskHistoryScreenArgs(
+                      historyType: TaskHistoryType.task
+                  ));
                 },
               ),
               _buildSummaryCard(),
@@ -39,9 +43,8 @@ class TaskScreen extends GetView<TaskScreenController> {
               ),
               _buildTrainingTask(context),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-                child: _buildTrainingTaskListView(context)
-              ),
+                  padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+                  child: _buildTrainingTaskListView(context)),
             ],
           ),
         ),
@@ -132,14 +135,13 @@ class TaskScreen extends GetView<TaskScreenController> {
       controller: controller.tabController,
       tabs: controller.tabList
           .map(
-            (String key) =>
-            Tab(
+            (String key) => Tab(
               child: Text(
                 key,
                 textAlign: TextAlign.center,
               ),
             ),
-      )
+          )
           .toList(),
     );
   }
@@ -170,25 +172,25 @@ class TaskScreen extends GetView<TaskScreenController> {
       child: showEmpty
           ? const DefaultEmptyView()
           : Column(
-        children: [
-          const Spacer(),
-          _buildTabBarViewItem(
-            title: 'Model',
-            desc: 'Window NT 10.0',
-          ),
-          const Spacer(),
-          _buildTabBarViewItem(
-            title: 'Daily Profit',
-            desc: '+0.01USDT',
-          ),
-          const Spacer(),
-          _buildTabBarViewItem(
-            title: 'Training Task Profit',
-            desc: '36.6USDT',
-          ),
-          const Spacer(),
-        ],
-      ),
+              children: [
+                const Spacer(),
+                _buildTabBarViewItem(
+                  title: 'Model',
+                  desc: 'Window NT 10.0',
+                ),
+                const Spacer(),
+                _buildTabBarViewItem(
+                  title: 'Daily Profit',
+                  desc: '+0.01USDT',
+                ),
+                const Spacer(),
+                _buildTabBarViewItem(
+                  title: 'Training Task Profit',
+                  desc: '36.6USDT',
+                ),
+                const Spacer(),
+              ],
+            ),
     );
   }
 
@@ -258,105 +260,14 @@ class TaskScreen extends GetView<TaskScreenController> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 7,
       itemBuilder: (_, index) {
-        return _buildTrainingTaskListViewItem(context);
+        return const TaskItemWidget();
       },
       separatorBuilder: (_, index) {
-        return Container(height: defaultPadding / 2,);
+        return Container(
+          height: defaultPadding / 2,
+        );
       },
     );
   }
 
-  Widget _buildTrainingTaskListViewItem(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
-        color: BaseColors.black,
-        borderRadius: BorderRadius.circular(20)
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text(
-                'Accelerator Ⅰ',
-                style: fontSFProMedium.copyWith(
-                  fontSize: 14,
-                  color: BaseColors.white,
-                ),
-              ),
-              const Spacer(),
-              Text(
-                'Not start',
-                style: fontSFProMedium.copyWith(
-                  fontSize: 14,
-                  color: BaseColors.primaryColor,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: defaultPadding,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Daily training hours： 2 H',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: Text(
-                      'Daily training amount：1',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 14,
-                        color: BaseColors.white,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Earnings per occurrence：3.4 USDT',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: Text(
-                      'Remaining period：58Days',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 14,
-                        color: BaseColors.white,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Total yield：104%',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(right: defaultPadding),
-                child: Image.asset(
-                  'assets/images/tab/home_inactive.png',
-                  width: 40,
-                  height: 40,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
 }

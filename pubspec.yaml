@@ -67,7 +67,7 @@ dependencies:
   dots_indicator: ^3.0.0
   device_preview: ^1.2.0
 #  readmore: ^3.0.0
-#  percent_indicator: ^4.2.3
+  percent_indicator: ^4.2.3
   image_picker: ^0.8.5+3
   uuid: ^3.0.6
   flutter_image_compress: ^1.1.0

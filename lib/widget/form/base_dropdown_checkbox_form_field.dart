@@ -127,7 +127,6 @@ class BaseDropDownCheckboxFormFieldState
                 child: StatefulBuilder(
                   builder: (context, menuSetState) {
                     final isSelected = selectedItems.contains(item);
-
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: InkWell(
@@ -213,7 +212,7 @@ class BaseDropDownCheckboxFormFieldState
                 padding: EdgeInsets.symmetric(horizontal: 0)),
             iconStyleData: IconStyleData(
                 icon: Image.asset(
-                  "assets/image/arrow_right.png",
+                  "assets/images/icons/arrow_right.png",
                   width: 6,
                   color: context.appTheme.textColor,
                 )),

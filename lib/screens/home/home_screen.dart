@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
@@ -49,7 +50,12 @@ class HomeScreen extends GetView<HomeScreenController> {
                     padding:
                         const EdgeInsets.symmetric(vertical: defaultPadding),
                     child: _collectionOfFeatures(onTap: (index) {
-                      print(index);
+                      switch (index) {
+                        case 0:
+                          Get.toNamed(AppRoutes.taskCenter);
+                          break;
+                        default:
+                      }
                     }),
                   ),
                   _training(context),
@@ -97,6 +103,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         child: BaseNetworkImage(
                           imageURL: banners[index] ?? '',
                           fit: BoxFit.cover,
+                          width: double.infinity,
                         ),
                       );
                     },
@@ -181,7 +188,7 @@ class HomeScreen extends GetView<HomeScreenController> {
         return Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {
                 onTap(index);
               },
@@ -439,7 +446,7 @@ class HomeScreen extends GetView<HomeScreenController> {
         ),
         Container(
           height: 2,
-          width: 20,
+          width: 60,
           color: BaseColors.primaryColor,
         ),
         const SizedBox(height: defaultPadding,),

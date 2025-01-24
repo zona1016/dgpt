@@ -10,6 +10,8 @@ import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
 import 'package:dgpt/screens/splash/splash_screen.dart';
 import 'package:dgpt/screens/splash/splash_screen_controller.dart';
+import 'package:dgpt/screens/task/task_centre_screen.dart';
+import 'package:dgpt/screens/task/task_centre_screen_controller.dart';
 import 'package:dgpt/screens/task/task_history_screen.dart';
 import 'package:dgpt/screens/task/task_history_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -22,8 +24,10 @@ class AppRoutes {
   static String register = "/register";
   static String home = "/home";
   static String main = "/main";
-  static String taskHistory = "/task_history";
   static String qrCode = "/qr_code";
+
+  static String taskHistory = "/task_history";
+  static String taskCenter = "/task_center";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -55,6 +59,11 @@ class AppRoutes {
         name: taskHistory,
         page: () => const TaskHistoryScreen(),
         binding: TaskHistoryScreenBindings()
+    ),
+    GetPage(
+        name: taskCenter,
+        page: () => const TaskCentreScreen(),
+        binding: TaskCentreScreenBindings()
     ),
     GetPage(
         name: qrCode,
