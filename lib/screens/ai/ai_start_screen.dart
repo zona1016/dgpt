@@ -66,34 +66,42 @@ class AiStartScreen extends GetView<AiStartScreenController> {
     return Container(
       color: Colors.black,
       padding: const EdgeInsets.all(8.0),
-      child: Row(
+      child: Stack(
         children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: TextField(
-                controller: controller.textEditingController,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  hintText: 'Type a message...',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            decoration: BoxDecoration(
+              color: Colors.grey[800],
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: TextField(
+              controller: controller.textEditingController,
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
+                hintText: 'Type a message...',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: InputBorder.none,
               ),
             ),
           ),
-          const SizedBox(width: 8.0),
-          IconButton(
-            icon: const Icon(Icons.send, color: Colors.greenAccent),
-            onPressed: () {
-              controller.textEditingController.text = '';
-              controller.messageList.add(controller.textEditingController.text);
-            },
-          ),
+          Positioned(
+            top: 0,
+            bottom: 0,
+            right: 0,
+            child: IconButton(
+              icon: Transform.rotate(
+                angle: 315 * 3.14159 / 180, // 角度转为弧度
+                child: const Icon(
+                  Icons.send_sharp,
+                  color: BaseColors.white,
+                ),
+              ),
+              onPressed: () {
+                controller.textEditingController.text = '';
+                controller.messageList.add(controller.textEditingController.text);
+              },
+            ),
+          )
         ],
       ),
     );
