@@ -6,6 +6,8 @@ import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/profile/about_us_screen.dart';
+import 'package:dgpt/screens/profile/about_us_screen_controller.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
 import 'package:dgpt/screens/splash/splash_screen.dart';
@@ -18,6 +20,8 @@ import 'package:dgpt/screens/tutorial/tutorial_detail_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorial_detail_screen_controller.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen_controller.dart';
+import 'package:dgpt/screens/web/web_screen.dart';
+import 'package:dgpt/screens/web/web_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRoutes {
@@ -35,6 +39,9 @@ class AppRoutes {
 
   static String tutorial = "/tutorial";
   static String tutorialDetail = "/tutorial_detail";
+
+  static String aboutUs = "/about_us";
+  static String web = "/web";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -81,6 +88,16 @@ class AppRoutes {
         name: tutorialDetail,
         page: () => const TutorialDetailScreen(),
         binding: TutorialDetailScreenBindings()
+    ),
+    GetPage(
+        name: aboutUs,
+        page: () => const AboutUsScreen(),
+        binding: AboutUsScreenBindings()
+    ),
+    GetPage(
+        name: web,
+        page: () => const WebViewScreen(),
+        binding: WebScreenBindings()
     ),
     GetPage(
         name: qrCode,

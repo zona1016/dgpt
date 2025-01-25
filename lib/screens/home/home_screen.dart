@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
-import 'package:dgpt/utils/packages/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -59,7 +59,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                           Get.toNamed(AppRoutes.tutorial);
                           break;
                         case 2:
-                          DialogUtils.showBaseDialog(title: 'title');
+                          _showShare();
+                          break;
+                        case 3:
+                          Get.toNamed(AppRoutes.aboutUs);
                           break;
                         default:
                       }
@@ -68,7 +71,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   _training(context),
                   Padding(
                     padding:
-                    const EdgeInsets.symmetric(vertical: defaultPadding),
+                        const EdgeInsets.symmetric(vertical: defaultPadding),
                     child: _makeProfitAndNodePartner(context, onTap: (index) {
                       print(index);
                     }),
@@ -95,9 +98,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 height: 200,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.red
-                ),
+                    borderRadius: BorderRadius.circular(20), color: Colors.red),
                 child: CarouselSlider.builder(
                     carouselController: controller.carouselSliderController,
                     itemCount: banners.length,
@@ -296,11 +297,14 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _makeProfitAndNodePartner(BuildContext context, {required Function(int index) onTap}) {
+  _makeProfitAndNodePartner(BuildContext context,
+      {required Function(int index) onTap}) {
     return Row(
       children: [
-        Expanded(child: _makeProfit(context,onTap: onTap)),
-        const SizedBox(width: defaultPadding,),
+        Expanded(child: _makeProfit(context, onTap: onTap)),
+        const SizedBox(
+          width: defaultPadding,
+        ),
         Expanded(child: _nodePartner(context, onTap: onTap)),
       ],
     );
@@ -309,11 +313,10 @@ class HomeScreen extends GetView<HomeScreenController> {
   _makeProfit(BuildContext context, {required Function(int index) onTap}) {
     return Container(
       height: 100,
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+      padding: const EdgeInsets.symmetric(
+          horizontal: defaultPadding, vertical: defaultPadding / 2),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: BaseColors.black
-      ),
+          borderRadius: BorderRadius.circular(10), color: BaseColors.black),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -345,7 +348,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: defaultPadding / 4),
                     child: Row(
                       children: [
                         Text(
@@ -387,11 +391,10 @@ class HomeScreen extends GetView<HomeScreenController> {
   _nodePartner(BuildContext context, {required Function(int index) onTap}) {
     return Container(
       height: 100,
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+      padding: const EdgeInsets.symmetric(
+          horizontal: defaultPadding, vertical: defaultPadding / 2),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: BaseColors.black
-      ),
+          borderRadius: BorderRadius.circular(10), color: BaseColors.black),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -422,7 +425,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                       color: BaseColors.white,
                     ),
                   ),
-                  const SizedBox(height: defaultPadding / 4,),
+                  const SizedBox(
+                    height: defaultPadding / 4,
+                  ),
                   GestureDetector(
                     onTap: () => onTap(0),
                     child: Text(
@@ -458,7 +463,9 @@ class HomeScreen extends GetView<HomeScreenController> {
           width: 60,
           color: BaseColors.primaryColor,
         ),
-        const SizedBox(height: defaultPadding,),
+        const SizedBox(
+          height: defaultPadding,
+        ),
         Row(
           children: [
             Expanded(
@@ -467,14 +474,18 @@ class HomeScreen extends GetView<HomeScreenController> {
                 color: BaseColors.primaryColor,
               ),
             ),
-            const SizedBox(width: defaultPadding,),
+            const SizedBox(
+              width: defaultPadding,
+            ),
             Expanded(
               child: Container(
                 height: 60,
                 color: BaseColors.primaryColor,
               ),
             ),
-            const SizedBox(width: defaultPadding,),
+            const SizedBox(
+              width: defaultPadding,
+            ),
             Expanded(
               child: Container(
                 height: 60,
@@ -485,5 +496,92 @@ class HomeScreen extends GetView<HomeScreenController> {
         )
       ],
     );
+  }
+
+  _showShare() async {
+    DialogUtils.showDGPTBaseDialog(
+        title: 'Test',
+        image: 'assets/images/tab/data_inactive.png',
+        topTitle: 'Share',
+        bottomTitle: 'Share',
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: defaultPadding / 2),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: defaultPadding / 2,
+                    vertical: defaultPadding / 4),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  'UID: 38325008',
+                  style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Container(
+                // padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.teal, width: 2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Image.asset(
+                  "assets/images/tab/data_inactive.png",
+                  width: 150,
+                  height: 150,
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Invitation Links',
+                    style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                  ),
+                  const SizedBox(height: defaultPadding / 4),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'https://dgpt.95test.vip/register?invitedcode=118344835',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      const SizedBox(width: defaultPadding / 4,),
+                      const Icon(Icons.copy, color: Colors.teal,)
+                    ],
+                  ),
+                  const SizedBox(height: defaultPadding / 2),
+                  Text(
+                    'invitation code：',
+                    style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                  ),
+                  const SizedBox(height: defaultPadding / 4),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '118344835',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      const SizedBox(width: defaultPadding / 4,),
+                      const Icon(Icons.copy, color: Colors.teal,)
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

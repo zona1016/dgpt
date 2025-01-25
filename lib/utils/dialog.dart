@@ -113,11 +113,13 @@ class DialogUtils {
     );
   }
 
-  static void showGWBaseDialog(
+  static void showDGPTBaseDialog(
       {bool barrierDismissible = true,
       required String title,
       String? desc,
       String? image,
+      String? topTitle,
+      String? bottomTitle,
       Widget? imageWidget,
       final void Function()? onConfirmPressed,
       final void Function()? onCancelPressed,
@@ -181,9 +183,8 @@ class DialogUtils {
                                   child: Text(
                                     cancelText,
                                     style: fontSFProRegular.copyWith(
-                                      fontSize: 14,
-                                      color: BaseColors.primaryColor
-                                    ),
+                                        fontSize: 14,
+                                        color: BaseColors.primaryColor),
                                   ),
                                 )),
                           if (confirmText != null)
@@ -209,9 +210,39 @@ class DialogUtils {
                     left: 0,
                     right: 0,
                     child: Image.asset(
-                      "assets/images/goldenwhale/$image.png",
+                      image,
                       width: 50,
                       height: 50,
+                    )),
+              if (topTitle != null)
+                Positioned(
+                    top: (image == null) ? -25 : -50,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        topTitle,
+                        style: fontSFProMedium.copyWith(
+                            color: BaseColors.white, fontSize: 14),
+                      ),
+                    )),
+              if (bottomTitle != null)
+                Positioned(
+                    bottom: -60,
+                    left: defaultPadding,
+                    right: defaultPadding,
+                    child: Container(
+                      height: 44,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: BaseColors.primaryColor),
+                      child: Center(
+                        child: Text(
+                          bottomTitle,
+                          style: fontSFProMedium.copyWith(
+                              color: Colors.white, fontSize: 14),
+                        ),
+                      ),
                     ))
             ],
           ),
@@ -239,7 +270,7 @@ class DialogUtils {
   }
 
   static void showGWComingSoonDialog() {
-    showGWBaseDialog(
+    showDGPTBaseDialog(
       title: tr("general.coming_soon"),
       imageWidget: Builder(
         builder: (context) => FractionallySizedBox(
@@ -340,7 +371,9 @@ class DialogUtils {
   }
 
   static void showCompleteProfileDialog(title,
-      {bool barrierDismissible = true, String? cancelText, Function()? onConfirmPressed}) {
+      {bool barrierDismissible = true,
+      String? cancelText,
+      Function()? onConfirmPressed}) {
     showBaseDialog(
       title: title,
       barrierDismissible: barrierDismissible,
@@ -376,7 +409,7 @@ class DialogUtils {
       bool barrierDismissible = true,
       String? confirmText,
       Function()? onConfirmPressed}) {
-    showGWBaseDialog(
+    showDGPTBaseDialog(
       desc: desc,
       title: title,
       barrierDismissible: barrierDismissible,
@@ -391,7 +424,7 @@ class DialogUtils {
 
   static void showGWErrorDialog(String title,
       {String? desc, String? confirmText, Function()? onConfirmPressed}) {
-    showGWBaseDialog(
+    showDGPTBaseDialog(
       desc: desc,
       title: title,
       image: "gw_fail",

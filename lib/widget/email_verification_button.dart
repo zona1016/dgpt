@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
-import 'package:dgpt/utils/packages/dialog.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:easy_localization/easy_localization.dart';
