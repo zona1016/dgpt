@@ -74,9 +74,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                     padding:
                         const EdgeInsets.symmetric(vertical: defaultPadding),
                     child: _makeProfitAndNodePartner(context, onTap: (index) {
-                      print(index);
                       if (index == 0) {
-
+                        Get.toNamed(AppRoutes.analyze);
                       } else {
                         Get.toNamed(AppRoutes.nodePartner);
                       }

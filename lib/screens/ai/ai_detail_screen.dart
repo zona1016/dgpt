@@ -41,42 +41,7 @@ class AiDetailScreen extends GetView<AiDetailScreenController> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16.0),
-              itemCount: 10, // 消息数量
-              itemBuilder: (context, index) {
-                return Align(
-                  alignment: index.isEven
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
-                  child: Container(
-                    padding: const EdgeInsets.all(12.0),
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    decoration: BoxDecoration(
-                      color: index.isEven ? Colors.grey : Colors.greenAccent,
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(8.0),
-                        topRight: const Radius.circular(8.0),
-                        bottomLeft: Radius.circular(index.isEven ? 0 : 8.0),
-                        bottomRight: Radius.circular(index.isEven ? 8.0 : 0),
-                      ),
-                    ),
-                    child: Text(
-                      index.isEven ? "Hello" : "123",
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          const Divider(height: 1, color: Colors.grey),
-          _buildInputArea(),
-        ],
-      ),
+      body: Container(),
     );
   }
 
