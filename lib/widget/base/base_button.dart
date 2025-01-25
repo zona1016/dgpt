@@ -1,16 +1,16 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-enum BaseButtonType { primary, secondary, custom }
+enum BaseButtonType { primary, secondary, custom, golden, goldenOulined }
 
 class BaseButton extends StatelessWidget {
   final BaseButtonType type;
   final BorderRadiusGeometry? borderRadius;
   final double? width;
-  final double height;
+  final double? height;
   final Gradient? gradient;
   final VoidCallback? onPressed;
   final String text;
@@ -33,7 +33,7 @@ class BaseButton extends StatelessWidget {
     required this.text,
     this.borderRadius,
     this.width,
-    this.height = 50.0,
+    this.height,
     this.gradient,
     this.style,
     this.textColor,
@@ -50,15 +50,28 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        alignment: Alignment.center,
-        width: isDynamicWidth ? null : width ?? double.infinity,
-        height: height,
+    final borderRadius = this.borderRadius ??
+        BorderRadius.circular(type == BaseButtonType.golden || type == BaseButtonType.goldenOulined ? 5 : 30);
+    return Container(
+      width: isDynamicWidth ? null : width ?? double.infinity,
+      height: height ?? (type == BaseButtonType.golden ? 45 : 50),
+      decoration: getButtonDecoration(context, borderRadius),
+      child: ElevatedButton(
+        onPressed: enabled ? onPressed : null,
+        style: ButtonStyle(
+            padding: WidgetStatePropertyAll(padding ??
+                EdgeInsets.symmetric(
+                    horizontal: type == BaseButtonType.primary ? 12 : 6)),
+            elevation: const WidgetStatePropertyAll(1),
+            surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+            backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
+            shadowColor: const WidgetStatePropertyAll(Colors.transparent),
+            overlayColor: const WidgetStatePropertyAll(Colors.black12),
+            shape: WidgetStatePropertyAll(isCircleShape
+                ? const CircleBorder()
+                : RoundedRectangleBorder(borderRadius: borderRadius))),
         child: child ??
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Flexible(
@@ -68,11 +81,7 @@ class BaseButton extends StatelessWidget {
                       minFontSize: 10,
                       maxLines: text.contains(' ') || text.contains('\n') ? 2 : 1,
                       stepGranularity: 0.1,
-                      style: style ??
-                          fontBold.copyWith(
-                              fontSize: fontSize ?? 16,
-                              height: 1.25,
-                              color: textColor ?? getTextColor()),
+                      style: style ?? getTextStyle(context),
                     )),
                 if (icon != null) icon!
               ],
@@ -81,54 +90,110 @@ class BaseButton extends StatelessWidget {
     );
   }
 
+  TextStyle getTextStyle(BuildContext context) {
+    switch (type) {
+      case BaseButtonType.primary:
+      case BaseButtonType.secondary:
+      case BaseButtonType.custom:
+        return fontBold.copyWith(
+            fontSize: fontSize ?? 16,
+            height: 1.25,
+            color: textColor ?? getTextColor());
+      case BaseButtonType.golden:
+      case BaseButtonType.goldenOulined:
+        return fontSFProMedium.copyWith(
+            fontSize: 15, color: textColor ?? getTextColor());
+    }
+  }
+
   BoxDecoration? getButtonDecoration(
       BuildContext context, BorderRadiusGeometry borderRadius) {
     switch (type) {
       case BaseButtonType.primary:
-        return BoxDecoration(
-          borderRadius: borderRadius,
-          image: const DecorationImage(
-            image: AssetImage('assets/image/base/button_bg.png'),
-            fit: BoxFit.fill,
-          ),
-        );
+        return !enabled && disabledDecoration != null
+            ? disabledDecoration
+            : customDecoration ??
+            BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 4),
+                    blurRadius: 5.0)
+              ],
+              color: enabled
+                  ? null
+                  : context.appTheme.secondaryGradientStartColor,
+              gradient: enabled
+                  ? const LinearGradient(colors: [
+                BaseColors.primaryGradientStartColor,
+                BaseColors.primaryGradientEndColor
+              ])
+                  : null,
+              borderRadius: borderRadius,
+            );
       case BaseButtonType.secondary:
         return !enabled && disabledDecoration != null
             ? disabledDecoration
-            : customDecoration ?? BoxDecoration(
-          shape: isCircleShape ? BoxShape.circle : BoxShape.rectangle,
-          border: Border.all(
-              color: context.appTheme.containerColor, width: 1),
-          boxShadow: [
-            BoxShadow(
-                color: context.appTheme.lightPrimaryColor,
-                offset: const Offset(0, 4),
-                spreadRadius: 2,
-                blurRadius: 4)
-          ],
-          gradient: enabled
-              ? LinearGradient(
-            colors: [
-              context.appTheme.secondaryGradientStartColor,
-              context.appTheme.secondaryGradientEndColor,
-            ],
-          )
-              : null,
-          borderRadius: isCircleShape ? null : borderRadius,
-        );
+            : customDecoration ??
+            BoxDecoration(
+              shape: isCircleShape ? BoxShape.circle : BoxShape.rectangle,
+              border: Border.all(
+                  color: context.appTheme.containerColor, width: 1),
+              boxShadow: [
+                BoxShadow(
+                    color: context.appTheme.lightPrimaryColor,
+                    offset: const Offset(0, 4),
+                    spreadRadius: 2,
+                    blurRadius: 4)
+              ],
+              gradient: enabled
+                  ? LinearGradient(
+                colors: [
+                  context.appTheme.secondaryGradientStartColor,
+                  context.appTheme.secondaryGradientEndColor,
+                ],
+              )
+                  : null,
+              borderRadius: isCircleShape ? null : borderRadius,
+            );
       case BaseButtonType.custom:
         return customDecoration;
+      case BaseButtonType.golden:
+        return !enabled && disabledDecoration != null
+            ? disabledDecoration
+            : customDecoration ??
+            BoxDecoration(
+              gradient: enabled
+                  ? const LinearGradient(colors: [
+                BaseColors.primaryGradientStartColor,
+                BaseColors.primaryGradientEndColor
+              ])
+                  : null,
+              borderRadius: borderRadius,
+            );
+      case BaseButtonType.goldenOulined:
+        return !enabled && disabledDecoration != null
+            ? disabledDecoration
+            : customDecoration ??
+            BoxDecoration(
+              border: Border.all(color: BaseColors.primaryColor),
+              borderRadius: borderRadius,
+            );
     }
   }
 
   Color getTextColor() {
     switch (type) {
       case BaseButtonType.primary:
-        return enabled ? BaseColors.secondPrimaryColor : BaseColors.secondPrimaryColor;
+        return enabled ? Colors.white : BaseColors.lightGray;
       case BaseButtonType.secondary:
         return BaseColors.primaryColor;
       case BaseButtonType.custom:
         return textColor ?? Colors.white;
+      case BaseButtonType.golden:
+        return Colors.white;
+      case BaseButtonType.goldenOulined:
+        return BaseColors.primaryColor;
     }
   }
 }

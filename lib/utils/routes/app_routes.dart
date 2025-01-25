@@ -4,6 +4,8 @@ import 'package:dgpt/screens/auth/register_screen.dart';
 import 'package:dgpt/screens/auth/register_screen_controller.dart';
 import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
+import 'package:dgpt/screens/home/node_partner_screen.dart';
+import 'package:dgpt/screens/home/node_partner_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/profile/about_us_screen.dart';
@@ -42,6 +44,7 @@ class AppRoutes {
 
   static String aboutUs = "/about_us";
   static String web = "/web";
+  static String nodePartner = "/node_partner";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -98,6 +101,11 @@ class AppRoutes {
         name: web,
         page: () => const WebViewScreen(),
         binding: WebScreenBindings()
+    ),
+    GetPage(
+        name: nodePartner,
+        page: () => const NodePartnerScreen(),
+        binding: NodePartnerScreenBindings()
     ),
     GetPage(
         name: qrCode,

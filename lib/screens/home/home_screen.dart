@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
+import 'package:dgpt/screens/task/task_history_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -74,6 +75,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                         const EdgeInsets.symmetric(vertical: defaultPadding),
                     child: _makeProfitAndNodePartner(context, onTap: (index) {
                       print(index);
+                      if (index == 0) {
+
+                      } else {
+                        Get.toNamed(AppRoutes.nodePartner);
+                      }
                     }),
                   ),
                   _partners(),
@@ -243,16 +249,30 @@ class HomeScreen extends GetView<HomeScreenController> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Row(
           children: [
-            _trainingItem(
-              imagePath: "assets/images/tab/home_inactive.png",
-              title: 'Daily Yield',
-              desc: '0.011USDT',
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.taskHistory,
+                    arguments: TaskHistoryScreenArgs(
+                        historyType: TaskHistoryType.task));
+              },
+              child: _trainingItem(
+                imagePath: "assets/images/tab/home_inactive.png",
+                title: 'Daily Yield',
+                desc: '0.011USDT',
+              ),
             ),
             const Spacer(),
-            _trainingItem(
-              imagePath: "assets/images/tab/home_inactive.png",
-              title: 'Total Yield',
-              desc: '22.222USDT',
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.taskHistory,
+                    arguments: TaskHistoryScreenArgs(
+                        historyType: TaskHistoryType.task));
+              },
+              child: _trainingItem(
+                imagePath: "assets/images/tab/home_inactive.png",
+                title: 'Total Yield',
+                desc: '22.222USDT',
+              ),
             ),
             const Spacer(),
           ],
@@ -429,7 +449,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: defaultPadding / 4,
                   ),
                   GestureDetector(
-                    onTap: () => onTap(0),
+                    onTap: () => onTap(1),
                     child: Text(
                       'Node Partner >',
                       style: fontSFProMedium.copyWith(
@@ -545,7 +565,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                 children: [
                   Text(
                     'Invitation Links',
-                    style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                    style:
+                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
                   ),
                   const SizedBox(height: defaultPadding / 4),
                   Row(
@@ -556,14 +577,20 @@ class HomeScreen extends GetView<HomeScreenController> {
                           style: TextStyle(color: Colors.grey[700]),
                         ),
                       ),
-                      const SizedBox(width: defaultPadding / 4,),
-                      const Icon(Icons.copy, color: Colors.teal,)
+                      const SizedBox(
+                        width: defaultPadding / 4,
+                      ),
+                      const Icon(
+                        Icons.copy,
+                        color: Colors.teal,
+                      )
                     ],
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   Text(
                     'invitation code：',
-                    style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                    style:
+                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
                   ),
                   const SizedBox(height: defaultPadding / 4),
                   Row(
@@ -574,8 +601,13 @@ class HomeScreen extends GetView<HomeScreenController> {
                           style: TextStyle(color: Colors.grey[700]),
                         ),
                       ),
-                      const SizedBox(width: defaultPadding / 4,),
-                      const Icon(Icons.copy, color: Colors.teal,)
+                      const SizedBox(
+                        width: defaultPadding / 4,
+                      ),
+                      const Icon(
+                        Icons.copy,
+                        color: Colors.teal,
+                      )
                     ],
                   ),
                 ],
