@@ -4,6 +4,7 @@ import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/power/power_screen.dart';
 import 'package:dgpt/screens/profile/profile_screen.dart';
 import 'package:dgpt/screens/task/task_screen.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
@@ -76,6 +77,10 @@ class MainScreen extends GetView<MainScreenController> {
                         fontMSYaHei.copyWith(fontSize: 12, height: 2),
                     currentIndex: controller.selectedTabIndex.value,
                     onTap: (value) {
+                      if (value == 3) {
+                        Get.toNamed(AppRoutes.aiGuidance);
+                        return;
+                      }
                       controller.selectedTabIndex(value);
                       controller.pageController.jumpToPage(value);
                       controller.update();

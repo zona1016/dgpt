@@ -1,3 +1,10 @@
+import 'package:dgpt/screens/ai/ai_detail_screen.dart';
+import 'package:dgpt/screens/ai/ai_detail_screen_controller.dart';
+import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
+import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
+import 'package:dgpt/screens/ai/ai_screen_controller.dart';
+import 'package:dgpt/screens/ai/ai_start_screen.dart';
+import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
 import 'package:dgpt/screens/auth/login_screen.dart';
 import 'package:dgpt/screens/auth/login_screen_controller.dart';
 import 'package:dgpt/screens/auth/register_screen.dart';
@@ -45,6 +52,10 @@ class AppRoutes {
   static String aboutUs = "/about_us";
   static String web = "/web";
   static String nodePartner = "/node_partner";
+
+  static String aiGuidance = "/ai_guidance";
+  static String aiStart = "/ai_start";
+  static String aiDetail = "/ai_detail";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -106,6 +117,21 @@ class AppRoutes {
         name: nodePartner,
         page: () => const NodePartnerScreen(),
         binding: NodePartnerScreenBindings()
+    ),
+    GetPage(
+        name: aiGuidance,
+        page: () => const AiGuidanceScreen(),
+        binding: AiGuidanceScreenBindings()
+    ),
+    GetPage(
+        name: aiDetail,
+        page: () => const AiDetailScreen(),
+        binding: AiDetailScreenBindings()
+    ),
+    GetPage(
+        name: aiStart,
+        page: () => const AiStartScreen(),
+        binding: AiStartScreenBindings()
     ),
     GetPage(
         name: qrCode,

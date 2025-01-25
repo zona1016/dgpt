@@ -27,12 +27,14 @@ class HomeScreenController extends BaseController {
   void onInit() {
     super.onInit();
 
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-      if (selectedBannerIndex < 3) {
-        carouselSliderController.nextPage();
-      } else {
-        carouselSliderController.jumpToPage(0);
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+        if (selectedBannerIndex < 3) {
+          carouselSliderController.nextPage();
+        } else {
+          carouselSliderController.jumpToPage(0);
+        }
+      });
     });
   }
 
