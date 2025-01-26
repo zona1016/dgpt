@@ -2,30 +2,25 @@ import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
-class ProfileScreenBindings implements Bindings {
+class SettingScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut(() => ProfileScreenController(), permanent: false, fenix: false);
+        .lazyPut(() => SettingScreenController(), permanent: false, fenix: false);
   }
 }
 
-class ProfileScreenController extends BaseController {
+class SettingScreenController extends BaseController {
 
   final AuthService authService = Get.find();
 
-  List<String> profileList = [
-    'My Device',
-    'My Team',
-    'My Orders',
-    'Share',
-    'KYC',
-    'Customer Service',
-    'Task Center',
-    'Computing Pool',
-    'Language Selection',
-    'About Us',
-    'Logout'
+  List<String> settingList = [
+    'My avatar',
+    'My nickname',
+    'My email',
+    'Phone number',
+    'Reset Funds Password',
+    'Modify Password',
   ];
 
   @override

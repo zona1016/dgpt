@@ -84,7 +84,7 @@ dependencies:
   auto_size_text: ^3.0.0
 #  mobile_scanner: ^5.0.1
 #  extended_nested_scroll_view: ^6.2.1
-#  country_code_picker: ^3.0.0
+  country_code_picker: ^3.0.0
 #  pinput: ^4.0.0
 #  dropdown_search: ^5.0.6
   fluttertoast: ^8.2.5
@@ -117,7 +117,7 @@ dependencies:
   app_links: ^6.3.0
 #  flutter_local_notifications: ^17.2.2
 #  expandable_page_view: ^1.0.17
-#  fl_chart: ^0.69.0
+  fl_chart: ^0.69.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -141,3 +141,4 @@ flutter:
   - assets/translations/
   - assets/images/tab/
   - assets/images/icons/
+  - assets/images/placeholder/

@@ -1,32 +1,27 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
-class ProfileScreenBindings implements Bindings {
+class AccountProfileScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut(() => ProfileScreenController(), permanent: false, fenix: false);
+        .lazyPut(() => AccountProfileScreenController(), permanent: false, fenix: false);
   }
 }
 
-class ProfileScreenController extends BaseController {
+class AccountProfileScreenController extends BaseController {
 
   final AuthService authService = Get.find();
 
-  List<String> profileList = [
-    'My Device',
-    'My Team',
-    'My Orders',
-    'Share',
-    'KYC',
-    'Customer Service',
-    'Task Center',
-    'Computing Pool',
-    'Language Selection',
-    'About Us',
-    'Logout'
-  ];
+  final formKey = GlobalKey<FormBuilderState>();
+
+  String userName = '';
+  String password = '';
+
+  RxBool canLogin = false.obs;
 
   @override
   void onInit() {

@@ -21,6 +21,10 @@ import 'package:dgpt/screens/profile/about_us_screen.dart';
 import 'package:dgpt/screens/profile/about_us_screen_controller.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
+import 'package:dgpt/screens/setting/account_profile_screen.dart';
+import 'package:dgpt/screens/setting/account_profile_screen_controller.dart';
+import 'package:dgpt/screens/setting/setting_screen.dart';
+import 'package:dgpt/screens/setting/setting_screen_controller.dart';
 import 'package:dgpt/screens/splash/splash_screen.dart';
 import 'package:dgpt/screens/splash/splash_screen_controller.dart';
 import 'package:dgpt/screens/task/task_centre_screen.dart';
@@ -59,6 +63,9 @@ class AppRoutes {
   static String aiGuidance = "/ai_guidance";
   static String aiStart = "/ai_start";
   static String aiDetail = "/ai_detail";
+
+  static String setting = "/setting";
+  static String accountProfile = "/account_profile";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -140,6 +147,16 @@ class AppRoutes {
         name: aiStart,
         page: () => const AiStartScreen(),
         binding: AiStartScreenBindings()
+    ),
+    GetPage(
+        name: setting,
+        page: () => const SettingScreen(),
+        binding: SettingScreenBindings()
+    ),
+    GetPage(
+        name: accountProfile,
+        page: () => const AccountProfileScreen(),
+        binding: AccountProfileScreenBindings()
     ),
     GetPage(
         name: qrCode,

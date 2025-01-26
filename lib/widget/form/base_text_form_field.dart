@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-enum TextFormFieldType { primary, secondary }
+enum TextFormFieldType { primary, secondary, golden }
 
 class BaseTextFormField extends StatefulWidget {
   final TextFormFieldType type;
@@ -88,96 +88,135 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderTextField(
-      maxLines: widget.maxLines,
-      name: widget.name,
-      autofocus: widget.autofocus,
-      readOnly: widget.readOnly,
-      initialValue: widget.initialValue,
-      controller: widget.controller,
-      autocorrect: false,
-      enableSuggestions: true,
-      autovalidateMode:
-      widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
-          errorStyle: fontRegular.copyWith(
-              fontSize: 12, color: Colors.red, height: 1.5),
-          errorMaxLines: 3,
-          filled: true,
-          contentPadding: const EdgeInsets.symmetric(vertical: 20),
-          hintText: widget.hintText != null
-              ? "${widget.hintText}${widget.isRequired ? "*" : ""}"
-              : null,
-          fillColor: widget.fillColor ??
-              (widget.type == TextFormFieldType.primary
-                  ? context.appTheme.inputFillColor
-                  : context.appTheme.secondaryInputFillColor),
-          hintStyle: widget.hintStyle ??
-              fontMedium.copyWith(
-                  fontSize: 14, color: context.appTheme.weakTextColor),
-          enabledBorder: getInputBorder(context),
-          border: getInputBorder(context),
-          focusedBorder: getInputBorder(context),
-          focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red),
-              borderRadius: BorderRadius.circular(widget.radius)),
-          errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red),
-              borderRadius: BorderRadius.circular(widget.radius)),
-          prefixIcon: widget.notPaddingPrefixIcon
-              ? widget.prefixIcon
-              : Padding(
-            padding: EdgeInsets.fromLTRB(
-                widget.prefixIcon != null ? 24 : 12,
-                10,
-                widget.prefixIcon != null ? 16 : 8,
-                10),
-            child: widget.prefixIcon,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.title != null && widget.type == TextFormFieldType.golden)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              widget.title!,
+              style: fontSFProRegular.copyWith(
+                  fontSize: 17, color: BaseColors.white),
+            ),
           ),
-          prefixIconConstraints: const BoxConstraints(maxHeight: 36),
-          suffixIconConstraints: const BoxConstraints(maxHeight: 36),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.only(right: 20, left: 8),
-            child: widget.obscureText
-                ? GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () {
-                setState(() {
-                  showObscure = !showObscure;
-                });
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Image.asset(
-                    "assets/images/icons/ic_${showObscure ? "hide" : "show"}.png",
-                    width: 18),
+        FormBuilderTextField(
+          maxLines: widget.maxLines,
+          name: widget.name,
+          autofocus: widget.autofocus,
+          readOnly: widget.readOnly,
+          initialValue: widget.initialValue,
+          controller: widget.controller,
+          autocorrect: false,
+          enableSuggestions: true,
+          autovalidateMode:
+          widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
+          decoration: InputDecoration(
+              errorStyle: fontRegular.copyWith(
+                  fontSize: 12, color: Colors.red, height: 1.5),
+              errorMaxLines: 3,
+              filled: true,
+              contentPadding: const EdgeInsets.symmetric(vertical: 20),
+              hintText: widget.hintText != null
+                  ? "${widget.hintText}${widget.isRequired ? "*" : ""}"
+                  : null,
+              fillColor: widget.fillColor ?? getFillColor(context),
+              hintStyle: widget.hintStyle ?? getHintStyle(context),
+              enabledBorder: getInputBorder(context),
+              border: getInputBorder(context),
+              focusedBorder: getInputBorder(context),
+              focusedErrorBorder: getInputBorder(context)
+                  .copyWith(borderSide: const BorderSide(color: Colors.red)),
+              errorBorder: getInputBorder(context)
+                  .copyWith(borderSide: const BorderSide(color: Colors.red)),
+              prefixIcon: widget.notPaddingPrefixIcon
+                  ? widget.prefixIcon
+                  : Padding(
+                padding: EdgeInsets.fromLTRB(
+                    widget.prefixIcon != null ? 24 : 12,
+                    10,
+                    widget.prefixIcon != null ? 16 : 8,
+                    10),
+                child: widget.prefixIcon,
               ),
-            )
-                : widget.suffixIcon,
-          )),
-      obscureText: widget.obscureText && showObscure,
-      onChanged: widget.onChanged,
-      validator: widget.validator,
-      textInputAction: widget.textInputAction,
-      keyboardType: widget.keyboardType,
-      style: widget.style ??
+              prefixIconConstraints: const BoxConstraints(maxHeight: 36),
+              suffixIconConstraints: const BoxConstraints(maxHeight: 36),
+              suffixIcon: Padding(
+                padding: const EdgeInsets.only(right: 20, left: 8),
+                child: widget.obscureText
+                    ? GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    setState(() {
+                      showObscure = !showObscure;
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Image.asset(
+                        "assets/images/icons/ic_${showObscure ? "hide" : "show"}.png",
+                        width: 18),
+                  ),
+                )
+                    : widget.suffixIcon,
+              )),
+          obscureText: widget.obscureText && showObscure,
+          onChanged: widget.onChanged,
+          validator: widget.validator,
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
+          style: widget.style ?? getTextStyle(context),
+          focusNode: widget.focusNode,
+          inputFormatters: widget.inputFormatters,
+          enabled: widget.enabled,
+          textAlign: widget.textAlign ?? TextAlign.start,
+        ),
+      ],
+    );
+  }
+
+  TextStyle getTextStyle(BuildContext context) {
+    return switch (widget.type) {
+      TextFormFieldType.primary ||
+      TextFormFieldType.secondary =>
           fontMedium.copyWith(
               fontSize: 14,
               color: widget.readOnly
                   ? context.appTheme.weakTextColor
-                  : BaseColors.white),
-      focusNode: widget.focusNode,
-      inputFormatters: widget.inputFormatters,
-      enabled: widget.enabled,
-      textAlign: widget.textAlign ?? TextAlign.start,
-    );
+                  : context.appTheme.textColor),
+      TextFormFieldType.golden => fontSFProRegular.copyWith(
+          fontSize: 14, color: context.appTheme.textColor, height: 1)
+    };
   }
 
-  OutlineInputBorder getInputBorder(BuildContext context) {
-    return OutlineInputBorder(
-        borderSide: widget.type == TextFormFieldType.primary
-            ? BorderSide.none
-            : BorderSide(color: context.appTheme.lightPrimaryColor),
-        borderRadius: BorderRadius.circular(widget.radius));
+  TextStyle getHintStyle(BuildContext context) {
+    return switch (widget.type) {
+      TextFormFieldType.primary || TextFormFieldType.secondary => fontMedium
+          .copyWith(fontSize: 14, color: context.appTheme.weakTextColor),
+      TextFormFieldType.golden => fontSFProRegular.copyWith(
+          fontSize: 14, color: context.appTheme.weakTextColor)
+    };
+  }
+
+  Color getFillColor(BuildContext context) {
+    return switch (widget.type) {
+      TextFormFieldType.primary => context.appTheme.inputFillColor,
+      TextFormFieldType.secondary => context.appTheme.secondaryInputFillColor,
+      TextFormFieldType.golden => context.appTheme.secondaryContainerColor
+    };
+  }
+
+  InputBorder getInputBorder(BuildContext context) {
+    return switch (widget.type) {
+      TextFormFieldType.primary ||
+      TextFormFieldType.secondary =>
+          OutlineInputBorder(
+              borderSide: widget.type == TextFormFieldType.primary
+                  ? BorderSide.none
+                  : BorderSide(color: context.appTheme.lightPrimaryColor),
+              borderRadius: BorderRadius.circular(widget.radius)),
+      TextFormFieldType.golden => OutlineInputBorder(
+          borderSide: BorderSide.none, borderRadius: BorderRadius.circular(5))
+    };
   }
 }
