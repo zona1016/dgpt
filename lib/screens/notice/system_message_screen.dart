@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/notice/system_message_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -27,106 +28,151 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(defaultPadding),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: BaseColors.black
-              ),
+              padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+              color: BaseColors.black,
               child: Row(
                 children: [
-                  const SizedBox(
-                    height: 80,
-                    width: 80,
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: BaseNetworkImage(
-                        imageURL: '',
-                      ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            Image.asset(
+                                "assets/images/tab/profile_active.png",
+                                width: 60),
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.red
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    '99',
+                                    style: fontSFProMedium.copyWith(
+                                        color: BaseColors.white,
+                                        fontSize: 14
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: defaultPadding / 2,),
+                        Text(
+                          'Update',
+                          style: fontSFProMedium.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 14
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: defaultPadding,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Accelerator Ⅰ',
-                        style: fontSFProMedium.copyWith(
-                          fontSize: 14,
-                          color: BaseColors.white,
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                            "assets/images/tab/profile_active.png",
+                            width: 60),
+                        const SizedBox(height: defaultPadding / 2,),
+                        Text(
+                          'Service',
+                          style: fontSFProMedium.copyWith(
+                              color: BaseColors.white,
+                              fontSize: 14
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Daily training hours：2 H',
-                        style: fontSFProMedium.copyWith(
-                          fontSize: 14,
-                          color: BaseColors.white,
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                            "assets/images/tab/profile_active.png",
+                            width: 60),
+                        const SizedBox(height: defaultPadding / 2,),
+                        Text(
+                          'Announcement',
+                          style: fontSFProMedium.copyWith(
+                              color: BaseColors.white,
+                              fontSize: 14
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Deadlines：60Days',
-                        style: fontSFProMedium.copyWith(
-                          fontSize: 14,
-                          color: BaseColors.white,
-                        ),
-                      ),
-                      Text(
-                        'Total yield：104%',
-                        style: fontSFProMedium.copyWith(
-                          fontSize: 14,
-                          color: BaseColors.white,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: defaultPadding,),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(defaultPadding),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: BaseColors.black
-              ),
-              child: ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.itemList.length,
-                itemBuilder: (_, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(defaultPadding / 2),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            controller.itemList[index],
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 16,
-                              color: BaseColors.white,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          "Actual to be ",
-                          style: fontSFProMedium.copyWith(
-                            fontSize: 16,
-                            color: Colors.red,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (_, index) {
-                  return Container(height: 1, color: Colors.black,);
-                },
-              ),
-            ),
+            const SizedBox(height: defaultPadding / 2,),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 10,
+              itemBuilder: (_, index) {
+                return _item(context);
+              },
+            )
           ],
         ),
       ),
     );
   }
 
+  _item(context) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(AppRoutes.systemMessageDetail);
+      },
+      child: Container(
+        color: BaseColors.black,
+        padding: const EdgeInsets.symmetric(vertical: defaultPadding, horizontal: defaultPadding),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+                "assets/images/tab/profile_active.png",
+                width: 60),
+            const SizedBox(width: defaultPadding / 2,),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Successfully purchased the package',
+                    style: fontSFProMedium.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 14
+                    ),
+                  ),
+                  const SizedBox(height: defaultPadding / 2,),
+                  Text(
+                    '2025-01-19 20:36:49',
+                    style: fontSFProMedium.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 14
+                    ),
+                  ),
+                  const SizedBox(height: defaultPadding / 2,),
+                  Text(
+                    'You have successfully purchased the Accelerator package',
+                    style: fontSFProMedium.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 14
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

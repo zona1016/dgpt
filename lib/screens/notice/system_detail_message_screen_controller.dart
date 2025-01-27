@@ -2,15 +2,15 @@ import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
-class SystemMessageScreenBindings implements Bindings {
+class SystemDetailMessageScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance().lazyPut(() => SystemMessageScreenController(),
+    GetInstance().lazyPut(() => SystemDetailMessageScreenController(),
         permanent: false, fenix: false);
   }
 }
 
-class SystemMessageScreenController extends BaseController {
+class SystemDetailMessageScreenController extends BaseController {
   final AuthService authService = Get.find();
 
   @override

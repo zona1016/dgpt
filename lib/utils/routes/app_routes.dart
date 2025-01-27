@@ -18,6 +18,8 @@ import 'package:dgpt/screens/home/node_partner_screen.dart';
 import 'package:dgpt/screens/home/node_partner_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/notice/system_detail_message_screen.dart';
+import 'package:dgpt/screens/notice/system_detail_message_screen_controller.dart';
 import 'package:dgpt/screens/notice/system_message_screen.dart';
 import 'package:dgpt/screens/notice/system_message_screen_controller.dart';
 import 'package:dgpt/screens/profile/about_us_screen.dart';
@@ -81,7 +83,7 @@ class AppRoutes {
   static String orderDetail = "/order_detail";
 
   static String systemMessage = "/system_message";
-
+  static String systemMessageDetail = "/system_message_detail";
 
   static String kyc = "/kyc";
 
@@ -200,6 +202,11 @@ class AppRoutes {
         name: systemMessage,
         page: () => const SystemMessageScreen(),
         binding: SystemMessageScreenBindings()
+    ),
+    GetPage(
+        name: systemMessageDetail,
+        page: () => const SystemDetailMessageScreen(),
+        binding: SystemDetailMessageScreenBindings()
     ),
     GetPage(
         name: qrCode,
