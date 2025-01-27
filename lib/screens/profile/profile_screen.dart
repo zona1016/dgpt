@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -14,7 +15,6 @@ class ProfileScreen extends GetView<ProfileScreenController> {
 
   @override
   Widget build(BuildContext context) {
-
     return BaseScreen(
       backgroundColor: Colors.black,
       appBar: BaseAppBar(
@@ -27,10 +27,16 @@ class ProfileScreen extends GetView<ProfileScreenController> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.settings, color: Colors.greenAccent, size: 35,),
+                  icon: const Icon(
+                    Icons.settings,
+                    color: Colors.greenAccent,
+                    size: 35,
+                  ),
                   onPressed: () {},
                 ),
-                const SizedBox(width: defaultPadding / 2,),
+                const SizedBox(
+                  width: defaultPadding / 2,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -58,12 +64,22 @@ class ProfileScreen extends GetView<ProfileScreenController> {
           ),
           const Spacer(),
           IconButton(
-            icon: const Icon(Icons.settings, color: Colors.greenAccent, size: 35,),
-            onPressed: () {},
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.greenAccent,
+              size: 35,
+            ),
+            onPressed: () => Get.toNamed(AppRoutes.systemMessage),
           ),
-          const SizedBox(width: defaultPadding / 2,),
+          const SizedBox(
+            width: defaultPadding / 2,
+          ),
           IconButton(
-            icon: const Icon(Icons.settings, color: Colors.greenAccent, size: 35,),
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.greenAccent,
+              size: 35,
+            ),
             onPressed: () => Get.toNamed(AppRoutes.setting),
           ),
         ],
@@ -81,7 +97,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const SizedBox(height: defaultPadding/2,),
+                        const SizedBox(
+                          height: defaultPadding / 2,
+                        ),
                         Text(
                           'My Total Asset(USDT)',
                           style: fontSFProMedium.copyWith(
@@ -89,7 +107,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                             color: BaseColors.white,
                           ),
                         ),
-                        const SizedBox(height: defaultPadding/2,),
+                        const SizedBox(
+                          height: defaultPadding / 2,
+                        ),
                         Text(
                           '27614.272 USDT',
                           style: fontSFProMedium.copyWith(
@@ -97,7 +117,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                             color: BaseColors.weakTextColor,
                           ),
                         ),
-                        const SizedBox(height: defaultPadding/2,),
+                        const SizedBox(
+                          height: defaultPadding / 2,
+                        ),
                       ],
                     ),
                   ),
@@ -112,103 +134,119 @@ class ProfileScreen extends GetView<ProfileScreenController> {
               ),
               const SizedBox(height: defaultPadding),
               Container(
-                padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(
-                    width: 1,
-                    color: BaseColors.primaryColor
+                  padding:
+                      const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border:
+                        Border.all(width: 1, color: BaseColors.primaryColor),
                   ),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: defaultPadding/2,),
-                          Text(
-                            'Task',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: defaultPadding / 2,
                             ),
-                          ),
-                          const SizedBox(height: defaultPadding/2,),
-                          Text(
-                            '27614.272 USDT',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor,
+                            Text(
+                              'Task',
+                              style: fontSFProMedium.copyWith(
+                                fontSize: 14,
+                                color: BaseColors.white,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: defaultPadding/2,),
-                        ],
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                            Text(
+                              '27614.272 USDT',
+                              style: fontSFProMedium.copyWith(
+                                fontSize: 14,
+                                color: BaseColors.weakTextColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      width: 1,
-                      height: 25,
-                      color: BaseColors.primaryColor,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: defaultPadding/2,),
-                          Text(
-                            'Vault',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.white,
-                            ),
-                          ),
-                          const SizedBox(height: defaultPadding/2,),
-                          Text(
-                            '27614.272 USDT',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor,
-                            ),
-                          ),
-                          const SizedBox(height: defaultPadding/2,),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        width: 1,
+                        height: 25,
+                        color: BaseColors.primaryColor,
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      width: 1,
-                      height: 25,
-                      color: BaseColors.primaryColor,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: defaultPadding/2,),
-                          Text(
-                            'Withdrawal',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.white,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: defaultPadding / 2,
                             ),
-                          ),
-                          const SizedBox(height: defaultPadding/2,),
-                          Text(
-                            '27614.272 USDT',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor,
+                            Text(
+                              'Vault',
+                              style: fontSFProMedium.copyWith(
+                                fontSize: 14,
+                                color: BaseColors.white,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: defaultPadding/2,),
-                        ],
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                            Text(
+                              '27614.272 USDT',
+                              style: fontSFProMedium.copyWith(
+                                fontSize: 14,
+                                color: BaseColors.weakTextColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        width: 1,
+                        height: 25,
+                        color: BaseColors.primaryColor,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                            Text(
+                              'Withdrawal',
+                              style: fontSFProMedium.copyWith(
+                                fontSize: 14,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                            Text(
+                              '27614.272 USDT',
+                              style: fontSFProMedium.copyWith(
+                                fontSize: 14,
+                                color: BaseColors.weakTextColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
               const SizedBox(height: defaultPadding),
               ListView.builder(
                 shrinkWrap: true,
@@ -219,37 +257,32 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                     onTap: () {
                       switch (index) {
                         case 0:
-
+                          Get.toNamed(AppRoutes.myDevice);
                           break;
                         case 1:
-
                           break;
                         case 2:
-
+                          Get.toNamed(AppRoutes.order);
                           break;
                         case 3:
-
+                          _showShare();
                           break;
                         case 4:
-
+                          Get.toNamed(AppRoutes.kyc);
                           break;
                         case 5:
-
                           break;
                         case 6:
-
+                          Get.toNamed(AppRoutes.taskCenter);
                           break;
                         case 7:
-
                           break;
                         case 8:
-
                           break;
                         case 9:
-
+                          Get.toNamed(AppRoutes.aboutUs);
                           break;
                         case 10:
-
                           break;
                         default:
                       }
@@ -258,8 +291,13 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                       height: 44,
                       child: Row(
                         children: [
-                          Icon(Icons.add, color: Colors.white,),
-                          SizedBox(width: defaultPadding / 4,),
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: defaultPadding / 4,
+                          ),
                           Text(
                             controller.profileList[index],
                             style: fontSFProMedium.copyWith(
@@ -268,7 +306,11 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                             ),
                           ),
                           Expanded(child: Container()),
-                          Icon(Icons.chevron_right_sharp, size: 24, color: Colors.white,),
+                          Icon(
+                            Icons.chevron_right_sharp,
+                            size: 24,
+                            color: Colors.white,
+                          ),
                         ],
                       ),
                     ),
@@ -280,5 +322,104 @@ class ProfileScreen extends GetView<ProfileScreenController> {
         ),
       ),
     );
+  }
+
+  _showShare() async {
+    DialogUtils.showDGPTBaseDialog(
+        title: 'Test',
+        image: 'assets/images/tab/data_inactive.png',
+        topTitle: 'Share',
+        bottomTitle: 'Share',
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: defaultPadding / 2),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: defaultPadding / 2,
+                    vertical: defaultPadding / 4),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  'UID: 38325008',
+                  style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Container(
+                // padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.teal, width: 2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Image.asset(
+                  "assets/images/tab/data_inactive.png",
+                  width: 150,
+                  height: 150,
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Invitation Links',
+                    style:
+                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                  ),
+                  const SizedBox(height: defaultPadding / 4),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'https://dgpt.95test.vip/register?invitedcode=118344835',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 4,
+                      ),
+                      const Icon(
+                        Icons.copy,
+                        color: Colors.teal,
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: defaultPadding / 2),
+                  Text(
+                    'invitation code：',
+                    style:
+                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
+                  ),
+                  const SizedBox(height: defaultPadding / 4),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '118344835',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 4,
+                      ),
+                      const Icon(
+                        Icons.copy,
+                        color: Colors.teal,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

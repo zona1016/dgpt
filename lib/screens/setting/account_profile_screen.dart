@@ -36,7 +36,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-                child: _buildHeader()
+                child: _buildHeader(context)
             ),
             SliverFillRemaining(
               hasScrollBody: false, // 如果不需要滚动内容，设置为 false
@@ -48,7 +48,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
     );
   }
 
-  _buildHeader() {
+  _buildHeader(context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -79,13 +79,18 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
               Positioned(
                 bottom: 0,
                 right: 0,
-                child: Container(
-                  padding: EdgeInsets.all(defaultPadding / 8),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: BaseColors.primaryColor
+                child: InkWell(
+                  onTap: () async {
+                   await controller.onPickCoverImage(context: context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(defaultPadding / 8),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: BaseColors.primaryColor
+                    ),
+                    child: Icon(Icons.edit, color: Colors.black, size: 20,),
                   ),
-                  child: Icon(Icons.edit, color: Colors.black, size: 20,),
                 ),
               )
             ],
@@ -148,40 +153,41 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
   }
 
   _textFormFields(context) {
-    return Column(
-      children: [
-        BaseTextFormField(
-          name: "nickname",
-          title: 'Nickname',
-          type: TextFormFieldType.golden,
-          isRequired: true,
-          hintText: 'Place enter a nickname',
-          radius: 10,
-          validator: FormBuilderValidators.compose([
-            CustomFormBuilderValidators.required('Place enter a nickname')
-          ]),
-        ),
-        const SizedBox(height: 20,),
-        BaseTextFormField(
-          name: "email",
-          title: 'Email',
-          enabled: false,
-          type: TextFormFieldType.golden,
-          isRequired: true,
-          hintText: 'Place enter a nickname',
-          radius: 10,
-          validator: FormBuilderValidators.compose([
-            CustomFormBuilderValidators.required('Place enter a nickname')
-          ]),
-        ),
-        const SizedBox(height: 20,),
-        _enterMobile(context),
-        const SizedBox(height: 20 * 2,),
-        BaseButton(
-          onPressed: (){},
-          text: 'Conform',
-        )
-      ],
+    return FormBuilder(
+      key: controller.formKey,
+      child: Column(
+        children: [
+          BaseTextFormField(
+            name: "nickname",
+            title: 'Nickname',
+            type: TextFormFieldType.golden,
+            hintText: 'Place enter a nickname',
+            radius: 10,
+            validator: FormBuilderValidators.compose([
+              CustomFormBuilderValidators.required('Place enter a nickname')
+            ]),
+          ),
+          const SizedBox(height: 20,),
+          BaseTextFormField(
+            name: "email",
+            title: 'Email',
+            enabled: false,
+            type: TextFormFieldType.golden,
+            hintText: 'Place enter a nickname',
+            radius: 10,
+            validator: FormBuilderValidators.compose([
+              CustomFormBuilderValidators.required('Place enter a nickname')
+            ]),
+          ),
+          const SizedBox(height: 20,),
+          _enterMobile(context),
+          const SizedBox(height: 20 * 2,),
+          BaseButton(
+            onPressed: () => controller.conform(),
+            text: 'Conform',
+          )
+        ],
+      ),
     );
   }
 
@@ -226,7 +232,6 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: FormBuilder(
-                        key: controller.formKey,
                         child: BorderlessTextFormField(
                           name: "phone",
                           keyboardType: TextInputType.number,

@@ -1,32 +1,29 @@
 import 'package:dgpt/services/auth_service.dart';
-import 'package:dgpt/utils/constants/general_constants.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AccountProfileScreenBindings implements Bindings {
+class KycScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut(() => AccountProfileScreenController(), permanent: false, fenix: false);
+    GetInstance().lazyPut(() => KycScreenController(),
+        permanent: false, fenix: false);
   }
 }
 
-class AccountProfileScreenController extends BaseController {
+class KycScreenController extends BaseController {
 
   final AuthService authService = Get.find();
-
-  final formKey = GlobalKey<FormBuilderState>();
   final ImagePicker _picker = ImagePicker();
 
-  RxString avatarFilePath = "".obs;
-
-  String userName = '';
-  String password = '';
-
-  RxBool canLogin = false.obs;
+  List<String> itemList = [
+    'Deployment nodes',
+    'SN.',
+    'Creation time',
+    'Deployment time',
+    'Expire date',
+  ];
 
   @override
   void onInit() {
@@ -54,10 +51,4 @@ class AccountProfileScreenController extends BaseController {
       }
     } catch (e) {}
   }
-
-  conform() {
-    if (formKey.currentState!.saveAndValidate()) {
-    }
-  }
-
 }

@@ -2,9 +2,10 @@ import 'package:dgpt/screens/ai/ai_detail_screen.dart';
 import 'package:dgpt/screens/ai/ai_detail_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
-import 'package:dgpt/screens/ai/ai_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
+import 'package:dgpt/screens/auth/kyc_screen.dart';
+import 'package:dgpt/screens/auth/kyc_screen_controller.dart';
 import 'package:dgpt/screens/auth/login_screen.dart';
 import 'package:dgpt/screens/auth/login_screen_controller.dart';
 import 'package:dgpt/screens/auth/register_screen.dart';
@@ -17,12 +18,16 @@ import 'package:dgpt/screens/home/node_partner_screen.dart';
 import 'package:dgpt/screens/home/node_partner_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/notice/system_message_screen.dart';
+import 'package:dgpt/screens/notice/system_message_screen_controller.dart';
 import 'package:dgpt/screens/profile/about_us_screen.dart';
 import 'package:dgpt/screens/profile/about_us_screen_controller.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
 import 'package:dgpt/screens/setting/account_profile_screen.dart';
 import 'package:dgpt/screens/setting/account_profile_screen_controller.dart';
+import 'package:dgpt/screens/setting/my_device_screen.dart';
+import 'package:dgpt/screens/setting/my_device_screen_controller.dart';
 import 'package:dgpt/screens/setting/setting_screen.dart';
 import 'package:dgpt/screens/setting/setting_screen_controller.dart';
 import 'package:dgpt/screens/splash/splash_screen.dart';
@@ -31,6 +36,10 @@ import 'package:dgpt/screens/task/task_centre_screen.dart';
 import 'package:dgpt/screens/task/task_centre_screen_controller.dart';
 import 'package:dgpt/screens/task/task_history_screen.dart';
 import 'package:dgpt/screens/task/task_history_screen_controller.dart';
+import 'package:dgpt/screens/transaction/order_detail_screen.dart';
+import 'package:dgpt/screens/transaction/order_detail_screen_controller.dart';
+import 'package:dgpt/screens/transaction/order_screen.dart';
+import 'package:dgpt/screens/transaction/order_screen_controller.dart';
 import 'package:dgpt/screens/tutorial/tutorial_detail_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorial_detail_screen_controller.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen.dart';
@@ -66,6 +75,15 @@ class AppRoutes {
 
   static String setting = "/setting";
   static String accountProfile = "/account_profile";
+  static String myDevice = "/my_device";
+
+  static String order = "/order";
+  static String orderDetail = "/order_detail";
+
+  static String systemMessage = "/system_message";
+
+
+  static String kyc = "/kyc";
 
   static final List<GetPage> routes = [
     GetPage(
@@ -157,6 +175,31 @@ class AppRoutes {
         name: accountProfile,
         page: () => const AccountProfileScreen(),
         binding: AccountProfileScreenBindings()
+    ),
+    GetPage(
+        name: myDevice,
+        page: () => const MyDeviceScreen(),
+        binding: MyDeviceScreenBindings()
+    ),
+    GetPage(
+        name: order,
+        page: () => const OrderScreen(),
+        binding: OrderScreenBindings()
+    ),
+    GetPage(
+        name: orderDetail,
+        page: () => const OrderDetailScreen(),
+        binding: OrderDetailScreenBindings()
+    ),
+    GetPage(
+        name: kyc,
+        page: () => const KycScreen(),
+        binding: KycScreenBindings()
+    ),
+    GetPage(
+        name: systemMessage,
+        page: () => const SystemMessageScreen(),
+        binding: SystemMessageScreenBindings()
     ),
     GetPage(
         name: qrCode,
