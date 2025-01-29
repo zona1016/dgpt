@@ -112,7 +112,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
           autovalidateMode:
           widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
-              errorStyle: fontRegular.copyWith(
+              errorStyle: fontDMRegular.copyWith(
                   fontSize: 12, color: Colors.red, height: 1.5),
               errorMaxLines: 3,
               filled: true,
@@ -179,30 +179,30 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
     return switch (widget.type) {
       TextFormFieldType.primary ||
       TextFormFieldType.secondary =>
-          fontMedium.copyWith(
-              fontSize: 14,
+          fontDMHeavy.copyWith(
+              fontSize: 16,
               color: widget.readOnly
                   ? context.appTheme.weakTextColor
                   : context.appTheme.textColor),
-      TextFormFieldType.golden => fontSFProRegular.copyWith(
-          fontSize: 14, color: context.appTheme.textColor, height: 1)
+      TextFormFieldType.golden => fontDMHeavy.copyWith(
+          fontSize: 16, color: context.appTheme.textColor, height: 1)
     };
   }
 
   TextStyle getHintStyle(BuildContext context) {
     return switch (widget.type) {
-      TextFormFieldType.primary || TextFormFieldType.secondary => fontMedium
-          .copyWith(fontSize: 14, color: context.appTheme.weakTextColor),
-      TextFormFieldType.golden => fontSFProRegular.copyWith(
-          fontSize: 14, color: context.appTheme.weakTextColor)
+      TextFormFieldType.primary || TextFormFieldType.secondary => fontDMRegular
+          .copyWith(fontSize: 16, color: BaseColors.black.withOpacity(0.25)),
+      TextFormFieldType.golden => fontDMRegular.copyWith(
+          fontSize: 16, color: BaseColors.black.withOpacity(0.25))
     };
   }
 
   Color getFillColor(BuildContext context) {
     return switch (widget.type) {
-      TextFormFieldType.primary => context.appTheme.inputFillColor,
-      TextFormFieldType.secondary => context.appTheme.secondaryInputFillColor,
-      TextFormFieldType.golden => context.appTheme.secondaryContainerColor
+      TextFormFieldType.primary => BaseColors.gray85.withOpacity(0.5),
+      TextFormFieldType.secondary => BaseColors.gray85.withOpacity(0.5),
+      TextFormFieldType.golden => BaseColors.gray85.withOpacity(0.5)
     };
   }
 

@@ -1,11 +1,15 @@
+import 'package:collection/collection.dart';
+import 'package:dgpt/screens/notice/notice_update_tab.dart';
 import 'package:dgpt/screens/notice/system_message_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,160 +23,88 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
       appBar: BaseAppBar(
         title: 'System Message',
         color: BaseColors.white,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.purple,
         flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.black),
+          background: Container(color: Colors.purple),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-              color: BaseColors.black,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Image.asset(
-                                "assets/images/tab/profile_active.png",
-                                width: 60),
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: Container(
-                                padding: const EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.red
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '99',
-                                    style: fontSFProMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: defaultPadding / 2,),
-                        Text(
-                          'Update',
-                          style: fontSFProMedium.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 14
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                            "assets/images/tab/profile_active.png",
-                            width: 60),
-                        const SizedBox(height: defaultPadding / 2,),
-                        Text(
-                          'Service',
-                          style: fontSFProMedium.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 14
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                            "assets/images/tab/profile_active.png",
-                            width: 60),
-                        const SizedBox(height: defaultPadding / 2,),
-                        Text(
-                          'Announcement',
-                          style: fontSFProMedium.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 14
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+      body: ExtendedNestedScrollView(
+        onlyOneScrollInBody: true,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverOverlapAbsorber(
+              handle: ExtendedNestedScrollView.sliverOverlapAbsorberHandleFor(
+                  context),
+              sliver: SliverToBoxAdapter(
+                child: _buildTabBar(context),
               ),
             ),
-            const SizedBox(height: defaultPadding / 2,),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 10,
-              itemBuilder: (_, index) {
-                return _item(context);
-              },
-            )
-          ],
-        ),
+          ];
+        },
+        body: _buildTabBarViews(context),
       ),
     );
   }
 
-  _item(context) {
-    return InkWell(
-      onTap: () {
-        Get.toNamed(AppRoutes.systemMessageDetail);
-      },
-      child: Container(
-        color: BaseColors.black,
-        padding: const EdgeInsets.symmetric(vertical: defaultPadding, horizontal: defaultPadding),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(
-                "assets/images/tab/profile_active.png",
-                width: 60),
-            const SizedBox(width: defaultPadding / 2,),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Successfully purchased the package',
-                    style: fontSFProMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 14
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding / 2,),
-                  Text(
-                    '2025-01-19 20:36:49',
-                    style: fontSFProMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 14
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding / 2,),
-                  Text(
-                    'You have successfully purchased the Accelerator package',
-                    style: fontSFProMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 14
-                    ),
-                  ),
-                ],
+  Widget _buildTabBar(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: defaultPadding / 2),
+      child: TabBar(
+        isScrollable: false,
+        indicatorColor: BaseColors.primaryColor,
+        indicatorSize: TabBarIndicatorSize.tab,
+        labelColor: BaseColors.primaryColor,
+        labelStyle: fontHeavy.copyWith(fontSize: 14),
+        unselectedLabelColor: BaseColors.weakTextColor,
+        unselectedLabelStyle: fontMedium.copyWith(fontSize: 14),
+        controller: controller.tabController,
+        tabs: controller.noticeTabs.entries
+            .mapIndexed(
+              (index, e) => Tab(
+                height: 76,
+                child: Column(
+                  children: [
+                    Image.asset(
+                        "assets/images/tab/tutorial_inactive.png",
+                        width: 20),
+                    Spacer(),
+                    Text(
+                      e.value,
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
               ),
             )
-          ],
-        ),
+            .toList(),
       ),
+    );
+  }
+
+  Widget _buildTabBarViews(BuildContext context) {
+    return TabBarView(
+      controller: controller.tabController,
+      children: controller.noticeTabs.entries
+          .map(
+            (e) => ExtendedVisibilityDetector(
+              uniqueKey: Key(e.key),
+              child: BaseAutomaticKeepAlive(
+                child: NoticeUpdateTab(
+                  key: PageStorageKey<String>(e.key),
+                  type: e.key,
+                  injector: Builder(
+                    builder: (BuildContext innerContext) {
+                      return SliverOverlapInjector(
+                        handle: ExtendedNestedScrollView
+                            .sliverOverlapAbsorberHandleFor(innerContext),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }

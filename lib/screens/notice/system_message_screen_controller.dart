@@ -1,5 +1,6 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SystemMessageScreenBindings implements Bindings {
@@ -10,12 +11,26 @@ class SystemMessageScreenBindings implements Bindings {
   }
 }
 
-class SystemMessageScreenController extends BaseController {
+class SystemMessageScreenController extends BaseController with GetTickerProviderStateMixin {
   final AuthService authService = Get.find();
+
+  late TabController tabController;
+  late RxInt tabIndex = 0.obs;
+
+  final noticeTabs = {
+    'update': '更新提示',
+    'service': '服务提示',
+    'system': '系统通告'
+  };
 
   @override
   void onInit() {
     super.onInit();
+
+    tabController = TabController(length: noticeTabs.length, vsync: this)
+      ..addListener(() {
+        tabIndex.value = tabController.index;
+      });
   }
 
   @override

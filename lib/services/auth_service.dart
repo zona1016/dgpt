@@ -1,4 +1,3 @@
-
 import 'package:dgpt/models/auth/login_response.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/api/base_response.dart';
@@ -8,21 +7,28 @@ import 'package:get/get.dart';
 
 abstract class AuthService {
   Future<BaseResponse<LoginResponse?>> login(
-      {required String username, required String password});
+      {required String account,
+      required String password,
+      String? tenantId,
+      String? codeId,
+      String? code});
+
   Future<BaseResponse<bool?>> logout();
-  Future<BaseResponse<LoginResponse?>> register(
-      {required String nickname,
-        required String username,
-        required String password,
-        required String confirmPassword,
-        required String email,
-        required String emailCode,
-        String? refCode});
+
+  Future<BaseResponse<bool?>> register(
+      {required String account,
+      required String email,
+      required String phoneNation,
+      required String phone,
+      required String password,
+      required String confirmPassword,
+      String? inviteCode});
+
   Future<BaseResponse<int?>> resetPassword(
       {required String email,
-        required String emailCode,
-        required String password,
-        required String confirmPassword});
+      required String emailCode,
+      required String password,
+      required String confirmPassword});
 }
 
 class AuthServiceImpl extends AuthService {
@@ -31,42 +37,49 @@ class AuthServiceImpl extends AuthService {
 
   @override
   Future<BaseResponse<LoginResponse?>> login(
-      {required String username, required String password}) async {
+      {required String account,
+        required String password,
+        String? tenantId,
+        String? codeId,
+        String? code}) async {
     try {
       return await _apiClient.request(ApiEndpoints.login,
           data: {
-            'account': username,
+            'account': account,
             'password': password,
+            if (codeId != null)
+              'codeId': codeId,
+            if (code != null)
+              'code': code
           },
           deserializer: (data) =>
-          data != null ? LoginResponse.fromJson(data) : null);
+              data != null ? LoginResponse.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
   }
 
   @override
-  Future<BaseResponse<LoginResponse?>> register(
-      {required String nickname,
-        required String username,
-        required String password,
-        required String confirmPassword,
-        required String email,
-        required String emailCode,
-        String? refCode}) async {
+  Future<BaseResponse<bool?>> register(
+      {required String account,
+      required String email,
+      required String phoneNation,
+      required String phone,
+      required String password,
+      required String confirmPassword,
+      String? inviteCode}) async {
     try {
       return await _apiClient.request(ApiEndpoints.register,
           data: {
-            'nickname': nickname,
-            'username': username,
-            'password': password,
-            'password_confirmation': confirmPassword,
+            'account': account,
             'email': email,
-            'email_vcode': emailCode,
-            'ref_code': refCode
+            'phoneNation': phoneNation,
+            'phone': phone,
+            'password': password,
+            'confirmPassword': confirmPassword,
+            'inviteCode': inviteCode
           },
-          deserializer: (data) =>
-          data != null ? LoginResponse.fromJson(data) : null);
+          deserializer: (data) => data != null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -75,9 +88,9 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<BaseResponse<int?>> resetPassword(
       {required String email,
-        required String emailCode,
-        required String password,
-        required String confirmPassword}) async {
+      required String emailCode,
+      required String password,
+      required String confirmPassword}) async {
     try {
       return await _apiClient.request(ApiEndpoints.resetPassword,
           data: {
@@ -102,5 +115,4 @@ class AuthServiceImpl extends AuthService {
       rethrow;
     }
   }
-
 }

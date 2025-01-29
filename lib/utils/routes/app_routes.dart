@@ -32,12 +32,14 @@ import 'package:dgpt/screens/setting/my_device_screen.dart';
 import 'package:dgpt/screens/setting/my_device_screen_controller.dart';
 import 'package:dgpt/screens/setting/setting_screen.dart';
 import 'package:dgpt/screens/setting/setting_screen_controller.dart';
-import 'package:dgpt/screens/splash/splash_screen.dart';
-import 'package:dgpt/screens/splash/splash_screen_controller.dart';
+import 'package:dgpt/screens/auth/splash/splash_screen.dart';
+import 'package:dgpt/screens/auth/splash/splash_screen_controller.dart';
 import 'package:dgpt/screens/task/task_centre_screen.dart';
 import 'package:dgpt/screens/task/task_centre_screen_controller.dart';
 import 'package:dgpt/screens/task/task_history_screen.dart';
 import 'package:dgpt/screens/task/task_history_screen_controller.dart';
+import 'package:dgpt/screens/transaction/my_assets_screen.dart';
+import 'package:dgpt/screens/transaction/my_assets_screen_controller.dart';
 import 'package:dgpt/screens/transaction/order_detail_screen.dart';
 import 'package:dgpt/screens/transaction/order_detail_screen_controller.dart';
 import 'package:dgpt/screens/transaction/order_screen.dart';
@@ -78,7 +80,9 @@ class AppRoutes {
   static String setting = "/setting";
   static String accountProfile = "/account_profile";
   static String myDevice = "/my_device";
+  static String helpCenter = "/help_center";
 
+  static String myAssets = "/my_assets";
   static String order = "/order";
   static String orderDetail = "/order_detail";
 
@@ -192,6 +196,11 @@ class AppRoutes {
         name: orderDetail,
         page: () => const OrderDetailScreen(),
         binding: OrderDetailScreenBindings()
+    ),
+    GetPage(
+        name: myAssets,
+        page: () => const MyAssetsScreen(),
+        binding: MyAssetsScreenBindings()
     ),
     GetPage(
         name: kyc,

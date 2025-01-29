@@ -90,47 +90,52 @@ class ProfileScreen extends GetView<ProfileScreenController> {
           child: Column(
             children: [
               const SizedBox(height: defaultPadding),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: defaultPadding / 2,
-                        ),
-                        Text(
-                          'My Total Asset(USDT)',
-                          style: fontSFProMedium.copyWith(
-                            fontSize: 14,
-                            color: BaseColors.white,
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRoutes.myAssets);
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: defaultPadding / 2,
                           ),
-                        ),
-                        const SizedBox(
-                          height: defaultPadding / 2,
-                        ),
-                        Text(
-                          '27614.272 USDT',
-                          style: fontSFProMedium.copyWith(
-                            fontSize: 14,
-                            color: BaseColors.weakTextColor,
+                          Text(
+                            'My Total Asset(USDT)',
+                            style: fontSFProMedium.copyWith(
+                              fontSize: 14,
+                              color: BaseColors.white,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: defaultPadding / 2,
-                        ),
-                      ],
+                          const SizedBox(
+                            height: defaultPadding / 2,
+                          ),
+                          Text(
+                            '27614.272 USDT',
+                            style: fontSFProMedium.copyWith(
+                              fontSize: 14,
+                              color: BaseColors.weakTextColor,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: defaultPadding / 2,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 120,
-                    child: BaseButton(
-                      text: 'Asset center',
-                      onPressed: () {},
-                    ),
-                  )
-                ],
+                    SizedBox(
+                      width: 120,
+                      child: BaseButton(
+                        text: 'Asset center',
+                        onPressed: () {},
+                      ),
+                    )
+                  ],
+                ),
               ),
               const SizedBox(height: defaultPadding),
               Container(

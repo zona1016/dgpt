@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/screens/auth/register_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -8,6 +7,7 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/email_verification_button.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
+import 'package:dgpt/widget/form/borderless_text_field.dart';
 import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +45,10 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                     children: [
                       const SizedBox(height: 20),
                       BaseTextFormField(
-                        name: "username",
-                        hintText: 'Username',
+                        name: "account",
+                        hintText: 'Account',
                         validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required('Username')
+                          CustomFormBuilderValidators.required('Account')
                         ]),
                       ),
                       const SizedBox(height: 20),
@@ -62,22 +62,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                         keyboardType: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 20),
-                      BaseTextFormField(
-                        name: "email_code",
-                        hintText: 'Enter email code',
-                        keyboardType: TextInputType.number,
-                        validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required(
-                              tr("verification.verification_code"))
-                        ]),
-                        suffixIcon: EmailVerificationButton(
-                          formKey: controller.registerFormKey,
-                          type: 'register',
-                        ),
-                        prefixIcon: Image.asset(
-                            "assets/images/form/verification.png",
-                            color: context.appTheme.textColor),
-                      ),
+                      _enterMobile(context),
                       const SizedBox(height: 20),
                       BaseTextFormField(
                         name: "password",
@@ -90,11 +75,11 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                       ),
                       const SizedBox(height: 20),
                       Obx(() => BaseTextFormField(
-                            name: "confirm_password",
+                            name: "confirmPassword",
                             autovalidateMode: controller.isFormValidated.isTrue
                                 ? AutovalidateMode.onUserInteraction
                                 : AutovalidateMode.disabled,
-                            hintText: 'Place enter your password again',
+                            hintText: 'ConfirmPassword',
                             validator: (value) => controller
                                         .registerFormKey
                                         .currentState
@@ -107,16 +92,15 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                           )),
                       const SizedBox(height: 20),
                       BaseTextFormField(
-                        name: "invitation_code",
-                        hintText: 'Place enter the invitation code',
+                        name: "inviteCode",
+                        hintText: 'InviteCode',
                         validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required('Place enter the invitation code'),
+                          CustomFormBuilderValidators.required('InviteCode'),
                         ]),
                       ),
                       const SizedBox(height: 20),
                       _buildRegister(),
                       const SizedBox(height: 20),
-                      _buildBottom()
                     ],
                   ),
                 ),
@@ -177,12 +161,70 @@ class RegisterScreen extends GetView<RegisterScreenController> {
     );
   }
 
+  _enterMobile(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Mobile phone number',
+                  style: fontMedium.copyWith(
+                      fontSize: 14, color: Colors.white)),
+              const SizedBox(height: 5),
+              Container(
+                height: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: context.appTheme.secondaryContainerColor),
+                child: Row(
+                  children: [
+                    Row(
+                      children: [
+                        CountryCodePicker(
+                          dialogBackgroundColor:
+                          context.appTheme.backgroundColor,
+                          onChanged: (code) {
+
+                          },
+                          showFlag: false,
+                          // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                          initialSelection: 'MY',
+                          favorite: const ['+60'],
+                          showFlagDialog: true,
+                          padding: const EdgeInsets.all(0),
+                        ),
+                        Icon(Icons.arrow_right_sharp, size: 24,),
+                        SizedBox(width: defaultPadding / 2,),
+                        Container(width: 1, height: 44, color: Colors.red,)
+                      ],
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: FormBuilder(
+                        child: BorderlessTextFormField(
+                          name: "phone",
+                          keyboardType: TextInputType.number,
+                          hintText: 'placeholder.input_field',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   _buildRegister() {
     return Column(
       children: [
         GestureDetector(
           onTap: () {
-
+            controller.register();
           },
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: defaultPadding),
@@ -222,28 +264,6 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             const Spacer(),
           ],
         )
-      ],
-    );
-  }
-
-  _buildBottom() {
-    return Column(
-      children: [
-        Text(
-          'Provide a revenue stream for each computing power provider！',
-          style: fontSFProMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.lightGray,
-          ),
-        ),
-        const SizedBox(height: defaultPadding,),
-        Text(
-          'Version 1.3.5',
-          style: fontSFProMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.lightGray,
-          ),
-        ),
       ],
     );
   }

@@ -83,24 +83,6 @@ class UserController extends BaseController {
     _userInfo.value = userInfo;
   }
 
-  getProfileProgress() {
-    int progress = 1;
-    if (userInfo.username != null && userInfo.username!.isNotEmpty) {
-      progress = 2;
-    }
-    if (userInfo.mobile != null && userInfo.mobile!.isNotEmpty) {
-      progress = 3;
-    }
-    if (userInfo.email != null && userInfo.email!.isNotEmpty) {
-      progress = 4;
-    }
-    if (userInfo.avatar != null && userInfo.avatar!.isNotEmpty) {
-      progress = 5;
-    }
-
-    return progress;
-  }
-
   saveUser(UserInfo? userInfo, String? token) {
     StorageUtils.write(StorageKeys.accessToken, token);
     _token.value = token;
@@ -137,7 +119,7 @@ class UserController extends BaseController {
   }
 
   void _loadWatchedLessons() {
-    final username = userInfo.username;
+    final username = userInfo.id;
     final String? watchedLessonsJson = StorageUtils.read('$_prefix$username');
     debugPrint("loaded lessons = $watchedLessonsJson");
     if (watchedLessonsJson != null) {
@@ -161,7 +143,7 @@ class UserController extends BaseController {
   }
 
   void _saveWatchedLessons() {
-    final username = userInfo.username;
+    final username = userInfo.id;
     if (username != null) {
       StorageUtils.write('$_prefix$username', jsonEncode(watchedLessons));
       debugPrint("saved lesson to $_prefix$username");

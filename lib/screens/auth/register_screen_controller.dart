@@ -23,32 +23,47 @@ class RegisterScreenController extends BaseController {
   @override
   void onReady() {
     super.onReady();
-    if (args != null && args?.referralCode != null) {
-      registerFormKey.currentState?.fields['ref_code']
-          ?.didChange(args?.referralCode);
-    }
+
   }
 
   register() async {
+    final result = await fetchData(
+      request: () => authService.register(
+          account: 'zona9',
+          email: 'czzona27@gmail.com',
+          phoneNation: '30',
+          phone: '1234567',
+          password: '12345678',
+          confirmPassword: '12345678',
+          inviteCode: 'RTGU1gzWD6'),
+    );
+    if (result != null) {
+      DialogUtils.showLoginSuccess(
+          image: 'assets/images/tab/home_inactive.png',
+          stateTitle: '注册成功！',
+          detail: '请稍等片刻，即将进入产品主页~'
+      );
+    }
     if (registerFormKey.currentState!.saveAndValidate()) {
       isFormValidated.value = true;
-      final username = registerFormKey.currentState?.value['username'];
-      final password = registerFormKey.currentState?.value['password'];
-      final confirmPassword =
-          registerFormKey.currentState?.value['confirm_password'];
+      final account = registerFormKey.currentState?.value['account'];
       final email = registerFormKey.currentState?.value['email'];
-      final emailCode = registerFormKey.currentState?.value['email_code'];
-      final refCode = registerFormKey.currentState?.value['invitation_code'];
+      final phoneNation =
+          registerFormKey.currentState?.value['phoneNation'];
+      final phone = registerFormKey.currentState?.value['phone'];
+      final password = registerFormKey.currentState?.value['password'];
+      final confirmPassword = registerFormKey.currentState?.value['confirmPassword'];
+      final inviteCode = registerFormKey.currentState?.value['inviteCode'];
 
       final result = await fetchData(
         request: () => authService.register(
-            nickname: '',
-            username: username,
-            password: password,
-            confirmPassword: confirmPassword,
-            email: email,
-            emailCode: emailCode,
-            refCode: refCode),
+            account: '123456',
+            email: 'czzona27@gmail.com',
+            phoneNation: '30',
+            phone: '1234567',
+            password: 'Abcd@1234',
+            confirmPassword: 'Abcd@1234',
+            inviteCode: '2340'),
       );
       if (result != null) {
         DialogUtils.showSuccessDialog(tr("msg.register_success"));

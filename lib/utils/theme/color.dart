@@ -15,6 +15,7 @@ class BaseColors {
   static const darkGray = Color(0xFF666666);
   static const white = Colors.white;
   static const whiteGray = Color(0xFFF5F5F5);
+  static const whiteGray1 = Color(0xFFE9EDED);
 
   static const textColor = black;
   static const weakTextColor = gray;

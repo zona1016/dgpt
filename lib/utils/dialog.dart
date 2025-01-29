@@ -121,6 +121,7 @@ class DialogUtils {
       String? topTitle,
       String? bottomTitle,
       Widget? imageWidget,
+      Color? contentColor,
       final void Function()? onConfirmPressed,
       final void Function()? onCancelPressed,
       Widget? child,
@@ -144,19 +145,20 @@ class DialogUtils {
                 padding: const EdgeInsets.all(defaultPadding * 1.5)
                     .copyWith(top: defaultPadding * 2),
                 decoration: BoxDecoration(
-                    color: context.appTheme.lightPrimaryColor,
+                    color: contentColor ?? context.appTheme.lightPrimaryColor,
                     borderRadius: BorderRadius.circular(10)),
                 width: Get.width * 0.6,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     imageWidget ?? Container(),
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: fontSFProBold.copyWith(
-                          fontSize: 17, color: context.appTheme.textColor),
-                    ),
+                    if (title.isNotEmpty)
+                      Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: fontSFProBold.copyWith(
+                            fontSize: 17, color: context.appTheme.textColor),
+                      ),
                     if (desc != null)
                       Text(
                         desc,
@@ -434,5 +436,53 @@ class DialogUtils {
             Get.back();
           },
     );
+  }
+
+  static void showLoginSuccess(
+      {required String image,
+      required String stateTitle,
+      required String detail,
+      bool showError = false}) {
+    showDGPTBaseDialog(
+        barrierDismissible: false,
+        title: '',
+        contentColor: Colors.purple,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                image,
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
+                color: showError ? Colors.red : BaseColors.primaryColor,
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Text(
+                stateTitle,
+                style: fontDMHeavy.copyWith(
+                    color: BaseColors.primaryColor, fontSize: 20),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Text(
+                detail,
+                style: fontDMMedium.copyWith(
+                    color: showError ? Colors.red : BaseColors.whiteGray1, fontSize: 14),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              const CircularProgressIndicator(
+                color: BaseColors.primaryColor, // 颜色
+                strokeWidth: 4.0, // 圆圈线条宽度
+              )
+            ],
+          ),
+        ));
   }
 }

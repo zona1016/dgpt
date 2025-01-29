@@ -107,7 +107,7 @@ class ApiClientImpl implements ApiClient {
           } catch (_) {
             throw ServerResponseException(BaseResponse(
                 code: e.response?.statusCode ?? 400,
-                msg: e.response?.data['msg'] ?? ''));
+                msg: e.response?.data['message'] ?? ''));
           }
         case DioExceptionType.cancel:
           throw CancelExecption();

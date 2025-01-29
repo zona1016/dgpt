@@ -10,11 +10,11 @@ class BaseResponse<T> {
     return BaseResponse<T>(code: this.code, msg: this.msg, data: this.data);
   }
 
-  bool get isSuccess => code == 1;
+  bool get isSuccess => code == 200;
 
   factory BaseResponse.fromMap(Map<String, dynamic> map,
       {T Function(dynamic data)? deserializer}) {
-    final results = map['data'];
+    final results = map['result'];
     debugPrint(results.runtimeType.toString());
     final data = deserializer != null
         ? results.runtimeType == String && (results as String).isEmpty
@@ -23,9 +23,9 @@ class BaseResponse<T> {
         : null;
     return BaseResponse<T>(
         code: map['code'] as int,
-        msg: map['msg'] is Map
-            ? (map['msg'] as Map<String, dynamic>).values.first[0] as String
-            : map['msg'] as String,
+        msg: map['message'] is Map
+            ? (map['message'] as Map<String, dynamic>).values.first[0] as String
+            : map['message'] as String,
         data: data);
   }
 }

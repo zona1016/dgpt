@@ -3,6 +3,7 @@ import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
@@ -15,24 +16,23 @@ class LoginScreen extends GetView<LoginScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: BaseColors.primaryColor,
+      backgroundColor: Colors.deepPurple,
+      appBar: BaseAppBar(
+        title: '',
+        color: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: FlexibleSpaceBar(
+          background: Container(color: Colors.transparent),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: _buildHeader(),
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false, // 如果不需要滚动内容，设置为 false
-              child: Column(
-                children: [
-                  Expanded(child: Container()),
-                  _buildBottom()
-                ],
-              ), // 或者其他你想占位的内容
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildHeader()
+            ],
+          ),
         ),
       ),
     );
@@ -54,7 +54,7 @@ class LoginScreen extends GetView<LoginScreenController> {
           Row(
             children: [
               Text(
-                'Forget password?',
+                '忘记密码?',
                 style: fontSFProMedium.copyWith(
                   fontSize: 14,
                   color: BaseColors.lightGray,
@@ -66,7 +66,7 @@ class LoginScreen extends GetView<LoginScreenController> {
                   Get.toNamed(AppRoutes.register);
                 },
                 child: Text(
-                  'No account?Register',
+                  '没有账号?去注册',
                   style: fontSFProMedium.copyWith(
                       fontSize: 14,
                       color: BaseColors.lightGray,
@@ -75,6 +75,9 @@ class LoginScreen extends GetView<LoginScreenController> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(
+            height: defaultPadding / 2,
           ),
           _buildLogin(),
         ],
@@ -86,28 +89,6 @@ class LoginScreen extends GetView<LoginScreenController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Expanded(child: Container()),
-            GestureDetector(
-              onTap: () {},
-              child: Image.asset(
-                "assets/images/tab/home_inactive.png",
-                width: 20,
-              ),
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Image.asset(
-                "assets/images/tab/home_inactive.png",
-                width: 20,
-              ),
-            ),
-          ],
-        ),
         Image.asset(
           "assets/images/tab/home_inactive.png",
           width: 40,
@@ -115,18 +96,18 @@ class LoginScreen extends GetView<LoginScreenController> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
-            'Login',
-            style: fontSFProMedium.copyWith(
+            '登录',
+            style: fontDMBold.copyWith(
               fontSize: 28,
               color: BaseColors.white,
             ),
           ),
         ),
         Text(
-          'Please enter your email and password to complete',
-          style: fontSFProMedium.copyWith(
+          '请输入您的账号和密码以完成登录。',
+          style: fontDMRegular.copyWith(
             fontSize: 14,
-            color: BaseColors.lightGray,
+            color: BaseColors.white,
           ),
         ),
       ],
@@ -136,104 +117,174 @@ class LoginScreen extends GetView<LoginScreenController> {
   _buildNameAndPassword() {
     return Column(
       children: [
-        BaseTextFormField(
-          name: 'userName',
-          hintText: 'Username/Email',
-          fillColor: BaseColors.black,
-          radius: 10,
-          onChanged: (value) {
-            controller.userName = value ?? '';
-            controller.canLogin.value = controller.password.isNotEmpty && controller.userName.isNotEmpty;
-          },
+        Obx(
+          () => BaseTextFormField(
+            name: 'userName',
+            hintText: 'Account',
+            fillColor: controller.userName.isNotEmpty
+                ? BaseColors.white
+                : BaseColors.gray85.withOpacity(0.5),
+            radius: 10,
+            onChanged: (value) {
+              controller.userName.value = value ?? '';
+            },
+          ),
         ),
         const SizedBox(
           height: defaultPadding,
         ),
-        BaseTextFormField(
-          name: 'password',
-          hintText: 'Password',
-          obscureText: true,
-          fillColor: BaseColors.black,
-          radius: 10,
-          onChanged: (value) {
-            controller.password = value ?? '';
-            controller.canLogin.value = controller.password.isNotEmpty && controller.userName.isNotEmpty;
-          },
-        ),
+        Obx(
+          () => BaseTextFormField(
+            name: 'password',
+            hintText: 'Password',
+            obscureText: true,
+            style: fontDMRegular.copyWith(
+                color: controller.password.isNotEmpty
+                    ? BaseColors.white
+                    : BaseColors.weakTextColor),
+            fillColor: controller.password.isNotEmpty
+                ? BaseColors.primaryColor
+                : BaseColors.gray85.withOpacity(0.5),
+            radius: 10,
+            onChanged: (value) {
+              controller.password.value = value ?? '';
+            },
+          ),
+        )
       ],
     );
   }
 
   _buildLogin() {
-    return Obx(() => Column(
+    return Column(
       children: [
-        GestureDetector(
-          onTap: () {
-            if (!controller.canLogin.value) return;
-          },
-          child: Container(
-            margin: const EdgeInsets.symmetric(vertical: defaultPadding),
-            height: 44,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: controller.canLogin.value
-                    ? BaseColors.black
-                    : BaseColors.black.withOpacity(0.1)),
-            child: Center(
-              child: Text(
-                'Login',
-                style: fontSFProMedium.copyWith(
-                  fontSize: 14,
-                  color: controller.canLogin.value ? BaseColors.white : BaseColors.lightGray,
-                ),
-              ),
-            ),
+        Obx(
+          () => BaseButton(
+            enabled:
+                controller.password.isNotEmpty && controller.userName.isNotEmpty
+                    ? true
+                    : false,
+            onPressed: () {
+              controller.login();
+            },
+            text: '登录',
           ),
         ),
+        const SizedBox(height: defaultPadding,),
         Row(
           children: [
             const Spacer(),
             Text(
-              'Continued consent',
+              '登录即表示同意',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
                 color: BaseColors.lightGray,
               ),
             ),
             Text(
-              'Agreements/Privacy Agreements',
+              '用户协议',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: BaseColors.black,
+                color: Colors.purpleAccent,
+              ),
+            ),
+            Text(
+              '/',
+              style: fontSFProMedium.copyWith(
+                fontSize: 14,
+                color: Colors.purpleAccent,
+              ),
+            ),
+            Text(
+              '隐私政策',
+              style: fontSFProMedium.copyWith(
+                fontSize: 14,
+                color: Colors.purpleAccent,
               ),
             ),
             const Spacer(),
           ],
         )
       ],
-    ));
+    );
   }
 
   _buildBottom() {
     return Column(
       children: [
-        Text(
-          'Provide a revenue stream for each computing power provider！',
-          style: fontSFProMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.lightGray,
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                color: Colors.white,
+                height: 1,
+                width: double.infinity,
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: defaultPadding / 4),
+              child: Text(
+                '其他登录方式',
+                style: fontSFProMedium.copyWith(
+                  fontSize: 14,
+                  color: BaseColors.lightGray,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                color: BaseColors.white,
+                height: 1,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: defaultPadding,),
-        Text(
-          'Version 1.3.5',
-          style: fontSFProMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.lightGray,
-          ),
+        const SizedBox(
+          height: defaultPadding,
         ),
+        Row(
+          children: [
+            Expanded(
+                child: GestureDetector(
+              onTap: () => controller.signInWithGoogle(),
+              child: _otherLogin(),
+            )),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Expanded(
+                child: GestureDetector(
+              onTap: () => controller.signInWithFacebook(),
+              child: _otherLogin(),
+            )),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Expanded(child: Container()),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Expanded(child: Container()),
+          ],
+        )
       ],
+    );
+  }
+
+  _otherLogin() {
+    return Container(
+      height: 60,
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: BaseColors.weakTextColor),
+      child: Center(
+        child: Image.asset(
+          "assets/images/tab/home_inactive.png",
+          width: 20,
+        ),
+      ),
     );
   }
 }

@@ -54,7 +54,7 @@ class BaseButton extends StatelessWidget {
         BorderRadius.circular(type == BaseButtonType.golden || type == BaseButtonType.goldenOulined ? 5 : 30);
     return Container(
       width: isDynamicWidth ? null : width ?? double.infinity,
-      height: height ?? (type == BaseButtonType.golden ? 45 : 50),
+      height: height ?? 56,
       decoration: getButtonDecoration(context, borderRadius),
       child: ElevatedButton(
         onPressed: enabled ? onPressed : null,
@@ -95,7 +95,7 @@ class BaseButton extends StatelessWidget {
       case BaseButtonType.primary:
       case BaseButtonType.secondary:
       case BaseButtonType.custom:
-        return fontBold.copyWith(
+        return fontDMHeavy.copyWith(
             fontSize: fontSize ?? 16,
             height: 1.25,
             color: textColor ?? getTextColor());
@@ -121,14 +121,8 @@ class BaseButton extends StatelessWidget {
                     blurRadius: 5.0)
               ],
               color: enabled
-                  ? null
-                  : context.appTheme.secondaryGradientStartColor,
-              gradient: enabled
-                  ? const LinearGradient(colors: [
-                BaseColors.primaryGradientStartColor,
-                BaseColors.primaryGradientEndColor
-              ])
-                  : null,
+                  ? BaseColors.primaryColor
+                  : BaseColors.gray,
               borderRadius: borderRadius,
             );
       case BaseButtonType.secondary:

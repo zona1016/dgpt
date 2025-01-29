@@ -22,3 +22,15 @@ const TextStyle fontSFProBold =
 TextStyle(fontWeight: FontWeight.w700, fontFamily: "SFPro Display");
 
 const TextStyle fontMSYaHei = TextStyle(fontFamily: "MicrosoftYaHei");
+
+const TextStyle fontDMRegular =
+TextStyle(fontWeight: FontWeight.w400, fontFamily: "DM Sans");
+
+const TextStyle fontDMMedium =
+TextStyle(fontWeight: FontWeight.w500, fontFamily: "DM Sans");
+
+const TextStyle fontDMBold =
+TextStyle(fontWeight: FontWeight.w600, fontFamily: "DM Sans");
+
+const TextStyle fontDMHeavy =
+TextStyle(fontWeight: FontWeight.w700, fontFamily: "DM Sans");

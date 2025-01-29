@@ -39,47 +39,42 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ],
                     onRightImageTaps: (index) {},
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: _carousel(context),
-                  ),
-                  _marquee(),
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: _collectionOfFeatures(onTap: (index) {
-                      switch (index) {
-                        case 0:
-                          Get.toNamed(AppRoutes.taskCenter);
-                          break;
-                        case 1:
-                          Get.toNamed(AppRoutes.tutorial);
-                          break;
-                        case 2:
-                          _showShare();
-                          break;
-                        case 3:
-                          Get.toNamed(AppRoutes.aboutUs);
-                          break;
-                        default:
-                      }
-                    }),
+                  _carousel(context),
+                  const SizedBox(
+                    height: defaultPadding,
                   ),
-                  _training(context),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
-                    child: _makeProfitAndNodePartner(context, onTap: (index) {
-                      if (index == 0) {
-                        Get.toNamed(AppRoutes.analyze);
-                      } else {
-                        Get.toNamed(AppRoutes.nodePartner);
-                      }
-                    }),
+                  _makeProfitAndNodePartner(context, onTap: (index) {
+                    if (index == 0) {
+                      Get.toNamed(AppRoutes.analyze);
+                    } else {
+                      Get.toNamed(AppRoutes.nodePartner);
+                    }
+                  }),
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  _collectionOfFeatures(onTap: (index) {
+                    switch (index) {
+                      case 0:
+                        Get.toNamed(AppRoutes.taskCenter);
+                        break;
+                      case 1:
+                        Get.toNamed(AppRoutes.tutorial);
+                        break;
+                      case 2:
+                        _showShare();
+                        break;
+                      case 3:
+                        Get.toNamed(AppRoutes.aboutUs);
+                        break;
+                      default:
+                    }
+                  }),
+                  const SizedBox(
+                    height: defaultPadding,
                   ),
                   _partners(),
                 ],
@@ -196,40 +191,50 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   _collectionOfFeatures({required Function(int index) onTap}) {
     List titles = ['Task Center', 'Tutorials', 'Invitation', 'About Us'];
-    return Row(
-      children: List.generate(titles.length, (index) {
-        return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            child: InkWell(
-              onTap: () {
-                onTap(index);
-              },
-              highlightColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              child: Column(
-                children: [
-                  Image.asset(
-                    'assets/images/tab/home_inactive.png',
-                    width: 25,
-                    height: 25,
-                  ),
-                  const SizedBox(
-                    height: defaultPadding / 2,
-                  ),
-                  Text(
-                    titles[index],
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 12,
-                      color: BaseColors.white,
+    return Container(
+      height: 96,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: BaseColors.black
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: List.generate(titles.length, (index) {
+          return Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+              child: InkWell(
+                onTap: () {
+                  onTap(index);
+                },
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                child: Column(
+                  children: [
+                    Spacer(),
+                    Image.asset(
+                      'assets/images/tab/home_inactive.png',
+                      width: 25,
+                      height: 25,
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                    Text(
+                      titles[index],
+                      style: fontSFProMedium.copyWith(
+                        fontSize: 12,
+                        color: BaseColors.white,
+                      ),
+                    ),
+                    Spacer(),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      }),
+          );
+        }),
+      ),
     );
   }
 
@@ -318,151 +323,86 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
-    return Row(
-      children: [
-        Expanded(child: _makeProfit(context, onTap: onTap)),
-        const SizedBox(
-          width: defaultPadding,
-        ),
-        Expanded(child: _nodePartner(context, onTap: onTap)),
-      ],
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: BaseColors.black
+      ),
+      child: Row(
+        children: [
+          Expanded(child: _makeProfit(context, onTap: onTap)),
+          Expanded(child: _nodePartner(context, onTap: onTap)),
+        ],
+      ),
     );
   }
 
   _makeProfit(BuildContext context, {required Function(int index) onTap}) {
-    return Container(
-      height: 100,
-      padding: const EdgeInsets.symmetric(
-          horizontal: defaultPadding, vertical: defaultPadding / 2),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: BaseColors.black),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Make profit',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image.asset(
+          'assets/images/tab/home_inactive.png',
+          width: 40,
+          height: 40,
+        ),
+        const SizedBox(height: defaultPadding / 2,),
+        Text(
+          '每小时收益',
+          style: fontSFProMedium.copyWith(
+            fontSize: 12,
+            color: BaseColors.white,
+          ),
+        ),
+        const SizedBox(
+          height: defaultPadding / 4,
+        ),
+        GestureDetector(
+          onTap: () => onTap(0),
+          child: Text(
+            '2.28 USDT',
             style: fontSFProMedium.copyWith(
-              fontSize: 14,
-              color: BaseColors.white,
+              fontSize: 12,
+              color: BaseColors.primaryColor,
             ),
           ),
-          const Spacer(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Image.asset(
-                'assets/images/tab/home_inactive.png',
-                width: 40,
-                height: 40,
-              ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Macintosh',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 10,
-                      color: BaseColors.weakTextColor,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: defaultPadding / 4),
-                    child: Row(
-                      children: [
-                        Text(
-                          '0.013 ',
-                          style: fontSFProMedium.copyWith(
-                            fontSize: 14,
-                            color: BaseColors.white,
-                          ),
-                        ),
-                        Text(
-                          'USDT',
-                          style: fontSFProMedium.copyWith(
-                            fontSize: 10,
-                            color: BaseColors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => onTap(0),
-                    child: Text(
-                      'Claimed >',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 10,
-                        color: BaseColors.primaryColor,
-                      ),
-                    ),
-                  )
-                ],
-              )
-            ],
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 
   _nodePartner(BuildContext context, {required Function(int index) onTap}) {
-    return Container(
-      height: 100,
-      padding: const EdgeInsets.symmetric(
-          horizontal: defaultPadding, vertical: defaultPadding / 2),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: BaseColors.black),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Node Partner',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image.asset(
+          'assets/images/tab/home_inactive.png',
+          width: 40,
+          height: 40,
+        ),
+        const SizedBox(height: defaultPadding / 2,),
+        Text(
+          '总收益',
+          style: fontSFProMedium.copyWith(
+            fontSize: 12,
+            color: BaseColors.white,
+          ),
+        ),
+        const SizedBox(
+          height: defaultPadding / 4,
+        ),
+        GestureDetector(
+          onTap: () => onTap(1),
+          child: Text(
+            '8,182.28 USDT',
             style: fontSFProMedium.copyWith(
-              fontSize: 14,
-              color: BaseColors.white,
+              fontSize: 12,
+              color: BaseColors.primaryColor,
             ),
           ),
-          const Spacer(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Image.asset(
-                'assets/images/tab/home_inactive.png',
-                width: 40,
-                height: 40,
-              ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    '2000K',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 12,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultPadding / 4,
-                  ),
-                  GestureDetector(
-                    onTap: () => onTap(1),
-                    child: Text(
-                      'Node Partner >',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 12,
-                        color: BaseColors.primaryColor,
-                      ),
-                    ),
-                  )
-                ],
-              )
-            ],
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 

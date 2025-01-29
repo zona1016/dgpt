@@ -6,48 +6,63 @@ part 'user_info.g.dart';
 class UserInfo {
   @JsonKey(name: "id", defaultValue: 0)
   final int? id;
-  @JsonKey(name: "im_id", defaultValue: '')
-  final String? imId;
-  @JsonKey(name: "username", defaultValue: '')
-  final String? username;
-  @JsonKey(name: "nickname", defaultValue: '')
-  final String? nickname;
-  @JsonKey(name: "mobile", defaultValue: '')
-  final String? mobile;
-  @JsonKey(name: "avatar", defaultValue: '')
-  final String? avatar;
-  @JsonKey(name: "score", defaultValue: 0)
-  final int? score;
-  @JsonKey(name: "token", defaultValue: '')
-  final String? token;
-  @JsonKey(name: "user_id", defaultValue: 0)
-  final int? userId;
-  @JsonKey(name: "createtime", defaultValue: 0)
-  final int? createTime;
-  @JsonKey(name: "expiretime", defaultValue: 0)
-  final int? expireTime;
-  @JsonKey(name: "expires_in", defaultValue: 0)
-  final int? expiresIn;
+  @JsonKey(name: "account", defaultValue: '')
+  final String? account;
+  @JsonKey(name: "realName", defaultValue: '')
+  final String? realName;
+  @JsonKey(name: "phone", defaultValue: '')
+  final String? phone;
+  @JsonKey(name: "idCardNum", defaultValue: '')
+  final String? idCardNum;
   @JsonKey(name: "email", defaultValue: '')
   final String? email;
-  @JsonKey(name: "userSign", defaultValue: '')
-  final String? userSign;
+  @JsonKey(name: "accountType", defaultValue: 0)
+  final int? accountType;
+  @JsonKey(name: "avatar", defaultValue: '')
+  final String? avatar;
+  @JsonKey(name: "introduction", defaultValue: 0)
+  final int? introduction;
+  @JsonKey(name: "address", defaultValue: 0)
+  final int? address;
+  @JsonKey(name: "signature", defaultValue: 0)
+  final int? signature;
+  @JsonKey(name: "orgId", defaultValue: 0)
+  final int? orgId;
+  @JsonKey(name: "orgName", defaultValue: '')
+  final String? orgName;
+  @JsonKey(name: "orgType", defaultValue: '')
+  final String? orgType;
+  @JsonKey(name: "posName", defaultValue: '')
+  final String? posName;
+  @JsonKey(name: "buttons", defaultValue: [])
+  final List<String>? buttons;
+  @JsonKey(name: "watermarkText", defaultValue: '')
+  final String? watermarkText;
+  @JsonKey(name: "tenantId", defaultValue: 0)
+  final int? tenantId;
+  @JsonKey(name: "roleIds", defaultValue: [])
+  final List<int>? roleIds;
 
-  UserInfo ({
+  UserInfo({
     this.id,
-    this.imId,
-    this.username,
-    this.nickname,
-    this.mobile,
-    this.avatar,
-    this.score,
-    this.token,
-    this.userId,
-    this.createTime,
-    this.expireTime,
-    this.expiresIn,
+    this.account,
+    this.realName,
+    this.phone,
+    this.idCardNum,
     this.email,
-    this.userSign
+    this.accountType,
+    this.avatar,
+    this.introduction,
+    this.address,
+    this.signature,
+    this.orgId,
+    this.orgName,
+    this.orgType,
+    this.posName,
+    this.buttons,
+    this.watermarkText,
+    this.tenantId,
+    this.roleIds,
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {

@@ -1,4 +1,4 @@
 class AppConfigurations {
-  static const baseUrl = "https://gateway.linxfi.co";
+  static const baseUrl = "http://43.159.34.100";
   static const paymentRedirectUrl = "";
 }

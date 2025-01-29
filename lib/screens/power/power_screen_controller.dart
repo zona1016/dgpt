@@ -11,7 +11,7 @@ class PowerScreenBindings implements Bindings {
   }
 }
 
-class PowerScreenController extends BaseController with GetTickerProviderStateMixin  {
+class PowerScreenController extends BaseController with GetTickerProviderStateMixin {
 
   final AuthService authService = Get.find();
   final selectedBannerIndex = 0.obs;
