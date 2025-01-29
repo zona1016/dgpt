@@ -120,6 +120,7 @@ class DialogUtils {
       String? image,
       String? topTitle,
       String? bottomTitle,
+      bool showBottomClose = false,
       Widget? imageWidget,
       Color? contentColor,
       final void Function()? onConfirmPressed,
@@ -245,7 +246,33 @@ class DialogUtils {
                               color: Colors.white, fontSize: 14),
                         ),
                       ),
-                    ))
+                    )),
+              if (showBottomClose)
+                Positioned(
+                  bottom: -60,
+                  left: defaultPadding,
+                  right: defaultPadding,
+                  child: SizedBox(
+                    height: 60,
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: BaseColors.white,
+                            width: 1
+                          )
+                        ),
+                        child: const Icon(
+                          Icons.close,
+                          size: 40.0,
+                          color: BaseColors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                )
             ],
           ),
         );
@@ -472,7 +499,8 @@ class DialogUtils {
               Text(
                 detail,
                 style: fontDMMedium.copyWith(
-                    color: showError ? Colors.red : BaseColors.whiteGray1, fontSize: 14),
+                    color: showError ? Colors.red : BaseColors.whiteGray1,
+                    fontSize: 14),
               ),
               const SizedBox(
                 height: defaultPadding / 2,

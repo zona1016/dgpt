@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:dgpt/screens/notice/notice_update_tab.dart';
+import 'package:dgpt/screens/notice/notice_tab.dart';
 import 'package:dgpt/screens/notice/system_message_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
@@ -48,7 +48,7 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
 
   Widget _buildTabBar(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: defaultPadding / 2),
+      padding: const EdgeInsets.only(top: defaultPadding / 2),
       child: TabBar(
         isScrollable: false,
         indicatorColor: BaseColors.primaryColor,
@@ -64,14 +64,16 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
                 height: 76,
                 child: Column(
                   children: [
+                    const Spacer(),
                     Image.asset(
                         "assets/images/tab/tutorial_inactive.png",
                         width: 20),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       e.value,
                       textAlign: TextAlign.center,
-                    )
+                    ),
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -89,7 +91,7 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
             (e) => ExtendedVisibilityDetector(
               uniqueKey: Key(e.key),
               child: BaseAutomaticKeepAlive(
-                child: NoticeUpdateTab(
+                child: NoticeTab(
                   key: PageStorageKey<String>(e.key),
                   type: e.key,
                   injector: Builder(

@@ -459,27 +459,17 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   _showShare() async {
     DialogUtils.showDGPTBaseDialog(
-        title: 'Test',
+        title: '推荐好友',
         image: 'assets/images/tab/data_inactive.png',
-        topTitle: 'Share',
-        bottomTitle: 'Share',
+        showBottomClose: true,
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: defaultPadding / 2),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: defaultPadding / 2,
-                    vertical: defaultPadding / 4),
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  'UID: 38325008',
-                  style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-                ),
+              Text(
+                '解锁无限奖励',
+                style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
               ),
               const SizedBox(
                 height: defaultPadding / 2,
@@ -497,57 +487,41 @@ class HomeScreen extends GetView<HomeScreenController> {
                 ),
               ),
               const SizedBox(
-                height: defaultPadding / 2,
+                height: defaultPadding,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Invitation Links',
-                    style:
-                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-                  ),
-                  const SizedBox(height: defaultPadding / 4),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'https://dgpt.95test.vip/register?invitedcode=118344835',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.purple
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Invitation Links',
+                        style:
+                            fontMedium.copyWith(color: Colors.white, fontSize: 14),
                       ),
-                      const SizedBox(
-                        width: defaultPadding / 4,
-                      ),
-                      const Icon(
-                        Icons.copy,
-                        color: Colors.teal,
-                      )
-                    ],
+                    ),
                   ),
                   const SizedBox(height: defaultPadding / 2),
-                  Text(
-                    'invitation code：',
-                    style:
-                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-                  ),
-                  const SizedBox(height: defaultPadding / 4),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          '118344835',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.purple
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Invitation Links',
+                        style:
+                        fontMedium.copyWith(color: Colors.white, fontSize: 14),
                       ),
-                      const SizedBox(
-                        width: defaultPadding / 4,
-                      ),
-                      const Icon(
-                        Icons.copy,
-                        color: Colors.teal,
-                      )
-                    ],
+                    ),
                   ),
                 ],
               ),

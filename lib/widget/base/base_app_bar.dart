@@ -10,6 +10,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? color;
   final double? titleSpacing;
   final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
   final List<Widget>? actions;
   final Widget? leading;
   final Function()? onBackTap;
@@ -25,6 +26,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         this.actions,
         this.titleWidget,
         this.onBackTap,
+        this.bottom,
         this.automaticallyImplyLeading = true, this.leading});
 
   @override
@@ -39,6 +41,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       titleSpacing: titleSpacing,
       actions: actions,
+      bottom: bottom,
       leading: leading ?? (onBackTap != null ? BackButton(onPressed: onBackTap, style: const ButtonStyle(
           fixedSize:
           WidgetStatePropertyAll(Size(45, 45)),
