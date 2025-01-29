@@ -4,6 +4,8 @@ import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
+import 'package:dgpt/screens/auth/change_password_screen.dart';
+import 'package:dgpt/screens/auth/change_password_screen_controller.dart';
 import 'package:dgpt/screens/auth/kyc_screen.dart';
 import 'package:dgpt/screens/auth/kyc_screen_controller.dart';
 import 'package:dgpt/screens/auth/login_screen.dart';
@@ -58,6 +60,8 @@ class AppRoutes {
   static String splash = "/splash";
   static String login = "/login";
   static String register = "/register";
+  static String changePassword = "/change_password";
+
   static String home = "/home";
   static String main = "/main";
   static String qrCode = "/qr_code";
@@ -106,6 +110,11 @@ class AppRoutes {
         name: register,
         page: () => const RegisterScreen(),
         binding: RegisterScreenBindings()
+    ),
+    GetPage(
+        name: changePassword,
+        page: () => const ChangePasswordScreen(),
+        binding: ChangePasswordScreenBindings()
     ),
     GetPage(
         name: main,

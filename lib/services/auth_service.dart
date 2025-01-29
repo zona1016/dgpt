@@ -24,11 +24,9 @@ abstract class AuthService {
       required String confirmPassword,
       String? inviteCode});
 
-  Future<BaseResponse<int?>> resetPassword(
-      {required String email,
-      required String emailCode,
-      required String password,
-      required String confirmPassword});
+  Future<BaseResponse<int?>> changePwd(
+      {required String passwordOld,
+      required String passwordNew});
 }
 
 class AuthServiceImpl extends AuthService {
@@ -86,18 +84,14 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<BaseResponse<int?>> resetPassword(
-      {required String email,
-      required String emailCode,
-      required String password,
-      required String confirmPassword}) async {
+  Future<BaseResponse<int?>> changePwd(
+      {required String passwordOld,
+        required String passwordNew}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.resetPassword,
+      return await _apiClient.request(ApiEndpoints.changePwd,
           data: {
-            'email': email,
-            'password': password,
-            'password_confirmation': confirmPassword,
-            'otp': emailCode
+            'passwordOld': passwordOld,
+            'passwordNew': passwordNew
           },
           deserializer: (data) => int.tryParse(data.toString()));
     } on Exception catch (_) {

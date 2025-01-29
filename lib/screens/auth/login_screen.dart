@@ -53,13 +53,16 @@ class LoginScreen extends GetView<LoginScreenController> {
           ),
           Row(
             children: [
-              Text(
-                '忘记密码?',
-                style: fontSFProMedium.copyWith(
-                  fontSize: 14,
-                  color: BaseColors.lightGray,
-                ),
-              ),
+              // GestureDetector(
+              //   onTap: () => Get.toNamed(AppRoutes.changePassword),
+              //   child: Text(
+              //     '忘记密码?',
+              //     style: fontSFProMedium.copyWith(
+              //       fontSize: 14,
+              //       color: BaseColors.lightGray,
+              //     ),
+              //   ),
+              // ),
               const Spacer(),
               GestureDetector(
                 onTap: () {
