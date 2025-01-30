@@ -17,60 +17,35 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
     return BaseScreen(
       safeAreaTop: false,
       backgroundColor: Colors.black,
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
+      body: Column(
+        children: [
+          SizedBox(
+            height: 200,
+            width: double.infinity,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 200,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SafeArea(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                          height: 44,
-                          child: GestureDetector(
-                            onTap: () => Get.back(),
-                            child: const Icon(Icons.chevron_left, size: 30, color: Colors.white,),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: defaultPadding / 4),
-                      Center(
-                        child: Image.asset(
-                          'assets/images/tab/data_inactive.png',
-                          width: 60,
-                          height: 60,
-                        ),
-                      ),
-                      const SizedBox(height: defaultPadding / 4,),
-                      Center(
-                        child: Text(
-                          'DGPT',
-                          style: fontSFProMedium.copyWith(
-                            fontSize: 14,
-                            color: BaseColors.white,
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
+                SafeArea(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    height: 44,
+                    child: GestureDetector(
+                      onTap: () => Get.back(),
+                      child: const Icon(Icons.chevron_left, size: 30, color: Colors.white,),
+                    ),
                   ),
                 ),
-                _buildTabBar(context),
-                const SizedBox(
-                  height: defaultPadding,
-                ),
+                const Spacer(),
               ],
             ),
           ),
-          SliverFillRemaining(
-              hasScrollBody: true, child: _buildTabBarViews(context))
+          _buildTabBar(context),
+          const SizedBox(
+            height: defaultPadding,
+          ),
+          Expanded(child: _buildTabBarViews(context)),
         ],
-      ),
+      )
     );
   }
 
@@ -80,7 +55,7 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
       child: TabBar(
         isScrollable: false,
         indicatorColor: BaseColors.primaryColor,
-        indicatorSize: TabBarIndicatorSize.tab,
+        indicatorSize: TabBarIndicatorSize.label,
         labelColor: BaseColors.primaryColor,
         labelStyle: fontHeavy.copyWith(fontSize: 14),
         unselectedLabelColor: context.appTheme.weakTextColor,
@@ -89,9 +64,20 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
         tabs: controller.tabList
             .map(
               (String key) => Tab(
-                child: Text(
-                  key,
-                  textAlign: TextAlign.center,
+                height: 76,
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    Image.asset(
+                        "assets/images/tab/tutorial_inactive.png",
+                        width: 20),
+                    const Spacer(),
+                    Text(
+                      key,
+                      textAlign: TextAlign.center,
+                    ),
+                    const Spacer(),
+                  ],
                 ),
               ),
             )

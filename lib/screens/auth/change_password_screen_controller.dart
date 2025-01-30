@@ -47,6 +47,7 @@ class ChangePasswordScreenController extends BaseController {
           stateTitle: '重置密码成功！',
           detail: '请稍等片刻，即将进入产品主页~'
       );
+      Get.back();
     }
   }
 }

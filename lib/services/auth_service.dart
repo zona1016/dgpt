@@ -89,6 +89,7 @@ class AuthServiceImpl extends AuthService {
         required String passwordNew}) async {
     try {
       return await _apiClient.request(ApiEndpoints.changePwd,
+          bearerToken: userController.token,
           data: {
             'passwordOld': passwordOld,
             'passwordNew': passwordNew

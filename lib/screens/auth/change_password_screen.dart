@@ -68,7 +68,9 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
                 width: 40,
               ),
             ),
-            const SizedBox(width: defaultPadding,),
+            const SizedBox(
+              width: defaultPadding,
+            ),
           ],
         ),
         Padding(
@@ -145,7 +147,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
             enabled: controller.passwordNew.isNotEmpty &&
                     controller.passwordOld.isNotEmpty &&
                     controller.passwordNewAgain.isNotEmpty &&
-                    controller.passwordOld == controller.passwordNewAgain
+                    controller.passwordNew == controller.passwordNewAgain
                 ? true
                 : false,
             onPressed: () {

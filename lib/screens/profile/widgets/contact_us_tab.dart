@@ -14,16 +14,17 @@ class ContactUsTab extends GetView<AboutUsScreenController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Image.asset(
-            "assets/images/tab/data_inactive.png",
-            width: 150,
-            height: 150,
-          ),
-        ),
+        // Center(
+        //   child: Image.asset(
+        //     "assets/images/tab/data_inactive.png",
+        //     width: 400,
+        //     height: 400,
+        //   ),
+        // ),
         const SizedBox(
           height: defaultPadding / 2,
         ),
+        Expanded(child: Container()),
         Row(
           children: [
             Expanded(
@@ -53,46 +54,44 @@ class ContactUsTab extends GetView<AboutUsScreenController> {
             )
           ],
         ),
-        Expanded(
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            // Prevent scrolling inside GridView
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: defaultPadding,
-              childAspectRatio: 2,
-            ),
-            itemCount: 6,
-            // Number of items
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      final uri = Uri.parse(controller.urlList[index]);
-                      await launchUrl(uri, mode: LaunchMode.inAppWebView);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: defaultPadding / 2),
-                      decoration: BoxDecoration(
-                        color: BaseColors.black,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          "assets/images/tab/data_inactive.png",
-                          width: 30,
-                          height: 30,
-                        ),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          // Prevent scrolling inside GridView
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: defaultPadding,
+            childAspectRatio: 2,
+          ),
+          itemCount: 6,
+          // Number of items
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    final uri = Uri.parse(controller.urlList[index]);
+                    await launchUrl(uri, mode: LaunchMode.inAppWebView);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: defaultPadding / 2),
+                    decoration: BoxDecoration(
+                      color: BaseColors.black,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        "assets/images/tab/data_inactive.png",
+                        width: 30,
+                        height: 30,
                       ),
                     ),
                   ),
-                ],
-              );
-            },
-          ),
+                ),
+              ],
+            );
+          },
         )
       ],
     );

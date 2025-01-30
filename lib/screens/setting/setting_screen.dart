@@ -41,7 +41,7 @@ class SettingScreen extends GetView<SettingScreenController> {
 
                   break;
                 case 5:
-
+                  Get.toNamed(AppRoutes.changePassword);
                   break;
                 default:
               }
