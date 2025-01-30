@@ -7,7 +7,6 @@ import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 
 class HomeScreenBindings implements Bindings {
   @override
@@ -26,20 +25,27 @@ class HomeScreenController extends BaseController {
       CarouselSliderController();
   late Timer _timer;
 
+  List<String> titles = ['通告', '邀请', '教学', '企业'];
+  List<String> images = [
+    'assets/images/home/tg.png',
+    'assets/images/home/yq.png',
+    'assets/images/home/jx.png',
+    'assets/images/home/qy.png'
+  ];
+
   @override
   void onInit() {
     super.onInit();
-
     aiPulseBanner();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-        if (selectedBannerIndex < 3) {
-          carouselSliderController.nextPage();
-        } else {
-          carouselSliderController.jumpToPage(0);
-        }
-      });
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+    //     if (selectedBannerIndex < 3) {
+    //       carouselSliderController.nextPage();
+    //     } else {
+    //       carouselSliderController.jumpToPage(0);
+    //     }
+    //   });
+    // });
   }
 
   @override
@@ -56,12 +62,10 @@ class HomeScreenController extends BaseController {
 
   aiPulseBanner(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
-    final result = await fetchData(
-        request: () => aiPulseService.aiPulseBanner(),
-        loadingState: AppLoadingState.background);
-    if (result != null) {
-      print(result);
-    }
-
+    final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
+    final result = await fetchPaginatedData(
+        loadingState: loadingState,
+        request: () => aiPulseService.aiPulseDeposit(page: page));
+    if (result != null && result.list != null) {}
   }
 }

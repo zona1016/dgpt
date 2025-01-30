@@ -21,15 +21,19 @@ PaginationResponse<T> _$PaginationResponseFromJson<T>(
 
 /// @nodoc
 mixin _$PaginationResponse<T> {
-  @JsonKey(name: 'current_page')
+  @JsonKey(name: 'page')
   int get currentPage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'last_page')
-  int get lastPage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'per_page')
-  int get perPage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pageSize')
+  int get pageSize => throw _privateConstructorUsedError;
   @JsonKey(name: 'total')
   int get total => throw _privateConstructorUsedError;
-  @JsonKey(name: 'data')
+  @JsonKey(name: 'totalPages')
+  int get totalPages => throw _privateConstructorUsedError;
+  @JsonKey(name: 'hasPrevPage')
+  bool get hasPrevPage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'hasNextPage')
+  bool get hasNextPage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'items')
   List<T> get list => throw _privateConstructorUsedError;
 
   /// Serializes this PaginationResponse to a JSON map.
@@ -50,11 +54,13 @@ abstract class $PaginationResponseCopyWith<T, $Res> {
       _$PaginationResponseCopyWithImpl<T, $Res, PaginationResponse<T>>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'current_page') int currentPage,
-      @JsonKey(name: 'last_page') int lastPage,
-      @JsonKey(name: 'per_page') int perPage,
+      {@JsonKey(name: 'page') int currentPage,
+      @JsonKey(name: 'pageSize') int pageSize,
       @JsonKey(name: 'total') int total,
-      @JsonKey(name: 'data') List<T> list});
+      @JsonKey(name: 'totalPages') int totalPages,
+      @JsonKey(name: 'hasPrevPage') bool hasPrevPage,
+      @JsonKey(name: 'hasNextPage') bool hasNextPage,
+      @JsonKey(name: 'items') List<T> list});
 }
 
 /// @nodoc
@@ -74,9 +80,11 @@ class _$PaginationResponseCopyWithImpl<T, $Res,
   @override
   $Res call({
     Object? currentPage = null,
-    Object? lastPage = null,
-    Object? perPage = null,
+    Object? pageSize = null,
     Object? total = null,
+    Object? totalPages = null,
+    Object? hasPrevPage = null,
+    Object? hasNextPage = null,
     Object? list = null,
   }) {
     return _then(_value.copyWith(
@@ -84,18 +92,26 @@ class _$PaginationResponseCopyWithImpl<T, $Res,
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
-      lastPage: null == lastPage
-          ? _value.lastPage
-          : lastPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      perPage: null == perPage
-          ? _value.perPage
-          : perPage // ignore: cast_nullable_to_non_nullable
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
               as int,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasPrevPage: null == hasPrevPage
+          ? _value.hasPrevPage
+          : hasPrevPage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasNextPage: null == hasNextPage
+          ? _value.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
@@ -113,11 +129,13 @@ abstract class _$$PaginationResponseImplCopyWith<T, $Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'current_page') int currentPage,
-      @JsonKey(name: 'last_page') int lastPage,
-      @JsonKey(name: 'per_page') int perPage,
+      {@JsonKey(name: 'page') int currentPage,
+      @JsonKey(name: 'pageSize') int pageSize,
       @JsonKey(name: 'total') int total,
-      @JsonKey(name: 'data') List<T> list});
+      @JsonKey(name: 'totalPages') int totalPages,
+      @JsonKey(name: 'hasPrevPage') bool hasPrevPage,
+      @JsonKey(name: 'hasNextPage') bool hasNextPage,
+      @JsonKey(name: 'items') List<T> list});
 }
 
 /// @nodoc
@@ -135,9 +153,11 @@ class __$$PaginationResponseImplCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? currentPage = null,
-    Object? lastPage = null,
-    Object? perPage = null,
+    Object? pageSize = null,
     Object? total = null,
+    Object? totalPages = null,
+    Object? hasPrevPage = null,
+    Object? hasNextPage = null,
     Object? list = null,
   }) {
     return _then(_$PaginationResponseImpl<T>(
@@ -145,18 +165,26 @@ class __$$PaginationResponseImplCopyWithImpl<T, $Res>
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int,
-      lastPage: null == lastPage
-          ? _value.lastPage
-          : lastPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      perPage: null == perPage
-          ? _value.perPage
-          : perPage // ignore: cast_nullable_to_non_nullable
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
               as int,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasPrevPage: null == hasPrevPage
+          ? _value.hasPrevPage
+          : hasPrevPage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasNextPage: null == hasNextPage
+          ? _value.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
@@ -169,11 +197,13 @@ class __$$PaginationResponseImplCopyWithImpl<T, $Res>
 @JsonSerializable(genericArgumentFactories: true)
 class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
   _$PaginationResponseImpl(
-      {@JsonKey(name: 'current_page') this.currentPage = 1,
-      @JsonKey(name: 'last_page') this.lastPage = 1,
-      @JsonKey(name: 'per_page') this.perPage = 0,
+      {@JsonKey(name: 'page') this.currentPage = 1,
+      @JsonKey(name: 'pageSize') this.pageSize = 20,
       @JsonKey(name: 'total') this.total = 0,
-      @JsonKey(name: 'data') final List<T> list = const []})
+      @JsonKey(name: 'totalPages') this.totalPages = 0,
+      @JsonKey(name: 'hasPrevPage') this.hasPrevPage = false,
+      @JsonKey(name: 'hasNextPage') this.hasNextPage = false,
+      @JsonKey(name: 'items') final List<T> list = const []})
       : _list = list,
         super._();
 
@@ -182,20 +212,26 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
       _$$PaginationResponseImplFromJson(json, fromJsonT);
 
   @override
-  @JsonKey(name: 'current_page')
+  @JsonKey(name: 'page')
   final int currentPage;
   @override
-  @JsonKey(name: 'last_page')
-  final int lastPage;
-  @override
-  @JsonKey(name: 'per_page')
-  final int perPage;
+  @JsonKey(name: 'pageSize')
+  final int pageSize;
   @override
   @JsonKey(name: 'total')
   final int total;
+  @override
+  @JsonKey(name: 'totalPages')
+  final int totalPages;
+  @override
+  @JsonKey(name: 'hasPrevPage')
+  final bool hasPrevPage;
+  @override
+  @JsonKey(name: 'hasNextPage')
+  final bool hasNextPage;
   final List<T> _list;
   @override
-  @JsonKey(name: 'data')
+  @JsonKey(name: 'items')
   List<T> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
@@ -204,7 +240,7 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
 
   @override
   String toString() {
-    return 'PaginationResponse<$T>(currentPage: $currentPage, lastPage: $lastPage, perPage: $perPage, total: $total, list: $list)';
+    return 'PaginationResponse<$T>(currentPage: $currentPage, pageSize: $pageSize, total: $total, totalPages: $totalPages, hasPrevPage: $hasPrevPage, hasNextPage: $hasNextPage, list: $list)';
   }
 
   @override
@@ -214,17 +250,29 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
             other is _$PaginationResponseImpl<T> &&
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage) &&
-            (identical(other.lastPage, lastPage) ||
-                other.lastPage == lastPage) &&
-            (identical(other.perPage, perPage) || other.perPage == perPage) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
             (identical(other.total, total) || other.total == total) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages) &&
+            (identical(other.hasPrevPage, hasPrevPage) ||
+                other.hasPrevPage == hasPrevPage) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
             const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, currentPage, lastPage, perPage,
-      total, const DeepCollectionEquality().hash(_list));
+  int get hashCode => Object.hash(
+      runtimeType,
+      currentPage,
+      pageSize,
+      total,
+      totalPages,
+      hasPrevPage,
+      hasNextPage,
+      const DeepCollectionEquality().hash(_list));
 
   /// Create a copy of PaginationResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -243,11 +291,14 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
 
 abstract class _PaginationResponse<T> extends PaginationResponse<T> {
   factory _PaginationResponse(
-      {@JsonKey(name: 'current_page') final int currentPage,
-      @JsonKey(name: 'last_page') final int lastPage,
-      @JsonKey(name: 'per_page') final int perPage,
-      @JsonKey(name: 'total') final int total,
-      @JsonKey(name: 'data') final List<T> list}) = _$PaginationResponseImpl<T>;
+          {@JsonKey(name: 'page') final int currentPage,
+          @JsonKey(name: 'pageSize') final int pageSize,
+          @JsonKey(name: 'total') final int total,
+          @JsonKey(name: 'totalPages') final int totalPages,
+          @JsonKey(name: 'hasPrevPage') final bool hasPrevPage,
+          @JsonKey(name: 'hasNextPage') final bool hasNextPage,
+          @JsonKey(name: 'items') final List<T> list}) =
+      _$PaginationResponseImpl<T>;
   _PaginationResponse._() : super._();
 
   factory _PaginationResponse.fromJson(
@@ -255,19 +306,25 @@ abstract class _PaginationResponse<T> extends PaginationResponse<T> {
       _$PaginationResponseImpl<T>.fromJson;
 
   @override
-  @JsonKey(name: 'current_page')
+  @JsonKey(name: 'page')
   int get currentPage;
   @override
-  @JsonKey(name: 'last_page')
-  int get lastPage;
-  @override
-  @JsonKey(name: 'per_page')
-  int get perPage;
+  @JsonKey(name: 'pageSize')
+  int get pageSize;
   @override
   @JsonKey(name: 'total')
   int get total;
   @override
-  @JsonKey(name: 'data')
+  @JsonKey(name: 'totalPages')
+  int get totalPages;
+  @override
+  @JsonKey(name: 'hasPrevPage')
+  bool get hasPrevPage;
+  @override
+  @JsonKey(name: 'hasNextPage')
+  bool get hasNextPage;
+  @override
+  @JsonKey(name: 'items')
   List<T> get list;
 
   /// Create a copy of PaginationResponse

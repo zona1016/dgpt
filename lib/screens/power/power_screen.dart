@@ -19,7 +19,8 @@ class PowerScreen extends GetView<PowerScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.baseBackgroundImage,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(

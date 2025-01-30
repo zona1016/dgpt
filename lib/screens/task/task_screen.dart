@@ -20,7 +20,8 @@ class TaskScreen extends GetView<TaskScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.baseBackgroundImage,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

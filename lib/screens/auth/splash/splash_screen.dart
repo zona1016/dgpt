@@ -16,7 +16,8 @@ class SplashScreen extends GetView<SplashScreenController> {
   Widget build(BuildContext context) {
 
     return BaseScreen(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.baseBackgroundImage,
       body: Padding(
         padding: const EdgeInsets.only(left: defaultPadding, right: defaultPadding),
         child: Column(
@@ -34,12 +35,12 @@ class SplashScreen extends GetView<SplashScreenController> {
             SafeArea(
               child: BaseButton(
                 customDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.transparent,
-                  border: Border.all(
-                    color: Colors.purpleAccent,
-                    width: 1
-                  )
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.transparent,
+                    border: Border.all(
+                        color: Colors.purpleAccent,
+                        width: 1
+                    )
                 ),
                 onPressed: () {
                   Get.toNamed(AppRoutes.login);

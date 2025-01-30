@@ -13,7 +13,8 @@ class ApiEndpoints {
   static const String register = "/api/user/userRegister";
   static const String login = "/api/user/userLogin";
 
-  // aiPulseBanner
+  // aiPulse
   static const String aiPulseBanner = "/api/aiPulseBanner/page";
+  static const String aiPulseDeposit = "/api/aiPulseDeposit/page";
 
 }

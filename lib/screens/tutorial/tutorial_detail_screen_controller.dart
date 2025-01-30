@@ -10,8 +10,7 @@ import 'package:video_player/video_player.dart';
 class TutorialDetailScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance().lazyPut(() => TutorialDetailScreenController(),
-        permanent: false, fenix: false);
+    Get.lazyPut(() => TutorialDetailScreenController(), fenix: false);
   }
 }
 
@@ -20,7 +19,10 @@ class TutorialDetailScreenController extends BaseController {
   VideoPlayerController? playerController;
   ChewieController? chewieController;
 
+  // 使用 Rx 变量来管理播放状态
   RxBool isPlaying = false.obs;
+  Rx<Duration> currentPosition = Duration.zero.obs;
+  Rx<Duration> totalDuration = Duration.zero.obs;
 
   @override
   void onInit() {
@@ -31,26 +33,24 @@ class TutorialDetailScreenController extends BaseController {
 
   @override
   void dispose() {
+    playerController?.removeListener(_videoListener); // 移除监听器
     playerController?.dispose();
     chewieController?.dispose();
     super.dispose();
   }
 
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
   Future<void> _initializeVideoController(String url) async {
-    final videoPlayerController =
-    VideoPlayerController.networkUrl(Uri.parse(url));
-    await videoPlayerController.initialize();
+    playerController = VideoPlayerController.networkUrl(Uri.parse(url));
+    await playerController!.initialize();
+
+    // 添加监听器
+    playerController!.addListener(_videoListener);
+
     chewieController = ChewieController(
-      videoPlayerController: videoPlayerController,
+      videoPlayerController: playerController!,
       autoPlay: false,
       looping: false,
-      aspectRatio: videoPlayerController.value.aspectRatio,
+      aspectRatio: playerController!.value.aspectRatio,
       deviceOrientationsAfterFullScreen: [DeviceOrientation.portraitUp],
       deviceOrientationsOnEnterFullScreen: [DeviceOrientation.portraitUp],
       allowFullScreen: true,
@@ -60,11 +60,25 @@ class TutorialDetailScreenController extends BaseController {
       ),
       showControlsOnInitialize: false,
       showOptions: false,
+      customControls: _buildCustomControls()
     );
+
+    // 初始化总时长
+    totalDuration.value = playerController!.value.duration;
     update();
   }
 
-  Widget _buildCustomControls(VideoPlayerController videoPlayerController) {
+  // 监听视频状态变化
+  void _videoListener() {
+    if (playerController != null) {
+      isPlaying.value = playerController!.value.isPlaying;
+      currentPosition.value = playerController!.value.position;
+      totalDuration.value = playerController!.value.duration;
+    }
+  }
+
+  // 自定义控件
+  Widget _buildCustomControls() {
     return Obx(() => Material(
       color: Colors.transparent,
       child: Stack(
@@ -75,12 +89,12 @@ class TutorialDetailScreenController extends BaseController {
             left: 20,
             right: 20,
             child: Slider(
-              value: videoPlayerController.value.position.inMilliseconds.toDouble(),
+              value: currentPosition.value.inMilliseconds.toDouble(),
               min: 0.0,
-              max: videoPlayerController.value.duration.inMilliseconds.toDouble(),
+              max: totalDuration.value.inMilliseconds.toDouble(),
               onChanged: (value) {
                 // 当滑动进度条时，更新视频播放进度
-                videoPlayerController.seekTo(Duration(milliseconds: value.toInt()));
+                playerController!.seekTo(Duration(milliseconds: value.toInt()));
               },
             ),
           ),
@@ -91,14 +105,12 @@ class TutorialDetailScreenController extends BaseController {
             right: 0,
             child: GestureDetector(
               onTap: () {
-                // 你可以在这里添加自定义控制逻辑，比如播放/暂停等
-                if (videoPlayerController.value.isPlaying) {
-                  videoPlayerController.pause();
+                // 切换播放/暂停状态
+                if (playerController!.value.isPlaying) {
+                  playerController!.pause();
                 } else {
-                  videoPlayerController.play();
+                  playerController!.play();
                 }
-                isPlaying.value = videoPlayerController.value.isPlaying;
-                update();
               },
               child: Visibility(
                 visible: !isPlaying.value,
@@ -106,9 +118,7 @@ class TutorialDetailScreenController extends BaseController {
                   color: Colors.black.withOpacity(0.5),
                   padding: const EdgeInsets.all(20),
                   child: Icon(
-                    isPlaying.value
-                        ? Icons.edit
-                        : Icons.play_arrow,
+                    isPlaying.value ? Icons.pause : Icons.play_arrow,
                     color: Colors.white,
                     size: 50,
                   ),
@@ -120,5 +130,4 @@ class TutorialDetailScreenController extends BaseController {
       ),
     ));
   }
-
 }

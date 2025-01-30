@@ -38,8 +38,8 @@ class _DefaultNavigationHeaderState extends State<DefaultNavigationHeader> {
         child: Row(
           children: [
             Image.asset(
-              widget.defaultLeftImg ?? 'assets/images/tab/home_inactive.png',
-              width: 20,
+              widget.defaultLeftImg ?? 'assets/images/custom/logo.png',
+              width: 26,
             ),
             const SizedBox(width: defaultPadding / 2),
             Text(

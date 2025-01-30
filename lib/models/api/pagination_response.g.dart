@@ -11,12 +11,14 @@ _$PaginationResponseImpl<T> _$$PaginationResponseImplFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     _$PaginationResponseImpl<T>(
-      currentPage: (json['current_page'] as num?)?.toInt() ?? 1,
-      lastPage: (json['last_page'] as num?)?.toInt() ?? 1,
-      perPage: (json['per_page'] as num?)?.toInt() ?? 0,
+      currentPage: (json['page'] as num?)?.toInt() ?? 1,
+      pageSize: (json['pageSize'] as num?)?.toInt() ?? 20,
       total: (json['total'] as num?)?.toInt() ?? 0,
-      list:
-          (json['data'] as List<dynamic>?)?.map(fromJsonT).toList() ?? const [],
+      totalPages: (json['totalPages'] as num?)?.toInt() ?? 0,
+      hasPrevPage: json['hasPrevPage'] as bool? ?? false,
+      hasNextPage: json['hasNextPage'] as bool? ?? false,
+      list: (json['items'] as List<dynamic>?)?.map(fromJsonT).toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$PaginationResponseImplToJson<T>(
@@ -24,9 +26,11 @@ Map<String, dynamic> _$$PaginationResponseImplToJson<T>(
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'current_page': instance.currentPage,
-      'last_page': instance.lastPage,
-      'per_page': instance.perPage,
+      'page': instance.currentPage,
+      'pageSize': instance.pageSize,
       'total': instance.total,
-      'data': instance.list.map(toJsonT).toList(),
+      'totalPages': instance.totalPages,
+      'hasPrevPage': instance.hasPrevPage,
+      'hasNextPage': instance.hasNextPage,
+      'items': instance.list.map(toJsonT).toList(),
     };

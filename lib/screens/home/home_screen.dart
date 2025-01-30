@@ -21,7 +21,8 @@ class HomeScreen extends GetView<HomeScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.baseBackgroundImage,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: CustomScrollView(
@@ -31,18 +32,34 @@ class HomeScreen extends GetView<HomeScreenController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DefaultNavigationHeader(
-                    defaultLeftTitle: 'Welcome To DGPT',
+                    defaultLeftTitle: 'Welcome To AI PULSE',
                     rightImages: const [
-                      'assets/images/tab/home_inactive.png',
-                      'assets/images/tab/home_inactive.png',
-                      'assets/images/tab/home_inactive.png'
+                      'assets/images/home/flag.png',
+                      'assets/images/home/service.png',
+                      'assets/images/home/notice.png'
                     ],
                     onRightImageTaps: (index) {},
                   ),
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  _carousel(context),
+                  // _carousel(context),
+                  Stack(
+                    alignment: Alignment.center, // 让所有子组件居中
+                    children: [
+                      Image.asset(
+                        'assets/images/home/header_bg.png',
+                        fit: BoxFit.contain, // 图片自适应大小
+                      ),
+                      Text(
+                        '未激活',
+                        style: fontDMBold.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: defaultPadding,
                   ),
@@ -76,7 +93,6 @@ class HomeScreen extends GetView<HomeScreenController> {
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  _partners(),
                 ],
               ),
             ),
@@ -190,16 +206,15 @@ class HomeScreen extends GetView<HomeScreenController> {
   }
 
   _collectionOfFeatures({required Function(int index) onTap}) {
-    List titles = ['Task Center', 'Tutorials', 'Invitation', 'About Us'];
     return Container(
       height: 96,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: BaseColors.black
+        color: Color(0xFF23306F)
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: List.generate(titles.length, (index) {
+        children: List.generate(controller.titles.length, (index) {
           return Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
@@ -211,23 +226,23 @@ class HomeScreen extends GetView<HomeScreenController> {
                 splashColor: Colors.transparent,
                 child: Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Image.asset(
-                      'assets/images/tab/home_inactive.png',
-                      width: 25,
-                      height: 25,
+                      controller.images[index],
+                      width: 44,
+                      height: 44,
                     ),
                     const SizedBox(
-                      height: defaultPadding / 2,
+                      height: defaultPadding / 4,
                     ),
                     Text(
-                      titles[index],
+                      controller.titles[index],
                       style: fontSFProMedium.copyWith(
                         fontSize: 12,
                         color: BaseColors.white,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -238,166 +253,67 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _training(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.taskHistory,
-                    arguments: TaskHistoryScreenArgs(
-                        historyType: TaskHistoryType.task));
-              },
-              child: _trainingItem(
-                imagePath: "assets/images/tab/home_inactive.png",
-                title: 'Daily Yield',
-                desc: '0.011USDT',
-              ),
-            ),
-            const Spacer(),
-            GestureDetector(
-              onTap: () {
-                Get.toNamed(AppRoutes.taskHistory,
-                    arguments: TaskHistoryScreenArgs(
-                        historyType: TaskHistoryType.task));
-              },
-              child: _trainingItem(
-                imagePath: "assets/images/tab/home_inactive.png",
-                title: 'Total Yield',
-                desc: '22.222USDT',
-              ),
-            ),
-            const Spacer(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  _trainingItem({
-    required String imagePath,
-    required String title,
-    required String desc,
-  }) {
-    return Row(
-      children: [
-        Image.asset(
-          imagePath,
-          width: 20,
-        ),
-        const SizedBox(width: 8),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.white,
-              ),
-            ),
-            Text(
-              desc,
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.primaryColor,
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: BaseColors.black
+      padding: const EdgeInsets.all(defaultPadding),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/home/return_bg.png'),
+          fit: BoxFit.cover, // 拉伸图片以填满容器
+        )
       ),
       child: Row(
         children: [
-          Expanded(child: _makeProfit(context, onTap: onTap)),
-          Expanded(child: _nodePartner(context, onTap: onTap)),
+          Expanded(child: _buildInfoCard(
+            context: context,
+            imagePath: 'assets/images/home/day_return.png',
+            title: '每小时收益',
+            value: '2.28 USDT',
+            onTap: () => onTap(0),
+          )),
+          Expanded(child: _buildInfoCard(
+            context: context,
+            imagePath: 'assets/images/home/total_return.png',
+            title: '总收益',
+            value: '8,182.28 USDT',
+            onTap: () => onTap(1),
+          )),
         ],
       ),
     );
   }
 
-  _makeProfit(BuildContext context, {required Function(int index) onTap}) {
+  Widget _buildInfoCard({
+    required BuildContext context,
+    required String imagePath,
+    required String title,
+    required String value,
+    required Function() onTap,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(
-          'assets/images/tab/home_inactive.png',
-          width: 40,
-          height: 40,
+          imagePath,
+          width: 25,
+          height: 25,
         ),
-        const SizedBox(height: defaultPadding / 2,),
+        const SizedBox(height: defaultPadding / 2),
         Text(
-          '每小时收益',
-          style: fontSFProMedium.copyWith(
-            fontSize: 12,
-            color: BaseColors.white,
+          title,
+          style: fontDMMedium.copyWith(
+            fontSize: 14,
+            color: BaseColors.weakTextColor,
           ),
         ),
-        const SizedBox(
-          height: defaultPadding / 4,
-        ),
+        const SizedBox(height: defaultPadding / 4),
         GestureDetector(
-          onTap: () => onTap(0),
+          onTap: onTap,
           child: Text(
-            '2.28 USDT',
-            style: fontSFProMedium.copyWith(
-              fontSize: 12,
-              color: BaseColors.primaryColor,
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  _nodePartner(BuildContext context, {required Function(int index) onTap}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.asset(
-          'assets/images/tab/home_inactive.png',
-          width: 40,
-          height: 40,
-        ),
-        const SizedBox(height: defaultPadding / 2,),
-        Text(
-          '总收益',
-          style: fontSFProMedium.copyWith(
-            fontSize: 12,
-            color: BaseColors.white,
-          ),
-        ),
-        const SizedBox(
-          height: defaultPadding / 4,
-        ),
-        GestureDetector(
-          onTap: () => onTap(1),
-          child: Text(
-            '8,182.28 USDT',
-            style: fontSFProMedium.copyWith(
-              fontSize: 12,
+            value,
+            style: fontDMBold.copyWith(
+              fontSize: 18,
               color: BaseColors.primaryColor,
             ),
           ),

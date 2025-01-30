@@ -8,11 +8,13 @@ class PaginationResponse<T> with _$PaginationResponse<T> {
   const PaginationResponse._();
 
   factory PaginationResponse({
-    @JsonKey(name: 'current_page') @Default(1) int currentPage,
-    @JsonKey(name: 'last_page') @Default(1) int lastPage,
-    @JsonKey(name: 'per_page') @Default(0) int perPage,
+    @JsonKey(name: 'page') @Default(1) int currentPage,
+    @JsonKey(name: 'pageSize') @Default(20) int pageSize,
     @JsonKey(name: 'total') @Default(0) int total,
-    @Default([]) @JsonKey(name: 'data') List<T> list,
+    @JsonKey(name: 'totalPages') @Default(0) int totalPages,
+    @JsonKey(name: 'hasPrevPage') @Default(false) bool hasPrevPage,
+    @JsonKey(name: 'hasNextPage') @Default(false) bool hasNextPage,
+    @Default([]) @JsonKey(name: 'items') List<T> list,
   }) = _PaginationResponse<T>;
 
   factory PaginationResponse.fromJson(
@@ -24,5 +26,5 @@ class PaginationResponse<T> with _$PaginationResponse<T> {
     return super.toJson(toJsonT);
   }
 
-  bool get hasLoadMore => currentPage != lastPage && currentPage < lastPage;
+  bool get hasLoadMore => hasPrevPage && hasNextPage;
 }

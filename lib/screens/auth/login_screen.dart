@@ -16,7 +16,8 @@ class LoginScreen extends GetView<LoginScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.baseBackgroundImage,
       appBar: BaseAppBar(
         title: '',
         color: Colors.transparent,
@@ -93,8 +94,8 @@ class LoginScreen extends GetView<LoginScreenController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(
-          "assets/images/tab/home_inactive.png",
-          width: 40,
+          "assets/images/custom/login_logo.png",
+          width: 36,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),

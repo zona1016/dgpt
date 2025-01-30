@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BaseColors {
-  static const primaryColor = Color(0xFF00BBBD);
+  static const primaryColor = Color(0xFF17CE92);
   static const secondPrimaryColor = Color(0xFFFD7B19);
   static const black = Color(0xFF1A1A1A);
   static const black15 = Color(0x261A1A1A);
@@ -16,6 +16,7 @@ class BaseColors {
   static const white = Colors.white;
   static const whiteGray = Color(0xFFF5F5F5);
   static const whiteGray1 = Color(0xFFE9EDED);
+  static const whiteGray2 = Color(0xFFC4C4C4);
 
   static const textColor = black;
   static const weakTextColor = gray;
@@ -34,4 +35,6 @@ class BaseColors {
   static const pendingStatus = Color(0xE6EBC22A);
   static const rejectedStatus = Color(0xFFFF4104);
   static const approvedStatus = Color.fromARGB(255, 0, 255, 110);
+
+  static const baseBackgroundImage = 'assets/images/custom/base_bg.png';
 }
