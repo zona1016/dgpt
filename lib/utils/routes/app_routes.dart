@@ -18,6 +18,8 @@ import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/home/node_partner_screen.dart';
 import 'package:dgpt/screens/home/node_partner_screen_controller.dart';
+import 'package:dgpt/screens/income/income_screen.dart';
+import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/notice/system_detail_message_screen.dart';
@@ -50,6 +52,8 @@ import 'package:dgpt/screens/tutorial/tutorial_detail_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorial_detail_screen_controller.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen_controller.dart';
+import 'package:dgpt/screens/us/help_center_screen.dart';
+import 'package:dgpt/screens/us/help_center_screen_controller.dart';
 import 'package:dgpt/screens/web/web_screen.dart';
 import 'package:dgpt/screens/web/web_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -92,6 +96,8 @@ class AppRoutes {
 
   static String systemMessage = "/system_message";
   static String systemMessageDetail = "/system_message_detail";
+
+  static String income = "/income";
 
   static String kyc = "/kyc";
 
@@ -187,6 +193,11 @@ class AppRoutes {
         binding: SettingScreenBindings()
     ),
     GetPage(
+        name: helpCenter,
+        page: () => const HelpCenterScreen(),
+        binding: HelpCenterScreenBindings()
+    ),
+    GetPage(
         name: accountProfile,
         page: () => const AccountProfileScreen(),
         binding: AccountProfileScreenBindings()
@@ -225,6 +236,11 @@ class AppRoutes {
         name: systemMessageDetail,
         page: () => const SystemDetailMessageScreen(),
         binding: SystemDetailMessageScreenBindings()
+    ),
+    GetPage(
+        name: income,
+        page: () => const IncomeScreen(),
+        binding: IncomeScreenBindings()
     ),
     GetPage(
         name: qrCode,

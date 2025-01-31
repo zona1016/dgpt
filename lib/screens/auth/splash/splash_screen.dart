@@ -18,42 +18,55 @@ class SplashScreen extends GetView<SplashScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.baseBackgroundImage,
-      body: Padding(
-        padding: const EdgeInsets.only(left: defaultPadding, right: defaultPadding),
-        child: Column(
-          children: [
-            const Spacer(),
-            Text(
-              '通过DePIN网络为人工智能提供无缝计\n算能力连接。',
-              style: fontDMRegular.copyWith(
-                fontSize: 18,
-                color: BaseColors.white,
-              ),
-              textAlign: TextAlign.center,
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              Expanded(child: Container()),
+              Image.asset(
+                'assets/images/custom/splash_bg.png',
+              )
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: defaultPadding, right: defaultPadding),
+            child: Column(
+              children: [
+                const Spacer(),
+                Text(
+                  '通过DePIN网络为人工智能提供无缝计\n算能力连接。',
+                  style: fontDMRegular.copyWith(
+                    fontSize: 18,
+                    color: BaseColors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const Spacer(),
+                SafeArea(
+                  child: BaseButton(
+                    height: 56,
+                    customDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.transparent,
+                        border: Border.all(
+                            color: Colors.purpleAccent,
+                            width: 1
+                        )
+                    ),
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.login);
+                    },
+                    style: fontDMBold.copyWith(
+                      fontSize: 16,
+                      color: BaseColors.white,
+                    ),
+                    text: '开始',
+                  ),
+                )
+              ],
             ),
-            const Spacer(),
-            SafeArea(
-              child: BaseButton(
-                customDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.transparent,
-                    border: Border.all(
-                        color: Colors.purpleAccent,
-                        width: 1
-                    )
-                ),
-                onPressed: () {
-                  Get.toNamed(AppRoutes.login);
-                },
-                style: fontDMBold.copyWith(
-                  fontSize: 16,
-                  color: BaseColors.white,
-                ),
-                text: '开始',
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       )
     );
   }

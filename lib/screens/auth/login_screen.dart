@@ -17,7 +17,7 @@ class LoginScreen extends GetView<LoginScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.baseBackgroundImage,
+      backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
         title: '',
         color: Colors.transparent,
@@ -26,15 +26,27 @@ class LoginScreen extends GetView<LoginScreenController> {
           background: Container(color: Colors.transparent),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
+      body: Stack(
+        children: [
+          Column(
             children: [
-              _buildHeader()
+              Expanded(child: Container()),
+              Image.asset(
+                  'assets/images/custom/login_bg.png'
+              )
             ],
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildHeader()
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -94,7 +106,7 @@ class LoginScreen extends GetView<LoginScreenController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Image.asset(
-          "assets/images/custom/login_logo.png",
+          "assets/images/custom/logo.png",
           width: 36,
         ),
         Padding(

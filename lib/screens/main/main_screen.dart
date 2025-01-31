@@ -230,3 +230,45 @@ class BottomNavPainter extends CustomPainter {
     return false;
   }
 }
+
+class BottomBarPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.deepPurple.shade700
+      ..style = PaintingStyle.fill
+      ..shader = LinearGradient(
+        colors: [Colors.purple, Colors.blueAccent],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
+
+    final path = Path();
+
+    // Start at bottom left corner
+    path.moveTo(0, size.height);
+
+    // Left edge
+    path.lineTo(0, size.height * 0.4);
+
+    // Curve upward
+    path.quadraticBezierTo(size.width * 0.3, -10, size.width * 0.5, size.height * 0.2);
+
+    // Curve downward back to normal
+    path.quadraticBezierTo(size.width * 0.7, -10, size.width, size.height * 0.4);
+
+    // Right edge
+    path.lineTo(size.width, size.height);
+
+    // Close the path
+    path.close();
+
+    canvas.drawShadow(path, Colors.black, 10.0, true);
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
+  }
+}

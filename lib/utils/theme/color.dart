@@ -37,4 +37,5 @@ class BaseColors {
   static const approvedStatus = Color.fromARGB(255, 0, 255, 110);
 
   static const baseBackgroundImage = 'assets/images/custom/base_bg.png';
+  static const customBackgroundImage = 'assets/images/custom/custom_bg.png';
 }

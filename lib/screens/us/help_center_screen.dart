@@ -14,7 +14,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: BaseAppBar(
         title: '帮助中心',
         color: BaseColors.white,

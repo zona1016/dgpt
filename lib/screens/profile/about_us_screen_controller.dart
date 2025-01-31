@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 class AboutUsScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut(() => AboutUsScreenController(), permanent: false, fenix: false);
+    GetInstance().lazyPut(() => AboutUsScreenController(),
+        permanent: false, fenix: false);
   }
 }
 
-class AboutUsScreenController extends BaseController with GetTickerProviderStateMixin  {
-
+class AboutUsScreenController extends BaseController
+    with GetTickerProviderStateMixin {
   final AuthService authService = Get.find();
   final selectedBannerIndex = 0.obs;
 
@@ -22,17 +22,27 @@ class AboutUsScreenController extends BaseController with GetTickerProviderState
   late TabController superTabController;
   late RxInt superTabIndex = 0.obs;
 
-  List<String> tabList = ['Accelerator', 'SuperComputing'];
-
-  List<String> superComputingTabList = ["Live", 'Developing', 'Ended'];
+  List<String> tabList = ['公司介绍', '联系我们'];
+  List<String> tabPathList = [
+    'assets/images/home/gsjs.png',
+    'assets/images/home/lxwm.png'
+  ];
+  List<String> urlPathList = [
+    'assets/images/home/facebook.png',
+    'assets/images/home/email.png',
+    'assets/images/home/telegram.png',
+    'assets/images/home/sp.png',
+    'assets/images/home/google.png',
+    'assets/images/home/x.png',
+  ];
 
   List<String> urlList = [
     'https://www.facebook.com/dgptcloud',
-    'https://x.com/dgpt_cloud',
-    'https://t.me/DGPT_Cloud',
     'https://www.youtube.com/@DGPT_AI',
+    'https://t.me/DGPT_Cloud',
     'https://www.tiktok.com/@dgpt_ai',
     'https://www.instagram.com/dgpt_ai',
+    'https://x.com/dgpt_cloud',
   ];
 
   @override
@@ -42,11 +52,6 @@ class AboutUsScreenController extends BaseController with GetTickerProviderState
     tabController = TabController(length: tabList.length, vsync: this)
       ..addListener(() {
         tabIndex.value = tabController.index;
-      });
-
-    superTabController = TabController(length: superComputingTabList.length, vsync: this)
-      ..addListener(() {
-        superTabIndex.value = superTabController.index;
       });
   }
 
@@ -60,5 +65,4 @@ class AboutUsScreenController extends BaseController with GetTickerProviderState
     // TODO: implement onReady
     super.onReady();
   }
-
 }

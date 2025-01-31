@@ -38,7 +38,15 @@ class HomeScreen extends GetView<HomeScreenController> {
                       'assets/images/home/service.png',
                       'assets/images/home/notice.png'
                     ],
-                    onRightImageTaps: (index) {},
+                    onRightImageTaps: (index) {
+                      if (index == 0) {
+                        Get.toNamed(AppRoutes.income);
+                      } else if (index == 1) {
+                        Get.toNamed(AppRoutes.aboutUs);
+                      } else {
+                        Get.toNamed(AppRoutes.systemMessage);
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: defaultPadding,
@@ -260,7 +268,7 @@ class HomeScreen extends GetView<HomeScreenController> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/home/return_bg.png'),
-          fit: BoxFit.cover, // 拉伸图片以填满容器
+          fit: BoxFit.cover,
         )
       ),
       child: Row(

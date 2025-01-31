@@ -11,89 +11,75 @@ class ContactUsTab extends GetView<AboutUsScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Center(
-        //   child: Image.asset(
-        //     "assets/images/tab/data_inactive.png",
-        //     width: 400,
-        //     height: 400,
-        //   ),
-        // ),
-        const SizedBox(
-          height: defaultPadding / 2,
-        ),
-        Expanded(child: Container()),
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                height: 1,
-                color: BaseColors.weakTextColor,
-              ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Image.asset(
+              "assets/images/home/lxwm_content.png",
+              fit: BoxFit.fitHeight,
             ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Text(
-              'Contact Us',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.white,
-              ),
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Expanded(
-              child: Container(
-                height: 1,
-                color: BaseColors.weakTextColor,
-              ),
-            )
-          ],
-        ),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          // Prevent scrolling inside GridView
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: defaultPadding,
-            childAspectRatio: 2,
           ),
-          itemCount: 6,
-          // Number of items
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    final uri = Uri.parse(controller.urlList[index]);
-                    await launchUrl(uri, mode: LaunchMode.inAppWebView);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: defaultPadding / 2),
-                    decoration: BoxDecoration(
-                      color: BaseColors.black,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 1,
+                  color: BaseColors.weakTextColor,
+                ),
+              ),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Text(
+                '联系我们',
+                style: fontSFProMedium.copyWith(
+                  fontSize: 14,
+                  color: BaseColors.white,
+                ),
+              ),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Expanded(
+                child: Container(
+                  height: 1,
+                  color: BaseColors.weakTextColor,
+                ),
+              )
+            ],
+          ),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding / 2,
+              childAspectRatio: 1.5,
+            ),
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  GestureDetector(
+                    onTap: () async {
+                      final uri = Uri.parse(controller.urlList[index]);
+                      await launchUrl(uri, mode: LaunchMode.inAppWebView);
+                    },
                     child: Center(
                       child: Image.asset(
-                        "assets/images/tab/data_inactive.png",
-                        width: 30,
-                        height: 30,
+                        controller.urlPathList[index],
                       ),
                     ),
                   ),
-                ),
-              ],
-            );
-          },
-        )
-      ],
+                ],
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }

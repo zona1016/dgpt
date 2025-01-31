@@ -54,7 +54,7 @@ class BaseButton extends StatelessWidget {
         BorderRadius.circular(type == BaseButtonType.golden || type == BaseButtonType.goldenOulined ? 5 : 30);
     return Container(
       width: isDynamicWidth ? null : width ?? double.infinity,
-      height: height ?? 56,
+      height: height ?? 70,
       decoration: getButtonDecoration(context, borderRadius),
       child: ElevatedButton(
         onPressed: enabled ? onPressed : null,
@@ -121,9 +121,13 @@ class BaseButton extends StatelessWidget {
                     blurRadius: 5.0)
               ],
               color: enabled
-                  ? BaseColors.primaryColor
+                  ? null
                   : BaseColors.gray,
-              borderRadius: borderRadius,
+              borderRadius: enabled ? null : borderRadius,
+              image: enabled ? const DecorationImage(
+                image: AssetImage('assets/images/custom/btn_bg.png'),
+                fit: BoxFit.cover,
+              ) : null
             );
       case BaseButtonType.secondary:
         return !enabled && disabledDecoration != null

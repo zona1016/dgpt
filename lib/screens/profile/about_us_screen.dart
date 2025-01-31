@@ -15,38 +15,43 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      safeAreaTop: false,
-      backgroundColor: Colors.black,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 200,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SafeArea(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    height: 44,
-                    child: GestureDetector(
-                      onTap: () => Get.back(),
-                      child: const Icon(Icons.chevron_left, size: 30, color: Colors.white,),
+        safeAreaTop: false,
+        backgroundColor: Colors.transparent,
+        backgroundImage: 'assets/images/custom/about_us_bg.png',
+        body: Column(
+          children: [
+            SizedBox(
+              height: 169,
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SafeArea(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
+                      height: 44,
+                      child: GestureDetector(
+                        onTap: () => Get.back(),
+                        child: const Icon(
+                          Icons.chevron_left,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                const Spacer(),
-              ],
+                  const Spacer(),
+                ],
+              ),
             ),
-          ),
-          _buildTabBar(context),
-          const SizedBox(
-            height: defaultPadding,
-          ),
-          Expanded(child: _buildTabBarViews(context)),
-        ],
-      )
-    );
+            _buildTabBar(context),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            Expanded(child: _buildTabBarViews(context)),
+          ],
+        ));
   }
 
   Widget _buildTabBar(BuildContext context) {
@@ -61,27 +66,34 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
         unselectedLabelColor: context.appTheme.weakTextColor,
         unselectedLabelStyle: fontMedium.copyWith(fontSize: 14),
         controller: controller.tabController,
-        tabs: controller.tabList
-            .map(
-              (String key) => Tab(
-                height: 76,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Image.asset(
-                        "assets/images/tab/tutorial_inactive.png",
-                        width: 20),
-                    const Spacer(),
-                    Text(
-                      key,
-                      textAlign: TextAlign.center,
-                    ),
-                    const Spacer(),
-                  ],
-                ),
+        indicator: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/custom/tab_bar_line.png'),
+            fit: BoxFit.contain, // 根据需要调整图片适应方式
+            alignment: Alignment.bottomCenter,
+          ),
+        ),
+        tabs: controller.tabList.asMap().entries.map(
+          (entry) {
+            int index = entry.key;
+            String key = entry.value;
+            return Tab(
+              height: 76,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  Image.asset(controller.tabPathList[index], width: 44),
+                  const Spacer(),
+                  Text(
+                    key,
+                    textAlign: TextAlign.center,
+                  ),
+                  const Spacer(),
+                ],
               ),
-            )
-            .toList(),
+            );
+          },
+        ).toList(),
       ),
     );
   }
