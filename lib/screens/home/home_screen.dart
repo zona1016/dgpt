@@ -14,6 +14,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marquee/marquee.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({super.key});
@@ -84,13 +85,13 @@ class HomeScreen extends GetView<HomeScreenController> {
                   _collectionOfFeatures(onTap: (index) {
                     switch (index) {
                       case 0:
-                        Get.toNamed(AppRoutes.taskCenter);
+                        Get.toNamed(AppRoutes.systemMessage);
                         break;
                       case 1:
-                        Get.toNamed(AppRoutes.tutorial);
+                        _showShare(context);
                         break;
                       case 2:
-                        _showShare();
+                        Get.toNamed(AppRoutes.tutorial);
                         break;
                       case 3:
                         Get.toNamed(AppRoutes.aboutUs);
@@ -217,15 +218,14 @@ class HomeScreen extends GetView<HomeScreenController> {
     return Container(
       height: 96,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Color(0xFF23306F)
-      ),
+          borderRadius: BorderRadius.circular(10), color: Color(0xFF23306F)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(controller.titles.length, (index) {
           return Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
               child: InkWell(
                 onTap: () {
                   onTap(index);
@@ -266,21 +266,22 @@ class HomeScreen extends GetView<HomeScreenController> {
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/home/return_bg.png'),
-          fit: BoxFit.cover,
-        )
-      ),
+          image: DecorationImage(
+        image: AssetImage('assets/images/home/return_bg.png'),
+        fit: BoxFit.cover,
+      )),
       child: Row(
         children: [
-          Expanded(child: _buildInfoCard(
+          Expanded(
+              child: _buildInfoCard(
             context: context,
             imagePath: 'assets/images/home/day_return.png',
             title: '每小时收益',
             value: '2.28 USDT',
             onTap: () => onTap(0),
           )),
-          Expanded(child: _buildInfoCard(
+          Expanded(
+              child: _buildInfoCard(
             context: context,
             imagePath: 'assets/images/home/total_return.png',
             title: '总收益',
@@ -381,33 +382,34 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _showShare() async {
-    DialogUtils.showDGPTBaseDialog(
+  _showShare(BuildContext context) async {
+    DialogUtils.showShareDialog(
+      key: controller.globalKey,
+        barrierDismissible: false,
         title: '推荐好友',
-        image: 'assets/images/tab/data_inactive.png',
+        desc: '解锁无限奖励',
+        image: 'assets/images/home/share_header.png',
+        bgImage: 'assets/images/home/share_bg.png',
         showBottomClose: true,
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: defaultPadding / 2),
-              Text(
-                '解锁无限奖励',
-                style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
               Container(
-                // padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.teal, width: 2),
-                  borderRadius: BorderRadius.circular(16),
+                padding: const EdgeInsets.all(defaultPadding / 2),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/home/share_qr_code.png'),
+                    fit: BoxFit.cover,
+                  )
                 ),
-                child: Image.asset(
-                  "assets/images/tab/data_inactive.png",
-                  width: 150,
-                  height: 150,
+                child: SizedBox(
+                  height: 157,
+                  width: 157,
+                  child: QrImageView(
+                    data: "https://example.com", // 要编码的字符串数据
+                    version: QrVersions.auto,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -417,36 +419,68 @@ class HomeScreen extends GetView<HomeScreenController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    height: 44,
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                    margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.purple
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Invitation Links',
-                        style:
-                            fontMedium.copyWith(color: Colors.white, fontSize: 14),
-                      ),
+                        borderRadius: BorderRadius.circular(defaultPadding * 2),
+                        color: BaseColors.whiteGray3),
+                    child: Row(
+                      children: [
+                        Text(
+                          '复制邀请链接',
+                          style: fontDMMedium.copyWith(
+                              color: BaseColors.white, fontSize: 16),
+                        ),
+                        Expanded(child: Container()),
+                        GestureDetector(
+                          onTap: () {
+
+                          },
+                          child: Image.asset(
+                            'assets/images/home/share_copy.png',
+                            height: 20,
+                            width: 20,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                    height: 44,
+                    margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.purple
+                      borderRadius: BorderRadius.circular(defaultPadding * 2),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/home/share_button.png'),
+                        fit: BoxFit.fitHeight
+                      )
                     ),
-                    child: Center(
-                      child: Text(
-                        'Invitation Links',
-                        style:
-                        fontMedium.copyWith(color: Colors.white, fontSize: 14),
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          '下载保存图片',
+                          style: fontDMMedium.copyWith(
+                              color: BaseColors.white, fontSize: 16),
+                        ),
+                        Expanded(child: Container()),
+                        GestureDetector(
+                          onTap: () async {
+                            controller.capturePng(context);
+                          },
+                          child: Image.asset(
+                            'assets/images/home/share_download.png',
+                            width: 20,
+                            height: 20,
+                          ),
+                        )
+                      ],
                     ),
                   ),
+                  const SizedBox(height: defaultPadding),
                 ],
               ),
             ],

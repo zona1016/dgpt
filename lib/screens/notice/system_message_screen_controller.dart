@@ -23,6 +23,12 @@ class SystemMessageScreenController extends BaseController with GetTickerProvide
     'system': '系统通告'
   };
 
+  final noticeTabPathList = [
+    'assets/images/home/notice_gxts.png',
+    'assets/images/home/notice_fwts.png',
+    'assets/images/home/notice_xttg.png',
+  ];
+
   @override
   void onInit() {
     super.onInit();

@@ -1,7 +1,5 @@
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class NoticeTabController extends BaseController {
   // final TutorialService tutorialService = Get.find();

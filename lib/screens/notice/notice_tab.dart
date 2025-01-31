@@ -12,9 +12,14 @@ class NoticeTab extends StatelessWidget {
   final Key? scrollViewKey;
   final Widget? injector;
   final String type;
+  final String imagePath;
 
   const NoticeTab(
-      {super.key, required this.type, this.scrollViewKey, this.injector});
+      {super.key,
+      required this.type,
+      this.scrollViewKey,
+      this.injector,
+      required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -51,22 +56,26 @@ class NoticeTab extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Container(
                           height: 100,
-                          padding: const EdgeInsets.symmetric(horizontal: defaultPadding,vertical: defaultPadding / 2),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: defaultPadding,
+                              vertical: defaultPadding / 2),
                           decoration: const BoxDecoration(
                             color: BaseColors.black,
                           ),
                           child: Row(
                             children: [
-                              Image.asset(
-                                  "assets/images/tab/tutorial_inactive.png",
-                                  width: 60),
-                              const SizedBox(width: defaultPadding / 2,),
+                              Image.asset(imagePath, width: 44, height: 44,),
+                              const SizedBox(
+                                width: defaultPadding / 2,
+                              ),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const SizedBox(height: defaultPadding / 2,),
+                                    const SizedBox(
+                                      height: defaultPadding / 2,
+                                    ),
                                     Row(
                                       children: [
                                         Text(
@@ -83,15 +92,16 @@ class NoticeTab extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 4,),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
                                     Expanded(
-                                      child: Text(
-                                        '这是一个内容' * 1,
-                                        style: fontSFProMedium.copyWith(
-                                            color: BaseColors.white, fontSize: 14),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis
-                                      ),
+                                      child: Text('这是一个内容' * 1,
+                                          style: fontSFProMedium.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 14),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis),
                                     ),
                                   ],
                                 ),
@@ -103,7 +113,8 @@ class NoticeTab extends StatelessWidget {
                       separatorBuilder: (context, index) {
                         return Container(
                           height: 1,
-                          margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: defaultPadding),
                           color: BaseColors.weakTextColor,
                         );
                       },

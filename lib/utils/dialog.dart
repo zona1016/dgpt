@@ -214,7 +214,7 @@ class DialogUtils {
                     right: 0,
                     child: Image.asset(
                       image,
-                      width: 50,
+                      width: double.infinity,
                       height: 50,
                     )),
               if (topTitle != null)
@@ -512,5 +512,107 @@ class DialogUtils {
             ],
           ),
         ));
+  }
+
+  static void showShareDialog(
+      {bool barrierDismissible = true,
+        required String title,
+        String? desc,
+        String? image,
+        String? bgImage,
+        GlobalKey? key,
+        bool showBottomClose = false,
+        Widget? imageWidget,
+        Color? contentColor,
+        Widget? child,}) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    showDialog<void>(
+      context: Get.context!,
+      barrierDismissible: barrierDismissible,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shadowColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          contentPadding: EdgeInsets.zero,
+          content: RepaintBoundary(
+            key: key,
+            child: Column(
+              children: [
+                const Spacer(),
+                if (image != null)
+                  Image.asset(
+                    image,
+                    width: Get.width * 0.7,
+                  ),
+                Container(
+                  decoration: BoxDecoration(
+                    image: (bgImage != null) ? DecorationImage(
+                      image: AssetImage(bgImage),
+                      fit: BoxFit.cover
+                    )  : null
+                  ),
+                  width: Get.width * 0.7,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      imageWidget ?? Container(),
+                      if (title.isNotEmpty)
+                        Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: fontDMBold.copyWith(
+                              fontSize: 24, color: BaseColors.textColor),
+                        ),
+                      if (desc != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: defaultPadding / 4, bottom: defaultPadding / 2),
+                          child: Text(
+                            desc,
+                            textAlign: TextAlign.center,
+                            style: fontDMMedium.copyWith(
+                                fontSize: 18,
+                                color: BaseColors.textColor),
+                          ),
+                        ),
+                      if (child != null) child,
+                    ],
+                  ),
+                ),
+                if (showBottomClose)
+                  const SizedBox(height: defaultPadding,),
+                if (showBottomClose)
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: SizedBox(
+                      height: 60,
+                      child: Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.transparent,
+                              border: Border.all(
+                                  color: BaseColors.white,
+                                  width: 1
+                              )
+                          ),
+                          child: const Icon(
+                            Icons.close,
+                            size: 35.0,
+                            color: BaseColors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                const Spacer(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

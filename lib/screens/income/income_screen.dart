@@ -14,7 +14,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.transparent,
+      backgroundImage: 'assets/images/custom/income_bg.png',
       appBar: BaseAppBar(
         title: '收益分析',
         color: BaseColors.white,
