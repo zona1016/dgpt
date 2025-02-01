@@ -1,18 +1,12 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/screens/auth/register_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
-import 'package:dgpt/utils/extensions/context_extension.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:dgpt/widget/email_verification_button.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
-import 'package:dgpt/widget/form/borderless_text_field.dart';
-import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 class RegisterScreenArgs {
@@ -27,87 +21,66 @@ class RegisterScreen extends GetView<RegisterScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-        backgroundColor: BaseColors.primaryColor,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-          child: CustomScrollView(
-            physics: const ClampingScrollPhysics(),
-            slivers: [
-              SliverToBoxAdapter(
-                child: _buildHeaderDetail(),
+      backgroundColor: Colors.transparent,
+      backgroundImage: 'assets/images/custom/register_bg.png',
+      appBar: BaseAppBar(
+        title: '',
+        color: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: FlexibleSpaceBar(
+          background: Container(color: Colors.transparent),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: _buildHeader(),
               ),
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: FormBuilder(
-                  key: controller.registerFormKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      BaseTextFormField(
-                        name: "account",
-                        hintText: 'Account',
-                        validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required('Account')
-                        ]),
-                      ),
-                      const SizedBox(height: 20),
-                      BaseTextFormField(
-                        name: "email",
-                        hintText: 'Email',
-                        validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required('Email'),
-                          CustomFormBuilderValidators.email()
-                        ]),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      const SizedBox(height: 20),
-                      _enterMobile(context),
-                      const SizedBox(height: 20),
-                      BaseTextFormField(
-                        name: "password",
-                        hintText: 'Password',
-                        validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required('Password'),
-                          CustomFormBuilderValidators.password()
-                        ]),
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 20),
-                      Obx(() => BaseTextFormField(
-                            name: "confirmPassword",
-                            autovalidateMode: controller.isFormValidated.isTrue
-                                ? AutovalidateMode.onUserInteraction
-                                : AutovalidateMode.disabled,
-                            hintText: 'ConfirmPassword',
-                            validator: (value) => controller
-                                        .registerFormKey
-                                        .currentState
-                                        ?.fields['password']
-                                        ?.value !=
-                                    value
-                                ? 'Password not match'
-                                : null,
-                            obscureText: true,
-                          )),
-                      const SizedBox(height: 20),
-                      BaseTextFormField(
-                        name: "inviteCode",
-                        hintText: 'InviteCode',
-                        validator: FormBuilderValidators.compose([
-                          CustomFormBuilderValidators.required('InviteCode'),
-                        ]),
-                      ),
-                      const SizedBox(height: 20),
-                      _buildRegister(),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
+            ),
+            _buildLogin(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _buildHeader() {
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeaderDetail(),
+          const SizedBox(
+            height: defaultPadding,
+          ),
+          _buildNameAndPassword(),
+          const SizedBox(
+            height: defaultPadding,
+          ),
+          Row(
+            children: [
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Text(
+                  '已有账号?去登录',
+                  style: fontSFProMedium.copyWith(
+                      fontSize: 14,
+                      color: BaseColors.lightGray,
+                      decoration: TextDecoration.underline,
+                      decorationColor: BaseColors.white),
                 ),
               ),
             ],
           ),
-        ));
+        ],
+      ),
+    );
   }
 
   _buildHeaderDetail() {
@@ -118,152 +91,147 @@ class RegisterScreen extends GetView<RegisterScreenController> {
           children: [
             Expanded(child: Container()),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.back();
+              },
               child: Image.asset(
-                "assets/images/tab/home_inactive.png",
-                width: 20,
+                "assets/images/custom/logo.png",
+                width: 36,
               ),
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Image.asset(
-                "assets/images/tab/home_inactive.png",
-                width: 20,
-              ),
-            ),
+            )
           ],
-        ),
-        Image.asset(
-          "assets/images/tab/home_inactive.png",
-          width: 40,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
-            'Login',
-            style: fontSFProMedium.copyWith(
+            '邮箱注册',
+            style: fontDMBold.copyWith(
               fontSize: 28,
               color: BaseColors.white,
             ),
           ),
         ),
         Text(
-          'Please enter your email and password to complete',
-          style: fontSFProMedium.copyWith(
+          '请填写相关信息以完成注册。',
+          style: fontDMRegular.copyWith(
             fontSize: 14,
-            color: BaseColors.lightGray,
+            color: BaseColors.white,
           ),
         ),
       ],
     );
   }
 
-  _enterMobile(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Mobile phone number',
-                  style: fontMedium.copyWith(
-                      fontSize: 14, color: Colors.white)),
-              const SizedBox(height: 5),
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: context.appTheme.secondaryContainerColor),
-                child: Row(
-                  children: [
-                    Row(
-                      children: [
-                        CountryCodePicker(
-                          dialogBackgroundColor:
-                          context.appTheme.backgroundColor,
-                          onChanged: (code) {
-
-                          },
-                          showFlag: false,
-                          // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
-                          initialSelection: 'MY',
-                          favorite: const ['+60'],
-                          showFlagDialog: true,
-                          padding: const EdgeInsets.all(0),
-                        ),
-                        Icon(Icons.arrow_right_sharp, size: 24,),
-                        SizedBox(width: defaultPadding / 2,),
-                        Container(width: 1, height: 44, color: Colors.red,)
-                      ],
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: FormBuilder(
-                        child: BorderlessTextFormField(
-                          name: "phone",
-                          keyboardType: TextInputType.number,
-                          hintText: 'placeholder.input_field',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  _buildRegister() {
+  _buildNameAndPassword() {
     return Column(
       children: [
-        GestureDetector(
-          onTap: () {
-            controller.register();
-          },
-          child: Container(
-            margin: const EdgeInsets.symmetric(vertical: defaultPadding),
-            height: 44,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: BaseColors.black),
-            child: Center(
-              child: Text(
-                'Login',
-                style: fontSFProMedium.copyWith(
-                  fontSize: 14,
-                  color: BaseColors.white,
-                ),
-              ),
-            ),
+        Obx(
+          () => BaseTextFormField(
+            name: 'userName',
+            hintText: 'Email@.com',
+            fillColor: controller.userName.isNotEmpty
+                ? BaseColors.white
+                : BaseColors.gray85.withOpacity(0.5),
+            radius: 10,
+            onChanged: (value) {
+              controller.userName.value = value ?? '';
+            },
           ),
         ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        BaseTextFormField(
+          name: 'password',
+          hintText: '请输入您的密码',
+          obscureText: true,
+          style: fontDMRegular.copyWith(
+              color: BaseColors.inputTextColor.withOpacity(0.25)),
+          fillColor: BaseColors.gray85.withOpacity(0.5),
+          radius: 10,
+          onChanged: (value) {
+            controller.password.value = value ?? '';
+          },
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        BaseTextFormField(
+          name: 'passwordAgain',
+          hintText: '再次确认您的密码',
+          obscureText: true,
+          style: fontDMRegular.copyWith(
+              color: BaseColors.inputTextColor.withOpacity(0.25)),
+          fillColor: BaseColors.gray85.withOpacity(0.5),
+          radius: 10,
+          onChanged: (value) {
+            controller.passwordAgain.value = value ?? '';
+          },
+        )
+      ],
+    );
+  }
+
+  _buildLogin() {
+    return Column(
+      children: [
         Row(
           children: [
             const Spacer(),
             Text(
-              'Continued consent',
+              '继续即表示同意',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
                 color: BaseColors.lightGray,
               ),
             ),
             Text(
-              'Agreements/Privacy Agreements',
+              '用户协议',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: BaseColors.black,
+                color: Colors.purpleAccent,
+              ),
+            ),
+            Text(
+              '/',
+              style: fontSFProMedium.copyWith(
+                fontSize: 14,
+                color: Colors.purpleAccent,
+              ),
+            ),
+            Text(
+              '隐私政策',
+              style: fontSFProMedium.copyWith(
+                fontSize: 14,
+                color: Colors.purpleAccent,
               ),
             ),
             const Spacer(),
           ],
-        )
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        Obx(
+          () => BaseButton(
+            enabled: controller.password.isNotEmpty &&
+                    controller.userName.isNotEmpty &&
+                    controller.passwordAgain.isNotEmpty &&
+                    controller.password == controller.passwordAgain
+                ? true
+                : false,
+            disabledDecoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/custom/register_btn_border.png'),
+                fit: BoxFit.cover
+              )
+            ),
+            onPressed: () {
+              controller.register();
+            },
+            text: '继续',
+          ),
+        ),
       ],
     );
   }

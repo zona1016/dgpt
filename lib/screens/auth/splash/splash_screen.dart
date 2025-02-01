@@ -1,4 +1,3 @@
-
 import 'package:dgpt/screens/auth/splash/splash_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';

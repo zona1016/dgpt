@@ -15,14 +15,10 @@ class TutorialDetailScreen extends GetView<TutorialDetailScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
-      appBar: BaseAppBar(
+      backgroundColor: Colors.transparent,
+      appBar: const BaseAppBar(
         title: 'Tutorials',
         color: BaseColors.white,
-        backgroundColor: Colors.black,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.black),
-        ),
       ),
       body: GetBuilder<TutorialDetailScreenController>(
         builder: (_) {

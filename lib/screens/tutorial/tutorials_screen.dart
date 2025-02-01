@@ -15,14 +15,10 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
-      appBar: BaseAppBar(
+      backgroundColor: Colors.transparent,
+      appBar: const BaseAppBar(
         title: '教程中心',
         color: BaseColors.white,
-        backgroundColor: Colors.purple,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.purple),
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding),

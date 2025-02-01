@@ -21,6 +21,7 @@ class BaseColors {
   static const whiteGray3 = Color(0xFF918F8F);
 
   static const textColor = black;
+  static const inputTextColor = Color(0xFF000000);
   static const weakTextColor = gray;
   static const inputFillColor = Colors.white;
   static const secondaryInputFillColor = Colors.white54;
@@ -41,6 +42,20 @@ class BaseColors {
   static const baseBackgroundImage = 'assets/images/custom/base_bg.png';
   static const customBackgroundImage = 'assets/images/custom/custom_bg.png';
   static const incomeBackgroundImage = 'assets/images/custom/income_bg.png';
+
+  static const baseButtonLinearGradient = LinearGradient(
+    colors: [
+      Color(0xFF66BFD6), // 0% 的颜色
+      Color(0xFF7C8ABA), // 20% 的颜色
+      Color(0xFF7F679F), // 43% 的颜色
+      Color(0xFF98599D), // 63% 的颜色
+      Color(0xFFB46897), // 82% 的颜色
+      Color(0xFFDD737C), // 100% 的颜色
+    ],
+    stops: [0.0, 0.2, 0.43, 0.63, 0.82, 1.0], // 颜色停止点
+    begin: Alignment.centerLeft, // 渐变起点
+    end: Alignment.centerRight, // 渐变终点
+  );
 
   static LinearGradient baseLinearGradient = const LinearGradient(
     colors: [

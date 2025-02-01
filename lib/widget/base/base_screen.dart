@@ -50,14 +50,15 @@ class BaseScreen extends StatelessWidget {
         value: SystemUiOverlayStyle.dark,
         child: Container(
           decoration:
-          backgroundImage != null || decorationBackgroundImage != null
-              ? BoxDecoration(
-              image: decorationBackgroundImage ??
-                  DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(backgroundImage!),
-                      alignment: Alignment.center))
-              : null,
+              backgroundImage != null || decorationBackgroundImage != null
+                  ? BoxDecoration(
+                      image: decorationBackgroundImage ??
+                          DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(backgroundImage!),
+                              alignment: Alignment.center),
+                    )
+                  : null,
           child: Scaffold(
             backgroundColor: backgroundColor,
             appBar: appBar,

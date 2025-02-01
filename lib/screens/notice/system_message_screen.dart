@@ -17,14 +17,10 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
-      appBar: BaseAppBar(
+      backgroundColor: Colors.transparent,
+      appBar: const BaseAppBar(
         title: '系统提示',
         color: BaseColors.white,
-        backgroundColor: Colors.purple,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.purple),
-        ),
       ),
       body: ExtendedNestedScrollView(
         onlyOneScrollInBody: true,

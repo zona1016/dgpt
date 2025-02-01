@@ -17,7 +17,7 @@ class LoginScreen extends GetView<LoginScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.customBackgroundImage,
+      backgroundImage: 'assets/images/custom/login_bg.png',
       appBar: BaseAppBar(
         title: '',
         color: Colors.transparent,
@@ -26,27 +26,15 @@ class LoginScreen extends GetView<LoginScreenController> {
           background: Container(color: Colors.transparent),
         ),
       ),
-      body: Stack(
-        children: [
-          Column(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        child: SingleChildScrollView(
+          child: Column(
             children: [
-              Expanded(child: Container()),
-              Image.asset(
-                  'assets/images/custom/login_bg.png'
-              )
+              _buildHeader()
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _buildHeader()
-                ],
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -66,16 +54,16 @@ class LoginScreen extends GetView<LoginScreenController> {
           ),
           Row(
             children: [
-              // GestureDetector(
-              //   onTap: () => Get.toNamed(AppRoutes.changePassword),
-              //   child: Text(
-              //     '忘记密码?',
-              //     style: fontSFProMedium.copyWith(
-              //       fontSize: 14,
-              //       color: BaseColors.lightGray,
-              //     ),
-              //   ),
-              // ),
+              GestureDetector(
+                onTap: () => Get.toNamed(AppRoutes.changePassword),
+                child: Text(
+                  '忘记密码?',
+                  style: fontSFProMedium.copyWith(
+                    fontSize: 14,
+                    color: BaseColors.lightGray,
+                  ),
+                ),
+              ),
               const Spacer(),
               GestureDetector(
                 onTap: () {
@@ -120,7 +108,7 @@ class LoginScreen extends GetView<LoginScreenController> {
           ),
         ),
         Text(
-          '请输入您的账号和密码以完成登录。',
+          '请输入您的邮箱和密码以完成登录。',
           style: fontDMRegular.copyWith(
             fontSize: 14,
             color: BaseColors.white,
@@ -136,7 +124,7 @@ class LoginScreen extends GetView<LoginScreenController> {
         Obx(
           () => BaseTextFormField(
             name: 'userName',
-            hintText: 'Account',
+            hintText: 'Email@.com',
             fillColor: controller.userName.isNotEmpty
                 ? BaseColors.white
                 : BaseColors.gray85.withOpacity(0.5),
@@ -152,7 +140,7 @@ class LoginScreen extends GetView<LoginScreenController> {
         Obx(
           () => BaseTextFormField(
             name: 'password',
-            hintText: 'Password',
+            hintText: '请输入您的密码',
             obscureText: true,
             style: fontDMRegular.copyWith(
                 color: controller.password.isNotEmpty
@@ -222,85 +210,6 @@ class LoginScreen extends GetView<LoginScreenController> {
           ],
         )
       ],
-    );
-  }
-
-  _buildBottom() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                color: Colors.white,
-                height: 1,
-                width: double.infinity,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding / 4),
-              child: Text(
-                '其他登录方式',
-                style: fontSFProMedium.copyWith(
-                  fontSize: 14,
-                  color: BaseColors.lightGray,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                color: BaseColors.white,
-                height: 1,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        Row(
-          children: [
-            Expanded(
-                child: GestureDetector(
-              onTap: () => controller.signInWithGoogle(),
-              child: _otherLogin(),
-            )),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Expanded(
-                child: GestureDetector(
-              onTap: () => controller.signInWithFacebook(),
-              child: _otherLogin(),
-            )),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Expanded(child: Container()),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Expanded(child: Container()),
-          ],
-        )
-      ],
-    );
-  }
-
-  _otherLogin() {
-    return Container(
-      height: 60,
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: BaseColors.weakTextColor),
-      child: Center(
-        child: Image.asset(
-          "assets/images/tab/home_inactive.png",
-          width: 20,
-        ),
-      ),
     );
   }
 }
