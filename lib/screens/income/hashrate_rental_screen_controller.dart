@@ -1,6 +1,6 @@
-import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
-import 'package:dgpt/widget/form/menu_item.dart';
 import 'package:get/get.dart';
 
 class HashrateRentalScreenBindings implements Bindings {
@@ -12,15 +12,17 @@ class HashrateRentalScreenBindings implements Bindings {
 }
 
 class HashrateRentalScreenController extends BaseController {
-  final AuthService authService = Get.find();
+  final AiPulseService authService = Get.find();
 
   var progress = 0.5.obs;  // 50% progress
   var totalUsers = 65.obs;
   var currentUsers = 3.obs;
+  RxBool dddd = false.obs;
 
   @override
   void onInit() {
     super.onInit();
+    userHashrate();
   }
 
   @override
@@ -32,5 +34,14 @@ class HashrateRentalScreenController extends BaseController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
+  }
+
+  userHashrate() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => authService.userHashrate());
+    if (result != null) {
+      print(result);
+    }
   }
 }

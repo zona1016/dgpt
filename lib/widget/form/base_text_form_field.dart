@@ -155,7 +155,9 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: Image.asset(
                         "assets/images/icons/ic_${showObscure ? "hide" : "show"}.png",
-                        width: 18),
+                        width: 18,
+                      color: showObscure ? BaseColors.secondPrimaryColor : null,
+                    ),
                   ),
                 )
                     : widget.suffixIcon,

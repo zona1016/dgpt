@@ -95,7 +95,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                 Get.back();
               },
               child: Image.asset(
-                "assets/images/custom/logo.png",
+                "assets/images/custom/register_back.png",
                 width: 36,
               ),
             )
@@ -123,21 +123,27 @@ class RegisterScreen extends GetView<RegisterScreenController> {
   }
 
   _buildNameAndPassword() {
-    return Column(
+    return Obx(() => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Obx(
-          () => BaseTextFormField(
-            name: 'userName',
-            hintText: 'Email@.com',
-            fillColor: controller.userName.isNotEmpty
-                ? BaseColors.white
-                : BaseColors.gray85.withOpacity(0.5),
-            radius: 10,
-            onChanged: (value) {
-              controller.userName.value = value ?? '';
-            },
-          ),
+        BaseTextFormField(
+          name: 'userName',
+          hintText: 'Email@.com',
+          fillColor: controller.email.isNotEmpty
+              ? BaseColors.white
+              : BaseColors.gray85.withOpacity(0.5),
+          radius: 10,
+          onChanged: (value) {
+            controller.email.value = value ?? '';
+          },
         ),
+        if (controller.error.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: defaultPadding / 2),
+            child: Text(controller.error.value,
+                style: fontRegular.copyWith(
+                    fontSize: 12, color: Colors.red)),
+          ),
         const SizedBox(
           height: defaultPadding,
         ),
@@ -169,7 +175,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
           },
         )
       ],
-    );
+    ));
   }
 
   _buildLogin() {
@@ -189,21 +195,21 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               '用户协议',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: Colors.purpleAccent,
+                color: BaseColors.purpleGlowColor,
               ),
             ),
             Text(
               '/',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: Colors.purpleAccent,
+                color: BaseColors.purpleGlowColor,
               ),
             ),
             Text(
               '隐私政策',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: Colors.purpleAccent,
+                color: BaseColors.purpleGlowColor,
               ),
             ),
             const Spacer(),
@@ -215,7 +221,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
         Obx(
           () => BaseButton(
             enabled: controller.password.isNotEmpty &&
-                    controller.userName.isNotEmpty &&
+                    controller.email.isNotEmpty &&
                     controller.passwordAgain.isNotEmpty &&
                     controller.password == controller.passwordAgain
                 ? true
@@ -223,7 +229,6 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             disabledDecoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/custom/register_btn_border.png'),
-                fit: BoxFit.cover
               )
             ),
             onPressed: () {

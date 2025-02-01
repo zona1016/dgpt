@@ -17,4 +17,7 @@ class ApiEndpoints {
   static const String aiPulseBanner = "/api/aiPulseBanner/page";
   static const String aiPulseDeposit = "/api/aiPulseDeposit/page";
 
+  static const String userHashrate = "/api/aiPulseUserHashrate/userHashrate";
+
+
 }

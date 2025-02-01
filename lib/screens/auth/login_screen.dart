@@ -55,7 +55,7 @@ class LoginScreen extends GetView<LoginScreenController> {
           Row(
             children: [
               GestureDetector(
-                onTap: () => Get.toNamed(AppRoutes.changePassword),
+                onTap: () => Get.toNamed(AppRoutes.forgetPassword),
                 child: Text(
                   '忘记密码?',
                   style: fontSFProMedium.copyWith(
@@ -119,44 +119,48 @@ class LoginScreen extends GetView<LoginScreenController> {
   }
 
   _buildNameAndPassword() {
-    return Column(
+    return Obx(() => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Obx(
-          () => BaseTextFormField(
-            name: 'userName',
-            hintText: 'Email@.com',
-            fillColor: controller.userName.isNotEmpty
-                ? BaseColors.white
-                : BaseColors.gray85.withOpacity(0.5),
-            radius: 10,
-            onChanged: (value) {
-              controller.userName.value = value ?? '';
-            },
-          ),
+        BaseTextFormField(
+          name: 'email',
+          hintText: 'Email@.com',
+          fillColor: controller.email.isNotEmpty
+              ? BaseColors.white
+              : BaseColors.gray85.withOpacity(0.5),
+          radius: 10,
+          onChanged: (value) {
+            controller.email.value = value ?? '';
+          },
         ),
+        if (controller.error.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: defaultPadding / 2),
+            child: Text(controller.error.value,
+                style: fontRegular.copyWith(
+                    fontSize: 12, color: Colors.red)),
+          ),
         const SizedBox(
           height: defaultPadding,
         ),
-        Obx(
-          () => BaseTextFormField(
-            name: 'password',
-            hintText: '请输入您的密码',
-            obscureText: true,
-            style: fontDMRegular.copyWith(
-                color: controller.password.isNotEmpty
-                    ? BaseColors.white
-                    : BaseColors.weakTextColor),
-            fillColor: controller.password.isNotEmpty
-                ? BaseColors.primaryColor
-                : BaseColors.gray85.withOpacity(0.5),
-            radius: 10,
-            onChanged: (value) {
-              controller.password.value = value ?? '';
-            },
-          ),
+        BaseTextFormField(
+          name: 'password',
+          hintText: '请输入您的密码',
+          obscureText: true,
+          style: fontDMRegular.copyWith(
+              color: controller.password.isNotEmpty
+                  ? BaseColors.white
+                  : BaseColors.weakTextColor),
+          fillColor: controller.password.isNotEmpty
+              ? BaseColors.primaryColor
+              : BaseColors.gray85.withOpacity(0.5),
+          radius: 10,
+          onChanged: (value) {
+            controller.password.value = value ?? '';
+          },
         )
       ],
-    );
+    ));
   }
 
   _buildLogin() {
@@ -165,7 +169,7 @@ class LoginScreen extends GetView<LoginScreenController> {
         Obx(
           () => BaseButton(
             enabled:
-                controller.password.isNotEmpty && controller.userName.isNotEmpty
+                controller.password.isNotEmpty && controller.email.isNotEmpty
                     ? true
                     : false,
             onPressed: () {
@@ -189,21 +193,21 @@ class LoginScreen extends GetView<LoginScreenController> {
               '用户协议',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: Colors.purpleAccent,
+                color: BaseColors.purpleGlowColor,
               ),
             ),
             Text(
               '/',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: Colors.purpleAccent,
+                color: BaseColors.purpleGlowColor,
               ),
             ),
             Text(
               '隐私政策',
               style: fontSFProMedium.copyWith(
                 fontSize: 14,
-                color: Colors.purpleAccent,
+                color: BaseColors.purpleGlowColor,
               ),
             ),
             const Spacer(),

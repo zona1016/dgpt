@@ -37,6 +37,7 @@ class BaseColors {
 
   static const pendingStatus = Color(0xE6EBC22A);
   static const rejectedStatus = Color(0xFFFF4104);
+  static const purpleGlowColor = Color(0xFFC5679E);
   static const approvedStatus = Color.fromARGB(255, 0, 255, 110);
 
   static const baseBackgroundImage = 'assets/images/custom/base_bg.png';

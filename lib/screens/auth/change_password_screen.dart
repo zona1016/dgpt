@@ -15,148 +15,147 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.deepPurple,
-      appBar: BaseAppBar(
-        title: '',
-        color: Colors.transparent,
-        backgroundColor: Colors.transparent,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.transparent),
-        ),
-      ),
+      backgroundColor: Colors.transparent,
+      backgroundImage: 'assets/images/custom/forget_password_bg.png',
+      appBar: _buildAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [_buildHeader()],
-          ),
+        child: Column(
+          children: [
+            Expanded(child: SingleChildScrollView(child: _buildHeader())),
+            _buildActionButton(),
+          ],
         ),
       ),
     );
   }
 
-  _buildHeader() {
+  BaseAppBar _buildAppBar() {
+    return BaseAppBar(
+      title: '',
+      color: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(color: Colors.transparent),
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeaderDetail(),
-          const SizedBox(
-            height: defaultPadding,
-          ),
-          _buildNameAndPassword(),
-          const SizedBox(
-            height: defaultPadding / 2,
-          ),
-          _buildChange(),
+          const SizedBox(height: defaultPadding),
+          _buildPasswordFields(),
+          const SizedBox(height: defaultPadding / 2),
         ],
       ),
     );
   }
 
-  _buildHeaderDetail() {
+  Widget _buildHeaderDetail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Expanded(child: Container()),
-            GestureDetector(
-              onTap: () => Get.back(),
-              child: Image.asset(
-                "assets/images/tab/home_inactive.png",
-                width: 40,
-              ),
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-          ],
-        ),
+        _buildBackButton(),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
             '重置密码',
-            style: fontDMBold.copyWith(
-              fontSize: 28,
-              color: BaseColors.white,
-            ),
+            style: fontDMBold.copyWith(fontSize: 28, color: BaseColors.white),
           ),
         ),
         Text(
           '为了您的资金及信息安全，请重置登录密码',
-          style: fontDMRegular.copyWith(
-            fontSize: 14,
-            color: BaseColors.white,
-          ),
+          style: fontDMRegular.copyWith(fontSize: 14, color: BaseColors.white),
         ),
       ],
     );
   }
 
-  _buildNameAndPassword() {
+  Widget _buildBackButton() {
+    return Row(
+      children: [
+        Expanded(child: Container()),
+        GestureDetector(
+          onTap: () => Get.back(),
+          child: Image.asset(
+            "assets/images/custom/register_back.png",
+            width: 40,
+          ),
+        ),
+        const SizedBox(width: defaultPadding),
+      ],
+    );
+  }
+
+  Widget _buildPasswordFields() {
     return Column(
       children: [
-        BaseTextFormField(
+        _buildPasswordField(
           name: 'passwordOld',
           hintText: '请输入您的旧密码',
-          radius: 10,
-          onChanged: (value) {
-            controller.passwordOld.value = value ?? '';
-          },
+          obscureText: true,
+          onChanged: (value) => controller.passwordOld.value = value ?? '',
         ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        BaseTextFormField(
+        const SizedBox(height: defaultPadding),
+        _buildPasswordField(
           name: 'passwordNew',
           hintText: '请输入您的新密码',
           obscureText: true,
-          radius: 10,
-          onChanged: (value) {
-            controller.passwordNew.value = value ?? '';
-          },
+          onChanged: (value) => controller.passwordNew.value = value ?? '',
         ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        BaseTextFormField(
+        const SizedBox(height: defaultPadding),
+        _buildPasswordField(
           name: 'passwordNewAgain',
           hintText: '请输入您的新密码',
           obscureText: true,
-          radius: 10,
-          onChanged: (value) {
-            controller.passwordNewAgain.value = value ?? '';
-          },
-          validator: (value) => controller.passwordNew.value != value
-              ? 'Password not match'
-              : null,
+          onChanged: (value) => controller.passwordNewAgain.value = value ?? '',
+          validator: (value) =>
+          controller.passwordNew.value != value ? 'Password not match' : null,
         ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
+        const SizedBox(height: defaultPadding),
       ],
     );
   }
 
-  _buildChange() {
-    return Column(
-      children: [
-        Obx(
+  Widget _buildPasswordField({
+    required String name,
+    required String hintText,
+    bool obscureText = false,
+    Function(String?)?  onChanged,
+    String? Function(String?)? validator,
+  }) {
+    return BaseTextFormField(
+      name: name,
+      hintText: hintText,
+      obscureText: obscureText,
+      radius: 10,
+      onChanged: onChanged,
+      validator: validator,
+    );
+  }
+
+  Widget _buildActionButton() {
+    return Obx(
           () => BaseButton(
-            enabled: controller.passwordNew.isNotEmpty &&
-                    controller.passwordOld.isNotEmpty &&
-                    controller.passwordNewAgain.isNotEmpty &&
-                    controller.passwordNew == controller.passwordNewAgain
-                ? true
-                : false,
-            onPressed: () {
-              controller.login();
-            },
-            text: '确认',
+        enabled: _isPasswordFieldsValid(),
+        disabledDecoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/custom/register_btn_border.png'),
           ),
         ),
-      ],
+        onPressed: () {},
+        text: '确认',
+      ),
     );
+  }
+
+  bool _isPasswordFieldsValid() {
+    return controller.passwordNew.isNotEmpty &&
+        controller.passwordNewAgain.isNotEmpty &&
+        controller.passwordNew.value == controller.passwordNewAgain.value;
   }
 }

@@ -21,11 +21,14 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
         title: '算力租借',
         color: BaseColors.white,
       ),
-      body: Container(
+      body: Obx(() => Container(
         padding: const EdgeInsets.all(defaultPadding),
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Text(
+                controller.dddd.value ? 'dsfsdf' : 'sdfasdf'
+              ),
               Container(
                 padding: const EdgeInsets.all(defaultPadding),
                 decoration: BoxDecoration(
@@ -70,9 +73,9 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                       height: 70,
                       width: 70,
                       decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/home/income_power_level.png')
-                        )
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/home/income_power_level.png')
+                          )
                       ),
                       child: Row(
                         children: [
@@ -227,7 +230,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 

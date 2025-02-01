@@ -6,6 +6,10 @@ import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
 import 'package:dgpt/screens/auth/change_password_screen.dart';
 import 'package:dgpt/screens/auth/change_password_screen_controller.dart';
+import 'package:dgpt/screens/auth/email_code_screen.dart';
+import 'package:dgpt/screens/auth/email_code_screen_controller.dart';
+import 'package:dgpt/screens/auth/forget_password_screen.dart';
+import 'package:dgpt/screens/auth/forget_password_screen_controller.dart';
 import 'package:dgpt/screens/auth/kyc_screen.dart';
 import 'package:dgpt/screens/auth/kyc_screen_controller.dart';
 import 'package:dgpt/screens/auth/login_screen.dart';
@@ -69,6 +73,8 @@ class AppRoutes {
   static String login = "/login";
   static String register = "/register";
   static String changePassword = "/change_password";
+  static String forgetPassword = "/forget_password";
+  static String emailCode = "/email_code";
 
   static String home = "/home";
   static String main = "/main";
@@ -127,6 +133,16 @@ class AppRoutes {
         name: changePassword,
         page: () => const ChangePasswordScreen(),
         binding: ChangePasswordScreenBindings()
+    ),
+    GetPage(
+        name: forgetPassword,
+        page: () => const ForgetPasswordScreen(),
+        binding: ForgetPasswordScreenBindings()
+    ),
+    GetPage(
+        name: emailCode,
+        page: () => const EmailCodeScreen(),
+        binding: EmailCodeScreenBindings()
     ),
     GetPage(
         name: main,

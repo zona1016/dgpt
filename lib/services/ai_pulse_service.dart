@@ -13,6 +13,8 @@ abstract class AiPulseService {
 
   Future<BaseResponse<PaginationResponse<Deposit>?>> aiPulseDeposit(
       {int page, int perPage});
+
+  Future<BaseResponse> userHashrate();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -52,6 +54,17 @@ class AiPulseServiceImpl extends AiPulseService {
               ? PaginationResponse<Deposit>.fromJson(
               data, (json) => Deposit.fromJson(json as Map<String, dynamic>))
               : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userHashrate() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userHashrate,
+          bearerToken: userController.token,
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
