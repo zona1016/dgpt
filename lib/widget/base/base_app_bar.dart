@@ -37,7 +37,21 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? Colors.white.withOpacity(0.1),
       iconTheme:
       IconThemeData(color: color ?? context.appTheme.textColor, size: 20),
-      flexibleSpace: flexibleSpace,
+      flexibleSpace: flexibleSpace ?? FlexibleSpaceBar(
+        background: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF5009C2),
+                Color(0xFF4A045C),
+              ],
+              stops: [0.0, 1.0],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ),// 圆角
+          ),
+        ),
+      ),
       elevation: 0,
       titleSpacing: titleSpacing,
       actions: actions,

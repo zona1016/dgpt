@@ -15,14 +15,10 @@ class IncomeScreen extends GetView<IncomeScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: 'assets/images/custom/income_bg.png',
-      appBar: BaseAppBar(
+      backgroundImage: BaseColors.incomeBackgroundImage,
+      appBar: const BaseAppBar(
         title: '收益分析',
         color: BaseColors.white,
-        backgroundColor: Colors.purple,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.purple),
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

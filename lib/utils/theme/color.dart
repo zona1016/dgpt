@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class BaseColors {
   static const primaryColor = Color(0xFF17CE92);
-  static const secondPrimaryColor = Color(0xFFFD7B19);
+  static const secondPrimaryColor = Color(0xFF00FFA3);
+  static const thirdPrimaryColor = Color(0xFF20AFFF);
   static const black = Color(0xFF1A1A1A);
   static const black15 = Color(0x261A1A1A);
   static const black40 = Color(0x661A1A1A);
@@ -39,4 +40,50 @@ class BaseColors {
 
   static const baseBackgroundImage = 'assets/images/custom/base_bg.png';
   static const customBackgroundImage = 'assets/images/custom/custom_bg.png';
+  static const incomeBackgroundImage = 'assets/images/custom/income_bg.png';
+
+  static LinearGradient baseLinearGradient = const LinearGradient(
+    colors: [
+      Color(0xFF05CCFF), // 0% 的颜色
+      Color(0xFF08C8FF), // 2% 的颜色
+      Color(0xFF4F7FFF), // 37% 的颜色
+      Color(0xFF834AFF), // 66% 的颜色
+      Color(0xFFA32AFF), // 88% 的颜色
+      Color(0xFFB01EFF), // 100% 的颜色
+    ],
+    stops: [0.0, 0.02, 0.37, 0.66, 0.88, 1.0], // 颜色停止点
+    begin: Alignment.centerLeft, // 渐变起点
+    end: Alignment.centerRight, // 渐变终点
+  );
+
+  static LinearGradient baseLinearGradientF = const LinearGradient(
+    colors: [
+      Color(0xFF05CCFF), // 0% 的颜色
+      Color(0xFF08C8FF), // 2% 的颜色
+      Color(0xFF4F7FFF), // 37% 的颜色
+      Color(0xFF834AFF), // 66% 的颜色
+      Color(0xFFA32AFF), // 88% 的颜色
+      Color(0xFFB01EFF), // 100% 的颜色
+    ],
+    stops: [0.0, 0.02, 0.37, 0.66, 0.88, 1.0], // 颜色停止点
+    begin: Alignment.centerRight, // 渐变起点
+    end: Alignment.centerLeft, // 渐变终点
+  );
+
+  static LinearGradient incomeLinearGradient =  LinearGradient(
+    colors: [
+      const Color(0xFFFFFFFF).withOpacity(0.4), // 0% 的颜色
+      const Color(0xFFD8E4F1).withOpacity(0.4), // 6% 的颜色
+      const Color(0xFFB6CEE5).withOpacity(0.4), // 13% 的颜色
+      const Color(0xFF9DBDDC).withOpacity(0.4), // 19% 的颜色
+      const Color(0xFF8FB3D7).withOpacity(0.4), // 25% 的颜色
+      const Color(0xFF8AB0D6).withOpacity(0.4), // 29% 的颜色
+      const Color(0xFF5E6EA9).withOpacity(0.4), // 65% 的颜色
+      const Color(0xFF8E6CA3).withOpacity(0.4), // 80% 的颜色
+      const Color(0xFFD16B9B).withOpacity(0.4), // 99% 的颜色
+    ],
+    stops: const [0.0, 0.06, 0.13, 0.19, 0.25, 0.29, 0.65, 0.80, 0.99], // 颜色停止点
+    begin: Alignment.centerLeft, // 渐变起点
+    end: Alignment.centerRight, // 渐变终点
+  );
 }

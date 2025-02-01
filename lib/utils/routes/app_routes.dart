@@ -18,6 +18,10 @@ import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/home/node_partner_screen.dart';
 import 'package:dgpt/screens/home/node_partner_screen_controller.dart';
+import 'package:dgpt/screens/income/hashrate_rental_detail_screen.dart';
+import 'package:dgpt/screens/income/hashrate_rental_detail_screen_controller.dart';
+import 'package:dgpt/screens/income/hashrate_rental_screen.dart';
+import 'package:dgpt/screens/income/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/income/income_screen.dart';
 import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
@@ -98,6 +102,8 @@ class AppRoutes {
   static String systemMessageDetail = "/system_message_detail";
 
   static String income = "/income";
+  static String hashrateRental = "/hashrate_rental";
+  static String hashrateRentalDetail = "/hashrate_rental_detail";
 
   static String kyc = "/kyc";
 
@@ -241,6 +247,16 @@ class AppRoutes {
         name: income,
         page: () => const IncomeScreen(),
         binding: IncomeScreenBindings()
+    ),
+    GetPage(
+        name: hashrateRental,
+        page: () => const HashrateRentalScreen(),
+        binding: HashrateRentalScreenBindings()
+    ),
+    GetPage(
+        name: hashrateRentalDetail,
+        page: () => const HashrateRentalDetailScreen(),
+        binding: HashrateRentalDetailScreenBindings()
     ),
     GetPage(
         name: qrCode,
