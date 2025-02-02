@@ -38,8 +38,8 @@ class RegisterScreenController extends BaseController {
 
     final result = await fetchData(
       request: () => authService.register(
-          account: 'zona9',
-          email: 'czzona27@gmail.com',
+          account: '',
+          email: email.value,
           phoneNation: '30',
           phone: '1234567',
           password: '12345678',

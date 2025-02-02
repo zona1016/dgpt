@@ -18,6 +18,9 @@ class ApiEndpoints {
   static const String aiPulseDeposit = "/api/aiPulseDeposit/page";
 
   static const String userHashrate = "/api/aiPulseUserHashrate/userHashrate";
+  static const String hashratePage = "/api/aiPulseHashrate/page";
+  static const String hashratePageDetail = "/api/aiPulseHashrate/detail";
 
+  static const String registerVerifyCode = "/api/aiPulseCommon/registerVerifyCode";
 
 }

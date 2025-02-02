@@ -47,10 +47,10 @@ class LoginScreenController extends BaseController {
 
   login() async {
 
-    if (!CustomFormBuilderValidators.isEmail(email.value ?? "")) {
-      error.value = tr('error.email');
-      return;
-    }
+    // if (!CustomFormBuilderValidators.isEmail(email.value ?? "")) {
+    //   error.value = tr('error.email');
+    //   return;
+    // }
 
     final result = await fetchData(
       request: () => authService.login(

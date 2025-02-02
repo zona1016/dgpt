@@ -1,4 +1,7 @@
+import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
@@ -11,11 +14,15 @@ class HashrateRentalDetailScreenBindings implements Bindings {
 }
 
 class HashrateRentalDetailScreenController extends BaseController {
-  final AuthService authService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
+
+  RxString dd = 'dd'.obs;
+  Rxn<HashratePageDetail> hashratePageDetail = Rxn<HashratePageDetail>();
 
   @override
   void onInit() {
     super.onInit();
+    userHashrate();
   }
 
   @override
@@ -27,5 +34,14 @@ class HashrateRentalDetailScreenController extends BaseController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
+  }
+
+  userHashrate() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.background,
+        request: () => aiPulseService.hashratePageDetail(id: args!.hasratePageInfo.id.toString()));
+    if (result != null) {
+      hashratePageDetail.value = result;
+    }
   }
 }

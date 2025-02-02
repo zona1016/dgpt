@@ -77,6 +77,13 @@ class ApiClientImpl implements ApiClient {
         containsMultipartFile = true;
       }
 
+      if (method == HttpMethod.get && data.isNotEmpty) {
+        final uri = Uri.parse(baseUrl + path);
+        final newUri = uri.replace(queryParameters: data.cast<String, String>());
+        path = newUri.toString();
+        data = {}; // GET 请求不需要再使用 request body 数据
+      }
+
       Response response;
       response = await dio.request(path,
           data: containsMultipartFile

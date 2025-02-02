@@ -1,3 +1,4 @@
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/services/user_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -16,8 +17,7 @@ class ForgetPasswordScreenBindings implements Bindings {
 }
 
 class ForgetPasswordScreenController extends BaseController {
-  final AuthService authService = Get.find();
-  final UserService userService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
   final UserController userController = Get.find();
 
   final RxString error = "".obs;
@@ -46,19 +46,11 @@ class ForgetPasswordScreenController extends BaseController {
       error.value = tr('error.email');
       return;
     }
-    // final result = await fetchData(
-    //     request: () => authService.sendEmailVerification(
-    //         type: 'bind-email', email: email!));
-    // if (result != null) {
-    //   if (navigate) {
-    //     // DialogUtils.showSuccessDialog(tr("setting.change_password.success"));
-    //     Get.toNamed(AppRoutes.enterOtp,
-    //         arguments:
-    //         VerifyScreenArgs(type: VerifyType.email, value: email ?? ""));
-    //     // formKey.currentState?.reset();
-    //   }
-    //   DialogUtils.showSuccessDialog(tr("msg.email_verification_code_sent"));
-    // }
+    final result = await fetchData(
+        request: () => aiPulseService.registerVerifyCode());
+    if (result != null) {
+      print(result);
+    }
   }
 
 }

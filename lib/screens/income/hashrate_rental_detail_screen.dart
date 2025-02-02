@@ -1,3 +1,4 @@
+import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/screens/income/hashrate_rental_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -6,6 +7,12 @@ import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+class HashrateRentalDetailScreenArgs {
+  final HasratePageInfo? hasratePageInfo;
+
+  HashrateRentalDetailScreenArgs({required this.hasratePageInfo});
+}
 
 class HashrateRentalDetailScreen extends GetView<HashrateRentalDetailScreenController> {
   const HashrateRentalDetailScreen({super.key});
@@ -19,7 +26,7 @@ class HashrateRentalDetailScreen extends GetView<HashrateRentalDetailScreenContr
         title: '产品详情',
         color: BaseColors.white,
       ),
-      body: Container(
+      body: Obx(() => Container(
         margin: const EdgeInsets.all(defaultPadding),
         padding: const EdgeInsets.all(defaultPadding),
         decoration: BoxDecoration(
@@ -33,6 +40,7 @@ class HashrateRentalDetailScreen extends GetView<HashrateRentalDetailScreenContr
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(controller.dd.value),
               _buildHeader(),
               const SizedBox(height: defaultPadding / 2,),
               _buildHardwareInfo(),
@@ -43,7 +51,7 @@ class HashrateRentalDetailScreen extends GetView<HashrateRentalDetailScreenContr
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 

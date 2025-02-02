@@ -34,18 +34,24 @@ class MainScreen extends GetView<MainScreenController> {
             children: [
               Container(
                 height: 80,
-                decoration: const BoxDecoration(
-                    color: BaseColors.black,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(35),
-                        topRight: Radius.circular(35)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Color(0x1A000000),
-                          offset: Offset(0, 0),
-                          spreadRadius: 2,
-                          blurRadius: 4)
-                    ]),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFF332D43),
+                    Color(0xFF0B0C0D),
+                  ],
+                ),)
+              ),
+              Positioned(
+                top: -20,
+                left: controller.selectedTabIndex.value * ((MediaQuery.of(context).size.width) / 5.0),
+                child: CustomPaint(
+                  size: Size(((MediaQuery.of(context).size.width) / 5.0), ((MediaQuery.of(context).size.width) / 5.0)), // 弧形大小
+                  painter: GradientBorderWithBlackFillPainter(),
+                ),
               ),
               Positioned(
                 top: -20,
@@ -101,14 +107,6 @@ class MainScreen extends GetView<MainScreenController> {
                   ],
                 ),
               ),
-              // Positioned(
-              //   top: -30,
-              //   left: controller.selectedTabIndex.value * ((MediaQuery.of(context).size.width) / 5.0),
-              //   child: CustomPaint(
-              //     size: Size(((MediaQuery.of(context).size.width) / 5.0), ((MediaQuery.of(context).size.width) / 5.0)), // 弧形大小
-              //     painter: DiamondPainter(),
-              //   ),
-              // ),
             ],
           ),
         );
@@ -183,6 +181,48 @@ class MainScreen extends GetView<MainScreenController> {
   }
 }
 
+class GradientBorderWithBlackFillPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // 定义渐变边框颜色
+    final borderPaint = Paint()
+      ..shader = LinearGradient(
+        colors: [Colors.blueAccent, Colors.purple.shade700],
+        begin: Alignment.topLeft,
+        end: Alignment.topRight,
+      ).createShader(Rect.fromLTRB(0, 0, size.width, size.height))
+      ..style = PaintingStyle.stroke // 设置为边框
+      ..strokeWidth = 2; // 设置边框宽度
+
+    // 定义填充颜色
+    final fillPaint = Paint()
+      ..shader = const LinearGradient(
+        colors: [Color(0xFF332D43),
+          Color(0xFF0B0C0D),],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(Rect.fromLTRB(0, 0, size.width, size.height))
+      ..style = PaintingStyle.fill; // 设置为填充
+
+    // 绘制弧形路径（反转到顶部）
+    Path path = Path()
+      ..moveTo(0, size.height / 4) // 三角形的顶部顶点
+      ..lineTo(size.width / 2, 0) // 左下角
+      ..lineTo(size.width, size.height / 4);
+
+    // 填充
+    canvas.drawPath(path, fillPaint);
+
+    // 边框
+    canvas.drawPath(path, borderPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
 class DiamondPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -202,73 +242,6 @@ class DiamondPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}
-
-class BottomNavPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.fill;
-
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width * 0.3, 0)
-      ..quadraticBezierTo(size.width * 0.5, -30, size.width * 0.7, 0) // 顶部弧形
-      ..lineTo(size.width, 0)
-      ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height)
-      ..close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
-}
-
-class BottomBarPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.deepPurple.shade700
-      ..style = PaintingStyle.fill
-      ..shader = LinearGradient(
-        colors: [Colors.purple, Colors.blueAccent],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
-
-    final path = Path();
-
-    // Start at bottom left corner
-    path.moveTo(0, size.height);
-
-    // Left edge
-    path.lineTo(0, size.height * 0.4);
-
-    // Curve upward
-    path.quadraticBezierTo(size.width * 0.3, -10, size.width * 0.5, size.height * 0.2);
-
-    // Curve downward back to normal
-    path.quadraticBezierTo(size.width * 0.7, -10, size.width, size.height * 0.4);
-
-    // Right edge
-    path.lineTo(size.width, size.height);
-
-    // Close the path
-    path.close();
-
-    canvas.drawShadow(path, Colors.black, 10.0, true);
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
   }
 }
