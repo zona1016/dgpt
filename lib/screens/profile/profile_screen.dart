@@ -54,347 +54,109 @@ class ProfileScreen extends GetView<ProfileScreenController> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: defaultPadding),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoutes.myAssets);
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: defaultPadding / 2,
-                          ),
-                          Text(
-                            'My Total Asset(USDT)',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: defaultPadding / 2,
-                          ),
-                          Text(
-                            '27614.272 USDT',
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.weakTextColor,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: defaultPadding / 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 120,
-                      child: BaseButton(
-                        text: 'Asset center',
-                        onPressed: () {},
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: defaultPadding),
-              Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    border:
-                        Border.all(width: 1, color: BaseColors.primaryColor),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Text(
-                              'Task',
-                              style: fontSFProMedium.copyWith(
-                                fontSize: 14,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Text(
-                              '27614.272 USDT',
-                              style: fontSFProMedium.copyWith(
-                                fontSize: 14,
-                                color: BaseColors.weakTextColor,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 2),
-                        width: 1,
-                        height: 25,
-                        color: BaseColors.primaryColor,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Text(
-                              'Vault',
-                              style: fontSFProMedium.copyWith(
-                                fontSize: 14,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Text(
-                              '27614.272 USDT',
-                              style: fontSFProMedium.copyWith(
-                                fontSize: 14,
-                                color: BaseColors.weakTextColor,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 2),
-                        width: 1,
-                        height: 25,
-                        color: BaseColors.primaryColor,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Text(
-                              'Withdrawal',
-                              style: fontSFProMedium.copyWith(
-                                fontSize: 14,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Text(
-                              '27614.272 USDT',
-                              style: fontSFProMedium.copyWith(
-                                fontSize: 14,
-                                color: BaseColors.weakTextColor,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
-              const SizedBox(height: defaultPadding),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.profileList.length,
-                itemBuilder: (_, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      switch (index) {
-                        case 0:
-                          Get.toNamed(AppRoutes.myDevice);
-                          break;
-                        case 1:
-                          break;
-                        case 2:
-                          Get.toNamed(AppRoutes.order);
-                          break;
-                        case 3:
-                          _showShare();
-                          break;
-                        case 4:
-                          Get.toNamed(AppRoutes.kyc);
-                          break;
-                        case 5:
-                          break;
-                        case 6:
-                          Get.toNamed(AppRoutes.taskCenter);
-                          break;
-                        case 7:
-                          break;
-                        case 8:
-                          break;
-                        case 9:
-                          Get.toNamed(AppRoutes.aboutUs);
-                          break;
-                        case 10:
-                          break;
-                        default:
-                      }
-                    },
-                    child: SizedBox(
-                      height: 44,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: defaultPadding / 4,
-                          ),
-                          Text(
-                            controller.profileList[index],
-                            style: fontSFProMedium.copyWith(
-                              fontSize: 14,
-                              color: BaseColors.white,
-                            ),
-                          ),
-                          Expanded(child: Container()),
-                          Icon(
-                            Icons.chevron_right_sharp,
-                            size: 24,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              )
-            ],
-          ),
-        ),
+      body: Column(
+        children: [
+          _buildTopCard(),
+          Expanded(child: _buildContentArea()),
+        ],
       ),
     );
   }
 
-  _showShare() async {
-    DialogUtils.showDGPTBaseDialog(
-        title: 'Test',
-        image: 'assets/images/tab/data_inactive.png',
-        topTitle: 'Share',
-        bottomTitle: 'Share',
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: defaultPadding / 2),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: defaultPadding / 2,
-                    vertical: defaultPadding / 4),
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  'UID: 38325008',
-                  style: fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-                ),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Container(
-                // padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.teal, width: 2),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Image.asset(
-                  "assets/images/tab/data_inactive.png",
-                  width: 150,
-                  height: 150,
-                ),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Invitation Links',
-                    style:
-                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-                  ),
-                  const SizedBox(height: defaultPadding / 4),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'https://dgpt.95test.vip/register?invitedcode=118344835',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: defaultPadding / 4,
-                      ),
-                      const Icon(
-                        Icons.copy,
-                        color: Colors.teal,
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: defaultPadding / 2),
-                  Text(
-                    'invitation code：',
-                    style:
-                        fontMedium.copyWith(color: Colors.blue, fontSize: 14),
-                  ),
-                  const SizedBox(height: defaultPadding / 4),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          '118344835',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: defaultPadding / 4,
-                      ),
-                      const Icon(
-                        Icons.copy,
-                        color: Colors.teal,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ],
+  Widget _buildTopCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF5009C2), Color(0xFF4A045C)],
+        ),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: [
+          const CircleAvatar(
+            radius: 40,
+            backgroundColor: Colors.white,
+            child: Icon(Icons.person, size: 40, color: Colors.grey),
           ),
-        ));
+          const SizedBox(height: 8),
+          const Text(
+            '我的总资产 (USDT)',
+            style: TextStyle(color: Colors.white54, fontSize: 14),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            '5,971.39 USDT',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContentArea() {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildInfoCard('USDT', '13045.62'),
+            _buildInfoCard('累计收益', '112.262'),
+          ],
+        ),
+        const SizedBox(height: 16),
+        GestureDetector(
+          onTap: () => Get.snackbar('信息', '前往算力订单'),
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.blueAccent,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Text(
+              '我的订单',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInfoCard(String title, String value) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(right: 8),
+        decoration: BoxDecoration(
+          color: Colors.black54,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(color: Colors.white54, fontSize: 14),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              value,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

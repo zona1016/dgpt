@@ -71,6 +71,16 @@ class BaseColors {
     stops: [0.0, 0.43, 0.79, 1.0],
   );
 
+  static LinearGradient appBarLinearGradient = const LinearGradient(
+  colors: [
+  Color(0xFF5009C2),
+  Color(0xFF4A045C),
+  ],
+  stops: [0.0, 1.0],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  );
+
   static LinearGradient baseLinearGradient = const LinearGradient(
     colors: [
       Color(0xFF05CCFF), // 0% 的颜色

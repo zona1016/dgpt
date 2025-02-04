@@ -20,6 +20,7 @@ class MainScreen extends GetView<MainScreenController> {
     return GetBuilder<MainScreenController>(
       builder: (_) {
         return BaseScreen(
+          safeAreaTop: controller.selectedTabIndex.value == 2,
           backgroundColor: Colors.transparent,
           backgroundImage: BaseColors.baseBackgroundImage,
           body: PageView(
@@ -32,24 +33,31 @@ class MainScreen extends GetView<MainScreenController> {
           bottomNavigationBar: Stack(
             clipBehavior: Clip.none,
             children: [
-              Container(
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF332D43),
-                    Color(0xFF0B0C0D),
-                  ],
-                ),)
-              ),
+              Obx(() => Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: controller.selectedTabIndex.value == 4
+                        ? const BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25))
+                        : BorderRadius.circular(25),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xFF332D43),
+                        Color(0xFF0B0C0D),
+                      ],
+                    ),
+                  ))),
               Positioned(
                 top: -20,
-                left: controller.selectedTabIndex.value * ((MediaQuery.of(context).size.width) / 5.0),
+                left: controller.selectedTabIndex.value *
+                    ((MediaQuery.of(context).size.width) / 5.0),
                 child: CustomPaint(
-                  size: Size(((MediaQuery.of(context).size.width) / 5.0), ((MediaQuery.of(context).size.width) / 5.0)), // 弧形大小
+                  size: Size(((MediaQuery.of(context).size.width) / 5.0),
+                      ((MediaQuery.of(context).size.width) / 5.0)), // 弧形大小
                   painter: GradientBorderWithBlackFillPainter(),
                 ),
               ),
@@ -69,9 +77,9 @@ class MainScreen extends GetView<MainScreenController> {
                   unselectedItemColor: BaseColors.lightGray,
                   // 未选中项颜色
                   selectedLabelStyle:
-                      const TextStyle(fontWeight: FontWeight.bold),
+                  const TextStyle(fontWeight: FontWeight.bold),
                   unselectedLabelStyle:
-                      const TextStyle(fontWeight: FontWeight.normal),
+                  const TextStyle(fontWeight: FontWeight.normal),
                   currentIndex: controller.selectedTabIndex.value,
                   onTap: (value) {
                     if (value == 0) {
@@ -98,7 +106,7 @@ class MainScreen extends GetView<MainScreenController> {
                     _bottomNavigationBarItem(
                         title: '交易明细',
                         inactiveImg:
-                            'assets/images/tab/transaction_inactive.png',
+                        'assets/images/tab/transaction_inactive.png',
                         activeImg: 'assets/images/tab/transaction_active.png'),
                     _bottomNavigationBarItem(
                         title: '个人资料',
@@ -135,7 +143,8 @@ class MainScreen extends GetView<MainScreenController> {
             ),
             Text(
               title,
-              style: fontDMMedium.copyWith(color: BaseColors.weakTextColor, fontSize: 12),
+              style: fontDMMedium.copyWith(
+                  color: BaseColors.weakTextColor, fontSize: 12),
             ),
             const Spacer(),
           ],
@@ -146,8 +155,8 @@ class MainScreen extends GetView<MainScreenController> {
         height: 64,
         width: Get.width / 5.0,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/tab/tab_seleted_bg.png')),
+          image: DecorationImage(
+              image: AssetImage('assets/images/tab/tab_seleted_bg.png')),
         ),
         child: Column(
           children: [
@@ -197,8 +206,10 @@ class GradientBorderWithBlackFillPainter extends CustomPainter {
     // 定义填充颜色
     final fillPaint = Paint()
       ..shader = const LinearGradient(
-        colors: [Color(0xFF332D43),
-          Color(0xFF0B0C0D),],
+        colors: [
+          Color(0xFF332D43),
+          Color(0xFF0B0C0D),
+        ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ).createShader(Rect.fromLTRB(0, 0, size.width, size.height))
@@ -206,38 +217,18 @@ class GradientBorderWithBlackFillPainter extends CustomPainter {
 
     // 绘制弧形路径（反转到顶部）
     Path path = Path()
-      ..moveTo(0, size.height / 4) // 三角形的顶部顶点
-      ..lineTo(size.width / 2, 0) // 左下角
-      ..lineTo(size.width, size.height / 4);
+      ..moveTo(0, size.height * 2 / 8) // 左侧起点
+      ..arcToPoint(
+        Offset(size.width, size.height * 2 / 8), // 终点
+        radius: Radius.elliptical(size.width * 1.2, size.width * 3), // 将纵向半径设置为0，趋近直线
+        clockwise: true,
+      );
 
     // 填充
     canvas.drawPath(path, fillPaint);
 
     // 边框
     canvas.drawPath(path, borderPaint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}
-
-class DiamondPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = Colors.purple // 菱形颜色
-      ..style = PaintingStyle.fill;
-
-    final Path path = Path()
-      // 定义菱形的四个角的坐标
-      ..moveTo(size.width / 2, 0) // 顶点
-      ..lineTo(size.width, size.height / 2) // 右侧点
-      ..lineTo(0, size.height / 2) // 左侧点
-      ..close(); // 连接回起点，完成菱形
-
-    canvas.drawPath(path, paint);
   }
 
   @override

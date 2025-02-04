@@ -16,185 +16,243 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
+      safeAreaTop: false,
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      body: Obx(() => Container(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            child: BaseSmartRefresher(
-              refreshController: controller.refreshController,
-              enableLoadMore: true,
-              uiState: controller.uiState.value,
-              isEmpty: controller.hasratePageList.isEmpty,
-              onPullToRefresh: (loadingState) {
-                controller.hashratePage(loadingState: loadingState);
-              },
-              onLoadMore: (loadingState) {
-                controller.hashratePage(loadingState: loadingState);
-              },
-              childBuilder: (context, physics) {
-                return CustomScrollView(
-                  physics: physics,
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          SafeArea(
-                            child: Text(
-                              '算力租借',
-                              style: fontBold.copyWith(
-                                  fontSize: 20, color: BaseColors.white),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(top: defaultPadding),
-                            padding: const EdgeInsets.all(defaultPadding),
-                            decoration: BoxDecoration(
-                              gradient: BaseColors.incomeLinearGradient,
-                              borderRadius: BorderRadius.circular(10), // 圆角
-                            ),
+      body: Obx(() => Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).padding.top + 44,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                gradient: BaseColors.appBarLinearGradient
+            ),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: defaultPadding / 2),
+                child: Text(
+                  '算力租借',
+                  style: fontBold.copyWith(
+                      fontSize: 20, color: BaseColors.white),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: BaseSmartRefresher(
+                    refreshController: controller.refreshController,
+                    enableLoadMore: true,
+                    uiState: controller.uiState.value,
+                    isEmpty: controller.hasratePageList.isEmpty,
+                    onPullToRefresh: (loadingState) {
+                      controller.hashratePage(loadingState: loadingState);
+                    },
+                    onLoadMore: (loadingState) {
+                      controller.hashratePage(loadingState: loadingState);
+                    },
+                    childBuilder: (context, physics) {
+                      return CustomScrollView(
+                        physics: physics,
+                        slivers: [
+                          SliverToBoxAdapter(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      '算力等级',
-                                      style: fontDMBold.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    Expanded(child: Container()),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: defaultPadding / 5),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              defaultPadding),
-                                          border: Border.all(
-                                              color:
-                                                  BaseColors.secondPrimaryColor,
-                                              width: 1),
-                                          color: BaseColors.secondPrimaryColor
-                                              .withOpacity(0.1)),
-                                      child: Text(
-                                        '进行中',
-                                        style: fontDMRegular.copyWith(
-                                          color: BaseColors.secondPrimaryColor,
-                                          fontSize: 10,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: defaultPadding,
-                                ),
                                 Container(
-                                  height: 70,
-                                  width: 70,
-                                  decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/home/income_power_level.png'))),
-                                  child: Row(
-                                    children: [
-                                      const Spacer(),
-                                      Text(
-                                        '3',
-                                        style: fontDMBold.copyWith(
-                                          color: BaseColors.white,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                      Image.asset(
-                                        'assets/images/home/income_power_icon.png',
-                                        width: 13,
-                                        height: 13,
-                                      ),
-                                      const Spacer(),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: defaultPadding,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '进行中',
-                                      style: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Expanded(child: Container()),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(AppRoutes.income);
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: defaultPadding / 2),
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                defaultPadding),
-                                            color:
-                                                BaseColors.secondPrimaryColor),
-                                        child: Text(
-                                          '分析',
-                                          style: fontDMBold.copyWith(
-                                            color: BaseColors.white,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: defaultPadding / 4,
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 10,
+                                  padding: const EdgeInsets.all(defaultPadding),
                                   decoration: BoxDecoration(
-                                    color:
-                                        BaseColors.whiteGray3.withOpacity(0.3),
-                                    borderRadius: BorderRadius.circular(5),
+                                    gradient: BaseColors.incomeLinearGradient,
+                                    borderRadius: BorderRadius.circular(10), // 圆角
                                   ),
-                                  child: Stack(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      AnimatedContainer(
-                                        width: (Get.size.width -
-                                                defaultPadding * 4) *
-                                            .2,
-                                        duration:
-                                            const Duration(milliseconds: 300),
-                                        decoration: BoxDecoration(
-                                          gradient: const LinearGradient(
-                                            colors: [
-                                              Color(0xFF05CCFF), // 0% 的颜色
-                                              Color(0xFF08C8FF), // 2% 的颜色
-                                              Color(0xFF4F7FFF), // 37% 的颜色
-                                              Color(0xFF834AFF), // 66% 的颜色
-                                              Color(0xFFA32AFF), // 88% 的颜色
-                                              Color(0xFFB01EFF), // 100% 的颜色
-                                            ],
-                                            stops: [
-                                              0.0,
-                                              0.02,
-                                              0.37,
-                                              0.66,
-                                              0.88,
-                                              1.0
-                                            ], // 颜色停止点
-                                            begin: Alignment.centerLeft, // 渐变起点
-                                            end: Alignment.centerRight, // 渐变终点
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '算力等级',
+                                            style: fontDMBold.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 16,
+                                            ),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
+                                          Expanded(child: Container()),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: defaultPadding / 5),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(
+                                                    defaultPadding),
+                                                border: Border.all(
+                                                    color:
+                                                        BaseColors.secondPrimaryColor,
+                                                    width: 1),
+                                                color: BaseColors.secondPrimaryColor
+                                                    .withOpacity(0.1)),
+                                            child: Text(
+                                              '进行中',
+                                              style: fontDMRegular.copyWith(
+                                                color: BaseColors.secondPrimaryColor,
+                                                fontSize: 10,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: defaultPadding,
+                                      ),
+                                      Container(
+                                        height: 70,
+                                        width: 70,
+                                        decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/images/home/income_power_level.png'))),
+                                        child: Row(
+                                          children: [
+                                            const Spacer(),
+                                            Text(
+                                              '3',
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Image.asset(
+                                              'assets/images/home/income_power_icon.png',
+                                              width: 13,
+                                              height: 13,
+                                            ),
+                                            const Spacer(),
+                                          ],
                                         ),
+                                      ),
+                                      const SizedBox(
+                                        height: defaultPadding,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '进行中',
+                                            style: fontDMMedium.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.toNamed(AppRoutes.income);
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: defaultPadding / 2),
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(
+                                                      defaultPadding),
+                                                  color:
+                                                      BaseColors.secondPrimaryColor),
+                                              child: Text(
+                                                '分析',
+                                                style: fontDMBold.copyWith(
+                                                  color: BaseColors.white,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: defaultPadding / 4,
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        height: 10,
+                                        decoration: BoxDecoration(
+                                          color:
+                                              BaseColors.whiteGray3.withOpacity(0.3),
+                                          borderRadius: BorderRadius.circular(5),
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            AnimatedContainer(
+                                              width: (Get.size.width -
+                                                      defaultPadding * 4) *
+                                                  .2,
+                                              duration:
+                                                  const Duration(milliseconds: 300),
+                                              decoration: BoxDecoration(
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    Color(0xFF05CCFF), // 0% 的颜色
+                                                    Color(0xFF08C8FF), // 2% 的颜色
+                                                    Color(0xFF4F7FFF), // 37% 的颜色
+                                                    Color(0xFF834AFF), // 66% 的颜色
+                                                    Color(0xFFA32AFF), // 88% 的颜色
+                                                    Color(0xFFB01EFF), // 100% 的颜色
+                                                  ],
+                                                  stops: [
+                                                    0.0,
+                                                    0.02,
+                                                    0.37,
+                                                    0.66,
+                                                    0.88,
+                                                    1.0
+                                                  ], // 颜色停止点
+                                                  begin: Alignment.centerLeft, // 渐变起点
+                                                  end: Alignment.centerRight, // 渐变终点
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: defaultPadding,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '帮助3位好友成为等级3',
+                                            style: fontDMMedium.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                          Text(
+                                            '0/3',
+                                            style: fontDMMedium.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '团队人数',
+                                            style: fontDMMedium.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                          Expanded(child: Container()),
+                                          Text(
+                                            '0/65',
+                                            style: fontDMMedium.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -202,89 +260,48 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                 const SizedBox(
                                   height: defaultPadding,
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '帮助3位好友成为等级3',
-                                      style: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Expanded(child: Container()),
-                                    Text(
-                                      '0/3',
-                                      style: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
+                                Text(
+                                  '产品详情',
+                                  style: fontDMBold.copyWith(
+                                    color: BaseColors.white,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '团队人数',
-                                      style: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Expanded(child: Container()),
-                                    Text(
-                                      '0/65',
-                                      style: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
+                                const SizedBox(
+                                  height: defaultPadding,
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: defaultPadding,
-                          ),
-                          Text(
-                            '产品详情',
-                            style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 18,
+                          SliverGrid.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: defaultPadding,
+                              mainAxisSpacing: defaultPadding,
+                              childAspectRatio: 0.45,
                             ),
-                          ),
-                          const SizedBox(
-                            height: defaultPadding,
-                          ),
+                            itemCount: controller.hasratePageList.length,
+                            // Number of items
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.hashrateRentalDetail,
+                                      arguments: HashrateRentalDetailScreenArgs(
+                                          hasratePageInfo: controller.hasratePageList[index]));
+                                },
+                                child: _rentalItem(),
+                              );
+                            },
+                          )
                         ],
-                      ),
-                    ),
-                    SliverGrid.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: defaultPadding,
-                        mainAxisSpacing: defaultPadding,
-                        childAspectRatio: 0.45,
-                      ),
-                      itemCount: controller.hasratePageList.length,
-                      // Number of items
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.hashrateRentalDetail,
-                                arguments: HashrateRentalDetailScreenArgs(
-                                    hasratePageInfo: controller.hasratePageList[index]));
-                          },
-                          child: _rentalItem(),
-                        );
-                      },
-                    )
-                  ],
-                );
-              },
-            ),
-          )),
+                      );
+                    },
+                  ),
+                ),
+          ),
+        ],
+      )),
     );
   }
 

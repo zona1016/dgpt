@@ -14,73 +14,95 @@ class IncomeScreen extends GetView<IncomeScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
+      safeAreaTop: false,
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SafeArea(
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).padding.top + 44,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                gradient: BaseColors.appBarLinearGradient
+            ),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: defaultPadding / 2),
                 child: Text(
                   '收益分析',
                   style: fontBold.copyWith(
                       fontSize: 20, color: BaseColors.white),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: defaultPadding),
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Colors.greenAccent, Colors.green],
-                  ),
-                  borderRadius: BorderRadius.circular(defaultPadding),
-                ),
-                child: Center(
-                  child: Text(
-                    '总收益 \$XXX,XXX',
-                    style: fontDMBold.copyWith(
-                        color: BaseColors.white, fontSize: 20),
-                  ),
-                ),
-              ),
-              const SizedBox(height: defaultPadding,),
-              _circular(),
-              const SizedBox(height: defaultPadding,),
-              _makeProfitAndNodePartner(context, onTap: (index) {
-                if (index == 0) {
-                  Get.toNamed(AppRoutes.analyze);
-                } else {
-                  Get.toNamed(AppRoutes.nodePartner);
-                }
-              }),
-              const SizedBox(height: defaultPadding),
-              Text(
-                '收益明细',
-                style: fontDMBold.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 18
-                ),
-              ),
-              const SizedBox(height: defaultPadding,),
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 2,
-                physics: const NeverScrollableScrollPhysics(),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  _buildIncomeCard('算力租借', 100),
-                  _buildIncomeCard('团队算力奖', 200),
-                  _buildIncomeCard('邀请奖', 300),
-                  _buildIncomeCard('薪资', 400),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: defaultPadding),
+                          padding: const EdgeInsets.all(defaultPadding),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Colors.greenAccent, Colors.green],
+                            ),
+                            borderRadius: BorderRadius.circular(defaultPadding),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '总收益 \$XXX,XXX',
+                              style: fontDMBold.copyWith(
+                                  color: BaseColors.white, fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: defaultPadding,),
+                        _circular(),
+                        const SizedBox(height: defaultPadding,),
+                        _makeProfitAndNodePartner(context, onTap: (index) {
+                          if (index == 0) {
+                            Get.toNamed(AppRoutes.analyze);
+                          } else {
+                            Get.toNamed(AppRoutes.nodePartner);
+                          }
+                        }),
+                        const SizedBox(height: defaultPadding),
+                        Text(
+                          '收益明细',
+                          style: fontDMBold.copyWith(
+                              color: BaseColors.white,
+                              fontSize: 18
+                          ),
+                        ),
+                        const SizedBox(height: defaultPadding,),
+                        GridView.count(
+                          shrinkWrap: true,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          childAspectRatio: 2,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            _buildIncomeCard('算力租借', 100),
+                            _buildIncomeCard('团队算力奖', 200),
+                            _buildIncomeCard('邀请奖', 300),
+                            _buildIncomeCard('薪资', 400),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
