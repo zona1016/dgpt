@@ -18,12 +18,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '算力租借',
-        color: BaseColors.white,
-      ),
       body: Obx(() => Container(
-            padding: const EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: BaseSmartRefresher(
               refreshController: controller.refreshController,
               enableLoadMore: true,
@@ -42,7 +38,15 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
+                          SafeArea(
+                            child: Text(
+                              '算力租借',
+                              style: fontBold.copyWith(
+                                  fontSize: 20, color: BaseColors.white),
+                            ),
+                          ),
                           Container(
+                            margin: const EdgeInsets.only(top: defaultPadding),
                             padding: const EdgeInsets.all(defaultPadding),
                             decoration: BoxDecoration(
                               gradient: BaseColors.incomeLinearGradient,

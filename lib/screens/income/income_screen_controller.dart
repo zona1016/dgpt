@@ -1,5 +1,7 @@
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +15,7 @@ class IncomeScreenBindings implements Bindings {
 
 class IncomeScreenController extends BaseController {
 
-  final AuthService authService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
 
   final double circleHeight = 250.0;
   final double textHeight = 25.0;
@@ -34,6 +36,7 @@ class IncomeScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    userIncomeTotal();
   }
 
   @override
@@ -47,4 +50,12 @@ class IncomeScreenController extends BaseController {
     super.onReady();
   }
 
+  userIncomeTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.userIncomeTotal());
+    if (result != null) {
+      print(result);
+    }
+  }
 }

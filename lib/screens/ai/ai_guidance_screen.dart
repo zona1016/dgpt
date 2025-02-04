@@ -14,7 +14,8 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.customBackgroundImage,
       body: Obx(() => Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -22,7 +23,7 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
           children: [
             const SizedBox(height: defaultPadding * 3,),
             Image.asset(
-              "assets/images/tab/home_inactive.png",
+              "assets/images/custom/logo.png",
               width: 80,
             ),
             const SizedBox(height: defaultPadding * 2,),
@@ -31,9 +32,9 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
               duration: const Duration(seconds: 1),  // 动画持续 1 秒
               curve: Curves.easeInOut,  // 动画曲线
               child: Text(
-                'Welcome to \nDGPT-AI',
-                style: fontSFProBold.copyWith(
-                  fontSize: 20,
+                '欢迎使用\nAIP-AI',
+                style: fontDMBold.copyWith(
+                  fontSize: 32,
                   color: BaseColors.white,
                 ),
                 textAlign: TextAlign.center,
@@ -45,9 +46,9 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
               duration: const Duration(seconds: 1),  // 动画持续 1 秒
               curve: Curves.easeInOut,  // 动画曲线
               child: Text(
-                'Ask anything, get your answer',
-                style: fontSFProBold.copyWith(
-                  fontSize: 14,
+                '请尽管发问任何问题！',
+                style: fontDMBold.copyWith(
+                  fontSize: 18,
                   color: BaseColors.white,
                 ),
                 textAlign: TextAlign.center,
@@ -59,22 +60,9 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
               duration: const Duration(seconds: 1),  // 动画持续 1 秒
               curve: Curves.easeInOut,  // 动画曲线
               child: Image.asset(
-                "assets/images/tab/home_inactive.png",
-                width: 44,
-              ),
-            ),
-            const SizedBox(height: defaultPadding,),
-            AnimatedOpacity(
-              opacity: controller.otherVisible.value ? 1.0 : 0.0,  // 根据 _isVisible 来控制透明度
-              duration: const Duration(seconds: 1),  // 动画持续 1 秒
-              curve: Curves.easeInOut,  // 动画曲线
-              child: Text(
-                'Examples',
-                style: fontSFProBold.copyWith(
-                  fontSize: 20,
-                  color: BaseColors.white,
-                ),
-                textAlign: TextAlign.center,
+                "assets/images/custom/ai_logo.png",
+                width: 180,
+                height: 250,
               ),
             ),
             const SizedBox(height: defaultPadding * 3,),
@@ -84,9 +72,8 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
                 duration: const Duration(seconds: 1),  // 动画持续 1 秒
                 curve: Curves.easeInOut,  // 动画曲线
                 child: BaseButton(
-                  text: 'Next',
+                  text: '下一步',
                   onPressed: () => Get.toNamed(AppRoutes.aiStart),
-                  type: BaseButtonType.golden,
                 ),
               ),
             ),

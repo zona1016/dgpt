@@ -16,17 +16,20 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '收益分析',
-        color: BaseColors.white,
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: defaultPadding,),
+              SafeArea(
+                child: Text(
+                  '收益分析',
+                  style: fontBold.copyWith(
+                      fontSize: 20, color: BaseColors.white),
+                ),
+              ),
               Container(
+                margin: const EdgeInsets.only(top: defaultPadding),
                 padding: const EdgeInsets.all(defaultPadding),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(

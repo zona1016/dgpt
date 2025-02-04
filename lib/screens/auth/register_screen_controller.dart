@@ -38,13 +38,13 @@ class RegisterScreenController extends BaseController {
 
     final result = await fetchData(
       request: () => authService.register(
-          account: '',
+          account: email.value,
           email: email.value,
-          phoneNation: '30',
-          phone: '1234567',
+          phoneNation: '',
+          phone: '',
           password: '12345678',
           confirmPassword: '12345678',
-          inviteCode: 'RTGU1gzWD6'),
+          inviteCode: ''),
     );
     if (result != null) {
       DialogUtils.showLoginSuccess(

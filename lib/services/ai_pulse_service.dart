@@ -4,6 +4,7 @@ import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/api/base_response.dart';
 import 'package:dgpt/utils/constants/api_endpoints.dart';
@@ -26,6 +27,8 @@ abstract class AiPulseService {
       {int page = 1, int perPage = 20});
 
   Future<BaseResponse> registerVerifyCode();
+
+  Future<BaseResponse<UserIncomeTotal?>> userIncomeTotal();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -36,7 +39,7 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse<PaginationResponse<Banner>?>> aiPulseBanner(
       {int page = 1, int perPage = 20}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseBanner,
+      return await _apiClient.request(ApiEndpoints.aiPulseBannerPage,
           bearerToken: userController.token,
           data: {
             'page': page,
@@ -55,7 +58,7 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse<PaginationResponse<Deposit>?>> aiPulseDeposit(
       {int page = 1, int perPage = 20}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseDeposit,
+      return await _apiClient.request(ApiEndpoints.aiPulseDepositPage,
           bearerToken: userController.token,
           data: {
             'page': page,
@@ -73,7 +76,7 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse<PowerInfo?>> userHashrate() async {
     try {
-      return await _apiClient.request(ApiEndpoints.userHashrate,
+      return await _apiClient.request(ApiEndpoints.aiPulseUserHashrateUserHashrate,
           bearerToken: userController.token,
           deserializer: (data) =>
               data != null ? PowerInfo.fromJson(data) : null);
@@ -85,7 +88,7 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> registerVerifyCode() async {
     try {
-      return await _apiClient.request(ApiEndpoints.registerVerifyCode,
+      return await _apiClient.request(ApiEndpoints.aiPulseCommonRegisterVerifyCode,
           bearerToken: userController.token, deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
@@ -96,7 +99,7 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse<HashratePageDetail?>> hashratePageDetail(
       {required String id}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.hashratePageDetail,
+      return await _apiClient.request(ApiEndpoints.aiPulseHashrateDetail,
           method: HttpMethod.get,
           bearerToken: userController.token,
           data: {'id': id},
@@ -111,7 +114,7 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse<PaginationResponse<HasratePageInfo>?>> hashratePage(
       {int page = 1, int perPage = 20}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.hashratePage,
+      return await _apiClient.request(ApiEndpoints.aiPulseHashratePage,
           bearerToken: userController.token,
           data: {
             'page': page,
@@ -123,6 +126,18 @@ class AiPulseServiceImpl extends AiPulseService {
                   (json) =>
                       HasratePageInfo.fromJson(json as Map<String, dynamic>))
               : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<UserIncomeTotal?>> userIncomeTotal() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseFlowIncomeTotal,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+          data != null ? UserIncomeTotal.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

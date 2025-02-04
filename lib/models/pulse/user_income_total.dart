@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'user_income_total.freezed.dart';
 part 'user_income_total.g.dart';
 
-@JsonSerializable()
-class UserIncomeTotal extends Object {
+@freezed
+class UserIncomeTotal with _$UserIncomeTotal {
+  factory UserIncomeTotal({
+    @JsonKey(name: 'today') @Default(0) int today,
+    @JsonKey(name: 'total') @Default(0) int total,
+  }) = _UserIncomeTotal;
 
-  @JsonKey(name: 'today', defaultValue: 0)
-  int? today;
-
-  @JsonKey(name: 'total', defaultValue: 0)
-  int? total;
-
-  UserIncomeTotal(this.today,this.total,);
-
-  factory UserIncomeTotal.fromJson(Map<String, dynamic> srcJson) => _$UserIncomeTotalFromJson(srcJson);
-
+  factory UserIncomeTotal.fromJson(Map<String, dynamic> json) =>
+      _$UserIncomeTotalFromJson(json);
 }
-
-

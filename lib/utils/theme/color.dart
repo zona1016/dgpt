@@ -43,6 +43,7 @@ class BaseColors {
   static const baseBackgroundImage = 'assets/images/custom/base_bg.png';
   static const customBackgroundImage = 'assets/images/custom/custom_bg.png';
   static const incomeBackgroundImage = 'assets/images/custom/income_bg.png';
+  static const incomeTabBackgroundImage = 'assets/images/custom/income_bg_tab.png';
 
   static const baseButtonLinearGradient = LinearGradient(
     colors: [
@@ -56,6 +57,18 @@ class BaseColors {
     stops: [0.0, 0.2, 0.43, 0.63, 0.82, 1.0], // 颜色停止点
     begin: Alignment.centerLeft, // 渐变起点
     end: Alignment.centerRight, // 渐变终点
+  );
+
+  static LinearGradient aiMyLinearGradient = const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF05CCFF),
+      Color(0xFF04A2FF),
+      Color(0xFF0486FF),
+      Color(0xFF047CFF),
+    ],
+    stops: [0.0, 0.43, 0.79, 1.0],
   );
 
   static LinearGradient baseLinearGradient = const LinearGradient(

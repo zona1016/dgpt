@@ -41,7 +41,7 @@ class AuthServiceImpl extends AuthService {
         String? codeId,
         String? code}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.login,
+      return await _apiClient.request(ApiEndpoints.userLogin,
           data: {
             'account': account,
             'password': password,
@@ -67,7 +67,7 @@ class AuthServiceImpl extends AuthService {
       required String confirmPassword,
       String? inviteCode}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.register,
+      return await _apiClient.request(ApiEndpoints.userRegister,
           data: {
             'account': account,
             'email': email,

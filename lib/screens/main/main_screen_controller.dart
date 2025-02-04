@@ -1,9 +1,9 @@
+import 'package:dgpt/screens/income/hashrate_rental_screen_controller.dart';
+import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/utils/controllers/base_full_lifecycle_controller.dart';
 import 'package:dgpt/screens/ai/ai_screen_controller.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
-import 'package:dgpt/screens/power/power_screen_controller.dart';
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
-import 'package:dgpt/screens/task/task_screen_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,8 +15,8 @@ class MainScreenBindings implements Bindings {
         .lazyPut(() => MainScreenController(), permanent: false, fenix: false);
     HomeScreenBindings().dependencies();
     AiScreenBindings().dependencies();
-    PowerScreenBindings().dependencies();
-    TaskScreenBindings().dependencies();
+    IncomeScreenBindings().dependencies();
+    HashrateRentalScreenBindings().dependencies();
     ProfileScreenBindings().dependencies();
   }
 }

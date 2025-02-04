@@ -1,9 +1,9 @@
 import 'package:dgpt/screens/ai/ai_screen.dart';
 import 'package:dgpt/screens/home/home_screen.dart';
+import 'package:dgpt/screens/income/hashrate_rental_screen.dart';
+import 'package:dgpt/screens/income/income_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
-import 'package:dgpt/screens/power/power_screen.dart';
 import 'package:dgpt/screens/profile/profile_screen.dart';
-import 'package:dgpt/screens/task/task_screen.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -173,9 +173,9 @@ class MainScreen extends GetView<MainScreenController> {
   List<Widget> getScreens() {
     return [
       const AiScreen(),
-      const PowerScreen(),
+      const HashrateRentalScreen(),
       const HomeScreen(),
-      const TaskScreen(),
+      const IncomeScreen(),
       const ProfileScreen(),
     ];
   }

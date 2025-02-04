@@ -11,13 +11,19 @@ class AiStartScreenBindings implements Bindings {
   }
 }
 
-class AiStartScreenController extends BaseController {
+class AiStartScreenController extends BaseController with GetTickerProviderStateMixin {
 
   final AuthService authService = Get.find();
+
   final TextEditingController textEditingController = TextEditingController();
   final FocusNode nameFocusNode = FocusNode();
 
+  GlobalKey containerKey = GlobalKey();
+
   RxList<String> messageList = <String>[].obs;
+
+  late AnimationController animationController;
+  late List<Animation<double>> dotScales;
 
   @override
   void onInit() {
@@ -26,6 +32,9 @@ class AiStartScreenController extends BaseController {
 
   @override
   void dispose() {
+    if (animationController != null) {
+      animationController.dispose();
+    }
     super.dispose();
   }
 
@@ -35,4 +44,24 @@ class AiStartScreenController extends BaseController {
     super.onReady();
   }
 
+  startAnimal() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )..repeat();
+
+    dotScales = List.generate(3, (index) {
+      final start = index * 0.2;
+      return Tween<double>(begin: 0.5, end: 1.2).animate(
+        CurvedAnimation(
+          parent: animationController,
+          curve: Interval(start, start + 0.6, curve: Curves.easeInOut),
+        ),
+      );
+    });
+  }
+
+  endAnimal() {
+    animationController.dispose();
+  }
 }

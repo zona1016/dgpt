@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
-import 'package:dgpt/screens/task/task_history_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';

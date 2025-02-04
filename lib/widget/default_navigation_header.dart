@@ -63,7 +63,7 @@ class _DefaultNavigationHeaderState extends State<DefaultNavigationHeader> {
                     },
                     child: Image.asset(
                       image,
-                      width: 20,
+                      width: 25,
                     ),
                   ),
                 );

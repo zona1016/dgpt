@@ -13,137 +13,160 @@ class AiStartScreen extends GetView<AiStartScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
         color: BaseColors.white,
-        backgroundColor: Colors.black,
-        leading: GestureDetector(
-          onTap: () => Get.close(2),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.chevron_left,
-                size: 24,
-              ),
-              Text(
-                'Back',
-                style: fontSFProBold.copyWith(
-                  fontSize: 12,
-                  color: BaseColors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
+        backgroundColor: Colors.transparent,
         flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.black),
+          background: Container(color: Colors.transparent),
         ),
         title: '',
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.greenAccent,
-              size: 35,
+            icon: Image.asset(
+              "assets/images/custom/logo.png",
+              width: 25,
+              height: 26,
             ),
             onPressed: () => Get.close(2),
           ),
         ],
+        onBackTap: () {
+          Get.back();
+          Get.back();
+        },
       ),
       body: Obx(() => Column(
-        children: [
-          if (controller.messageList.isEmpty)
-            Expanded(child: _empty()),
-          if (controller.messageList.isNotEmpty)
-            Expanded(child: _messageListView()),
-          _buildInputArea(),
-        ],
-      )),
+            children: [
+              if (controller.messageList.isEmpty) Expanded(child: _empty()),
+              if (controller.messageList.isNotEmpty)
+                Expanded(child: _messageListView()),
+              _buildInputArea(),
+            ],
+          )),
     );
   }
 
   Widget _buildInputArea() {
     return Container(
-      color: Colors.black,
-      padding: const EdgeInsets.all(8.0),
-      child: Stack(
+      color: Colors.transparent,
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            decoration: BoxDecoration(
-              color: Colors.grey[800],
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: TextField(
-              controller: controller.textEditingController,
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                hintText: 'Type a message...',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none,
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(left: defaultPadding),
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(30.0),
+                  border: Border.all(width: 1, color: BaseColors.white)),
+              child: TextField(
+                controller: controller.textEditingController,
+                style: fontDMMedium.copyWith(
+                    color: BaseColors.white.withOpacity(0.5), fontSize: 16),
+                decoration: const InputDecoration(
+                  hintText: 'How do I make an HTTP?',
+                  hintStyle: TextStyle(color: Colors.grey),
+                  border: InputBorder.none,
+                ),
               ),
             ),
           ),
-          Positioned(
-            top: 0,
-            bottom: 0,
-            right: 0,
-            child: IconButton(
-              icon: Transform.rotate(
-                angle: 315 * 3.14159 / 180, // 角度转为弧度
-                child: const Icon(
-                  Icons.send_sharp,
-                  color: BaseColors.white,
-                ),
-              ),
-              onPressed: () {
-                controller.textEditingController.text = '';
-                controller.messageList.add(controller.textEditingController.text);
-              },
+          const SizedBox(
+            width: defaultPadding / 3 * 2,
+          ),
+          GestureDetector(
+            onTap: () {
+              if (controller.messageList.length > 2) {
+                controller.endAnimal();
+              } else {
+                controller.startAnimal();
+              }
+              controller.textEditingController.text = '';
+              controller.messageList.add(controller.textEditingController.text);
+            },
+            child: Image.asset(
+              "assets/images/custom/ai_send.png",
+              width: 40,
+              height: 40,
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
   _messageListView() {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
+    return Obx(() => ListView.builder(
+      padding: const EdgeInsets.all(defaultPadding),
       itemCount: controller.messageList.length, // 消息数量
       itemBuilder: (context, index) {
-        return Align(
-          alignment:
-              index.isEven ? Alignment.centerLeft : Alignment.centerRight,
-          child: Container(
-            padding: const EdgeInsets.all(12.0),
-            margin: const EdgeInsets.symmetric(vertical: 8.0),
-            decoration: BoxDecoration(
-              color: index.isEven ? Colors.grey : Colors.greenAccent,
-              borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(8.0),
-                topRight: const Radius.circular(8.0),
-                bottomLeft: Radius.circular(index.isEven ? 0 : 8.0),
-                bottomRight: Radius.circular(index.isEven ? 8.0 : 0),
+        return SizedBox(
+          width: Get.width / 3 * 2,
+          child: Align(
+            alignment: !index.isEven
+                ? Alignment.centerLeft
+                : Alignment.centerRight,
+            child: Container(
+              padding: const EdgeInsets.all(defaultPadding / 2),
+              margin:
+              const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+              decoration: BoxDecoration(
+                color: !index.isEven
+                    ? BaseColors.white.withOpacity(0.2)
+                    : null,
+                gradient:
+                !index.isEven ? null : BaseColors.aiMyLinearGradient,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(8.0),
+                  topRight: const Radius.circular(8.0),
+                  bottomLeft: Radius.circular(index.isEven ? 8.0 : 0),
+                  bottomRight: Radius.circular(index.isEven ? 0 : 8.0),
+                ),
               ),
-            ),
-            child: Text(
-              index.isEven ? "Hello" : "123",
-              style: const TextStyle(color: Colors.white),
+              child: (index == 1) ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(3, (index) {
+                    return AnimatedBuilder(
+                      animation: controller.animationController,
+                      builder: (context, child) {
+                        return Transform.scale(
+                          scale: controller.dotScales[index].value,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
+                            width: 8,
+                            height: 8,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+                ),
+              ) : Text(
+                index.isEven ? "Hello" : "123",
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ),
         );
       },
-    );
+    ));
   }
 
   _empty() {
     return Column(
       children: [
         Text(
-          'Welcome to \nDGPT-AI',
-          style: fontSFProBold.copyWith(
-            fontSize: 20,
+          '欢迎使用\nAIP-AI',
+          style: fontDMBold.copyWith(
+            fontSize: 32,
             color: BaseColors.white,
           ),
           textAlign: TextAlign.center,
@@ -152,28 +175,30 @@ class AiStartScreen extends GetView<AiStartScreenController> {
           height: defaultPadding,
         ),
         Text(
-          'Ask anything, get your answer',
-          style: fontSFProBold.copyWith(
-            fontSize: 14,
+          '请尽管发问任何问题！',
+          style: fontDMBold.copyWith(
+            fontSize: 18,
             color: BaseColors.white,
           ),
           textAlign: TextAlign.center,
         ),
         const Spacer(),
-        Container(
-          color: Colors.white,
-          child: Image.asset("assets/images/tab/home_inactive.png", width: 300),
+        Image.asset(
+          "assets/images/custom/ai_logo.png",
+          width: 180,
+          height: 250,
         ),
         const Spacer(),
         Container(
+          margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
           padding: const EdgeInsets.all(defaultPadding),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25), color: BaseColors.black),
+              borderRadius: BorderRadius.circular(8),
+              color: BaseColors.white.withOpacity(0.08)),
           child: Text(
-            'DGPT-AI: Powering the Next Generation of LLM '
-            'Models.Your all-encompassing artificial intelligence assistant',
-            style: fontSFProBold.copyWith(
-              fontSize: 14,
+            'AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。',
+            style: fontDMMedium.copyWith(
+              fontSize: 16,
               color: BaseColors.white,
             ),
             textAlign: TextAlign.center,

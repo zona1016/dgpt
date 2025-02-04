@@ -19,69 +19,38 @@ class ProfileScreen extends GetView<ProfileScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.baseBackgroundImage,
       appBar: BaseAppBar(
-        color: Colors.black,
-        backgroundColor: Colors.black,
+        color: BaseColors.white,
+        backgroundColor: Colors.transparent,
         title: '',
-        actions: [
-          InkWell(
-            onTap: () => Get.toNamed(AppRoutes.accountProfile),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.settings,
-                    color: Colors.greenAccent,
-                    size: 35,
-                  ),
-                  onPressed: () {},
-                ),
-                const SizedBox(
-                  width: defaultPadding / 2,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Spacer(),
-                    Text(
-                      'ceshi01',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 14,
-                        color: BaseColors.white,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'UID: 38325008',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 14,
-                        color: BaseColors.weakTextColor,
-                      ),
-                    ),
-                    const Spacer(),
-                  ],
-                )
-              ],
-            ),
+        flexibleSpace: FlexibleSpaceBar(
+          background: Container(
+            color: Colors.transparent,
           ),
-          const Spacer(),
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.greenAccent,
-              size: 35,
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(AppRoutes.systemMessage);
+            },
+            child: Image.asset(
+              'assets/images/home/notice.png',
+              width: 25,
+              height: 25,
             ),
-            onPressed: () => Get.toNamed(AppRoutes.systemMessage),
           ),
           const SizedBox(
-            width: defaultPadding / 2,
+            width: defaultPadding,
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.greenAccent,
-              size: 35,
+          GestureDetector(
+            onTap: () {},
+            child: Image.asset(
+              'assets/images/home/more.png',
+              width: 25,
+              height: 25,
             ),
-            onPressed: () => Get.toNamed(AppRoutes.setting),
+          ),
+          const SizedBox(
+            width: defaultPadding,
           ),
         ],
       ),

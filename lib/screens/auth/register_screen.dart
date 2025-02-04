@@ -173,6 +173,8 @@ class RegisterScreen extends GetView<RegisterScreenController> {
           onChanged: (value) {
             controller.passwordAgain.value = value ?? '';
           },
+          validator: (value) =>
+          controller.password.value != value ? 'Password not match' : null,
         )
       ],
     ));
