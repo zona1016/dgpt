@@ -1,11 +1,9 @@
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
-import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
-import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,111 +16,204 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.baseBackgroundImage,
-      appBar: BaseAppBar(
-        color: BaseColors.white,
-        backgroundColor: Colors.transparent,
-        title: '',
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(
-            color: Colors.transparent,
+      appBar: _appBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _header(),
+              const SizedBox(
+                height: defaultPadding,
+              ),
+              _card(),
+              const SizedBox(
+                height: defaultPadding,
+              ),
+              _list(),
+            ],
           ),
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Get.toNamed(AppRoutes.systemMessage);
-            },
-            child: Image.asset(
-              'assets/images/home/notice.png',
-              width: 25,
-              height: 25,
-            ),
-          ),
-          const SizedBox(
-            width: defaultPadding,
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/images/home/more.png',
-              width: 25,
-              height: 25,
-            ),
-          ),
-          const SizedBox(
-            width: defaultPadding,
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          _buildTopCard(),
-          Expanded(child: _buildContentArea()),
-        ],
       ),
     );
   }
 
-  Widget _buildTopCard() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF5009C2), Color(0xFF4A045C)],
+  _appBar() {
+    return BaseAppBar(
+      color: BaseColors.white,
+      backgroundColor: Colors.transparent,
+      title: '',
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+          color: Colors.transparent,
         ),
-        borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
-        children: [
-          const CircleAvatar(
-            radius: 40,
-            backgroundColor: Colors.white,
-            child: Icon(Icons.person, size: 40, color: Colors.grey),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            '我的总资产 (USDT)',
-            style: TextStyle(color: Colors.white54, fontSize: 14),
-          ),
-          const SizedBox(height: 4),
-          const Text(
-            '5,971.39 USDT',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildContentArea() {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildInfoCard('USDT', '13045.62'),
-            _buildInfoCard('累计收益', '112.262'),
-          ],
-        ),
-        const SizedBox(height: 16),
+      actions: [
         GestureDetector(
-          onTap: () => Get.snackbar('信息', '前往算力订单'),
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Text(
-              '我的订单',
-              style: TextStyle(color: Colors.white, fontSize: 16),
-              textAlign: TextAlign.center,
+          onTap: () {
+            Get.toNamed(AppRoutes.systemMessage);
+          },
+          child: Image.asset(
+            'assets/images/home/notice.png',
+            width: 25,
+            height: 25,
+          ),
+        ),
+        const SizedBox(
+          width: defaultPadding,
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: Image.asset(
+            'assets/images/home/more.png',
+            width: 25,
+            height: 25,
+          ),
+        ),
+        const SizedBox(
+          width: defaultPadding,
+        ),
+      ],
+    );
+  }
+
+  _header() {
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(top: 90),
+          padding:
+          const EdgeInsets.symmetric(vertical: defaultPadding),
+          decoration: BoxDecoration(
+              color: BaseColors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(defaultPadding)),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: defaultPadding * 3,
+              ),
+              Text(
+                '我的总资产(USDT)',
+                style: fontDMMedium.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '5,971.39',
+                    style: fontDMBold.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: defaultPadding / 4,
+                  ),
+                  Text(
+                    'USDT',
+                    style: fontDMBold.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  Image.asset(
+                    'assets/images/home/recharge_icon.png',
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(
+                    width: defaultPadding / 4,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'USDT',
+                        style: fontDMMedium.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                      Text(
+                        '13045.62',
+                        style: fontDMBold.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Image.asset(
+                    'assets/images/home/recharge_icon.png',
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(
+                    width: defaultPadding / 4,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'AIP',
+                        style: fontDMMedium.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                      Text(
+                        '250',
+                        style: fontDMBold.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: Container(
+              height: 140,
+              width: 140,
+              padding: const EdgeInsets.symmetric(
+                  horizontal: defaultPadding),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        'assets/images/custom/profile_icon_bg.png'),
+                    fit: BoxFit.cover),
+              ),
+              child: Image.asset(
+                'assets/images/custom/logo.png',
+                height: 120,
+                width: 120,
+              ),
             ),
           ),
         ),
@@ -130,32 +221,310 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     );
   }
 
-  Widget _buildInfoCard(String title, String value) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.only(right: 8),
-        decoration: BoxDecoration(
-          color: Colors.black54,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(color: Colors.white54, fontSize: 14),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              value,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+  _card() {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 100,
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding / 2,
+                vertical: defaultPadding / 4 * 3),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(defaultPadding),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF892EFF), // 起始颜色
+                  Color(0xFF1C4C99), // 结束颜色
+                ],
               ),
             ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 25,
+                  height: 23,
+                ),
+                const Spacer(),
+                Text(
+                  '算力钱包',
+                  style: fontDMMedium.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 11,
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/home/recharge_icon.png',
+                      width: 15,
+                      height: 15,
+                    ),
+                    const SizedBox(
+                      width: defaultPadding / 4,
+                    ),
+                    Text(
+                      '17502.010',
+                      style: fontDMMedium.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: defaultPadding / 2,),
+        Expanded(
+          child: Container(
+            height: 100,
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding / 2,
+                vertical: defaultPadding / 4 * 3),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(defaultPadding),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFFA193B3), // 起始颜色
+                  Color(0xFF767A80), // 结束颜色
+                ],
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 25,
+                  height: 23,
+                ),
+                const Spacer(),
+                Text(
+                  '算力钱包',
+                  style: fontDMMedium.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 11,
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/home/recharge_icon.png',
+                      width: 15,
+                      height: 15,
+                    ),
+                    const SizedBox(
+                      width: defaultPadding / 4,
+                    ),
+                    Text(
+                      '17502.010',
+                      style: fontDMMedium.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: defaultPadding / 2,),
+        Expanded(
+          child: Container(
+            height: 100,
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding / 2,
+                vertical: defaultPadding / 4 * 3),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(defaultPadding),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFFA193B3), // 起始颜色
+                  Color(0xFF767A80), // 结束颜色
+                ],
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 25,
+                  height: 23,
+                ),
+                const Spacer(),
+                Text(
+                  '算力钱包',
+                  style: fontDMMedium.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 11,
+                  ),
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/home/recharge_icon.png',
+                      width: 15,
+                      height: 15,
+                    ),
+                    const SizedBox(
+                      width: defaultPadding / 4,
+                    ),
+                    Text(
+                      '17502.010',
+                      style: fontDMMedium.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  _list() {
+    return Container(
+      height: 151,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(defaultPadding),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF23135C), // 起始颜色
+            Color(0xFF321537), // 结束颜色
           ],
         ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF05CCFF),
+                    Color(0xFF04A2FF),
+                    Color(0xFF0486FF),
+                    Color(0xFF047CFF),
+                  ],
+                  stops: [0.0, 0.43, 0.79, 1.0]
+              ),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: defaultPadding,),
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 25,
+                  height: 23,
+                ),
+                const SizedBox(width: defaultPadding / 2,),
+                Expanded(
+                  child: Text(
+                    '算力钱包',
+                    style: fontDMMedium.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: defaultPadding,),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: Row(
+              children: [
+                const SizedBox(width: defaultPadding,),
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 25,
+                  height: 23,
+                ),
+                const SizedBox(width: defaultPadding / 2,),
+                Expanded(
+                  child: Text(
+                    '算力钱包',
+                    style: fontDMMedium.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.chevron_right,
+                  size: 25,
+                  color: BaseColors.white,
+                ),
+                const SizedBox(width: defaultPadding,),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            height: 1,
+            width: double.infinity,
+            color: BaseColors.white.withOpacity(0.2),
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: Row(
+              children: [
+                const SizedBox(width: defaultPadding,),
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 25,
+                  height: 23,
+                ),
+                const SizedBox(width: defaultPadding / 2,),
+                Expanded(
+                  child: Text(
+                    '算力钱包',
+                    style: fontDMMedium.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+                const Icon(
+                  Icons.chevron_right,
+                  size: 25,
+                  color: BaseColors.white,
+                ),
+                const SizedBox(width: defaultPadding,),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

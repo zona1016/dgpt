@@ -126,4 +126,21 @@ class BaseColors {
     begin: Alignment.centerLeft, // 渐变起点
     end: Alignment.centerRight, // 渐变终点
   );
+
+  static LinearGradient profileLinearGradient = const LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFFFFFFFF), // 0%
+      Color(0xFFD8E4F1), // 6%
+      Color(0xFFB6CEE5), // 13%
+      Color(0xFF9DBDDC), // 19%
+      Color(0xFF8FB3D7), // 25%
+      Color(0xFF8AB0D6), // 29%
+      Color(0xFF5E6EA9), // 52%
+      Color(0xFF8E6CA3), // 80%
+      Color(0xFFD16B9B), // 99%
+    ],
+    stops: [0.0, 0.06, 0.13, 0.19, 0.25, 0.29, 0.52, 0.80, 0.99],
+  );
 }

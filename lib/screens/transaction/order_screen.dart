@@ -15,7 +15,7 @@ class OrderScreen extends GetView<OrderScreenController> {
     return BaseScreen(
       backgroundColor: Colors.black,
       appBar: BaseAppBar(
-        title: 'My Orders',
+        title: '我的订单',
         color: BaseColors.white,
         backgroundColor: Colors.black,
         flexibleSpace: FlexibleSpaceBar(
