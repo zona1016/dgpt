@@ -124,60 +124,75 @@ class RegisterScreen extends GetView<RegisterScreenController> {
 
   _buildNameAndPassword() {
     return Obx(() => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BaseTextFormField(
-          name: 'userName',
-          hintText: 'Email@.com',
-          fillColor: controller.email.isNotEmpty
-              ? BaseColors.white
-              : BaseColors.gray85.withOpacity(0.5),
-          radius: 10,
-          onChanged: (value) {
-            controller.email.value = value ?? '';
-          },
-        ),
-        if (controller.error.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: defaultPadding / 2),
-            child: Text(controller.error.value,
-                style: fontRegular.copyWith(
-                    fontSize: 12, color: Colors.red)),
-          ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        BaseTextFormField(
-          name: 'password',
-          hintText: '请输入您的密码',
-          obscureText: true,
-          style: fontDMRegular.copyWith(
-              color: BaseColors.inputTextColor.withOpacity(0.25)),
-          fillColor: BaseColors.gray85.withOpacity(0.5),
-          radius: 10,
-          onChanged: (value) {
-            controller.password.value = value ?? '';
-          },
-        ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        BaseTextFormField(
-          name: 'passwordAgain',
-          hintText: '再次确认您的密码',
-          obscureText: true,
-          style: fontDMRegular.copyWith(
-              color: BaseColors.inputTextColor.withOpacity(0.25)),
-          fillColor: BaseColors.gray85.withOpacity(0.5),
-          radius: 10,
-          onChanged: (value) {
-            controller.passwordAgain.value = value ?? '';
-          },
-          validator: (value) =>
-          controller.password.value != value ? 'Password not match' : null,
-        )
-      ],
-    ));
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BaseTextFormField(
+              name: 'userName',
+              hintText: 'Email@.com',
+              fillColor: controller.email.isNotEmpty
+                  ? BaseColors.white
+                  : BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.email.value = value ?? '';
+              },
+            ),
+            if (controller.error.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: defaultPadding / 2),
+                child: Text(controller.error.value,
+                    style:
+                        fontRegular.copyWith(fontSize: 12, color: Colors.red)),
+              ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            BaseTextFormField(
+              name: 'password',
+              hintText: '请输入您的密码',
+              obscureText: true,
+              style: fontDMRegular.copyWith(
+                  color: BaseColors.inputTextColor.withOpacity(0.25)),
+              fillColor: BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.password.value = value ?? '';
+              },
+            ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            BaseTextFormField(
+              name: 'passwordAgain',
+              hintText: '再次确认您的密码',
+              obscureText: true,
+              style: fontDMRegular.copyWith(
+                  color: BaseColors.inputTextColor.withOpacity(0.25)),
+              fillColor: BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.passwordAgain.value = value ?? '';
+              },
+              validator: (value) => controller.password.value != value
+                  ? 'Password not match'
+                  : null,
+            ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            BaseTextFormField(
+              name: 'inviteCode',
+              hintText: '请输入您的邀请码',
+              style: fontDMRegular.copyWith(
+                  color: BaseColors.inputTextColor.withOpacity(0.25)),
+              fillColor: BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.inviteCode.value = value ?? '';
+              },
+            )
+          ],
+        ));
   }
 
   _buildLogin() {
@@ -225,14 +240,14 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             enabled: controller.password.isNotEmpty &&
                     controller.email.isNotEmpty &&
                     controller.passwordAgain.isNotEmpty &&
+                    controller.inviteCode.isNotEmpty &&
                     controller.password == controller.passwordAgain
                 ? true
                 : false,
             disabledDecoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/custom/register_btn_border.png'),
-              )
-            ),
+                image: DecorationImage(
+              image: AssetImage('assets/images/custom/register_btn_border.png'),
+            )),
             onPressed: () {
               controller.register();
             },

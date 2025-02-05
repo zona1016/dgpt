@@ -9,6 +9,10 @@ class ApiEndpoints {
   static const String resetPassword = "/api/sysUser/resetPwd";
   static const String changePwd = "/api/sysUser/changePwd";
 
+  static const String aiPulseGoogleAuthGetBindCode = "/api/aiPulseGoogleAuth/getBindCode";
+  static const String aiPulseGoogleAuthBind = "/api/aiPulseGoogleAuth/bind";
+  static const String aiPulseGoogleAuthUnBind = "/api/aiPulseGoogleAuth/unBind";
+
   // user
   static const String userRegister = "/api/user/userRegister";
   static const String userLogin = "/api/user/userLogin";

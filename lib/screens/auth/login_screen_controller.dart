@@ -46,7 +46,6 @@ class LoginScreenController extends BaseController {
   }
 
   login() async {
-
     // if (!CustomFormBuilderValidators.isEmail(email.value ?? "")) {
     //   error.value = tr('error.email');
     //   return;
@@ -60,11 +59,11 @@ class LoginScreenController extends BaseController {
           code: 'string'),
     );
     if (result != null) {
-      DialogUtils.showLoginSuccess(
-          image: 'assets/images/tab/home_inactive.png',
-          stateTitle: '登录成功！',
-          detail: '请稍等片刻，即将进入产品主页~'
-      );
+      DialogUtils.showDGPTBaseDialog(
+          image: 'assets/images/custom/dio_login_success.png',
+          title: '登录成功！',
+          desc: '请稍等片刻，即将进入产品主页~',
+          showCircularProgressIndicator: true);
       getUserInfo(result.accessToken);
       userController.saveUser(null, result.accessToken);
     }

@@ -16,17 +16,16 @@ abstract class AuthService {
   Future<BaseResponse<bool?>> logout();
 
   Future<BaseResponse<bool?>> register(
-      {required String account,
+      {String? account,
       required String email,
-      required String phoneNation,
-      required String phone,
+      String? phoneNation,
+      String? phone,
       required String password,
       required String confirmPassword,
       String? inviteCode});
 
   Future<BaseResponse<int?>> changePwd(
-      {required String passwordOld,
-      required String passwordNew});
+      {required String passwordOld, required String passwordNew});
 }
 
 class AuthServiceImpl extends AuthService {
@@ -36,19 +35,17 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<BaseResponse<LoginResponse?>> login(
       {required String account,
-        required String password,
-        String? tenantId,
-        String? codeId,
-        String? code}) async {
+      required String password,
+      String? tenantId,
+      String? codeId,
+      String? code}) async {
     try {
       return await _apiClient.request(ApiEndpoints.userLogin,
           data: {
             'account': account,
             'password': password,
-            if (codeId != null)
-              'codeId': codeId,
-            if (code != null)
-              'code': code
+            if (codeId != null) 'codeId': codeId,
+            if (code != null) 'code': code
           },
           deserializer: (data) =>
               data != null ? LoginResponse.fromJson(data) : null);
@@ -59,20 +56,23 @@ class AuthServiceImpl extends AuthService {
 
   @override
   Future<BaseResponse<bool?>> register(
-      {required String account,
+      {String? account,
       required String email,
-      required String phoneNation,
-      required String phone,
+      String? phoneNation,
+      String? phone,
       required String password,
       required String confirmPassword,
       String? inviteCode}) async {
     try {
       return await _apiClient.request(ApiEndpoints.userRegister,
           data: {
-            'account': account,
+            if (account != null)
+              'account': account,
             'email': email,
-            'phoneNation': phoneNation,
-            'phone': phone,
+            if (phoneNation != null)
+              'phoneNation': phoneNation,
+            if (phone != null)
+              'phone': phone,
             'password': password,
             'confirmPassword': confirmPassword,
             'inviteCode': inviteCode
@@ -85,15 +85,11 @@ class AuthServiceImpl extends AuthService {
 
   @override
   Future<BaseResponse<int?>> changePwd(
-      {required String passwordOld,
-        required String passwordNew}) async {
+      {required String passwordOld, required String passwordNew}) async {
     try {
       return await _apiClient.request(ApiEndpoints.changePwd,
           bearerToken: userController.token,
-          data: {
-            'passwordOld': passwordOld,
-            'passwordNew': passwordNew
-          },
+          data: {'passwordOld': passwordOld, 'passwordNew': passwordNew},
           deserializer: (data) => int.tryParse(data.toString()));
     } on Exception catch (_) {
       rethrow;

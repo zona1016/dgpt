@@ -116,13 +116,16 @@ class DialogUtils {
   static void showDGPTBaseDialog(
       {bool barrierDismissible = true,
       required String title,
+      Color? titleColor,
+      String? topTitle,
+      LinearGradient? gradient,
       String? desc,
       String? image,
-      String? topTitle,
-      String? bottomTitle,
       bool showBottomClose = false,
       Widget? imageWidget,
       Color? contentColor,
+      bool showCircularProgressIndicator = false,
+      Color? progressIndicatorColor,
       final void Function()? onConfirmPressed,
       final void Function()? onCancelPressed,
       Widget? child,
@@ -146,27 +149,43 @@ class DialogUtils {
                 padding: const EdgeInsets.all(defaultPadding * 1.5)
                     .copyWith(top: defaultPadding * 2),
                 decoration: BoxDecoration(
-                    color: contentColor ?? context.appTheme.lightPrimaryColor,
+                    gradient: gradient ?? BaseColors.appBarLinearGradient,
                     borderRadius: BorderRadius.circular(10)),
                 width: Get.width * 0.6,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    imageWidget ?? Container(),
-                    if (title.isNotEmpty)
+                    if (topTitle != null && topTitle.isNotEmpty)
                       Text(
                         title,
                         textAlign: TextAlign.center,
                         style: fontSFProBold.copyWith(
-                            fontSize: 17, color: context.appTheme.textColor),
+                            fontSize: 17,
+                            color: titleColor ?? BaseColors.white),
+                      ),
+                    imageWidget ?? Container(),
+                    if (title.isNotEmpty && imageWidget != null)
+                      const SizedBox(
+                        height: defaultPadding,
+                      ),
+                    if (title.isNotEmpty)
+                      Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        style: fontDMBold.copyWith(
+                            fontSize: 18,
+                            color: titleColor ?? BaseColors.white),
                       ),
                     if (desc != null)
-                      Text(
-                        desc,
-                        textAlign: TextAlign.center,
-                        style: fontSFProRegular.copyWith(
-                            fontSize: 12,
-                            color: context.appTheme.weakTextColor),
+                      Padding(
+                        padding: const EdgeInsets.only(top: defaultPadding / 2),
+                        child: Text(
+                          desc,
+                          textAlign: TextAlign.center,
+                          style: fontDMRegular.copyWith(
+                              fontSize: 14, color: BaseColors.white),
+                        ),
                       ),
                     if (child != null) child,
                     if (confirmText != null || cancelText != null)
@@ -194,7 +213,10 @@ class DialogUtils {
                             Expanded(
                                 flex: 3,
                                 child: BaseButton(
-                                  type: BaseButtonType.primary,
+                                  borderRadius: BorderRadius.circular(30),
+                                  customDecoration: BoxDecoration(
+                                    color: BaseColors.white.withOpacity(0.2)
+                                  ),
                                   height: 35,
                                   onPressed: () {
                                     onConfirmPressed?.call();
@@ -203,76 +225,41 @@ class DialogUtils {
                                 )),
                         ],
                       ),
-                    )
+                    ),
+                    if (showCircularProgressIndicator)
+                      Padding(
+                        padding: const EdgeInsets.only(top: defaultPadding),
+                        child: CircularProgressIndicator(
+                          color: progressIndicatorColor ??
+                              BaseColors.primaryColor, // 颜色
+                          strokeWidth: 4.0, // 圆圈线条宽度
+                        ),
+                      )
                   ],
                 ),
               ),
-              if (image != null)
-                Positioned(
-                    top: -25,
-                    left: 0,
-                    right: 0,
-                    child: Image.asset(
-                      image,
-                      width: double.infinity,
-                      height: 50,
-                    )),
-              if (topTitle != null)
-                Positioned(
-                    top: (image == null) ? -25 : -50,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: Text(
-                        topTitle,
-                        style: fontSFProMedium.copyWith(
-                            color: BaseColors.white, fontSize: 14),
-                      ),
-                    )),
-              if (bottomTitle != null)
+              if (showBottomClose)
                 Positioned(
                     bottom: -60,
                     left: defaultPadding,
                     right: defaultPadding,
-                    child: Container(
-                      height: 44,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
-                          color: BaseColors.primaryColor),
+                    child: SizedBox(
+                      height: 60,
                       child: Center(
-                        child: Text(
-                          bottomTitle,
-                          style: fontSFProMedium.copyWith(
-                              color: Colors.white, fontSize: 14),
-                        ),
-                      ),
-                    )),
-              if (showBottomClose)
-                Positioned(
-                  bottom: -60,
-                  left: defaultPadding,
-                  right: defaultPadding,
-                  child: SizedBox(
-                    height: 60,
-                    child: Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.transparent,
-                          border: Border.all(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.transparent,
+                              border: Border.all(
+                                  color: BaseColors.white, width: 1)),
+                          child: const Icon(
+                            Icons.close,
+                            size: 40.0,
                             color: BaseColors.white,
-                            width: 1
-                          )
-                        ),
-                        child: const Icon(
-                          Icons.close,
-                          size: 40.0,
-                          color: BaseColors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                )
+                    ))
             ],
           ),
         );
@@ -371,48 +358,7 @@ class DialogUtils {
       {bool barrierDismissible = true,
       String? confirmText,
       Function()? onConfirmPressed}) {
-    showBaseDialog(
-      title: title,
-      barrierDismissible: barrierDismissible,
-      image: "fail",
-      confirmText: confirmText ?? tr("button.confirm"),
-      onConfirmPressed: onConfirmPressed ??
-          () {
-            Get.back();
-          },
-    );
-  }
-
-  static void showRetryDialog(title,
-      {bool barrierDismissible = true,
-      String? retryText,
-      Function()? onRetryPressed}) {
-    showBaseDialog(
-      title: title,
-      barrierDismissible: barrierDismissible,
-      image: "fail",
-      cancelText: retryText ?? tr("button.cancel"),
-      onCancelPressed: onRetryPressed ??
-          () {
-            Get.back();
-          },
-    );
-  }
-
-  static void showCompleteProfileDialog(title,
-      {bool barrierDismissible = true,
-      String? cancelText,
-      Function()? onConfirmPressed}) {
-    showBaseDialog(
-      title: title,
-      barrierDismissible: barrierDismissible,
-      image: "fail",
-      cancelText: cancelText ?? tr("button.get_started"),
-      onCancelPressed: onConfirmPressed ??
-          () {
-            Get.back();
-          },
-    );
+    showDGPTBaseDialog(title: title);
   }
 
   static void showApiExceptionDialog(Exception e) {
@@ -425,106 +371,22 @@ class DialogUtils {
       ApiUnknownException() || Exception() => tr("error.unknown_error"),
     };
     if (msg.isNotEmpty) {
-      if (Get.currentRoute.contains("gw")) {
-        showGWErrorDialog(msg);
-      } else {
-        showErrorDialog(msg);
-      }
+      showErrorDialog(msg);
     }
   }
 
-  static void showGWSuccessDialog(String title,
-      {String? desc,
-      bool barrierDismissible = true,
-      String? confirmText,
-      Function()? onConfirmPressed}) {
-    showDGPTBaseDialog(
-      desc: desc,
-      title: title,
-      barrierDismissible: barrierDismissible,
-      image: "gw_success",
-      confirmText: confirmText ?? tr("button.confirm"),
-      onConfirmPressed: onConfirmPressed ??
-          () {
-            Get.back();
-          },
-    );
-  }
-
-  static void showGWErrorDialog(String title,
-      {String? desc, String? confirmText, Function()? onConfirmPressed}) {
-    showDGPTBaseDialog(
-      desc: desc,
-      title: title,
-      image: "gw_fail",
-      confirmText: confirmText ?? tr("button.confirm"),
-      onConfirmPressed: onConfirmPressed ??
-          () {
-            Get.back();
-          },
-    );
-  }
-
-  static void showLoginSuccess(
-      {required String image,
-      required String stateTitle,
-      required String detail,
-      bool showError = false}) {
-    showDGPTBaseDialog(
-        barrierDismissible: false,
-        title: '',
-        contentColor: Colors.purple,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                image,
-                width: 150,
-                height: 150,
-                fit: BoxFit.cover,
-                color: showError ? Colors.red : BaseColors.primaryColor,
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Text(
-                stateTitle,
-                style: fontDMHeavy.copyWith(
-                    color: BaseColors.primaryColor, fontSize: 20),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Text(
-                detail,
-                style: fontDMMedium.copyWith(
-                    color: showError ? Colors.red : BaseColors.whiteGray1,
-                    fontSize: 14),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              const CircularProgressIndicator(
-                color: BaseColors.primaryColor, // 颜色
-                strokeWidth: 4.0, // 圆圈线条宽度
-              )
-            ],
-          ),
-        ));
-  }
-
-  static void showShareDialog(
-      {bool barrierDismissible = true,
-        required String title,
-        String? desc,
-        String? image,
-        String? bgImage,
-        GlobalKey? key,
-        bool showBottomClose = false,
-        Widget? imageWidget,
-        Color? contentColor,
-        Widget? child,}) async {
+  static void showShareDialog({
+    bool barrierDismissible = true,
+    required String title,
+    String? desc,
+    String? image,
+    String? bgImage,
+    GlobalKey? key,
+    bool showBottomClose = false,
+    Widget? imageWidget,
+    Color? contentColor,
+    Widget? child,
+  }) async {
     await Future.delayed(const Duration(milliseconds: 100));
     showDialog<void>(
       context: Get.context!,
@@ -547,11 +409,10 @@ class DialogUtils {
                   ),
                 Container(
                   decoration: BoxDecoration(
-                    image: (bgImage != null) ? DecorationImage(
-                      image: AssetImage(bgImage),
-                      fit: BoxFit.cover
-                    )  : null
-                  ),
+                      image: (bgImage != null)
+                          ? DecorationImage(
+                              image: AssetImage(bgImage), fit: BoxFit.cover)
+                          : null),
                   width: Get.width * 0.7,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -566,13 +427,14 @@ class DialogUtils {
                         ),
                       if (desc != null)
                         Padding(
-                          padding: const EdgeInsets.only(top: defaultPadding / 4, bottom: defaultPadding / 2),
+                          padding: const EdgeInsets.only(
+                              top: defaultPadding / 4,
+                              bottom: defaultPadding / 2),
                           child: Text(
                             desc,
                             textAlign: TextAlign.center,
                             style: fontDMMedium.copyWith(
-                                fontSize: 18,
-                                color: BaseColors.textColor),
+                                fontSize: 18, color: BaseColors.textColor),
                           ),
                         ),
                       if (child != null) child,
@@ -580,7 +442,9 @@ class DialogUtils {
                   ),
                 ),
                 if (showBottomClose)
-                  const SizedBox(height: defaultPadding,),
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
                 if (showBottomClose)
                   GestureDetector(
                     onTap: () {
@@ -594,10 +458,7 @@ class DialogUtils {
                               borderRadius: BorderRadius.circular(30),
                               color: Colors.transparent,
                               border: Border.all(
-                                  color: BaseColors.white,
-                                  width: 1
-                              )
-                          ),
+                                  color: BaseColors.white, width: 1)),
                           child: const Icon(
                             Icons.close,
                             size: 35.0,

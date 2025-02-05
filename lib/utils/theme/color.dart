@@ -43,7 +43,8 @@ class BaseColors {
   static const baseBackgroundImage = 'assets/images/custom/base_bg.png';
   static const customBackgroundImage = 'assets/images/custom/custom_bg.png';
   static const incomeBackgroundImage = 'assets/images/custom/income_bg.png';
-  static const incomeTabBackgroundImage = 'assets/images/custom/income_bg_tab.png';
+  static const incomeTabBackgroundImage =
+      'assets/images/custom/income_bg_tab.png';
 
   static const baseButtonLinearGradient = LinearGradient(
     colors: [
@@ -72,13 +73,13 @@ class BaseColors {
   );
 
   static LinearGradient appBarLinearGradient = const LinearGradient(
-  colors: [
-  Color(0xFF5009C2),
-  Color(0xFF4A045C),
-  ],
-  stops: [0.0, 1.0],
-  begin: Alignment.centerLeft,
-  end: Alignment.centerRight,
+    colors: [
+      Color(0xFF5009C2),
+      Color(0xFF4A045C),
+    ],
+    stops: [0.0, 1.0],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
   );
 
   static LinearGradient baseLinearGradient = const LinearGradient(
@@ -109,7 +110,7 @@ class BaseColors {
     end: Alignment.centerLeft, // 渐变终点
   );
 
-  static LinearGradient incomeLinearGradient =  LinearGradient(
+  static LinearGradient incomeLinearGradient = LinearGradient(
     colors: [
       const Color(0xFFFFFFFF).withOpacity(0.4), // 0% 的颜色
       const Color(0xFFD8E4F1).withOpacity(0.4), // 6% 的颜色

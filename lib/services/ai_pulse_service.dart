@@ -29,6 +29,8 @@ abstract class AiPulseService {
   Future<BaseResponse> registerVerifyCode();
 
   Future<BaseResponse<UserIncomeTotal?>> userIncomeTotal();
+
+  Future<BaseResponse> aiPulseCommonRegisterVerifyCode({required String email});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -76,7 +78,8 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse<PowerInfo?>> userHashrate() async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseUserHashrateUserHashrate,
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseUserHashrateUserHashrate,
           bearerToken: userController.token,
           deserializer: (data) =>
               data != null ? PowerInfo.fromJson(data) : null);
@@ -88,8 +91,10 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> registerVerifyCode() async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseCommonRegisterVerifyCode,
-          bearerToken: userController.token, deserializer: (data) => data);
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseCommonRegisterVerifyCode,
+          bearerToken: userController.token,
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
@@ -137,7 +142,23 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(ApiEndpoints.aiPulseFlowIncomeTotal,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? UserIncomeTotal.fromJson(data) : null);
+              data != null ? UserIncomeTotal.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseCommonRegisterVerifyCode(
+      {required String email}) async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseCommonRegisterVerifyCode,
+          bearerToken: userController.token,
+          data: {
+            'email': email
+          },
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
