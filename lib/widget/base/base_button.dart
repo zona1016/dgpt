@@ -133,22 +133,7 @@ class BaseButton extends StatelessWidget {
             BoxDecoration(
               shape: isCircleShape ? BoxShape.circle : BoxShape.rectangle,
               border: Border.all(
-                  color: context.appTheme.containerColor, width: 1),
-              boxShadow: [
-                BoxShadow(
-                    color: context.appTheme.lightPrimaryColor,
-                    offset: const Offset(0, 4),
-                    spreadRadius: 2,
-                    blurRadius: 4)
-              ],
-              gradient: enabled
-                  ? LinearGradient(
-                colors: [
-                  context.appTheme.secondaryGradientStartColor,
-                  context.appTheme.secondaryGradientEndColor,
-                ],
-              )
-                  : null,
+                  color: BaseColors.white.withOpacity(0.5), width: 1),
               borderRadius: isCircleShape ? null : borderRadius,
             );
       case BaseButtonType.custom:
@@ -182,7 +167,7 @@ class BaseButton extends StatelessWidget {
       case BaseButtonType.primary:
         return enabled ? Colors.white : BaseColors.lightGray;
       case BaseButtonType.secondary:
-        return BaseColors.primaryColor;
+        return BaseColors.weakTextColor;
       case BaseButtonType.custom:
         return textColor ?? Colors.white;
       case BaseButtonType.golden:

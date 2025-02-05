@@ -78,7 +78,7 @@ class HomeScreenController extends BaseController {
     final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
     final result = await fetchPaginatedData(
         loadingState: loadingState,
-        request: () => aiPulseService.aiPulseDeposit(page: page));
+        request: () => aiPulseService.aiPulseBanner(page: page));
     if (result != null && result.list != null) {}
   }
 

@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 abstract class AiPulseService {
   Future<BaseResponse<PaginationResponse<Banner>?>> aiPulseBanner(
-      {int page, int perPage});
+      {int page, int perPage, int position});
 
   Future<BaseResponse<PaginationResponse<Deposit>?>> aiPulseDeposit(
       {int page, int perPage});
@@ -42,13 +42,14 @@ class AiPulseServiceImpl extends AiPulseService {
 
   @override
   Future<BaseResponse<PaginationResponse<Banner>?>> aiPulseBanner(
-      {int page = 1, int perPage = 20}) async {
+      {int page = 1, int perPage = 20, int position = 0}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseBannerPage,
           bearerToken: userController.token,
           data: {
             'page': page,
             'pageSize': perPage,
+            'position': position
           },
           deserializer: (data) => data != null
               ? PaginationResponse<Banner>.fromJson(
