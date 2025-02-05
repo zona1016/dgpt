@@ -78,7 +78,7 @@ class ApiEndpoints {
   static const String aiPulseUserPlanDropdownData = "/api/aiPulseUserPlan/dropdownData";
   static const String aiPulseUserPlanApply = "/api/aiPulseUserPlan/apply";
   static const String aiPulseUserPlanUserPage = "/api/aiPulseUserPlan/userPage";
-  static const String aiPulseUserPlanUserPlan = "/api/aiPulseUserPlan/userPlan";
+  static const String aiPulseUserPlanUserPlan = "/api/aiPulseUserPlan/userPlanList";
 
   static const String aiPulseWalletPage = "/api/aiPulseWallet/page";
   static const String aiPulseWalletDetail = "/api/aiPulseWallet/detail";

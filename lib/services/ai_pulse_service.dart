@@ -122,7 +122,7 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse<PaginationResponse<HasratePageInfo>?>> hashratePage(
       {int page = 1, int perPage = 20}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseHashratePage,
+      return await _apiClient.request(ApiEndpoints.aiPulsePlanPlanList,
           bearerToken: userController.token,
           data: {
             'page': page,

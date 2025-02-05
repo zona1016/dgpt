@@ -16,6 +16,8 @@ import 'package:dgpt/screens/auth/login_screen.dart';
 import 'package:dgpt/screens/auth/login_screen_controller.dart';
 import 'package:dgpt/screens/auth/register_screen.dart';
 import 'package:dgpt/screens/auth/register_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_loading_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_loading_screen_controller.dart';
 import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_password_input_screen_controller.dart';
 import 'package:dgpt/screens/home/analyze_screen.dart';
@@ -114,6 +116,7 @@ class AppRoutes {
   static String hashrateRental = "/hashrate_rental";
   static String hashrateRentalDetail = "/hashrate_rental_detail";
   static String hashratePasswordInput = "/hashrate_password_input";
+  static String hashrateLoading = "/hashrate_loading";
 
   static String kyc = "/kyc";
 
@@ -282,6 +285,11 @@ class AppRoutes {
         name: hashratePasswordInput,
         page: () => const HashratePasswordInputScreen(),
         binding: HashratePasswordInputScreenBindings()
+    ),
+    GetPage(
+        name: hashrateLoading,
+        page: () => const HashrateLoadingScreen(),
+        binding: HashrateLoadingScreenBindings()
     ),
     GetPage(
         name: qrCode,

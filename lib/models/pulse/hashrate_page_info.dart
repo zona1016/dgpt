@@ -7,23 +7,19 @@ part 'hashrate_page_info.g.dart';
 class HasratePageInfo with _$HasratePageInfo {
   factory HasratePageInfo({
     @JsonKey(name: 'id') @Default(0) int id,
-    @JsonKey(name: 'createTime') @Default('') String createTime,
-    @JsonKey(name: 'updateTime') @Default('') String updateTime,
-    @JsonKey(name: 'createUserId') @Default(0) int createUserId,
-    @JsonKey(name: 'createUserName') @Default('') String createUserName,
-    @JsonKey(name: 'updateUserId') @Default(0) int updateUserId,
-    @JsonKey(name: 'updateUserName') @Default('') String updateUserName,
-    @JsonKey(name: 'isDelete') @Default(false) bool isDelete,
-    @JsonKey(name: 'sysExtInfo') @Default('') String sysExtInfo,
     @JsonKey(name: 'code') @Default('') String code,
     @JsonKey(name: 'name') @Default('') String name,
-    @JsonKey(name: 'condition') @Default('') String condition,
-    @JsonKey(name: 'firstLayer') @Default(0) int firstLayer,
-    @JsonKey(name: 'secondLayer') @Default(0) int secondLayer,
-    @JsonKey(name: 'thirdLayer') @Default(0) int thirdLayer,
+    @JsonKey(name: 'amount') @Default(0) int amount,
+    @JsonKey(name: 'profitPreHour') @Default(0) double profitPreHour,
+    @JsonKey(name: 'profitPreDay') @Default(0) double profitPreDay,
+    @JsonKey(name: 'profitTotal') @Default(0) double profitTotal,
+    @JsonKey(name: 'profitRate') @Default(0) double profitRate,
+    @JsonKey(name: 'cycle') @Default(0) int cycle,
+    @JsonKey(name: 'purchaseLimitType') @Default(0) int purchaseLimitType,
+    @JsonKey(name: 'purchaseLimitQuantity') @Default(0) int purchaseLimitQuantity,
     @JsonKey(name: 'description') @Default('') String description,
-    @JsonKey(name: 'enable') @Default(0) int enable,
     @JsonKey(name: 'remark') @Default('') String remark,
+    @JsonKey(name: 'enable') @Default(0) int enable,
   }) = _HasratePageInfo;
 
   factory HasratePageInfo.fromJson(Map<String, dynamic> json) =>

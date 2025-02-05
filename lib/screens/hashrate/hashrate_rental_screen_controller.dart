@@ -57,7 +57,7 @@ class HashrateRentalScreenController extends BaseController {
     final result = await fetchPaginatedData(
         loadingState: loadingState,
         request: () => aiPulseService.hashratePage(page: page));
-    if (result != null && result.list != null) {
+    if (result != null && result.list.isNotEmpty) {
       if (loadingState == AppLoadingState.loadMore) {
         hasratePageList.addAll(result.list);
       } else {
