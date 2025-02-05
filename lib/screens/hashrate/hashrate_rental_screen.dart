@@ -1,10 +1,10 @@
-import 'package:dgpt/screens/income/hashrate_rental_detail_screen.dart';
-import 'package:dgpt/screens/income/hashrate_rental_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
+import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
-import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +145,10 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                           Expanded(child: Container()),
                                           GestureDetector(
                                             onTap: () {
-                                              Get.toNamed(AppRoutes.income);
+                                              final MainScreenController mainController = Get.find();
+                                              mainController.selectedTabIndex(3);
+                                              mainController.pageController.jumpToPage(3);
+                                              mainController.update();
                                             },
                                             child: Container(
                                               padding: const EdgeInsets.symmetric(
@@ -279,7 +282,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                               crossAxisCount: 2,
                               crossAxisSpacing: defaultPadding,
                               mainAxisSpacing: defaultPadding,
-                              childAspectRatio: 0.45,
+                              childAspectRatio: 0.43,
                             ),
                             itemCount: controller.hasratePageList.length,
                             // Number of items

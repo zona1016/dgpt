@@ -115,7 +115,7 @@ class UserController extends BaseController {
     StorageUtils.remove(StorageKeys.userInfo);
     setUserInfo(null);
     _token.value = null;
-    // Get.offAllNamed(AppRoutes.landing);
+    Get.offAllNamed(AppRoutes.splash);
   }
 
   void _loadWatchedLessons() {

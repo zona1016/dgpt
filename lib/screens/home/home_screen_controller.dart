@@ -5,7 +5,10 @@ import 'package:dgpt/services/auth_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -26,6 +29,7 @@ class HomeScreenBindings implements Bindings {
 class HomeScreenController extends BaseController {
   final AuthService authService = Get.find();
   final AiPulseService aiPulseService = Get.find();
+  final UserController userController = Get.find();
   GlobalKey globalKey = GlobalKey();
 
   final selectedBannerIndex = 0.obs;
@@ -165,5 +169,18 @@ class HomeScreenController extends BaseController {
         );
       },
     );
+  }
+
+  logout() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => authService.logout());
+    if (result != null) {
+      DialogUtils.showDGPTBaseDialog(
+          title: '退出成功！', desc: '', confirmText: '确定', onConfirmPressed: () {
+        Get.back();
+        userController.clearUser();
+      });
+    }
   }
 }

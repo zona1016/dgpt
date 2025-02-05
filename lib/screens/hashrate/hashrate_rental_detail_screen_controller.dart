@@ -1,6 +1,5 @@
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
-import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
@@ -18,6 +17,8 @@ class HashrateRentalDetailScreenController extends BaseController {
 
   RxString dd = 'dd'.obs;
   Rxn<HashratePageDetail> hashratePageDetail = Rxn<HashratePageDetail>();
+
+  RxInt total = 0.obs;
 
   @override
   void onInit() {

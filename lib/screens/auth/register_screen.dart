@@ -249,7 +249,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               image: AssetImage('assets/images/custom/register_btn_border.png'),
             )),
             onPressed: () {
-              controller.register();
+              controller.aiPulseCommonRegisterVerifyCode();
             },
             text: '继续',
           ),

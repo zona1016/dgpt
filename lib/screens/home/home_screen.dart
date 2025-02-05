@@ -40,7 +40,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ],
                     onRightImageTaps: (index) {
                       if (index == 0) {
-                        Get.toNamed(AppRoutes.hashrateRental);
+                        controller.logout();
                       } else if (index == 1) {
                         Get.toNamed(AppRoutes.aboutUs);
                       } else {

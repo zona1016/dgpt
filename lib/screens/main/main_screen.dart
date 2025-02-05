@@ -1,6 +1,6 @@
 import 'package:dgpt/screens/ai/ai_screen.dart';
 import 'package:dgpt/screens/home/home_screen.dart';
-import 'package:dgpt/screens/income/hashrate_rental_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_screen.dart';
 import 'package:dgpt/screens/income/income_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/profile/profile_screen.dart';

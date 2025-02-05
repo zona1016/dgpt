@@ -44,7 +44,7 @@ class HashrateRentalScreenController extends BaseController {
 
   userHashrate() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.background,
+        loadingState: AppLoadingState.backgroundWithoutError,
         request: () => aiPulseService.userHashrate());
     if (result != null) {
       powerInfo.value = result;

@@ -16,16 +16,18 @@ import 'package:dgpt/screens/auth/login_screen.dart';
 import 'package:dgpt/screens/auth/login_screen_controller.dart';
 import 'package:dgpt/screens/auth/register_screen.dart';
 import 'package:dgpt/screens/auth/register_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_password_input_screen_controller.dart';
 import 'package:dgpt/screens/home/analyze_screen.dart';
 import 'package:dgpt/screens/home/analyze_screen_controller.dart';
 import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/home/node_partner_screen.dart';
 import 'package:dgpt/screens/home/node_partner_screen_controller.dart';
-import 'package:dgpt/screens/income/hashrate_rental_detail_screen.dart';
-import 'package:dgpt/screens/income/hashrate_rental_detail_screen_controller.dart';
-import 'package:dgpt/screens/income/hashrate_rental_screen.dart';
-import 'package:dgpt/screens/income/hashrate_rental_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/income/income_screen.dart';
 import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen.dart';
@@ -108,8 +110,10 @@ class AppRoutes {
   static String systemMessageDetail = "/system_message_detail";
 
   static String income = "/income";
+
   static String hashrateRental = "/hashrate_rental";
   static String hashrateRentalDetail = "/hashrate_rental_detail";
+  static String hashratePasswordInput = "/hashrate_password_input";
 
   static String kyc = "/kyc";
 
@@ -273,6 +277,11 @@ class AppRoutes {
         name: hashrateRentalDetail,
         page: () => const HashrateRentalDetailScreen(),
         binding: HashrateRentalDetailScreenBindings()
+    ),
+    GetPage(
+        name: hashratePasswordInput,
+        page: () => const HashratePasswordInputScreen(),
+        binding: HashratePasswordInputScreenBindings()
     ),
     GetPage(
         name: qrCode,

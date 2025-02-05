@@ -15,9 +15,11 @@ abstract class AuthService {
 
   Future<BaseResponse<bool?>> logout();
 
-  Future<BaseResponse<bool?>> register(
+  Future<BaseResponse<LoginResponse?>> register(
       {String? account,
       required String email,
+      required String verifyCodeId,
+      required String verifyCode,
       String? phoneNation,
       String? phone,
       required String password,
@@ -55,9 +57,11 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<BaseResponse<bool?>> register(
+  Future<BaseResponse<LoginResponse?>> register(
       {String? account,
       required String email,
+      required String verifyCodeId,
+      required String verifyCode,
       String? phoneNation,
       String? phone,
       required String password,
@@ -66,18 +70,17 @@ class AuthServiceImpl extends AuthService {
     try {
       return await _apiClient.request(ApiEndpoints.userRegister,
           data: {
-            if (account != null)
-              'account': account,
+            if (account != null) 'account': account,
             'email': email,
-            if (phoneNation != null)
-              'phoneNation': phoneNation,
-            if (phone != null)
-              'phone': phone,
+            if (phoneNation != null) 'phoneNation': phoneNation,
+            if (phone != null) 'phone': phone,
             'password': password,
-            'confirmPassword': confirmPassword,
+            'verifyCodeId': verifyCodeId,
+            'verifyCode': verifyCode,
             'inviteCode': inviteCode
           },
-          deserializer: (data) => data != null);
+          deserializer: (data) =>
+          data != null ? LoginResponse.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

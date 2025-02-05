@@ -31,6 +31,9 @@ abstract class AiPulseService {
   Future<BaseResponse<UserIncomeTotal?>> userIncomeTotal();
 
   Future<BaseResponse> aiPulseCommonRegisterVerifyCode({required String email});
+
+  Future<BaseResponse> aiPulseUserPlanApply(
+      {required String id});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -159,6 +162,21 @@ class AiPulseServiceImpl extends AiPulseService {
             'email': email
           },
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseUserPlanApply(
+      {required String id}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseUserPlanApply,
+          method: HttpMethod.get,
+          bearerToken: userController.token,
+          data: {'id': id},
+          deserializer: (data) =>
+          data);
     } on Exception catch (_) {
       rethrow;
     }
