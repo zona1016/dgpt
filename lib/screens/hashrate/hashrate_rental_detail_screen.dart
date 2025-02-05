@@ -488,7 +488,8 @@ class HashrateRentalDetailScreen
                     onPressed: () {
                       Get.toNamed(AppRoutes.hashratePasswordInput,
                           arguments: HashratePasswordInputScreenArgs(
-                              hasratePageInfo: controller.args!.hasratePageInfo));
+                              hasratePageInfo: controller.args!.hasratePageInfo,
+                              count: controller.total.value));
                     },
                     text: '租借',
                   ),

@@ -33,7 +33,7 @@ abstract class AiPulseService {
   Future<BaseResponse> aiPulseCommonRegisterVerifyCode({required String email});
 
   Future<BaseResponse> aiPulseUserPlanApply(
-      {required String id});
+      {required String id, required String quantity});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -169,12 +169,11 @@ class AiPulseServiceImpl extends AiPulseService {
 
   @override
   Future<BaseResponse> aiPulseUserPlanApply(
-      {required String id}) async {
+      {required String id, required String quantity}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanApply,
-          method: HttpMethod.get,
           bearerToken: userController.token,
-          data: {'id': id},
+          data: {'id': id, 'quantity': quantity},
           deserializer: (data) =>
           data);
     } on Exception catch (_) {

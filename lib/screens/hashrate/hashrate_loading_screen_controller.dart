@@ -48,12 +48,4 @@ class HashrateLoadingScreenController extends BaseController {
     super.onReady();
   }
 
-  aiPulseUserPlanApply() async {
-    final result = await fetchData(
-        loadingState: AppLoadingState.background,
-        request: () => aiPulseService.aiPulseUserPlanApply(id: args!.hasratePageInfo.id.toString()));
-    if (result != null) {
-
-    }
-  }
 }

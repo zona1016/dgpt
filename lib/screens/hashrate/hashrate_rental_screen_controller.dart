@@ -28,7 +28,6 @@ class HashrateRentalScreenController extends BaseController {
   void onInit() {
     super.onInit();
     userHashrate();
-    hashratePage();
   }
 
   @override
@@ -48,6 +47,7 @@ class HashrateRentalScreenController extends BaseController {
         request: () => aiPulseService.userHashrate());
     if (result != null) {
       powerInfo.value = result;
+      hashratePage();
     }
   }
 

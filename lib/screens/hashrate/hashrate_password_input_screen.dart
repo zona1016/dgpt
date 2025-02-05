@@ -12,8 +12,9 @@ import 'package:get/get.dart';
 
 class HashratePasswordInputScreenArgs {
   final HasratePageInfo? hasratePageInfo;
+  final int count;
 
-  HashratePasswordInputScreenArgs({required this.hasratePageInfo});
+  HashratePasswordInputScreenArgs({required this.hasratePageInfo, required this.count});
 }
 
 class HashratePasswordInputScreen extends GetView<HashratePasswordInputScreenController> {
