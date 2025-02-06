@@ -19,7 +19,11 @@ class MyAssetsScreenController extends BaseController with GetTickerProviderStat
   late TabController tabController;
   late RxInt tabIndex = 0.obs;
 
-  List<String> tabList = ['Funds record', 'Transfer record'];
+  List<String> tabList = ['资金记录', '转账记录'];
+  final tabs = {
+    'fundRecords': '资金记录',
+    'transferRecords': '转账记录',
+  };
 
   @override
   void onInit() {

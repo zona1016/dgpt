@@ -1,20 +1,18 @@
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 
-class NoticeTabController extends BaseController {
+class AssetsTabController extends BaseController {
   // final TutorialService tutorialService = Get.find();
   //
   final String type;
   // RxList<TutorialInfo> tutorials = <TutorialInfo>[].obs;
 
-  NoticeTabController({required this.type});
-
-
+  AssetsTabController({required this.type});
 
   @override
   void onInit() {
     super.onInit();
-    print('-----------------');
+    print(type);
     getTutorials();
   }
 

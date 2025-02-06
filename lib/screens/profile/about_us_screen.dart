@@ -59,6 +59,7 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: TabBar(
         isScrollable: false,
+        dividerHeight: 0,
         indicatorColor: BaseColors.primaryColor,
         indicatorSize: TabBarIndicatorSize.label,
         labelColor: BaseColors.primaryColor,

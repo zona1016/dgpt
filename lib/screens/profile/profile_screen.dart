@@ -41,6 +41,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   itemTap: (index) {
                     print(index);
                     if (index == 0) {
+                      Get.toNamed(AppRoutes.order);
                     } else if (index == 1) {
                     } else {}
                   }),
@@ -110,116 +111,119 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   _header() {
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: 90),
-          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-          decoration: BoxDecoration(
-              color: BaseColors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(defaultPadding)),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: defaultPadding * 3,
-              ),
-              Text(
-                '我的总资产(USDT)',
-                style: fontDMMedium.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 12,
+        GestureDetector(
+          onTap: () => Get.toNamed(AppRoutes.myAssets),
+          child: Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 90),
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            decoration: BoxDecoration(
+                color: BaseColors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(defaultPadding)),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: defaultPadding * 3,
                 ),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '5,971.39',
-                    style: fontDMBold.copyWith(
-                      color: BaseColors.white,
-                      fontSize: 24,
+                Text(
+                  '我的总资产(USDT)',
+                  style: fontDMMedium.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 12,
+                  ),
+                ),
+                const SizedBox(
+                  height: defaultPadding / 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '5,971.39',
+                      style: fontDMBold.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: defaultPadding / 4,
-                  ),
-                  Text(
-                    'USDT',
-                    style: fontDMBold.copyWith(
-                      color: BaseColors.white,
-                      fontSize: 16,
+                    const SizedBox(
+                      width: defaultPadding / 4,
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  Image.asset(
-                    'assets/images/home/recharge_icon.png',
-                    width: 30,
-                    height: 30,
-                  ),
-                  const SizedBox(
-                    width: defaultPadding / 4,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'USDT',
-                        style: fontDMMedium.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 10,
-                        ),
+                    Text(
+                      'USDT',
+                      style: fontDMBold.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 16,
                       ),
-                      Text(
-                        '13045.62',
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 14,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: defaultPadding / 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    Image.asset(
+                      'assets/images/home/recharge_icon.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                    const SizedBox(
+                      width: defaultPadding / 4,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'USDT',
+                          style: fontDMMedium.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 10,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Image.asset(
-                    'assets/images/home/recharge_icon.png',
-                    width: 30,
-                    height: 30,
-                  ),
-                  const SizedBox(
-                    width: defaultPadding / 4,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'AIP',
-                        style: fontDMMedium.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 10,
+                        Text(
+                          '13045.62',
+                          style: fontDMBold.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '250',
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 14,
+                      ],
+                    ),
+                    const Spacer(),
+                    Image.asset(
+                      'assets/images/home/recharge_icon.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                    const SizedBox(
+                      width: defaultPadding / 4,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'AIP',
+                          style: fontDMMedium.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 10,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                ],
-              ),
-            ],
+                        Text(
+                          '250',
+                          style: fontDMBold.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         Positioned(
