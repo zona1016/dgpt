@@ -14,18 +14,34 @@ class ProfileScreenController extends BaseController {
 
   final AuthService authService = Get.find();
 
-  List<String> profileList = [
-    'My Device',
-    'My Team',
-    'My Orders',
-    'Share',
+  List<String> profileActionTitles = [
+    '算力钱包',
+    '现金钱包',
+    '提款',
+  ];
+
+  List<String> profileActionImages = [
+    'assets/images/custom/profile_slqb.png',
+    'assets/images/custom/profile_xjqb.png',
+    'assets/images/custom/profile_tk.png',
+  ];
+
+  List<String> profileTitles = [
+    '我的订单',
+    '分享',
     'KYC',
-    'Customer Service',
-    'Task Center',
-    'Computing Pool',
-    'Language Selection',
-    'About Us',
-    'Logout'
+    '客服',
+    '语言选择',
+    '关于我们',
+  ];
+
+  List<String> profileImages = [
+    'assets/images/custom/profile_wddd.png',
+    'assets/images/custom/profile_fx.png',
+    'assets/images/custom/profile_kyc.png',
+    'assets/images/custom/profile_kf.png',
+    'assets/images/custom/profile_yyxz.png',
+    'assets/images/custom/profile_gywm.png',
   ];
 
   @override

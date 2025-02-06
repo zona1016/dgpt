@@ -26,11 +26,41 @@ class ProfileScreen extends GetView<ProfileScreenController> {
               const SizedBox(
                 height: defaultPadding,
               ),
-              _card(),
+              _card(cardTaps: (index) {
+                print(index);
+                if (index == 0) {
+                } else if (index == 1) {
+                } else {}
+              }),
               const SizedBox(
                 height: defaultPadding,
               ),
-              _list(),
+              _list(
+                  showTop: true,
+                  startIndex: 0,
+                  itemTap: (index) {
+                    print(index);
+                    if (index == 0) {
+                    } else if (index == 1) {
+                    } else {}
+                  }),
+              const SizedBox(
+                height: defaultPadding,
+              ),
+              _list(
+                  showTop: false,
+                  startIndex: 3,
+                  itemTap: (index) {
+                    print(index);
+                    if (index == 3) {
+                    } else if (index == 4) {
+                    } else {
+                      Get.toNamed(AppRoutes.aboutUs);
+                    }
+                  }),
+              const SizedBox(
+                height: defaultPadding,
+              ),
             ],
           ),
         ),
@@ -83,8 +113,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
         Container(
           width: double.infinity,
           margin: const EdgeInsets.only(top: 90),
-          padding:
-          const EdgeInsets.symmetric(vertical: defaultPadding),
+          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           decoration: BoxDecoration(
               color: BaseColors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(defaultPadding)),
@@ -201,12 +230,11 @@ class ProfileScreen extends GetView<ProfileScreenController> {
             child: Container(
               height: 140,
               width: 140,
-              padding: const EdgeInsets.symmetric(
-                  horizontal: defaultPadding),
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(
-                        'assets/images/custom/profile_icon_bg.png'),
+                    image:
+                        AssetImage('assets/images/custom/profile_icon_bg.png'),
                     fit: BoxFit.cover),
               ),
               child: Image.asset(
@@ -221,17 +249,14 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     );
   }
 
-  _card() {
+  _card({required Function(int index) cardTaps}) {
     return Row(
       children: [
         Expanded(
-          child: Container(
-            height: 100,
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding / 2,
-                vertical: defaultPadding / 4 * 3),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(defaultPadding),
+          child: _cardItem(
+              callBack: () => cardTaps(0),
+              title: controller.profileActionTitles[0],
+              image: controller.profileActionImages[0],
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -239,57 +264,16 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   Color(0xFF892EFF), // 起始颜色
                   Color(0xFF1C4C99), // 结束颜色
                 ],
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(
-                  'assets/images/home/recharge_icon.png',
-                  width: 25,
-                  height: 23,
-                ),
-                const Spacer(),
-                Text(
-                  '算力钱包',
-                  style: fontDMMedium.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 11,
-                  ),
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/home/recharge_icon.png',
-                      width: 15,
-                      height: 15,
-                    ),
-                    const SizedBox(
-                      width: defaultPadding / 4,
-                    ),
-                    Text(
-                      '17502.010',
-                      style: fontDMMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+              )),
         ),
-        const SizedBox(width: defaultPadding / 2,),
+        const SizedBox(
+          width: defaultPadding / 2,
+        ),
         Expanded(
-          child: Container(
-            height: 100,
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding / 2,
-                vertical: defaultPadding / 4 * 3),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(defaultPadding),
+          child: _cardItem(
+              callBack: () => cardTaps(1),
+              title: controller.profileActionTitles[1],
+              image: controller.profileActionImages[1],
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -297,57 +281,16 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   Color(0xFFA193B3), // 起始颜色
                   Color(0xFF767A80), // 结束颜色
                 ],
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(
-                  'assets/images/home/recharge_icon.png',
-                  width: 25,
-                  height: 23,
-                ),
-                const Spacer(),
-                Text(
-                  '算力钱包',
-                  style: fontDMMedium.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 11,
-                  ),
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/home/recharge_icon.png',
-                      width: 15,
-                      height: 15,
-                    ),
-                    const SizedBox(
-                      width: defaultPadding / 4,
-                    ),
-                    Text(
-                      '17502.010',
-                      style: fontDMMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+              )),
         ),
-        const SizedBox(width: defaultPadding / 2,),
+        const SizedBox(
+          width: defaultPadding / 2,
+        ),
         Expanded(
-          child: Container(
-            height: 100,
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding / 2,
-                vertical: defaultPadding / 4 * 3),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(defaultPadding),
+          child: _cardItem(
+              callBack: () => cardTaps(2),
+              title: controller.profileActionTitles[2],
+              image: controller.profileActionImages[2],
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -355,61 +298,83 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   Color(0xFFA193B3), // 起始颜色
                   Color(0xFF767A80), // 结束颜色
                 ],
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(
-                  'assets/images/home/recharge_icon.png',
-                  width: 25,
-                  height: 23,
-                ),
-                const Spacer(),
-                Text(
-                  '算力钱包',
-                  style: fontDMMedium.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 11,
-                  ),
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/home/recharge_icon.png',
-                      width: 15,
-                      height: 15,
-                    ),
-                    const SizedBox(
-                      width: defaultPadding / 4,
-                    ),
-                    Text(
-                      '17502.010',
-                      style: fontDMMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+              )),
         ),
       ],
     );
   }
 
-  _list() {
+  _cardItem(
+      {required String title,
+      required String image,
+      required LinearGradient gradient,
+      GestureTapCallback? callBack}) {
+    return GestureDetector(
+      onTap: callBack,
+      child: Container(
+        height: 100,
+        padding: const EdgeInsets.symmetric(
+            horizontal: defaultPadding / 2, vertical: defaultPadding / 4 * 3),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(defaultPadding),
+          gradient: gradient,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              image,
+              width: 25,
+              height: 23,
+            ),
+            const Spacer(),
+            Text(
+              title,
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 11,
+              ),
+            ),
+            const Spacer(),
+            Row(
+              children: [
+                Image.asset(
+                  'assets/images/home/recharge_icon.png',
+                  width: 15,
+                  height: 15,
+                ),
+                const SizedBox(
+                  width: defaultPadding / 4,
+                ),
+                Text(
+                  '17502.010',
+                  style: fontDMMedium.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 11,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _list(
+      {required bool showTop,
+      required int startIndex,
+      required Function(int index) itemTap}) {
     return Container(
-      height: 151,
+      height: 152,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding).copyWith(
-          topLeft: const Radius.circular(25),
-          topRight: const Radius.circular(25),
-        ),
+        borderRadius: showTop
+            ? BorderRadius.circular(defaultPadding).copyWith(
+                topLeft: const Radius.circular(25),
+                topRight: const Radius.circular(25),
+              )
+            : BorderRadius.circular(defaultPadding),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -422,112 +387,104 @@ class ProfileScreen extends GetView<ProfileScreenController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-              gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF05CCFF),
-                    Color(0xFF04A2FF),
-                    Color(0xFF0486FF),
-                    Color(0xFF047CFF),
-                  ],
-                  stops: [0.0, 0.43, 0.79, 1.0]
-              ),
+          _listItem(
+              onTap: () => itemTap(startIndex),
+              gradient: showTop
+                  ? const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                          Color(0xFF05CCFF),
+                          Color(0xFF04A2FF),
+                          Color(0xFF0486FF),
+                          Color(0xFF047CFF),
+                        ],
+                      stops: [
+                          0.0,
+                          0.43,
+                          0.79,
+                          1.0
+                        ])
+                  : null,
+              title: controller.profileTitles[startIndex],
+              image: controller.profileImages[startIndex],
+              showRight: !showTop),
+          if (!showTop)
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              height: 1,
+              width: double.infinity,
+              color: BaseColors.white.withOpacity(0.2),
             ),
-            child: Row(
-              children: [
-                const SizedBox(width: defaultPadding,),
-                Image.asset(
-                  'assets/images/home/recharge_icon.png',
-                  width: 25,
-                  height: 23,
-                ),
-                const SizedBox(width: defaultPadding / 2,),
-                Expanded(
-                  child: Text(
-                    '算力钱包',
-                    style: fontDMMedium.copyWith(
-                      color: BaseColors.white,
-                      fontSize: 11,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: defaultPadding,),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: Row(
-              children: [
-                const SizedBox(width: defaultPadding,),
-                Image.asset(
-                  'assets/images/home/recharge_icon.png',
-                  width: 25,
-                  height: 23,
-                ),
-                const SizedBox(width: defaultPadding / 2,),
-                Expanded(
-                  child: Text(
-                    '算力钱包',
-                    style: fontDMMedium.copyWith(
-                      color: BaseColors.white,
-                      fontSize: 11,
-                    ),
-                  ),
-                ),
-                const Icon(
-                  Icons.chevron_right,
-                  size: 25,
-                  color: BaseColors.white,
-                ),
-                const SizedBox(width: defaultPadding,),
-              ],
-            ),
-          ),
+          _listItem(
+              onTap: () => itemTap(startIndex + 1),
+              title: controller.profileTitles[startIndex + 1],
+              image: controller.profileImages[startIndex + 1],
+              showRight: true),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
             height: 1,
             width: double.infinity,
             color: BaseColors.white.withOpacity(0.2),
           ),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: Row(
-              children: [
-                const SizedBox(width: defaultPadding,),
-                Image.asset(
-                  'assets/images/home/recharge_icon.png',
-                  width: 25,
-                  height: 23,
-                ),
-                const SizedBox(width: defaultPadding / 2,),
-                Expanded(
-                  child: Text(
-                    '算力钱包',
-                    style: fontDMMedium.copyWith(
-                      color: BaseColors.white,
-                      fontSize: 11,
-                    ),
-                  ),
-                ),
-                const Icon(
-                  Icons.chevron_right,
-                  size: 25,
-                  color: BaseColors.white,
-                ),
-                const SizedBox(width: defaultPadding,),
-              ],
-            ),
-          )
+          _listItem(
+              onTap: () => itemTap(startIndex + 2),
+              title: controller.profileTitles[startIndex + 2],
+              image: controller.profileImages[startIndex + 2],
+              showRight: true),
         ],
+      ),
+    );
+  }
+
+  _listItem(
+      {LinearGradient? gradient,
+      required String image,
+      required String title,
+      bool showRight = false,
+      GestureTapCallback? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          gradient: gradient,
+        ),
+        child: Row(
+          children: [
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Image.asset(
+              image,
+              width: 20,
+              height: 20,
+            ),
+            const SizedBox(
+              width: defaultPadding / 2,
+            ),
+            Expanded(
+              child: Text(
+                title,
+                style: fontDMMedium.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+            if (showRight)
+              const Icon(
+                Icons.chevron_right,
+                size: 25,
+                color: BaseColors.white,
+              ),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+          ],
+        ),
       ),
     );
   }

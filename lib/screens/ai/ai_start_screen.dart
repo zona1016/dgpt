@@ -99,65 +99,12 @@ class AiStartScreen extends GetView<AiStartScreenController> {
 
   _messageListView() {
     return Obx(() => ListView.builder(
-      padding: const EdgeInsets.all(defaultPadding),
-      itemCount: controller.messageList.length, // 消息数量
-      itemBuilder: (context, index) {
-        return SizedBox(
-          width: Get.width / 3 * 2,
-          child: Align(
-            alignment: !index.isEven
-                ? Alignment.centerLeft
-                : Alignment.centerRight,
-            child: Container(
-              padding: const EdgeInsets.all(defaultPadding / 2),
-              margin:
-              const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-              decoration: BoxDecoration(
-                color: !index.isEven
-                    ? BaseColors.white.withOpacity(0.2)
-                    : null,
-                gradient:
-                !index.isEven ? null : BaseColors.aiMyLinearGradient,
-                borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(8.0),
-                  topRight: const Radius.circular(8.0),
-                  bottomLeft: Radius.circular(index.isEven ? 8.0 : 0),
-                  bottomRight: Radius.circular(index.isEven ? 0 : 8.0),
-                ),
-              ),
-              child: (index == 1) ? Padding(
-                padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: List.generate(3, (index) {
-                    return AnimatedBuilder(
-                      animation: controller.animationController,
-                      builder: (context, child) {
-                        return Transform.scale(
-                          scale: controller.dotScales[index].value,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 4),
-                            width: 8,
-                            height: 8,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }),
-                ),
-              ) : Text(
-                index.isEven ? "Hello" : "123",
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-        );
-      },
-    ));
+          padding: const EdgeInsets.all(defaultPadding),
+          itemCount: controller.messageList.length, // 消息数量
+          itemBuilder: (context, index) {
+            return !index.isEven ? _leftItm(index) : _rightItem();
+          },
+        ));
   }
 
   _empty() {
@@ -208,6 +155,107 @@ class AiStartScreen extends GetView<AiStartScreenController> {
           height: defaultPadding,
         ),
       ],
+    );
+  }
+
+  _leftItm(index) {
+    return Stack(
+      children: [
+        SizedBox(
+          width: Get.width / 3 * 2,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              padding: const EdgeInsets.all(defaultPadding / 2),
+              margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+              constraints: BoxConstraints(
+                minWidth: Get.width / 3 * 2,
+                maxWidth: Get.width / 3 * 2,
+                minHeight: 100,
+              ),
+              decoration: BoxDecoration(
+                color: BaseColors.white.withOpacity(0.2),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8.0),
+                  topRight: Radius.circular(8.0),
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(8.0),
+                ),
+              ),
+              child: (index == 1)
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: List.generate(3, (index) {
+                          return AnimatedBuilder(
+                            animation: controller.animationController,
+                            builder: (context, child) {
+                              return Transform.scale(
+                                scale: controller.dotScales[index].value,
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                                  width: 8,
+                                  height: 8,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }),
+                      ),
+                    )
+                  : Text(
+                      index.isEven ? "Hello" : "123",
+                      style: const TextStyle(color: Colors.white),
+                    ),
+            ),
+          ),
+        ),
+        if (index != 1)
+          Positioned(
+            bottom: defaultPadding,
+            right: Get.width - Get.width / 3 * 2 - defaultPadding * 2 - 48,
+            child: Image.asset(
+              'assets/images/custom/ai_message_logo.png',
+              height: 44,
+              width: 68,
+            ),
+          )
+      ],
+    );
+  }
+
+  _rightItem() {
+    return SizedBox(
+      width: Get.width / 3 * 2,
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Container(
+          padding: const EdgeInsets.all(defaultPadding / 2),
+          margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+          constraints: BoxConstraints(
+            maxWidth: Get.width / 3 * 2,
+          ),
+          decoration: BoxDecoration(
+            gradient: BaseColors.aiMyLinearGradient,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(8.0),
+              topRight: Radius.circular(8.0),
+              bottomLeft: Radius.circular(8.0),
+              bottomRight: Radius.circular(0),
+            ),
+          ),
+          child: Text(
+            "123",
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
     );
   }
 }

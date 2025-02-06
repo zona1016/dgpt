@@ -1,4 +1,3 @@
-import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
@@ -10,9 +9,7 @@ class AiScreenBindings implements Bindings {
   }
 }
 
-class AiScreenController extends BaseController {
-
-  final AuthService authService = Get.find();
+class AiScreenController extends BaseController with GetTickerProviderStateMixin {
 
   @override
   void onInit() {
@@ -29,5 +26,4 @@ class AiScreenController extends BaseController {
     // TODO: implement onReady
     super.onReady();
   }
-
 }
