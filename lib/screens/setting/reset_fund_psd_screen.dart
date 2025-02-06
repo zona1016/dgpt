@@ -1,6 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/screens/setting/reset_fund_psd_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -42,9 +43,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
               ),
             ),
             GestureDetector(
-              onTap: () {
-
-              },
+              onTap: () => Get.toNamed(AppRoutes.forgotFundPsd),
               child: Text(
                 '忘记资金密码',
                 style: fontDMMedium.copyWith(

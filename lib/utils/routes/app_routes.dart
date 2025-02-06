@@ -44,6 +44,10 @@ import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
 import 'package:dgpt/screens/setting/account_profile_screen.dart';
 import 'package:dgpt/screens/setting/account_profile_screen_controller.dart';
 import 'package:dgpt/screens/setting/change_password_screen_controller.dart';
+import 'package:dgpt/screens/setting/email_verification_screen.dart';
+import 'package:dgpt/screens/setting/email_verification_screen_controller.dart';
+import 'package:dgpt/screens/setting/forgot_fund_psd_screen.dart';
+import 'package:dgpt/screens/setting/forgot_fund_psd_screen_controller.dart';
 import 'package:dgpt/screens/setting/my_device_screen.dart';
 import 'package:dgpt/screens/setting/my_device_screen_controller.dart';
 import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
@@ -108,6 +112,8 @@ class AppRoutes {
   static String myDevice = "/my_device";
   static String helpCenter = "/help_center";
   static String resetFundPsd = "/reset_fund_psd";
+  static String forgotFundPsd = "/forgot_fund_psd";
+  static String emailVerification = "/email_verification";
 
   static String myAssets = "/my_assets";
   static String order = "/order";
@@ -236,6 +242,16 @@ class AppRoutes {
         name: resetFundPsd,
         page: () => const ResetFundPsdScreen(),
         binding: ResetFundPsdScreenBindings()
+    ),
+    GetPage(
+        name: forgotFundPsd,
+        page: () => const ForgotFundPsdScreen(),
+        binding: ForgotFundPsdScreenBindings()
+    ),
+    GetPage(
+        name: emailVerification,
+        page: () => const EmailVerificationScreen(),
+        binding: EmailVerificationScreenBindings()
     ),
     GetPage(
         name: accountProfile,
