@@ -40,6 +40,16 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ],
                     onRightImageTaps: (index) {
                       if (index == 0) {
+                        DialogUtils.showSuccessDialog('余额不足',
+                            titleColor: Colors.red,
+                            comBorderRadius: BorderRadius.circular(10),
+                            gradient: BaseColors.diaYebz,
+                            topImage: 'assets/images/home/setting_fail.png',
+                            desc: '钱包余额不足，请立即充值',
+                            barrierDismissible: false,
+                            confirmText: '立马充值', onConfirmPressed: () {
+                              Get.back();
+                            });
                         // Get.toNamed(AppRoutes.order);
                       } else if (index == 1) {
                         Get.toNamed(AppRoutes.aboutUs);

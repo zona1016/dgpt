@@ -264,6 +264,16 @@ class DialogUtils {
                           ),
                         ),
                       ),
+                    )),
+              if (image != null)
+                Positioned(
+                    top: -115+defaultPadding * 2.5,
+                    left: 0,
+                    right: 0,
+                    child: Image.asset(
+                      image,
+                      width: 230,
+                      height: 230,
                     ))
             ],
           ),
@@ -339,6 +349,7 @@ class DialogUtils {
 
   static void showSuccessDialog(String title,
       {Color? titleColor,
+      String? topImage,
       BorderRadiusGeometry? comBorderRadius,
       String? topTitle,
       String? desc,
@@ -359,6 +370,7 @@ class DialogUtils {
           width: width ?? 144,
         ),
         title: title,
+        image: topImage,
         topTitle: topTitle,
         titleColor: titleColor,
         barrierDismissible: barrierDismissible,
