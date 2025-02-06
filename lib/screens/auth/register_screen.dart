@@ -23,14 +23,6 @@ class RegisterScreen extends GetView<RegisterScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: 'assets/images/custom/register_bg.png',
-      appBar: BaseAppBar(
-        title: '',
-        color: Colors.transparent,
-        backgroundColor: Colors.transparent,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.transparent),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
@@ -52,6 +44,9 @@ class RegisterScreen extends GetView<RegisterScreenController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(
+            height: 44,
+          ),
           _buildHeaderDetail(),
           const SizedBox(
             height: defaultPadding,
@@ -60,23 +55,40 @@ class RegisterScreen extends GetView<RegisterScreenController> {
           const SizedBox(
             height: defaultPadding,
           ),
-          Row(
-            children: [
-              const Spacer(),
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Text(
-                  '已有账号?去登录',
-                  style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.lightGray,
-                      decoration: TextDecoration.underline,
-                      decorationColor: BaseColors.white),
+          Obx(() => GestureDetector(
+                onTap: () => controller.aiPulseCommonRegisterVerifyCode(),
+                child: Row(
+                  children: [
+                    Expanded(child: Container()),
+                    Text(
+                      '未收到？重新发送 ',
+                      style: fontDMMedium.copyWith(
+                        fontSize: 14,
+                        color: BaseColors.white,
+                        decoration: TextDecoration.underline,
+                        decorationColor: BaseColors.white,
+                        // Optional: Changes the underline color
+                        decorationThickness: 1.0,
+                      ),
+                    ),
+                    if (!controller.isResendEnabled.value &&
+                        controller.seconds > 0)
+                      Text(
+                        '${controller.seconds.value}s',
+                        style: fontDMMedium.copyWith(
+                          fontSize: 14,
+                          color: BaseColors.purpleGlowColor,
+                          decoration: TextDecoration.underline,
+                          decorationColor: BaseColors.purpleGlowColor,
+                          // Optional: Changes the underline color
+                          decorationThickness: 1.0,
+                        ),
+                      ),
+                  ],
                 ),
-              ),
-            ],
+              )),
+          const SizedBox(
+            height: defaultPadding,
           ),
         ],
       ),
@@ -190,7 +202,70 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               onChanged: (value) {
                 controller.inviteCode.value = value ?? '';
               },
-            )
+            ),
+            const SizedBox(
+              height: defaultPadding / 2,
+            ),
+            Text(
+              '点击发送和输入邮箱验证码。',
+              style: fontDMRegular.copyWith(
+                fontSize: 14,
+                color: BaseColors.white,
+              ),
+            ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            BaseTextFormField(
+              name: 'verifyCode',
+              hintText: '邮箱验证码',
+              fillColor: BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              suffixIcon: Container(
+                width: 120,
+                height: 32,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFEFEFEF), // 起始颜色
+                      Color(0xFFB8CDDB), // 结束颜色
+                    ],
+                  ),
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    controller.aiPulseCommonRegisterVerifyCode();
+                  },
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        '发送',
+                        style: fontDMMedium.copyWith(
+                          fontSize: 16,
+                          color: BaseColors.black,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 4,
+                      ),
+                      Image.asset(
+                        'assets/images/custom/register_send_code.png',
+                        width: 15,
+                        height: 15,
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+              onChanged: (value) {
+                controller.verifyCode.value = value ?? '';
+              },
+            ),
           ],
         ));
   }
@@ -240,7 +315,9 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             enabled: controller.password.isNotEmpty &&
                     controller.email.isNotEmpty &&
                     controller.passwordAgain.isNotEmpty &&
+                    controller.verifyCode.isNotEmpty &&
                     controller.inviteCode.isNotEmpty &&
+                    controller.codeId.isNotEmpty &&
                     controller.password == controller.passwordAgain
                 ? true
                 : false,
@@ -249,7 +326,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               image: AssetImage('assets/images/custom/register_btn_border.png'),
             )),
             onPressed: () {
-              controller.aiPulseCommonRegisterVerifyCode();
+              controller.register();
             },
             text: '继续',
           ),

@@ -31,11 +31,20 @@ class RegisterScreenController extends BaseController {
   final RxString password = ''.obs;
   final RxString passwordAgain = ''.obs;
   final RxString inviteCode = ''.obs;
+  final RxString verifyCode = ''.obs;
+  final RxString codeId = ''.obs;
+
+  RxInt seconds = 60.obs;
+  RxBool isResendEnabled = true.obs;
 
   @override
   void onInit() {
     super.onInit();
-    aiPulseCommonRegisterVerifyCode();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -43,8 +52,20 @@ class RegisterScreenController extends BaseController {
     super.onReady();
   }
 
-  register({required String codeId}) async {
-    if (!CustomFormBuilderValidators.isEmail(email.value ?? "")) {
+  void startTimer() {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (seconds.value > 0) {
+        seconds.value = seconds.value - 1;
+        startTimer();
+      } else {
+        seconds.value = 60;
+        isResendEnabled.value = true;
+      }
+    });
+  }
+
+  register() async {
+    if (!CustomFormBuilderValidators.isEmail(email.value)) {
       error.value = tr('error.email');
       return;
     }
@@ -54,8 +75,8 @@ class RegisterScreenController extends BaseController {
           email: email.value,
           password: password.value,
           confirmPassword: passwordAgain.value,
-          verifyCodeId: codeId,
-          verifyCode: '8JHR6A',
+          verifyCodeId: codeId.value,
+          verifyCode: verifyCode.value,
           inviteCode: inviteCode.value),
     );
     if (result != null) {
@@ -74,17 +95,25 @@ class RegisterScreenController extends BaseController {
   }
 
   aiPulseCommonRegisterVerifyCode() async {
+
     if (!CustomFormBuilderValidators.isEmail(email.value)) {
       error.value = tr('error.email');
       return;
+    } else {
+      error.value = '';
     }
+
+    if (!isResendEnabled.value) return;
+    seconds.value = 60;
+    isResendEnabled.value = false;
+    startTimer();
 
     final result = await fetchData(
       request: () =>
           aiPulseService.aiPulseCommonRegisterVerifyCode(email: email.value),
     );
     if (result != null) {
-      register(codeId: result);
+      codeId.value = result;
     }
   }
 

@@ -1,18 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'pulse_base_model.dart';
 
-part 'banner.g.dart';
+part 'ai_pulse_banner.g.dart';
 
 @JsonSerializable()
 class Banner extends BaseModel {
   @JsonKey(name: 'sort', defaultValue: 0)
   int? sort;
 
-  @JsonKey(name: 'title', defaultValue: 'string')
+  @JsonKey(name: 'title', defaultValue: '')
   String? title;
 
-  @JsonKey(name: 'imageFileId', defaultValue: 0)
-  int? imageFileId;
+  @JsonKey(name: 'imagePath', defaultValue: '')
+  String? imagePath;
+
+  @JsonKey(name: 'position', defaultValue: 0)
+  int? position;
 
   Banner({
     super.id,
@@ -29,7 +32,6 @@ class Banner extends BaseModel {
     super.remark,
     this.sort,
     this.title,
-    this.imageFileId,
   });
 
   factory Banner.fromJson(Map<String, dynamic> json) =>

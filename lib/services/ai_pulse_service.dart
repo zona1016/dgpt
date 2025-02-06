@@ -1,5 +1,5 @@
 import 'package:dgpt/models/api/pagination_response.dart';
-import 'package:dgpt/models/pulse/banner.dart';
+import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
 import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
@@ -12,8 +12,7 @@ import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:get/get.dart';
 
 abstract class AiPulseService {
-  Future<BaseResponse<PaginationResponse<Banner>?>> aiPulseBanner(
-      {int page, int perPage, int position});
+  Future<BaseResponse<List<Banner>>> aiPulseBannerUserPage({int position = 0});
 
   Future<BaseResponse<PaginationResponse<Deposit>?>> aiPulseDeposit(
       {int page, int perPage});
@@ -41,20 +40,15 @@ class AiPulseServiceImpl extends AiPulseService {
   final UserController userController = Get.find();
 
   @override
-  Future<BaseResponse<PaginationResponse<Banner>?>> aiPulseBanner(
-      {int page = 1, int perPage = 20, int position = 0}) async {
+  Future<BaseResponse<List<Banner>>> aiPulseBannerUserPage(
+      {int position = 0}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseBannerPage,
+      return await _apiClient.request(ApiEndpoints.aiPulseBannerUserPage,
           bearerToken: userController.token,
-          data: {
-            'page': page,
-            'pageSize': perPage,
-            'position': position
-          },
+          data: {'position': position},
           deserializer: (data) => data != null
-              ? PaginationResponse<Banner>.fromJson(
-                  data, (json) => Banner.fromJson(json as Map<String, dynamic>))
-              : null);
+              ? (data as List<dynamic>).map((e) => Banner.fromJson(e)).toList()
+              : []);
     } on Exception catch (_) {
       rethrow;
     }
@@ -159,9 +153,7 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(
           ApiEndpoints.aiPulseCommonRegisterVerifyCode,
           bearerToken: userController.token,
-          data: {
-            'email': email
-          },
+          data: {'email': email},
           deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
@@ -175,8 +167,7 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanApply,
           bearerToken: userController.token,
           data: {'id': id, 'quantity': quantity},
-          deserializer: (data) =>
-          data);
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }

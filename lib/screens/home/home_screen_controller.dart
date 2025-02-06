@@ -8,7 +8,6 @@ import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
-import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +36,7 @@ class HomeScreenController extends BaseController {
       CarouselSliderController();
   late Timer _timer;
 
+  RxList<Banner> bannerList = <Banner>[].obs;
   List<String> titles = ['通告', '邀请', '教学', '企业'];
   List<String> images = [
     'assets/images/home/tg.png',
@@ -75,11 +75,13 @@ class HomeScreenController extends BaseController {
 
   aiPulseBanner(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
-    final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
-    final result = await fetchPaginatedData(
-        loadingState: loadingState,
-        request: () => aiPulseService.aiPulseBanner(page: page));
-    if (result != null && result.list != null) {}
+
+    final result = await fetchData(
+        request: () => aiPulseService.aiPulseBannerUserPage(position: 0),
+        loadingState: AppLoadingState.background);
+    if (result != null) {
+      bannerList.assignAll(result as Iterable<Banner>);
+    }
   }
 
   Future<void> capturePng(BuildContext context) async {

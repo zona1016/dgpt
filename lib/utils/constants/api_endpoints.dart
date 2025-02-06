@@ -25,7 +25,6 @@ class ApiEndpoints {
   static const String aiPulseAddressDropdownData = " /api/aiPulseAddress/dropdownData";
   static const String aiPulseAddressUserPage = " /api/aiPulseAddress/userPage";
 
-  static const String aiPulseBannerPage = "/api/aiPulseBanner/userPage";
   static const String aiPulseBannerUserPage = "/api/aiPulseBanner/userPage";
 
   static const String aiPulseCommonRegisterVerifyCode = "/api/aiPulseCommon/registerVerifyCode";

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'banner.dart';
+part of 'ai_pulse_banner.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -20,9 +20,10 @@ Banner _$BannerFromJson(Map<String, dynamic> json) => Banner(
       enable: (json['enable'] as num?)?.toInt() ?? 0,
       remark: json['remark'] as String? ?? 'string',
       sort: (json['sort'] as num?)?.toInt() ?? 0,
-      title: json['title'] as String? ?? 'string',
-      imageFileId: (json['imageFileId'] as num?)?.toInt() ?? 0,
-    );
+      title: json['title'] as String? ?? '',
+    )
+      ..imagePath = json['imagePath'] as String? ?? ''
+      ..position = (json['position'] as num?)?.toInt() ?? 0;
 
 Map<String, dynamic> _$BannerToJson(Banner instance) => <String, dynamic>{
       'id': instance.id,
@@ -39,5 +40,6 @@ Map<String, dynamic> _$BannerToJson(Banner instance) => <String, dynamic>{
       'remark': instance.remark,
       'sort': instance.sort,
       'title': instance.title,
-      'imageFileId': instance.imageFileId,
+      'imagePath': instance.imagePath,
+      'position': instance.position,
     };
