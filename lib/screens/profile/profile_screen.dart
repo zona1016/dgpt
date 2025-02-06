@@ -44,7 +44,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                     if (index == 0) {
                       Get.toNamed(AppRoutes.order);
                     } else if (index == 1) {
-                    } else {}
+                    } else if (index == 2) {
+                      Get.toNamed(AppRoutes.kyc);
+                    }
                   }),
               const SizedBox(
                 height: defaultPadding,
@@ -56,7 +58,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                     print(index);
                     if (index == 3) {
                     } else if (index == 4) {
-                    } else {
+                    } else if (index == 5) {
                       Get.toNamed(AppRoutes.aboutUs);
                     }
                   }),
