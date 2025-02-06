@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -8,6 +9,7 @@ import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileScreen extends GetView<ProfileScreenController> {
   const ProfileScreen({super.key});
@@ -39,11 +41,13 @@ class ProfileScreen extends GetView<ProfileScreenController> {
               _list(
                   showTop: true,
                   startIndex: 0,
-                  itemTap: (index) {
+                  itemTap: (index) async {
                     print(index);
                     if (index == 0) {
                       Get.toNamed(AppRoutes.order);
-                    } else if (index == 1) {
+                    } else if (index == 1)  {
+                      final shareResult = await Share.share('分享的内容');
+                      print(shareResult);
                     } else if (index == 2) {
                       Get.toNamed(AppRoutes.kyc);
                     }

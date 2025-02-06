@@ -9,10 +9,12 @@ part of 'hasrate_progress_info.dart';
 _$HasrateProgressInfoImpl _$$HasrateProgressInfoImplFromJson(
         Map<String, dynamic> json) =>
     _$HasrateProgressInfoImpl(
-      next: Next.fromJson(json['next'] as Map<String, dynamic>),
-      planAmount: (json['planAmount'] as num).toInt(),
-      directCount: (json['directCount'] as num).toInt(),
-      teamCount: (json['teamCount'] as num).toInt(),
+      next: json['next'] == null
+          ? null
+          : Next.fromJson(json['next'] as Map<String, dynamic>),
+      planAmount: (json['planAmount'] as num?)?.toInt() ?? 0,
+      directCount: (json['directCount'] as num?)?.toInt() ?? 0,
+      teamCount: (json['teamCount'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$HasrateProgressInfoImplToJson(
@@ -25,25 +27,25 @@ Map<String, dynamic> _$$HasrateProgressInfoImplToJson(
     };
 
 _$NextImpl _$$NextImplFromJson(Map<String, dynamic> json) => _$NextImpl(
-      id: (json['id'] as num).toInt(),
-      createTime: json['createTime'] as String,
-      updateTime: json['updateTime'] as String,
-      createUserId: (json['createUserId'] as num).toInt(),
-      createUserName: json['createUserName'] as String,
-      updateUserId: (json['updateUserId'] as num).toInt(),
-      updateUserName: json['updateUserName'] as String,
-      isDelete: json['isDelete'] as bool,
-      sysExtInfo: json['sysExtInfo'] as String,
-      code: json['code'] as String,
-      name: json['name'] as String,
-      orderNo: (json['orderNo'] as num).toInt(),
-      condition: json['condition'] as String,
-      firstLayer: (json['firstLayer'] as num).toInt(),
-      secondLayer: (json['secondLayer'] as num).toInt(),
-      thirdLayer: (json['thirdLayer'] as num).toInt(),
-      description: json['description'] as String,
-      enable: (json['enable'] as num).toInt(),
-      remark: json['remark'] as String,
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      createTime: json['createTime'] as String? ?? '',
+      updateTime: json['updateTime'] as String? ?? '',
+      createUserId: (json['createUserId'] as num?)?.toInt() ?? 0,
+      createUserName: json['createUserName'] as String? ?? '',
+      updateUserId: (json['updateUserId'] as num?)?.toInt() ?? 0,
+      updateUserName: json['updateUserName'] as String? ?? '',
+      isDelete: json['isDelete'] as bool? ?? false,
+      sysExtInfo: json['sysExtInfo'] as String? ?? '',
+      code: json['code'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      orderNo: (json['orderNo'] as num?)?.toInt() ?? 0,
+      condition: json['condition'] as String? ?? '',
+      firstLayer: (json['firstLayer'] as num?)?.toInt() ?? 0,
+      secondLayer: (json['secondLayer'] as num?)?.toInt() ?? 0,
+      thirdLayer: (json['thirdLayer'] as num?)?.toInt() ?? 0,
+      description: json['description'] as String? ?? '',
+      enable: (json['enable'] as num?)?.toInt() ?? 0,
+      remark: json['remark'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$NextImplToJson(_$NextImpl instance) =>

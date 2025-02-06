@@ -21,7 +21,7 @@ HasrateProgressInfo _$HasrateProgressInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$HasrateProgressInfo {
   @JsonKey(name: 'next')
-  Next get next => throw _privateConstructorUsedError;
+  Next? get next => throw _privateConstructorUsedError;
   @JsonKey(name: 'planAmount')
   int get planAmount => throw _privateConstructorUsedError;
   @JsonKey(name: 'directCount')
@@ -46,12 +46,12 @@ abstract class $HasrateProgressInfoCopyWith<$Res> {
       _$HasrateProgressInfoCopyWithImpl<$Res, HasrateProgressInfo>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'next') Next next,
+      {@JsonKey(name: 'next') Next? next,
       @JsonKey(name: 'planAmount') int planAmount,
       @JsonKey(name: 'directCount') int directCount,
       @JsonKey(name: 'teamCount') int teamCount});
 
-  $NextCopyWith<$Res> get next;
+  $NextCopyWith<$Res>? get next;
 }
 
 /// @nodoc
@@ -69,16 +69,16 @@ class _$HasrateProgressInfoCopyWithImpl<$Res, $Val extends HasrateProgressInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? next = null,
+    Object? next = freezed,
     Object? planAmount = null,
     Object? directCount = null,
     Object? teamCount = null,
   }) {
     return _then(_value.copyWith(
-      next: null == next
+      next: freezed == next
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
-              as Next,
+              as Next?,
       planAmount: null == planAmount
           ? _value.planAmount
           : planAmount // ignore: cast_nullable_to_non_nullable
@@ -98,8 +98,12 @@ class _$HasrateProgressInfoCopyWithImpl<$Res, $Val extends HasrateProgressInfo>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $NextCopyWith<$Res> get next {
-    return $NextCopyWith<$Res>(_value.next, (value) {
+  $NextCopyWith<$Res>? get next {
+    if (_value.next == null) {
+      return null;
+    }
+
+    return $NextCopyWith<$Res>(_value.next!, (value) {
       return _then(_value.copyWith(next: value) as $Val);
     });
   }
@@ -114,13 +118,13 @@ abstract class _$$HasrateProgressInfoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'next') Next next,
+      {@JsonKey(name: 'next') Next? next,
       @JsonKey(name: 'planAmount') int planAmount,
       @JsonKey(name: 'directCount') int directCount,
       @JsonKey(name: 'teamCount') int teamCount});
 
   @override
-  $NextCopyWith<$Res> get next;
+  $NextCopyWith<$Res>? get next;
 }
 
 /// @nodoc
@@ -136,16 +140,16 @@ class __$$HasrateProgressInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? next = null,
+    Object? next = freezed,
     Object? planAmount = null,
     Object? directCount = null,
     Object? teamCount = null,
   }) {
     return _then(_$HasrateProgressInfoImpl(
-      next: null == next
+      next: freezed == next
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
-              as Next,
+              as Next?,
       planAmount: null == planAmount
           ? _value.planAmount
           : planAmount // ignore: cast_nullable_to_non_nullable
@@ -166,17 +170,17 @@ class __$$HasrateProgressInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HasrateProgressInfoImpl implements _HasrateProgressInfo {
   _$HasrateProgressInfoImpl(
-      {@JsonKey(name: 'next') required this.next,
-      @JsonKey(name: 'planAmount') required this.planAmount,
-      @JsonKey(name: 'directCount') required this.directCount,
-      @JsonKey(name: 'teamCount') required this.teamCount});
+      {@JsonKey(name: 'next') this.next,
+      @JsonKey(name: 'planAmount') this.planAmount = 0,
+      @JsonKey(name: 'directCount') this.directCount = 0,
+      @JsonKey(name: 'teamCount') this.teamCount = 0});
 
   factory _$HasrateProgressInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$HasrateProgressInfoImplFromJson(json);
 
   @override
   @JsonKey(name: 'next')
-  final Next next;
+  final Next? next;
   @override
   @JsonKey(name: 'planAmount')
   final int planAmount;
@@ -230,10 +234,10 @@ class _$HasrateProgressInfoImpl implements _HasrateProgressInfo {
 
 abstract class _HasrateProgressInfo implements HasrateProgressInfo {
   factory _HasrateProgressInfo(
-          {@JsonKey(name: 'next') required final Next next,
-          @JsonKey(name: 'planAmount') required final int planAmount,
-          @JsonKey(name: 'directCount') required final int directCount,
-          @JsonKey(name: 'teamCount') required final int teamCount}) =
+          {@JsonKey(name: 'next') final Next? next,
+          @JsonKey(name: 'planAmount') final int planAmount,
+          @JsonKey(name: 'directCount') final int directCount,
+          @JsonKey(name: 'teamCount') final int teamCount}) =
       _$HasrateProgressInfoImpl;
 
   factory _HasrateProgressInfo.fromJson(Map<String, dynamic> json) =
@@ -241,7 +245,7 @@ abstract class _HasrateProgressInfo implements HasrateProgressInfo {
 
   @override
   @JsonKey(name: 'next')
-  Next get next;
+  Next? get next;
   @override
   @JsonKey(name: 'planAmount')
   int get planAmount;
@@ -603,25 +607,25 @@ class __$$NextImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NextImpl implements _Next {
   _$NextImpl(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'createTime') required this.createTime,
-      @JsonKey(name: 'updateTime') required this.updateTime,
-      @JsonKey(name: 'createUserId') required this.createUserId,
-      @JsonKey(name: 'createUserName') required this.createUserName,
-      @JsonKey(name: 'updateUserId') required this.updateUserId,
-      @JsonKey(name: 'updateUserName') required this.updateUserName,
-      @JsonKey(name: 'isDelete') required this.isDelete,
-      @JsonKey(name: 'sysExtInfo') required this.sysExtInfo,
-      @JsonKey(name: 'code') required this.code,
-      @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'orderNo') required this.orderNo,
-      @JsonKey(name: 'condition') required this.condition,
-      @JsonKey(name: 'firstLayer') required this.firstLayer,
-      @JsonKey(name: 'secondLayer') required this.secondLayer,
-      @JsonKey(name: 'thirdLayer') required this.thirdLayer,
-      @JsonKey(name: 'description') required this.description,
-      @JsonKey(name: 'enable') required this.enable,
-      @JsonKey(name: 'remark') required this.remark});
+      {@JsonKey(name: 'id') this.id = 0,
+      @JsonKey(name: 'createTime') this.createTime = '',
+      @JsonKey(name: 'updateTime') this.updateTime = '',
+      @JsonKey(name: 'createUserId') this.createUserId = 0,
+      @JsonKey(name: 'createUserName') this.createUserName = '',
+      @JsonKey(name: 'updateUserId') this.updateUserId = 0,
+      @JsonKey(name: 'updateUserName') this.updateUserName = '',
+      @JsonKey(name: 'isDelete') this.isDelete = false,
+      @JsonKey(name: 'sysExtInfo') this.sysExtInfo = '',
+      @JsonKey(name: 'code') this.code = '',
+      @JsonKey(name: 'name') this.name = '',
+      @JsonKey(name: 'orderNo') this.orderNo = 0,
+      @JsonKey(name: 'condition') this.condition = '',
+      @JsonKey(name: 'firstLayer') this.firstLayer = 0,
+      @JsonKey(name: 'secondLayer') this.secondLayer = 0,
+      @JsonKey(name: 'thirdLayer') this.thirdLayer = 0,
+      @JsonKey(name: 'description') this.description = '',
+      @JsonKey(name: 'enable') this.enable = 0,
+      @JsonKey(name: 'remark') this.remark = ''});
 
   factory _$NextImpl.fromJson(Map<String, dynamic> json) =>
       _$$NextImplFromJson(json);
@@ -771,25 +775,25 @@ class _$NextImpl implements _Next {
 
 abstract class _Next implements Next {
   factory _Next(
-      {@JsonKey(name: 'id') required final int id,
-      @JsonKey(name: 'createTime') required final String createTime,
-      @JsonKey(name: 'updateTime') required final String updateTime,
-      @JsonKey(name: 'createUserId') required final int createUserId,
-      @JsonKey(name: 'createUserName') required final String createUserName,
-      @JsonKey(name: 'updateUserId') required final int updateUserId,
-      @JsonKey(name: 'updateUserName') required final String updateUserName,
-      @JsonKey(name: 'isDelete') required final bool isDelete,
-      @JsonKey(name: 'sysExtInfo') required final String sysExtInfo,
-      @JsonKey(name: 'code') required final String code,
-      @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'orderNo') required final int orderNo,
-      @JsonKey(name: 'condition') required final String condition,
-      @JsonKey(name: 'firstLayer') required final int firstLayer,
-      @JsonKey(name: 'secondLayer') required final int secondLayer,
-      @JsonKey(name: 'thirdLayer') required final int thirdLayer,
-      @JsonKey(name: 'description') required final String description,
-      @JsonKey(name: 'enable') required final int enable,
-      @JsonKey(name: 'remark') required final String remark}) = _$NextImpl;
+      {@JsonKey(name: 'id') final int id,
+      @JsonKey(name: 'createTime') final String createTime,
+      @JsonKey(name: 'updateTime') final String updateTime,
+      @JsonKey(name: 'createUserId') final int createUserId,
+      @JsonKey(name: 'createUserName') final String createUserName,
+      @JsonKey(name: 'updateUserId') final int updateUserId,
+      @JsonKey(name: 'updateUserName') final String updateUserName,
+      @JsonKey(name: 'isDelete') final bool isDelete,
+      @JsonKey(name: 'sysExtInfo') final String sysExtInfo,
+      @JsonKey(name: 'code') final String code,
+      @JsonKey(name: 'name') final String name,
+      @JsonKey(name: 'orderNo') final int orderNo,
+      @JsonKey(name: 'condition') final String condition,
+      @JsonKey(name: 'firstLayer') final int firstLayer,
+      @JsonKey(name: 'secondLayer') final int secondLayer,
+      @JsonKey(name: 'thirdLayer') final int thirdLayer,
+      @JsonKey(name: 'description') final String description,
+      @JsonKey(name: 'enable') final int enable,
+      @JsonKey(name: 'remark') final String remark}) = _$NextImpl;
 
   factory _Next.fromJson(Map<String, dynamic> json) = _$NextImpl.fromJson;
 
