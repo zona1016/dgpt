@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/general_constants.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -22,11 +23,10 @@ class AccountProfileScreenController extends BaseController {
   final ImagePicker _picker = ImagePicker();
 
   RxString avatarFilePath = "".obs;
-
-  String userName = '';
-  String password = '';
-
-  RxBool canLogin = false.obs;
+  RxString name = ''.obs;
+  RxString email = ''.obs;
+  RxString phoneNum = ''.obs;
+  Rx<CountryCode> code = CountryCode.fromCountryCode('MY').obs;
 
   @override
   void onInit() {

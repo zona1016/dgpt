@@ -4,6 +4,7 @@ import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -230,21 +231,30 @@ class ProfileScreen extends GetView<ProfileScreenController> {
           top: 0,
           left: 0,
           right: 0,
-          child: Center(
-            child: Container(
-              height: 140,
-              width: 140,
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image:
-                        AssetImage('assets/images/custom/profile_icon_bg.png'),
-                    fit: BoxFit.cover),
-              ),
-              child: Image.asset(
-                'assets/images/custom/logo.png',
-                height: 120,
-                width: 120,
+          child: GestureDetector(
+            onTap: () => Get.toNamed(AppRoutes.setting),
+            child: Center(
+              child: Container(
+                height: 140,
+                width: 140,
+                padding: const EdgeInsets.all(defaultPadding),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/custom/profile_icon_bg.png'),
+                      fit: BoxFit.cover),
+                ),
+                child: const Center(
+                  child: ClipOval( // 裁剪成圆形
+                    child: BaseNetworkImage(
+                      imageURL: '',
+                      placeholder: "assets/images/placeholder/profile_placeholder.png",
+                      fit: BoxFit.cover,
+                      height: 120,
+                      width: 120,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),

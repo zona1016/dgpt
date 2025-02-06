@@ -196,7 +196,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
       TextFormFieldType.primary || TextFormFieldType.secondary => fontDMRegular
           .copyWith(fontSize: 16, color: BaseColors.black.withOpacity(0.25)),
       TextFormFieldType.golden => fontDMRegular.copyWith(
-          fontSize: 16, color: BaseColors.black.withOpacity(0.25))
+          fontSize: 16, color: BaseColors.white.withOpacity(0.8))
     };
   }
 
@@ -218,7 +218,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
                   : BorderSide(color: context.appTheme.lightPrimaryColor),
               borderRadius: BorderRadius.circular(widget.radius)),
       TextFormFieldType.golden => OutlineInputBorder(
-          borderSide: BorderSide.none, borderRadius: BorderRadius.circular(5))
+          borderSide: const BorderSide(color: BaseColors.white), borderRadius: BorderRadius.circular(5))
     };
   }
 }

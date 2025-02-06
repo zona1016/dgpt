@@ -14,13 +14,16 @@ class SettingScreenController extends BaseController {
 
   final AuthService authService = Get.find();
 
-  List<String> settingList = [
-    'My avatar',
-    'My nickname',
-    'My email',
-    'Phone number',
-    'Reset Funds Password',
-    'Modify Password',
+  List<String> settingTitles = [
+    '个人资料详情',
+    '重置资金密码',
+    '更改登入密码',
+  ];
+
+  List<String> settingImages = [
+    'assets/images/home/setting_grzlxq.png',
+    'assets/images/home/setting_czzjmm.png',
+    'assets/images/home/setting_ggdrmm.png',
   ];
 
   @override

@@ -4,8 +4,7 @@ import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
-import 'package:dgpt/screens/auth/change_password_screen.dart';
-import 'package:dgpt/screens/auth/change_password_screen_controller.dart';
+import 'package:dgpt/screens/setting/change_password_screen.dart';
 import 'package:dgpt/screens/auth/email_code_screen.dart';
 import 'package:dgpt/screens/auth/email_code_screen_controller.dart';
 import 'package:dgpt/screens/auth/forget_password_screen.dart';
@@ -44,8 +43,11 @@ import 'package:dgpt/screens/qr_code/qr_code_screen.dart';
 import 'package:dgpt/screens/qr_code/qr_code_screen_controller.dart';
 import 'package:dgpt/screens/setting/account_profile_screen.dart';
 import 'package:dgpt/screens/setting/account_profile_screen_controller.dart';
+import 'package:dgpt/screens/setting/change_password_screen_controller.dart';
 import 'package:dgpt/screens/setting/my_device_screen.dart';
 import 'package:dgpt/screens/setting/my_device_screen_controller.dart';
+import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
+import 'package:dgpt/screens/setting/reset_fund_psd_screen_controller.dart';
 import 'package:dgpt/screens/setting/setting_screen.dart';
 import 'package:dgpt/screens/setting/setting_screen_controller.dart';
 import 'package:dgpt/screens/auth/splash/splash_screen.dart';
@@ -105,6 +107,7 @@ class AppRoutes {
   static String accountProfile = "/account_profile";
   static String myDevice = "/my_device";
   static String helpCenter = "/help_center";
+  static String resetFundPsd = "/reset_fund_psd";
 
   static String myAssets = "/my_assets";
   static String order = "/order";
@@ -228,6 +231,11 @@ class AppRoutes {
         name: helpCenter,
         page: () => const HelpCenterScreen(),
         binding: HelpCenterScreenBindings()
+    ),
+    GetPage(
+        name: resetFundPsd,
+        page: () => const ResetFundPsdScreen(),
+        binding: ResetFundPsdScreenBindings()
     ),
     GetPage(
         name: accountProfile,
