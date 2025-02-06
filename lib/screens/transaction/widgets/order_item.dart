@@ -2,6 +2,7 @@ import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,13 +18,16 @@ class _OrderItemState extends State<OrderItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+      padding: const EdgeInsets.symmetric(
+          horizontal: defaultPadding, vertical: defaultPadding / 2),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: BaseColors.black
-      ),
+          borderRadius: BorderRadius.circular(25),
+          color: BaseColors.white.withOpacity(0.2)),
       child: Column(
         children: [
+          const SizedBox(
+            height: defaultPadding / 2,
+          ),
           Row(
             children: [
               Text(
@@ -35,16 +39,14 @@ class _OrderItemState extends State<OrderItem> {
               ),
               const Spacer(),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2, vertical: defaultPadding / 4),
-                height: 35,
-                width: 60,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: BaseColors.primaryColor
-                ),
+                    borderRadius: BorderRadius.circular(defaultPadding),
+                    color: BaseColors.primaryColor),
                 child: Center(
                   child: Text(
-                    'Running',
+                    '运行中',
                     style: fontSFProMedium.copyWith(
                       fontSize: 16,
                       color: Colors.red,
@@ -54,117 +56,220 @@ class _OrderItemState extends State<OrderItem> {
               )
             ],
           ),
-          const SizedBox(height: defaultPadding,),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           Container(
             height: 1,
             width: double.infinity,
             color: Colors.white,
           ),
-          const SizedBox(height: defaultPadding,),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 80,
                 width: 80,
-                child: const AspectRatio(
+                child: AspectRatio(
                   aspectRatio: 1,
                   child: BaseNetworkImage(
                     imageURL: '',
+                    placeholder: 'assets/images/home/income_icon.png',
                   ),
                 ),
               ),
-              const SizedBox(width: defaultPadding / 2,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Accelerator Ⅰ',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  Text(
-                    'Daily training hours：2 H',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  Text(
-                    'Deadlines：60Days',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  Text(
-                    'Total yield：104%',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                ],
+              const SizedBox(
+                width: defaultPadding,
               ),
-            ],
-          ),
-          const SizedBox(height: defaultPadding,),
-          Row(
-            children: [
               Expanded(
-                child: Text(
-                  '2025-01-19 20:36:50',
-                  style: fontSFProMedium.copyWith(
-                    fontSize: 16,
-                    color: BaseColors.white,
-                  ),
-                ),
-              ),
-              Text(
-                "Actual to be paid：\$100.00",
-                style: fontSFProMedium.copyWith(
-                  fontSize: 16,
-                  color: Colors.red,
-                ),
-              )
-            ],
-          ),
-          const SizedBox(height: defaultPadding,),
-          Container(
-            height: 1,
-            width: double.infinity,
-            color: Colors.white,
-          ),
-          const SizedBox(height: defaultPadding,),
-          Row(
-            children: [
-              Expanded(
-                child: Container()
-              ),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(AppRoutes.orderDetail);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2, vertical: defaultPadding / 4),
-                  height: 35,
-                  width: 80,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.black
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Detail',
-                      style: fontSFProMedium.copyWith(
-                        fontSize: 16,
-                        color: BaseColors.weakTextColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '加速器I',
+                      style: fontDMBold.copyWith(
+                        fontSize: 12,
+                        color: BaseColors.white,
                       ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: defaultPadding / 4,
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '每日训练时长',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 4,
+                            ),
+                            Text(
+                              '期限',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 4,
+                            ),
+                            Text(
+                              '总产量',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '2H',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 4,
+                            ),
+                            Text(
+                              '60天',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: defaultPadding / 4,
+                            ),
+                            Text(
+                              '\$830',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                    Center(
+                      child: Text(
+                        '进行中...',
+                        style: fontDMBold.copyWith(
+                          fontSize: 12,
+                          color: const Color(0xFF81E5FF),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                    Image.asset(
+                      'assets/images/home/order_progress.png'
+                    ),
+                    Center(
+                      child: Text(
+                        '已失效...',
+                        style: fontDMBold.copyWith(
+                          fontSize: 12,
+                          color: const Color(0xFF81E5FF),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                    Image.asset(
+                        'assets/images/home/order_progress_fail.png'
+                    ),
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                    Container(
+                      height: 30,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          border: Border.all(
+                              width: 1, color: BaseColors.secondPrimaryColor)),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            Text(
+                              '实际需交付',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: defaultPadding / 4,
+                            ),
+                            Text(
+                              '\$100.00',
+                              style: fontDMRegular.copyWith(
+                                fontSize: 10,
+                                color: BaseColors.secondPrimaryColor,
+                              ),
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: defaultPadding,
+                    ),
+                    Row(
+                      children: [
+                        const Spacer(),
+                        Container(
+                          height: 24,
+                          width: 52,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: defaultPadding / 2),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(defaultPadding),
+                              color: BaseColors.primaryColor),
+                          child: Center(
+                            child: Text(
+                              '详情',
+                              style: fontDMBold.copyWith(
+                                fontSize: 12,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                  ],
                 ),
-              )
+              ),
             ],
           ),
         ],

@@ -13,17 +13,15 @@ class OrderScreen extends GetView<OrderScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.black,
-      appBar: BaseAppBar(
+      backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.customBackgroundImage,
+      appBar: const BaseAppBar(
         title: '我的订单',
         color: BaseColors.white,
-        backgroundColor: Colors.black,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.black),
-        ),
+        backgroundColor: Colors.transparent,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding),
         child: ListView.separated(
           itemCount: 10,
           itemBuilder: (_, index) {
