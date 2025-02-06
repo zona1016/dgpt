@@ -406,7 +406,10 @@ class ProfileScreen extends GetView<ProfileScreenController> {
       height: 151,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding),
+        borderRadius: BorderRadius.circular(defaultPadding).copyWith(
+          topLeft: const Radius.circular(25),
+          topRight: const Radius.circular(25),
+        ),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

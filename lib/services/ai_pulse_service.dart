@@ -3,6 +3,7 @@ import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
 import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
+import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/utils/api/api_client.dart';
@@ -18,6 +19,8 @@ abstract class AiPulseService {
       {int page, int perPage});
 
   Future<BaseResponse<PowerInfo?>> userHashrate();
+
+  Future<BaseResponse<HasrateProgressInfo?>> aiPulseUserHashrateProgress();
 
   Future<BaseResponse<HashratePageDetail?>> hashratePageDetail(
       {required String id});
@@ -168,6 +171,18 @@ class AiPulseServiceImpl extends AiPulseService {
           bearerToken: userController.token,
           data: {'id': id, 'quantity': quantity},
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<HasrateProgressInfo?>> aiPulseUserHashrateProgress() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseUserHashrateProgress,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+          data != null ? HasrateProgressInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

@@ -72,6 +72,36 @@ class BaseColors {
     stops: [0.0, 0.43, 0.79, 1.0],
   );
 
+  static LinearGradient diaYebz = const LinearGradient(
+    colors: [
+      Color(0xFF5C09C2),
+      Color(0xFF4A045C),
+    ],
+    stops: [0.0, 1.0],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static LinearGradient diaCzsb = const LinearGradient(
+    colors: [
+      Color(0xFFEA4335),
+      Color(0xFF84261E),
+    ],
+    stops: [0.0, 1.0],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static LinearGradient diaCzcg = const LinearGradient(
+    colors: [
+      Color(0xFF12A575),
+      Color(0xFF073F2D),
+    ],
+    stops: [0.0, 1.0],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
   static LinearGradient appBarLinearGradient = const LinearGradient(
     colors: [
       Color(0xFF5009C2),

@@ -9,8 +9,8 @@ part of 'user_income_total.dart';
 _$UserIncomeTotalImpl _$$UserIncomeTotalImplFromJson(
         Map<String, dynamic> json) =>
     _$UserIncomeTotalImpl(
-      today: (json['today'] as num?)?.toInt() ?? 0,
-      total: (json['total'] as num?)?.toInt() ?? 0,
+      today: (json['today'] as num?)?.toDouble() ?? 0,
+      total: (json['total'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$UserIncomeTotalImplToJson(

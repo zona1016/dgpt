@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
+import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
@@ -16,6 +17,7 @@ class HashrateRentalScreenBindings implements Bindings {
 class HashrateRentalScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
 
+  Rxn<HasrateProgressInfo> progressInfo = Rxn<HasrateProgressInfo>();
   Rxn<PowerInfo> powerInfo = Rxn<PowerInfo>();
   RxList<HasratePageInfo> hasratePageList = <HasratePageInfo>[].obs;
 
@@ -28,6 +30,7 @@ class HashrateRentalScreenController extends BaseController {
   void onInit() {
     super.onInit();
     userHashrate();
+    aiPulseUserHashrateProgress();
   }
 
   @override
@@ -48,6 +51,15 @@ class HashrateRentalScreenController extends BaseController {
     if (result != null) {
       powerInfo.value = result;
       hashratePage();
+    }
+  }
+
+  aiPulseUserHashrateProgress() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.aiPulseUserHashrateProgress());
+    if (result != null) {
+      progressInfo.value = result;
     }
   }
 

@@ -115,9 +115,11 @@ class DialogUtils {
 
   static void showDGPTBaseDialog(
       {bool barrierDismissible = true,
+      BorderRadiusGeometry? comBorderRadius,
       required String title,
       Color? titleColor,
       String? topTitle,
+      Color? topTitleColor,
       LinearGradient? gradient,
       String? desc,
       String? image,
@@ -157,12 +159,15 @@ class DialogUtils {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     if (topTitle != null && topTitle.isNotEmpty)
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: fontSFProBold.copyWith(
-                            fontSize: 17,
-                            color: titleColor ?? BaseColors.white),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: defaultPadding),
+                        child: Text(
+                          topTitle,
+                          textAlign: TextAlign.center,
+                          style: fontDMBold.copyWith(
+                              fontSize: 24,
+                              color: topTitleColor ?? BaseColors.white),
+                        ),
                       ),
                     imageWidget ?? Container(),
                     if (title.isNotEmpty && imageWidget != null)
@@ -213,10 +218,10 @@ class DialogUtils {
                             Expanded(
                                 flex: 3,
                                 child: BaseButton(
-                                  borderRadius: BorderRadius.circular(30),
                                   customDecoration: BoxDecoration(
-                                    color: BaseColors.white.withOpacity(0.2)
-                                  ),
+                                      color: BaseColors.white.withOpacity(0.2),
+                                      borderRadius: comBorderRadius ??
+                                          BorderRadius.circular(30)),
                                   height: 35,
                                   onPressed: () {
                                     onConfirmPressed?.call();
@@ -333,25 +338,36 @@ class DialogUtils {
   }
 
   static void showSuccessDialog(String title,
-      {String? desc,
+      {Color? titleColor,
+      BorderRadiusGeometry? comBorderRadius,
+      String? topTitle,
+      String? desc,
       bool barrierDismissible = true,
+      bool showCircularProgressIndicator = false,
+      LinearGradient? gradient,
+      String? image,
+      double? height,
+      double? width,
       String? confirmText,
       String? underlinedText,
       Function()? onConfirmPressed,
       Function()? onUnderLinedTextClicked}) {
-    showBaseDialog(
-      desc: desc,
-      title: title,
-      barrierDismissible: barrierDismissible,
-      image: "success",
-      underlinedText: underlinedText,
-      confirmText: confirmText ?? tr("button.confirm"),
-      onUnderLinedTextClicked: onUnderLinedTextClicked,
-      onConfirmPressed: onConfirmPressed ??
-          () {
-            Get.back();
-          },
-    );
+    showDGPTBaseDialog(
+        imageWidget: Image.asset(
+          image ?? 'assets/images/custom/dio_login_success.png',
+          height: height ?? 44,
+          width: width ?? 144,
+        ),
+        title: title,
+        topTitle: topTitle,
+        titleColor: titleColor,
+        barrierDismissible: barrierDismissible,
+        desc: desc ?? '请稍等片刻，即将进入产品主页~',
+        showCircularProgressIndicator: showCircularProgressIndicator,
+        confirmText: confirmText,
+        comBorderRadius: comBorderRadius,
+        onConfirmPressed: onConfirmPressed,
+        gradient: gradient);
   }
 
   static void showErrorDialog(title,

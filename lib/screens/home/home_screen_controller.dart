@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -8,6 +9,7 @@ import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
+import 'package:dgpt/utils/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -36,6 +38,7 @@ class HomeScreenController extends BaseController {
       CarouselSliderController();
   late Timer _timer;
 
+  Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   RxList<Banner> bannerList = <Banner>[].obs;
   List<String> titles = ['通告', '邀请', '教学', '企业'];
   List<String> images = [
@@ -48,6 +51,7 @@ class HomeScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    userIncomeTotal();
     aiPulseBanner();
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
@@ -75,31 +79,30 @@ class HomeScreenController extends BaseController {
 
   aiPulseBanner(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
-
     final result = await fetchData(
         request: () => aiPulseService.aiPulseBannerUserPage(position: 0),
         loadingState: AppLoadingState.background);
-    if (result != null) {
-      bannerList.assignAll(result as Iterable<Banner>);
-    }
+    if (result != null) {}
   }
 
   Future<void> capturePng(BuildContext context) async {
     try {
       // 获取 RenderRepaintBoundary
       RenderRepaintBoundary boundary =
-      globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+          globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
 
       // 转换为图像
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
 
       // 转换为字节数据
-      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
       Uint8List pngBytes = byteData!.buffer.asUint8List();
 
       bool permission = await requestPermission(context);
       if (permission) {
-        await ImageGallerySaver.saveImage(pngBytes, quality: 100, name: "column_image");
+        await ImageGallerySaver.saveImage(pngBytes,
+            quality: 100, name: "column_image");
         Get.back();
         ToastUtils.showToast(title: '图片保存成功');
       }
@@ -157,7 +160,7 @@ class HomeScreenController extends BaseController {
             TextButton(
               child: const Text('前往设置'),
               onPressed: () {
-                openAppSettings();  // 打开系统设置页面
+                openAppSettings(); // 打开系统设置页面
                 Navigator.of(context).pop();
               },
             ),
@@ -173,16 +176,78 @@ class HomeScreenController extends BaseController {
     );
   }
 
+  userIncomeTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.userIncomeTotal());
+    if (result != null) {
+      incomeTotal.value = result;
+    }
+  }
+
   logout() async {
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
         request: () => authService.logout());
     if (result != null) {
       DialogUtils.showDGPTBaseDialog(
-          title: '退出成功！', desc: '', confirmText: '确定', onConfirmPressed: () {
-        Get.back();
-        userController.clearUser();
-      });
+          title: '退出成功！',
+          desc: '',
+          confirmText: '确定',
+          onConfirmPressed: () {
+            Get.back();
+            userController.clearUser();
+          });
     }
+  }
+
+  _showDia() {
+    DialogUtils.showSuccessDialog('余额不足',
+        titleColor: Colors.red,
+        width: 200,
+        height: 170,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaYebz,
+        image: 'assets/images/custom/dia_yebz.png',
+        desc: '钱包余额不足，请立即充值',
+        barrierDismissible: false,
+        confirmText: '立马充值', onConfirmPressed: () {
+      Get.back();
+    });
+    DialogUtils.showSuccessDialog('租借成功',
+        width: 250,
+        height: 197,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaYebz,
+        image: 'assets/images/custom/dia_zjcg.png',
+        desc: '点击下方按键选择立马或稍后部署算力',
+        barrierDismissible: false,
+        confirmText: '完成', onConfirmPressed: () {
+      Get.back();
+    });
+    DialogUtils.showSuccessDialog('不好了 ！',
+        topTitle: '充值失败',
+        width: 200,
+        height: 151,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaCzsb,
+        image: 'assets/images/custom/dia_czsb.png',
+        desc: '看来存款过程被中断了。请稍后再试！',
+        barrierDismissible: false,
+        confirmText: 'OK', onConfirmPressed: () {
+      Get.back();
+    });
+    DialogUtils.showSuccessDialog('恭喜 ！',
+        topTitle: '充值成功',
+        width: 200,
+        height: 151,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaCzcg,
+        image: 'assets/images/custom/dia_czcg.png',
+        desc: '您已成功充值！',
+        barrierDismissible: false,
+        confirmText: 'OK', onConfirmPressed: () {
+      Get.back();
+    });
   }
 }

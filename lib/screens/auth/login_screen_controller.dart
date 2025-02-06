@@ -54,21 +54,17 @@ class LoginScreenController extends BaseController {
 
     final result = await fetchData(
       request: () => authService.login(
-          account: email.value,
-          password: password.value,
+          account: 'superadmin',
+          password: '123456',
           codeId: '0',
           code: 'string'),
     );
     if (result != null) {
-      DialogUtils.showDGPTBaseDialog(
-          imageWidget: Image.asset(
-            'assets/images/custom/dio_login_success.png',
-            height: 144,
-            width: 144,
-          ),
-          title: title ?? '登录成功！',
-          desc: '请稍等片刻，即将进入产品主页~',
-          showCircularProgressIndicator: true);
+      DialogUtils.showSuccessDialog(
+        '登录成功！',
+        barrierDismissible: false,
+        showCircularProgressIndicator: true
+      );
       getUserInfo(result.accessToken);
       userController.saveUser(null, result.accessToken);
     }

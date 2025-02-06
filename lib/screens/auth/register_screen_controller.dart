@@ -80,15 +80,11 @@ class RegisterScreenController extends BaseController {
           inviteCode: inviteCode.value),
     );
     if (result != null) {
-      DialogUtils.showDGPTBaseDialog(
-          imageWidget: Image.asset(
-            'assets/images/custom/dio_login_success.png',
-            height: 144,
-            width: 144,
-          ),
-          title: '注册成功！',
-          desc: '请稍等片刻，即将进入产品主页~',
-          showCircularProgressIndicator: true);
+      DialogUtils.showSuccessDialog(
+          '注册成功！',
+          barrierDismissible: false,
+          showCircularProgressIndicator: true
+      );
       getUserInfo(result.accessToken);
       userController.saveUser(null, result.accessToken);
     }

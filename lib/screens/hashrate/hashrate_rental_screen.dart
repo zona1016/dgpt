@@ -1,3 +1,4 @@
+import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
@@ -115,7 +116,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                           children: [
                                             const Spacer(),
                                             Text(
-                                              '3',
+                                              controller.powerInfo.value?.secondLayer.toString() ?? '',
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 20,
@@ -157,12 +158,12 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                                   borderRadius: BorderRadius.circular(
                                                       defaultPadding),
                                                   color:
-                                                      BaseColors.secondPrimaryColor),
+                                                      BaseColors.primaryColor),
                                               child: Text(
-                                                '分析',
+                                                '收益分析',
                                                 style: fontDMBold.copyWith(
                                                   color: BaseColors.white,
-                                                  fontSize: 18,
+                                                  fontSize: 16,
                                                 ),
                                               ),
                                             ),
@@ -293,7 +294,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                       arguments: HashrateRentalDetailScreenArgs(
                                           hasratePageInfo: controller.hasratePageList[index]));
                                 },
-                                child: _rentalItem(),
+                                child: _rentalItem(index),
                               );
                             },
                           )
@@ -308,7 +309,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     );
   }
 
-  _rentalItem() {
+  _rentalItem(int index) {
+    HasratePageInfo hasratePageInfo = controller.hasratePageList[index];
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -318,14 +320,14 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'GDEPIN30',
+            hasratePageInfo.name,
             style: fontDMBold.copyWith(
               color: BaseColors.white,
               fontSize: 18,
             ),
           ),
           Text(
-            'RTX4090',
+            hasratePageInfo.code,
             style: fontDMMedium.copyWith(
               color: BaseColors.white,
               fontSize: 14,
@@ -355,7 +357,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           Row(
             children: [
               Text(
-                '\$0.43',
+                '\$${hasratePageInfo.profitPreHour}',
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 20,
@@ -401,7 +403,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               ),
               Expanded(
                 child: Text(
-                  '60days',
+                  '${hasratePageInfo.cycle}days',
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,
@@ -423,7 +425,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               ),
               Expanded(
                 child: Text(
-                  '\$300',
+                  '\$${hasratePageInfo.profitTotal}',
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,
@@ -467,7 +469,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               ),
               Expanded(
                 child: Text(
-                  '\$10.50',
+                  '\$${hasratePageInfo.profitPreDay}',
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,

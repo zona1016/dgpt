@@ -40,7 +40,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ],
                     onRightImageTaps: (index) {
                       if (index == 0) {
-                        Get.toNamed(AppRoutes.order);
+                        // Get.toNamed(AppRoutes.order);
                       } else if (index == 1) {
                         Get.toNamed(AppRoutes.aboutUs);
                       } else {
@@ -167,52 +167,6 @@ class HomeScreen extends GetView<HomeScreenController> {
         : Container();
   }
 
-  _marquee() {
-    return Container(
-        height: 44,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(22), color: BaseColors.black),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              color: Colors.cyan,
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Container(
-              height: 24,
-              width: 2,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            SizedBox(
-              width: 100,
-              child: Marquee(
-                text: '1234567',
-                style:
-                    fontSFProMedium.copyWith(color: Colors.white, fontSize: 14),
-                blankSpace: 50,
-                velocity: 10.0,
-                startPadding: defaultPadding / 2,
-              ),
-            ),
-            Expanded(child: Container()),
-            const Icon(
-              Icons.keyboard_arrow_right,
-              size: 24,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-          ],
-        ));
-  }
-
   _collectionOfFeatures({required Function(int index) onTap}) {
     return Container(
       height: 96,
@@ -262,34 +216,34 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
-    return Container(
-      padding: const EdgeInsets.all(defaultPadding),
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage('assets/images/home/return_bg.png'),
-        fit: BoxFit.cover,
-      )),
-      child: Row(
-        children: [
-          Expanded(
-              child: _buildInfoCard(
-            context: context,
-            imagePath: 'assets/images/home/day_return.png',
-            title: '每小时收益',
-            value: '2.28 USDT',
-            onTap: () => onTap(0),
+    return Obx(() => Container(
+          padding: const EdgeInsets.all(defaultPadding),
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/images/home/return_bg.png'),
+            fit: BoxFit.cover,
           )),
-          Expanded(
-              child: _buildInfoCard(
-            context: context,
-            imagePath: 'assets/images/home/total_return.png',
-            title: '总收益',
-            value: '8,182.28 USDT',
-            onTap: () => onTap(1),
-          )),
-        ],
-      ),
-    );
+          child: Row(
+            children: [
+              Expanded(
+                  child: _buildInfoCard(
+                context: context,
+                imagePath: 'assets/images/home/day_return.png',
+                title: '每小时收益',
+                value: '${controller.incomeTotal.value?.today} USDT',
+                onTap: () => onTap(0),
+              )),
+              Expanded(
+                  child: _buildInfoCard(
+                context: context,
+                imagePath: 'assets/images/home/total_return.png',
+                title: '总收益',
+                value: '${controller.incomeTotal.value?.total} USDT',
+                onTap: () => onTap(1),
+              )),
+            ],
+          ),
+        ));
   }
 
   Widget _buildInfoCard({
@@ -330,60 +284,9 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _partners() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Make profit',
-          style: fontSFProMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.white,
-          ),
-        ),
-        Container(
-          height: 2,
-          width: 60,
-          color: BaseColors.primaryColor,
-        ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                height: 60,
-                color: BaseColors.primaryColor,
-              ),
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Expanded(
-              child: Container(
-                height: 60,
-                color: BaseColors.primaryColor,
-              ),
-            ),
-            const SizedBox(
-              width: defaultPadding,
-            ),
-            Expanded(
-              child: Container(
-                height: 60,
-                color: BaseColors.primaryColor,
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-
   _showShare(BuildContext context) async {
     DialogUtils.showShareDialog(
-      key: controller.globalKey,
+        key: controller.globalKey,
         barrierDismissible: false,
         title: '推荐好友',
         desc: '解锁无限奖励',
@@ -397,11 +300,10 @@ class HomeScreen extends GetView<HomeScreenController> {
               Container(
                 padding: const EdgeInsets.all(defaultPadding / 2),
                 decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/home/share_qr_code.png'),
-                    fit: BoxFit.cover,
-                  )
-                ),
+                    image: DecorationImage(
+                  image: AssetImage('assets/images/home/share_qr_code.png'),
+                  fit: BoxFit.cover,
+                )),
                 child: SizedBox(
                   height: 157,
                   width: 157,
@@ -420,8 +322,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                   Container(
                     height: 44,
                     width: double.infinity,
-                    margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(defaultPadding * 2),
                         color: BaseColors.whiteGray3),
@@ -434,9 +338,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         ),
                         Expanded(child: Container()),
                         GestureDetector(
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                           child: Image.asset(
                             'assets/images/home/share_copy.png',
                             height: 20,
@@ -449,15 +351,16 @@ class HomeScreen extends GetView<HomeScreenController> {
                   const SizedBox(height: defaultPadding / 2),
                   Container(
                     height: 44,
-                    margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(defaultPadding * 2),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/home/share_button.png'),
-                        fit: BoxFit.fitHeight
-                      )
-                    ),
+                        borderRadius: BorderRadius.circular(defaultPadding * 2),
+                        image: const DecorationImage(
+                            image: AssetImage(
+                                'assets/images/home/share_button.png'),
+                            fit: BoxFit.fitHeight)),
                     child: Row(
                       children: [
                         Text(

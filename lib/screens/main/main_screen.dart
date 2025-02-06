@@ -217,10 +217,15 @@ class GradientBorderWithBlackFillPainter extends CustomPainter {
 
     // 绘制弧形路径（反转到顶部）
     Path path = Path()
-      ..moveTo(0, size.height * 2 / 8) // 左侧起点
+      ..moveTo(2, size.height * 2 / 8) // 左侧起点
       ..arcToPoint(
-        Offset(size.width, size.height * 2 / 8), // 终点
-        radius: Radius.elliptical(size.width * 1.2, size.width * 3), // 将纵向半径设置为0，趋近直线
+        Offset(size.width * 0.5, size.height * 0.001 / 8), // 顶点稍微向上
+        radius: Radius.elliptical(size.width * 2, size.height * 3), // 增大半径，减少弧度
+        clockwise: true,
+      )
+      ..arcToPoint(
+        Offset(size.width - 4, size.height * 2 / 8), // 终点
+        radius: Radius.elliptical(size.width * 2, size.height * 3), // 增大半径
         clockwise: true,
       );
 

@@ -21,9 +21,9 @@ UserIncomeTotal _$UserIncomeTotalFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserIncomeTotal {
   @JsonKey(name: 'today')
-  int get today => throw _privateConstructorUsedError;
+  double get today => throw _privateConstructorUsedError;
   @JsonKey(name: 'total')
-  int get total => throw _privateConstructorUsedError;
+  double get total => throw _privateConstructorUsedError;
 
   /// Serializes this UserIncomeTotal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +42,8 @@ abstract class $UserIncomeTotalCopyWith<$Res> {
       _$UserIncomeTotalCopyWithImpl<$Res, UserIncomeTotal>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'today') int today, @JsonKey(name: 'total') int total});
+      {@JsonKey(name: 'today') double today,
+      @JsonKey(name: 'total') double total});
 }
 
 /// @nodoc
@@ -67,11 +68,11 @@ class _$UserIncomeTotalCopyWithImpl<$Res, $Val extends UserIncomeTotal>
       today: null == today
           ? _value.today
           : today // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -85,7 +86,8 @@ abstract class _$$UserIncomeTotalImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'today') int today, @JsonKey(name: 'total') int total});
+      {@JsonKey(name: 'today') double today,
+      @JsonKey(name: 'total') double total});
 }
 
 /// @nodoc
@@ -108,11 +110,11 @@ class __$$UserIncomeTotalImplCopyWithImpl<$Res>
       today: null == today
           ? _value.today
           : today // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -129,10 +131,10 @@ class _$UserIncomeTotalImpl implements _UserIncomeTotal {
 
   @override
   @JsonKey(name: 'today')
-  final int today;
+  final double today;
   @override
   @JsonKey(name: 'total')
-  final int total;
+  final double total;
 
   @override
   String toString() {
@@ -171,18 +173,18 @@ class _$UserIncomeTotalImpl implements _UserIncomeTotal {
 
 abstract class _UserIncomeTotal implements UserIncomeTotal {
   factory _UserIncomeTotal(
-      {@JsonKey(name: 'today') final int today,
-      @JsonKey(name: 'total') final int total}) = _$UserIncomeTotalImpl;
+      {@JsonKey(name: 'today') final double today,
+      @JsonKey(name: 'total') final double total}) = _$UserIncomeTotalImpl;
 
   factory _UserIncomeTotal.fromJson(Map<String, dynamic> json) =
       _$UserIncomeTotalImpl.fromJson;
 
   @override
   @JsonKey(name: 'today')
-  int get today;
+  double get today;
   @override
   @JsonKey(name: 'total')
-  int get total;
+  double get total;
 
   /// Create a copy of UserIncomeTotal
   /// with the given fields replaced by the non-null parameter values.
