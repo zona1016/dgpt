@@ -32,9 +32,9 @@ class HashrateRentalScreenController extends BaseController {
   void onInit() {
     super.onInit();
     userHashrate();
-    aiPulseUserHashrateProgress();
-    userTeamMemberList();
-    userTeamHashrateCountTotal();
+
+    // userTeamMemberList();
+    // userTeamHashrateCountTotal();
   }
 
   @override
@@ -54,7 +54,7 @@ class HashrateRentalScreenController extends BaseController {
         request: () => aiPulseService.userHashrate());
     if (result != null) {
       powerInfo.value = result;
-      hashratePage();
+      aiPulseUserHashrateProgress();
     }
   }
 
@@ -64,6 +64,7 @@ class HashrateRentalScreenController extends BaseController {
         request: () => aiPulseService.aiPulseUserHashrateProgress());
     if (result != null) {
       progressInfo.value = result;
+      hashratePage();
     }
   }
 

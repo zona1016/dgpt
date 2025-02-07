@@ -74,7 +74,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                       Row(
                                         children: [
                                           Text(
-                                            tr('hashrate.computing_power_level'),
+                                            controller.powerInfo.value?.name ?? '',
                                             style: fontDMBold.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 16,
