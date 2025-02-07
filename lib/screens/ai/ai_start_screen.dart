@@ -77,15 +77,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
             width: defaultPadding / 3 * 2,
           ),
           GestureDetector(
-            onTap: () {
-              if (controller.messageList.length > 2) {
-                controller.endAnimal();
-              } else {
-                controller.startAnimal();
-              }
-              controller.textEditingController.text = '';
-              controller.messageList.add(controller.textEditingController.text);
-            },
+            onTap: () => controller.aiPulseChatGptSend(),
             child: Image.asset(
               "assets/images/custom/ai_send.png",
               width: 40,
@@ -100,9 +92,12 @@ class AiStartScreen extends GetView<AiStartScreenController> {
   _messageListView() {
     return Obx(() => ListView.builder(
           padding: const EdgeInsets.all(defaultPadding),
+          controller: controller.scrollController,
           itemCount: controller.messageList.length, // 消息数量
           itemBuilder: (context, index) {
-            return !index.isEven ? _leftItm(index) : _rightItem();
+            return controller.messageList[index].isSelf
+                ? _rightItem(index)
+                : _leftItm(index);
           },
         ));
   }
@@ -182,35 +177,10 @@ class AiStartScreen extends GetView<AiStartScreenController> {
                   bottomRight: Radius.circular(8.0),
                 ),
               ),
-              child: (index == 1)
-                  ? Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: List.generate(3, (index) {
-                          return AnimatedBuilder(
-                            animation: controller.animationController,
-                            builder: (context, child) {
-                              return Transform.scale(
-                                scale: controller.dotScales[index].value,
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                                  width: 8,
-                                  height: 8,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        }),
-                      ),
-                    )
+              child: controller.messageList[index].id == 0
+                  ? _buildAnimal()
                   : Text(
-                      index.isEven ? "Hello" : "123",
+                      controller.messageList[index].message ?? '',
                       style: const TextStyle(color: Colors.white),
                     ),
             ),
@@ -230,7 +200,35 @@ class AiStartScreen extends GetView<AiStartScreenController> {
     );
   }
 
-  _rightItem() {
+  _buildAnimal() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(3, (index) {
+          return AnimatedBuilder(
+            animation: controller.animationController,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: controller.dotScales[index].value,
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              );
+            },
+          );
+        }),
+      ),
+    );
+  }
+
+  _rightItem(index) {
     return SizedBox(
       width: Get.width / 3 * 2,
       child: Align(
@@ -251,7 +249,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
             ),
           ),
           child: Text(
-            "123",
+            controller.messageList[index].message ?? '',
             style: const TextStyle(color: Colors.white),
           ),
         ),

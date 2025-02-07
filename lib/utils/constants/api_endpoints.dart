@@ -22,8 +22,13 @@ class ApiEndpoints {
   // aiPulse
   static const String aiPulseAddressPage = "/api/aiPulseAddress/page";
   static const String aiPulseAddressDetail = " /api/aiPulseAddress/detail";
-  static const String aiPulseAddressDropdownData = " /api/aiPulseAddress/dropdownData";
-  static const String aiPulseAddressUserPage = " /api/aiPulseAddress/userPage";
+  static const String aiPulseAddressDropdownData = "/api/aiPulseAddress/dropdownData";
+  static const String aiPulseAddressUserPage = "/api/aiPulseAddress/userPage";
+
+  static const String aiPulseChatGptSend = "/api/aiPulseChatGpt/send";
+  static const String aiPulseChatGptUserPage = "/api/aiPulseChatGpt/userPage";
+  static const String aiPulseChatGptChatMessageHistoryList = "/api/aiPulseChatGpt/chatMessageHistoryList";
+  static const String aiPulseChatGptClear = "/api/aiPulseChatGpt/clear";
 
   static const String aiPulseBannerUserPage = "/api/aiPulseBanner/userPage";
 

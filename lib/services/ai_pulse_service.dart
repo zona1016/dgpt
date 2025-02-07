@@ -1,4 +1,5 @@
 import 'package:dgpt/models/api/pagination_response.dart';
+import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
 import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
@@ -36,6 +37,14 @@ abstract class AiPulseService {
 
   Future<BaseResponse> aiPulseUserPlanApply(
       {required String id, required String quantity});
+
+  Future<BaseResponse<List<AiChatMessage>?>> aiPulseChatGptSend(
+      {required String prompt});
+
+  Future<BaseResponse<PaginationResponse<AiChatMessage>?>>
+      aiPulseChatGptUserPage({int page = 1, int perPage = 20});
+
+  Future<BaseResponse> aiPulseChatGptClear();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -177,12 +186,61 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<HasrateProgressInfo?>> aiPulseUserHashrateProgress() async {
+  Future<BaseResponse<HasrateProgressInfo?>>
+      aiPulseUserHashrateProgress() async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserHashrateProgress,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? HasrateProgressInfo.fromJson(data) : null);
+              data != null ? HasrateProgressInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<AiChatMessage>?>> aiPulseChatGptSend(
+      {required String prompt}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseChatGptSend,
+          bearerToken: userController.token,
+          data: {'prompt': prompt},
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => AiChatMessage.fromJson(e))
+                  .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<PaginationResponse<AiChatMessage>?>>
+      aiPulseChatGptUserPage({int page = 1, int perPage = 20}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseChatGptUserPage,
+          bearerToken: userController.token,
+          data: {
+            'page': page,
+            'pageSize': perPage,
+          },
+          deserializer: (data) => data != null
+              ? PaginationResponse<AiChatMessage>.fromJson(
+                  data,
+                  (json) =>
+                      AiChatMessage.fromJson(json as Map<String, dynamic>))
+              : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseChatGptClear() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseChatGptClear,
+          bearerToken: userController.token, deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
