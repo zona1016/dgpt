@@ -4,6 +4,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:dgpt/widget/base/base_smart_refresher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -91,7 +92,21 @@ class AiStartScreen extends GetView<AiStartScreenController> {
   }
 
   _messageListView() {
-    return Obx(() => ListView.builder(
+
+    return Obx(() => BaseSmartRefresher(
+      refreshController: controller.refreshController,
+      enableLoadMore: true,
+      uiState: controller.uiState.value,
+      isEmpty: controller.messageList.isEmpty,
+      onPullToRefresh: (loadingState) {
+        controller.aiPulseChatGptUserPage(loadingState: loadingState);
+      },
+      onLoadMore: (loadingState) {
+        controller.aiPulseChatGptUserPage(loadingState: loadingState);
+      },
+      childBuilder: (context, physics) {
+        return ListView.builder(
+          physics: physics,
           padding: const EdgeInsets.all(defaultPadding),
           controller: controller.scrollController,
           itemCount: controller.messageList.length, // 消息数量
@@ -100,7 +115,9 @@ class AiStartScreen extends GetView<AiStartScreenController> {
                 ? _rightItem(index)
                 : _leftItm(index);
           },
-        ));
+        );
+      },
+    ));
   }
 
   _empty() {

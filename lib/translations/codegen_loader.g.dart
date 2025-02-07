@@ -210,6 +210,7 @@ class CodegenLoader extends AssetLoader{
     "team_data": "Team data"
   },
   "profile": {
+    "place_enter_a_nickname": "Place enter a nickname",
     "total_assets_usdt": "My total assets (USDT)",
     "computing_power_wallet": "Computing power wallet",
     "cash_wallet": "Cash wallet",
@@ -455,6 +456,7 @@ static const Map<String,dynamic> zh_Hans = {
     "team_data": "团队数据"
   },
   "profile": {
+    "place_enter_a_nickname": "请输入昵称",
     "total_assets_usdt": "我的总资产(USDT)",
     "computing_power_wallet": "算力钱包",
     "cash_wallet": "现金钱包",

@@ -194,6 +194,7 @@
     "team_data": "团队数据"
   },
   "profile": {
+    "place_enter_a_nickname": "请输入昵称",
     "total_assets_usdt": "我的总资产(USDT)",
     "computing_power_wallet": "算力钱包",
     "cash_wallet": "现金钱包",

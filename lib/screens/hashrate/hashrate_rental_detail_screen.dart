@@ -8,6 +8,7 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +27,8 @@ class HashrateRentalDetailScreen
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '产品详情',
+      appBar: BaseAppBar(
+        title: tr('hashrate.product_details'),
         color: BaseColors.white,
       ),
       body: Obx(() => Container(
@@ -158,7 +159,7 @@ class HashrateRentalDetailScreen
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '进行中',
+              tr('hashrate.in_progress'),
               style: fontDMMedium.copyWith(
                 color: BaseColors.white,
                 fontSize: 12,
@@ -486,12 +487,9 @@ class HashrateRentalDetailScreen
                   child: BaseButton(
                     enabled: controller.total.value > 0,
                     onPressed: () {
-                      Get.toNamed(AppRoutes.hashratePasswordInput,
-                          arguments: HashratePasswordInputScreenArgs(
-                              hasratePageInfo: controller.args!.hasratePageInfo,
-                              count: controller.total.value));
+                      controller.userHasTradingPwd();
                     },
-                    text: '租借',
+                    text: tr('hashrate.rental'),
                   ),
                 ),
               ],

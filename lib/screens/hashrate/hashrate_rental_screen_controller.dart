@@ -24,13 +24,17 @@ class HashrateRentalScreenController extends BaseController {
   var progress = 0.5.obs;  // 50% progress
   var totalUsers = 65.obs;
   var currentUsers = 3.obs;
-  RxBool dddd = false.obs;
+
+  RxInt teamMemberCount = 0.obs;
+  RxInt teamHashrateCount = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
     userHashrate();
     aiPulseUserHashrateProgress();
+    userTeamMemberList();
+    userTeamHashrateCountTotal();
   }
 
   @override
@@ -75,6 +79,24 @@ class HashrateRentalScreenController extends BaseController {
       } else {
         hasratePageList.assignAll(result.list);
       }
+    }
+  }
+
+  userTeamMemberList() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.userTeamMemberList());
+    if (result != null) {
+      teamMemberCount.value = result.length;
+    }
+  }
+
+  userTeamHashrateCountTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.userTeamHashrateCountTotal());
+    if (result != null) {
+      teamHashrateCount.value = result.length;
     }
   }
 }

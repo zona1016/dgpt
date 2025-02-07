@@ -54,6 +54,8 @@ import 'package:dgpt/screens/setting/my_device_screen.dart';
 import 'package:dgpt/screens/setting/my_device_screen_controller.dart';
 import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
 import 'package:dgpt/screens/setting/reset_fund_psd_screen_controller.dart';
+import 'package:dgpt/screens/setting/setting_fund_psd_screen.dart';
+import 'package:dgpt/screens/setting/setting_fund_psd_screen_controller.dart';
 import 'package:dgpt/screens/setting/setting_screen.dart';
 import 'package:dgpt/screens/setting/setting_screen_controller.dart';
 import 'package:dgpt/screens/auth/splash/splash_screen.dart';
@@ -114,6 +116,7 @@ class AppRoutes {
   static String myDevice = "/my_device";
   static String helpCenter = "/help_center";
   static String resetFundPsd = "/reset_fund_psd";
+  static String settingFundPsd = "/setting_fund_psd";
   static String forgotFundPsd = "/forgot_fund_psd";
   static String emailVerification = "/email_verification";
   static String changeLanguage = "/change_language";
@@ -245,6 +248,11 @@ class AppRoutes {
         name: resetFundPsd,
         page: () => const ResetFundPsdScreen(),
         binding: ResetFundPsdScreenBindings()
+    ),
+    GetPage(
+        name: settingFundPsd,
+        page: () => const SettingFundPsdScreen(),
+        binding: SettingFundPsdScreenBindings()
     ),
     GetPage(
         name: forgotFundPsd,

@@ -6,6 +6,8 @@ import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
+import 'package:dgpt/models/pulse/team_member_list.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/api/base_response.dart';
@@ -45,6 +47,13 @@ abstract class AiPulseService {
       aiPulseChatGptUserPage({int page = 1, int perPage = 20});
 
   Future<BaseResponse> aiPulseChatGptClear();
+
+  Future<BaseResponse> userHasTradingPwd();
+
+  Future<BaseResponse<List<TeamMemberList>?>> userTeamMemberList();
+
+  Future<BaseResponse<List<TeamHashrateCountTotal>?>>
+      userTeamHashrateCountTotal();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -241,6 +250,47 @@ class AiPulseServiceImpl extends AiPulseService {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseChatGptClear,
           bearerToken: userController.token, deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userHasTradingPwd() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userHasTradingPwd,
+          bearerToken: userController.token, deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<TeamMemberList>?>> userTeamMemberList() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userTeamMemberList,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => TeamMemberList.fromJson(e))
+                  .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<TeamHashrateCountTotal>?>>
+      userTeamHashrateCountTotal() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userTeamHashrateCountTotal,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => TeamHashrateCountTotal.fromJson(e))
+                  .toList()
+              : []);
     } on Exception catch (_) {
       rethrow;
     }

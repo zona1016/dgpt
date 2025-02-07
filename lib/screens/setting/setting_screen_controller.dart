@@ -1,5 +1,6 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 
 class SettingScreenBindings implements Bindings {
@@ -15,9 +16,9 @@ class SettingScreenController extends BaseController {
   final AuthService authService = Get.find();
 
   List<String> settingTitles = [
-    '个人资料详情',
-    '重置资金密码',
-    '更改登入密码',
+    tr('profile.profile_details'),
+    tr('profile.reset_transaction_password'),
+    tr('profile.change_login_password'),
   ];
 
   List<String> settingImages = [

@@ -194,6 +194,7 @@
     "team_data": "Team data"
   },
   "profile": {
+    "place_enter_a_nickname": "Place enter a nickname",
     "total_assets_usdt": "My total assets (USDT)",
     "computing_power_wallet": "Computing power wallet",
     "cash_wallet": "Cash wallet",

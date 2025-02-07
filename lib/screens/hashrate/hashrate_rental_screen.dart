@@ -8,6 +8,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +34,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: defaultPadding / 2),
                 child: Text(
-                  '算力租借',
+                  tr('hashrate.computing_power_rental'),
                   style: fontBold.copyWith(
                       fontSize: 20, color: BaseColors.white),
                 ),
@@ -73,7 +74,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                       Row(
                                         children: [
                                           Text(
-                                            '算力等级',
+                                            tr('hashrate.computing_power_level'),
                                             style: fontDMBold.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 16,
@@ -93,7 +94,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                                 color: BaseColors.secondPrimaryColor
                                                     .withOpacity(0.1)),
                                             child: Text(
-                                              '进行中',
+                                              tr('hashrate.in_progress'),
                                               style: fontDMRegular.copyWith(
                                                 color: BaseColors.secondPrimaryColor,
                                                 fontSize: 10,
@@ -137,7 +138,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                       Row(
                                         children: [
                                           Text(
-                                            '进行中',
+                                            tr('hashrate.in_progress'),
                                             style: fontDMMedium.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 14,
@@ -160,7 +161,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                                   color:
                                                       BaseColors.primaryColor),
                                               child: Text(
-                                                '收益分析',
+                                                tr('hashrate.income_analysis'),
                                                 style: fontDMBold.copyWith(
                                                   color: BaseColors.white,
                                                   fontSize: 16,
@@ -220,10 +221,29 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                       const SizedBox(
                                         height: defaultPadding,
                                       ),
+                                      // Row(
+                                      //   children: [
+                                      //     Text(
+                                      //       '帮助3位好友成为等级3',
+                                      //       style: fontDMMedium.copyWith(
+                                      //         color: BaseColors.white,
+                                      //         fontSize: 14,
+                                      //       ),
+                                      //     ),
+                                      //     Expanded(child: Container()),
+                                      //     Text(
+                                      //       '0/3',
+                                      //       style: fontDMMedium.copyWith(
+                                      //         color: BaseColors.white,
+                                      //         fontSize: 14,
+                                      //       ),
+                                      //     ),
+                                      //   ],
+                                      // ),
                                       Row(
                                         children: [
                                           Text(
-                                            '帮助3位好友成为等级3',
+                                            tr('hashrate.team_members'),
                                             style: fontDMMedium.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 14,
@@ -231,26 +251,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                           ),
                                           Expanded(child: Container()),
                                           Text(
-                                            '0/3',
-                                            style: fontDMMedium.copyWith(
-                                              color: BaseColors.white,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            '团队人数',
-                                            style: fontDMMedium.copyWith(
-                                              color: BaseColors.white,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                          Expanded(child: Container()),
-                                          Text(
-                                            '0/65',
+                                            '${controller.teamMemberCount}/${controller.teamHashrateCount}',
                                             style: fontDMMedium.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 14,
@@ -265,7 +266,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                   height: defaultPadding,
                                 ),
                                 Text(
-                                  '产品详情',
+                                  tr('hashrate.product_details'),
                                   style: fontDMBold.copyWith(
                                     color: BaseColors.white,
                                     fontSize: 18,
@@ -348,7 +349,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             height: defaultPadding,
           ),
           Text(
-            '租借以获得',
+            tr('hashrate.rent_to_earn'),
             style: fontDMMedium.copyWith(
               color: BaseColors.white,
               fontSize: 14,
@@ -382,7 +383,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                         'assets/images/home/income_power_btn_bg.png'))),
             child: Center(
               child: Text(
-                '租借',
+                tr('hashrate.rental'),
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 18,
@@ -394,7 +395,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             children: [
               Expanded(
                 child: Text(
-                  '合约详情',
+                  tr('hashrate.contract_details'),
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,
@@ -416,7 +417,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             children: [
               Expanded(
                 child: Text(
-                  '租借资金',
+                  tr('hashrate.rental_funds'),
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,
@@ -438,7 +439,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             children: [
               Expanded(
                 child: Text(
-                  '租借收益',
+                  tr('hashrate.rental_income'),
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,
@@ -460,7 +461,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             children: [
               Expanded(
                 child: Text(
-                  '日收益',
+                  tr('hashrate.daily_income'),
                   style: fontDMRegular.copyWith(
                     color: BaseColors.white,
                     fontSize: 10,

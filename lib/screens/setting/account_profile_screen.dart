@@ -22,8 +22,8 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '个人资料账户',
+      appBar: BaseAppBar(
+        title: tr('profile.profile_account'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -108,12 +108,12 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
         children: [
           BaseTextFormField(
             name: "nickname",
-            title: '昵称',
+            title: tr('profile.nickname'),
             type: TextFormFieldType.golden,
             fillColor: Colors.transparent,
             style: fontDMMedium.copyWith(
                 color: BaseColors.white, fontSize: 16),
-            hintText: 'Place enter a nickname',
+            hintText: tr('profile.place_enter_a_nickname'),
             radius: 10,
             onChanged: (value) {
               controller.name.value = value ?? '';
@@ -124,12 +124,12 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
           ),
           BaseTextFormField(
             name: "email",
-            title: '邮箱',
+            title: tr('profile.email'),
             type: TextFormFieldType.golden,
             fillColor: Colors.transparent,
             style: fontDMMedium.copyWith(
                 color: BaseColors.white, fontSize: 16),
-            hintText: 'Place enter a nickname',
+            hintText: tr('error.please_enter_email'),
             radius: 10,
             onChanged: (value) {
               controller.email.value = value ?? '';
@@ -164,7 +164,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('手机号',
+              Text(tr('profile.mobile_number'),
                   style:
                       fontMedium.copyWith(fontSize: 14, color: Colors.white)),
               const SizedBox(height: 5),
@@ -213,7 +213,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
                         child: BorderlessTextFormField(
                           name: "phone",
                           keyboardType: TextInputType.number,
-                          hintText: '手机号码',
+                          hintText: tr('profile.mobile_number'),
                           style: fontDMMedium.copyWith(
                               color: BaseColors.white, fontSize: 16),
                           onChanged: (value) {

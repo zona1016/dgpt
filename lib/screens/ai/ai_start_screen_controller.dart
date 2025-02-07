@@ -103,12 +103,12 @@ class AiStartScreenController extends BaseController
     final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
     final result = await fetchPaginatedData(
         loadingState: loadingState,
-        request: () => aiPulseService.aiPulseChatGptUserPage(page: page));
+        request: () => aiPulseService.aiPulseChatGptUserPage(page: page, perPage: 20));
     if (result != null && result.list.isNotEmpty) {
       if (loadingState == AppLoadingState.loadMore) {
-        messageList.addAll(result.list);
+        messageList.insertAll(0, result.list.reversed.toList());
       } else {
-        messageList.assignAll(result.list);
+        messageList.assignAll(result.list.reversed.toList());
       }
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _scrollToBottom();

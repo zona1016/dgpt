@@ -18,6 +18,14 @@ class ApiEndpoints {
   static const String userLogin = "/api/user/userLogin";
   static const String userTeamHashrateCountTotal = "/api/user/userTeamHashrateCountTotal";
   static const String userTeamMemberList = "/api/user/userTeamMemberList";
+  static const String userHasTradingPwd = "/api/user/hasTradingPwd";
+  static const String userChangePwd = "/api/user/userChangePwd";
+  static const String userResetPwdSend = "/api/user/resetPwdSend";
+  static const String userResetPwdSubmit = "/api/user/resetPwdSubmit";
+  static const String userChangeTradingPwd = "/api/user/userChangeTradingPwd";
+  static const String userResetTradingPwdSend = "/api/user/resetTradingPwdSend";
+  static const String userResetTradingPwdSubmit = "/api/user/resetTradingPwdSubmit";
+  static const String userUpdateInfo = "/api/user/userUpdateInfo";
 
   // aiPulse
   static const String aiPulseAddressPage = "/api/aiPulseAddress/page";
@@ -38,6 +46,7 @@ class ApiEndpoints {
   static const String aiPulseDepositDetail = "/api/aiPulseDeposit/detail";
   static const String aiPulseDepositDeposit = "/api/aiPulseDeposit/deposit";
   static const String aiPulseDepositUserPage = "/api/aiPulseDeposit/userPage";
+
 
   static const String aiPulseFlowPage = "/api/aiPulseFlow/page";
   static const String aiPulseFlowDetail = "/api/aiPulseFlow/detail";
@@ -99,6 +108,5 @@ class ApiEndpoints {
   static const String aiPulseWithdrawalUserPage = "/api/aiPulseWithdrawal/userPage";
 
   static const String configValueCode = "/api/config/configValue/{code}";
-
 
 }
