@@ -162,7 +162,11 @@
     "system_announcement": "系统通告",
     "contact_us": "联系我们",
     "company_introduction": "公司介绍",
-    "verification_email_sent_message": "我们已经发送一条验证信息至您的邮箱，邮箱地址为{},请输入验证码以完成验证。"
+    "verification_email_sent_message": "我们已经发送一条验证信息至您的邮箱，邮箱地址为{},请输入验证码以完成验证。",
+    "passport": "护照",
+    "id_card": "身份证",
+    "driver_license": "驾驶证",
+    "residence_permit": "居留证"
   },
   "hashrate": {
     "connecting_computing_power_center": "正在链接算力中心",
@@ -198,6 +202,7 @@
     "share": "分享",
     "customer_service": "客服",
     "language_selection": "语言选择",
+    "about_us": "关于我们",
     "profile_account": "个人资料账户",
     "nickname": "昵称",
     "email": "邮箱",

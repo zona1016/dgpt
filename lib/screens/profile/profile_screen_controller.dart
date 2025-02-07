@@ -1,5 +1,6 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,9 +18,9 @@ class ProfileScreenController extends BaseController {
   GlobalKey globalKey = GlobalKey();
 
   List<String> profileActionTitles = [
-    '算力钱包',
-    '现金钱包',
-    '提款',
+    tr('profile.computing_power_wallet'),
+    tr('profile.cash_wallet'),
+    tr('profile.withdraw'),
   ];
 
   List<String> profileActionImages = [
@@ -29,12 +30,12 @@ class ProfileScreenController extends BaseController {
   ];
 
   List<String> profileTitles = [
-    '我的订单',
-    '分享',
+    tr('profile.my_orders'),
+    tr('profile.share'),
     'KYC',
-    '客服',
-    '语言选择',
-    '关于我们',
+    tr('profile.customer_service'),
+    tr('profile.language_selection'),
+    tr('profile.about_us'),
   ];
 
   List<String> profileImages = [

@@ -1,6 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,7 +20,7 @@ class KycScreenController extends BaseController {
   final ImagePicker _picker = ImagePicker();
   Rx<CountryCode> countryCode = CountryCode.fromCountryCode('MY').obs;
 
-  RxString selectedDocument = '护照'.obs;
+  RxString selectedDocument = tr('home.passport').obs;
 
   var selectedIndex = 0.obs;
 
@@ -31,10 +32,10 @@ class KycScreenController extends BaseController {
   }
 
   final List<String> documents = [
-    '护照',
-    '身份证',
-    '驾驶证',
-    '居留证',
+    tr('home.passport'),
+    tr('home.id_card'),
+    tr('home.driver_license'),
+    tr('home.residence_permit'),
   ];
 
   final List<String> documentsImages = [

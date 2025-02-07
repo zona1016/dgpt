@@ -5,6 +5,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +34,7 @@ class SplashScreen extends GetView<SplashScreenController> {
               children: [
                 const Spacer(),
                 Text(
-                  '通过DePIN网络为人工智能提供无缝计\n算能力连接。',
+                  tr('home.seamless_computing_power_through_DePIN_network_for_AI'),
                   style: fontDMRegular.copyWith(
                     fontSize: 18,
                     color: BaseColors.white,
@@ -59,7 +60,7 @@ class SplashScreen extends GetView<SplashScreenController> {
                       fontSize: 16,
                       color: BaseColors.white,
                     ),
-                    text: '开始',
+                    text: tr('button.start'),
                   ),
                 )
               ],

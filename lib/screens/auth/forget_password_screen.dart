@@ -6,6 +6,7 @@ import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,7 +52,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordScreenController> {
           ),
         ),
         onPressed: () => controller.sendEmail(),
-        text: '邮箱验证',
+        text: tr('profile.email_verification'),
       ),
     );
   }
@@ -85,12 +86,12 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordScreenController> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
-            '忘记密码？',
+            tr('button.forgot_password'),
             style: fontDMBold.copyWith(fontSize: 28, color: BaseColors.white),
           ),
         ),
         Text(
-          '请输入您的邮箱及验证码以完成找回。',
+          tr('home.enter_email_and_verification_code_to_retrieve'),
           style: fontDMRegular.copyWith(fontSize: 14, color: BaseColors.white),
         ),
       ],

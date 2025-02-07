@@ -7,6 +7,7 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -134,7 +135,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   height: defaultPadding * 3,
                 ),
                 Text(
-                  '我的总资产(USDT)',
+                  tr('profile.total_assets_usdt'),
                   style: fontDMMedium.copyWith(
                     color: BaseColors.white,
                     fontSize: 12,
@@ -333,7 +334,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     return GestureDetector(
       onTap: callBack,
       child: Container(
-        height: 100,
+        height: 110,
         padding: const EdgeInsets.symmetric(
             horizontal: defaultPadding / 2, vertical: defaultPadding / 4 * 3),
         decoration: BoxDecoration(

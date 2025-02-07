@@ -7,6 +7,7 @@ import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +63,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                   children: [
                     Expanded(child: Container()),
                     Text(
-                      '未收到？重新发送 ',
+                      tr('home.did_not_receive_resend_again'),
                       style: fontDMMedium.copyWith(
                         fontSize: 14,
                         color: BaseColors.white,
@@ -117,7 +118,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
-            '邮箱注册',
+            tr('home.email_registration'),
             style: fontDMBold.copyWith(
               fontSize: 28,
               color: BaseColors.white,
@@ -125,7 +126,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
           ),
         ),
         Text(
-          '请填写相关信息以完成注册。',
+          tr('home.fill_information_to_register'),
           style: fontDMRegular.copyWith(
             fontSize: 14,
             color: BaseColors.white,
@@ -162,7 +163,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             ),
             BaseTextFormField(
               name: 'password',
-              hintText: '请输入您的密码',
+              hintText: tr('home.enter_password'),
               obscureText: true,
               style: fontDMRegular.copyWith(
                   color: BaseColors.inputTextColor.withOpacity(0.25)),
@@ -177,7 +178,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             ),
             BaseTextFormField(
               name: 'passwordAgain',
-              hintText: '再次确认您的密码',
+              hintText: tr('home.confirm_password_again'),
               obscureText: true,
               style: fontDMRegular.copyWith(
                   color: BaseColors.inputTextColor.withOpacity(0.25)),
@@ -195,7 +196,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             ),
             BaseTextFormField(
               name: 'inviteCode',
-              hintText: '请输入您的邀请码',
+              hintText: tr('home.enter_invitation_code'),
               style: fontDMRegular.copyWith(
                   color: BaseColors.inputTextColor.withOpacity(0.25)),
               fillColor: BaseColors.gray85.withOpacity(0.5),
@@ -208,7 +209,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               height: defaultPadding / 2,
             ),
             Text(
-              '点击发送和输入邮箱验证码。',
+              tr('home.click_send_and_enter_email_code') * 2,
               style: fontDMRegular.copyWith(
                 fontSize: 14,
                 color: BaseColors.white,
@@ -219,7 +220,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             ),
             BaseTextFormField(
               name: 'verifyCode',
-              hintText: '邮箱验证码',
+              hintText: tr('home.email_verification_code'),
               fillColor: BaseColors.gray85.withOpacity(0.5),
               radius: 10,
               suffixIcon: Container(
@@ -274,39 +275,41 @@ class RegisterScreen extends GetView<RegisterScreenController> {
   _buildLogin() {
     return Column(
       children: [
-        Row(
-          children: [
-            const Spacer(),
-            Text(
-              '继续即表示同意',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.lightGray,
-              ),
+        RichText(
+          text: TextSpan(
+            style: fontSFProMedium.copyWith(
+              fontSize: 14,
+              color: BaseColors.lightGray,
             ),
-            Text(
-              '用户协议',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.purpleGlowColor,
+            children: [
+              TextSpan(
+                text: tr('home.login_agree_terms'),
               ),
-            ),
-            Text(
-              '/',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.purpleGlowColor,
+              const TextSpan(
+                text: ' ',
               ),
-            ),
-            Text(
-              '隐私政策',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.purpleGlowColor,
+              TextSpan(
+                  text: tr('home.user_agreement'),
+                  style: const TextStyle(color: BaseColors.purpleGlowColor),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Handle tap on 'login_agree_terms'
+                      print('Login agree terms clicked');
+                    }),
+              const TextSpan(
+                text: ' / ',
+                style: TextStyle(color: BaseColors.purpleGlowColor),
               ),
-            ),
-            const Spacer(),
-          ],
+              TextSpan(
+                  text: tr('home.privacy_policy'),
+                  style: const TextStyle(color: BaseColors.purpleGlowColor),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Handle tap on 'login_agree_terms'
+                      print('Login agree terms clicked');
+                    }),
+            ],
+          ),
         ),
         const SizedBox(
           height: defaultPadding,

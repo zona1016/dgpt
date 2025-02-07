@@ -4,6 +4,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -106,7 +107,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
     return Column(
       children: [
         Text(
-          '欢迎使用\nAIP-AI',
+          '${tr('ai.welcome_to_use')}\nAIP-AI',
           style: fontDMBold.copyWith(
             fontSize: 32,
             color: BaseColors.white,
@@ -117,7 +118,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
           height: defaultPadding,
         ),
         Text(
-          '请尽管发问任何问题！',
+          tr('ai.ask_any_question'),
           style: fontDMBold.copyWith(
             fontSize: 18,
             color: BaseColors.white,
@@ -138,7 +139,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
               borderRadius: BorderRadius.circular(8),
               color: BaseColors.white.withOpacity(0.08)),
           child: Text(
-            'AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。',
+            tr('ai.aip_ai_description'),
             style: fontDMMedium.copyWith(
               fontSize: 16,
               color: BaseColors.white,

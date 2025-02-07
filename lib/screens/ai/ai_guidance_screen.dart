@@ -33,7 +33,7 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
               duration: const Duration(seconds: 1),  // 动画持续 1 秒
               curve: Curves.easeInOut,  // 动画曲线
               child: Text(
-                '欢迎使用\nAIP-AI',
+                '${tr('ai.welcome_to_use')}\nAIP-AI',
                 style: fontDMBold.copyWith(
                   fontSize: 32,
                   color: BaseColors.white,
@@ -47,7 +47,7 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
               duration: const Duration(seconds: 1),  // 动画持续 1 秒
               curve: Curves.easeInOut,  // 动画曲线
               child: Text(
-                '请尽管发问任何问题！',
+                tr('ai.ask_any_question'),
                 style: fontDMBold.copyWith(
                   fontSize: 18,
                   color: BaseColors.white,

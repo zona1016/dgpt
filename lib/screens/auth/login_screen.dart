@@ -8,6 +8,7 @@ import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,9 +32,7 @@ class LoginScreen extends GetView<LoginScreenController> {
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: SingleChildScrollView(
           child: Column(
-            children: [
-              _buildHeader()
-            ],
+            children: [_buildHeader()],
           ),
         ),
       ),
@@ -58,7 +57,7 @@ class LoginScreen extends GetView<LoginScreenController> {
               GestureDetector(
                 onTap: () => Get.toNamed(AppRoutes.forgetPassword),
                 child: Text(
-                  '忘记密码?',
+                  tr('button.forgot_password'),
                   style: fontSFProMedium.copyWith(
                     fontSize: 14,
                     color: BaseColors.lightGray,
@@ -71,7 +70,7 @@ class LoginScreen extends GetView<LoginScreenController> {
                   Get.toNamed(AppRoutes.register);
                 },
                 child: Text(
-                  '没有账号?去注册',
+                  tr('home.no_account_register'),
                   style: fontSFProMedium.copyWith(
                       fontSize: 14,
                       color: BaseColors.lightGray,
@@ -108,12 +107,17 @@ class LoginScreen extends GetView<LoginScreenController> {
             ),
           ),
         ),
-        Text(
-          '请输入您的邮箱和密码以完成登录。',
-          style: fontDMRegular.copyWith(
-            fontSize: 14,
-            color: BaseColors.white,
-          ),
+        Row(
+          children: [
+            Expanded(
+                child: Text(
+              tr('home.enter_email_and_password_to_login'),
+              style: fontDMRegular.copyWith(
+                fontSize: 14,
+                color: BaseColors.white,
+              ),
+            ))
+          ],
         ),
       ],
     );
@@ -121,47 +125,47 @@ class LoginScreen extends GetView<LoginScreenController> {
 
   _buildNameAndPassword() {
     return Obx(() => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BaseTextFormField(
-          name: 'email',
-          hintText: 'Email@.com',
-          fillColor: controller.email.isNotEmpty
-              ? BaseColors.white
-              : BaseColors.gray85.withOpacity(0.5),
-          radius: 10,
-          onChanged: (value) {
-            controller.email.value = value ?? '';
-          },
-        ),
-        if (controller.error.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: defaultPadding / 2),
-            child: Text(controller.error.value,
-                style: fontRegular.copyWith(
-                    fontSize: 12, color: Colors.red)),
-          ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        BaseTextFormField(
-          name: 'password',
-          hintText: '请输入您的密码',
-          obscureText: true,
-          style: fontDMRegular.copyWith(
-              color: controller.password.isNotEmpty
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BaseTextFormField(
+              name: 'email',
+              hintText: 'Email@.com',
+              fillColor: controller.email.isNotEmpty
                   ? BaseColors.white
-                  : BaseColors.weakTextColor),
-          fillColor: controller.password.isNotEmpty
-              ? BaseColors.primaryColor
-              : BaseColors.gray85.withOpacity(0.5),
-          radius: 10,
-          onChanged: (value) {
-            controller.password.value = value ?? '';
-          },
-        )
-      ],
-    ));
+                  : BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.email.value = value ?? '';
+              },
+            ),
+            if (controller.error.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: defaultPadding / 2),
+                child: Text(controller.error.value,
+                    style:
+                        fontRegular.copyWith(fontSize: 12, color: Colors.red)),
+              ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            BaseTextFormField(
+              name: 'password',
+              hintText: tr('home.enter_password'),
+              obscureText: true,
+              style: fontDMRegular.copyWith(
+                  color: controller.password.isNotEmpty
+                      ? BaseColors.white
+                      : BaseColors.weakTextColor),
+              fillColor: controller.password.isNotEmpty
+                  ? BaseColors.primaryColor
+                  : BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.password.value = value ?? '';
+              },
+            )
+          ],
+        ));
   }
 
   _buildLogin() {
@@ -179,40 +183,44 @@ class LoginScreen extends GetView<LoginScreenController> {
             text: tr('button.login'),
           ),
         ),
-        const SizedBox(height: defaultPadding,),
-        Row(
-          children: [
-            const Spacer(),
-            Text(
-              '登录即表示同意',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.lightGray,
-              ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
+        RichText(
+          text: TextSpan(
+            style: fontSFProMedium.copyWith(
+              fontSize: 14,
+              color: BaseColors.lightGray,
             ),
-            Text(
-              '用户协议',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.purpleGlowColor,
+            children: [
+              TextSpan(
+                text: tr('home.login_agree_terms'),
               ),
-            ),
-            Text(
-              '/',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.purpleGlowColor,
+              const TextSpan(
+                text: ' ',
               ),
-            ),
-            Text(
-              '隐私政策',
-              style: fontSFProMedium.copyWith(
-                fontSize: 14,
-                color: BaseColors.purpleGlowColor,
+              TextSpan(
+                  text: tr('home.user_agreement'),
+                  style: const TextStyle(color: BaseColors.purpleGlowColor),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Handle tap on 'login_agree_terms'
+                      print('Login agree terms clicked');
+                    }),
+              const TextSpan(
+                text: ' / ',
+                style: TextStyle(color: BaseColors.purpleGlowColor),
               ),
-            ),
-            const Spacer(),
-          ],
+              TextSpan(
+                  text: tr('home.privacy_policy'),
+                  style: const TextStyle(color: BaseColors.purpleGlowColor),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Handle tap on 'login_agree_terms'
+                      print('Login agree terms clicked');
+                    }),
+            ],
+          ),
         )
       ],
     );

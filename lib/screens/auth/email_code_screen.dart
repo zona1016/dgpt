@@ -5,6 +5,7 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -51,7 +52,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
           ),
         ),
         onPressed: () => controller.sendEmail(),
-        text: '确认',
+        text: tr('button.confirm'),
       ),
     );
   }
@@ -71,7 +72,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
               children: [
                 Expanded(child: Container()),
                 Text(
-                  '没有收到？重新发送 ',
+                  tr('home.did_not_receive_resend'),
                   style: fontDMMedium.copyWith(
                     fontSize: 14,
                     color: BaseColors.white,
@@ -115,12 +116,12 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
-            '验证邮箱',
+            tr('home.verify_email'),
             style: fontDMBold.copyWith(fontSize: 28, color: BaseColors.white),
           ),
         ),
         Text(
-          '我们已经发送一条验证信息至您的邮箱，邮箱地址为******@gmail.com,请输入验证码以完成验证。',
+          tr('home.verification_email_sent_message', args: ['ceshi@gmail.com']),
           style: fontDMRegular.copyWith(fontSize: 14, color: BaseColors.white),
         ),
       ],
