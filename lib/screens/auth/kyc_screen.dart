@@ -110,7 +110,7 @@ class KycScreen extends GetView<KycScreenController> {
                 height: defaultPadding,
               ),
               Text(
-                '拍摄您的护照照片。照片需要：：',
+                '拍摄您的护照照片。照片需要：',
                 style: fontDMRegular.copyWith(
                   fontSize: 12,
                   color: BaseColors.white,

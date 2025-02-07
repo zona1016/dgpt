@@ -6,6 +6,7 @@ import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -243,7 +244,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                     children: [
                       const Spacer(),
                       Text(
-                        '发送',
+                        tr('button.send'),
                         style: fontDMMedium.copyWith(
                           fontSize: 16,
                           color: BaseColors.black,
@@ -328,7 +329,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             onPressed: () {
               controller.register();
             },
-            text: '继续',
+            text: tr('button.continue'),
           ),
         ),
       ],

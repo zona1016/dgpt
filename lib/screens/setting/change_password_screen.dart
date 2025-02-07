@@ -72,7 +72,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(
               color: BaseColors.white, fontSize: 16),
-          hintText: '请输入旧的资金密码',
+          hintText: '请输入旧密码',
           radius: 10,
           onChanged: (value) {
             controller.oldPsd.value = value ?? '';
@@ -88,7 +88,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(
               color: BaseColors.white, fontSize: 16),
-          hintText: '请输入新的资金密码',
+          hintText: '请输入新密码',
           radius: 10,
           onChanged: (value) {
             controller.newPsd.value = value ?? '';
@@ -104,7 +104,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(
               color: BaseColors.white, fontSize: 16),
-          hintText: '请再次输入新的资金密码',
+          hintText: '请再次输入新密码',
           radius: 10,
           onChanged: (value) {
             controller.newPsdAgain.value = value ?? '';

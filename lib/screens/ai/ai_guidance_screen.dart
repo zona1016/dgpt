@@ -5,6 +5,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -72,7 +73,7 @@ class AiGuidanceScreen extends GetView<AiGuidanceScreenController> {
                 duration: const Duration(seconds: 1),  // 动画持续 1 秒
                 curve: Curves.easeInOut,  // 动画曲线
                 child: BaseButton(
-                  text: '下一步',
+                  text: tr('button.next'),
                   onPressed: () => Get.toNamed(AppRoutes.aiStart),
                 ),
               ),

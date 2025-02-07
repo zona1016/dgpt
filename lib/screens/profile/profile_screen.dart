@@ -59,9 +59,10 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   showTop: false,
                   startIndex: 3,
                   itemTap: (index) {
-                    print(index);
                     if (index == 3) {
+                      Get.toNamed(AppRoutes.helpCenter);
                     } else if (index == 4) {
+                      Get.toNamed(AppRoutes.changeLanguage);
                     } else if (index == 5) {
                       Get.toNamed(AppRoutes.aboutUs);
                     }

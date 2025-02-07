@@ -4,6 +4,8 @@ import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
+import 'package:dgpt/screens/setting/change_language_screen.dart';
+import 'package:dgpt/screens/setting/change_language_screen_controller.dart';
 import 'package:dgpt/screens/setting/change_password_screen.dart';
 import 'package:dgpt/screens/auth/email_code_screen.dart';
 import 'package:dgpt/screens/auth/email_code_screen_controller.dart';
@@ -72,8 +74,8 @@ import 'package:dgpt/screens/tutorial/tutorial_detail_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorial_detail_screen_controller.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen.dart';
 import 'package:dgpt/screens/tutorial/tutorials_screen_controller.dart';
-import 'package:dgpt/screens/us/help_center_screen.dart';
-import 'package:dgpt/screens/us/help_center_screen_controller.dart';
+import 'package:dgpt/screens/setting/help_center_screen.dart';
+import 'package:dgpt/screens/setting/help_center_screen_controller.dart';
 import 'package:dgpt/screens/web/web_screen.dart';
 import 'package:dgpt/screens/web/web_screen_controller.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -114,6 +116,7 @@ class AppRoutes {
   static String resetFundPsd = "/reset_fund_psd";
   static String forgotFundPsd = "/forgot_fund_psd";
   static String emailVerification = "/email_verification";
+  static String changeLanguage = "/change_language";
 
   static String myAssets = "/my_assets";
   static String order = "/order";
@@ -252,6 +255,11 @@ class AppRoutes {
         name: emailVerification,
         page: () => const EmailVerificationScreen(),
         binding: EmailVerificationScreenBindings()
+    ),
+    GetPage(
+        name: changeLanguage,
+        page: () => const ChangeLanguageScreen(),
+        binding: ChangeLanguageScreenBindings()
     ),
     GetPage(
         name: accountProfile,

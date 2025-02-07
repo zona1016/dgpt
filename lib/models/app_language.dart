@@ -18,18 +18,18 @@ class AppLanguage {
 
   static final languages = [
     AppLanguage(
-      name: "EN",
+      name: "English",
       apiKey: "en",
       formatKey: "en",
       locale: const Locale.fromSubtags(languageCode: "en"),
-      icon: "en",
+      icon: "setting_united_kingdom",
     ),
     AppLanguage(
-      name: "CN",
+      name: "中文/简体",
       apiKey: "zh",
       formatKey: "zh_CN",
       locale: const Locale.fromSubtags(languageCode: 'zh', scriptCode: "Hans"),
-      icon: "cn",
+      icon: "setting_china",
     ),
   ];
 }
