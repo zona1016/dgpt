@@ -15,7 +15,7 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> en = {
-  "app_name": "AIDAV2",
+  "app_name": "Ai Pulse",
   "error": {
     "required": "The {} field is required.",
     "required_checkbox": "Please check the '{}' checkbox.",
@@ -261,7 +261,7 @@ class CodegenLoader extends AssetLoader{
   }
 };
 static const Map<String,dynamic> zh_Hans = {
-  "app_name": "AIDAV2",
+  "app_name": "Ai Pulse",
   "error": {
     "required": "{} 输入内容不能为空",
     "required_checkbox": "请勾选 '{}'",
