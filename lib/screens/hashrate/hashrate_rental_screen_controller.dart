@@ -32,9 +32,6 @@ class HashrateRentalScreenController extends BaseController {
   void onInit() {
     super.onInit();
     userHashrate();
-
-    // userTeamMemberList();
-    // userTeamHashrateCountTotal();
   }
 
   @override
