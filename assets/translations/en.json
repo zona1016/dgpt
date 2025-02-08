@@ -122,6 +122,10 @@
     "complete_now": "Complete Now"
   },
   "home": {
+    "notice": "Notice",
+    "invite": "Invite",
+    "teaching": "Teaching",
+    "enterprise": "Enterprise",
     "not_activated": "Not activated",
     "hourly_income": "Hourly income",
     "total_income": "Total income",
@@ -240,7 +244,8 @@
     "tips": "Tips",
     "minimum_deposit_amount": "1. Minimum deposit amount is 10 USDT",
     "tutorial_center": "Tutorial center",
-    "successfully_changed_the_fund_password": "Successfully changed the fund password"
+    "successfully_changed_the_fund_password": "Successfully changed the fund password",
+    "password_changed_successfully": "Password changed successfully"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",

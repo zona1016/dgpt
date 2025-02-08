@@ -122,6 +122,10 @@
     "complete_now": "立即完成"
   },
   "home": {
+    "notice": "通告",
+    "invite": "邀请",
+    "teaching": "教学",
+    "enterprise": "企业",
     "not_activated": "未激活",
     "hourly_income": "每小时收益",
     "total_income": "总收益",
@@ -240,7 +244,8 @@
     "tips": "贴士",
     "minimum_deposit_amount": "1. 最低充值数额为 10 USDT",
     "tutorial_center": "教程中心",
-    "successfully_changed_the_fund_password": "修改资金密码成功"
+    "successfully_changed_the_fund_password": "修改资金密码成功",
+    "password_changed_successfully": "修改密码成功"
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",

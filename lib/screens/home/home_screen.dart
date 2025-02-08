@@ -64,7 +64,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         right: 0,
                         bottom: defaultPadding,
                         child: Text(
-                          '未激活',
+                          tr('home.not_activated'),
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 16,

@@ -19,12 +19,12 @@ enum HttpMethod {
 abstract class ApiClient {
   Future<BaseResponse<T>> request<T>(String path,
       {HttpMethod method = HttpMethod.post,
-        Map<String, dynamic> data = const {},
-        Map<String, dynamic> headers = const {},
-        CancelToken? cancelToken,
-        String? bearerToken,
-        bool containsMultipartFile = false,
-        required T Function(dynamic data) deserializer});
+      Map<String, dynamic> data = const {},
+      Map<String, dynamic> headers = const {},
+      CancelToken? cancelToken,
+      String? bearerToken,
+      bool containsMultipartFile = false,
+      required T Function(dynamic data) deserializer});
 }
 
 class ApiClientImpl implements ApiClient {
@@ -49,12 +49,12 @@ class ApiClientImpl implements ApiClient {
   @override
   Future<BaseResponse<T>> request<T>(String path,
       {HttpMethod method = HttpMethod.post,
-        Map<String, dynamic> data = const {},
-        Map<String, dynamic> headers = const {},
-        CancelToken? cancelToken,
-        String? bearerToken,
-        bool containsMultipartFile = false,
-        required T Function(dynamic data) deserializer}) async {
+      Map<String, dynamic> data = const {},
+      Map<String, dynamic> headers = const {},
+      CancelToken? cancelToken,
+      String? bearerToken,
+      bool containsMultipartFile = false,
+      required T Function(dynamic data) deserializer}) async {
     try {
       if (headers.isEmpty) {
         headers = {};
@@ -73,13 +73,14 @@ class ApiClientImpl implements ApiClient {
           Get.find<UserController>().selectedLanguage.apiKey;
 
       if (data.values.any((element) =>
-      element is MultipartFile || element is List<MultipartFile>)) {
+          element is MultipartFile || element is List<MultipartFile>)) {
         containsMultipartFile = true;
       }
 
       if (method == HttpMethod.get && data.isNotEmpty) {
         final uri = Uri.parse(baseUrl + path);
-        final newUri = uri.replace(queryParameters: data.cast<String, String>());
+        final newUri =
+            uri.replace(queryParameters: data.cast<String, String>());
         path = newUri.toString();
         data = {}; // GET 请求不需要再使用 request body 数据
       }
@@ -98,7 +99,7 @@ class ApiClientImpl implements ApiClient {
           ? jsonDecode(response.data)
           : response.data;
       final baseResponse =
-      BaseResponse.fromMap(responseData, deserializer: deserializer);
+          BaseResponse.fromMap(responseData, deserializer: deserializer);
       if (baseResponse.isSuccess) {
         return baseResponse;
       } else {

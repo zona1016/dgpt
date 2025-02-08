@@ -47,7 +47,7 @@ class ChangePasswordScreenController extends BaseController {
     if (result != null) {
       DialogUtils.showDGPTBaseDialog(
           barrierDismissible: false,
-          title: '修改密码成功',
+          title: tr('profile.password_changed_successfully'),
           confirmText: tr('button.confirm'),
           onConfirmPressed: () {
             Get.close(2);

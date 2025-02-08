@@ -10,6 +10,7 @@ import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/theme/color.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -40,7 +41,12 @@ class HomeScreenController extends BaseController {
 
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   RxList<Banner> bannerList = <Banner>[].obs;
-  List<String> titles = ['通告', '邀请', '教学', '企业'];
+  List<String> titles = [
+    tr('home.notice'),
+    tr('home.invite'),
+    tr('home.teaching'),
+    tr('home.enterprise')
+  ];
   List<String> images = [
     'assets/images/home/tg.png',
     'assets/images/home/yq.png',

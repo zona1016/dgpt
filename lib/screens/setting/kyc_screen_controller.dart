@@ -1,28 +1,35 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/models/pulse/user_kyc_info.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:dio/dio.dart' as dio;
 
 class KycScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance().lazyPut(() => KycScreenController(),
-        permanent: false, fenix: false);
+    GetInstance()
+        .lazyPut(() => KycScreenController(), permanent: false, fenix: false);
   }
 }
 
 class KycScreenController extends BaseController {
-
-  final AuthService authService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
   final ImagePicker _picker = ImagePicker();
   Rx<CountryCode> countryCode = CountryCode.fromCountryCode('MY').obs;
 
+  Rxn<UserKYCInfo> userKYCInfo = Rxn<UserKYCInfo>();
   RxString selectedDocument = tr('home.passport').obs;
 
   var selectedIndex = 0.obs;
+
+  RxString pickedFilePath = ''.obs;
 
   void selectItem(int index) {
     selectedIndex.value = (selectedIndex.value == index) ? -1 : index;
@@ -50,6 +57,7 @@ class KycScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    aiPulseKycUserKyc();
   }
 
   @override
@@ -69,8 +77,47 @@ class KycScreenController extends BaseController {
         source: ImageSource.gallery,
       );
       if (pickedFile != null) {
-        print(pickedFile.path);
+        pickedFilePath.value = pickedFile.path;
       }
     } catch (e) {}
+  }
+
+  aiPulseCommonUploadImageFile() async {
+    String fileExtension = pickedFilePath.value.split('.').last.toLowerCase();
+    List<String> allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+
+    if (!allowedExtensions.contains(fileExtension)) {
+      DialogUtils.showBaseDialog(title: '不支持的文件类型');
+      return;
+    }
+    var file = await dio.MultipartFile.fromFile(pickedFilePath.value,
+        contentType: DioMediaType('image', fileExtension));
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
+    if (result != null) {
+      aiPulseKycApply(result.id.toString());
+    }
+  }
+
+  aiPulseKycApply(String imageFileId) async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseKycApply(
+            country: countryCode.value.code!,
+            idType: selectedIndex.value,
+            imageFileId: imageFileId));
+    if (result != null) {
+      print(result);
+    }
+  }
+
+  aiPulseKycUserKyc() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseKycUserKyc());
+    if (result != null) {
+      userKYCInfo.value = result;
+    }
   }
 }

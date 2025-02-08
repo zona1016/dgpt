@@ -138,6 +138,10 @@ class CodegenLoader extends AssetLoader{
     "complete_now": "Complete Now"
   },
   "home": {
+    "notice": "Notice",
+    "invite": "Invite",
+    "teaching": "Teaching",
+    "enterprise": "Enterprise",
     "not_activated": "Not activated",
     "hourly_income": "Hourly income",
     "total_income": "Total income",
@@ -256,7 +260,8 @@ class CodegenLoader extends AssetLoader{
     "tips": "Tips",
     "minimum_deposit_amount": "1. Minimum deposit amount is 10 USDT",
     "tutorial_center": "Tutorial center",
-    "successfully_changed_the_fund_password": "Successfully changed the fund password"
+    "successfully_changed_the_fund_password": "Successfully changed the fund password",
+    "password_changed_successfully": "Password changed successfully"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
@@ -388,6 +393,10 @@ static const Map<String,dynamic> zh_Hans = {
     "complete_now": "立即完成"
   },
   "home": {
+    "notice": "通告",
+    "invite": "邀请",
+    "teaching": "教学",
+    "enterprise": "企业",
     "not_activated": "未激活",
     "hourly_income": "每小时收益",
     "total_income": "总收益",
@@ -506,7 +515,8 @@ static const Map<String,dynamic> zh_Hans = {
     "tips": "贴士",
     "minimum_deposit_amount": "1. 最低充值数额为 10 USDT",
     "tutorial_center": "教程中心",
-    "successfully_changed_the_fund_password": "修改资金密码成功"
+    "successfully_changed_the_fund_password": "修改资金密码成功",
+    "password_changed_successfully": "修改密码成功"
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",

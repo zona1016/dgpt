@@ -6,11 +6,13 @@ import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
+import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
+import 'package:dgpt/models/pulse/user_kyc_info.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/api/base_response.dart';
 import 'package:dgpt/utils/constants/api_endpoints.dart';
@@ -86,6 +88,16 @@ abstract class AiPulseService {
       {required String code, required String passwordNew});
 
   Future<BaseResponse<List<Merchant>?>> aiPulseMerchantEnableList();
+
+  Future<BaseResponse<ImageInfo?>> aiPulseCommonUploadImageFile(
+      {required dynamic file});
+
+  Future<BaseResponse<UserKYCInfo?>> aiPulseKycUserKyc();
+
+  Future<BaseResponse> aiPulseKycApply(
+      {required String country,
+        required int idType,
+        required String imageFileId});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -464,20 +476,28 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
+  Future<BaseResponse<UserKYCInfo?>> aiPulseKycUserKyc() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseKycUserKyc,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+          data != null ? UserKYCInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<BaseResponse> aiPulseKycApply(
       {required String country,
-      required String realName,
       required int idType,
-      required String idValue,
       required String imageFileId}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseKycApply,
           bearerToken: userController.token,
           data: {
             "country": country,
-            "realName": realName,
             "idType": idType,
-            "idValue": idValue,
             "imageFileId": imageFileId
           },
           deserializer: (data) => data);
@@ -485,4 +505,21 @@ class AiPulseServiceImpl extends AiPulseService {
       rethrow;
     }
   }
+
+  @override
+  Future<BaseResponse<ImageInfo?>> aiPulseCommonUploadImageFile(
+      {required dynamic file}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseCommonUploadImageFile,
+          bearerToken: userController.token,
+          data: {
+            "file": file
+          },
+          deserializer: (data) =>
+          data != null ? ImageInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
 }

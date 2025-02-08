@@ -64,6 +64,11 @@ class ApiEndpoints {
   static const String aiPulseKycUserKyc = "/api/aiPulseKyc/userKyc";
   static const String aiPulseKycApply = "/api/aiPulseKyc/apply";
 
+  static const String aiPulseCommonResetPwdVerifyCode = "/api/aiPulseCommon/resetPwdVerifyCode";
+  static const String aiPulseCommonResetTradingPwdVerifyCode = "/api/aiPulseCommon/resetTradingPwdVerifyCode";
+  static const String aiPulseCommonUploadImageFile = "/api/aiPulseCommon/uploadImageFile";
+
+
   static const String aiPulseMerchantPage = "/api/aiPulseMerchant/page";
   static const String aiPulseMerchantDetail = "/api/aiPulseMerchant/detail";
   static const String aiPulseMerchantEnableList = "/api/aiPulseMerchant/enableList";
