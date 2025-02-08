@@ -63,6 +63,7 @@ class SettingFundPsdScreen extends GetView<SettingFundPsdScreenController> {
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请输入资金密码',
+          keyboardType: TextInputType.number,
           radius: 10,
           onChanged: (value) {
             controller.newPsd.value = value ?? '';
@@ -75,6 +76,7 @@ class SettingFundPsdScreen extends GetView<SettingFundPsdScreenController> {
           name: "newPsdAgain",
           obscureText: true,
           type: TextFormFieldType.golden,
+          keyboardType: TextInputType.number,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请再次输入资金密码',

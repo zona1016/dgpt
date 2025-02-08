@@ -1,3 +1,4 @@
+import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
@@ -24,6 +25,8 @@ class IncomeScreenController extends BaseController {
   final double dashSpace = 2.0;
 
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
+  Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
+
   var totalEarnings = 100000.obs; // 总收益
   var activeMembers = 80.obs; // 激活人数
   var totalMembers = 100.obs; // 总人数
@@ -39,6 +42,7 @@ class IncomeScreenController extends BaseController {
   void onInit() {
     super.onInit();
     userIncomeTotal();
+    aiPulseTotalAmountTotal();
   }
 
   @override
@@ -58,6 +62,15 @@ class IncomeScreenController extends BaseController {
         request: () => aiPulseService.userIncomeTotal());
     if (result != null) {
       incomeTotal.value = result;
+    }
+  }
+
+  aiPulseTotalAmountTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseTotalAmountTotal());
+    if (result != null) {
+      amountTotalInfo.value = result;
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,11 +17,10 @@ class SystemMessageScreenController extends BaseController with GetTickerProvide
 
   late TabController tabController;
   late RxInt tabIndex = 0.obs;
-
   final noticeTabs = {
-    'update': '更新提示',
-    'service': '服务提示',
-    'system': '系统通告'
+    'update': tr('home.update_notification'),
+    'service': tr('home.service_prompt'),
+    'system': tr('home.system_announcement'),
   };
 
   final noticeTabPathList = [

@@ -13,6 +13,8 @@ class ApiEndpoints {
   static const String aiPulseGoogleAuthBind = "/api/aiPulseGoogleAuth/bind";
   static const String aiPulseGoogleAuthUnBind = "/api/aiPulseGoogleAuth/unBind";
 
+  static const String aiPulseTotalAmountTotal = "/api/aiPulseTotal/amountTotal";
+
   // user
   static const String userRegister = "/api/user/userRegister";
   static const String userLogin = "/api/user/userLogin";

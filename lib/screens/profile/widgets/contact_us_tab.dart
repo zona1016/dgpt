@@ -2,6 +2,7 @@ import 'package:dgpt/screens/profile/about_us_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -33,7 +34,7 @@ class ContactUsTab extends GetView<AboutUsScreenController> {
                 width: defaultPadding,
               ),
               Text(
-                '联系我们',
+                tr('home.contact_us'),
                 style: fontSFProMedium.copyWith(
                   fontSize: 14,
                   color: BaseColors.white,

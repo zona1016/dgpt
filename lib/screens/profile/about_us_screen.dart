@@ -79,10 +79,9 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
             int index = entry.key;
             String key = entry.value;
             return Tab(
-              height: 76,
+              height: 90,
               child: Column(
                 children: [
-                  const Spacer(),
                   Image.asset(controller.tabPathList[index], width: 44),
                   const Spacer(),
                   Text(

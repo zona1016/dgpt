@@ -38,7 +38,8 @@ class HashratePasswordInputScreenController extends BaseController {
         loadingState: AppLoadingState.background,
         request: () => aiPulseService.aiPulseUserPlanApply(
             id: args!.hasratePageInfo.id.toString(),
-            quantity: args!.count.toString()));
+            quantity: args!.count.toString(),
+            code: password.value));
     if (result != null) {
       print(result);
     }

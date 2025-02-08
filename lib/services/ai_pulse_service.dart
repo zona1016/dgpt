@@ -1,6 +1,7 @@
 import 'package:dgpt/models/api/pagination_response.dart';
 import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
+import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
@@ -37,8 +38,11 @@ abstract class AiPulseService {
 
   Future<BaseResponse> aiPulseCommonRegisterVerifyCode({required String email});
 
-  Future<BaseResponse> aiPulseUserPlanApply(
-      {required String id, required String quantity});
+  Future<BaseResponse> aiPulseUserPlanApply({
+    required String id,
+    required String quantity,
+    required String code,
+  });
 
   Future<BaseResponse<List<AiChatMessage>?>> aiPulseChatGptSend(
       {required String prompt});
@@ -55,11 +59,13 @@ abstract class AiPulseService {
   Future<BaseResponse<List<TeamHashrateCountTotal>?>>
       userTeamHashrateCountTotal();
 
+  Future<BaseResponse<AmountTotalInfo?>> aiPulseTotalAmountTotal();
+
   Future<BaseResponse> userChangeTradingPwd(
       {required String passwordOld,
-        required String passwordNew,
-        required String verifyCodeId,
-        required String verifyCode});
+      required String passwordNew,
+      required String verifyCodeId,
+      required String verifyCode});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -189,11 +195,13 @@ class AiPulseServiceImpl extends AiPulseService {
 
   @override
   Future<BaseResponse> aiPulseUserPlanApply(
-      {required String id, required String quantity}) async {
+      {required String id,
+      required String quantity,
+      required String code}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanApply,
           bearerToken: userController.token,
-          data: {'id': id, 'quantity': quantity},
+          data: {'id': id, 'quantity': quantity, 'code': code},
           deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
@@ -318,6 +326,18 @@ class AiPulseServiceImpl extends AiPulseService {
             "verifyCode": verifyCode
           },
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<AmountTotalInfo?>> aiPulseTotalAmountTotal() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseTotalAmountTotal,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+              data != null ? AmountTotalInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

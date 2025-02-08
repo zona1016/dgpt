@@ -3,6 +3,9 @@ import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -49,7 +52,14 @@ class SettingFundPsdScreenController extends BaseController {
             verifyCodeId: '',
             verifyCode: ''));
     if (result != null) {
-      print(result);
+      DialogUtils.showDGPTBaseDialog(
+        barrierDismissible: false,
+        title: tr('home.fund_password_has_been_successfully_set'),
+        confirmText: tr('button.confirm'),
+        onConfirmPressed: () {
+          Get.close(2);
+        }
+      );
     }
   }
 }

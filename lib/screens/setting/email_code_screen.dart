@@ -1,4 +1,4 @@
-import 'package:dgpt/screens/auth/email_code_screen_controller.dart';
+import 'package:dgpt/screens/setting/email_code_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';

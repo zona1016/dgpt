@@ -1,4 +1,4 @@
-import 'package:dgpt/screens/auth/forget_password_screen_controller.dart';
+import 'package:dgpt/screens/setting/forget_password_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';

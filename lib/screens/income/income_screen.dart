@@ -22,17 +22,16 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           Container(
             height: MediaQuery.of(context).padding.top + 44,
             width: double.infinity,
-            decoration: BoxDecoration(
-                gradient: BaseColors.appBarLinearGradient
-            ),
+            decoration:
+                BoxDecoration(gradient: BaseColors.appBarLinearGradient),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: defaultPadding / 2),
                 child: Text(
                   tr('hashrate.income_analysis'),
-                  style: fontBold.copyWith(
-                      fontSize: 20, color: BaseColors.white),
+                  style:
+                      fontBold.copyWith(fontSize: 20, color: BaseColors.white),
                 ),
               ),
             ),
@@ -40,62 +39,82 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           Expanded(
             child: SingleChildScrollView(
               child: Obx(() => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                child: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: defaultPadding),
-                      padding: const EdgeInsets.all(defaultPadding),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.greenAccent, Colors.green],
-                        ),
-                        borderRadius: BorderRadius.circular(defaultPadding),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '${tr('home.total_income')} \$${controller.incomeTotal.value?.total ?? ''}',
-                          style: fontDMBold.copyWith(
-                              color: BaseColors.white, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: defaultPadding,),
-                    _circular(),
-                    const SizedBox(height: defaultPadding,),
-                    _makeProfitAndNodePartner(context, onTap: (index) {
-                      if (index == 0) {
-                        Get.toNamed(AppRoutes.analyze);
-                      } else {
-                        Get.toNamed(AppRoutes.nodePartner);
-                      }
-                    }),
-                    const SizedBox(height: defaultPadding),
-                    Text(
-                      tr('hashrate.income_details'),
-                      style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 18
-                      ),
-                    ),
-                    GridView.count(
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 1.7,
-                      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-                      physics: const NeverScrollableScrollPhysics(),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    child: Column(
                       children: [
-                        _buildIncomeCard(tr('hashrate.computing_power_rental'), 100),
-                        _buildIncomeCard(tr('hashrate.team_computing_power_bonus'), 200),
-                        _buildIncomeCard(tr('hashrate.invitation_bonus'), 300),
-                        _buildIncomeCard(tr('hashrate.salary'), 400),
+                        Container(
+                          margin: const EdgeInsets.only(top: defaultPadding),
+                          padding: const EdgeInsets.all(defaultPadding),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Colors.greenAccent, Colors.green],
+                            ),
+                            borderRadius: BorderRadius.circular(defaultPadding),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${tr('home.total_income')} \$${controller.incomeTotal.value?.total ?? ''}',
+                              style: fontDMBold.copyWith(
+                                  color: BaseColors.white, fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: defaultPadding,
+                        ),
+                        _circular(),
+                        const SizedBox(
+                          height: defaultPadding,
+                        ),
+                        _makeProfitAndNodePartner(context, onTap: (index) {
+                          if (index == 0) {
+                            Get.toNamed(AppRoutes.analyze);
+                          } else {
+                            Get.toNamed(AppRoutes.nodePartner);
+                          }
+                        }),
+                        const SizedBox(height: defaultPadding),
+                        Text(
+                          tr('hashrate.income_details'),
+                          style: fontDMBold.copyWith(
+                              color: BaseColors.white, fontSize: 18),
+                        ),
+                        GridView.count(
+                          shrinkWrap: true,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          childAspectRatio: 1.7,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: defaultPadding),
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            _buildIncomeCard(
+                                tr('hashrate.computing_power_rental'),
+                                controller.amountTotalInfo.value
+                                        ?.directAwardAmountTotal ??
+                                    0),
+                            _buildIncomeCard(
+                                tr('hashrate.team_computing_power_bonus'),
+                                controller.amountTotalInfo.value
+                                        ?.teamAwardAmountTotal ??
+                                    0),
+                            _buildIncomeCard(
+                                tr('hashrate.invitation_bonus'),
+                                controller.amountTotalInfo.value
+                                        ?.planAmountTotal ??
+                                    0),
+                            _buildIncomeCard(
+                                tr('hashrate.salary'),
+                                controller.amountTotalInfo.value
+                                        ?.roiAmountTotal ??
+                                    0),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-              )),
+                  )),
             ),
           ),
         ],
@@ -121,25 +140,25 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 width: 25,
                 height: 25,
               ),
-              const SizedBox(width: defaultPadding / 2,),
+              const SizedBox(
+                width: defaultPadding / 2,
+              ),
               Expanded(
                 child: Text(
                   title,
                   style: fontDMMedium.copyWith(
-                      color: BaseColors.weakTextColor,
-                      fontSize: 15
-                  ),
+                      color: BaseColors.weakTextColor, fontSize: 15),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: defaultPadding / 2,),
+          const SizedBox(
+            height: defaultPadding / 2,
+          ),
           Text(
-            '\$${amount.toStringAsFixed(2)}',
+            '\$${NumberFormat('#,##0.00').format(amount)}',
             style: fontDMBold.copyWith(
-                color: BaseColors.primaryColor,
-                fontSize: 18
-            ),
+                color: BaseColors.primaryColor, fontSize: 18),
           ),
           const Spacer(),
         ],
@@ -168,13 +187,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               _positioned(
                   bottom: defaultPadding * 3,
                   left: defaultPadding,
-                  size: const Size(150, 1)
-              ),
+                  size: const Size(150, 1)),
               _positioned(
                   bottom: defaultPadding * 3,
                   left: 150 + defaultPadding,
-                  size: const Size(1, 50)
-              ),
+                  size: const Size(1, 50)),
               CustomPaint(
                 size: const Size(50, 50),
                 painter: CustomCircularPainter(0.02, 1.5, Colors.cyan),
@@ -191,13 +208,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               _positioned(
                   top: defaultPadding + controller.textHeight,
                   left: defaultPadding,
-                  size: Size(controller.circleHeight / 2, 1)
-              ),
+                  size: Size(controller.circleHeight / 2, 1)),
               _positioned(
                   top: defaultPadding + controller.textHeight,
                   left: controller.circleHeight / 2 + defaultPadding,
-                  size: const Size(1, 50)
-              ),
+                  size: const Size(1, 50)),
               CustomPaint(
                 size: const Size(100, 100),
                 // You can adjust the size of the circle
@@ -215,13 +230,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               _positioned(
                   top: controller.textHeight,
                   right: defaultPadding,
-                  size: Size(controller.circleHeight / 2, 1)
-              ),
+                  size: Size(controller.circleHeight / 2, 1)),
               _positioned(
                   top: controller.textHeight,
                   right: controller.circleHeight / 2 + defaultPadding,
-                  size: const Size(1, 35)
-              ),
+                  size: const Size(1, 35)),
               CustomPaint(
                 size: const Size(150, 150),
                 // You can adjust the size of the circle
@@ -239,13 +252,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               _positioned(
                   bottom: defaultPadding,
                   right: defaultPadding,
-                  size: const Size(105, 1)
-              ),
+                  size: const Size(105, 1)),
               _positioned(
                   bottom: defaultPadding,
                   right: 105 + defaultPadding,
-                  size: const Size(1, 30)
-              ),
+                  size: const Size(1, 30)),
               CustomPaint(
                 size: const Size(200, 200),
                 // You can adjust the size of the circle
@@ -257,9 +268,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         Row(
           children: [
             Expanded(child: _circularDetail(title: '算力租借', color: Colors.blue)),
-            Expanded(child: _circularDetail(title: '邀请奖', color: Colors.yellow)),
+            Expanded(
+                child: _circularDetail(title: '邀请奖', color: Colors.yellow)),
             Expanded(child: _circularDetail(title: '薪资', color: Colors.red)),
-            Expanded(child: _circularDetail(title: '团队算力奖', color: Colors.purple)),
+            Expanded(
+                child: _circularDetail(title: '团队算力奖', color: Colors.purple)),
           ],
         )
       ],
@@ -290,27 +303,21 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     );
   }
 
-  _circularDetail({
-    required String title,
-    required Color color
-}) {
+  _circularDetail({required String title, required Color color}) {
     return Row(
       children: [
         Container(
           height: 10,
           width: 10,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: color
-          ),
+              borderRadius: BorderRadius.circular(10), color: color),
         ),
-        const SizedBox(width: defaultPadding / 2,),
+        const SizedBox(
+          width: defaultPadding / 2,
+        ),
         Text(
           title,
-          style: fontDMMedium.copyWith(
-            color: BaseColors.white,
-            fontSize: 10
-          ),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 10),
         )
       ],
     );
@@ -323,34 +330,36 @@ class IncomeScreen extends GetView<IncomeScreenController> {
       children: [
         Text(
           tr('hashrate.team_data'),
-          style: fontDMBold.copyWith(
-              color: BaseColors.white,
-              fontSize: 18
-          ),
+          style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
         ),
-        const SizedBox(height: defaultPadding,),
+        const SizedBox(
+          height: defaultPadding,
+        ),
         Container(
           padding: const EdgeInsets.all(defaultPadding),
           decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/home/return_bg.png'),
-                fit: BoxFit.cover,
-              )
-          ),
+            image: AssetImage('assets/images/home/return_bg.png'),
+            fit: BoxFit.cover,
+          )),
           child: Row(
             children: [
-              Expanded(child: _buildInfoCard(
+              Expanded(
+                  child: _buildInfoCard(
                 context: context,
                 imagePath: 'assets/images/home/day_return.png',
                 title: tr('home.hourly_income'),
-                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
+                value:
+                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
                 onTap: () => onTap(0),
               )),
-              Expanded(child: _buildInfoCard(
+              Expanded(
+                  child: _buildInfoCard(
                 context: context,
                 imagePath: 'assets/images/home/total_return.png',
                 title: tr('home.total_income'),
-                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+                value:
+                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
                 onTap: () => onTap(1),
               )),
             ],

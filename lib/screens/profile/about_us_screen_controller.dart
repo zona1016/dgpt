@@ -1,5 +1,6 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,7 @@ class AboutUsScreenController extends BaseController
   late TabController superTabController;
   late RxInt superTabIndex = 0.obs;
 
-  List<String> tabList = ['公司介绍', '联系我们'];
+  List<String> tabList = [tr('home.company_introduction'), tr('home.contact_us')];
   List<String> tabPathList = [
     'assets/images/home/gsjs.png',
     'assets/images/home/lxwm.png'

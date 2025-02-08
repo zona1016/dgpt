@@ -157,6 +157,7 @@
     "email_verification_code": "邮箱验证码",
     "continue_agree_terms": "继续即表示同意",
     "registration_successful": "注册成功！",
+    "update_notification ": "更新提示",
     "system_prompt": "系统提示",
     "service_prompt": "服务提示",
     "system_announcement": "系统通告",
@@ -166,7 +167,8 @@
     "passport": "护照",
     "id_card": "身份证",
     "driver_license": "驾驶证",
-    "residence_permit": "居留证"
+    "residence_permit": "居留证",
+    "fund_password_has_been_successfully_set": "资金密码设置成功"
   },
   "hashrate": {
     "connecting_computing_power_center": "正在链接算力中心",

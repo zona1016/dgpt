@@ -89,6 +89,7 @@ class HashratePasswordInputScreen extends GetView<HashratePasswordInputScreenCon
       name: 'password',
       hintText: '请输入账户交易密码',
       obscureText: true,
+      keyboardType: TextInputType.number,
       radius: 10,
       onChanged: (value) {
         controller.password.value = value ?? '';
