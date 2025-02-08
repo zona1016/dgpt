@@ -1,8 +1,6 @@
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
-import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
-import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -74,7 +72,7 @@ class HashrateRentalDetailScreen
               Row(
                 children: [
                   Text(
-                    'GDEPIN30',
+                    controller.args!.hasratePageInfo.name,
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
                       fontSize: 15,
@@ -400,7 +398,7 @@ class HashrateRentalDetailScreen
                     width: defaultPadding / 2,
                   ),
                   Text(
-                    '4,323.49 \$',
+                    '${controller.args!.hasratePageInfo.amount} \$',
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 20),
                   ),
@@ -451,7 +449,9 @@ class HashrateRentalDetailScreen
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller.total.value = controller.total.value + 1;
+                    if (controller.total.value < controller.args!.hasratePageInfo.purchaseLimitQuantity) {
+                      controller.total.value = controller.total.value + 1;
+                    }
                   },
                   child: Container(
                     width: 24,
@@ -476,7 +476,7 @@ class HashrateRentalDetailScreen
               children: [
                 Expanded(
                   child: Text(
-                    'Total : \$ XX,XXX',
+                    'Total : \$ ${controller.args!.hasratePageInfo.amount * controller.total.value}',
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 12),
                   ),

@@ -54,6 +54,12 @@ abstract class AiPulseService {
 
   Future<BaseResponse<List<TeamHashrateCountTotal>?>>
       userTeamHashrateCountTotal();
+
+  Future<BaseResponse> userChangeTradingPwd(
+      {required String passwordOld,
+        required String passwordNew,
+        required String verifyCodeId,
+        required String verifyCode});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -291,6 +297,27 @@ class AiPulseServiceImpl extends AiPulseService {
                   .map((e) => TeamHashrateCountTotal.fromJson(e))
                   .toList()
               : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userChangeTradingPwd(
+      {required String passwordOld,
+      required String passwordNew,
+      required String verifyCodeId,
+      required String verifyCode}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userChangeTradingPwd,
+          bearerToken: userController.token,
+          data: {
+            "passwordOld": passwordOld,
+            "passwordNew": passwordNew,
+            "verifyCodeId": verifyCodeId,
+            "verifyCode": verifyCode
+          },
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }

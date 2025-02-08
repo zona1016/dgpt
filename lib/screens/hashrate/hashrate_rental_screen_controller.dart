@@ -94,7 +94,6 @@ class HashrateRentalScreenController extends BaseController {
       }
     }
 
-
     String formattedResult = (progress / 3.0).toStringAsFixed(4);
 
     return double.parse(formattedResult);

@@ -4,6 +4,7 @@ import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +30,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: defaultPadding / 2),
                 child: Text(
-                  '收益分析',
+                  tr('hashrate.income_analysis'),
                   style: fontBold.copyWith(
                       fontSize: 20, color: BaseColors.white),
                 ),
@@ -38,67 +39,63 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: defaultPadding),
-                          padding: const EdgeInsets.all(defaultPadding),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Colors.greenAccent, Colors.green],
-                            ),
-                            borderRadius: BorderRadius.circular(defaultPadding),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '总收益 \$XXX,XXX',
-                              style: fontDMBold.copyWith(
-                                  color: BaseColors.white, fontSize: 20),
-                            ),
-                          ),
+              child: Obx(() => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: defaultPadding),
+                      padding: const EdgeInsets.all(defaultPadding),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [Colors.greenAccent, Colors.green],
                         ),
-                        const SizedBox(height: defaultPadding,),
-                        _circular(),
-                        const SizedBox(height: defaultPadding,),
-                        _makeProfitAndNodePartner(context, onTap: (index) {
-                          if (index == 0) {
-                            Get.toNamed(AppRoutes.analyze);
-                          } else {
-                            Get.toNamed(AppRoutes.nodePartner);
-                          }
-                        }),
-                        const SizedBox(height: defaultPadding),
-                        Text(
-                          '收益明细',
+                        borderRadius: BorderRadius.circular(defaultPadding),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${tr('home.total_income')} \$${controller.incomeTotal.value?.total ?? ''}',
                           style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 18
-                          ),
+                              color: BaseColors.white, fontSize: 20),
                         ),
-                        const SizedBox(height: defaultPadding,),
-                        GridView.count(
-                          shrinkWrap: true,
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          childAspectRatio: 2,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            _buildIncomeCard('算力租借', 100),
-                            _buildIncomeCard('团队算力奖', 200),
-                            _buildIncomeCard('邀请奖', 300),
-                            _buildIncomeCard('薪资', 400),
-                          ],
-                        ),
+                      ),
+                    ),
+                    const SizedBox(height: defaultPadding,),
+                    _circular(),
+                    const SizedBox(height: defaultPadding,),
+                    _makeProfitAndNodePartner(context, onTap: (index) {
+                      if (index == 0) {
+                        Get.toNamed(AppRoutes.analyze);
+                      } else {
+                        Get.toNamed(AppRoutes.nodePartner);
+                      }
+                    }),
+                    const SizedBox(height: defaultPadding),
+                    Text(
+                      tr('hashrate.income_details'),
+                      style: fontDMBold.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 18
+                      ),
+                    ),
+                    GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 1.7,
+                      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        _buildIncomeCard(tr('hashrate.computing_power_rental'), 100),
+                        _buildIncomeCard(tr('hashrate.team_computing_power_bonus'), 200),
+                        _buildIncomeCard(tr('hashrate.invitation_bonus'), 300),
+                        _buildIncomeCard(tr('hashrate.salary'), 400),
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ],
+                ),
+              )),
             ),
           ),
         ],
@@ -125,11 +122,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 height: 25,
               ),
               const SizedBox(width: defaultPadding / 2,),
-              Text(
-                title,
-                style: fontDMMedium.copyWith(
-                    color: BaseColors.weakTextColor,
-                    fontSize: 15
+              Expanded(
+                child: Text(
+                  title,
+                  style: fontDMMedium.copyWith(
+                      color: BaseColors.weakTextColor,
+                      fontSize: 15
+                  ),
                 ),
               ),
             ],
@@ -323,7 +322,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          '团队数据',
+          tr('hashrate.team_data'),
           style: fontDMBold.copyWith(
               color: BaseColors.white,
               fontSize: 18
@@ -343,15 +342,15 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               Expanded(child: _buildInfoCard(
                 context: context,
                 imagePath: 'assets/images/home/day_return.png',
-                title: '每小时收益',
-                value: '2.28 USDT',
+                title: tr('home.hourly_income'),
+                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
                 onTap: () => onTap(0),
               )),
               Expanded(child: _buildInfoCard(
                 context: context,
                 imagePath: 'assets/images/home/total_return.png',
-                title: '总收益',
-                value: '8,182.28 USDT',
+                title: tr('home.total_income'),
+                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
                 onTap: () => onTap(1),
               )),
             ],

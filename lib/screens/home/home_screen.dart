@@ -10,6 +10,7 @@ import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/default_navigation_header.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:marquee/marquee.dart';
@@ -244,16 +245,16 @@ class HomeScreen extends GetView<HomeScreenController> {
                   child: _buildInfoCard(
                 context: context,
                 imagePath: 'assets/images/home/day_return.png',
-                title: '每小时收益',
-                value: '${controller.incomeTotal.value?.today} USDT',
+                title: tr('home.hourly_income'),
+                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
                 onTap: () => onTap(0),
               )),
               Expanded(
                   child: _buildInfoCard(
                 context: context,
                 imagePath: 'assets/images/home/total_return.png',
-                title: '总收益',
-                value: '${controller.incomeTotal.value?.total} USDT',
+                title: tr('home.total_income'),
+                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
                 onTap: () => onTap(1),
               )),
             ],

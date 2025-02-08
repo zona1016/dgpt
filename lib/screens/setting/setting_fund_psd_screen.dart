@@ -31,10 +31,7 @@ class SettingFundPsdScreen extends GetView<SettingFundPsdScreenController> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    _buildHeader(context),
-                    _textFields(context)
-                  ],
+                  children: [_buildHeader(context), _textFields(context)],
                 ),
               ),
             ),
@@ -64,8 +61,7 @@ class SettingFundPsdScreen extends GetView<SettingFundPsdScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请输入资金密码',
           radius: 10,
           onChanged: (value) {
@@ -80,8 +76,7 @@ class SettingFundPsdScreen extends GetView<SettingFundPsdScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请再次输入资金密码',
           radius: 10,
           onChanged: (value) {
@@ -97,14 +92,14 @@ class SettingFundPsdScreen extends GetView<SettingFundPsdScreenController> {
 
   _buildConfirm() {
     return Obx(() => BaseButton(
-      onPressed: () => controller.conform(),
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: controller.oldPsd.isNotEmpty &&
-          controller.newPsd.isNotEmpty &&
-          controller.newPsdAgain.isNotEmpty,
-      text: tr('button.confirm'),
-    ));
+          onPressed: () => controller.userHasTradingPwd(),
+          disabledDecoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(30)),
+          enabled: controller.newPsd.isNotEmpty &&
+              controller.newPsdAgain.isNotEmpty &&
+              (controller.newPsd.value == controller.newPsdAgain.value),
+          text: tr('button.confirm'),
+        ));
   }
 }

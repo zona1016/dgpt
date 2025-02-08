@@ -351,6 +351,26 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
 
   _rentalItem(int index) {
     HasratePageInfo hasratePageInfo = controller.hasratePageList[index];
+    // Common text style
+    TextStyle whiteText14 = fontDMMedium.copyWith(color: BaseColors.white, fontSize: 14);
+    TextStyle whiteText10 = fontDMRegular.copyWith(color: BaseColors.white, fontSize: 10);
+    TextStyle whiteText18 = fontDMBold.copyWith(color: BaseColors.white, fontSize: 18);
+    TextStyle whiteText20 = fontDMBold.copyWith(color: BaseColors.white, fontSize: 20);
+
+    // Helper method for creating a row with two texts
+    Widget _buildRow(String leftText, String rightText, TextStyle leftStyle, TextStyle rightStyle) {
+      return Row(
+        children: [
+          Expanded(
+            child: Text(leftText, style: leftStyle),
+          ),
+          Expanded(
+            child: Text(rightText, style: rightStyle),
+          ),
+        ],
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -361,21 +381,13 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
         children: [
           Text(
             hasratePageInfo.name,
-            style: fontDMBold.copyWith(
-              color: BaseColors.white,
-              fontSize: 18,
-            ),
+            style: whiteText18,
           ),
           Text(
             hasratePageInfo.code,
-            style: fontDMMedium.copyWith(
-              color: BaseColors.white,
-              fontSize: 14,
-            ),
+            style: whiteText14,
           ),
-          const SizedBox(
-            height: defaultPadding,
-          ),
+          const SizedBox(height: defaultPadding),
           Center(
             child: Image.asset(
               'assets/images/home/income_icon.png',
@@ -384,31 +396,20 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(
-            height: defaultPadding,
-          ),
+          const SizedBox(height: defaultPadding),
           Text(
             tr('hashrate.rent_to_earn'),
-            style: fontDMMedium.copyWith(
-              color: BaseColors.white,
-              fontSize: 14,
-            ),
+            style: whiteText14,
           ),
           Row(
             children: [
               Text(
                 '\$${hasratePageInfo.profitPreHour}',
-                style: fontDMBold.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 20,
-                ),
+                style: whiteText20,
               ),
               Text(
                 '/Per Hrs',
-                style: fontDMRegular.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 12,
-                ),
+                style: whiteText10,
               ),
             ],
           ),
@@ -418,108 +419,22 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultPadding),
                 image: const DecorationImage(
-                    image: AssetImage(
-                        'assets/images/home/income_power_btn_bg.png'))),
+                    image: AssetImage('assets/images/home/income_power_btn_bg.png'))),
             child: Center(
               child: Text(
                 tr('hashrate.rental'),
-                style: fontDMBold.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 18,
-                ),
+                style: whiteText18,
               ),
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  tr('hashrate.contract_details'),
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  '${hasratePageInfo.cycle}days',
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  tr('hashrate.rental_funds'),
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  '\$${hasratePageInfo.profitTotal}',
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  tr('hashrate.rental_income'),
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  '\$630(110%)',
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  tr('hashrate.daily_income'),
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  '\$${hasratePageInfo.profitPreDay}',
-                  style: fontDMRegular.copyWith(
-                    color: BaseColors.white,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          _buildRow(tr('hashrate.contract_details'), '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.profitTotal}', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.rental_income'), '\$630(110%)', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.daily_income'), '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
         ],
       ),
     );
   }
+
+
 }
