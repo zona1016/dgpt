@@ -22,11 +22,13 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
       body: Obx(() => Column(
-        children: [
-          _tabBar(context),
-          Expanded(
-            child: Padding(
-                  padding: const EdgeInsets.all(defaultPadding),
+            children: [
+              _tabBar(context),
+              if (controller.powerInfo.value?.name != null) _header(),
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: defaultPadding),
                   child: BaseSmartRefresher(
                     refreshController: controller.refreshController,
                     enableLoadMore: true,
@@ -42,8 +44,6 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                       return CustomScrollView(
                         physics: physics,
                         slivers: [
-                          if (controller.powerInfo.value?.name != null)
-                            _header(),
                           SliverGrid.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
@@ -59,7 +59,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                                 onTap: () {
                                   Get.toNamed(AppRoutes.hashrateRentalDetail,
                                       arguments: HashrateRentalDetailScreenArgs(
-                                          hasratePageInfo: controller.hasratePageList[index]));
+                                          hasratePageInfo: controller
+                                              .hasratePageList[index]));
                                 },
                                 child: _rentalItem(index),
                               );
@@ -70,9 +71,9 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                     },
                   ),
                 ),
-          ),
-        ],
-      )),
+              ),
+            ],
+          )),
     );
   }
 
@@ -80,17 +81,14 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     return Container(
       height: MediaQuery.of(context).padding.top + 44,
       width: double.infinity,
-      decoration: BoxDecoration(
-          gradient: BaseColors.appBarLinearGradient
-      ),
+      decoration: BoxDecoration(gradient: BaseColors.appBarLinearGradient),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.only(bottom: defaultPadding / 2),
           child: Text(
             tr('hashrate.computing_power_rental'),
-            style: fontBold.copyWith(
-                fontSize: 20, color: BaseColors.white),
+            style: fontBold.copyWith(fontSize: 20, color: BaseColors.white),
           ),
         ),
       ),
@@ -98,212 +96,12 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
   }
 
   _header() {
-    return SliverToBoxAdapter(
+    return Padding(
+      padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.all(defaultPadding),
-            decoration: BoxDecoration(
-              gradient: BaseColors.incomeLinearGradient,
-              borderRadius: BorderRadius.circular(10), // 圆角
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      controller.powerInfo.value?.name ?? '',
-                      style: fontDMBold.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: defaultPadding / 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                              defaultPadding),
-                          border: Border.all(
-                              color:
-                              BaseColors.secondPrimaryColor,
-                              width: 1),
-                          color: BaseColors.secondPrimaryColor
-                              .withOpacity(0.1)),
-                      child: Text(
-                        tr('hashrate.in_progress'),
-                        style: fontDMRegular.copyWith(
-                          color: BaseColors.secondPrimaryColor,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: defaultPadding,
-                ),
-                Container(
-                  height: 70,
-                  width: 70,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                              'assets/images/home/income_power_level.png'))),
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      Text(
-                        controller.powerInfo.value?.secondLayer.toString() ?? '',
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Image.asset(
-                        'assets/images/home/income_power_icon.png',
-                        width: 13,
-                        height: 13,
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: defaultPadding,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      tr('hashrate.in_progress'),
-                      style: fontDMMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                    GestureDetector(
-                      onTap: () {
-                        final MainScreenController mainController = Get.find();
-                        mainController.selectedTabIndex(3);
-                        mainController.pageController.jumpToPage(3);
-                        mainController.update();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: defaultPadding / 2),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                defaultPadding),
-                            color:
-                            BaseColors.primaryColor),
-                        child: Text(
-                          tr('hashrate.income_analysis'),
-                          style: fontDMBold.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: defaultPadding / 4,
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    color:
-                    BaseColors.whiteGray3.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Stack(
-                    children: [
-                      AnimatedContainer(
-                        width: (Get.size.width -
-                            defaultPadding * 4) *
-                            .2,
-                        duration:
-                        const Duration(milliseconds: 300),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color(0xFF05CCFF), // 0% 的颜色
-                              Color(0xFF08C8FF), // 2% 的颜色
-                              Color(0xFF4F7FFF), // 37% 的颜色
-                              Color(0xFF834AFF), // 66% 的颜色
-                              Color(0xFFA32AFF), // 88% 的颜色
-                              Color(0xFFB01EFF), // 100% 的颜色
-                            ],
-                            stops: [
-                              0.0,
-                              0.02,
-                              0.37,
-                              0.66,
-                              0.88,
-                              1.0
-                            ], // 颜色停止点
-                            begin: Alignment.centerLeft, // 渐变起点
-                            end: Alignment.centerRight, // 渐变终点
-                          ),
-                          borderRadius:
-                          BorderRadius.circular(5),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: defaultPadding,
-                ),
-                // Row(
-                //   children: [
-                //     Text(
-                //       '帮助3位好友成为等级3',
-                //       style: fontDMMedium.copyWith(
-                //         color: BaseColors.white,
-                //         fontSize: 14,
-                //       ),
-                //     ),
-                //     Expanded(child: Container()),
-                //     Text(
-                //       '0/3',
-                //       style: fontDMMedium.copyWith(
-                //         color: BaseColors.white,
-                //         fontSize: 14,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                Row(
-                  children: [
-                    Text(
-                      tr('hashrate.team_members'),
-                      style: fontDMMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                    Text(
-                      '${controller.teamMemberCount}/${controller.teamHashrateCount}',
-                      style: fontDMMedium.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: defaultPadding,
-          ),
+          _buildHeaderContainer(),
+          const SizedBox(height: defaultPadding),
           Text(
             tr('hashrate.product_details'),
             style: fontDMBold.copyWith(
@@ -311,12 +109,244 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               fontSize: 18,
             ),
           ),
-          const SizedBox(
-            height: defaultPadding,
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeaderContainer() {
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding),
+      decoration: BoxDecoration(
+        gradient: BaseColors.incomeLinearGradient,
+        borderRadius: BorderRadius.circular(10), // 圆角
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitleRow(),
+          const SizedBox(height: defaultPadding),
+          _buildPowerLevel(),
+          const SizedBox(height: defaultPadding),
+          _buildActionRow(),
+          const SizedBox(height: defaultPadding / 4),
+          _buildProgressBar(),
+          const SizedBox(height: defaultPadding),
+          _buildConditionalRows(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTitleRow() {
+    return Row(
+      children: [
+        Text(
+          controller.powerInfo.value?.name ?? '',
+          style: fontDMBold.copyWith(
+            color: BaseColors.white,
+            fontSize: 16,
+          ),
+        ),
+        Expanded(child: Container()),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(defaultPadding),
+            border: Border.all(color: BaseColors.secondPrimaryColor, width: 1),
+            color: BaseColors.secondPrimaryColor.withOpacity(0.1),
+          ),
+          child: Text(
+            tr('hashrate.in_progress'),
+            style: fontDMRegular.copyWith(
+              color: BaseColors.secondPrimaryColor,
+              fontSize: 10,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPowerLevel() {
+    return Container(
+      height: 70,
+      width: 70,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/home/income_power_level.png'),
+        ),
+      ),
+      child: Row(
+        children: [
+          const Spacer(),
+          Text(
+            controller.powerInfo.value?.secondLayer.toString() ?? '',
+            style: fontDMBold.copyWith(
+              color: BaseColors.white,
+              fontSize: 20,
+            ),
+          ),
+          Image.asset(
+            'assets/images/home/income_power_icon.png',
+            width: 13,
+            height: 13,
+          ),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionRow() {
+    return Row(
+      children: [
+        Text(
+          tr('hashrate.in_progress'),
+          style: fontDMMedium.copyWith(
+            color: BaseColors.white,
+            fontSize: 14,
+          ),
+        ),
+        Expanded(child: Container()),
+        GestureDetector(
+          onTap: () {
+            final MainScreenController mainController = Get.find();
+            mainController.selectedTabIndex(3);
+            mainController.pageController.jumpToPage(3);
+            mainController.update();
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(defaultPadding),
+              color: BaseColors.primaryColor,
+            ),
+            child: Text(
+              tr('hashrate.income_analysis'),
+              style: fontDMBold.copyWith(
+                color: BaseColors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProgressBar() {
+    return Container(
+      width: double.infinity,
+      height: 10,
+      decoration: BoxDecoration(
+        color: BaseColors.whiteGray3.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Stack(
+        children: [
+          AnimatedContainer(
+            width: (Get.size.width - defaultPadding * 4) * controller.getProgress(),
+            duration: const Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFF05CCFF),
+                  Color(0xFF08C8FF),
+                  Color(0xFF4F7FFF),
+                  Color(0xFF834AFF),
+                  Color(0xFFA32AFF),
+                  Color(0xFFB01EFF),
+                ],
+                stops: [0.0, 0.02, 0.37, 0.66, 0.88, 1.0],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
+              borderRadius: BorderRadius.circular(5),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildConditionalRows() {
+    return Column(
+      children: [
+        if (controller.progressInfo.value?.next?.conditionDto != null)
+          ..._buildConditionalRow1(
+            tr('hashrate.computing_power_rental'),
+            controller.progressInfo.value!.next!.conditionDto!.minPlanAmount,
+            controller.progressInfo.value!.planAmount,
+          ),
+        if (controller.progressInfo.value?.next?.conditionDto != null)
+          ..._buildConditionalRow(
+            tr('hashrate.direct_referral_count'),
+            controller.progressInfo.value!.next!.conditionDto!.directCount,
+            controller.progressInfo.value!.directCount,
+          ),
+        if (controller.progressInfo.value?.next?.conditionDto != null)
+          ..._buildConditionalRow(
+            tr('hashrate.team_members'),
+            controller.progressInfo.value!.next!.conditionDto!.teamCount,
+            controller.progressInfo.value!.teamCount,
+          ),
+      ],
+    );
+  }
+
+  List<Widget> _buildConditionalRow1(String label, double conditionValue, double count) {
+    if (conditionValue > 0) {
+      return [
+        Row(
+          children: [
+            Text(
+              label,
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 14,
+              ),
+            ),
+            Expanded(child: Container()),
+            Text(
+              '$count/$conditionValue',
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ];
+    }
+    return [];
+  }
+
+  List<Widget> _buildConditionalRow(String label, int conditionValue, int count) {
+    if (conditionValue > 0) {
+      return [
+        Row(
+          children: [
+            Text(
+              label,
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 14,
+              ),
+            ),
+            Expanded(child: Container()),
+            Text(
+              '$count/$conditionValue',
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ];
+    }
+    return [];
   }
 
   _rentalItem(int index) {

@@ -7,7 +7,7 @@ part 'hasrate_progress_info.g.dart';
 class HasrateProgressInfo with _$HasrateProgressInfo {
   factory HasrateProgressInfo({
     @JsonKey(name: 'next') Next? next,
-    @JsonKey(name: 'planAmount') @Default(0) int planAmount,
+    @JsonKey(name: 'planAmount') @Default(0.0) double planAmount,
     @JsonKey(name: 'directCount') @Default(0) int directCount,
     @JsonKey(name: 'teamCount') @Default(0) int teamCount,
   }) = _HasrateProgressInfo;
@@ -20,25 +20,27 @@ class HasrateProgressInfo with _$HasrateProgressInfo {
 class Next with _$Next {
   factory Next({
     @JsonKey(name: 'id') @Default(0) int id,
-    @JsonKey(name: 'createTime') @Default('') String createTime,
-    @JsonKey(name: 'updateTime') @Default('') String updateTime,
-    @JsonKey(name: 'createUserId') @Default(0) int createUserId,
-    @JsonKey(name: 'createUserName') @Default('') String createUserName,
-    @JsonKey(name: 'updateUserId') @Default(0) int updateUserId,
-    @JsonKey(name: 'updateUserName') @Default('') String updateUserName,
-    @JsonKey(name: 'isDelete') @Default(false) bool isDelete,
-    @JsonKey(name: 'sysExtInfo') @Default('') String sysExtInfo,
     @JsonKey(name: 'code') @Default('') String code,
     @JsonKey(name: 'name') @Default('') String name,
-    @JsonKey(name: 'orderNo') @Default(0) int orderNo,
     @JsonKey(name: 'condition') @Default('') String condition,
     @JsonKey(name: 'firstLayer') @Default(0) int firstLayer,
     @JsonKey(name: 'secondLayer') @Default(0) int secondLayer,
     @JsonKey(name: 'thirdLayer') @Default(0) int thirdLayer,
     @JsonKey(name: 'description') @Default('') String description,
-    @JsonKey(name: 'enable') @Default(0) int enable,
-    @JsonKey(name: 'remark') @Default('') String remark,
+    @JsonKey(name: 'conditionDto') ConditionDto? conditionDto,
   }) = _Next;
 
   factory Next.fromJson(Map<String, dynamic> json) => _$NextFromJson(json);
+}
+
+@freezed
+class ConditionDto with _$ConditionDto {
+  factory ConditionDto({
+    @JsonKey(name: 'minPlanAmount') @Default(0.0) double minPlanAmount,
+    @JsonKey(name: 'directCount') @Default(0) int directCount,
+    @JsonKey(name: 'teamCount') @Default(0) int teamCount,
+  }) = _ConditionDto;
+
+  factory ConditionDto.fromJson(Map<String, dynamic> json) =>
+      _$ConditionDtoFromJson(json);
 }

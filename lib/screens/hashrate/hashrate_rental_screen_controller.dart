@@ -25,9 +25,6 @@ class HashrateRentalScreenController extends BaseController {
   var totalUsers = 65.obs;
   var currentUsers = 3.obs;
 
-  RxInt teamMemberCount = 0.obs;
-  RxInt teamHashrateCount = 0.obs;
-
   @override
   void onInit() {
     super.onInit();
@@ -80,21 +77,27 @@ class HashrateRentalScreenController extends BaseController {
     }
   }
 
-  userTeamMemberList() async {
-    final result = await fetchData(
-        loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => aiPulseService.userTeamMemberList());
-    if (result != null) {
-      teamMemberCount.value = result.length;
+  double getProgress() {
+    double progress = 0;
+    if (progressInfo.value?.next?.conditionDto != null) {
+
+      if (progressInfo.value!.next!.conditionDto!.minPlanAmount > 0) {
+        progress += progressInfo.value!.planAmount / progressInfo.value!.next!.conditionDto!.minPlanAmount;
+      }
+
+      if (progressInfo.value!.next!.conditionDto!.teamCount > 0) {
+        progress += progressInfo.value!.teamCount / progressInfo.value!.next!.conditionDto!.teamCount;
+      }
+
+      if (progressInfo.value!.next!.conditionDto!.directCount > 0) {
+        progress += progressInfo.value!.directCount / progressInfo.value!.next!.conditionDto!.directCount;
+      }
     }
+
+
+    String formattedResult = (progress / 3.0).toStringAsFixed(4);
+
+    return double.parse(formattedResult);
   }
 
-  userTeamHashrateCountTotal() async {
-    final result = await fetchData(
-        loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => aiPulseService.userTeamHashrateCountTotal());
-    if (result != null) {
-      teamHashrateCount.value = result.length;
-    }
-  }
 }

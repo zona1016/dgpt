@@ -62,18 +62,23 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: defaultPadding,
                   ),
                   // _carousel(context),
-                  Stack(
-                    alignment: Alignment.center, // 让所有子组件居中
+                  Stack(// 让所有子组件居中
                     children: [
                       Image.asset(
                         'assets/images/home/header_bg.png',
                         fit: BoxFit.contain, // 图片自适应大小
                       ),
-                      Text(
-                        '未激活',
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 16,
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: defaultPadding,
+                        child: Text(
+                          '未激活',
+                          style: fontDMBold.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],

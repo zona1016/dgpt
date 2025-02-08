@@ -23,7 +23,7 @@ mixin _$HasrateProgressInfo {
   @JsonKey(name: 'next')
   Next? get next => throw _privateConstructorUsedError;
   @JsonKey(name: 'planAmount')
-  int get planAmount => throw _privateConstructorUsedError;
+  double get planAmount => throw _privateConstructorUsedError;
   @JsonKey(name: 'directCount')
   int get directCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'teamCount')
@@ -47,7 +47,7 @@ abstract class $HasrateProgressInfoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'next') Next? next,
-      @JsonKey(name: 'planAmount') int planAmount,
+      @JsonKey(name: 'planAmount') double planAmount,
       @JsonKey(name: 'directCount') int directCount,
       @JsonKey(name: 'teamCount') int teamCount});
 
@@ -82,7 +82,7 @@ class _$HasrateProgressInfoCopyWithImpl<$Res, $Val extends HasrateProgressInfo>
       planAmount: null == planAmount
           ? _value.planAmount
           : planAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       directCount: null == directCount
           ? _value.directCount
           : directCount // ignore: cast_nullable_to_non_nullable
@@ -119,7 +119,7 @@ abstract class _$$HasrateProgressInfoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'next') Next? next,
-      @JsonKey(name: 'planAmount') int planAmount,
+      @JsonKey(name: 'planAmount') double planAmount,
       @JsonKey(name: 'directCount') int directCount,
       @JsonKey(name: 'teamCount') int teamCount});
 
@@ -153,7 +153,7 @@ class __$$HasrateProgressInfoImplCopyWithImpl<$Res>
       planAmount: null == planAmount
           ? _value.planAmount
           : planAmount // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       directCount: null == directCount
           ? _value.directCount
           : directCount // ignore: cast_nullable_to_non_nullable
@@ -171,7 +171,7 @@ class __$$HasrateProgressInfoImplCopyWithImpl<$Res>
 class _$HasrateProgressInfoImpl implements _HasrateProgressInfo {
   _$HasrateProgressInfoImpl(
       {@JsonKey(name: 'next') this.next,
-      @JsonKey(name: 'planAmount') this.planAmount = 0,
+      @JsonKey(name: 'planAmount') this.planAmount = 0.0,
       @JsonKey(name: 'directCount') this.directCount = 0,
       @JsonKey(name: 'teamCount') this.teamCount = 0});
 
@@ -183,7 +183,7 @@ class _$HasrateProgressInfoImpl implements _HasrateProgressInfo {
   final Next? next;
   @override
   @JsonKey(name: 'planAmount')
-  final int planAmount;
+  final double planAmount;
   @override
   @JsonKey(name: 'directCount')
   final int directCount;
@@ -235,7 +235,7 @@ class _$HasrateProgressInfoImpl implements _HasrateProgressInfo {
 abstract class _HasrateProgressInfo implements HasrateProgressInfo {
   factory _HasrateProgressInfo(
           {@JsonKey(name: 'next') final Next? next,
-          @JsonKey(name: 'planAmount') final int planAmount,
+          @JsonKey(name: 'planAmount') final double planAmount,
           @JsonKey(name: 'directCount') final int directCount,
           @JsonKey(name: 'teamCount') final int teamCount}) =
       _$HasrateProgressInfoImpl;
@@ -248,7 +248,7 @@ abstract class _HasrateProgressInfo implements HasrateProgressInfo {
   Next? get next;
   @override
   @JsonKey(name: 'planAmount')
-  int get planAmount;
+  double get planAmount;
   @override
   @JsonKey(name: 'directCount')
   int get directCount;
@@ -272,28 +272,10 @@ Next _$NextFromJson(Map<String, dynamic> json) {
 mixin _$Next {
   @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'createTime')
-  String get createTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updateTime')
-  String get updateTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'createUserId')
-  int get createUserId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'createUserName')
-  String get createUserName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updateUserId')
-  int get updateUserId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updateUserName')
-  String get updateUserName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'isDelete')
-  bool get isDelete => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sysExtInfo')
-  String get sysExtInfo => throw _privateConstructorUsedError;
   @JsonKey(name: 'code')
   String get code => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'orderNo')
-  int get orderNo => throw _privateConstructorUsedError;
   @JsonKey(name: 'condition')
   String get condition => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstLayer')
@@ -304,10 +286,8 @@ mixin _$Next {
   int get thirdLayer => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'enable')
-  int get enable => throw _privateConstructorUsedError;
-  @JsonKey(name: 'remark')
-  String get remark => throw _privateConstructorUsedError;
+  @JsonKey(name: 'conditionDto')
+  ConditionDto? get conditionDto => throw _privateConstructorUsedError;
 
   /// Serializes this Next to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -325,24 +305,16 @@ abstract class $NextCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'createTime') String createTime,
-      @JsonKey(name: 'updateTime') String updateTime,
-      @JsonKey(name: 'createUserId') int createUserId,
-      @JsonKey(name: 'createUserName') String createUserName,
-      @JsonKey(name: 'updateUserId') int updateUserId,
-      @JsonKey(name: 'updateUserName') String updateUserName,
-      @JsonKey(name: 'isDelete') bool isDelete,
-      @JsonKey(name: 'sysExtInfo') String sysExtInfo,
       @JsonKey(name: 'code') String code,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'orderNo') int orderNo,
       @JsonKey(name: 'condition') String condition,
       @JsonKey(name: 'firstLayer') int firstLayer,
       @JsonKey(name: 'secondLayer') int secondLayer,
       @JsonKey(name: 'thirdLayer') int thirdLayer,
       @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'enable') int enable,
-      @JsonKey(name: 'remark') String remark});
+      @JsonKey(name: 'conditionDto') ConditionDto? conditionDto});
+
+  $ConditionDtoCopyWith<$Res>? get conditionDto;
 }
 
 /// @nodoc
@@ -361,62 +333,20 @@ class _$NextCopyWithImpl<$Res, $Val extends Next>
   @override
   $Res call({
     Object? id = null,
-    Object? createTime = null,
-    Object? updateTime = null,
-    Object? createUserId = null,
-    Object? createUserName = null,
-    Object? updateUserId = null,
-    Object? updateUserName = null,
-    Object? isDelete = null,
-    Object? sysExtInfo = null,
     Object? code = null,
     Object? name = null,
-    Object? orderNo = null,
     Object? condition = null,
     Object? firstLayer = null,
     Object? secondLayer = null,
     Object? thirdLayer = null,
     Object? description = null,
-    Object? enable = null,
-    Object? remark = null,
+    Object? conditionDto = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      createTime: null == createTime
-          ? _value.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      updateTime: null == updateTime
-          ? _value.updateTime
-          : updateTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      createUserId: null == createUserId
-          ? _value.createUserId
-          : createUserId // ignore: cast_nullable_to_non_nullable
-              as int,
-      createUserName: null == createUserName
-          ? _value.createUserName
-          : createUserName // ignore: cast_nullable_to_non_nullable
-              as String,
-      updateUserId: null == updateUserId
-          ? _value.updateUserId
-          : updateUserId // ignore: cast_nullable_to_non_nullable
-              as int,
-      updateUserName: null == updateUserName
-          ? _value.updateUserName
-          : updateUserName // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDelete: null == isDelete
-          ? _value.isDelete
-          : isDelete // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sysExtInfo: null == sysExtInfo
-          ? _value.sysExtInfo
-          : sysExtInfo // ignore: cast_nullable_to_non_nullable
-              as String,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -425,10 +355,6 @@ class _$NextCopyWithImpl<$Res, $Val extends Next>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      orderNo: null == orderNo
-          ? _value.orderNo
-          : orderNo // ignore: cast_nullable_to_non_nullable
-              as int,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -449,15 +375,25 @@ class _$NextCopyWithImpl<$Res, $Val extends Next>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      enable: null == enable
-          ? _value.enable
-          : enable // ignore: cast_nullable_to_non_nullable
-              as int,
-      remark: null == remark
-          ? _value.remark
-          : remark // ignore: cast_nullable_to_non_nullable
-              as String,
+      conditionDto: freezed == conditionDto
+          ? _value.conditionDto
+          : conditionDto // ignore: cast_nullable_to_non_nullable
+              as ConditionDto?,
     ) as $Val);
+  }
+
+  /// Create a copy of Next
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ConditionDtoCopyWith<$Res>? get conditionDto {
+    if (_value.conditionDto == null) {
+      return null;
+    }
+
+    return $ConditionDtoCopyWith<$Res>(_value.conditionDto!, (value) {
+      return _then(_value.copyWith(conditionDto: value) as $Val);
+    });
   }
 }
 
@@ -470,24 +406,17 @@ abstract class _$$NextImplCopyWith<$Res> implements $NextCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
-      @JsonKey(name: 'createTime') String createTime,
-      @JsonKey(name: 'updateTime') String updateTime,
-      @JsonKey(name: 'createUserId') int createUserId,
-      @JsonKey(name: 'createUserName') String createUserName,
-      @JsonKey(name: 'updateUserId') int updateUserId,
-      @JsonKey(name: 'updateUserName') String updateUserName,
-      @JsonKey(name: 'isDelete') bool isDelete,
-      @JsonKey(name: 'sysExtInfo') String sysExtInfo,
       @JsonKey(name: 'code') String code,
       @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'orderNo') int orderNo,
       @JsonKey(name: 'condition') String condition,
       @JsonKey(name: 'firstLayer') int firstLayer,
       @JsonKey(name: 'secondLayer') int secondLayer,
       @JsonKey(name: 'thirdLayer') int thirdLayer,
       @JsonKey(name: 'description') String description,
-      @JsonKey(name: 'enable') int enable,
-      @JsonKey(name: 'remark') String remark});
+      @JsonKey(name: 'conditionDto') ConditionDto? conditionDto});
+
+  @override
+  $ConditionDtoCopyWith<$Res>? get conditionDto;
 }
 
 /// @nodoc
@@ -503,62 +432,20 @@ class __$$NextImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? createTime = null,
-    Object? updateTime = null,
-    Object? createUserId = null,
-    Object? createUserName = null,
-    Object? updateUserId = null,
-    Object? updateUserName = null,
-    Object? isDelete = null,
-    Object? sysExtInfo = null,
     Object? code = null,
     Object? name = null,
-    Object? orderNo = null,
     Object? condition = null,
     Object? firstLayer = null,
     Object? secondLayer = null,
     Object? thirdLayer = null,
     Object? description = null,
-    Object? enable = null,
-    Object? remark = null,
+    Object? conditionDto = freezed,
   }) {
     return _then(_$NextImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      createTime: null == createTime
-          ? _value.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      updateTime: null == updateTime
-          ? _value.updateTime
-          : updateTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      createUserId: null == createUserId
-          ? _value.createUserId
-          : createUserId // ignore: cast_nullable_to_non_nullable
-              as int,
-      createUserName: null == createUserName
-          ? _value.createUserName
-          : createUserName // ignore: cast_nullable_to_non_nullable
-              as String,
-      updateUserId: null == updateUserId
-          ? _value.updateUserId
-          : updateUserId // ignore: cast_nullable_to_non_nullable
-              as int,
-      updateUserName: null == updateUserName
-          ? _value.updateUserName
-          : updateUserName // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDelete: null == isDelete
-          ? _value.isDelete
-          : isDelete // ignore: cast_nullable_to_non_nullable
-              as bool,
-      sysExtInfo: null == sysExtInfo
-          ? _value.sysExtInfo
-          : sysExtInfo // ignore: cast_nullable_to_non_nullable
-              as String,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -567,10 +454,6 @@ class __$$NextImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      orderNo: null == orderNo
-          ? _value.orderNo
-          : orderNo // ignore: cast_nullable_to_non_nullable
-              as int,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -591,14 +474,10 @@ class __$$NextImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      enable: null == enable
-          ? _value.enable
-          : enable // ignore: cast_nullable_to_non_nullable
-              as int,
-      remark: null == remark
-          ? _value.remark
-          : remark // ignore: cast_nullable_to_non_nullable
-              as String,
+      conditionDto: freezed == conditionDto
+          ? _value.conditionDto
+          : conditionDto // ignore: cast_nullable_to_non_nullable
+              as ConditionDto?,
     ));
   }
 }
@@ -608,24 +487,14 @@ class __$$NextImplCopyWithImpl<$Res>
 class _$NextImpl implements _Next {
   _$NextImpl(
       {@JsonKey(name: 'id') this.id = 0,
-      @JsonKey(name: 'createTime') this.createTime = '',
-      @JsonKey(name: 'updateTime') this.updateTime = '',
-      @JsonKey(name: 'createUserId') this.createUserId = 0,
-      @JsonKey(name: 'createUserName') this.createUserName = '',
-      @JsonKey(name: 'updateUserId') this.updateUserId = 0,
-      @JsonKey(name: 'updateUserName') this.updateUserName = '',
-      @JsonKey(name: 'isDelete') this.isDelete = false,
-      @JsonKey(name: 'sysExtInfo') this.sysExtInfo = '',
       @JsonKey(name: 'code') this.code = '',
       @JsonKey(name: 'name') this.name = '',
-      @JsonKey(name: 'orderNo') this.orderNo = 0,
       @JsonKey(name: 'condition') this.condition = '',
       @JsonKey(name: 'firstLayer') this.firstLayer = 0,
       @JsonKey(name: 'secondLayer') this.secondLayer = 0,
       @JsonKey(name: 'thirdLayer') this.thirdLayer = 0,
       @JsonKey(name: 'description') this.description = '',
-      @JsonKey(name: 'enable') this.enable = 0,
-      @JsonKey(name: 'remark') this.remark = ''});
+      @JsonKey(name: 'conditionDto') this.conditionDto});
 
   factory _$NextImpl.fromJson(Map<String, dynamic> json) =>
       _$$NextImplFromJson(json);
@@ -634,38 +503,11 @@ class _$NextImpl implements _Next {
   @JsonKey(name: 'id')
   final int id;
   @override
-  @JsonKey(name: 'createTime')
-  final String createTime;
-  @override
-  @JsonKey(name: 'updateTime')
-  final String updateTime;
-  @override
-  @JsonKey(name: 'createUserId')
-  final int createUserId;
-  @override
-  @JsonKey(name: 'createUserName')
-  final String createUserName;
-  @override
-  @JsonKey(name: 'updateUserId')
-  final int updateUserId;
-  @override
-  @JsonKey(name: 'updateUserName')
-  final String updateUserName;
-  @override
-  @JsonKey(name: 'isDelete')
-  final bool isDelete;
-  @override
-  @JsonKey(name: 'sysExtInfo')
-  final String sysExtInfo;
-  @override
   @JsonKey(name: 'code')
   final String code;
   @override
   @JsonKey(name: 'name')
   final String name;
-  @override
-  @JsonKey(name: 'orderNo')
-  final int orderNo;
   @override
   @JsonKey(name: 'condition')
   final String condition;
@@ -682,15 +524,12 @@ class _$NextImpl implements _Next {
   @JsonKey(name: 'description')
   final String description;
   @override
-  @JsonKey(name: 'enable')
-  final int enable;
-  @override
-  @JsonKey(name: 'remark')
-  final String remark;
+  @JsonKey(name: 'conditionDto')
+  final ConditionDto? conditionDto;
 
   @override
   String toString() {
-    return 'Next(id: $id, createTime: $createTime, updateTime: $updateTime, createUserId: $createUserId, createUserName: $createUserName, updateUserId: $updateUserId, updateUserName: $updateUserName, isDelete: $isDelete, sysExtInfo: $sysExtInfo, code: $code, name: $name, orderNo: $orderNo, condition: $condition, firstLayer: $firstLayer, secondLayer: $secondLayer, thirdLayer: $thirdLayer, description: $description, enable: $enable, remark: $remark)';
+    return 'Next(id: $id, code: $code, name: $name, condition: $condition, firstLayer: $firstLayer, secondLayer: $secondLayer, thirdLayer: $thirdLayer, description: $description, conditionDto: $conditionDto)';
   }
 
   @override
@@ -699,25 +538,8 @@ class _$NextImpl implements _Next {
         (other.runtimeType == runtimeType &&
             other is _$NextImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createTime, createTime) ||
-                other.createTime == createTime) &&
-            (identical(other.updateTime, updateTime) ||
-                other.updateTime == updateTime) &&
-            (identical(other.createUserId, createUserId) ||
-                other.createUserId == createUserId) &&
-            (identical(other.createUserName, createUserName) ||
-                other.createUserName == createUserName) &&
-            (identical(other.updateUserId, updateUserId) ||
-                other.updateUserId == updateUserId) &&
-            (identical(other.updateUserName, updateUserName) ||
-                other.updateUserName == updateUserName) &&
-            (identical(other.isDelete, isDelete) ||
-                other.isDelete == isDelete) &&
-            (identical(other.sysExtInfo, sysExtInfo) ||
-                other.sysExtInfo == sysExtInfo) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.orderNo, orderNo) || other.orderNo == orderNo) &&
             (identical(other.condition, condition) ||
                 other.condition == condition) &&
             (identical(other.firstLayer, firstLayer) ||
@@ -728,34 +550,14 @@ class _$NextImpl implements _Next {
                 other.thirdLayer == thirdLayer) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.enable, enable) || other.enable == enable) &&
-            (identical(other.remark, remark) || other.remark == remark));
+            (identical(other.conditionDto, conditionDto) ||
+                other.conditionDto == conditionDto));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        createTime,
-        updateTime,
-        createUserId,
-        createUserName,
-        updateUserId,
-        updateUserName,
-        isDelete,
-        sysExtInfo,
-        code,
-        name,
-        orderNo,
-        condition,
-        firstLayer,
-        secondLayer,
-        thirdLayer,
-        description,
-        enable,
-        remark
-      ]);
+  int get hashCode => Object.hash(runtimeType, id, code, name, condition,
+      firstLayer, secondLayer, thirdLayer, description, conditionDto);
 
   /// Create a copy of Next
   /// with the given fields replaced by the non-null parameter values.
@@ -775,25 +577,16 @@ class _$NextImpl implements _Next {
 
 abstract class _Next implements Next {
   factory _Next(
-      {@JsonKey(name: 'id') final int id,
-      @JsonKey(name: 'createTime') final String createTime,
-      @JsonKey(name: 'updateTime') final String updateTime,
-      @JsonKey(name: 'createUserId') final int createUserId,
-      @JsonKey(name: 'createUserName') final String createUserName,
-      @JsonKey(name: 'updateUserId') final int updateUserId,
-      @JsonKey(name: 'updateUserName') final String updateUserName,
-      @JsonKey(name: 'isDelete') final bool isDelete,
-      @JsonKey(name: 'sysExtInfo') final String sysExtInfo,
-      @JsonKey(name: 'code') final String code,
-      @JsonKey(name: 'name') final String name,
-      @JsonKey(name: 'orderNo') final int orderNo,
-      @JsonKey(name: 'condition') final String condition,
-      @JsonKey(name: 'firstLayer') final int firstLayer,
-      @JsonKey(name: 'secondLayer') final int secondLayer,
-      @JsonKey(name: 'thirdLayer') final int thirdLayer,
-      @JsonKey(name: 'description') final String description,
-      @JsonKey(name: 'enable') final int enable,
-      @JsonKey(name: 'remark') final String remark}) = _$NextImpl;
+          {@JsonKey(name: 'id') final int id,
+          @JsonKey(name: 'code') final String code,
+          @JsonKey(name: 'name') final String name,
+          @JsonKey(name: 'condition') final String condition,
+          @JsonKey(name: 'firstLayer') final int firstLayer,
+          @JsonKey(name: 'secondLayer') final int secondLayer,
+          @JsonKey(name: 'thirdLayer') final int thirdLayer,
+          @JsonKey(name: 'description') final String description,
+          @JsonKey(name: 'conditionDto') final ConditionDto? conditionDto}) =
+      _$NextImpl;
 
   factory _Next.fromJson(Map<String, dynamic> json) = _$NextImpl.fromJson;
 
@@ -801,38 +594,11 @@ abstract class _Next implements Next {
   @JsonKey(name: 'id')
   int get id;
   @override
-  @JsonKey(name: 'createTime')
-  String get createTime;
-  @override
-  @JsonKey(name: 'updateTime')
-  String get updateTime;
-  @override
-  @JsonKey(name: 'createUserId')
-  int get createUserId;
-  @override
-  @JsonKey(name: 'createUserName')
-  String get createUserName;
-  @override
-  @JsonKey(name: 'updateUserId')
-  int get updateUserId;
-  @override
-  @JsonKey(name: 'updateUserName')
-  String get updateUserName;
-  @override
-  @JsonKey(name: 'isDelete')
-  bool get isDelete;
-  @override
-  @JsonKey(name: 'sysExtInfo')
-  String get sysExtInfo;
-  @override
   @JsonKey(name: 'code')
   String get code;
   @override
   @JsonKey(name: 'name')
   String get name;
-  @override
-  @JsonKey(name: 'orderNo')
-  int get orderNo;
   @override
   @JsonKey(name: 'condition')
   String get condition;
@@ -849,16 +615,219 @@ abstract class _Next implements Next {
   @JsonKey(name: 'description')
   String get description;
   @override
-  @JsonKey(name: 'enable')
-  int get enable;
-  @override
-  @JsonKey(name: 'remark')
-  String get remark;
+  @JsonKey(name: 'conditionDto')
+  ConditionDto? get conditionDto;
 
   /// Create a copy of Next
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NextImplCopyWith<_$NextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ConditionDto _$ConditionDtoFromJson(Map<String, dynamic> json) {
+  return _ConditionDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ConditionDto {
+  @JsonKey(name: 'minPlanAmount')
+  double get minPlanAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'directCount')
+  int get directCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'teamCount')
+  int get teamCount => throw _privateConstructorUsedError;
+
+  /// Serializes this ConditionDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ConditionDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ConditionDtoCopyWith<ConditionDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConditionDtoCopyWith<$Res> {
+  factory $ConditionDtoCopyWith(
+          ConditionDto value, $Res Function(ConditionDto) then) =
+      _$ConditionDtoCopyWithImpl<$Res, ConditionDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'minPlanAmount') double minPlanAmount,
+      @JsonKey(name: 'directCount') int directCount,
+      @JsonKey(name: 'teamCount') int teamCount});
+}
+
+/// @nodoc
+class _$ConditionDtoCopyWithImpl<$Res, $Val extends ConditionDto>
+    implements $ConditionDtoCopyWith<$Res> {
+  _$ConditionDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ConditionDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? minPlanAmount = null,
+    Object? directCount = null,
+    Object? teamCount = null,
+  }) {
+    return _then(_value.copyWith(
+      minPlanAmount: null == minPlanAmount
+          ? _value.minPlanAmount
+          : minPlanAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      directCount: null == directCount
+          ? _value.directCount
+          : directCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      teamCount: null == teamCount
+          ? _value.teamCount
+          : teamCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ConditionDtoImplCopyWith<$Res>
+    implements $ConditionDtoCopyWith<$Res> {
+  factory _$$ConditionDtoImplCopyWith(
+          _$ConditionDtoImpl value, $Res Function(_$ConditionDtoImpl) then) =
+      __$$ConditionDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'minPlanAmount') double minPlanAmount,
+      @JsonKey(name: 'directCount') int directCount,
+      @JsonKey(name: 'teamCount') int teamCount});
+}
+
+/// @nodoc
+class __$$ConditionDtoImplCopyWithImpl<$Res>
+    extends _$ConditionDtoCopyWithImpl<$Res, _$ConditionDtoImpl>
+    implements _$$ConditionDtoImplCopyWith<$Res> {
+  __$$ConditionDtoImplCopyWithImpl(
+      _$ConditionDtoImpl _value, $Res Function(_$ConditionDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ConditionDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? minPlanAmount = null,
+    Object? directCount = null,
+    Object? teamCount = null,
+  }) {
+    return _then(_$ConditionDtoImpl(
+      minPlanAmount: null == minPlanAmount
+          ? _value.minPlanAmount
+          : minPlanAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      directCount: null == directCount
+          ? _value.directCount
+          : directCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      teamCount: null == teamCount
+          ? _value.teamCount
+          : teamCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ConditionDtoImpl implements _ConditionDto {
+  _$ConditionDtoImpl(
+      {@JsonKey(name: 'minPlanAmount') this.minPlanAmount = 0.0,
+      @JsonKey(name: 'directCount') this.directCount = 0,
+      @JsonKey(name: 'teamCount') this.teamCount = 0});
+
+  factory _$ConditionDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConditionDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'minPlanAmount')
+  final double minPlanAmount;
+  @override
+  @JsonKey(name: 'directCount')
+  final int directCount;
+  @override
+  @JsonKey(name: 'teamCount')
+  final int teamCount;
+
+  @override
+  String toString() {
+    return 'ConditionDto(minPlanAmount: $minPlanAmount, directCount: $directCount, teamCount: $teamCount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConditionDtoImpl &&
+            (identical(other.minPlanAmount, minPlanAmount) ||
+                other.minPlanAmount == minPlanAmount) &&
+            (identical(other.directCount, directCount) ||
+                other.directCount == directCount) &&
+            (identical(other.teamCount, teamCount) ||
+                other.teamCount == teamCount));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, minPlanAmount, directCount, teamCount);
+
+  /// Create a copy of ConditionDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConditionDtoImplCopyWith<_$ConditionDtoImpl> get copyWith =>
+      __$$ConditionDtoImplCopyWithImpl<_$ConditionDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConditionDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ConditionDto implements ConditionDto {
+  factory _ConditionDto(
+      {@JsonKey(name: 'minPlanAmount') final double minPlanAmount,
+      @JsonKey(name: 'directCount') final int directCount,
+      @JsonKey(name: 'teamCount') final int teamCount}) = _$ConditionDtoImpl;
+
+  factory _ConditionDto.fromJson(Map<String, dynamic> json) =
+      _$ConditionDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'minPlanAmount')
+  double get minPlanAmount;
+  @override
+  @JsonKey(name: 'directCount')
+  int get directCount;
+  @override
+  @JsonKey(name: 'teamCount')
+  int get teamCount;
+
+  /// Create a copy of ConditionDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ConditionDtoImplCopyWith<_$ConditionDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
