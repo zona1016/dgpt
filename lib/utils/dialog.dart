@@ -1,6 +1,7 @@
 import 'package:dgpt/utils/api/api_exception.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_button.dart';
@@ -267,7 +268,7 @@ class DialogUtils {
                     )),
               if (image != null)
                 Positioned(
-                    top: -115+defaultPadding * 2.5,
+                    top: -115 + defaultPadding * 2.5,
                     left: 0,
                     right: 0,
                     child: Image.asset(
@@ -398,9 +399,75 @@ class DialogUtils {
       ServerResponseException() => e.response.msg,
       ApiUnknownException() || Exception() => tr("error.unknown_error"),
     };
+
     if (msg.isNotEmpty) {
-      showErrorDialog(msg);
+      if (msg.contains('W100000')) {
+        // 余额不足
+        showRecharge();
+      } else {
+        showErrorDialog(msg);
+      }
     }
+  }
+
+  static void showRecharge() {
+    DialogUtils.showSuccessDialog('余额不足',
+        titleColor: Colors.red,
+        width: 200,
+        height: 170,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaYebz,
+        image: 'assets/images/custom/dia_yebz.png',
+        desc: '钱包余额不足，请立即充值',
+        barrierDismissible: false,
+        confirmText: '立马充值', onConfirmPressed: () {
+      Get.back();
+      Get.toNamed(AppRoutes.recharge);
+    });
+  }
+
+  static void showRechargeSuccess() {
+    DialogUtils.showSuccessDialog('恭喜 ！',
+        topTitle: '充值成功',
+        width: 200,
+        height: 151,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaCzcg,
+        image: 'assets/images/custom/dia_czcg.png',
+        desc: '您已成功充值！',
+        barrierDismissible: false,
+        confirmText: 'OK', onConfirmPressed: () {
+      Get.back();
+    });
+  }
+
+  static void showRechargeFail() {
+    DialogUtils.showSuccessDialog('不好了 ！',
+        topTitle: '充值失败',
+        width: 200,
+        height: 151,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaCzsb,
+        image: 'assets/images/custom/dia_czsb.png',
+        desc: '看来存款过程被中断了。请稍后再试！',
+        barrierDismissible: false,
+        confirmText: 'OK', onConfirmPressed: () {
+      Get.back();
+    });
+  }
+
+  static void showRentalSuccess() {
+    DialogUtils.showSuccessDialog('租借成功',
+        width: 250,
+        height: 197,
+        comBorderRadius: BorderRadius.circular(10),
+        gradient: BaseColors.diaYebz,
+        image: 'assets/images/custom/dia_zjcg.png',
+        desc: '点击下方按键选择立马或稍后部署算力',
+        barrierDismissible: false,
+        confirmText: '完成', onConfirmPressed: () {
+      Get.close(2);
+    });
   }
 
   static void showShareDialog({

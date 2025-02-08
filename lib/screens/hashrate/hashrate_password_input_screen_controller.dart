@@ -1,6 +1,7 @@
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +42,7 @@ class HashratePasswordInputScreenController extends BaseController {
             quantity: args!.count.toString(),
             code: password.value));
     if (result != null) {
-      print(result);
+      DialogUtils.showRentalSuccess();
     }
   }
 }

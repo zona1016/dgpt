@@ -3,7 +3,6 @@ class ApiEndpoints {
   static const String checkForceUpdate = "/api/v1/check-force-update";
 
   // auth
-  static const String resetPwd = '/api/sysUser/resetPwd';
   static const String getUserInfo = "/api/sysAuth/userInfo";
   static const String logout = "/api/sysAuth/logout";
   static const String resetPassword = "/api/sysUser/resetPwd";

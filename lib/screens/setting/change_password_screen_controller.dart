@@ -1,5 +1,9 @@
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 
 class ChangePasswordScreenBindings implements Bindings {
@@ -12,7 +16,7 @@ class ChangePasswordScreenBindings implements Bindings {
 
 class ChangePasswordScreenController extends BaseController {
 
-  final AuthService authService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
 
   RxString oldPsd = ''.obs;
   RxString newPsd = ''.obs;
@@ -34,8 +38,22 @@ class ChangePasswordScreenController extends BaseController {
     super.onReady();
   }
 
-  conform() {
-
+  userChangePwd() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.background,
+        request: () => aiPulseService.userChangePwd(
+            passwordOld: oldPsd.value,
+            passwordNew: newPsdAgain.value));
+    if (result != null) {
+      DialogUtils.showDGPTBaseDialog(
+          barrierDismissible: false,
+          title: '修改密码成功',
+          confirmText: tr('button.confirm'),
+          onConfirmPressed: () {
+            Get.close(2);
+          }
+      );
+    }
   }
 
 }

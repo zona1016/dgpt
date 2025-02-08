@@ -6,6 +6,7 @@ import 'package:dgpt/models/pulse/deposit.dart';
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
+import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
@@ -66,6 +67,25 @@ abstract class AiPulseService {
       required String passwordNew,
       required String verifyCodeId,
       required String verifyCode});
+
+  Future<BaseResponse> userChangePwd(
+      {required String passwordOld,
+      required String passwordNew,
+      String? verifyCodeId,
+      String? verifyCode});
+
+  Future<BaseResponse> userResetPwdSend({required String email, String? url});
+
+  Future<BaseResponse> userResetPwdSubmit(
+      {required String code, required String passwordNew});
+
+  Future<BaseResponse> userResetTradingPwdSend(
+      {required String email, String? url});
+
+  Future<BaseResponse> userResetTradingPwdSubmit(
+      {required String code, required String passwordNew});
+
+  Future<BaseResponse<List<Merchant>?>> aiPulseMerchantEnableList();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -338,6 +358,106 @@ class AiPulseServiceImpl extends AiPulseService {
           bearerToken: userController.token,
           deserializer: (data) =>
               data != null ? AmountTotalInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userChangePwd(
+      {required String passwordOld,
+      required String passwordNew,
+      String? verifyCodeId,
+      String? verifyCode}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userChangePwd,
+          bearerToken: userController.token,
+          data: {
+            "passwordOld": passwordOld,
+            "passwordNew": passwordNew,
+            if (verifyCodeId != null) "verifyCodeId": verifyCodeId,
+            if (verifyCode != null) "verifyCode": verifyCode
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userResetPwdSend(
+      {required String email, String? url}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userResetPwdSend,
+          bearerToken: userController.token,
+          data: {
+            "email": email,
+            if (url != null) "url": url,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userResetPwdSubmit(
+      {required String code, required String passwordNew}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userResetPwdSubmit,
+          bearerToken: userController.token,
+          data: {
+            "code": code,
+            "passwordNew": passwordNew,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userResetTradingPwdSend(
+      {required String email, String? url}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userResetTradingPwdSend,
+          bearerToken: userController.token,
+          data: {
+            "email": email,
+            if (url != null) "url": url,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userResetTradingPwdSubmit(
+      {required String code, required String passwordNew}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userResetTradingPwdSubmit,
+          bearerToken: userController.token,
+          data: {
+            "code": code,
+            "passwordNew": passwordNew,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<Merchant>?>> aiPulseMerchantEnableList() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseMerchantEnableList,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => Merchant.fromJson(e))
+                  .toList()
+              : []);
     } on Exception catch (_) {
       rethrow;
     }

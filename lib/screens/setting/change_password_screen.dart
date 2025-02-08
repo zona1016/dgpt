@@ -35,10 +35,11 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
                     Text(
                       '请输入您的旧密码，新密码和再次确认新的密码',
                       style: fontDMRegular.copyWith(
-                          fontSize: 14,
-                          color: BaseColors.white),
+                          fontSize: 14, color: BaseColors.white),
                     ),
-                    const SizedBox(height: defaultPadding,),
+                    const SizedBox(
+                      height: defaultPadding,
+                    ),
                     _textFields(context)
                   ],
                 ),
@@ -70,8 +71,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请输入旧密码',
           radius: 10,
           onChanged: (value) {
@@ -86,8 +86,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请输入新密码',
           radius: 10,
           onChanged: (value) {
@@ -102,8 +101,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请再次输入新密码',
           radius: 10,
           onChanged: (value) {
@@ -119,14 +117,14 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
 
   _buildConfirm() {
     return Obx(() => BaseButton(
-      onPressed: () => controller.conform(),
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: controller.oldPsd.isNotEmpty &&
-          controller.newPsd.isNotEmpty &&
-          controller.newPsdAgain.isNotEmpty,
-      text: tr('button.confirm'),
-    ));
+          onPressed: () => controller.userChangePwd(),
+          disabledDecoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(30)),
+          enabled: controller.oldPsd.isNotEmpty &&
+              controller.newPsd.isNotEmpty &&
+              controller.newPsdAgain.isNotEmpty,
+          text: tr('button.confirm'),
+        ));
   }
 }
