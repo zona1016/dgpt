@@ -6,13 +6,10 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
-import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
-import 'package:dgpt/widget/form/borderless_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
@@ -35,10 +32,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    _buildHeader(context),
-                    _textFields(context)
-                  ],
+                  children: [_buildHeader(context), _textFields(context)],
                 ),
               ),
             ),
@@ -53,7 +47,9 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
                     decorationColor: BaseColors.white),
               ),
             ),
-            const SizedBox(height: defaultPadding / 2,),
+            const SizedBox(
+              height: defaultPadding / 2,
+            ),
             _buildConfirm()
           ],
         ),
@@ -80,8 +76,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请输入旧的资金密码',
           radius: 10,
           onChanged: (value) {
@@ -96,8 +91,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请输入新的资金密码',
           radius: 10,
           onChanged: (value) {
@@ -112,8 +106,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
           obscureText: true,
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(
-              color: BaseColors.white, fontSize: 16),
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: '请再次输入新的资金密码',
           radius: 10,
           onChanged: (value) {
@@ -129,14 +122,15 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
 
   _buildConfirm() {
     return Obx(() => BaseButton(
-      onPressed: () => controller.conform(),
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: controller.oldPsd.isNotEmpty &&
-          controller.newPsd.isNotEmpty &&
-          controller.newPsdAgain.isNotEmpty,
-      text: tr('button.confirm'),
-    ));
+          onPressed: () => controller.userChangeTradingPwd(),
+          disabledDecoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(30)),
+          enabled: controller.oldPsd.isNotEmpty &&
+              controller.newPsd.isNotEmpty &&
+              controller.newPsdAgain.isNotEmpty &&
+              (controller.newPsd == controller.newPsdAgain),
+          text: tr('button.confirm'),
+        ));
   }
 }

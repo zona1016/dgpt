@@ -68,19 +68,6 @@ class EmailCodeScreenController extends BaseController {
     if (!isResendEnabled.value) return;
     isResendEnabled.value = false;
     startTimer();
-    // final result = await fetchData(
-    //     request: () => authService.sendEmailVerification(
-    //         type: 'bind-email', email: email!));
-    // if (result != null) {
-    //   if (navigate) {
-    //     // DialogUtils.showSuccessDialog(tr("setting.change_password.success"));
-    //     Get.toNamed(AppRoutes.enterOtp,
-    //         arguments:
-    //         VerifyScreenArgs(type: VerifyType.email, value: email ?? ""));
-    //     // formKey.currentState?.reset();
-    //   }
-    //   DialogUtils.showSuccessDialog(tr("msg.email_verification_code_sent"));
-    // }
   }
 
 }

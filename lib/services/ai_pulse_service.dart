@@ -65,8 +65,8 @@ abstract class AiPulseService {
   Future<BaseResponse> userChangeTradingPwd(
       {required String passwordOld,
       required String passwordNew,
-      required String verifyCodeId,
-      required String verifyCode});
+      String? verifyCodeId,
+      String? verifyCode});
 
   Future<BaseResponse> userChangePwd(
       {required String passwordOld,
@@ -334,16 +334,16 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse> userChangeTradingPwd(
       {required String passwordOld,
       required String passwordNew,
-      required String verifyCodeId,
-      required String verifyCode}) async {
+      String? verifyCodeId,
+      String? verifyCode}) async {
     try {
       return await _apiClient.request(ApiEndpoints.userChangeTradingPwd,
           bearerToken: userController.token,
           data: {
             "passwordOld": passwordOld,
             "passwordNew": passwordNew,
-            "verifyCodeId": verifyCodeId,
-            "verifyCode": verifyCode
+            if (verifyCodeId != null) "verifyCodeId": verifyCodeId,
+            if (verifyCode != null) "verifyCode": verifyCode
           },
           deserializer: (data) => data);
     } on Exception catch (_) {

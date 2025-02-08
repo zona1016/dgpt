@@ -10,6 +10,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+enum EmailVerificationType {register, password, fundPassword, changeEmail}
+
+class EmailVerificationScreenArgs {
+  final String email;
+  final EmailVerificationType type;
+
+  EmailVerificationScreenArgs({required this.email, required this.type});
+}
+
 class EmailVerificationScreen extends GetView<EmailVerificationScreenController> {
   const EmailVerificationScreen({super.key});
 

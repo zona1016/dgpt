@@ -1,6 +1,7 @@
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/services/user_service.dart';
+import 'package:dgpt/translations/locale_keys.g.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
@@ -49,7 +50,7 @@ class ForgetPasswordScreenController extends BaseController {
     final result = await fetchData(
         request: () => aiPulseService.registerVerifyCode());
     if (result != null) {
-      print(result);
+      Get.toNamed(AppRoutes.emailVerification);
     }
   }
 
