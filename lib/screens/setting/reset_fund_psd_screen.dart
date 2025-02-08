@@ -20,8 +20,8 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '重置资金密码',
+      appBar: BaseAppBar(
+        title: tr('profile.reset_transaction_password'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -39,7 +39,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
             GestureDetector(
               onTap: () => Get.toNamed(AppRoutes.forgotFundPsd),
               child: Text(
-                '忘记资金密码',
+                tr('profile.forgot_transaction_password'),
                 style: fontDMMedium.copyWith(
                     fontSize: 14,
                     color: BaseColors.lightGray,
@@ -77,7 +77,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: '请输入旧的资金密码',
+          hintText: tr('profile.enter_old_transaction_password'),
           radius: 10,
           onChanged: (value) {
             controller.oldPsd.value = value ?? '';
@@ -92,7 +92,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: '请输入新的资金密码',
+          hintText: tr('profile.enter_new_transaction_password'),
           radius: 10,
           onChanged: (value) {
             controller.newPsd.value = value ?? '';
@@ -107,7 +107,7 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: '请再次输入新的资金密码',
+          hintText: tr('profile.reenter_new_transaction_password'),
           radius: 10,
           onChanged: (value) {
             controller.newPsdAgain.value = value ?? '';

@@ -462,4 +462,27 @@ class AiPulseServiceImpl extends AiPulseService {
       rethrow;
     }
   }
+
+  @override
+  Future<BaseResponse> aiPulseKycApply(
+      {required String country,
+      required String realName,
+      required int idType,
+      required String idValue,
+      required String imageFileId}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseKycApply,
+          bearerToken: userController.token,
+          data: {
+            "country": country,
+            "realName": realName,
+            "idType": idType,
+            "idValue": idValue,
+            "imageFileId": imageFileId
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
 }

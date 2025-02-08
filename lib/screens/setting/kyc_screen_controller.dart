@@ -24,9 +24,7 @@ class KycScreenController extends BaseController {
 
   var selectedIndex = 0.obs;
 
-  // 切换选中的项
   void selectItem(int index) {
-    // 如果选中了同一项则取消选择
     selectedIndex.value = (selectedIndex.value == index) ? -1 : index;
     update();
   }
@@ -48,14 +46,6 @@ class KycScreenController extends BaseController {
   void selectDocument(String document) {
     selectedDocument.value = document;
   }
-
-  List<String> itemList = [
-    'Deployment nodes',
-    'SN.',
-    'Creation time',
-    'Deployment time',
-    'Expire date',
-  ];
 
   @override
   void onInit() {

@@ -19,8 +19,8 @@ class ForgotFundPsdScreen extends GetView<ForgotFundPsdScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '忘记资金密码',
+      appBar: BaseAppBar(
+        title: tr('profile.forgot_transaction_password'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -30,7 +30,7 @@ class ForgotFundPsdScreen extends GetView<ForgotFundPsdScreenController> {
           children: [
             _buildHeader(context),
             Text(
-              '点击‘继续’，您的邮箱将会收到一封邮件',
+              tr('profile.click_continue_receive_email'),
               style: fontDMRegular.copyWith(
                   fontSize: 14,
                   color: BaseColors.white),

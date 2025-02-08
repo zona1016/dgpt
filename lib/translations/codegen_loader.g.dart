@@ -183,7 +183,8 @@ class CodegenLoader extends AssetLoader{
     "passport": "PP",
     "id_card": "ID",
     "driver_license": "DL",
-    "residence_permit": "RP"
+    "residence_permit": "RP",
+    "fund_password_has_been_successfully_set": "Fund password has been successfully set"
   },
   "hashrate": {
     "connecting_computing_power_center": "Connecting to Hashrate center",
@@ -254,7 +255,8 @@ class CodegenLoader extends AssetLoader{
     "confirm_deposit": "Confirm deposit",
     "tips": "Tips",
     "minimum_deposit_amount": "1. Minimum deposit amount is 10 USDT",
-    "tutorial_center": "Tutorial center"
+    "tutorial_center": "Tutorial center",
+    "successfully_changed_the_fund_password": "Successfully changed the fund password"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
@@ -431,7 +433,8 @@ static const Map<String,dynamic> zh_Hans = {
     "passport": "护照",
     "id_card": "身份证",
     "driver_license": "驾驶证",
-    "residence_permit": "居留证"
+    "residence_permit": "居留证",
+    "fund_password_has_been_successfully_set": "资金密码设置成功"
   },
   "hashrate": {
     "connecting_computing_power_center": "正在链接算力中心",
@@ -502,7 +505,8 @@ static const Map<String,dynamic> zh_Hans = {
     "confirm_deposit": "确认充值",
     "tips": "贴士",
     "minimum_deposit_amount": "1. 最低充值数额为 10 USDT",
-    "tutorial_center": "教程中心"
+    "tutorial_center": "教程中心",
+    "successfully_changed_the_fund_password": "修改资金密码成功"
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",

@@ -18,8 +18,8 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '更改您的密码',
+      appBar: BaseAppBar(
+        title: tr('profile.change_password'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -30,10 +30,11 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildHeader(context),
                     Text(
-                      '请输入您的旧密码，新密码和再次确认新的密码',
+                      tr('profile.enter_old_new_and_confirm_password'),
                       style: fontDMRegular.copyWith(
                           fontSize: 14, color: BaseColors.white),
                     ),
@@ -55,10 +56,12 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
   _buildHeader(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-      child: Image.asset(
-        'assets/images/home/setting_change_psd_bg.png',
-        height: 150,
-        width: 175,
+      child: Center(
+        child: Image.asset(
+          'assets/images/home/setting_change_psd_bg.png',
+          height: 150,
+          width: 175,
+        ),
       ),
     );
   }
@@ -72,7 +75,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: '请输入旧密码',
+          hintText: tr('profile.enter_old_password'),
           radius: 10,
           onChanged: (value) {
             controller.oldPsd.value = value ?? '';
@@ -87,7 +90,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: '请输入新密码',
+          hintText: tr('profile.enter_new_password'),
           radius: 10,
           onChanged: (value) {
             controller.newPsd.value = value ?? '';
@@ -102,7 +105,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: '请再次输入新密码',
+          hintText: tr('profile.reenter_new_password'),
           radius: 10,
           onChanged: (value) {
             controller.newPsdAgain.value = value ?? '';

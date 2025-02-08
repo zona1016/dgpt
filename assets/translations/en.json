@@ -239,7 +239,8 @@
     "confirm_deposit": "Confirm deposit",
     "tips": "Tips",
     "minimum_deposit_amount": "1. Minimum deposit amount is 10 USDT",
-    "tutorial_center": "Tutorial center"
+    "tutorial_center": "Tutorial center",
+    "successfully_changed_the_fund_password": "Successfully changed the fund password"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",

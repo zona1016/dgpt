@@ -53,7 +53,7 @@ class ResetFundPsdScreenController extends BaseController {
     if (result != null) {
       DialogUtils.showDGPTBaseDialog(
           barrierDismissible: false,
-          title: '修改资金密码成功',
+          title: tr('profile.successfully_changed_the_fund_password'),
           confirmText: tr('button.confirm'),
           onConfirmPressed: () {
             Get.close(2);
