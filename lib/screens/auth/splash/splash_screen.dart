@@ -46,7 +46,7 @@ class SplashScreen extends GetView<SplashScreenController> {
                   child: BaseButton(
                     height: 56,
                     customDecoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(28),
                         color: Colors.transparent,
                         border: Border.all(
                             color: Colors.purpleAccent,

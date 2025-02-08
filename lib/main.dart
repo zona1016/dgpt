@@ -108,7 +108,7 @@ class MainApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: DefTheme.lightTheme,
       darkTheme: DefTheme.lightTheme,
-      title: "DGPT",
+      title: "Ai Pulse",
       initialRoute: getInitialRoute(),
       getPages: AppRoutes.routes,
       onReady: () async {
