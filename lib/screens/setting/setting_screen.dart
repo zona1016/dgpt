@@ -31,7 +31,7 @@ class SettingScreen extends GetView<SettingScreenController> {
               if (index == 0) {
                 Get.toNamed(AppRoutes.accountProfile);
               } else if (index == 1) {
-                Get.toNamed(AppRoutes.resetFundPsd);
+                controller.userHasTradingPwd();
               } else {
                 Get.toNamed(AppRoutes.changePassword);
               }

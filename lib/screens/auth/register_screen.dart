@@ -209,7 +209,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               height: defaultPadding / 2,
             ),
             Text(
-              tr('home.click_send_and_enter_email_code') * 2,
+              tr('home.click_send_and_enter_email_code'),
               style: fontDMRegular.copyWith(
                 fontSize: 14,
                 color: BaseColors.white,

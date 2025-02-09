@@ -19,8 +19,6 @@ class ForgotFundPsdScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    print('dfdfdf');
-    print( userController.userInfo.account ?? '');
   }
 
   @override

@@ -6,7 +6,6 @@ import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -84,7 +83,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordScreenController> {
           ),
         ),
         Text(
-          '为了您的资金及信息安全，请重置登录密码。',
+          tr('profile.reset_login_password_tip'),
           style: fontDMRegular.copyWith(
             fontSize: 14,
             color: BaseColors.white,

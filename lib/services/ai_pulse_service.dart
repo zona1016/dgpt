@@ -79,9 +79,9 @@ abstract class AiPulseService {
 
   Future<BaseResponse> userResetPwdSubmit(
       {required String passwordNew,
-        required String verifyCodeId,
-        required String verifyCode,
-        required String email});
+      required String verifyCodeId,
+      required String verifyCode,
+      required String email});
 
   Future<BaseResponse> userResetPwdSend({required String email, String? url});
 
@@ -89,7 +89,9 @@ abstract class AiPulseService {
       {required String email, String? url});
 
   Future<BaseResponse> userResetTradingPwdSubmit(
-      {required String code, required String passwordNew});
+      {required String passwordNew,
+      required String verifyCodeId,
+      required String verifyCode});
 
   Future<BaseResponse<List<Merchant>?>> aiPulseMerchantEnableList();
 
@@ -463,14 +465,18 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> userResetTradingPwdSubmit(
-      {required String code, required String passwordNew}) async {
+  Future<BaseResponse> userResetTradingPwdSubmit({
+    required String passwordNew,
+    required String verifyCodeId,
+    required String verifyCode,
+  }) async {
     try {
       return await _apiClient.request(ApiEndpoints.userResetTradingPwdSubmit,
           bearerToken: userController.token,
           data: {
-            "code": code,
             "passwordNew": passwordNew,
+            "verifyCodeId": verifyCodeId,
+            "verifyCode": verifyCode,
           },
           deserializer: (data) => data);
     } on Exception catch (_) {

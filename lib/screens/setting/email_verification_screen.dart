@@ -11,13 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dgpt/utils/extensions/string_extension.dart';
 
-enum EmailVerificationType {register, password, fundPassword, changeEmail}
-
 class EmailVerificationScreenArgs {
   final String email;
-  final EmailVerificationType type;
+  final String verifyCodeId;
 
-  EmailVerificationScreenArgs({required this.email, required this.type});
+  EmailVerificationScreenArgs({required this.email, required this.verifyCodeId});
 }
 
 class EmailVerificationScreen extends GetView<EmailVerificationScreenController> {
@@ -54,12 +52,12 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
               hintText: '输入验证码',
               radius: 10,
               onChanged: (value) {
-                controller.code.value = value ?? '';
+                controller.verifyCode.value = value ?? '';
               },
             ),
             const SizedBox(height: defaultPadding,),
             Obx(() => GestureDetector(
-              onTap: () => controller.verifyCode(),
+              onTap: () => controller.aiPulseCommonResetTradingPwdVerifyCode(),
               child: Row(
                 children: [
                   Expanded(child: Container()),
@@ -115,7 +113,7 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
       disabledDecoration: BoxDecoration(
           color: Colors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(30)),
-      enabled: controller.code.isNotEmpty,
+      enabled: controller.verifyCodeId.isNotEmpty,
       text: tr('button.continue'),
     ));
   }

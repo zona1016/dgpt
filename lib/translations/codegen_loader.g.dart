@@ -261,7 +261,10 @@ class CodegenLoader extends AssetLoader{
     "minimum_deposit_amount": "1. Minimum deposit amount is 10 USDT",
     "tutorial_center": "Tutorial center",
     "successfully_changed_the_fund_password": "Successfully changed the fund password",
-    "password_changed_successfully": "Password changed successfully"
+    "successfully_reset_the_fund_password": "Successfully reset the fund password",
+    "password_changed_successfully": "Password changed successfully",
+    "password_reset_successfully": "Password reset successfully",
+    "reset_login_password_tip": "For the security of your funds and information, please reset your login password."
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
@@ -516,7 +519,10 @@ static const Map<String,dynamic> zh_Hans = {
     "minimum_deposit_amount": "1. 最低充值数额为 10 USDT",
     "tutorial_center": "教程中心",
     "successfully_changed_the_fund_password": "修改资金密码成功",
-    "password_changed_successfully": "修改密码成功"
+    "successfully_reset_the_fund_password": "重置资金密码成功",
+    "password_changed_successfully": "修改密码成功",
+    "password_reset_successfully": "重置密码成功",
+    "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。"
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",

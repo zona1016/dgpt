@@ -1,4 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:dgpt/screens/setting/email_verification_screen_controller.dart';
+import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
@@ -18,7 +20,7 @@ class ResetFundPsdScreenBindings implements Bindings {
   }
 }
 
-class ResetFundPsdScreenController extends BaseController {
+class ResetFundPsdScreenController extends BaseController<ResetFundPsdScreenArgs> {
 
   final AiPulseService aiPulseService = Get.find();
 
@@ -54,6 +56,29 @@ class ResetFundPsdScreenController extends BaseController {
       DialogUtils.showDGPTBaseDialog(
           barrierDismissible: false,
           title: tr('profile.successfully_changed_the_fund_password'),
+          confirmText: tr('button.confirm'),
+          onConfirmPressed: () {
+            Get.close(2);
+          }
+      );
+    }
+  }
+
+  userResetTradingPwdSubmit() async {
+
+    EmailVerificationScreenController emailVerificationScreenController = Get.find();
+
+    final result = await fetchData(
+        loadingState: AppLoadingState.background,
+        request: () => aiPulseService.userResetTradingPwdSubmit(
+          passwordNew: newPsdAgain.value,
+          verifyCode: emailVerificationScreenController.verifyCode.value,
+          verifyCodeId: emailVerificationScreenController.verifyCodeId
+        ));
+    if (result != null) {
+      DialogUtils.showDGPTBaseDialog(
+          barrierDismissible: false,
+          title: tr('profile.successfully_reset_the_fund_password'),
           confirmText: tr('button.confirm'),
           onConfirmPressed: () {
             Get.close(2);

@@ -1,4 +1,5 @@
 import 'package:dgpt/screens/setting/email_verification_screen.dart';
+import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -13,14 +14,15 @@ class EmailVerificationScreenBindings implements Bindings {
   }
 }
 
-class EmailVerificationScreenController extends BaseController {
+class EmailVerificationScreenController extends BaseController<EmailVerificationScreenArgs> {
 
   final AiPulseService aiPulseService = Get.find();
 
   RxInt seconds = 60.obs;
   RxBool isResendEnabled = true.obs;
 
-  RxString code = ''.obs;
+  String verifyCodeId = '';
+  RxString verifyCode = ''.obs;
 
   @override
   void onInit() {
@@ -28,6 +30,7 @@ class EmailVerificationScreenController extends BaseController {
     seconds.value = 60;
     isResendEnabled.value = false;
     startTimer();
+    verifyCodeId = args?.verifyCodeId ?? '';
   }
 
   @override
@@ -42,7 +45,7 @@ class EmailVerificationScreenController extends BaseController {
   }
 
   conform() {
-    Get.toNamed(AppRoutes.changePassword);
+    Get.toNamed(AppRoutes.resetFundPsd, arguments: ResetFundPsdScreenArgs(isReset: true));
   }
 
   void startTimer() {
@@ -57,52 +60,15 @@ class EmailVerificationScreenController extends BaseController {
     });
   }
 
-  verifyCode () {
-    if (!isResendEnabled.value) return;
-    seconds.value = 60;
-    isResendEnabled.value = false;
-    startTimer();
-    switch (args!.type) {
-      case EmailVerificationType.register:
-        // aiPulseCommonRegisterVerifyCode();
-        break;
-      case EmailVerificationType.password:
-        aiPulseCommonResetPwdVerifyCode();
-        break;
-      case EmailVerificationType.fundPassword:
-        aiPulseCommonResetTradingPwdVerifyCode();
-        break;
-      case EmailVerificationType.changeEmail:
-        aiPulseCommonUpdateInfoVerifyCode();
-        break;
-    }
-  }
-
-  aiPulseCommonResetPwdVerifyCode() async {
-    final result = await fetchData(
-      request: () =>
-          aiPulseService.aiPulseCommonResetPwdVerifyCode(email: args!.email),
-    );
-    if (result != null) {
-    }
-  }
-
   aiPulseCommonResetTradingPwdVerifyCode() async {
     final result = await fetchData(
       request: () =>
           aiPulseService.aiPulseCommonResetTradingPwdVerifyCode(email: args!.email),
     );
     if (result != null) {
+      verifyCodeId = result;
     }
   }
 
-  aiPulseCommonUpdateInfoVerifyCode() async {
-    final result = await fetchData(
-      request: () =>
-          aiPulseService.aiPulseCommonUpdateInfoVerifyCode(),
-    );
-    if (result != null) {
-    }
-  }
 
 }

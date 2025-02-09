@@ -12,6 +12,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+class ResetFundPsdScreenArgs {
+  final bool isReset;
+
+  ResetFundPsdScreenArgs({required this.isReset});
+}
+
 class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
   const ResetFundPsdScreen({super.key});
 
@@ -36,17 +42,18 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.forgotFundPsd),
-              child: Text(
-                tr('profile.forgot_transaction_password'),
-                style: fontDMMedium.copyWith(
-                    fontSize: 14,
-                    color: BaseColors.lightGray,
-                    decoration: TextDecoration.underline,
-                    decorationColor: BaseColors.white),
+            if (controller.args?.isReset == false)
+              GestureDetector(
+                onTap: () => Get.toNamed(AppRoutes.forgotFundPsd),
+                child: Text(
+                  tr('profile.forgot_transaction_password'),
+                  style: fontDMMedium.copyWith(
+                      fontSize: 14,
+                      color: BaseColors.lightGray,
+                      decoration: TextDecoration.underline,
+                      decorationColor: BaseColors.white),
+                ),
               ),
-            ),
             const SizedBox(
               height: defaultPadding / 2,
             ),
@@ -71,18 +78,19 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
   _textFields(context) {
     return Column(
       children: [
-        BaseTextFormField(
-          name: "oldPsd",
-          obscureText: true,
-          type: TextFormFieldType.golden,
-          fillColor: Colors.transparent,
-          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: tr('profile.enter_old_transaction_password'),
-          radius: 10,
-          onChanged: (value) {
-            controller.oldPsd.value = value ?? '';
-          },
-        ),
+        if (controller.args?.isReset == false)
+          BaseTextFormField(
+            name: "oldPsd",
+            obscureText: true,
+            type: TextFormFieldType.golden,
+            fillColor: Colors.transparent,
+            style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
+            hintText: tr('profile.enter_old_transaction_password'),
+            radius: 10,
+            onChanged: (value) {
+              controller.oldPsd.value = value ?? '';
+            },
+          ),
         const SizedBox(
           height: defaultPadding,
         ),
