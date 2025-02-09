@@ -1,16 +1,17 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
-import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
-import 'package:dgpt/utils/constants/general_constants.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:dio/dio.dart' as dio;
 
 class AccountProfileScreenBindings implements Bindings {
   @override
@@ -23,19 +24,29 @@ class AccountProfileScreenBindings implements Bindings {
 class AccountProfileScreenController extends BaseController {
 
   final AiPulseService aiPulseService = Get.find();
+  final UserController userController = Get.find();
 
-  final formKey = GlobalKey<FormBuilderState>();
   final ImagePicker _picker = ImagePicker();
 
-  RxString avatarFilePath = "".obs;
-  RxString name = ''.obs;
+  RxString pickedFilePath = ''.obs;
+  RxString nickName = ''.obs;
   RxString email = ''.obs;
-  RxString phoneNum = ''.obs;
+  RxString phoneNumber = ''.obs;
+  RxString verifyCode = ''.obs;
+  RxString phoneNation = ''.obs;
+  String verifyCodeId = '';
+  final RxString error = "".obs;
+
+  RxInt seconds = 60.obs;
+  RxBool isResendEnabled = true.obs;
+
   Rx<CountryCode> code = CountryCode.fromCountryCode('MY').obs;
 
   @override
   void onInit() {
     super.onInit();
+    email.value = userController.userInfo.email ?? '';
+    phoneNation.value = code.value.dialCode ?? '';
   }
 
   @override
@@ -55,28 +66,86 @@ class AccountProfileScreenController extends BaseController {
         source: ImageSource.gallery,
       );
       if (pickedFile != null) {
-        aiPulseCommonUploadImageFile(File(pickedFile.path));
+        pickedFilePath.value = pickedFile.path;
       }
     } catch (e) {}
   }
 
-  Future<String> encodeImageToBase64(File imageFile) async {
-    final bytes = await imageFile.readAsBytes();
-    return base64Encode(bytes);
-  }
+  aiPulseCommonUploadImageFile() async {
+    String fileExtension = pickedFilePath.value.split('.').last.toLowerCase();
+    List<String> allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
 
-  aiPulseCommonUploadImageFile(File imageFile) async {
-
-    String file = await encodeImageToBase64(imageFile!);
+    if (!allowedExtensions.contains(fileExtension)) {
+      DialogUtils.showBaseDialog(title: '不支持的文件类型');
+      return;
+    }
+    var file = await dio.MultipartFile.fromFile(pickedFilePath.value,
+        contentType: DioMediaType('image', fileExtension));
     final result = await fetchData(
-        loadingState: AppLoadingState.background,
-        request: () => aiPulseService.aiPulseCommonUploadImageFile(
-            file: file));
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
     if (result != null) {
-      print(result);
+
     }
   }
 
-  conform() {}
+  aiPulseCommonRegisterVerifyCode() async {
+
+    if (!CustomFormBuilderValidators.isEmail(email.value)) {
+      error.value = tr('error.email');
+      return;
+    } else {
+      error.value = '';
+    }
+
+    if (!isResendEnabled.value) return;
+    seconds.value = 60;
+    isResendEnabled.value = false;
+    startTimer();
+
+    final result = await fetchData(
+      request: () =>
+          aiPulseService.aiPulseCommonUpdateInfoVerifyCode(),
+    );
+    if (result != null) {
+      verifyCodeId = result;
+    }
+  }
+
+  void startTimer() {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (seconds.value > 0) {
+        seconds.value = seconds.value - 1;
+        startTimer();
+      } else {
+        seconds.value = 60;
+        isResendEnabled.value = true;
+      }
+    });
+  }
+
+  conform() {
+    if (email.value != userController.userInfo.email) {
+      aiPulseCommonRegisterVerifyCode();
+    } else {
+      userUpdateInfo();
+    }
+  }
+
+  userUpdateInfo() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.userUpdateInfo(
+          nickName: nickName.value,
+          phoneNation: phoneNation.value,
+          phoneNumber: phoneNumber.value,
+          email: email.value,
+          verifyCodeId: verifyCodeId,
+          verifyCode: verifyCode.value
+        ));
+    if (result != null) {
+      DialogUtils.showDGPTBaseDialog(title: '修改资料成功');
+    }
+  }
 
 }

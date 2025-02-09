@@ -122,6 +122,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
                   : null,
               fillColor: widget.fillColor ?? getFillColor(context),
               hintStyle: widget.hintStyle ?? getHintStyle(context),
+              disabledBorder: getInputBorder(context),
               enabledBorder: getInputBorder(context),
               border: getInputBorder(context),
               focusedBorder: getInputBorder(context),

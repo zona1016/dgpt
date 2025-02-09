@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:dgpt/models/pulse/user_kyc_info.dart';
 import 'package:dgpt/screens/setting/kyc_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
