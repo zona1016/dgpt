@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:dgpt/models/pulse/user_kyc_info.dart';
 import 'package:dgpt/screens/setting/kyc_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -59,9 +60,10 @@ class KycScreen extends GetView<KycScreenController> {
                       children: [
                         _updateWidget(),
                         _imageStatus(),
-                        if (controller.userKYCInfo.value == null ||
-                            (controller.userKYCInfo.value != null &&
-                                controller.userKYCInfo.value?.status == 2))
+                        if (controller.pickedFilePath.value.isNotEmpty &&
+                            (controller.userKYCInfo.value == null ||
+                                (controller.userKYCInfo.value != null &&
+                                    controller.userKYCInfo.value?.status == 2)))
                           _closeWidget(),
                       ],
                     ),
@@ -69,7 +71,9 @@ class KycScreen extends GetView<KycScreenController> {
                   const SizedBox(
                     height: defaultPadding / 4,
                   ),
-                  if (controller.userKYCInfo.value == null)
+                  if (controller.userKYCInfo.value == null ||
+                      (controller.userKYCInfo.value != null &&
+                          controller.userKYCInfo.value?.status == 2))
                     Row(
                       children: [
                         SizedBox(
@@ -115,7 +119,7 @@ class KycScreen extends GetView<KycScreenController> {
           fit: BoxFit.fitWidth,
         );
       } else {
-        Image.file(
+        return Image.file(
           File(controller.pickedFilePath.value),
           width: double.infinity,
           fit: BoxFit.fitWidth,
@@ -128,7 +132,7 @@ class KycScreen extends GetView<KycScreenController> {
     String statusImage = '';
     String statusName = '';
     if (controller.userKYCInfo.value == null) {
-      statusImage = 'kyc_sctp';
+      statusImage = 'kyc_scwj';
       statusName = '上传文件';
     } else {
       // 0待审核，1通过，2否定
@@ -139,7 +143,7 @@ class KycScreen extends GetView<KycScreenController> {
         statusImage = 'kyc_yrz';
         statusName = '已认证';
       } else if (controller.userKYCInfo.value?.status == 2) {
-        statusImage = 'kyc_fd';
+        statusImage = 'kyc_ddrztg';
         statusName = '认证失败';
       }
     }
@@ -175,6 +179,9 @@ class KycScreen extends GetView<KycScreenController> {
       right: 10,
       child: GestureDetector(
         onTap: () {
+          if (controller.userKYCInfo.value?.status == 2) {
+            controller.userKYCInfo.value = null;
+          }
           controller.pickedFilePath.value = '';
         },
         child: Container(

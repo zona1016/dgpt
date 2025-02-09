@@ -30,6 +30,9 @@ class ForgotFundPsdScreen extends GetView<ForgotFundPsdScreenController> {
           children: [
             _buildHeader(context),
             Text(
+              controller.userController.userInfo.email ?? ''
+            ),
+            Text(
               tr('profile.click_continue_receive_email'),
               style: fontDMRegular.copyWith(
                   fontSize: 14,

@@ -110,6 +110,7 @@ class KycScreenController extends BaseController {
             imageFileId: imageFileId));
     if (result != null) {
       aiPulseKycUserKyc();
+      DialogUtils.showDGPTBaseDialog(title: '成功');
     }
   }
 
@@ -121,8 +122,8 @@ class KycScreenController extends BaseController {
       userKYCInfo.value = result;
       countryCode.value = CountryCode.fromCountryCode(result.country);
       selectedIndex.value = result.idType;
-
       pickedFilePath.value = '${AppConfigurations.baseUrl}/${result.imageFileIdUrl}';
+
     }
   }
 }
