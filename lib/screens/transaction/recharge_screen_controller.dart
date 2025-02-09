@@ -50,7 +50,7 @@ class RechargeScreenController extends BaseController {
         loadingState: loadingState,
         request: () => aiPulseService.aiPulseMerchantEnableList());
     if (result != null) {
-
+      merchantList.value = result;
     }
   }
 }

@@ -54,6 +54,8 @@ import 'package:dgpt/screens/setting/my_device_screen.dart';
 import 'package:dgpt/screens/setting/my_device_screen_controller.dart';
 import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
 import 'package:dgpt/screens/setting/reset_fund_psd_screen_controller.dart';
+import 'package:dgpt/screens/setting/reset_password_screen.dart';
+import 'package:dgpt/screens/setting/reset_password_screen_controller.dart';
 import 'package:dgpt/screens/setting/setting_fund_psd_screen.dart';
 import 'package:dgpt/screens/setting/setting_fund_psd_screen_controller.dart';
 import 'package:dgpt/screens/setting/setting_screen.dart';
@@ -90,6 +92,7 @@ class AppRoutes {
   static String register = "/register";
   static String changePassword = "/change_password";
   static String forgetPassword = "/forget_password";
+  static String resetPassword = "/reset_password";
   static String emailCode = "/email_code";
 
   static String home = "/home";
@@ -163,6 +166,11 @@ class AppRoutes {
         name: forgetPassword,
         page: () => const ForgetPasswordScreen(),
         binding: ForgetPasswordScreenBindings()
+    ),
+    GetPage(
+        name: resetPassword,
+        page: () => const ResetPasswordScreen(),
+        binding: ResetPasswordScreenBindings()
     ),
     GetPage(
         name: emailCode,

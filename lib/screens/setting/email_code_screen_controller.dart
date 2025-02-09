@@ -1,10 +1,7 @@
-import 'package:dgpt/services/auth_service.dart';
-import 'package:dgpt/services/user_service.dart';
+import 'package:dgpt/screens/setting/email_code_screen.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
-import 'package:dgpt/utils/routes/app_routes.dart';
-import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,13 +13,15 @@ class EmailCodeScreenBindings implements Bindings {
   }
 }
 
-class EmailCodeScreenController extends BaseController {
-  final AuthService authService = Get.find();
-  final UserService userService = Get.find();
+class EmailCodeScreenController extends BaseController<EmailCodeScreenArgs>  {
+  final AiPulseService aiPulseService = Get.find();
   final UserController userController = Get.find();
 
   final RxString error = "".obs;
   final RxString email = ''.obs;
+
+  String emailCode = '';
+  String emailCodeId = '';
 
   RxInt seconds = 60.obs;
   RxBool isResendEnabled = false.obs;
@@ -37,6 +36,8 @@ class EmailCodeScreenController extends BaseController {
       FocusScope.of(Get.context!).requestFocus(focusNode);
     });
     startTimer();
+    emailCodeId = args!.codeId;
+    email.value = args!.email;
   }
 
   @override
@@ -68,6 +69,17 @@ class EmailCodeScreenController extends BaseController {
     if (!isResendEnabled.value) return;
     isResendEnabled.value = false;
     startTimer();
+
+    aiPulseCommonResetPwdVerifyCode();
   }
 
+  aiPulseCommonResetPwdVerifyCode() async {
+    final result = await fetchData(
+      request: () =>
+          aiPulseService.aiPulseCommonResetPwdVerifyCode(email: args!.email),
+    );
+    if (result != null) {
+      emailCodeId = result;
+    }
+  }
 }

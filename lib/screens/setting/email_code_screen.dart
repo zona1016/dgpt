@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/setting/email_code_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -9,6 +10,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+class EmailCodeScreenArgs {
+  final String email;
+  final String codeId;
+
+  EmailCodeScreenArgs({required this.email, required this.codeId});
+}
 
 class EmailCodeScreen extends GetView<EmailCodeScreenController> {
   const EmailCodeScreen({super.key});
@@ -51,7 +59,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
             image: AssetImage('assets/images/custom/register_btn_border.png'),
           ),
         ),
-        onPressed: () => controller.sendEmail(),
+        onPressed: () => Get.toNamed(AppRoutes.resetPassword),
         text: tr('button.confirm'),
       ),
     );
@@ -147,7 +155,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
     return PinCodeTextField(
       focusNode: controller.focusNode,
       appContext: context,
-      length: 4,
+      length: 6,
       obscureText: false,
       animationType: AnimationType.fade,
       textStyle: fontDMMedium.copyWith(
@@ -158,7 +166,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(12),
         fieldHeight: 56,
-        fieldWidth: (Get.width - defaultPadding * 5) / 4,
+        fieldWidth: (Get.width - defaultPadding * 5) / 6,
         activeColor: BaseColors.gray85.withOpacity(0.2),
         inactiveColor: BaseColors.gray85.withOpacity(0.2),
         selectedColor: BaseColors.purpleGlowColor.withOpacity(0.6),
@@ -174,7 +182,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
 
       },
       onCompleted: (value) {
-
+        controller.emailCode = value;
       },
     );
   }

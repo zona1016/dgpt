@@ -1,3 +1,4 @@
+import 'package:dgpt/screens/setting/email_code_screen.dart';
 import 'package:dgpt/screens/setting/email_verification_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -46,9 +47,9 @@ class ForgetPasswordScreenController extends BaseController {
     final result =
         await fetchData(request: () => aiPulseService.aiPulseCommonResetPwdVerifyCode(email: email.value));
     if (result != null) {
-      Get.toNamed(AppRoutes.emailVerification,
-          arguments: EmailVerificationScreenArgs(
-              email: email.value, type: EmailVerificationType.password));
+      Get.toNamed(AppRoutes.emailCode,
+          arguments: EmailCodeScreenArgs(
+              email: email.value, codeId: result));
     }
   }
 }

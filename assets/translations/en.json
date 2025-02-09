@@ -245,7 +245,8 @@
     "minimum_deposit_amount": "1. Minimum deposit amount is 10 USDT",
     "tutorial_center": "Tutorial center",
     "successfully_changed_the_fund_password": "Successfully changed the fund password",
-    "password_changed_successfully": "Password changed successfully"
+    "password_changed_successfully": "Password changed successfully",
+    "password_reset_successfully": "Password reset successfully"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",

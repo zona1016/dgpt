@@ -9,6 +9,7 @@ import 'package:dgpt/widget/form/base_text_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 
 enum EmailVerificationType {register, password, fundPassword, changeEmail}
 
@@ -38,7 +39,7 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
           children: [
             _buildHeader(context),
             Text(
-              tr('profile.verification_email_sent_message', args: [controller.args!.email.maskEmail()]),
+              tr('home.verification_email_sent_message', args: [controller.args!.email.toString().maskEmail()]),
               style: fontDMRegular.copyWith(
                   fontSize: 14,
                   color: BaseColors.white),
@@ -58,7 +59,7 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
             ),
             const SizedBox(height: defaultPadding,),
             Obx(() => GestureDetector(
-              onTap: () => controller.aiPulseCommonRegisterVerifyCode(),
+              onTap: () => controller.verifyCode(),
               child: Row(
                 children: [
                   Expanded(child: Container()),

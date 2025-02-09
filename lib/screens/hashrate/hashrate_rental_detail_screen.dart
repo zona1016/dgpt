@@ -72,7 +72,7 @@ class HashrateRentalDetailScreen
               Row(
                 children: [
                   Text(
-                    controller.args!.hasratePageInfo.name,
+                    controller.args!.hasratePageInfo?.name ?? '',
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
                       fontSize: 15,
@@ -398,7 +398,7 @@ class HashrateRentalDetailScreen
                     width: defaultPadding / 2,
                   ),
                   Text(
-                    '${controller.args!.hasratePageInfo.amount} \$',
+                    '${controller.args!.hasratePageInfo?.amount ?? 0} \$',
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 20),
                   ),
@@ -449,7 +449,7 @@ class HashrateRentalDetailScreen
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (controller.total.value < controller.args!.hasratePageInfo.purchaseLimitQuantity) {
+                    if (controller.total.value < (controller.args!.hasratePageInfo?.purchaseLimitQuantity ?? 0)) {
                       controller.total.value = controller.total.value + 1;
                     }
                   },
@@ -476,7 +476,7 @@ class HashrateRentalDetailScreen
               children: [
                 Expanded(
                   child: Text(
-                    'Total : \$ ${controller.args!.hasratePageInfo.amount * controller.total.value}',
+                    'Total : \$ ${(controller.args!.hasratePageInfo?.amount ?? 0) * controller.total.value}',
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 12),
                   ),

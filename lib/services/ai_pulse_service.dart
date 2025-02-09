@@ -77,10 +77,13 @@ abstract class AiPulseService {
       String? verifyCodeId,
       String? verifyCode});
 
-  Future<BaseResponse> userResetPwdSend({required String email, String? url});
-
   Future<BaseResponse> userResetPwdSubmit(
-      {required String code, required String passwordNew});
+      {required String passwordNew,
+        required String verifyCodeId,
+        required String verifyCode,
+        required String email});
+
+  Future<BaseResponse> userResetPwdSend({required String email, String? url});
 
   Future<BaseResponse> userResetTradingPwdSend(
       {required String email, String? url});
@@ -97,13 +100,18 @@ abstract class AiPulseService {
 
   Future<BaseResponse> aiPulseKycApply(
       {required String country,
-        required int idType,
-        required String imageFileId});
+      required int idType,
+      required String imageFileId});
 
-  Future<BaseResponse> aiPulseCommonResetPwdVerifyCode(
+  Future<BaseResponse> aiPulseCommonResetPwdVerifyCode({required String email});
+
+  Future<BaseResponse> aiPulseCommonResetTradingPwdVerifyCode(
       {required String email});
 
-  Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList({required int type});
+  Future<BaseResponse> aiPulseCommonUpdateInfoVerifyCode();
+
+  Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList(
+      {required int type});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -403,14 +411,18 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> userResetPwdSend(
-      {required String email, String? url}) async {
+  Future<BaseResponse> userResetPwdSubmit(
+      {required String passwordNew,
+      required String verifyCodeId,
+      required String verifyCode,
+      required String email}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.userResetPwdSend,
-          bearerToken: userController.token,
+      return await _apiClient.request(ApiEndpoints.userResetPwdSubmit,
           data: {
-            "email": email,
-            if (url != null) "url": url,
+            "passwordNew": passwordNew,
+            "verifyCodeId": verifyCodeId,
+            "verifyCode": verifyCode,
+            "email": email
           },
           deserializer: (data) => data);
     } on Exception catch (_) {
@@ -419,14 +431,14 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> userResetPwdSubmit(
-      {required String code, required String passwordNew}) async {
+  Future<BaseResponse> userResetPwdSend(
+      {required String email, String? url}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.userResetPwdSubmit,
+      return await _apiClient.request(ApiEndpoints.userResetPwdSend,
           bearerToken: userController.token,
           data: {
-            "code": code,
-            "passwordNew": passwordNew,
+            "email": email,
+            if (url != null) "url": url,
           },
           deserializer: (data) => data);
     } on Exception catch (_) {
@@ -487,7 +499,7 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(ApiEndpoints.aiPulseKycUserKyc,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? UserKYCInfo.fromJson(data) : null);
+              data != null ? UserKYCInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -518,11 +530,9 @@ class AiPulseServiceImpl extends AiPulseService {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseCommonUploadImageFile,
           bearerToken: userController.token,
-          data: {
-            "file": file
-          },
+          data: {"file": file},
           deserializer: (data) =>
-          data != null ? ImageInfo.fromJson(data) : null);
+              data != null ? ImageInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -532,7 +542,8 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse> aiPulseCommonResetPwdVerifyCode(
       {required String email}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseCommonResetPwdVerifyCode,
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseCommonResetPwdVerifyCode,
           bearerToken: userController.token,
           data: {
             "email": email,
@@ -544,17 +555,44 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList({required int type}) async {
+  Future<BaseResponse> aiPulseCommonResetTradingPwdVerifyCode(
+      {required String email}) async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseCommonResetTradingPwdVerifyCode,
+          bearerToken: userController.token,
+          data: {
+            "email": email,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseCommonUpdateInfoVerifyCode() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseCommonUpdateInfoVerifyCode,
+          bearerToken: userController.token,
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList(
+      {required int type}) async {
     try {
       return await _apiClient.request(ApiEndpoints.noticeUserNoticeList,
           bearerToken: userController.token,
-          data: {
-            'type': type
-          },
+          data: {'type': type},
           deserializer: (data) => data != null
               ? (data as List<dynamic>)
-              .map((e) => NoticeInfo.fromJson(e))
-              .toList()
+                  .map((e) => NoticeInfo.fromJson(e))
+                  .toList()
               : []);
     } on Exception catch (_) {
       rethrow;

@@ -1,6 +1,8 @@
+import 'package:dgpt/screens/setting/email_verification_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class EmailVerificationScreenBindings implements Bindings {
@@ -40,7 +42,7 @@ class EmailVerificationScreenController extends BaseController {
   }
 
   conform() {
-
+    Get.toNamed(AppRoutes.changePassword);
   }
 
   void startTimer() {
@@ -55,19 +57,51 @@ class EmailVerificationScreenController extends BaseController {
     });
   }
 
-  aiPulseCommonRegisterVerifyCode() async {
-
+  verifyCode () {
     if (!isResendEnabled.value) return;
     seconds.value = 60;
     isResendEnabled.value = false;
     startTimer();
+    switch (args!.type) {
+      case EmailVerificationType.register:
+        // aiPulseCommonRegisterVerifyCode();
+        break;
+      case EmailVerificationType.password:
+        aiPulseCommonResetPwdVerifyCode();
+        break;
+      case EmailVerificationType.fundPassword:
+        aiPulseCommonResetTradingPwdVerifyCode();
+        break;
+      case EmailVerificationType.changeEmail:
+        aiPulseCommonUpdateInfoVerifyCode();
+        break;
+    }
+  }
 
+  aiPulseCommonResetPwdVerifyCode() async {
     final result = await fetchData(
       request: () =>
-          aiPulseService.aiPulseCommonRegisterVerifyCode(email: ''),
+          aiPulseService.aiPulseCommonResetPwdVerifyCode(email: args!.email),
     );
     if (result != null) {
+    }
+  }
 
+  aiPulseCommonResetTradingPwdVerifyCode() async {
+    final result = await fetchData(
+      request: () =>
+          aiPulseService.aiPulseCommonResetTradingPwdVerifyCode(email: args!.email),
+    );
+    if (result != null) {
+    }
+  }
+
+  aiPulseCommonUpdateInfoVerifyCode() async {
+    final result = await fetchData(
+      request: () =>
+          aiPulseService.aiPulseCommonUpdateInfoVerifyCode(),
+    );
+    if (result != null) {
     }
   }
 

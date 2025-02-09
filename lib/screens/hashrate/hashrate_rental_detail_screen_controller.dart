@@ -1,5 +1,6 @@
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -14,7 +15,7 @@ class HashrateRentalDetailScreenBindings implements Bindings {
   }
 }
 
-class HashrateRentalDetailScreenController extends BaseController {
+class HashrateRentalDetailScreenController extends BaseController<HashrateRentalDetailScreenArgs> {
   final AiPulseService aiPulseService = Get.find();
 
   RxString dd = 'dd'.obs;
@@ -42,7 +43,7 @@ class HashrateRentalDetailScreenController extends BaseController {
   userHashrate() async {
     final result = await fetchData(
         loadingState: AppLoadingState.background,
-        request: () => aiPulseService.hashratePageDetail(id: args!.hasratePageInfo.id.toString()));
+        request: () => aiPulseService.hashratePageDetail(id: args!.hasratePageInfo!.id.toString()));
     if (result != null) {
       hashratePageDetail.value = result;
     }

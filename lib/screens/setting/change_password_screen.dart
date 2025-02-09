@@ -105,7 +105,7 @@ class ChangePasswordScreen extends GetView<ChangePasswordScreenController> {
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-          hintText: tr('profile.reenter_new_password'),
+          hintText: '请再次输入新密码',
           radius: 10,
           onChanged: (value) {
             controller.newPsdAgain.value = value ?? '';
