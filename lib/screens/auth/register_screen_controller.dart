@@ -1,4 +1,3 @@
-import 'package:dgpt/screens/auth/login_screen_controller.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/services/user_service.dart';

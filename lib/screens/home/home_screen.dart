@@ -41,7 +41,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ],
                     onRightImageTaps: (index) {
                       if (index == 0) {
-                        Get.toNamed(AppRoutes.changeLanguage);
+                        controller.logout();
+                        // Get.toNamed(AppRoutes.changeLanguage);
                       } else if (index == 1) {
                         Get.toNamed(AppRoutes.aboutUs);
                       } else {

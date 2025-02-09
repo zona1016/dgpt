@@ -1,4 +1,7 @@
+import 'package:dgpt/models/pulse/notice_info.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +16,13 @@ class SystemMessageScreenBindings implements Bindings {
 }
 
 class SystemMessageScreenController extends BaseController with GetTickerProviderStateMixin {
-  final AuthService authService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
 
   late TabController tabController;
   late RxInt tabIndex = 0.obs;
+
+  RxList<NoticeInfo> noticeInfoList = <NoticeInfo>[].obs;
+
   final noticeTabs = {
     'update': tr('home.update_notification'),
     'service': tr('home.service_prompt'),
@@ -49,4 +55,5 @@ class SystemMessageScreenController extends BaseController with GetTickerProvide
     // TODO: implement onReady
     super.onReady();
   }
+
 }

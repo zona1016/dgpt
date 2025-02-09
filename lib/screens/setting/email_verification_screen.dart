@@ -27,8 +27,8 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '邮箱验证',
+      appBar: BaseAppBar(
+        title: tr('profile.email_verification'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -38,7 +38,7 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
           children: [
             _buildHeader(context),
             Text(
-              '我们已将验证信息发送至您的邮箱（d***rs@gmail.com）,请输入验证码以完成验证',
+              tr('profile.verification_email_sent_message', args: [controller.args!.email.maskEmail()]),
               style: fontDMRegular.copyWith(
                   fontSize: 14,
                   color: BaseColors.white),

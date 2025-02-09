@@ -94,7 +94,7 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
                 child: BaseAutomaticKeepAlive(
                   child: NoticeTab(
                     key: PageStorageKey<String>(e.key),
-                    type: e.key,
+                    type: tabIndex,
                     imagePath: controller.noticeTabPathList[tabIndex],
                     injector: Builder(
                       builder: (BuildContext innerContext) {

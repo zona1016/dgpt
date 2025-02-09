@@ -1,4 +1,5 @@
 import 'package:dgpt/models/api/pagination_response.dart';
+import 'package:dgpt/models/pulse/notice_info.dart';
 import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
 import 'package:dgpt/models/pulse/amount_total_info.dart';
@@ -98,6 +99,11 @@ abstract class AiPulseService {
       {required String country,
         required int idType,
         required String imageFileId});
+
+  Future<BaseResponse> aiPulseCommonResetPwdVerifyCode(
+      {required String email});
+
+  Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList({required int type});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -522,4 +528,36 @@ class AiPulseServiceImpl extends AiPulseService {
     }
   }
 
+  @override
+  Future<BaseResponse> aiPulseCommonResetPwdVerifyCode(
+      {required String email}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseCommonResetPwdVerifyCode,
+          bearerToken: userController.token,
+          data: {
+            "email": email,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList({required int type}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.noticeUserNoticeList,
+          bearerToken: userController.token,
+          data: {
+            'type': type
+          },
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+              .map((e) => NoticeInfo.fromJson(e))
+              .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
 }

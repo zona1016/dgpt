@@ -115,4 +115,6 @@ class ApiEndpoints {
 
   static const String configValueCode = "/api/config/configValue/{code}";
 
+  static const String noticeUserNoticeList = "/api/notice/userNoticeList";
+
 }

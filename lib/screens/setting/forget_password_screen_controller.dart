@@ -1,3 +1,4 @@
+import 'package:dgpt/screens/setting/email_verification_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
@@ -9,8 +10,8 @@ import 'package:get/get.dart';
 class ForgetPasswordScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut(() => ForgetPasswordScreenController(), permanent: false, fenix: false);
+    GetInstance().lazyPut(() => ForgetPasswordScreenController(),
+        permanent: false, fenix: false);
   }
 }
 
@@ -38,17 +39,16 @@ class ForgetPasswordScreenController extends BaseController {
   }
 
   sendEmail({bool navigate = true}) async {
-
-    Get.toNamed(AppRoutes.emailCode);
     if (!CustomFormBuilderValidators.isEmail(email.value ?? "")) {
       error.value = tr('error.email');
       return;
     }
-    final result = await fetchData(
-        request: () => aiPulseService.registerVerifyCode());
+    final result =
+        await fetchData(request: () => aiPulseService.aiPulseCommonResetPwdVerifyCode(email: email.value));
     if (result != null) {
-      Get.toNamed(AppRoutes.emailVerification);
+      Get.toNamed(AppRoutes.emailVerification,
+          arguments: EmailVerificationScreenArgs(
+              email: email.value, type: EmailVerificationType.password));
     }
   }
-
 }
