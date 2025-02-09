@@ -117,9 +117,10 @@ abstract class AiPulseService {
 
   Future<BaseResponse> userUpdateInfo(
       {required String nickName,
-      String? email,
+      required String email,
       required String phoneNation,
       required String phoneNumber,
+      String? avatar,
       String? verifyCodeId,
       String? verifyCode});
 }
@@ -616,20 +617,21 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> userUpdateInfo(
       {required String nickName,
-      String? email,
-      required String phoneNation,
-      required String phoneNumber,
-      String? verifyCodeId,
-      String? verifyCode}) async {
+        required String email,
+        required String phoneNation,
+        required String phoneNumber,
+        String? avatar,
+        String? verifyCodeId,
+        String? verifyCode}) async {
     try {
       return await _apiClient.request(ApiEndpoints.userUpdateInfo,
           bearerToken: userController.token,
           data: {
             "nickName": nickName,
-            if (email != null)
-              "email": email,
+            "email": email,
             "phoneNation": phoneNation,
             "phoneNumber": phoneNumber,
+            if (avatar != null) "avatar": avatar,
             if (verifyCodeId != null) "verifyCodeId": verifyCodeId,
             if (verifyCode != null) "verifyCode": verifyCode
           },

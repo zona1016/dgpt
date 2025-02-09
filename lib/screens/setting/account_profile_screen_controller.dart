@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
+import 'package:dgpt/utils/constants/app_configurations.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
@@ -47,6 +48,7 @@ class AccountProfileScreenController extends BaseController {
     super.onInit();
     email.value = userController.userInfo.email ?? '';
     phoneNation.value = code.value.dialCode ?? '';
+    pickedFilePath.value = userController.userInfo.avatar ?? '';
   }
 
   @override
@@ -85,7 +87,7 @@ class AccountProfileScreenController extends BaseController {
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
     if (result != null) {
-
+      pickedFilePath.value = AppConfigurations.baseUrl + result.url;
     }
   }
 
@@ -124,11 +126,16 @@ class AccountProfileScreenController extends BaseController {
     });
   }
 
-  conform() {
+  conform() async {
     if (email.value != userController.userInfo.email) {
       aiPulseCommonRegisterVerifyCode();
     } else {
-      userUpdateInfo();
+      if (pickedFilePath.value != userController.userInfo.avatar) {
+        await aiPulseCommonUploadImageFile();
+        userUpdateInfo();
+      } else {
+        userUpdateInfo();
+      }
     }
   }
 
@@ -140,10 +147,12 @@ class AccountProfileScreenController extends BaseController {
           phoneNation: phoneNation.value,
           phoneNumber: phoneNumber.value,
           email: email.value,
+          avatar: pickedFilePath.value,
           verifyCodeId: verifyCodeId,
           verifyCode: verifyCode.value
         ));
     if (result != null) {
+      print(result);
       DialogUtils.showDGPTBaseDialog(title: '修改资料成功');
     }
   }

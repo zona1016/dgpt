@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/screens/setting/account_profile_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
@@ -65,19 +67,12 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: const Center(
+                child: Obx(() => Center(
                   child: ClipOval(
                     // 裁剪成圆形
-                    child: BaseNetworkImage(
-                      imageURL: '',
-                      placeholder:
-                          "assets/images/placeholder/profile_placeholder.png",
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
-                    ),
+                    child: _updateWidget(),
                   ),
-                ),
+                )),
               ),
               Positioned(
                 bottom: defaultPadding,
@@ -318,6 +313,35 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
         ),
       ],
     );
+  }
+
+  _updateWidget() {
+    if (controller.pickedFilePath.value.isEmpty) {
+      return Image.asset(
+        'assets/images/placeholder/profile_placeholder.png',
+        fit: BoxFit.cover,
+        height: 120,
+        width: 120,
+      );
+    } else {
+      if (controller.pickedFilePath.value.contains('http')) {
+        return BaseNetworkImage(
+          imageURL: controller.pickedFilePath.value,
+          placeholder:
+          "assets/images/placeholder/profile_placeholder.png",
+          fit: BoxFit.cover,
+          height: 120,
+          width: 120,
+        );
+      } else {
+        return Image.file(
+          File(controller.pickedFilePath.value),
+          fit: BoxFit.cover,
+          height: 120,
+          width: 120,
+        );
+      }
+    }
   }
 
   _buildConfirm() {
