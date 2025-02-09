@@ -1,5 +1,6 @@
-import 'package:dgpt/screens/setting/reset_fund_psd_screen_controller.dart';
+import 'package:dgpt/screens/setting/change_fund_psd_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -10,8 +11,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
-  const ResetFundPsdScreen({super.key});
+class ChangeFundPsdScreen extends GetView<ChangeFundPsdScreenController> {
+  const ChangeFundPsdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,20 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
                 ),
               ),
             ),
+            GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.forgotFundPsd),
+              child: Text(
+                tr('profile.forgot_transaction_password'),
+                style: fontDMMedium.copyWith(
+                    fontSize: 14,
+                    color: BaseColors.lightGray,
+                    decoration: TextDecoration.underline,
+                    decorationColor: BaseColors.white),
+              ),
+            ),
+            const SizedBox(
+              height: defaultPadding / 2,
+            ),
             _buildConfirm()
           ],
         ),
@@ -55,6 +70,21 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
   _textFields(context) {
     return Column(
       children: [
+        BaseTextFormField(
+          name: "oldPsd",
+          obscureText: true,
+          type: TextFormFieldType.golden,
+          fillColor: Colors.transparent,
+          style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
+          hintText: tr('profile.enter_old_transaction_password'),
+          radius: 10,
+          onChanged: (value) {
+            controller.oldPsd.value = value ?? '';
+          },
+        ),
+        const SizedBox(
+          height: defaultPadding,
+        ),
         BaseTextFormField(
           name: "newPsd",
           obscureText: true,
@@ -91,14 +121,14 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
 
   _buildConfirm() {
     return Obx(() => BaseButton(
-      onPressed: () => controller.userResetTradingPwdSubmit(),
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: controller.newPsd.isNotEmpty &&
-          controller.newPsdAgain.isNotEmpty &&
-          (controller.newPsd == controller.newPsdAgain),
-      text: tr('button.confirm'),
-    ));
+          onPressed: () => controller.userChangeTradingPwd(),
+          disabledDecoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(30)),
+          enabled: controller.newPsd.isNotEmpty &&
+              controller.newPsdAgain.isNotEmpty &&
+              (controller.newPsd == controller.newPsdAgain),
+          text: tr('button.confirm'),
+        ));
   }
 }

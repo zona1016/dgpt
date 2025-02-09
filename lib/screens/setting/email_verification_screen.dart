@@ -11,14 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dgpt/utils/extensions/string_extension.dart';
 
-class EmailVerificationScreenArgs {
-  final String email;
-  final String verifyCodeId;
-
-  EmailVerificationScreenArgs({required this.email, required this.verifyCodeId});
-}
-
-class EmailVerificationScreen extends GetView<EmailVerificationScreenController> {
+class EmailVerificationScreen
+    extends GetView<EmailVerificationScreenController> {
   const EmailVerificationScreen({super.key});
 
   @override
@@ -37,28 +31,34 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
           children: [
             _buildHeader(context),
             Text(
-              tr('home.verification_email_sent_message', args: [controller.args!.email.toString().maskEmail()]),
-              style: fontDMRegular.copyWith(
-                  fontSize: 14,
-                  color: BaseColors.white),
+              tr('home.verification_email_sent_message', args: [
+                controller.userController.userInfo.email.toString().maskEmail()
+              ]),
+              style:
+                  fontDMRegular.copyWith(fontSize: 14, color: BaseColors.white),
             ),
-            const SizedBox(height: defaultPadding,),
+            const SizedBox(
+              height: defaultPadding,
+            ),
             BaseTextFormField(
               name: "code",
               type: TextFormFieldType.golden,
               fillColor: Colors.transparent,
-              style: fontDMMedium.copyWith(
-                  color: BaseColors.white, fontSize: 16),
+              style:
+                  fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
               hintText: '输入验证码',
               radius: 10,
               onChanged: (value) {
                 controller.verifyCode.value = value ?? '';
               },
             ),
-            const SizedBox(height: defaultPadding,),
-            Obx(() => GestureDetector(
-              onTap: () => controller.aiPulseCommonResetTradingPwdVerifyCode(),
-              child: Row(
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            GestureDetector(
+              onTap: () =>
+                  controller.aiPulseCommonResetTradingPwdVerifyCode(),
+              child: Obx(() => Row(
                 children: [
                   Expanded(child: Container()),
                   Text(
@@ -86,8 +86,8 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
                       ),
                     ),
                 ],
-              ),
-            )),
+              )),
+            ),
             Expanded(child: Container()),
             _buildConfirm()
           ],
@@ -109,12 +109,12 @@ class EmailVerificationScreen extends GetView<EmailVerificationScreenController>
 
   _buildConfirm() {
     return Obx(() => BaseButton(
-      onPressed: () => controller.conform(),
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: controller.verifyCodeId.isNotEmpty,
-      text: tr('button.continue'),
-    ));
+          onPressed: () => controller.conform(),
+          disabledDecoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(30)),
+          enabled: controller.verifyCode.isNotEmpty,
+          text: tr('button.continue'),
+        ));
   }
 }

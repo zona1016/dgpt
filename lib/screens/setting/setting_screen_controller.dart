@@ -1,4 +1,4 @@
-import 'package:dgpt/screens/setting/reset_fund_psd_screen.dart';
+import 'package:dgpt/screens/setting/change_fund_psd_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
@@ -52,8 +52,7 @@ class SettingScreenController extends BaseController {
         request: () => aiPulseService.userHasTradingPwd());
     if (result != null) {
       if (result == true) {
-        Get.toNamed(AppRoutes.resetFundPsd,
-            arguments: ResetFundPsdScreenArgs(isReset: false));
+        Get.toNamed(AppRoutes.changeFundPsd);
       } else {
         Get.toNamed(AppRoutes.settingFundPsd);
       }
