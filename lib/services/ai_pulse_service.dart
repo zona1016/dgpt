@@ -14,6 +14,7 @@ import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/models/pulse/user_kyc_info.dart';
+import 'package:dgpt/models/user/user_info.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/api/base_response.dart';
 import 'package:dgpt/utils/constants/api_endpoints.dart';
@@ -115,7 +116,7 @@ abstract class AiPulseService {
   Future<BaseResponse<List<NoticeInfo>?>> noticeUserNoticeList(
       {required int type});
 
-  Future<BaseResponse> userUpdateInfo(
+  Future<BaseResponse<UserInfo?>> userUpdateInfo(
       {required String nickName,
       required String email,
       required String phoneNation,
@@ -615,7 +616,7 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> userUpdateInfo(
+  Future<BaseResponse<UserInfo?>> userUpdateInfo(
       {required String nickName,
         required String email,
         required String phoneNation,
@@ -635,7 +636,8 @@ class AiPulseServiceImpl extends AiPulseService {
             if (verifyCodeId != null) "verifyCodeId": verifyCodeId,
             if (verifyCode != null) "verifyCode": verifyCode
           },
-          deserializer: (data) => data);
+          deserializer: (data) =>
+          data != null ? UserInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

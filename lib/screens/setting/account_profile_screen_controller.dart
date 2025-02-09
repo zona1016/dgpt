@@ -9,7 +9,6 @@ import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart' as dio;
@@ -34,7 +33,6 @@ class AccountProfileScreenController extends BaseController {
   RxString email = ''.obs;
   RxString phoneNumber = ''.obs;
   RxString verifyCode = ''.obs;
-  RxString phoneNation = ''.obs;
   String verifyCodeId = '';
   final RxString error = "".obs;
 
@@ -46,8 +44,12 @@ class AccountProfileScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    nickName.value = userController.userInfo.nickName ?? '';
     email.value = userController.userInfo.email ?? '';
-    phoneNation.value = code.value.dialCode ?? '';
+    if (userController.userInfo.phoneNation != null && userController.userInfo.phoneNation != 0) {
+      code.value = CountryCode.fromDialCode('+${userController.userInfo.phoneNation}');
+    }
+    phoneNumber.value = userController.userInfo.phone ?? '';
     pickedFilePath.value = userController.userInfo.avatar ?? '';
   }
 
@@ -87,7 +89,7 @@ class AccountProfileScreenController extends BaseController {
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
     if (result != null) {
-      pickedFilePath.value = AppConfigurations.baseUrl + result.url;
+      pickedFilePath.value = '${AppConfigurations.baseUrl}/${result.url}';
     }
   }
 
@@ -144,7 +146,7 @@ class AccountProfileScreenController extends BaseController {
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.userUpdateInfo(
           nickName: nickName.value,
-          phoneNation: phoneNation.value,
+          phoneNation: code.value.dialCode ?? '',
           phoneNumber: phoneNumber.value,
           email: email.value,
           avatar: pickedFilePath.value,
@@ -152,7 +154,7 @@ class AccountProfileScreenController extends BaseController {
           verifyCode: verifyCode.value
         ));
     if (result != null) {
-      print(result);
+      userController.setUserInfo(result);
       DialogUtils.showDGPTBaseDialog(title: '修改资料成功');
     }
   }

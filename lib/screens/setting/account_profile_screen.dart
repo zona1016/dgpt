@@ -106,6 +106,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
           title: tr('profile.nickname'),
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
+          initialValue: controller.nickName.value,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: tr('profile.place_enter_a_nickname'),
           radius: 10,
@@ -268,8 +269,8 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
                               color: BaseColors.white, fontSize: 16),
                           showFlag: false,
                           // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
-                          initialSelection: 'MY',
-                          favorite: const ['+ 60'],
+                          initialSelection: controller.code.value.code,
+                          favorite: ['+ ${controller.code.value.dialCode}'],
                           showFlagDialog: true,
                           padding: const EdgeInsets.all(0),
                         ),
@@ -352,8 +353,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
               borderRadius: BorderRadius.circular(30)),
           enabled: (controller.nickName.isNotEmpty &&
                   controller.email.isNotEmpty &&
-                  controller.phoneNumber.isNotEmpty &&
-                  controller.phoneNation.isNotEmpty) &&
+                  controller.phoneNumber.isNotEmpty) &&
               ((controller.email.value ==
                       controller.userController.userInfo.email)
                   ? true

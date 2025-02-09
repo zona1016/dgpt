@@ -38,6 +38,10 @@ class UserInfo {
   final List<String>? buttons;
   @JsonKey(name: "watermarkText", defaultValue: '')
   final String? watermarkText;
+  @JsonKey(name: "nickName", defaultValue: '')
+  final String? nickName;
+  @JsonKey(name: "phoneNation", defaultValue: 0)
+  final int? phoneNation;
   @JsonKey(name: "tenantId", defaultValue: 0)
   final int? tenantId;
   @JsonKey(name: "roleIds", defaultValue: [])
@@ -63,6 +67,8 @@ class UserInfo {
     this.watermarkText,
     this.tenantId,
     this.roleIds,
+    this.phoneNation,
+    this.nickName
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {
