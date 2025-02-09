@@ -1,6 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/models/pulse/user_kyc_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
+import 'package:dgpt/utils/constants/app_configurations.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
@@ -108,7 +109,7 @@ class KycScreenController extends BaseController {
             idType: selectedIndex.value,
             imageFileId: imageFileId));
     if (result != null) {
-      print(result);
+      aiPulseKycUserKyc();
     }
   }
 
@@ -118,6 +119,10 @@ class KycScreenController extends BaseController {
         request: () => aiPulseService.aiPulseKycUserKyc());
     if (result != null) {
       userKYCInfo.value = result;
+      countryCode.value = CountryCode.fromCountryCode(result.country);
+      selectedIndex.value = result.idType;
+
+      pickedFilePath.value = '${AppConfigurations.baseUrl}/${result.imageFileIdUrl}';
     }
   }
 }

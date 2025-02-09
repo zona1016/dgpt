@@ -42,236 +42,30 @@ class KycScreen extends GetView<KycScreenController> {
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  Text(
-                    tr('home.select_document_type'),
-                    style: fontDMRegular.copyWith(
-                      fontSize: 16,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultPadding,
-                  ),
-                  GetBuilder<KycScreenController>(
-                    builder: (_) {
-                      return GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2, // 每行3个
-                                crossAxisSpacing: 10, // 横向间距
-                                mainAxisSpacing: 10,
-                                childAspectRatio: 3 // 纵向间距
-                                ),
-                        itemCount: controller.documents.length,
-                        itemBuilder: (context, index) {
-                          bool isSelected =
-                              controller.selectedIndex.value == index;
-                          return GestureDetector(
-                            onTap: () {
-                              if (controller.userKYCInfo.value == null) {
-                                controller.selectItem(index);
-                              }
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: defaultPadding),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color:
-                                        isSelected ? Colors.white : Colors.grey,
-                                  )),
-                              alignment: Alignment.center,
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    controller.documentsImages[index],
-                                    width: 25,
-                                    height: 25,
-                                    color:
-                                        isSelected ? Colors.white : Colors.grey,
-                                  ),
-                                  const SizedBox(
-                                    width: defaultPadding / 2,
-                                  ),
-                                  Text(
-                                    controller.documents[index],
-                                    style: fontDMRegular.copyWith(
-                                        color: isSelected
-                                            ? Colors.white
-                                            : Colors.grey,
-                                        fontSize: 16),
-                                  ),
-                                  const Spacer(),
-                                  Image.asset(
-                                    'assets/images/home/${isSelected ? 'kyc_selected' : 'kyc_unselected'}.png',
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  const SizedBox(
-                    height: defaultPadding,
-                  ),
-                  Text(
-                    tr('home.capture_passport_photo_requirements'),
-                    style: fontDMRegular.copyWith(
-                      fontSize: 12,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultPadding / 2,
-                  ),
-                  Text(
-                    tr('home.requirement_bright_and_clear'),
-                    style: fontDMBold.copyWith(
-                      fontSize: 12,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  Text(
-                    tr('home.requirement_no_cropping'),
-                    style: fontDMBold.copyWith(
-                      fontSize: 12,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultPadding / 2,
-                  ),
-                  Image.asset(
-                    'assets/images/home/kyc_correct.png',
-                    width: double.infinity,
-                  ),
+                  _detail(),
                   const SizedBox(
                     height: defaultPadding / 4,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Image.asset(
-                          'assets/images/home/kyc_error.png',
-                        ),
-                      ),
-                      const SizedBox(
-                        width: defaultPadding / 4,
-                      ),
-                      Expanded(
-                        child: Image.asset(
-                          'assets/images/home/kyc_error1.png',
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: defaultPadding / 4,
-                  ),
-                  if (controller.pickedFilePath.value.isEmpty)
-                    GestureDetector(
+                  GestureDetector(
                     onTap: () async {
-                      await controller.onPickCoverImage(context: context);
+                      if (controller.pickedFilePath.value.isEmpty &&
+                          (controller.userKYCInfo.value == null ||
+                              (controller.userKYCInfo.value != null &&
+                                  controller.userKYCInfo.value?.status == 2))) {
+                        await controller.onPickCoverImage(context: context);
+                      }
                     },
                     child: Stack(
                       children: [
-                        Image.asset(
-                          'assets/images/home/${controller.selectedDocument.isEmpty ? 'kyc_scwj_bg' : true ? 'kyc_ddrztg_bg' : 'kyc_yrz_bg'}.png',
-                          width: double.infinity,
-                        ),
-                        Positioned(
-                          top: 0,
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/home/${false ? 'kyc_scwj' : true ? 'kyc_ddrztg' : 'kyc_yrz'}.png',
-                                height: 50,
-                                width: 50,
-                              ),
-                              Text(
-                                false
-                                    ? '上传文件'
-                                    : true
-                                        ? '等待通过认证'
-                                        : '已认证',
-                                style: fontDMBold.copyWith(
-                                  fontSize: 16,
-                                  color: BaseColors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                        _updateWidget(),
+                        _imageStatus(),
+                        if (controller.userKYCInfo.value == null ||
+                            (controller.userKYCInfo.value != null &&
+                                controller.userKYCInfo.value?.status == 2))
+                          _closeWidget(),
                       ],
                     ),
                   ),
-                  if (controller.pickedFilePath.value.isNotEmpty &&
-                      controller.pickedFilePath.value.contains('http'))
-                    Stack(
-                      children: [
-                        BaseNetworkImage(
-                          imageURL: controller.pickedFilePath.value,
-                          width: double.infinity,
-                          fit: BoxFit.fitWidth,
-                        ),
-                        Positioned(
-                          top: 10,
-                          right: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              controller.pickedFilePath.value = '';
-                            },
-                            child: Container(
-                              color: BaseColors.primaryColor,
-                              child: const Icon(
-                                Icons.close,
-                                color: BaseColors.white,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  if (controller.pickedFilePath.value.isNotEmpty &&
-                      !controller.pickedFilePath.value.contains('http'))
-                    Stack(
-                      children: [
-                        Image.file(
-                          File(controller.pickedFilePath.value),
-                          width: double.infinity,
-                          fit: BoxFit.fitWidth,
-                        ),
-                        Positioned(
-                          top: 10,
-                          right: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              controller.pickedFilePath.value = '';
-                            },
-                            child: Container(
-                              color: BaseColors.primaryColor,
-                              child: const Icon(
-                                Icons.close,
-                                color: BaseColors.white,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
                   const SizedBox(
                     height: defaultPadding / 4,
                   ),
@@ -292,7 +86,8 @@ class KycScreen extends GetView<KycScreenController> {
                           child: SizedBox(
                             height: 40,
                             child: BaseButton(
-                              onPressed: () => controller.aiPulseCommonUploadImageFile(),
+                              onPressed: () =>
+                                  controller.aiPulseCommonUploadImageFile(),
                               text: tr('button.submit'),
                             ),
                           ),
@@ -303,6 +98,226 @@ class KycScreen extends GetView<KycScreenController> {
               ),
             )),
       ),
+    );
+  }
+
+  _updateWidget() {
+    if (controller.pickedFilePath.value.isEmpty) {
+      return Image.asset(
+        'assets/images/home/kyc_scwj_bg.png',
+        width: double.infinity,
+      );
+    } else {
+      if (controller.pickedFilePath.value.contains('http')) {
+        return BaseNetworkImage(
+          imageURL: controller.pickedFilePath.value,
+          width: double.infinity,
+          fit: BoxFit.fitWidth,
+        );
+      } else {
+        Image.file(
+          File(controller.pickedFilePath.value),
+          width: double.infinity,
+          fit: BoxFit.fitWidth,
+        );
+      }
+    }
+  }
+
+  _imageStatus() {
+    String statusImage = '';
+    String statusName = '';
+    if (controller.userKYCInfo.value == null) {
+      statusImage = 'kyc_sctp';
+      statusName = '上传文件';
+    } else {
+      // 0待审核，1通过，2否定
+      if (controller.userKYCInfo.value?.status == 0) {
+        statusImage = 'kyc_ddrztg';
+        statusName = '等待通过认证';
+      } else if (controller.userKYCInfo.value?.status == 1) {
+        statusImage = 'kyc_yrz';
+        statusName = '已认证';
+      } else if (controller.userKYCInfo.value?.status == 2) {
+        statusImage = 'kyc_fd';
+        statusName = '认证失败';
+      }
+    }
+
+    return Positioned(
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/home/$statusImage.png',
+            height: 50,
+            width: 50,
+          ),
+          Text(
+            statusName,
+            style: fontDMBold.copyWith(
+              fontSize: 16,
+              color: BaseColors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _closeWidget() {
+    return Positioned(
+      top: 10,
+      right: 10,
+      child: GestureDetector(
+        onTap: () {
+          controller.pickedFilePath.value = '';
+        },
+        child: Container(
+          color: BaseColors.primaryColor,
+          child: const Icon(
+            Icons.close,
+            color: BaseColors.white,
+            size: 30,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _cardType() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+      child: GetBuilder<KycScreenController>(
+        builder: (_) {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // 每行3个
+                crossAxisSpacing: 10, // 横向间距
+                mainAxisSpacing: 10,
+                childAspectRatio: 3 // 纵向间距
+                ),
+            itemCount: controller.documents.length,
+            itemBuilder: (context, index) {
+              bool isSelected = controller.selectedIndex.value == index;
+              return GestureDetector(
+                onTap: () {
+                  if (controller.userKYCInfo.value == null) {
+                    controller.selectItem(index);
+                  }
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: isSelected ? Colors.white : Colors.grey,
+                      )),
+                  alignment: Alignment.center,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        controller.documentsImages[index],
+                        width: 25,
+                        height: 25,
+                        color: isSelected ? Colors.white : Colors.grey,
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 2,
+                      ),
+                      Text(
+                        controller.documents[index],
+                        style: fontDMRegular.copyWith(
+                            color: isSelected ? Colors.white : Colors.grey,
+                            fontSize: 16),
+                      ),
+                      const Spacer(),
+                      Image.asset(
+                        'assets/images/home/${isSelected ? 'kyc_selected' : 'kyc_unselected'}.png',
+                        height: 20,
+                        width: 20,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  _detail() {
+    return Column(
+      children: [
+        Text(
+          tr('home.select_document_type'),
+          style: fontDMRegular.copyWith(
+            fontSize: 16,
+            color: BaseColors.white,
+          ),
+        ),
+        _cardType(),
+        Text(
+          tr('home.capture_passport_photo_requirements'),
+          style: fontDMRegular.copyWith(
+            fontSize: 12,
+            color: BaseColors.white,
+          ),
+        ),
+        const SizedBox(
+          height: defaultPadding / 2,
+        ),
+        Text(
+          tr('home.requirement_bright_and_clear'),
+          style: fontDMBold.copyWith(
+            fontSize: 12,
+            color: BaseColors.white,
+          ),
+        ),
+        Text(
+          tr('home.requirement_no_cropping'),
+          style: fontDMBold.copyWith(
+            fontSize: 12,
+            color: BaseColors.white,
+          ),
+        ),
+        const SizedBox(
+          height: defaultPadding / 2,
+        ),
+        Image.asset(
+          'assets/images/home/kyc_correct.png',
+          width: double.infinity,
+        ),
+        const SizedBox(
+          height: defaultPadding / 4,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Image.asset(
+                'assets/images/home/kyc_error.png',
+              ),
+            ),
+            const SizedBox(
+              width: defaultPadding / 4,
+            ),
+            Expanded(
+              child: Image.asset(
+                'assets/images/home/kyc_error1.png',
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
