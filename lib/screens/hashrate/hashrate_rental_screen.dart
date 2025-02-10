@@ -149,7 +149,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           ),
         ),
         Expanded(child: Container()),
-        Container(
+        if (controller.powerInfo.value?.code != null)
+          Container(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(defaultPadding),
@@ -428,8 +429,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             ),
           ),
           _buildRow(tr('hashrate.contract_details'), '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.profitTotal}', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_income'), '\$630(110%)', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.amount}', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.rental_income'), '\$${hasratePageInfo.profitTotal}', whiteText10, whiteText10),
           _buildRow(tr('hashrate.daily_income'), '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
         ],
       ),

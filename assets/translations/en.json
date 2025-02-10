@@ -14,7 +14,7 @@
     "number_min_max": "Please enter a value between {} and {}.",
     "file_type": "Supported file format is '{}'.",
     "file_size": "File size cannot exceed '{}'.",
-    "password_limit": "Password must be alplhanumeric and at least 8 characters long.",
+    "password_limit": "The password must contain a combination of uppercase letters, lowercase letters, numbers, and symbols, and be at least 6 characters long.",
     "password_not_match": "Passwords do not match",
     "select_ticket_before_using_promo": "Please select a ticket before using the promo code",
     "please_enter_email": "Please enter an email",
@@ -133,7 +133,7 @@
     "unlock_unlimited_rewards": "Unlock unlimited rewards",
     "copy_invitation_link": "Copy invitation link",
     "download_save_image": "Download and save image",
-    "seamless_computing_power_through_DePIN_network_for_AI": "Seamless Hashrate connection for AI \nthrough the DePIN network.",
+    "seamless_computing_power_through_DePIN_network_for_AI": "Seamless computational capability,\nprovided for artificial intelligence,\nthrough the DePIN network. ",
     "did_not_receive_resend": "Didn't receive? Resend",
     "verify_email": "Verify email",
     "forgot_password": "Forgot password?",
@@ -249,11 +249,15 @@
     "password_changed_successfully": "Password changed successfully",
     "password_reset_successfully": "Password reset successfully",
     "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
-    "logout_success": "Logout Success! "
+    "logout_success": "Logout Success! ",
+    "login_success": "Login Success! "
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
     "welcome_to_use": "Welcome to use",
     "aip_ai_description": "AIP-AI: Driving the future of LLM models. Your all-in-one AI assistant, helping seamlessly integrate intelligence and innovation."
+  },
+  "tip": {
+    "copy_success": "Copy success"
   }
 }

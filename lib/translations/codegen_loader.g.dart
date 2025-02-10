@@ -30,7 +30,7 @@ class CodegenLoader extends AssetLoader{
     "number_min_max": "Please enter a value between {} and {}.",
     "file_type": "Supported file format is '{}'.",
     "file_size": "File size cannot exceed '{}'.",
-    "password_limit": "Password must be alplhanumeric and at least 8 characters long.",
+    "password_limit": "The password must contain a combination of uppercase letters, lowercase letters, numbers, and symbols, and be at least 6 characters long.",
     "password_not_match": "Passwords do not match",
     "select_ticket_before_using_promo": "Please select a ticket before using the promo code",
     "please_enter_email": "Please enter an email",
@@ -149,7 +149,7 @@ class CodegenLoader extends AssetLoader{
     "unlock_unlimited_rewards": "Unlock unlimited rewards",
     "copy_invitation_link": "Copy invitation link",
     "download_save_image": "Download and save image",
-    "seamless_computing_power_through_DePIN_network_for_AI": "Seamless Hashrate connection for AI \nthrough the DePIN network.",
+    "seamless_computing_power_through_DePIN_network_for_AI": "Seamless computational capability,\nprovided for artificial intelligence,\nthrough the DePIN network. ",
     "did_not_receive_resend": "Didn't receive? Resend",
     "verify_email": "Verify email",
     "forgot_password": "Forgot password?",
@@ -265,12 +265,16 @@ class CodegenLoader extends AssetLoader{
     "password_changed_successfully": "Password changed successfully",
     "password_reset_successfully": "Password reset successfully",
     "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
-    "logout_success": "Logout Success! "
+    "logout_success": "Logout Success! ",
+    "login_success": "Login Success! "
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
     "welcome_to_use": "Welcome to use",
     "aip_ai_description": "AIP-AI: Driving the future of LLM models. Your all-in-one AI assistant, helping seamlessly integrate intelligence and innovation."
+  },
+  "tip": {
+    "copy_success": "Copy success"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -289,7 +293,7 @@ static const Map<String,dynamic> zh_Hans = {
     "number_min_max": "请输入 {} - {}",
     "file_type": "支持的文件格式为'{}'.",
     "file_size": "文件大小不能超过'{}'.",
-    "password_limit": "密码必须是字母和数字的组合，且至少8个字符长。",
+    "password_limit": "密码必须是大写字母、小写字母、数字、符号组合，且至少6个字符长。",
     "password_not_match": "密码不一致",
     "select_ticket_before_using_promo": "请先选择门票再使用优惠码",
     "please_enter_email": "请输入邮箱",
@@ -408,7 +412,7 @@ static const Map<String,dynamic> zh_Hans = {
     "unlock_unlimited_rewards": "解锁无限奖励",
     "copy_invitation_link": "复制邀请链接",
     "download_save_image": "下载保存图片",
-    "seamless_computing_power_through_DePIN_network_for_AI": "通过DePIN网络为人工智能提供无缝\n计算能力连接。",
+    "seamless_computing_power_through_DePIN_network_for_AI": "通过DePIN网络为人工智能\n提供无缝计算能力链接。",
     "did_not_receive_resend": "没有收到？重新发送 ",
     "verify_email": "验证邮箱",
     "forgot_password": "忘记密码？",
@@ -524,12 +528,16 @@ static const Map<String,dynamic> zh_Hans = {
     "password_changed_successfully": "修改密码成功",
     "password_reset_successfully": "重置密码成功",
     "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
-    "logout_success": "退出成功! "
+    "logout_success": "退出成功! ",
+    "login_success": "登录成功! "
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",
     "welcome_to_use": "欢迎使用",
     "aip_ai_description": "AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。"
+  },
+  "tip": {
+    "copy_success": "复制成功"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

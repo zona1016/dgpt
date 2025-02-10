@@ -1,6 +1,7 @@
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
+import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -9,8 +10,10 @@ import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:dgpt/utils/extensions/context_extension.dart';
 
 class ProfileScreen extends GetView<ProfileScreenController> {
   const ProfileScreen({super.key});
@@ -44,8 +47,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   itemTap: (index) async {
                     if (index == 0) {
                       Get.toNamed(AppRoutes.order);
-                    } else if (index == 1)  {
-                      final shareResult = await Share.share('分享的内容');
+                    } else if (index == 1) {
+                      // final shareResult = await Share.share('分享的内容');
+                      _showShare(context);
                     } else if (index == 2) {
                       Get.toNamed(AppRoutes.kyc);
                     }
@@ -145,7 +149,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '5,971.39',
+                      NumberFormat('#,##0.00').format(0.00),
                       style: fontDMBold.copyWith(
                         color: BaseColors.white,
                         fontSize: 24,
@@ -165,68 +169,6 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                 ),
                 const SizedBox(
                   height: defaultPadding / 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Image.asset(
-                      'assets/images/home/recharge_icon.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    const SizedBox(
-                      width: defaultPadding / 4,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'USDT',
-                          style: fontDMMedium.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                        Text(
-                          '13045.62',
-                          style: fontDMBold.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Image.asset(
-                      'assets/images/home/recharge_icon.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    const SizedBox(
-                      width: defaultPadding / 4,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'AIP',
-                          style: fontDMMedium.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                        Text(
-                          '250',
-                          style: fontDMBold.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                  ],
                 ),
               ],
             ),
@@ -248,10 +190,12 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                     fit: BoxFit.cover),
               ),
               child: Center(
-                child: ClipOval( // 裁剪成圆形
+                child: ClipOval(
+                  // 裁剪成圆形
                   child: BaseNetworkImage(
                     imageURL: controller.userController.userInfo.avatar ?? '',
-                    placeholder: "assets/images/placeholder/profile_placeholder.png",
+                    placeholder:
+                        "assets/images/placeholder/profile_placeholder.png",
                     fit: BoxFit.cover,
                     height: 120,
                     width: 120,
@@ -363,7 +307,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   width: defaultPadding / 4,
                 ),
                 Text(
-                  '17502.010',
+                  NumberFormat('#,##0.00').format(0.00),
                   style: fontDMMedium.copyWith(
                     color: BaseColors.white,
                     fontSize: 11,
@@ -503,5 +447,115 @@ class ProfileScreen extends GetView<ProfileScreenController> {
         ),
       ),
     );
+  }
+
+  _showShare(BuildContext context) {
+    DialogUtils.showShareDialog(
+        key: controller.globalKey,
+        barrierDismissible: false,
+        title: '推荐好友',
+        desc: '解锁无限奖励',
+        image: 'assets/images/home/share_header.png',
+        bgImage: 'assets/images/home/share_bg.png',
+        showBottomClose: true,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(defaultPadding / 2),
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage('assets/images/home/share_qr_code.png'),
+                  fit: BoxFit.cover,
+                )),
+                child: SizedBox(
+                  height: 157,
+                  width: 157,
+                  child: QrImageView(
+                    data: "https://aipluse.com", // 要编码的字符串数据
+                    version: QrVersions.auto,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 44,
+                    width: double.infinity,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(defaultPadding * 2),
+                        color: BaseColors.whiteGray3),
+                    child: Row(
+                      children: [
+                        Text(
+                          '复制邀请链接',
+                          style: fontDMMedium.copyWith(
+                              color: BaseColors.white, fontSize: 16),
+                        ),
+                        Expanded(child: Container()),
+                        GestureDetector(
+                          onTap: () {
+                            Clipboard.setData(const ClipboardData(
+                                text: 'https://aipluse.com'));
+                            ToastUtils.showToast(title: tr('tip.copy_success'));
+                          },
+                          child: Image.asset(
+                            'assets/images/home/share_copy.png',
+                            height: 20,
+                            width: 20,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: defaultPadding / 2),
+                  Container(
+                    height: 44,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(defaultPadding * 2),
+                        image: const DecorationImage(
+                            image: AssetImage(
+                                'assets/images/home/share_button.png'),
+                            fit: BoxFit.fitHeight)),
+                    child: Row(
+                      children: [
+                        Text(
+                          '下载保存图片',
+                          style: fontDMMedium.copyWith(
+                              color: BaseColors.white, fontSize: 16),
+                        ),
+                        Expanded(child: Container()),
+                        GestureDetector(
+                          onTap: () async {
+                            controller.capturePng(context);
+                          },
+                          child: Image.asset(
+                            'assets/images/home/share_download.png',
+                            width: 20,
+                            height: 20,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: defaultPadding),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

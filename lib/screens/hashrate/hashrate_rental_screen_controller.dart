@@ -79,22 +79,38 @@ class HashrateRentalScreenController extends BaseController {
 
   double getProgress() {
     double progress = 0;
+    double count = 0;
     if (progressInfo.value?.next?.conditionDto != null) {
 
       if (progressInfo.value!.next!.conditionDto!.minPlanAmount > 0) {
         progress += progressInfo.value!.planAmount / progressInfo.value!.next!.conditionDto!.minPlanAmount;
+        if (progress > 1) {
+          progress = 1;
+        }
+        count += 1;
       }
 
       if (progressInfo.value!.next!.conditionDto!.teamCount > 0) {
         progress += progressInfo.value!.teamCount / progressInfo.value!.next!.conditionDto!.teamCount;
+        if (progress > 1) {
+          progress = 1;
+        }
+        count += 1;
       }
 
       if (progressInfo.value!.next!.conditionDto!.directCount > 0) {
         progress += progressInfo.value!.directCount / progressInfo.value!.next!.conditionDto!.directCount;
+        if (progress > 1) {
+          progress = 1;
+        }
+        count += 1;
       }
     }
 
-    String formattedResult = (progress / 3.0).toStringAsFixed(4);
+    String formattedResult = '0';
+    if (count > 0) {
+      formattedResult = (progress / (count * 1.0)).toStringAsFixed(4);
+    }
 
     return double.parse(formattedResult);
   }

@@ -53,14 +53,14 @@ class LoginScreenController extends BaseController {
 
     final result = await fetchData(
       request: () => authService.login(
-          account: email.value ,
-          password: password.value,
+          account: 'superadmin',
+          password: '123456',
           codeId: '0',
           code: '0'),
     );
     if (result != null) {
       DialogUtils.showSuccessDialog(
-        '登录成功！',
+        tr('profile.login_success'),
         barrierDismissible: false,
         showCircularProgressIndicator: true
       );

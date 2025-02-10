@@ -14,7 +14,7 @@
     "number_min_max": "请输入 {} - {}",
     "file_type": "支持的文件格式为'{}'.",
     "file_size": "文件大小不能超过'{}'.",
-    "password_limit": "密码必须是字母和数字的组合，且至少8个字符长。",
+    "password_limit": "密码必须是大写字母、小写字母、数字、符号组合，且至少6个字符长。",
     "password_not_match": "密码不一致",
     "select_ticket_before_using_promo": "请先选择门票再使用优惠码",
     "please_enter_email": "请输入邮箱",
@@ -133,7 +133,7 @@
     "unlock_unlimited_rewards": "解锁无限奖励",
     "copy_invitation_link": "复制邀请链接",
     "download_save_image": "下载保存图片",
-    "seamless_computing_power_through_DePIN_network_for_AI": "通过DePIN网络为人工智能提供无缝\n计算能力连接。",
+    "seamless_computing_power_through_DePIN_network_for_AI": "通过DePIN网络为人工智能\n提供无缝计算能力链接。",
     "did_not_receive_resend": "没有收到？重新发送 ",
     "verify_email": "验证邮箱",
     "forgot_password": "忘记密码？",
@@ -249,11 +249,15 @@
     "password_changed_successfully": "修改密码成功",
     "password_reset_successfully": "重置密码成功",
     "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
-    "logout_success": "退出成功! "
+    "logout_success": "退出成功! ",
+    "login_success": "登录成功! "
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",
     "welcome_to_use": "欢迎使用",
     "aip_ai_description": "AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。"
+  },
+  "tip": {
+    "copy_success": "复制成功"
   }
 }
