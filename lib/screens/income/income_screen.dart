@@ -179,7 +179,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 bottom: defaultPadding * 3,
                 left: defaultPadding,
                 child: Text(
-                  '2%',
+                  '0%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -191,16 +191,16 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               _positioned(
                   bottom: defaultPadding * 3,
                   left: 150 + defaultPadding,
-                  size: const Size(1, 50)),
+                  size: const Size(1, 45)),
               CustomPaint(
                 size: const Size(50, 50),
-                painter: CustomCircularPainter(0.02, 1.5, Colors.cyan),
+                painter: CustomCircularPainter(0.00, 1.5, Colors.cyan),
               ),
               Positioned(
                 top: defaultPadding,
                 left: defaultPadding,
                 child: Text(
-                  '5%',
+                  '0%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -216,13 +216,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(100, 100),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter(0.35, 3, Colors.yellow),
+                painter: CustomCircularPainter(0.00, 3, Colors.yellow),
               ),
               Positioned(
                 top: 0,
                 right: defaultPadding,
                 child: Text(
-                  '5%',
+                  '0%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -238,13 +238,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(150, 150),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter(0.35, 2.5, Colors.red),
+                painter: CustomCircularPainter(0.00, 2.5, Colors.red),
               ),
               Positioned(
                 bottom: defaultPadding,
                 right: defaultPadding,
                 child: Text(
-                  '25%',
+                  '0%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -256,11 +256,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               _positioned(
                   bottom: defaultPadding,
                   right: 105 + defaultPadding,
-                  size: const Size(1, 30)),
+                  size: const Size(1, 25)),
               CustomPaint(
                 size: const Size(200, 200),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter(0.03, 4, Colors.purple),
+                painter: CustomCircularPainter(0.00, 4, Colors.purple),
               ),
             ],
           ),

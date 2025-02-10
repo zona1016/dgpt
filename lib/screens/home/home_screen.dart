@@ -3,6 +3,7 @@ import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -12,6 +13,7 @@ import 'package:dgpt/widget/default_navigation_header.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:marquee/marquee.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -344,7 +346,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                         ),
                         Expanded(child: Container()),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Clipboard.setData(const ClipboardData(
+                                text: 'https://aipluse.com'));
+                            ToastUtils.showToast(title: tr('tip.copy_success'));
+                          },
                           child: Image.asset(
                             'assets/images/home/share_copy.png',
                             height: 20,

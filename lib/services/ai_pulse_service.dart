@@ -125,8 +125,7 @@ abstract class AiPulseService {
       String? verifyCodeId,
       String? verifyCode});
 
-  Future<BaseResponse> aiPulseDepositDeposit(
-      {required String submitType, required String amount});
+  Future<BaseResponse> aiPulseDepositDeposit();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -647,16 +646,11 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> aiPulseDepositDeposit(
-      {required String submitType, required String amount}) async {
+  Future<BaseResponse> aiPulseDepositDeposit() async {
     try {
       return await _apiClient.request(
           ApiEndpoints.aiPulseDepositDeposit,
           bearerToken: userController.token,
-          data: {
-            "submitType": submitType,
-            "amount": amount
-          },
           deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;

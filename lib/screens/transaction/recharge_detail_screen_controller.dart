@@ -7,32 +7,27 @@ import 'package:dgpt/widget/form/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RechargeScreenBindings implements Bindings {
+class RechargeDetailScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance().lazyPut(() => RechargeScreenController(),
+    GetInstance().lazyPut(() => RechargeDetailScreenController(),
         permanent: false, fenix: false);
   }
 }
 
-class RechargeScreenController extends BaseController {
+class RechargeDetailScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
   final TextEditingController textEditingController = TextEditingController();
 
   RxBool enabled = false.obs;
   RxList<MenuItem> merchantList = <MenuItem>[].obs;
   Merchant? selectedMerchant;
-  RxString amount = ''.obs;
+  RxString url = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
     aiPulseDepositDeposit();
-    textEditingController.addListener(() {
-      String inputText = textEditingController.text;
-      if (inputText.isEmpty || inputText == '.') return;
-      enabled.value = (double.tryParse(inputText) ?? 0.0) > 10;
-    });
   }
 
   @override
@@ -47,25 +42,13 @@ class RechargeScreenController extends BaseController {
     super.onReady();
   }
 
-  aiPulseChatGptSend(
-      {AppLoadingState loadingState = AppLoadingState.background}) async {
-    final result = await fetchData(
-        loadingState: loadingState,
-        request: () => aiPulseService.aiPulseMerchantEnableList());
-    if (result != null) {
-      merchantList
-          .assignAll(result.map((e) => MenuItem(label: e.currency!, value: e)));
-    }
-  }
-
   aiPulseDepositDeposit(
       {AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
         loadingState: loadingState,
         request: () => aiPulseService.aiPulseDepositDeposit());
     if (result != null) {
-      print(result);
-      // DialogUtils.showRechargeSuccess();
+      url.value = result['url'];
     }
   }
 }

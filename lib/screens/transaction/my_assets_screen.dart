@@ -119,7 +119,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                 children: [
                   const Spacer(),
                   GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.recharge),
+                    onTap: () => Get.toNamed(AppRoutes.rechargeDetail),
                     child: Column(
                       children: [
                         Image.asset(

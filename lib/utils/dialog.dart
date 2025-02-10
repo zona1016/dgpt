@@ -165,7 +165,7 @@ class DialogUtils {
                         child: Text(
                           topTitle,
                           textAlign: TextAlign.center,
-                          style: fontDMBold.copyWith(
+                          style: fontDMMedium.copyWith(
                               fontSize: 24,
                               color: topTitleColor ?? BaseColors.white),
                         ),
@@ -422,7 +422,7 @@ class DialogUtils {
         barrierDismissible: false,
         confirmText: '立马充值', onConfirmPressed: () {
       Get.back();
-      Get.toNamed(AppRoutes.recharge);
+      Get.toNamed(AppRoutes.rechargeDetail);
     });
   }
 

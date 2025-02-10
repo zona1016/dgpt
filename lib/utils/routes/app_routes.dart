@@ -74,6 +74,8 @@ import 'package:dgpt/screens/transaction/order_detail_screen.dart';
 import 'package:dgpt/screens/transaction/order_detail_screen_controller.dart';
 import 'package:dgpt/screens/transaction/order_screen.dart';
 import 'package:dgpt/screens/transaction/order_screen_controller.dart';
+import 'package:dgpt/screens/transaction/recharge_detail_screen.dart';
+import 'package:dgpt/screens/transaction/recharge_detail_screen_controller.dart';
 import 'package:dgpt/screens/transaction/recharge_screen.dart';
 import 'package:dgpt/screens/transaction/recharge_screen_controller.dart';
 import 'package:dgpt/screens/tutorial/tutorial_detail_screen.dart';
@@ -131,6 +133,7 @@ class AppRoutes {
   static String order = "/order";
   static String orderDetail = "/order_detail";
   static String recharge = "/recharge";
+  static String rechargeDetail = "/recharge_detail";
 
   static String systemMessage = "/system_message";
   static String systemMessageDetail = "/system_message_detail";
@@ -309,6 +312,11 @@ class AppRoutes {
         name: recharge,
         page: () => const RechargeScreen(),
         binding: RechargeScreenBindings()
+    ),
+    GetPage(
+        name: rechargeDetail,
+        page: () => const RechargeDetailScreen(),
+        binding: RechargeDetailScreenBindings()
     ),
     GetPage(
         name: myAssets,

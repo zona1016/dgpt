@@ -26,7 +26,6 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
   @override
   void onInit() {
     super.onInit();
-    userHashrate();
   }
 
   @override

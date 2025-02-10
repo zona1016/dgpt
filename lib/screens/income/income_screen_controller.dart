@@ -27,17 +27,6 @@ class IncomeScreenController extends BaseController {
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
 
-  var totalEarnings = 100000.obs; // 总收益
-  var activeMembers = 80.obs; // 激活人数
-  var totalMembers = 100.obs; // 总人数
-
-  var earningsDetails = {
-    '算力租借': 5000.obs,
-    '团队算力奖': 20000.obs,
-    '邀请奖': 3000.obs,
-    '薪资': 15000.obs,
-  }.obs;
-
   @override
   void onInit() {
     super.onInit();

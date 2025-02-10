@@ -136,7 +136,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
         ),
         Text(
           tr('ai.ask_any_question'),
-          style: fontDMBold.copyWith(
+          style: fontDMMedium.copyWith(
             fontSize: 18,
             color: BaseColors.white,
           ),
