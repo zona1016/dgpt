@@ -5,6 +5,7 @@ import 'package:dgpt/screens/transaction/assets_tab.dart';
 import 'package:dgpt/screens/transaction/my_assets_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -116,22 +117,25 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
               Row(
                 children: [
                   const Spacer(),
-                  Column(
-                    children: [
-                      Image.asset(
-                        'assets/images/home/assets_cz.png',
-                        width: 50,
-                        height: 50,
-                      ),
-                      const SizedBox(height: defaultPadding / 4,),
-                      Text(
-                        '充值',
-                        style: fontDMMedium.copyWith(
-                          color: BaseColors.lightGray,
-                          fontSize: 12,
+                  GestureDetector(
+                    onTap: () => Get.toNamed(AppRoutes.recharge),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/home/assets_cz.png',
+                          width: 50,
+                          height: 50,
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: defaultPadding / 4,),
+                        Text(
+                          '充值',
+                          style: fontDMMedium.copyWith(
+                            color: BaseColors.lightGray,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const Spacer(),
                   Column(

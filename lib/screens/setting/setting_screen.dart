@@ -167,12 +167,11 @@ class SettingScreen extends GetView<SettingScreenController> {
                 ),
               ),
             ),
-            if (showRight)
-              const Icon(
-                Icons.chevron_right,
-                size: 25,
-                color: BaseColors.white,
-              ),
+            const Icon(
+              Icons.chevron_right,
+              size: 25,
+              color: BaseColors.white,
+            ),
             const SizedBox(
               width: defaultPadding,
             ),
