@@ -1,5 +1,6 @@
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class ProfileScreenBindings implements Bindings {
 class ProfileScreenController extends BaseController {
 
   final AuthService authService = Get.find();
+  final UserController userController = Get.find();
   GlobalKey globalKey = GlobalKey();
 
   List<String> profileActionTitles = [

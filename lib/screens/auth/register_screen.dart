@@ -166,16 +166,14 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                 name: 'password',
                 hintText: tr('home.enter_password'),
                 obscureText: true,
-                style: fontDMRegular.copyWith(
-                    color: BaseColors.inputTextColor.withOpacity(0.25)),
+                style: fontDMRegular.copyWith(color: BaseColors.white),
                 fillColor: BaseColors.gray85.withOpacity(0.5),
                 radius: 10,
                 onChanged: (value) {
                   controller.password.value = value ?? '';
                 },
-                validator: FormBuilderValidators.compose([
-                  CustomFormBuilderValidators.password()
-                ])),
+                validator: FormBuilderValidators.compose(
+                    [CustomFormBuilderValidators.password()])),
             const SizedBox(
               height: defaultPadding,
             ),
@@ -183,8 +181,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               name: 'passwordAgain',
               hintText: tr('home.confirm_password_again'),
               obscureText: true,
-              style: fontDMRegular.copyWith(
-                  color: BaseColors.inputTextColor.withOpacity(0.25)),
+              style: fontDMRegular.copyWith(color: BaseColors.white),
               fillColor: BaseColors.gray85.withOpacity(0.5),
               radius: 10,
               onChanged: (value) {
@@ -200,8 +197,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
             BaseTextFormField(
               name: 'inviteCode',
               hintText: tr('home.enter_invitation_code'),
-              style: fontDMRegular.copyWith(
-                  color: BaseColors.inputTextColor.withOpacity(0.25)),
+              style: fontDMRegular.copyWith(color: BaseColors.white),
               fillColor: BaseColors.gray85.withOpacity(0.5),
               radius: 10,
               onChanged: (value) {
@@ -225,6 +221,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               name: 'verifyCode',
               hintText: tr('home.email_verification_code'),
               fillColor: BaseColors.gray85.withOpacity(0.5),
+              style: fontDMRegular.copyWith(color: BaseColors.white),
               radius: 10,
               suffixIcon: Container(
                 width: 120,
@@ -325,7 +322,11 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                     controller.verifyCode.isNotEmpty &&
                     controller.inviteCode.isNotEmpty &&
                     controller.codeId.isNotEmpty &&
-                    controller.password == controller.passwordAgain
+                    (controller.password == controller.passwordAgain) &&
+                    CustomFormBuilderValidators.passwordMatch(
+                        controller.password.value) &&
+                    CustomFormBuilderValidators.passwordMatch(
+                        controller.passwordAgain.value)
                 ? true
                 : false,
             disabledDecoration: const BoxDecoration(

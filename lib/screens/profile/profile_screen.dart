@@ -31,7 +31,6 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                 height: defaultPadding,
               ),
               _card(cardTaps: (index) {
-                print(index);
                 if (index == 0) {
                 } else if (index == 1) {
                 } else {}
@@ -43,12 +42,10 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   showTop: true,
                   startIndex: 0,
                   itemTap: (index) async {
-                    print(index);
                     if (index == 0) {
                       Get.toNamed(AppRoutes.order);
                     } else if (index == 1)  {
                       final shareResult = await Share.share('分享的内容');
-                      print(shareResult);
                     } else if (index == 2) {
                       Get.toNamed(AppRoutes.kyc);
                     }
@@ -103,7 +100,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
           width: defaultPadding,
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () => Get.toNamed(AppRoutes.setting),
           child: Image.asset(
             'assets/images/home/more.png',
             width: 25,
@@ -239,28 +236,25 @@ class ProfileScreen extends GetView<ProfileScreenController> {
           top: 0,
           left: 0,
           right: 0,
-          child: GestureDetector(
-            onTap: () => Get.toNamed(AppRoutes.setting),
-            child: Center(
-              child: Container(
-                height: 140,
-                width: 140,
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image:
-                          AssetImage('assets/images/custom/profile_icon_bg.png'),
-                      fit: BoxFit.cover),
-                ),
-                child: const Center(
-                  child: ClipOval( // 裁剪成圆形
-                    child: BaseNetworkImage(
-                      imageURL: '',
-                      placeholder: "assets/images/placeholder/profile_placeholder.png",
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
-                    ),
+          child: Center(
+            child: Container(
+              height: 140,
+              width: 140,
+              padding: const EdgeInsets.all(defaultPadding),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image:
+                        AssetImage('assets/images/custom/profile_icon_bg.png'),
+                    fit: BoxFit.cover),
+              ),
+              child: Center(
+                child: ClipOval( // 裁剪成圆形
+                  child: BaseNetworkImage(
+                    imageURL: controller.userController.userInfo.avatar ?? '',
+                    placeholder: "assets/images/placeholder/profile_placeholder.png",
+                    fit: BoxFit.cover,
+                    height: 120,
+                    width: 120,
                   ),
                 ),
               ),
