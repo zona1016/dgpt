@@ -55,7 +55,7 @@ abstract class AiPulseService {
   Future<BaseResponse<PaginationResponse<AiChatMessage>?>>
       aiPulseChatGptUserPage({int page = 1, int perPage = 20});
 
-  Future<BaseResponse> aiPulseChatGptClear();
+  Future<BaseResponse> aiPulseChatGptClearHistory();
 
   Future<BaseResponse> userHasTradingPwd();
 
@@ -321,9 +321,9 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> aiPulseChatGptClear() async {
+  Future<BaseResponse> aiPulseChatGptClearHistory() async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseChatGptClear,
+      return await _apiClient.request(ApiEndpoints.aiPulseChatGptClearHistory,
           bearerToken: userController.token, deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;

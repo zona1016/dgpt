@@ -37,7 +37,7 @@ class ApiEndpoints {
   static const String aiPulseChatGptSend = "/api/aiPulseChatGpt/send";
   static const String aiPulseChatGptUserPage = "/api/aiPulseChatGpt/userPage";
   static const String aiPulseChatGptChatMessageHistoryList = "/api/aiPulseChatGpt/chatMessageHistoryList";
-  static const String aiPulseChatGptClear = "/api/aiPulseChatGpt/clear";
+  static const String aiPulseChatGptClearHistory = "/api/aiPulseChatGpt/clearHistory";
 
   static const String aiPulseBannerUserPage = "/api/aiPulseBanner/userPage";
 

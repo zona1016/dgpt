@@ -27,12 +27,11 @@ class AiStartScreen extends GetView<AiStartScreenController> {
         title: '',
         actions: [
           IconButton(
-            icon: Image.asset(
-              "assets/images/custom/logo.png",
-              width: 25,
-              height: 26,
+            icon: const Icon(
+              Icons.delete_forever,
+              size: 20,
             ),
-            onPressed: () => Get.close(2),
+            onPressed: () => controller.deleteHistory(),
           ),
         ],
         onBackTap: () {

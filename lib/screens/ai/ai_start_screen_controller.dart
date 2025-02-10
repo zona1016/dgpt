@@ -3,6 +3,8 @@ import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -119,6 +121,28 @@ class AiStartScreenController extends BaseController
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _scrollToBottom();
       });
+    }
+  }
+
+  deleteHistory() {
+    DialogUtils.showDGPTBaseDialog(
+      title: '是否删除提问历史？',
+      confirmText: tr('button.confirm'),
+      onConfirmPressed: () {
+        aiPulseChatGptClearHistory();
+        Get.back();
+      },
+      cancelText: tr('button.cancel'),
+      onCancelPressed: () => Get.back()
+    );
+  }
+
+  aiPulseChatGptClearHistory() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseChatGptClearHistory());
+    if (result != null) {
+      messageList.value = [];
     }
   }
 }

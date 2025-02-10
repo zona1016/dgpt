@@ -34,12 +34,13 @@ class HashrateRentalDetailScreen
             padding: const EdgeInsets.all(defaultPadding),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultPadding),
-                border: Border.all(color: BaseColors.primaryColor, width: 1)),
+                border: Border.all(color: BaseColors.primaryColor, width: 1),
+              gradient: BaseColors.incomeLinearGradient
+            ),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(controller.dd.value),
                   _buildHeader(),
                   const SizedBox(
                     height: defaultPadding / 2,
