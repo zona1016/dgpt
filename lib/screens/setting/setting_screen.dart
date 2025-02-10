@@ -32,8 +32,10 @@ class SettingScreen extends GetView<SettingScreenController> {
                 Get.toNamed(AppRoutes.accountProfile);
               } else if (index == 1) {
                 controller.userHasTradingPwd();
-              } else {
+              } else if (index == 2) {
                 Get.toNamed(AppRoutes.changePassword);
+              } else if (index == 3) {
+                controller.logout();
               }
             }
         ),
@@ -46,7 +48,7 @@ class SettingScreen extends GetView<SettingScreenController> {
         required int startIndex,
         required Function(int index) itemTap}) {
     return Container(
-      height: 152,
+      height: 203,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: showTop
@@ -111,6 +113,17 @@ class SettingScreen extends GetView<SettingScreenController> {
               onTap: () => itemTap(startIndex + 2),
               title: controller.settingTitles[startIndex + 2],
               image: controller.settingImages[startIndex + 2],
+              showRight: true),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            height: 1,
+            width: double.infinity,
+            color: BaseColors.white.withOpacity(0.2),
+          ),
+          _listItem(
+              onTap: () => itemTap(startIndex + 3),
+              title: controller.settingTitles[startIndex + 3],
+              image: controller.settingImages[startIndex + 3],
               showRight: true),
         ],
       ),

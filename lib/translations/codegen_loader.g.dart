@@ -264,7 +264,8 @@ class CodegenLoader extends AssetLoader{
     "successfully_reset_the_fund_password": "Successfully reset the fund password",
     "password_changed_successfully": "Password changed successfully",
     "password_reset_successfully": "Password reset successfully",
-    "reset_login_password_tip": "For the security of your funds and information, please reset your login password."
+    "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
+    "logout_success": "Logout Success! "
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
@@ -522,7 +523,8 @@ static const Map<String,dynamic> zh_Hans = {
     "successfully_reset_the_fund_password": "重置资金密码成功",
     "password_changed_successfully": "修改密码成功",
     "password_reset_successfully": "重置密码成功",
-    "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。"
+    "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
+    "logout_success": "退出成功! "
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",

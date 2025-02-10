@@ -30,7 +30,7 @@ class CustomFormBuilderValidators {
 
   static FormFieldValidator<String> password() {
     RegExp regex = RegExp(
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*(),.?":{}|<>]).{8,}$');
+        r'(?=^.{6,16}$)(?=.*\d)(?=.*\W+)(?=.*[A-Z])(?=.*[a-z])(?!.*\n).*$');
     return FormBuilderValidators.match(regex,
         errorText: tr(LocaleKeys.error_password_limit));
   }

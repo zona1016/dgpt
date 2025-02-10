@@ -93,9 +93,21 @@ class LoginScreen extends GetView<LoginScreenController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          "assets/images/custom/logo.png",
-          width: 36,
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/custom/logo.png",
+              width: 36,
+            ),
+            Expanded(child: Container()),
+            GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.changeLanguage),
+              child: Image.asset(
+                "assets/images/home/flag.png",
+                width: 25,
+              ),
+            ),
+          ],
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),

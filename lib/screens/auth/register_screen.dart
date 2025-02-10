@@ -2,13 +2,14 @@ import 'package:dgpt/screens/auth/register_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
-import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
+import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 class RegisterScreenArgs {
@@ -162,17 +163,19 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               height: defaultPadding,
             ),
             BaseTextFormField(
-              name: 'password',
-              hintText: tr('home.enter_password'),
-              obscureText: true,
-              style: fontDMRegular.copyWith(
-                  color: BaseColors.inputTextColor.withOpacity(0.25)),
-              fillColor: BaseColors.gray85.withOpacity(0.5),
-              radius: 10,
-              onChanged: (value) {
-                controller.password.value = value ?? '';
-              },
-            ),
+                name: 'password',
+                hintText: tr('home.enter_password'),
+                obscureText: true,
+                style: fontDMRegular.copyWith(
+                    color: BaseColors.inputTextColor.withOpacity(0.25)),
+                fillColor: BaseColors.gray85.withOpacity(0.5),
+                radius: 10,
+                onChanged: (value) {
+                  controller.password.value = value ?? '';
+                },
+                validator: FormBuilderValidators.compose([
+                  CustomFormBuilderValidators.password()
+                ])),
             const SizedBox(
               height: defaultPadding,
             ),

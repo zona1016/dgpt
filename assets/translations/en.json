@@ -248,7 +248,8 @@
     "successfully_reset_the_fund_password": "Successfully reset the fund password",
     "password_changed_successfully": "Password changed successfully",
     "password_reset_successfully": "Password reset successfully",
-    "reset_login_password_tip": "For the security of your funds and information, please reset your login password."
+    "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
+    "logout_success": "Logout Success! "
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
