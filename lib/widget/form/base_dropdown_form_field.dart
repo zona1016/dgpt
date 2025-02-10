@@ -9,6 +9,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class BaseDropDownFormField extends StatelessWidget {
   final Key? fieldKey;
   final String name;
+  final Color? dropDownColor;
+  final Color? fillColor;
   final String? hintText;
   final List<MenuItem> items;
   final MenuItem? initialValue;
@@ -26,6 +28,7 @@ class BaseDropDownFormField extends StatelessWidget {
   final BorderRadius? borderRadius;
   final BoxConstraints? suffixIconConstraints;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final double radius;
@@ -34,6 +37,8 @@ class BaseDropDownFormField extends StatelessWidget {
   const BaseDropDownFormField(
       {super.key,
         required this.items,
+        this.dropDownColor,
+        this.fillColor,
         this.hintText,
         this.placeholder,
         this.isExpanded = true,
@@ -46,6 +51,7 @@ class BaseDropDownFormField extends StatelessWidget {
         this.alignment = AlignmentDirectional.centerStart,
         this.suffixIconConstraints,
         this.suffixIcon,
+        this.prefixIcon,
         required this.name,
         this.onChanged,
         this.focusNode,
@@ -86,7 +92,7 @@ class BaseDropDownFormField extends StatelessWidget {
                     errorStyle:
                     fontRegular.copyWith(fontSize: 12, color: Colors.red),
                     filled: true,
-                    fillColor: BaseColors.black,
+                    fillColor: fillColor ?? BaseColors.black,
                     contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     prefix: const Padding(padding: EdgeInsets.only(left: 20)),
@@ -103,7 +109,9 @@ class BaseDropDownFormField extends StatelessWidget {
                     suffixIconConstraints: suffixIconConstraints,
                     labelText: placeholder,
                     alignLabelWithHint: true,
-                    suffixIcon: suffixIcon),
+                    suffixIcon: suffixIcon,
+                  prefixIcon: prefixIcon
+                ),
             items: items
                 .map((item) => DropdownMenuItem(
                 value: item,
@@ -115,7 +123,7 @@ class BaseDropDownFormField extends StatelessWidget {
                   decoration: item == field.value
                       ? BoxDecoration(
                       borderRadius: BorderRadius.circular(radius),
-                    color: Colors.black
+                    color: dropDownColor ?? Colors.black
                   )
                       : null,
                   child: Text(
@@ -156,10 +164,9 @@ class BaseDropDownFormField extends StatelessWidget {
             dropdownStyleData: DropdownStyleData(
               elevation: 0,
               maxHeight: menuMaxHeight,
-              width: 200,
               offset: const Offset(0, -10),
               decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: dropDownColor ?? Colors.black,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(

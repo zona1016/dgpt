@@ -250,7 +250,8 @@
     "password_reset_successfully": "重置密码成功",
     "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
     "logout_success": "退出成功! ",
-    "login_success": "登录成功! "
+    "login_success": "登录成功! ",
+    "payment_method": "支付方式"
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",

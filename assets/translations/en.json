@@ -234,8 +234,8 @@
     "change_login_password": "Change login password",
     "my_assets": "My assets",
     "deposit": "Deposit",
-    "transfer_assets": "Transfer assets",
-    "withdraw_assets": "Withdraw assets",
+    "transfer_assets": "Transfer",
+    "withdraw_assets": "Withdraw",
     "fund_records": "Fund records",
     "transfer_records": "Transfer records",
     "amount": "Amount",
@@ -250,7 +250,8 @@
     "password_reset_successfully": "Password reset successfully",
     "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
     "logout_success": "Logout Success! ",
-    "login_success": "Login Success! "
+    "login_success": "Login Success! ",
+    "payment_method": "Payment method"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",

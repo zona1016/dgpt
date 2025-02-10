@@ -11,6 +11,7 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
         flexibleSpace: FlexibleSpaceBar(
           background: Container(color: Colors.transparent),
         ),
-        title: '我的资产',
+        title: tr('profile.my_assets'),
         actions: [
           IconButton(
             icon: Image.asset(
@@ -85,7 +86,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
           child: Column(
             children: [
               Text(
-                '我的资产',
+                tr('profile.my_assets'),
                 style: fontDMMedium.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,
@@ -96,7 +97,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                 children: [
                   const Spacer(),
                   Text(
-                    '17614.272',
+                    '0.00',
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
                       fontSize: 24,
@@ -128,7 +129,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                         ),
                         const SizedBox(height: defaultPadding / 4,),
                         Text(
-                          '充值',
+                          tr('profile.deposit'),
                           style: fontDMMedium.copyWith(
                             color: BaseColors.lightGray,
                             fontSize: 12,
@@ -147,7 +148,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                       ),
                       const SizedBox(height: defaultPadding / 4,),
                       Text(
-                        '转移资产',
+                        tr('profile.transfer_assets'),
                         style: fontDMMedium.copyWith(
                           color: BaseColors.lightGray,
                           fontSize: 12,
@@ -165,7 +166,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                       ),
                       const SizedBox(height: defaultPadding / 4,),
                       Text(
-                        '提现',
+                        tr('profile.withdraw'),
                         style: fontDMMedium.copyWith(
                           color: BaseColors.lightGray,
                           fontSize: 12,

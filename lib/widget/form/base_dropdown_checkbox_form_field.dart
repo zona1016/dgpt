@@ -106,7 +106,7 @@ class BaseDropDownCheckboxFormFieldState
                         horizontal: 20, vertical: 18),
                     border: OutlineInputBorder(
                         borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(30)),
+                        borderRadius:  BorderRadius.circular(30)),
                     errorBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.red),
                         borderRadius: BorderRadius.circular(30)),

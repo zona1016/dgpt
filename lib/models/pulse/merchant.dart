@@ -11,7 +11,7 @@ class Merchant extends Object {
   @JsonKey(name: 'name')
   String? name;
 
-  @JsonKey(name: 'currency')
+  @JsonKey(name: 'currency', defaultValue: '')
   String? currency;
 
   @JsonKey(name: 'address')

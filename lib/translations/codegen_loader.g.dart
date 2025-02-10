@@ -250,8 +250,8 @@ class CodegenLoader extends AssetLoader{
     "change_login_password": "Change login password",
     "my_assets": "My assets",
     "deposit": "Deposit",
-    "transfer_assets": "Transfer assets",
-    "withdraw_assets": "Withdraw assets",
+    "transfer_assets": "Transfer",
+    "withdraw_assets": "Withdraw",
     "fund_records": "Fund records",
     "transfer_records": "Transfer records",
     "amount": "Amount",
@@ -266,7 +266,8 @@ class CodegenLoader extends AssetLoader{
     "password_reset_successfully": "Password reset successfully",
     "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
     "logout_success": "Logout Success! ",
-    "login_success": "Login Success! "
+    "login_success": "Login Success! ",
+    "payment_method": "Payment method"
   },
   "ai": {
     "ask_any_question": "Feel free to ask any question!",
@@ -530,7 +531,8 @@ static const Map<String,dynamic> zh_Hans = {
     "password_reset_successfully": "重置密码成功",
     "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
     "logout_success": "退出成功! ",
-    "login_success": "登录成功! "
+    "login_success": "登录成功! ",
+    "payment_method": "支付方式"
   },
   "ai": {
     "ask_any_question": "请尽管发问任何问题！",
