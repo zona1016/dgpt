@@ -24,7 +24,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       body: Obx(() => Column(
             children: [
               _tabBar(context),
-              if (controller.powerInfo.value?.name != null) _header(),
+              _header(),
               Expanded(
                 child: Padding(
                   padding:
