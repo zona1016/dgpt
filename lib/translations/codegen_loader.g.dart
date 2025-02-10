@@ -219,8 +219,8 @@ class CodegenLoader extends AssetLoader{
   "profile": {
     "place_enter_a_nickname": "Place enter a nickname",
     "total_assets_usdt": "My total assets (USDT)",
-    "computing_power_wallet": "Hashrate wallet",
-    "cash_wallet": "Cash wallet",
+    "computing_power_wallet": "Rental Account",
+    "cash_wallet": "Cash Account",
     "withdraw": "Withdraw",
     "my_orders": "My orders",
     "share": "Share",
@@ -274,7 +274,8 @@ class CodegenLoader extends AssetLoader{
     "aip_ai_description": "AIP-AI: Driving the future of LLM models. Your all-in-one AI assistant, helping seamlessly integrate intelligence and innovation."
   },
   "tip": {
-    "copy_success": "Copy success"
+    "copy_success": "Copy success",
+    "no_data": "No Data"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -440,7 +441,7 @@ static const Map<String,dynamic> zh_Hans = {
     "email_verification_code": "邮箱验证码",
     "continue_agree_terms": "继续即表示同意",
     "registration_successful": "注册成功！",
-    "update_notification ": "更新提示",
+    "update_notification": "更新提示",
     "system_prompt": "系统提示",
     "service_prompt": "服务提示",
     "system_announcement": "系统通告",
@@ -482,8 +483,8 @@ static const Map<String,dynamic> zh_Hans = {
   "profile": {
     "place_enter_a_nickname": "请输入昵称",
     "total_assets_usdt": "我的总资产(USDT)",
-    "computing_power_wallet": "算力钱包",
-    "cash_wallet": "现金钱包",
+    "computing_power_wallet": "租赁账户",
+    "cash_wallet": "现金账户",
     "withdraw": "提款",
     "my_orders": "我的订单",
     "share": "分享",
@@ -537,7 +538,8 @@ static const Map<String,dynamic> zh_Hans = {
     "aip_ai_description": "AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。"
   },
   "tip": {
-    "copy_success": "复制成功"
+    "copy_success": "复制成功",
+    "no_data": "暂无数据"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

@@ -18,7 +18,6 @@ class NoticeTabController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    print('-----------------');
     noticeUserNoticeList();
   }
 

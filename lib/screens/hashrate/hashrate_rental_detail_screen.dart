@@ -100,7 +100,7 @@ class HashrateRentalDetailScreen
                 ],
               ),
               Text(
-                'RTX4090',
+                controller.args!.hasratePageInfo?.name ?? '',
                 style: fontDMMedium.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,

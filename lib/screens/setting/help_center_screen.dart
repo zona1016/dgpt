@@ -1,7 +1,12 @@
 import 'package:dgpt/screens/setting/help_center_screen_controller.dart';
+import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
+import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:dgpt/widget/form/base_text_form_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,81 +16,100 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.white,
-      appBar: BaseAppBar(
+      backgroundColor: Colors.transparent,
+      backgroundImage: 'assets/images/home/help_center.png',
+      appBar: const BaseAppBar(
         title: '帮助中心',
         color: BaseColors.white,
-        backgroundColor: Colors.black,
-        flexibleSpace: FlexibleSpaceBar(
-          background: Container(color: Colors.black),
-        ),
+        backgroundColor: Colors.transparent,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: controller.formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '您好！非常抱歉，我们暂时无法为您提供服务。如果您需要帮助，请留下信息，我们将会尽快与您联系并提供解决方案！',
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: controller.phoneController,
-                  decoration: InputDecoration(
-                    labelText: '手机号',
-                    border: OutlineInputBorder(),
+      body: Column(
+        children: [
+          Expanded(
+              child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(defaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '给我们留言',
+                    style: fontDMBold.copyWith(
+                        color: BaseColors.white, fontSize: 32),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return '请输入手机号';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: controller.messageController,
-                  decoration: InputDecoration(
-                    labelText: '信息',
-                    border: OutlineInputBorder(),
+                  const SizedBox(
+                    height: defaultPadding,
                   ),
-                  maxLines: 3,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return '请输入信息';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20),
-                Text('图片上传'),
-                SizedBox(height: 10),
-                controller.image == null
-                    ? Text('您可上传图像不超过5MB的图片。')
-                    : Image.file(controller.image!, height: 100),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.onPickCoverImage(context: context);
-                  },
-                  child: Text('上传图片'),
-                ),
-                SizedBox(height: 20),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: controller.submitForm,
-                    child: Text('提交'),
+                  Image.asset(
+                    'assets/images/home/help_top.png',
+                    width: 250,
+                    height: 250,
                   ),
-                ),
-              ],
+                  Text(
+                    '您好！非常抱歉，我们暂时无法为您提供服务。如果您需要帮助，请留下信息，我们将会尽快与您联系并提供解决方案！',
+                    style: fontDMMedium.copyWith(
+                        color: BaseColors.white, fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  BaseTextFormField(
+                    name: 'phone',
+                    hintText: '手机号',
+                    fillColor: BaseColors.gray85,
+                    radius: 10,
+                    onChanged: (value) {},
+                  ),
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  BaseTextFormField(
+                    name: 'phone',
+                    hintText: '信息',
+                    fillColor: BaseColors.gray85,
+                    radius: 10,
+                    onChanged: (value) {},
+                  ),
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 150,
+                        color: BaseColors.gray85,
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 2,
+                      ),
+                      Expanded(
+                        child: Text(
+                          '您可上传图像不超过 5MB 的图片。',
+                          style: fontDMMedium.copyWith(
+                              color: BaseColors.white, fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ),
+          )),
+          _buildConfirm()
+        ],
       ),
+    );
+  }
+
+  _buildConfirm() {
+    return BaseButton(
+      onPressed: () {},
+      disabledDecoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(30)),
+      enabled: true,
+      text: tr('button.confirm'),
     );
   }
 }

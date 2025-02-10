@@ -203,8 +203,8 @@
   "profile": {
     "place_enter_a_nickname": "Place enter a nickname",
     "total_assets_usdt": "My total assets (USDT)",
-    "computing_power_wallet": "Hashrate wallet",
-    "cash_wallet": "Cash wallet",
+    "computing_power_wallet": "Rental Account",
+    "cash_wallet": "Cash Account",
     "withdraw": "Withdraw",
     "my_orders": "My orders",
     "share": "Share",
@@ -258,6 +258,7 @@
     "aip_ai_description": "AIP-AI: Driving the future of LLM models. Your all-in-one AI assistant, helping seamlessly integrate intelligence and innovation."
   },
   "tip": {
-    "copy_success": "Copy success"
+    "copy_success": "Copy success",
+    "no_data": "No Data"
   }
 }

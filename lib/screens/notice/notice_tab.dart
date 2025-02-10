@@ -3,6 +3,7 @@ import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
+import 'package:dgpt/widget/default_empty_view.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,77 +29,85 @@ class NoticeTab extends StatelessWidget {
       init: NoticeTabController(type: type),
       tag: shortHash(UniqueKey()),
       builder: (controller) {
-        return Obx(() => ListView.separated(
-              itemCount: controller.noticeInfoList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: defaultPadding, vertical: defaultPadding / 2),
-                  decoration: const BoxDecoration(
-                    color: BaseColors.black,
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        imagePath,
-                        width: 44,
-                        height: 44,
+        return controller.noticeInfoList.isNotEmpty
+            ? Obx(() => ListView.separated(
+                  itemCount: controller.noticeInfoList.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding,
+                          vertical: defaultPadding / 2),
+                      decoration: const BoxDecoration(
+                        color: BaseColors.black,
                       ),
-                      const SizedBox(
-                        width: defaultPadding / 2,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: defaultPadding / 2,
-                            ),
-                            Row(
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            imagePath,
+                            width: 44,
+                            height: 44,
+                          ),
+                          const SizedBox(
+                            width: defaultPadding / 2,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                const SizedBox(
+                                  height: defaultPadding / 2,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        controller
+                                                .noticeInfoList[index].title ??
+                                            '',
+                                        style: fontSFProMedium.copyWith(
+                                            color: BaseColors.white,
+                                            fontSize: 14),
+                                      ),
+                                    ),
+                                    Text(
+                                      '5小时',
+                                      style: fontSFProMedium.copyWith(
+                                          color: BaseColors.white,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
                                 Expanded(
                                   child: Text(
-                                    controller.noticeInfoList[index].title ??
-                                        '',
-                                    style: fontSFProMedium.copyWith(
-                                        color: BaseColors.white, fontSize: 14),
-                                  ),
-                                ),
-                                Text(
-                                  '5小时',
-                                  style: fontSFProMedium.copyWith(
-                                      color: BaseColors.white, fontSize: 14),
+                                      controller.noticeInfoList[index].title ??
+                                          '',
+                                      style: fontSFProMedium.copyWith(
+                                          color: BaseColors.white,
+                                          fontSize: 14),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Expanded(
-                              child: Text(
-                                  controller.noticeInfoList[index].title ?? '',
-                                  style: fontSFProMedium.copyWith(
-                                      color: BaseColors.white, fontSize: 14),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Container(
-                  height: 1,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: defaultPadding),
-                  color: BaseColors.weakTextColor,
-                );
-              },
-            ));
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Container(
+                      height: 1,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
+                      color: BaseColors.weakTextColor,
+                    );
+                  },
+                ))
+            : const DefaultEmptyView();
       },
     );
   }
