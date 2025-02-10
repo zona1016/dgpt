@@ -14,6 +14,7 @@ AiChatMessage _$AiChatMessageFromJson(Map<String, dynamic> json) =>
       json['text'] as String?,
       json['message'] as String?,
       json['datetime'] as String?,
+      json['animal'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$AiChatMessageToJson(AiChatMessage instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$AiChatMessageToJson(AiChatMessage instance) =>
       'text': instance.text,
       'message': instance.message,
       'datetime': instance.datetime,
+      'animal': instance.animal,
     };

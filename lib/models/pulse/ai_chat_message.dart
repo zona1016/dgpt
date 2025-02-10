@@ -23,9 +23,12 @@ class AiChatMessage extends Object {
   @JsonKey(name: 'datetime')
   String? datetime;
 
+  @JsonKey(defaultValue: false)
+  bool? animal;
+
   get isSelf => type == 1;
 
-  AiChatMessage(this.id,this.index,this.type,this.text,this.message,this.datetime,);
+  AiChatMessage(this.id,this.index,this.type,this.text,this.message,this.datetime,this.animal);
 
   factory AiChatMessage.fromJson(Map<String, dynamic> srcJson) => _$AiChatMessageFromJson(srcJson);
 

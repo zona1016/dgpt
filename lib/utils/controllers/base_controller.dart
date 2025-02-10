@@ -43,8 +43,8 @@ class BaseController<S> extends GetxController {
 
   Future<T?> fetchData<T>(
       {required Future<BaseResponse<T>> Function() request,
-        AppLoadingState loadingState = AppLoadingState.normal}) async {
-    updateState(UIState.loading, loadingState);
+        AppLoadingState loadingState = AppLoadingState.normal, UIState state = UIState.loading}) async {
+    updateState(state, loadingState);
     ongoingRequests++;
 
     try {

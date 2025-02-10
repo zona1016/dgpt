@@ -1,4 +1,5 @@
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
+import 'package:dgpt/screens/ai/widgets/animated_text.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -66,7 +67,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
               child: TextField(
                 controller: controller.textEditingController,
                 style: fontDMMedium.copyWith(
-                    color: BaseColors.white.withOpacity(0.5), fontSize: 16),
+                    color: BaseColors.white, fontSize: 16),
                 decoration: const InputDecoration(
                   hintText: 'How do I make an HTTP?',
                   hintStyle: TextStyle(color: Colors.grey),
@@ -92,32 +93,32 @@ class AiStartScreen extends GetView<AiStartScreenController> {
   }
 
   _messageListView() {
-
     return Obx(() => BaseSmartRefresher(
-      refreshController: controller.refreshController,
-      enableLoadMore: true,
-      uiState: controller.uiState.value,
-      isEmpty: controller.messageList.isEmpty,
-      onPullToRefresh: (loadingState) {
-        controller.aiPulseChatGptUserPage(loadingState: loadingState);
-      },
-      onLoadMore: (loadingState) {
-        controller.aiPulseChatGptUserPage(loadingState: loadingState);
-      },
-      childBuilder: (context, physics) {
-        return ListView.builder(
-          physics: physics,
-          padding: const EdgeInsets.all(defaultPadding),
-          controller: controller.scrollController,
-          itemCount: controller.messageList.length, // 消息数量
-          itemBuilder: (context, index) {
-            return controller.messageList[index].isSelf
-                ? _rightItem(index)
-                : _leftItm(index);
+          refreshController: controller.refreshController,
+          enableLoadMore: true,
+          uiState: controller.uiState.value,
+          isEmpty: controller.messageList.isEmpty,
+          onPullToRefresh: (loadingState) {
+            controller.aiPulseChatGptUserPage(loadingState: loadingState);
           },
-        );
-      },
-    ));
+          onLoadMore: (loadingState) {
+            controller.aiPulseChatGptUserPage(loadingState: loadingState);
+          },
+          childBuilder: (context, physics) {
+            return ListView.builder(
+              physics: physics,
+              padding: const EdgeInsets.all(defaultPadding),
+              controller: controller.scrollController,
+              itemCount: controller.messageList.length,
+              // 消息数量
+              itemBuilder: (context, index) {
+                return controller.messageList[index].isSelf
+                    ? _rightItem(index)
+                    : _leftItm(index);
+              },
+            );
+          },
+        ));
   }
 
   _empty() {
@@ -197,10 +198,14 @@ class AiStartScreen extends GetView<AiStartScreenController> {
               ),
               child: controller.messageList[index].id == 0
                   ? _buildAnimal()
-                  : Text(
-                      controller.messageList[index].message ?? '',
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                  : controller.messageList[index].animal!
+                      ? AnimatedText(
+                          text: controller.messageList[index].message ?? '',
+                          textStyle: const TextStyle(color: Colors.white))
+                      : Text(
+                          controller.messageList[index].message ?? '',
+                          style: const TextStyle(color: Colors.white),
+                        ),
             ),
           ),
         ),

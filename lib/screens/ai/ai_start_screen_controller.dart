@@ -81,18 +81,24 @@ class AiStartScreenController extends BaseController
     animationController.repeat();
     messageList.add(AiChatMessage(
         1, 0, 1, textEditingController.text, textEditingController.text,
-        'datetime'));
-    messageList.add(AiChatMessage(0, 0, 2, 'text', 'message', 'datetime'));
+        'datetime', false));
+    messageList.add(AiChatMessage(0, 0, 2, 'text', 'message', 'datetime', false));
     _scrollToBottom();
     final result = await fetchData(
-        loadingState: loadingState,
+        loadingState: AppLoadingState.backgroundWithoutError,
+        state: UIState.partialSuccess,
         request: () => aiPulseService.aiPulseChatGptSend(
             prompt: textEditingController.text));
+    textEditingController.text = '';
     if (result != null) {
+      for (var message in messageList) {
+        message.animal = false;
+      }
       messageList.removeWhere((message) => message.id == 0);
       messageList.addAll(result.map((message) {
-        return AiChatMessage(2, 0, 2, 'text', message.text, 'datetime');
+        return AiChatMessage(2, 0, 2, 'text', message.text, 'datetime', false);
       }));
+      messageList.last.animal = true;
       animationController.stop();
       _scrollToBottom();
     }
