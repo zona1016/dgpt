@@ -111,8 +111,6 @@ class HashrateRentalScreenController extends BaseController {
     if (count > 0) {
       formattedResult = (progress / (count * 1.0)).toStringAsFixed(4);
     }
-    print('bject-----------');
-    print(formattedResult);
     return double.parse(formattedResult);
   }
 

@@ -18,7 +18,7 @@ class SystemMessageScreen extends GetView<SystemMessageScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       appBar: BaseAppBar(
         title: tr('home.system_prompt'),
         color: BaseColors.white,
