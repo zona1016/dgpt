@@ -51,7 +51,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                               crossAxisCount: 2,
                               crossAxisSpacing: defaultPadding,
                               mainAxisSpacing: defaultPadding,
-                              childAspectRatio: 0.4,
+                              childAspectRatio: 0.42,
                             ),
                             itemCount: controller.hasratePageList.length,
                             // Number of items
@@ -152,20 +152,21 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
         Expanded(child: Container()),
         if (controller.powerInfo.value?.code != null)
           Container(
-          padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 5),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(defaultPadding),
-            border: Border.all(color: BaseColors.secondPrimaryColor, width: 1),
-            color: BaseColors.secondPrimaryColor.withOpacity(0.1),
-          ),
-          child: Text(
-            tr('hashrate.in_progress'),
-            style: fontDMRegular.copyWith(
-              color: BaseColors.secondPrimaryColor,
-              fontSize: 10,
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(defaultPadding),
+              border:
+                  Border.all(color: BaseColors.secondPrimaryColor, width: 1),
+              color: BaseColors.secondPrimaryColor.withOpacity(0.1),
+            ),
+            child: Text(
+              tr('hashrate.in_progress'),
+              style: fontDMRegular.copyWith(
+                color: BaseColors.secondPrimaryColor,
+                fontSize: 10,
+              ),
             ),
           ),
-        ),
       ],
     );
   }
@@ -248,7 +249,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       child: Stack(
         children: [
           AnimatedContainer(
-            width: (SizeUtil.width() - defaultPadding * 4) * controller.getProgress(),
+            width: (SizeUtil.width() - defaultPadding * 4) *
+                controller.getProgress(),
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -297,7 +299,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     );
   }
 
-  List<Widget> _buildConditionalRow1(String label, double conditionValue, double count) {
+  List<Widget> _buildConditionalRow1(
+      String label, double conditionValue, double count) {
     if (conditionValue > 0) {
       return [
         Row(
@@ -324,7 +327,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     return [];
   }
 
-  List<Widget> _buildConditionalRow(String label, int conditionValue, int count) {
+  List<Widget> _buildConditionalRow(
+      String label, int conditionValue, int count) {
     if (conditionValue > 0) {
       return [
         Row(
@@ -354,19 +358,26 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
   _rentalItem(int index) {
     HasratePageInfo hasratePageInfo = controller.hasratePageList[index];
     // Common text style
-    TextStyle whiteText14 = fontDMMedium.copyWith(color: BaseColors.white, fontSize: 14);
-    TextStyle whiteText10 = fontDMRegular.copyWith(color: BaseColors.white, fontSize: 10);
-    TextStyle whiteText18 = fontDMBold.copyWith(color: BaseColors.white, fontSize: 18);
-    TextStyle whiteText20 = fontDMBold.copyWith(color: BaseColors.white, fontSize: 20);
+    TextStyle whiteText14 =
+        fontDMMedium.copyWith(color: BaseColors.white, fontSize: 14);
+    TextStyle whiteText10 =
+        fontDMRegular.copyWith(color: BaseColors.white, fontSize: 10);
+    TextStyle whiteText18 =
+        fontDMBold.copyWith(color: BaseColors.white, fontSize: 18);
+    TextStyle whiteText20 =
+        fontDMBold.copyWith(color: BaseColors.white, fontSize: 20);
 
     // Helper method for creating a row with two texts
-    Widget _buildRow(String leftText, String rightText, TextStyle leftStyle, TextStyle rightStyle) {
+    Widget _buildRow(String leftText, String rightText, TextStyle leftStyle,
+        TextStyle rightStyle) {
       return Row(
         children: [
           Expanded(
+            flex: 2,
             child: Text(leftText, style: leftStyle),
           ),
           Expanded(
+            flex: 1,
             child: Text(rightText, style: rightStyle),
           ),
         ],
@@ -374,17 +385,15 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     }
 
     return Container(
-      padding: const EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       decoration: BoxDecoration(
           gradient: BaseColors.incomeLinearGradient,
-          border: Border.all(
-            color: BaseColors.primaryColor,
-            width: 1
-          ),
+          border: Border.all(color: BaseColors.primaryColor, width: 1),
           borderRadius: BorderRadius.circular(defaultPadding / 2)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: defaultPadding),
           Text(
             hasratePageInfo.name,
             style: whiteText18,
@@ -425,7 +434,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultPadding),
                 image: const DecorationImage(
-                    image: AssetImage('assets/images/home/income_power_btn_bg.png'))),
+                    image: AssetImage(
+                        'assets/images/home/income_power_btn_bg.png'))),
             child: Center(
               child: Text(
                 tr('hashrate.rental'),
@@ -433,14 +443,16 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               ),
             ),
           ),
-          _buildRow(tr('hashrate.contract_details'), '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.amount}', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_income'), '\$${hasratePageInfo.profitTotal}', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.daily_income'), '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.contract_details'),
+              '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.amount}',
+              whiteText10, whiteText10),
+          _buildRow(tr('hashrate.rental_income'),
+              '\$${hasratePageInfo.profitTotal}', whiteText10, whiteText10),
+          _buildRow(tr('hashrate.daily_income'),
+              '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
         ],
       ),
     );
   }
-
-
 }

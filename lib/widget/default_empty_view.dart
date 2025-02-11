@@ -19,7 +19,7 @@ class DefaultEmptyView extends StatelessWidget {
               widthFactor: 0.25, child: Image.asset(emptyImg ?? context.appTheme.emptyImg)),
           const SizedBox(height: 10),
           Text(
-            tr(emptyText ?? tr("general.no_data")),
+            tr(emptyText ?? tr("tip.no_data")),
             style: fontMedium.copyWith(fontSize: 12, color: BaseColors.gray),
           )
         ],

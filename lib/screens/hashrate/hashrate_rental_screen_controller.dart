@@ -5,6 +5,7 @@ import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class HashrateRentalScreenBindings implements Bindings {
   @override
@@ -28,6 +29,7 @@ class HashrateRentalScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    Get.context!.loaderOverlay.show();
     userHashrate();
   }
 
@@ -49,10 +51,11 @@ class HashrateRentalScreenController extends BaseController {
     aiPulseUserHashrateProgress();
     if (result != null) {
       powerInfo.value = result;
-
     }
   }
+
   aiPulseUserHashrateProgress() async {
+    Get.context!.loaderOverlay.hide();
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
         request: () => aiPulseService.aiPulseUserHashrateProgress());
