@@ -180,7 +180,7 @@ class DialogUtils {
                       Text(
                         title,
                         textAlign: TextAlign.center,
-                        style: fontDMBold.copyWith(
+                        style: fontDMMedium.copyWith(
                             fontSize: 18,
                             color: titleColor ?? BaseColors.white),
                       ),
