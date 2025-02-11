@@ -2,7 +2,6 @@ import 'package:dgpt/models/app_language.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/services/system_service.dart';
-import 'package:dgpt/services/user_service.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/constants/app_configurations.dart';
 import 'package:dgpt/utils/constants/storage_keys.dart';
@@ -43,8 +42,6 @@ void main() async {
   GetInstance().lazyPut<SystemService>(() => SystemServiceImpl(),
       fenix: false, permanent: true);
   GetInstance().lazyPut<AuthService>(() => AuthServiceImpl(),
-      fenix: false, permanent: true);
-  GetInstance().lazyPut<UserService>(() => UserServiceImpl(),
       fenix: false, permanent: true);
   GetInstance().lazyPut<AiPulseService>(() => AiPulseServiceImpl(),
       fenix: false, permanent: true);

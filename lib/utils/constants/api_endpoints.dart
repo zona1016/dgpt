@@ -3,7 +3,6 @@ class ApiEndpoints {
   static const String checkForceUpdate = "/api/v1/check-force-update";
 
   // auth
-  static const String getUserInfo = "/api/sysAuth/userInfo";
   static const String logout = "/api/sysAuth/logout";
   static const String resetPassword = "/api/sysUser/resetPwd";
   static const String changePwd = "/api/sysUser/changePwd";
@@ -27,6 +26,7 @@ class ApiEndpoints {
   static const String userResetTradingPwdSend = "/api/user/resetTradingPwdSend";
   static const String userResetTradingPwdSubmit = "/api/user/resetTradingPwdSubmit";
   static const String userUpdateInfo = "/api/user/userUpdateInfo";
+  static const String userInfo = "/api/user/userInfo";
 
   // aiPulse
   static const String aiPulseAddressPage = "/api/aiPulseAddress/page";

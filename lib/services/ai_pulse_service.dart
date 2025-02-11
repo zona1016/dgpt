@@ -4,7 +4,6 @@ import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
 import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/deposit.dart';
-import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/image_info.dart';
@@ -125,6 +124,7 @@ abstract class AiPulseService {
       String? avatar,
       String? verifyCodeId,
       String? verifyCode});
+  Future<BaseResponse<UserInfo?>> userInfo();
 
   Future<BaseResponse> aiPulseDepositDeposit();
 }
@@ -638,6 +638,18 @@ class AiPulseServiceImpl extends AiPulseService {
             if (verifyCodeId != null) "verifyCodeId": verifyCodeId,
             if (verifyCode != null) "verifyCode": verifyCode
           },
+          deserializer: (data) =>
+          data != null ? UserInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<UserInfo?>> userInfo() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userInfo,
+          bearerToken: userController.token,
           deserializer: (data) =>
           data != null ? UserInfo.fromJson(data) : null);
     } on Exception catch (_) {

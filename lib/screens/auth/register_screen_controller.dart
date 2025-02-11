@@ -1,6 +1,5 @@
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
-import 'package:dgpt/services/user_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
@@ -22,7 +21,6 @@ class RegisterScreenBindings implements Bindings {
 class RegisterScreenController extends BaseController {
   final AuthService authService = Get.find();
   final AiPulseService aiPulseService = Get.find();
-  final UserService userService = Get.find();
   final UserController userController = Get.find();
 
   final RxString error = "".obs;
@@ -41,12 +39,13 @@ class RegisterScreenController extends BaseController {
   void onInit() {
     super.onInit();
     if (kIsWeb) {
-      final uri = Uri.base;
-      String? inviteCodeResult = uri.queryParameters['inviteCode'];
+      String? inviteCodeResult = Get.parameters['inviteCode'];
       if (inviteCodeResult != null && inviteCodeResult.isNotEmpty) {
         inviteCodeCanEdit.value = false;
         inviteCode.value = inviteCodeResult;
       }
+      // 打印 inviteCode
+      debugPrint("Invite Code: $inviteCode");
     }
   }
 
@@ -124,7 +123,7 @@ class RegisterScreenController extends BaseController {
   getUserInfo(String token) async {
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => userService.getUserInfo(token));
+        request: () => aiPulseService.userInfo());
     if (result != null) {
       userController.setUserInfo(result);
       Get.back();

@@ -1,5 +1,5 @@
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
-import 'package:dgpt/services/user_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
@@ -21,7 +21,7 @@ class LoginScreenBindings implements Bindings {
 
 class LoginScreenController extends BaseController {
   final AuthService authService = Get.find();
-  final UserService userService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
   final UserController userController = Get.find();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
@@ -64,15 +64,15 @@ class LoginScreenController extends BaseController {
         barrierDismissible: false,
         showCircularProgressIndicator: true
       );
-      getUserInfo(result.accessToken);
       userController.saveUser(null, result.accessToken);
+      getUserInfo(result.accessToken);
     }
   }
 
   getUserInfo(String token) async {
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => userService.getUserInfo(token));
+        request: () => aiPulseService.userInfo());
     if (result != null) {
       userController.setUserInfo(result);
       Get.back();
