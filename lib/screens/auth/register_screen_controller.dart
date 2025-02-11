@@ -8,6 +8,7 @@ import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class RegisterScreenBindings implements Bindings {
@@ -34,10 +35,19 @@ class RegisterScreenController extends BaseController {
 
   RxInt seconds = 60.obs;
   RxBool isResendEnabled = true.obs;
+  RxBool inviteCodeCanEdit = true.obs;
 
   @override
   void onInit() {
     super.onInit();
+    if (kIsWeb) {
+      final uri = Uri.base;
+      String? inviteCodeResult = uri.queryParameters['inviteCode'];
+      if (inviteCodeResult != null && inviteCodeResult.isNotEmpty) {
+        inviteCodeCanEdit.value = false;
+        inviteCode.value = inviteCodeResult;
+      }
+    }
   }
 
   @override

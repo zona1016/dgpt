@@ -195,11 +195,13 @@ class RegisterScreen extends GetView<RegisterScreenController> {
               height: defaultPadding,
             ),
             BaseTextFormField(
+              enabled: controller.inviteCodeCanEdit.value,
               name: 'inviteCode',
               hintText: tr('home.enter_invitation_code'),
               style: fontDMRegular.copyWith(color: BaseColors.white),
               fillColor: BaseColors.gray85.withOpacity(0.5),
               radius: 10,
+              initialValue: controller.inviteCode.value,
               onChanged: (value) {
                 controller.inviteCode.value = value ?? '';
               },

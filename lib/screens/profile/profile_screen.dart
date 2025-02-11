@@ -473,7 +473,8 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   height: 157,
                   width: 157,
                   child: QrImageView(
-                    data: "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
+                    data:
+                        "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
                     version: QrVersions.auto,
                   ),
                 ),
@@ -504,8 +505,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                         Expanded(child: Container()),
                         GestureDetector(
                           onTap: () {
-                            Clipboard.setData(const ClipboardData(
-                                text: 'https://aipluse.com'));
+                            Clipboard.setData(ClipboardData(
+                                text:
+                                    "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
                             ToastUtils.showToast(title: tr('tip.copy_success'));
                           },
                           child: Image.asset(
@@ -526,10 +528,8 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                         const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        image: const DecorationImage(
-                            image: AssetImage(
-                                'assets/images/home/share_button.png'),
-                            fit: BoxFit.fitHeight)),
+                      gradient: BaseColors.baseButtonLinearGradient
+                    ),
                     child: Row(
                       children: [
                         Text(

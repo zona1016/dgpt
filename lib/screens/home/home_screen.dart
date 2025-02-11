@@ -55,7 +55,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: defaultPadding,
                   ),
                   // _carousel(context),
-                  Stack(// 让所有子组件居中
+                  Stack(
+                    // 让所有子组件居中
                     children: [
                       Image.asset(
                         'assets/images/home/header_bg.png',
@@ -238,7 +239,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                 context: context,
                 imagePath: 'assets/images/home/day_return.png',
                 title: tr('home.hourly_income'),
-                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
+                value:
+                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
                 onTap: () => onTap(0),
               )),
               Expanded(
@@ -246,7 +248,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                 context: context,
                 imagePath: 'assets/images/home/total_return.png',
                 title: tr('home.total_income'),
-                value: '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+                value:
+                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
                 onTap: () => onTap(1),
               )),
             ],
@@ -316,7 +319,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                   height: 157,
                   width: 157,
                   child: QrImageView(
-                    data: "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
+                    data:
+                        "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
                     version: QrVersions.auto,
                   ),
                 ),
@@ -347,8 +351,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                         Expanded(child: Container()),
                         GestureDetector(
                           onTap: () {
-                            Clipboard.setData(const ClipboardData(
-                                text: 'https://aipluse.com'));
+                            Clipboard.setData(ClipboardData(
+                                text:
+                                    "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
                             ToastUtils.showToast(title: tr('tip.copy_success'));
                           },
                           child: Image.asset(
@@ -369,10 +374,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        image: const DecorationImage(
-                            image: AssetImage(
-                                'assets/images/home/share_button.png'),
-                            fit: BoxFit.fitHeight)),
+                        gradient: BaseColors.baseButtonLinearGradient),
                     child: Row(
                       children: [
                         Text(

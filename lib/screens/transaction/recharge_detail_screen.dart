@@ -64,8 +64,8 @@ class RechargeDetailScreen extends GetView<RechargeDetailScreenController> {
                   Expanded(child: Container()),
                   GestureDetector(
                     onTap: () {
-                      Clipboard.setData(const ClipboardData(
-                          text: 'https://aipluse.com'));
+                      Clipboard.setData(ClipboardData(
+                          text: controller.url.value));
                       ToastUtils.showToast(title: tr('tip.copy_success'));
                     },
                     child: Image.asset(
