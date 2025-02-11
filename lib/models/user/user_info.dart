@@ -14,6 +14,8 @@ class UserInfo {
   final String? phone;
   @JsonKey(name: "idCardNum", defaultValue: '')
   final String? idCardNum;
+  @JsonKey(name: "inviteCode", defaultValue: '')
+  final String? inviteCode;
   @JsonKey(name: "email", defaultValue: '')
   final String? email;
   @JsonKey(name: "accountType", defaultValue: 0)
@@ -68,7 +70,8 @@ class UserInfo {
     this.tenantId,
     this.roleIds,
     this.phoneNation,
-    this.nickName
+    this.nickName,
+    this.inviteCode
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {

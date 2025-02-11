@@ -34,6 +34,7 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => UserInfo(
           [],
       phoneNation: (json['phoneNation'] as num?)?.toInt() ?? 0,
       nickName: json['nickName'] as String? ?? '',
+      inviteCode: json['inviteCode'] as String? ?? '',
     );
 
 Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
@@ -42,6 +43,7 @@ Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
       'realName': instance.realName,
       'phone': instance.phone,
       'idCardNum': instance.idCardNum,
+      'inviteCode': instance.inviteCode,
       'email': instance.email,
       'accountType': instance.accountType,
       'avatar': instance.avatar,

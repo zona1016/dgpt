@@ -473,7 +473,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   height: 157,
                   width: 157,
                   child: QrImageView(
-                    data: "https://aipluse.com", // 要编码的字符串数据
+                    data: "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
                     version: QrVersions.auto,
                   ),
                 ),
