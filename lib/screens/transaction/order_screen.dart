@@ -23,7 +23,7 @@ class OrderScreen extends GetView<OrderScreenController> {
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
         child: ListView.separated(
-          itemCount: 10,
+          itemCount: 0,
           itemBuilder: (_, index) {
             return const OrderItem();
           },

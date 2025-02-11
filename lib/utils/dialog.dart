@@ -207,15 +207,22 @@ class DialogUtils {
                           if (cancelText != null)
                             Expanded(
                                 flex: 3,
-                                child: GestureDetector(
-                                  onTap: () => Get.back(),
-                                  child: Text(
-                                    cancelText,
-                                    style: fontSFProRegular.copyWith(
-                                        fontSize: 14,
-                                        color: BaseColors.primaryColor),
+                                child: BaseButton(
+                                  customDecoration: BoxDecoration(
+                                      color: BaseColors.white.withOpacity(0.2),
+                                      borderRadius: comBorderRadius ??
+                                          BorderRadius.circular(30)),
+                                  height: 35,
+                                  style: fontDMMedium.copyWith(
+                                    color: BaseColors.weakTextColor
                                   ),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  text: cancelText,
                                 )),
+                          if (confirmText != null && cancelText != null)
+                            const SizedBox(width: 10),
                           if (confirmText != null)
                             Expanded(
                                 flex: 3,

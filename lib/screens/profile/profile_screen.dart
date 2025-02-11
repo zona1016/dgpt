@@ -480,7 +480,15 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                 ),
               ),
               const SizedBox(
-                height: defaultPadding,
+                height: defaultPadding / 2,
+              ),
+              Text(
+                '邀请码：${controller.userController.userInfo.inviteCode}',
+                style: fontDMMedium.copyWith(
+                    color: BaseColors.white, fontSize: 14),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

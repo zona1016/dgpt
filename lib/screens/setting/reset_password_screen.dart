@@ -102,7 +102,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordScreenController> {
         ),
         BaseTextFormField(
           name: 'password',
-          hintText: tr('home.enter_new_password'),
+          hintText: tr('profile.enter_new_password'),
           obscureText: true,
           style: fontDMRegular.copyWith(
               color: BaseColors.inputTextColor.withOpacity(0.25)),
@@ -117,7 +117,7 @@ class ResetPasswordScreen extends GetView<ResetPasswordScreenController> {
         ),
         BaseTextFormField(
           name: 'passwordAgain',
-          hintText: tr('home.reenter_new_password'),
+          hintText: tr('profile.reenter_new_password'),
           obscureText: true,
           style: fontDMRegular.copyWith(
               color: BaseColors.inputTextColor.withOpacity(0.25)),

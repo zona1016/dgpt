@@ -68,8 +68,8 @@ class AiStartScreen extends GetView<AiStartScreenController> {
                 controller: controller.textEditingController,
                 style: fontDMMedium.copyWith(
                     color: BaseColors.white, fontSize: 16),
-                decoration: const InputDecoration(
-                  hintText: 'How do I make an HTTP?',
+                decoration: InputDecoration(
+                  hintText: tr('ai.how_do_I_make_an_HTTP'),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
@@ -185,7 +185,6 @@ class AiStartScreen extends GetView<AiStartScreenController> {
               constraints: BoxConstraints(
                 minWidth: SizeUtil.width() / 3 * 2,
                 maxWidth: SizeUtil.width() / 3 * 2,
-                minHeight: 100,
               ),
               decoration: BoxDecoration(
                 color: BaseColors.white.withOpacity(0.2),

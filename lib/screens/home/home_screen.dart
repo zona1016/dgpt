@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
+import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DefaultNavigationHeader(
-                    defaultLeftTitle: 'Welcome To AI PULSE',
+                    defaultLeftTitle: tr('home.welcome_to_AI_PULSE'),
                     rightImages: const [
                       'assets/images/home/flag.png',
                       'assets/images/home/service.png',
@@ -55,27 +56,35 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: defaultPadding,
                   ),
                   // _carousel(context),
-                  Stack(
-                    // 让所有子组件居中
-                    children: [
-                      Image.asset(
-                        'assets/images/home/header_bg.png',
-                        fit: BoxFit.contain, // 图片自适应大小
-                      ),
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: defaultPadding,
-                        child: Text(
-                          tr('home.not_activated'),
-                          style: fontDMBold.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 16,
-                          ),
-                          textAlign: TextAlign.center,
+                  GestureDetector(
+                    onTap: () {
+                      final MainScreenController mainController = Get.find();
+                      mainController.selectedTabIndex(1);
+                      mainController.pageController.jumpToPage(1);
+                      mainController.update();
+                    },
+                    child: Stack(
+                      // 让所有子组件居中
+                      children: [
+                        Image.asset(
+                          'assets/images/home/header_bg.png',
+                          fit: BoxFit.contain, // 图片自适应大小
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: defaultPadding,
+                          child: Text(
+                            tr('home.not_activated'),
+                            style: fontDMBold.copyWith(
+                              color: BaseColors.white,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: defaultPadding,
@@ -326,7 +335,15 @@ class HomeScreen extends GetView<HomeScreenController> {
                 ),
               ),
               const SizedBox(
-                height: defaultPadding,
+                height: defaultPadding / 2,
+              ),
+              Text(
+                '邀请码：${controller.userController.userInfo.inviteCode}',
+                style: fontDMMedium.copyWith(
+                    color: BaseColors.white, fontSize: 14),
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

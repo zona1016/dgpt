@@ -50,7 +50,7 @@ class AssetsTab extends StatelessWidget {
                 injector ?? const SliverToBoxAdapter(),
                 const HeaderLocator.sliver(clearExtent: false),
                 SliverList.separated(
-                  itemCount: 2,
+                  itemCount: 0,
                   itemBuilder: (context, index) {
                     return Container(
                       height: 50,

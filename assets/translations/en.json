@@ -122,6 +122,7 @@
     "complete_now": "Complete Now"
   },
   "home": {
+    "welcome_to_AI_PULSE": "Welcome To AI PULSE",
     "notice": "Notice",
     "invite": "Invite",
     "teaching": "Teaching",
@@ -254,6 +255,7 @@
     "payment_method": "Payment method"
   },
   "ai": {
+    "how_do_I_make_an_HTTP": "How do I make an HTTP?",
     "ask_any_question": "Feel free to ask any question!",
     "welcome_to_use": "Welcome to use",
     "aip_ai_description": "AIP-AI: Driving the future of LLM models. Your all-in-one AI assistant, helping seamlessly integrate intelligence and innovation."

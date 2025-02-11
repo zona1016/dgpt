@@ -46,19 +46,19 @@ class HashrateRentalScreenController extends BaseController {
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
         request: () => aiPulseService.userHashrate());
+    aiPulseUserHashrateProgress();
     if (result != null) {
       powerInfo.value = result;
-      aiPulseUserHashrateProgress();
+
     }
   }
-
   aiPulseUserHashrateProgress() async {
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
         request: () => aiPulseService.aiPulseUserHashrateProgress());
+    hashratePage();
     if (result != null) {
       progressInfo.value = result;
-      hashratePage();
     }
   }
 

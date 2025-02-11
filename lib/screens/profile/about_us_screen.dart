@@ -86,6 +86,7 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
                   const Spacer(),
                   Text(
                     key,
+                    style: fontDMMedium.copyWith(),
                     textAlign: TextAlign.center,
                   ),
                   const Spacer(),

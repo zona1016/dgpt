@@ -138,6 +138,7 @@ class CodegenLoader extends AssetLoader{
     "complete_now": "Complete Now"
   },
   "home": {
+    "welcome_to_AI_PULSE": "Welcome To AI PULSE",
     "notice": "Notice",
     "invite": "Invite",
     "teaching": "Teaching",
@@ -270,6 +271,7 @@ class CodegenLoader extends AssetLoader{
     "payment_method": "Payment method"
   },
   "ai": {
+    "how_do_I_make_an_HTTP": "How do I make an HTTP?",
     "ask_any_question": "Feel free to ask any question!",
     "welcome_to_use": "Welcome to use",
     "aip_ai_description": "AIP-AI: Driving the future of LLM models. Your all-in-one AI assistant, helping seamlessly integrate intelligence and innovation."
@@ -403,6 +405,7 @@ static const Map<String,dynamic> zh_Hans = {
     "complete_now": "立即完成"
   },
   "home": {
+    "welcome_to_AI_PULSE": "欢迎来到AI PULSE",
     "notice": "通告",
     "invite": "邀请",
     "teaching": "教学",
@@ -535,6 +538,7 @@ static const Map<String,dynamic> zh_Hans = {
     "payment_method": "支付方式"
   },
   "ai": {
+    "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",
     "ask_any_question": "请尽管发问任何问题！",
     "welcome_to_use": "欢迎使用",
     "aip_ai_description": "AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。"
