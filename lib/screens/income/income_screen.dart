@@ -94,22 +94,29 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                 tr('hashrate.computing_power_rental'),
                                 controller.amountTotalInfo.value
                                         ?.directAwardAmountTotal ??
-                                    0),
+                                    0, onTap: () {
+                              Get.toNamed(AppRoutes.hashrateLeasing);
+                            }),
                             _buildIncomeCard(
                                 tr('hashrate.team_computing_power_bonus'),
                                 controller.amountTotalInfo.value
                                         ?.teamAwardAmountTotal ??
-                                    0),
+                                    0, onTap: () {
+                              Get.toNamed(AppRoutes.teamHashrateAwardn);
+                            }),
                             _buildIncomeCard(
                                 tr('hashrate.invitation_bonus'),
                                 controller.amountTotalInfo.value
                                         ?.planAmountTotal ??
-                                    0),
+                                    0, onTap: () {
+                              Get.toNamed(AppRoutes.invitationAward);
+                            }),
                             _buildIncomeCard(
                                 tr('hashrate.salary'),
                                 controller.amountTotalInfo.value
                                         ?.roiAmountTotal ??
-                                    0),
+                                    0,
+                                onTap: () {}),
                           ],
                         ),
                       ],
@@ -122,46 +129,50 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     );
   }
 
-  Widget _buildIncomeCard(String title, double amount) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-      decoration: BoxDecoration(
-        color: Colors.deepPurple,
-        borderRadius: BorderRadius.circular(defaultPadding),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Spacer(),
-          Row(
-            children: [
-              Image.asset(
-                'assets/images/home/day_return.png',
-                width: 25,
-                height: 25,
-              ),
-              const SizedBox(
-                width: defaultPadding / 2,
-              ),
-              Expanded(
-                child: Text(
-                  title,
-                  style: fontDMMedium.copyWith(
-                      color: BaseColors.weakTextColor, fontSize: 15),
+  Widget _buildIncomeCard(String title, double amount,
+      {GestureTapCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        decoration: BoxDecoration(
+          color: Colors.deepPurple,
+          borderRadius: BorderRadius.circular(defaultPadding),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Spacer(),
+            Row(
+              children: [
+                Image.asset(
+                  'assets/images/home/day_return.png',
+                  width: 25,
+                  height: 25,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: defaultPadding / 2,
-          ),
-          Text(
-            '\$${NumberFormat('#,##0.00').format(amount)}',
-            style: fontDMBold.copyWith(
-                color: BaseColors.primaryColor, fontSize: 18),
-          ),
-          const Spacer(),
-        ],
+                const SizedBox(
+                  width: defaultPadding / 2,
+                ),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: fontDMMedium.copyWith(
+                        color: BaseColors.weakTextColor, fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: defaultPadding / 2,
+            ),
+            Text(
+              '\$${NumberFormat('#,##0.00').format(amount)}',
+              style: fontDMBold.copyWith(
+                  color: BaseColors.primaryColor, fontSize: 18),
+            ),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
