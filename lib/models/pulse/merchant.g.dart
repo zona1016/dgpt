@@ -9,7 +9,7 @@ part of 'merchant.dart';
 Merchant _$MerchantFromJson(Map<String, dynamic> json) => Merchant(
       (json['id'] as num?)?.toInt(),
       json['name'] as String?,
-      json['currency'] as String?,
+      json['currency'] as String? ?? '',
       json['address'] as String?,
       (json['minAmount'] as num?)?.toInt(),
       (json['maxAmount'] as num?)?.toInt(),

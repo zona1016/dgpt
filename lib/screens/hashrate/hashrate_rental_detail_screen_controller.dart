@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/hashrate_page_detail.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
@@ -19,13 +20,14 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
   final AiPulseService aiPulseService = Get.find();
 
   RxString dd = 'dd'.obs;
-  Rxn<HashratePageDetail> hashratePageDetail = Rxn<HashratePageDetail>();
+  Rxn<PlanDetail> planDetail = Rxn<PlanDetail>();
 
   RxInt total = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
+    aiPulsePlanDetail();
   }
 
   @override
@@ -39,12 +41,12 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
     super.onReady();
   }
 
-  userHashrate() async {
+  aiPulsePlanDetail() async {
     final result = await fetchData(
         loadingState: AppLoadingState.background,
-        request: () => aiPulseService.hashratePageDetail(id: args!.hasratePageInfo!.id.toString()));
+        request: () => aiPulseService.aiPulsePlanDetail(id: args!.hasratePageInfo!.id.toString()));
     if (result != null) {
-      hashratePageDetail.value = result;
+      planDetail.value = result;
     }
   }
 

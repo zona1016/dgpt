@@ -9,6 +9,7 @@ import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
@@ -31,7 +32,7 @@ abstract class AiPulseService {
 
   Future<BaseResponse<HasrateProgressInfo?>> aiPulseUserHashrateProgress();
 
-  Future<BaseResponse<HashratePageDetail?>> hashratePageDetail(
+  Future<BaseResponse<PlanDetail?>> aiPulsePlanDetail(
       {required String id});
 
   Future<BaseResponse<PaginationResponse<HasratePageInfo>?>> hashratePage(
@@ -192,15 +193,14 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<HashratePageDetail?>> hashratePageDetail(
+  Future<BaseResponse<PlanDetail?>> aiPulsePlanDetail(
       {required String id}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseHashrateDetail,
-          method: HttpMethod.get,
+      return await _apiClient.request(ApiEndpoints.aiPulsePlanDetail,
           bearerToken: userController.token,
           data: {'id': id},
           deserializer: (data) =>
-              data != null ? HashratePageDetail.fromJson(data) : null);
+              data != null ? PlanDetail.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

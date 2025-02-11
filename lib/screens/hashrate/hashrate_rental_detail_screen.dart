@@ -35,8 +35,7 @@ class HashrateRentalDetailScreen
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultPadding),
                 border: Border.all(color: BaseColors.primaryColor, width: 1),
-              gradient: BaseColors.incomeLinearGradient
-            ),
+                gradient: BaseColors.incomeLinearGradient),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +72,7 @@ class HashrateRentalDetailScreen
               Row(
                 children: [
                   Text(
-                    controller.args!.hasratePageInfo?.name ?? '',
+                    controller.planDetail.value?.name ?? '',
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
                       fontSize: 15,
@@ -91,7 +90,7 @@ class HashrateRentalDetailScreen
                             color: BaseColors.secondPrimaryColor, width: 1),
                         color: BaseColors.secondPrimaryColor.withOpacity(0.1)),
                     child: Text(
-                      'HIGH SPEED',
+                      controller.planDetail.value?.pcieName ?? '',
                       style: fontDMBold.copyWith(
                         color: BaseColors.secondPrimaryColor,
                         fontSize: 12,
@@ -101,21 +100,21 @@ class HashrateRentalDetailScreen
                 ],
               ),
               Text(
-                controller.args!.hasratePageInfo?.name ?? '',
+                controller.planDetail.value?.name ?? '',
                 style: fontDMMedium.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,
                 ),
               ),
               Text(
-                '4062 Mbps',
+                '${controller.planDetail.value?.upSpeed ?? ''} Mbps',
                 style: fontDMRegular.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,
                 ),
               ),
               Text(
-                '4610 Mbps 99 ports',
+                '${controller.planDetail.value?.downSpeed ?? ''} Mbps ${controller.planDetail.value?.ports ?? ''} ports',
                 style: fontDMRegular.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,
@@ -128,7 +127,7 @@ class HashrateRentalDetailScreen
               Row(
                 children: [
                   Text(
-                    '81.4 FLOPS\n24GB',
+                    '${controller.planDetail.value?.ops ?? ''} FLOPS\n${controller.planDetail.value?.ram ?? ''} GB',
                     style: fontDMRegular.copyWith(
                       color: BaseColors.white,
                       fontSize: 12,
@@ -138,7 +137,7 @@ class HashrateRentalDetailScreen
                     width: defaultPadding / 5,
                   ),
                   Text(
-                    'Max CUDA : 12.4\n876.5 GB/s',
+                    'Max CUDA : ${controller.planDetail.value?.maxCuda ?? ''}\n${controller.planDetail.value?.speed ?? ''} GB/s',
                     style: fontDMRegular.copyWith(
                       color: BaseColors.white,
                       fontSize: 12,
@@ -245,31 +244,26 @@ class HashrateRentalDetailScreen
                   const SizedBox(
                     width: defaultPadding / 2,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'AMD EPYC 7702 ',
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 14,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.planDetail.value?.graphicsName ?? '',
+                          style: fontDMBold.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '64-Core Processor ',
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                      Text(
-                        '21.3/256 cpu    43/516 GB',
-                        style: fontDMRegular.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 10,
-                        ),
-                      )
-                    ],
+                        Text(
+                          '${controller.planDetail.value?.graphicsCpu ?? ''}cpu    ${controller.planDetail.value?.graphicsRam ?? ''} GB',
+                          style: fontDMRegular.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 10,
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -317,21 +311,14 @@ class HashrateRentalDetailScreen
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Corsair MP600',
+                          controller.planDetail.value?.virtualName ?? '',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          'PRO XT',
-                          style: fontDMBold.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                        Text(
-                          '2897MB/s 421.5GB',
+                          controller.planDetail.value?.virtualDesc ?? '',
                           style: fontDMRegular.copyWith(
                             color: BaseColors.white,
                             fontSize: 10,
@@ -350,18 +337,20 @@ class HashrateRentalDetailScreen
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'ROME2D32GM-2T ',
+                          controller.planDetail.value?.servicesName ?? '',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 14,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                         Text(
-                          'PCIE 4.0,8x 123GB/s',
+                          controller.planDetail.value?.servicesDesc ?? '',
                           style: fontDMRegular.copyWith(
                             color: BaseColors.white,
                             fontSize: 10,
                           ),
+                          textAlign: TextAlign.center,
                         )
                       ],
                     ),
@@ -450,7 +439,10 @@ class HashrateRentalDetailScreen
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (controller.total.value < (controller.args!.hasratePageInfo?.purchaseLimitQuantity ?? 0)) {
+                    if (controller.total.value <
+                        (controller
+                                .args!.hasratePageInfo?.purchaseLimitQuantity ??
+                            0)) {
                       controller.total.value = controller.total.value + 1;
                     }
                   },
