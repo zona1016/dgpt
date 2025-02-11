@@ -377,6 +377,10 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
           gradient: BaseColors.incomeLinearGradient,
+          border: Border.all(
+            color: BaseColors.primaryColor,
+            width: 1
+          ),
           borderRadius: BorderRadius.circular(defaultPadding / 2)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

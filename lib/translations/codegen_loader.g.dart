@@ -215,7 +215,8 @@ class CodegenLoader extends AssetLoader{
     "team_computing_power_bonus": "Team Hashrate bonus",
     "invitation_bonus": "Invitation bonus",
     "salary": "Salary",
-    "team_data": "Team data"
+    "team_data": "Team data",
+    "price_per_unit": "Price per unit"
   },
   "profile": {
     "place_enter_a_nickname": "Place enter a nickname",
@@ -482,7 +483,8 @@ static const Map<String,dynamic> zh_Hans = {
     "team_computing_power_bonus": "团队算力奖",
     "invitation_bonus": "邀请奖",
     "salary": "薪资",
-    "team_data": "团队数据"
+    "team_data": "团队数据",
+    "price_per_unit": "每个单位价格"
   },
   "profile": {
     "place_enter_a_nickname": "请输入昵称",

@@ -26,7 +26,7 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.baseBackgroundImage,
+      backgroundImage: BaseColors.customBackgroundImage,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: CustomScrollView(

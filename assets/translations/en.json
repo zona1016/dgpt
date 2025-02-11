@@ -199,7 +199,8 @@
     "team_computing_power_bonus": "Team Hashrate bonus",
     "invitation_bonus": "Invitation bonus",
     "salary": "Salary",
-    "team_data": "Team data"
+    "team_data": "Team data",
+    "price_per_unit": "Price per unit"
   },
   "profile": {
     "place_enter_a_nickname": "Place enter a nickname",

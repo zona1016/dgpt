@@ -43,7 +43,7 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
 
   aiPulsePlanDetail() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.background,
+        loadingState: AppLoadingState.normal,
         request: () => aiPulseService.aiPulsePlanDetail(id: args!.hasratePageInfo!.id.toString()));
     if (result != null) {
       planDetail.value = result;

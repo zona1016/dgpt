@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:dgpt/utils/extensions/context_extension.dart';
 
 class ProfileScreen extends GetView<ProfileScreenController> {
   const ProfileScreen({super.key});
@@ -22,7 +21,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.baseBackgroundImage,
+      backgroundImage: 'assets/images/custom/profile_bg.png',
       appBar: _appBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

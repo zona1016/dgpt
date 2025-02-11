@@ -25,7 +25,7 @@ class HashrateRentalDetailScreen
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.baseBackgroundImage,
+      backgroundImage: BaseColors.incomeBackgroundImage,
       appBar: BaseAppBar(
         title: tr('hashrate.product_details'),
         color: BaseColors.white,
@@ -40,7 +40,8 @@ class HashrateRentalDetailScreen
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(defaultPadding),
                     border: Border.all(color: BaseColors.primaryColor, width: 1),
-                    gradient: BaseColors.incomeLinearGradient),
+                  color: Colors.transparent
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -382,24 +383,33 @@ class HashrateRentalDetailScreen
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
                 children: [
-                  const Spacer(),
-                  Image.asset(
-                    'assets/images/home/income_qb.png',
-                    width: 25,
-                    height: 25,
-                  ),
-                  const SizedBox(
-                    width: defaultPadding / 2,
-                  ),
                   Text(
-                    '${controller.args!.hasratePageInfo?.amount ?? 0} \$',
-                    style: fontDMBold.copyWith(
-                        color: BaseColors.white, fontSize: 20),
+                    tr('hashrate.price_per_unit'),
+                    style: fontDMRegular.copyWith(
+                        color: BaseColors.white, fontSize: 12),
                   ),
-                  const Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      Image.asset(
+                        'assets/images/home/income_qb.png',
+                        width: 25,
+                        height: 25,
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 2,
+                      ),
+                      Text(
+                        '${controller.args!.hasratePageInfo?.amount ?? 0} \$',
+                        style: fontDMBold.copyWith(
+                            color: BaseColors.white, fontSize: 20),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ],
               ),
             ),

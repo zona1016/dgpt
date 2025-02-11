@@ -199,7 +199,8 @@
     "team_computing_power_bonus": "团队算力奖",
     "invitation_bonus": "邀请奖",
     "salary": "薪资",
-    "team_data": "团队数据"
+    "team_data": "团队数据",
+    "price_per_unit": "每个单位价格"
   },
   "profile": {
     "place_enter_a_nickname": "请输入昵称",
