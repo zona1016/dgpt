@@ -4,6 +4,7 @@ import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
@@ -247,7 +248,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       child: Stack(
         children: [
           AnimatedContainer(
-            width: (Get.size.width - defaultPadding * 4) * controller.getProgress(),
+            width: (SizeUtil.width() - defaultPadding * 4) * controller.getProgress(),
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
               gradient: const LinearGradient(

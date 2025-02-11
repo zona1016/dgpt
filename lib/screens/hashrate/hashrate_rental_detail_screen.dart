@@ -1,6 +1,7 @@
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -24,31 +25,37 @@ class HashrateRentalDetailScreen
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.incomeBackgroundImage,
+      backgroundImage: BaseColors.baseBackgroundImage,
       appBar: BaseAppBar(
         title: tr('hashrate.product_details'),
         color: BaseColors.white,
       ),
-      body: Obx(() => Container(
-            margin: const EdgeInsets.all(defaultPadding),
-            padding: const EdgeInsets.all(defaultPadding),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(defaultPadding),
-                border: Border.all(color: BaseColors.primaryColor, width: 1),
-                gradient: BaseColors.incomeLinearGradient),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildHeader(),
-                  const SizedBox(
-                    height: defaultPadding / 2,
-                  ),
-                  _buildHardwareInfo(),
-                ],
-              ),
-            ),
-          )),
+      body: Obx(() => Padding(
+        padding: const EdgeInsets.all(defaultPadding),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(defaultPadding),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(defaultPadding),
+                    border: Border.all(color: BaseColors.primaryColor, width: 1),
+                    gradient: BaseColors.incomeLinearGradient),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildHeader(),
+                    const SizedBox(
+                      height: defaultPadding / 2,
+                    ),
+                    _buildHardwareInfo(),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      )),
     );
   }
 
@@ -176,7 +183,7 @@ class HashrateRentalDetailScreen
               child: Stack(
                 children: [
                   AnimatedContainer(
-                    width: (Get.size.width - defaultPadding * 4) * .2,
+                    width: (SizeUtil.width() - defaultPadding * 4) * .2,
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(

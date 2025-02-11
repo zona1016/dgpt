@@ -1,6 +1,7 @@
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
 import 'package:dgpt/screens/ai/widgets/animated_text.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -175,15 +176,15 @@ class AiStartScreen extends GetView<AiStartScreenController> {
     return Stack(
       children: [
         SizedBox(
-          width: Get.width / 3 * 2,
+          width: SizeUtil.width() / 3 * 2,
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
               padding: const EdgeInsets.all(defaultPadding / 2),
               margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
               constraints: BoxConstraints(
-                minWidth: Get.width / 3 * 2,
-                maxWidth: Get.width / 3 * 2,
+                minWidth: SizeUtil.width() / 3 * 2,
+                maxWidth: SizeUtil.width() / 3 * 2,
                 minHeight: 100,
               ),
               decoration: BoxDecoration(
@@ -211,7 +212,7 @@ class AiStartScreen extends GetView<AiStartScreenController> {
         if (index != 1)
           Positioned(
             bottom: defaultPadding,
-            right: Get.width - Get.width / 3 * 2 - defaultPadding * 2 - 48,
+            right: SizeUtil.width() - SizeUtil.width() / 3 * 2 - defaultPadding * 2 - 48,
             child: Image.asset(
               'assets/images/custom/ai_message_logo.png',
               height: 44,
@@ -252,14 +253,14 @@ class AiStartScreen extends GetView<AiStartScreenController> {
 
   _rightItem(index) {
     return SizedBox(
-      width: Get.width / 3 * 2,
+      width: SizeUtil.width() / 3 * 2,
       child: Align(
         alignment: Alignment.centerRight,
         child: Container(
           padding: const EdgeInsets.all(defaultPadding / 2),
           margin: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
           constraints: BoxConstraints(
-            maxWidth: Get.width / 3 * 2,
+            maxWidth: SizeUtil.width() / 3 * 2,
           ),
           decoration: BoxDecoration(
             gradient: BaseColors.aiMyLinearGradient,

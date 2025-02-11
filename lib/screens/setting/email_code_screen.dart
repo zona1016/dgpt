@@ -1,6 +1,7 @@
 import 'package:dgpt/screens/setting/email_code_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -166,7 +167,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(12),
         fieldHeight: 56,
-        fieldWidth: (Get.width - defaultPadding * 5) / 6,
+        fieldWidth: (SizeUtil.width() - defaultPadding * 5) / 6,
         activeColor: BaseColors.gray85.withOpacity(0.2),
         inactiveColor: BaseColors.gray85.withOpacity(0.2),
         selectedColor: BaseColors.purpleGlowColor.withOpacity(0.6),

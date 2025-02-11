@@ -2,6 +2,7 @@ import 'package:dgpt/utils/api/api_exception.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_button.dart';
@@ -34,7 +35,7 @@ class DialogUtils {
           surfaceTintColor: context.appTheme.lightPrimaryColor,
           contentPadding: const EdgeInsets.all(28),
           content: SizedBox(
-            width: Get.width * 0.6,
+            width: SizeUtil.width() * 0.6,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -154,7 +155,7 @@ class DialogUtils {
                 decoration: BoxDecoration(
                     gradient: gradient ?? BaseColors.appBarLinearGradient,
                     borderRadius: BorderRadius.circular(10)),
-                width: Get.width * 0.6,
+                width: SizeUtil.width() * 0.6,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -501,7 +502,7 @@ class DialogUtils {
                 if (image != null)
                   Image.asset(
                     image,
-                    width: Get.width * 0.7,
+                    width: SizeUtil.width() * 0.7,
                   ),
                 Container(
                   decoration: BoxDecoration(
@@ -509,7 +510,7 @@ class DialogUtils {
                           ? DecorationImage(
                               image: AssetImage(bgImage), fit: BoxFit.cover)
                           : null),
-                  width: Get.width * 0.7,
+                  width: SizeUtil.width() * 0.7,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

@@ -5,10 +5,12 @@ import 'package:dgpt/screens/income/income_screen.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/profile/profile_screen.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,10 +56,10 @@ class MainScreen extends GetView<MainScreenController> {
               Positioned(
                 top: -20,
                 left: controller.selectedTabIndex.value *
-                    ((MediaQuery.of(context).size.width) / 5.0),
+                    (SizeUtil.width() / 5.0),
                 child: CustomPaint(
-                  size: Size(((MediaQuery.of(context).size.width) / 5.0),
-                      ((MediaQuery.of(context).size.width) / 5.0)), // 弧形大小
+                  size: Size((SizeUtil.width() / 5.0),
+                      (SizeUtil.width() / 5.0 - (kIsWeb ? 10 : 0))), // 弧形大小
                   painter: GradientBorderWithBlackFillPainter(),
                 ),
               ),
@@ -130,7 +132,7 @@ class MainScreen extends GetView<MainScreenController> {
       label: '',
       icon: SizedBox(
         height: 100,
-        width: Get.width / 5.0,
+        width: SizeUtil.width() / 5.0,
         child: Column(
           children: [
             const Spacer(),
@@ -153,7 +155,7 @@ class MainScreen extends GetView<MainScreenController> {
       activeIcon: Container(
         margin: const EdgeInsets.only(bottom: 36),
         height: 64,
-        width: Get.width / 5.0,
+        width: SizeUtil.width() / 5.0,
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/tab/tab_seleted_bg.png')),
