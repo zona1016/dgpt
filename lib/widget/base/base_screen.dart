@@ -56,7 +56,7 @@ class BaseScreen extends StatelessWidget {
                           DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(backgroundImage!),
-                              alignment: Alignment.center),
+                              alignment: Alignment.center,),
                     )
                   : null,
           child: Scaffold(

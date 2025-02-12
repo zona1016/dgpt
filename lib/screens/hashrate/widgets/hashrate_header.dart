@@ -68,7 +68,7 @@ class HashrateHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          powerInfo?.name ?? '',
+          powerInfo?.name ?? '无算力',
           style: fontDMBold.copyWith(
             color: BaseColors.white,
             fontSize: 16,
@@ -280,6 +280,11 @@ class HashrateHeader extends StatelessWidget {
   }
 
   double getProgress() {
+
+    if (powerInfo == null) {
+      return 0;
+    }
+
     double progress = 0;
     double count = 0;
     if (progressInfo?.next?.conditionDto != null) {

@@ -121,12 +121,16 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       return Row(
         children: [
           Expanded(
-            flex: 2,
-            child: Text(leftText, style: leftStyle),
+            flex: 5,
+            child: Text(leftText, style: leftStyle, textAlign: TextAlign.left),
           ),
           Expanded(
-            flex: 1,
-            child: Text(rightText, style: rightStyle),
+            flex: 3,
+            child: Text(
+              rightText,
+              style: rightStyle,
+              textAlign: TextAlign.right,
+            ),
           ),
         ],
       );
@@ -152,14 +156,14 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           ),
           const SizedBox(height: defaultPadding),
           Center(
-            child: BaseNetworkImage(
-              imageURL: hasratePageInfo.logoFileIdUrl,
-              placeholder: 'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
-              height: 106,
-              width: 100,
-              fit: BoxFit.cover,
-            )
-          ),
+              child: BaseNetworkImage(
+            imageURL: hasratePageInfo.logoFileIdUrl,
+            placeholder:
+                'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
+            height: 106,
+            width: 100,
+            fit: BoxFit.cover,
+          )),
           const SizedBox(height: defaultPadding),
           Text(
             tr('hashrate.rent_to_earn'),
@@ -196,8 +200,11 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
           _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.amount}',
               whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_income'),
-              '\$${hasratePageInfo.profitTotal}', whiteText10, whiteText10),
+          _buildRow(
+              tr('hashrate.rental_income'),
+              '\$${NumberFormat('#0').format(hasratePageInfo.profitTotal)}(${NumberFormat('#0').format((hasratePageInfo.profitTotal - hasratePageInfo.amount) / hasratePageInfo.amount * 100)}%)',
+              whiteText10,
+              whiteText10),
           _buildRow(tr('hashrate.daily_income'),
               '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
         ],

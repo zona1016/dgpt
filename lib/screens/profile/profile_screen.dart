@@ -242,23 +242,23 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                 ],
               )),
         ),
-        const SizedBox(
-          width: defaultPadding / 2,
-        ),
-        Expanded(
-          child: _cardItem(
-              callBack: () => cardTaps(2),
-              title: controller.profileActionTitles[2],
-              image: controller.profileActionImages[2],
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFA193B3), // 起始颜色
-                  Color(0xFF767A80), // 结束颜色
-                ],
-              )),
-        ),
+        // const SizedBox(
+        //   width: defaultPadding / 2,
+        // ),
+        // Expanded(
+        //   child: _cardItem(
+        //       callBack: () => cardTaps(2),
+        //       title: controller.profileActionTitles[2],
+        //       image: controller.profileActionImages[2],
+        //       gradient: const LinearGradient(
+        //         begin: Alignment.topLeft,
+        //         end: Alignment.bottomRight,
+        //         colors: [
+        //           Color(0xFFA193B3), // 起始颜色
+        //           Color(0xFF767A80), // 结束颜色
+        //         ],
+        //       )),
+        // ),
       ],
     );
   }
