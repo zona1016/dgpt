@@ -209,13 +209,14 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   }
 
   _card({required Function(int index) cardTaps}) {
-    return Row(
+    return Obx(() => Row(
       children: [
         Expanded(
           child: _cardItem(
               callBack: () => cardTaps(0),
               title: controller.profileActionTitles[0],
               image: controller.profileActionImages[0],
+              amount: controller.zpTotalAmount.value,
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -233,6 +234,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
               callBack: () => cardTaps(1),
               title: controller.profileActionTitles[1],
               image: controller.profileActionImages[1],
+              amount: controller.xjTotalAmount.value,
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -260,12 +262,12 @@ class ProfileScreen extends GetView<ProfileScreenController> {
         //       )),
         // ),
       ],
-    );
+    ));
   }
 
   _cardItem(
       {required String title,
-      required String image,
+      required String image, required double amount,
       required LinearGradient gradient,
       GestureTapCallback? callBack}) {
     return GestureDetector(
@@ -306,7 +308,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   width: defaultPadding / 4,
                 ),
                 Text(
-                  NumberFormat('#,##0.00').format(0.00),
+                  NumberFormat('#,##0.000').format(amount),
                   style: fontDMMedium.copyWith(
                     color: BaseColors.white,
                     fontSize: 11,

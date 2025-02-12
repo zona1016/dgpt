@@ -32,6 +32,8 @@ class ProfileScreenController extends BaseController {
 
   RxList<UserBalance> userBalanceList = <UserBalance>[].obs;
   RxDouble totalAmount = 0.0.obs;
+  RxDouble zpTotalAmount = 0.0.obs;
+  RxDouble xjTotalAmount = 0.0.obs;
 
   GlobalKey globalKey = GlobalKey();
 
@@ -88,7 +90,21 @@ class ProfileScreenController extends BaseController {
         request: () => aiPulseService.aiPulseWalletGetUserBalance());
     if (result != null) {
       userBalanceList.value = result;
-      totalAmount.value = userBalanceList.value.fold(0.0, (sum, item) => sum + item.balance);
+      zpTotalAmount.value = userBalanceList.value.fold(0.0, (sum, item) {
+        if (item.type == 1) {
+          return sum + item.balance;
+        }
+        return sum;
+      });
+
+      xjTotalAmount.value = userBalanceList.value.fold(0.0, (sum, item) {
+        if (item.type == 0) {
+          return sum + item.balance;
+        }
+        return sum;
+      });
+
+      totalAmount.value = xjTotalAmount.value + zpTotalAmount.value;
     }
   }
 
