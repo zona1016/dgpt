@@ -83,8 +83,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                         GridView.count(
                           shrinkWrap: true,
                           crossAxisCount: 2,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
+                          crossAxisSpacing: defaultPadding,
+                          mainAxisSpacing: defaultPadding,
                           childAspectRatio: 1.7,
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
@@ -136,9 +136,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         decoration: BoxDecoration(
-          color: Colors.deepPurple,
-          borderRadius: BorderRadius.circular(defaultPadding),
-        ),
+            borderRadius: BorderRadius.circular(defaultPadding),
+            image: const DecorationImage(
+              image: AssetImage('assets/images/home/return_bg.png'),
+              fit: BoxFit.cover,
+            )),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -346,35 +348,47 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         const SizedBox(
           height: defaultPadding,
         ),
-        Container(
-          padding: const EdgeInsets.all(defaultPadding),
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/images/home/return_bg.png'),
-            fit: BoxFit.cover,
-          )),
-          child: Row(
-            children: [
-              Expanded(
-                  child: _buildInfoCard(
-                context: context,
-                imagePath: 'assets/images/home/day_return.png',
-                title: tr('home.hourly_income'),
-                value:
-                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
-                onTap: () => onTap(0),
-              )),
-              Expanded(
-                  child: _buildInfoCard(
-                context: context,
-                imagePath: 'assets/images/home/total_return.png',
-                title: tr('home.total_income'),
-                value:
-                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
-                onTap: () => onTap(1),
-              )),
-            ],
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(defaultPadding),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(defaultPadding),
+                    image: const DecorationImage(
+                      image: AssetImage('assets/images/home/return_bg.png'),
+                      fit: BoxFit.cover,
+                    )),
+                child: _buildInfoCard(
+                  context: context,
+                  imagePath: 'assets/images/income/zrs.png',
+                  title: '总人数',
+                  value: '100',
+                  onTap: () => onTap(0),
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: defaultPadding,
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(defaultPadding),
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage('assets/images/home/return_bg.png'),
+                  fit: BoxFit.cover,
+                )),
+                child: _buildInfoCard(
+                  context: context,
+                  imagePath: 'assets/images/income/jhrs.png',
+                  title: '激活人数',
+                  value: '80',
+                  onTap: () => onTap(1),
+                ),
+              ),
+            ),
+          ],
         )
       ],
     );
@@ -387,33 +401,48 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     required String value,
     required Function() onTap,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Image.asset(
-          imagePath,
-          width: 25,
-          height: 25,
-        ),
-        const SizedBox(height: defaultPadding / 2),
-        Text(
-          title,
-          style: fontDMMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.weakTextColor,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Image.asset(
+                    imagePath,
+                    width: 25,
+                    height: 25,
+                  ),
+                  const SizedBox(width: defaultPadding / 4),
+                  Text(
+                    title,
+                    style: fontDMMedium.copyWith(
+                      fontSize: 14,
+                      color: BaseColors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: defaultPadding),
+              GestureDetector(
+                onTap: onTap,
+                child: Text(
+                  value,
+                  style: fontDMBold.copyWith(
+                    fontSize: 18,
+                    color: BaseColors.primaryColor,
+                  ),
+                ),
+              )
+            ],
           ),
         ),
-        const SizedBox(height: defaultPadding / 4),
-        GestureDetector(
-          onTap: onTap,
-          child: Text(
-            value,
-            style: fontDMBold.copyWith(
-              fontSize: 18,
-              color: BaseColors.primaryColor,
-            ),
-          ),
-        )
+        const Icon(
+          Icons.chevron_right,
+          size: 25,
+          color: BaseColors.white,
+        ),
       ],
     );
   }
