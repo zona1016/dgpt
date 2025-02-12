@@ -202,7 +202,8 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               whiteText10, whiteText10),
           _buildRow(
               tr('hashrate.rental_income'),
-              '\$${NumberFormat('#0').format(hasratePageInfo.profitTotal)}(${NumberFormat('#0').format((hasratePageInfo.profitTotal - hasratePageInfo.amount) / hasratePageInfo.amount * 100)}%)',
+              '\$${NumberFormat('#0').format(hasratePageInfo.profitTotal)}'
+              '(${NumberFormat('#0').format((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal / hasratePageInfo.amount * 100)}%)',
               whiteText10,
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),
