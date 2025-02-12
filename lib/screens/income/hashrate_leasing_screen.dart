@@ -15,7 +15,7 @@ class HashrateLeasingScreen extends GetView<HashrateLeasingScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
       appBar: BaseAppBar(
-        title: tr('hashrate.product_details'),
+        title: '算力租借',
         color: BaseColors.white,
       ),
       body: Container(),

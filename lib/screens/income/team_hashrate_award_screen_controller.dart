@@ -6,6 +6,7 @@ import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class TeamHashrateAwardScreenBindings implements Bindings {
   @override
@@ -40,16 +41,18 @@ class TeamHashrateAwardScreenController extends BaseController {
   }
 
   Future<void> loadUserHashrateData() async {
+    Get.context!.loaderOverlay.show();
     await Future.wait([
       userHashrate(),
       aiPulseUserHashrateProgress(),
     ]);
+    Get.context!.loaderOverlay.hide();
     loaded.value = true;
   }
 
   Future<void> userHashrate() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
+        loadingState: AppLoadingState.backgroundWithoutError,
         request: () => aiPulseService.userHashrate());
     if (result != null) {
       powerInfo.value = result;
