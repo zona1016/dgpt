@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:dgpt/models/pulse/user_balance.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/packages/toast.dart';
@@ -23,9 +26,13 @@ class ProfileScreenBindings implements Bindings {
 }
 
 class ProfileScreenController extends BaseController {
-
   final AuthService authService = Get.find();
   final UserController userController = Get.find();
+  final AiPulseService aiPulseService = Get.find();
+
+  RxList<UserBalance> userBalanceList = <UserBalance>[].obs;
+  RxDouble totalAmount = 0.0.obs;
+
   GlobalKey globalKey = GlobalKey();
 
   List<String> profileActionTitles = [
@@ -61,6 +68,7 @@ class ProfileScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    aiPulseWalletGetUserBalance();
   }
 
   @override
@@ -72,6 +80,16 @@ class ProfileScreenController extends BaseController {
   void onReady() {
     // TODO: implement onReady
     super.onReady();
+  }
+
+  Future<void> aiPulseWalletGetUserBalance() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseWalletGetUserBalance());
+    if (result != null) {
+      userBalanceList.value = result;
+      totalAmount.value = userBalanceList.value.fold(0.0, (sum, item) => sum + item.balance);
+    }
   }
 
   Future<void> capturePng(BuildContext context) async {

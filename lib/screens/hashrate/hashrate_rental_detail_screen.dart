@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/size.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HashrateRentalDetailScreenArgs {
-  final HasratePageInfo? hasratePageInfo;
+  final PlanDetail? hasratePageInfo;
 
   HashrateRentalDetailScreenArgs({required this.hasratePageInfo});
 }

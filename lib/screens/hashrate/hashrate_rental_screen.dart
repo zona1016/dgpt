@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/hashrate/widgets/hashrate_header.dart';
@@ -8,6 +9,7 @@ import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -102,7 +104,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
   }
 
   _rentalItem(int index) {
-    HasratePageInfo hasratePageInfo = controller.hasratePageList[index];
+    PlanDetail hasratePageInfo = controller.hasratePageList[index];
     // Common text style
     TextStyle whiteText14 =
         fontDMMedium.copyWith(color: BaseColors.white, fontSize: 14);
@@ -150,12 +152,13 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           ),
           const SizedBox(height: defaultPadding),
           Center(
-            child: Image.asset(
-              'assets/images/home/income_icon.png',
-              width: 100,
+            child: BaseNetworkImage(
+              imageURL: hasratePageInfo.logoFileIdUrl,
+              placeholder: 'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
               height: 106,
+              width: 100,
               fit: BoxFit.cover,
-            ),
+            )
           ),
           const SizedBox(height: defaultPadding),
           Text(

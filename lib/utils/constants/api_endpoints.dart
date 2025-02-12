@@ -92,6 +92,7 @@ class ApiEndpoints {
   static const String aiPulseUserHashrateDropdownData = "/api/aiPulseUserHashrate/dropdownData";
   static const String aiPulseUserHashrateUserHashrate = "/api/aiPulseUserHashrate/userHashrate";
 
+
   static const String aiPulseUserPlanPage = "/api/aiPulseUserPlan/page";
   static const String aiPulseUserPlanDetail = "/api/aiPulseUserPlan/detail";
   static const String aiPulseUserPlanDropdownData = "/api/aiPulseUserPlan/dropdownData";

@@ -147,13 +147,13 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      NumberFormat('#,##0.00').format(0.00),
+                    Obx(() => Text(
+                      NumberFormat('#,##0.000').format(controller.totalAmount.value),
                       style: fontDMBold.copyWith(
                         color: BaseColors.white,
                         fontSize: 24,
                       ),
-                    ),
+                    )),
                     const SizedBox(
                       width: defaultPadding / 4,
                     ),

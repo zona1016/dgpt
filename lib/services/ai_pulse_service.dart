@@ -12,6 +12,7 @@ import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
+import 'package:dgpt/models/pulse/user_balance.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/models/pulse/user_kyc_info.dart';
 import 'package:dgpt/models/user/user_info.dart';
@@ -34,7 +35,7 @@ abstract class AiPulseService {
   Future<BaseResponse<PlanDetail?>> aiPulsePlanDetail(
       {required String id});
 
-  Future<BaseResponse<PaginationResponse<HasratePageInfo>?>> hashratePage(
+  Future<BaseResponse<PaginationResponse<PlanDetail>?>> hashratePage(
       {int page = 1, int perPage = 20});
 
   Future<BaseResponse> registerVerifyCode();
@@ -127,6 +128,8 @@ abstract class AiPulseService {
   Future<BaseResponse<UserInfo?>> userInfo();
 
   Future<BaseResponse> aiPulseDepositDeposit();
+
+  Future<BaseResponse<List<UserBalance>?>> aiPulseWalletGetUserBalance();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -207,7 +210,7 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<PaginationResponse<HasratePageInfo>?>> hashratePage(
+  Future<BaseResponse<PaginationResponse<PlanDetail>?>> hashratePage(
       {int page = 1, int perPage = 20}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulsePlanPlanList,
@@ -217,10 +220,10 @@ class AiPulseServiceImpl extends AiPulseService {
             'pageSize': perPage,
           },
           deserializer: (data) => data != null
-              ? PaginationResponse<HasratePageInfo>.fromJson(
+              ? PaginationResponse<PlanDetail>.fromJson(
                   data,
                   (json) =>
-                      HasratePageInfo.fromJson(json as Map<String, dynamic>))
+                      PlanDetail.fromJson(json as Map<String, dynamic>))
               : null);
     } on Exception catch (_) {
       rethrow;
@@ -664,6 +667,22 @@ class AiPulseServiceImpl extends AiPulseService {
           ApiEndpoints.aiPulseDepositDeposit,
           bearerToken: userController.token,
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<UserBalance>?>> aiPulseWalletGetUserBalance() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseWalletGetUserBalance,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+              .map((e) => UserBalance.fromJson(e))
+              .toList()
+              : []);
     } on Exception catch (_) {
       rethrow;
     }

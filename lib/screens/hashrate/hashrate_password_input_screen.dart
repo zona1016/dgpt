@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/hashrate_page_info.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/screens/hashrate/hashrate_password_input_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HashratePasswordInputScreenArgs {
-  final HasratePageInfo? hasratePageInfo;
+  final PlanDetail? hasratePageInfo;
   final int count;
 
   HashratePasswordInputScreenArgs({required this.hasratePageInfo, required this.count});
