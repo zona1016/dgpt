@@ -62,4 +62,11 @@ class IncomeScreenController extends BaseController {
       amountTotalInfo.value = result;
     }
   }
+
+  double total() {
+    return (amountTotalInfo.value?.planAmountTotal ?? 0
+        + (amountTotalInfo.value?.directAwardAmountTotal ?? 0)
+        + (amountTotalInfo.value?.teamAwardAmountTotal ?? 0)
+        + (amountTotalInfo.value?.roiAmountTotal ?? 0));
+  }
 }

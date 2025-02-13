@@ -91,9 +91,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                   ),
                   _makeProfitAndNodePartner(context, onTap: (index) {
                     if (index == 0) {
-                      Get.toNamed(AppRoutes.analyze);
+                      // Get.toNamed(AppRoutes.analyze);
                     } else {
-                      Get.toNamed(AppRoutes.nodePartner);
+                      // Get.toNamed(AppRoutes.nodePartner);
                     }
                   }),
                   const SizedBox(

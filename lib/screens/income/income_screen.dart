@@ -55,7 +55,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${tr('home.total_income')} \$${controller.incomeTotal.value?.total ?? ''}',
+                              '${tr('home.total_income')} \$${controller.total()}',
                               style: fontDMBold.copyWith(
                                   color: BaseColors.white, fontSize: 20),
                             ),
@@ -94,7 +94,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             _buildIncomeCard(
                                 tr('hashrate.computing_power_rental'),
                                 controller.amountTotalInfo.value
-                                        ?.directAwardAmountTotal ??
+                                        ?.planAmountTotal ??
                                     0,
                                 'assets/images/income/income_slzj.png',
                                 onTap: () {
@@ -116,7 +116,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             _buildIncomeCard(
                                 tr('hashrate.invitation_bonus'),
                                 controller.amountTotalInfo.value
-                                        ?.planAmountTotal ??
+                                        ?.directAwardAmountTotal ??
                                     0,
                                 'assets/images/income/income_yqj.png',
                                 onTap: () {
