@@ -99,7 +99,7 @@ class HashrateRentalDetailScreen
                             color: BaseColors.secondPrimaryColor, width: 1),
                         color: BaseColors.secondPrimaryColor.withOpacity(0.1)),
                     child: Text(
-                      controller.planDetail.value?.pcieName ?? '',
+                      'HIGH SPEED',
                       style: fontDMBold.copyWith(
                         color: BaseColors.secondPrimaryColor,
                         fontSize: 12,
@@ -108,26 +108,46 @@ class HashrateRentalDetailScreen
                   ),
                 ],
               ),
+              const SizedBox(width: defaultPadding / 5,),
               Text(
-                controller.planDetail.value?.name ?? '',
+                controller.planDetail.value?.pcieName ?? '',
                 style: fontDMMedium.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,
                 ),
               ),
-              Text(
-                '${controller.planDetail.value?.upSpeed ?? ''} Mbps',
-                style: fontDMRegular.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 12,
-                ),
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/images/hashrate/upload.png',
+                    height: 10,
+                    width: 10,
+                  ),
+                  const SizedBox(width: defaultPadding / 5,),
+                  Text(
+                    '${controller.planDetail.value?.upSpeed ?? ''} Mbps',
+                    style: fontDMRegular.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                '${controller.planDetail.value?.downSpeed ?? ''} Mbps ${controller.planDetail.value?.ports ?? ''} ports',
-                style: fontDMRegular.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 12,
-                ),
+              Row(
+                children: [
+                  Image.asset(
+                      'assets/images/hashrate/download.png',
+                    height: 10,
+                    width: 10,
+                  ),
+                  Text(
+                    '${controller.planDetail.value?.downSpeed ?? ''} Mbps ${controller.planDetail.value?.ports ?? ''} ports',
+                    style: fontDMRegular.copyWith(
+                      color: BaseColors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
               Container(
                 height: 1,
@@ -185,7 +205,7 @@ class HashrateRentalDetailScreen
               child: Stack(
                 children: [
                   AnimatedContainer(
-                    width: (SizeUtil.width() - defaultPadding * 4) * .2,
+                    width: (SizeUtil.width() - defaultPadding * 4) * .0,
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
