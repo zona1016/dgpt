@@ -31,9 +31,9 @@ class TeamHashrateAwardScreenController extends BaseController {
   ];
 
   List <String> levelTitleList = [
-    '等级A',
-    '等级B',
-    '等级C',
+    '第一代',
+    '第二代',
+    '第三代',
   ];
 
   List<String> teamTitleList = [
