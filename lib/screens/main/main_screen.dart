@@ -35,34 +35,18 @@ class MainScreen extends GetView<MainScreenController> {
           bottomNavigationBar: Stack(
             clipBehavior: Clip.none,
             children: [
-              Obx(() => Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: controller.selectedTabIndex.value == 4
-                        ? const BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(25))
-                        : BorderRadius.circular(25),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xFF332D43),
-                        Color(0xFF0B0C0D),
-                      ],
-                    ),
-                  ))),
-              Positioned(
-                top: -20,
-                left: controller.selectedTabIndex.value *
-                    (SizeUtil.width() / 5.0),
-                child: CustomPaint(
-                  size: Size((SizeUtil.width() / 5.0),
-                      (SizeUtil.width() / 5.0 - (kIsWeb ? 10 : 0))), // 弧形大小
-                  painter: GradientBorderWithBlackFillPainter(),
+              Container(
+                height: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30)
                 ),
               ),
+              Obx(() => Positioned(
+                top: -25,
+                left: 0,
+                right: 0,
+                child: Image.asset('assets/images/tab/bottom_app_bar_bg${controller.selectedTabIndex.value}.png'),
+              )),
               Positioned(
                 top: -20,
                 left: 0,
@@ -79,9 +63,9 @@ class MainScreen extends GetView<MainScreenController> {
                   unselectedItemColor: BaseColors.lightGray,
                   // 未选中项颜色
                   selectedLabelStyle:
-                  const TextStyle(fontWeight: FontWeight.bold),
+                      const TextStyle(fontWeight: FontWeight.bold),
                   unselectedLabelStyle:
-                  const TextStyle(fontWeight: FontWeight.normal),
+                      const TextStyle(fontWeight: FontWeight.normal),
                   currentIndex: controller.selectedTabIndex.value,
                   onTap: (value) {
                     if (value == 0) {
@@ -108,7 +92,7 @@ class MainScreen extends GetView<MainScreenController> {
                     _bottomNavigationBarItem(
                         title: '交易明细',
                         inactiveImg:
-                        'assets/images/tab/transaction_inactive.png',
+                            'assets/images/tab/transaction_inactive.png',
                         activeImg: 'assets/images/tab/transaction_active.png'),
                     _bottomNavigationBarItem(
                         title: '个人资料',

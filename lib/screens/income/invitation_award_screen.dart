@@ -152,42 +152,44 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
   }
 
   _card({required Function(int index) cardTaps}) {
-    return Row(
-      children: [
-        Expanded(
-          child: _cardItem(
-              callBack: () => cardTaps(0),
-              title: controller.actionTitles[0],
-              image: controller.actionImages[0],
-              amount: 0,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF17CE92), // 起始颜色
-                  Color(0xFF0C684A), // 结束颜色
-                ],
-              )),
-        ),
-        const SizedBox(
-          width: defaultPadding,
-        ),
-        Expanded(
-          child: _cardItem(
-              callBack: () => cardTaps(1),
-              title: controller.actionTitles[1],
-              image: controller.actionImages[1],
-              amount: 0,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF6F00FF), // 起始颜色
-                  Color(0xFF430099), // 结束颜色
-                ],
-              )),
-        ),
-      ],
+    return IntrinsicHeight(
+      child: Row(
+        children: [
+          Expanded(
+            child: _cardItem(
+                callBack: () => cardTaps(0),
+                title: controller.actionTitles[0],
+                image: controller.actionImages[0],
+                amount: 0,
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF17CE92), // 起始颜色
+                    Color(0xFF0C684A), // 结束颜色
+                  ],
+                )),
+          ),
+          const SizedBox(
+            width: defaultPadding,
+          ),
+          Expanded(
+            child: _cardItem(
+                callBack: () => cardTaps(1),
+                title: controller.actionTitles[1],
+                image: controller.actionImages[1],
+                amount: 0,
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF6F00FF), // 起始颜色
+                    Color(0xFF430099), // 结束颜色
+                  ],
+                )),
+          ),
+        ],
+      ),
     );
   }
 

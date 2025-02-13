@@ -174,3 +174,25 @@ class BaseColors {
     stops: [0.0, 0.06, 0.13, 0.19, 0.25, 0.29, 0.52, 0.80, 0.99],
   );
 }
+
+
+class GradientBorderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..shader = BaseColors.baseButtonLinearGradient.createShader(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..strokeWidth = 2
+      ..style = PaintingStyle.stroke;
+
+    final RRect rrect = RRect.fromRectAndRadius(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      const Radius.circular(20),
+    );
+
+    // 绘制渐变边框
+    canvas.drawRRect(rrect, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}

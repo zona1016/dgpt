@@ -1,4 +1,5 @@
 import 'package:dgpt/screens/income/income_screen_controller.dart';
+import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -97,7 +98,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                     0,
                                 'assets/images/income/income_slzj.png',
                                 onTap: () {
-                              Get.toNamed(AppRoutes.hashrateLeasing);
+                              final MainScreenController mainController =
+                                  Get.find();
+                              mainController.selectedTabIndex(1);
+                              mainController.pageController.jumpToPage(1);
+                              mainController.update();
                             }),
                             _buildIncomeCard(
                                 tr('hashrate.team_computing_power_bonus'),
@@ -410,7 +415,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     required String value,
     required Function() onTap,
   }) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Row(
         children: [

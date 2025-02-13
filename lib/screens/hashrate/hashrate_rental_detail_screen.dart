@@ -1,4 +1,3 @@
-import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';

@@ -1,30 +1,32 @@
-import 'package:dgpt/models/pulse/amount_total_info.dart';
-import 'package:dgpt/models/pulse/user_income_total.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
+import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class HashrateLeasingScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut(() => HashrateLeasingScreenController(), permanent: false, fenix: false);
+    GetInstance().lazyPut(() => HashrateLeasingScreenController(),
+        permanent: false, fenix: false);
   }
 }
 
-class HashrateLeasingScreenController extends BaseController {
-
+class HashrateLeasingScreenController extends BaseController<HashrateRentalDetailScreenArgs> {
   final AiPulseService aiPulseService = Get.find();
 
-  Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
-  Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
+  RxString dd = 'dd'.obs;
+  Rxn<PlanDetail> planDetail = Rxn<PlanDetail>();
+
+  RxInt total = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
-    userIncomeTotal();
-    aiPulseTotalAmountTotal();
+    aiPulsePlanDetail();
   }
 
   @override
@@ -38,21 +40,28 @@ class HashrateLeasingScreenController extends BaseController {
     super.onReady();
   }
 
-  userIncomeTotal() async {
+  aiPulsePlanDetail() async {
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.userIncomeTotal());
+        request: () => aiPulseService.aiPulsePlanDetail(id: args!.hasratePageInfo!.id.toString()));
     if (result != null) {
-      incomeTotal.value = result;
+      planDetail.value = result;
     }
   }
 
-  aiPulseTotalAmountTotal() async {
+  userHasTradingPwd() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.aiPulseTotalAmountTotal());
+        loadingState: AppLoadingState.background,
+        request: () => aiPulseService.userHasTradingPwd());
     if (result != null) {
-      amountTotalInfo.value = result;
+      if (result == true) {
+        Get.toNamed(AppRoutes.hashratePasswordInput,
+            arguments: HashratePasswordInputScreenArgs(
+                hasratePageInfo: args!.hasratePageInfo,
+                count: total.value));
+      } else {
+        Get.toNamed(AppRoutes.settingFundPsd);
+      }
     }
   }
 }
