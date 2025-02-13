@@ -10,6 +10,8 @@ import 'package:dgpt/screens/income/hashrate_leasing_screen.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen_controller.dart';
 import 'package:dgpt/screens/income/invitation_award_screen.dart';
 import 'package:dgpt/screens/income/invitation_award_screen_controller.dart';
+import 'package:dgpt/screens/income/salary_screen.dart';
+import 'package:dgpt/screens/income/salary_screen_controller.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen_controller.dart';
 import 'package:dgpt/screens/setting/change_language_screen.dart';
@@ -156,6 +158,7 @@ class AppRoutes {
   static String hashrateRentalDetail = "/hashrate_rental_detail";
   static String hashratePasswordInput = "/hashrate_password_input";
   static String hashrateLoading = "/hashrate_loading";
+  static String salary = "/salary";
 
   static String kyc = "/kyc";
 
@@ -389,6 +392,11 @@ class AppRoutes {
         name: hashrateLoading,
         page: () => const HashrateLoadingScreen(),
         binding: HashrateLoadingScreenBindings()
+    ),
+    GetPage(
+        name: salary,
+        page: () => const SalaryScreen(),
+        binding: SalaryScreenBindings()
     ),
     GetPage(
         name: activatedUsers,

@@ -113,7 +113,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                 controller.amountTotalInfo.value
                                         ?.planAmountTotal ??
                                     0,
-                                'assets/images/income/income_yqj.png', onTap: () {
+                                'assets/images/income/income_yqj.png',
+                                onTap: () {
                               Get.toNamed(AppRoutes.invitationAward);
                             }),
                             _buildIncomeCard(
@@ -122,7 +123,9 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                         ?.roiAmountTotal ??
                                     0,
                                 'assets/images/income/income_xz.png',
-                                onTap: () {}),
+                                onTap: () {
+                              Get.toNamed(AppRoutes.salary);
+                            }),
                           ],
                         ),
                       ],
