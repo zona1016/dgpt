@@ -26,70 +26,75 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
       body: Obx(() => Column(
-            children: [
-              _tabBar(context),
-              if (controller.loaded.value)
-                HashrateHeader(
-                  powerInfo: controller.powerInfo.value,
-                  progressInfo: controller.progressInfo.value,
-                ),
-              Text(
-                tr('hashrate.product_details'),
-                style: fontDMBold.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: defaultPadding,),
-              Expanded(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: defaultPadding),
-                  child: BaseSmartRefresher(
-                    refreshController: controller.refreshController,
-                    enableLoadMore: true,
-                    uiState: controller.uiState.value,
-                    isEmpty: controller.hasratePageList.isEmpty,
-                    onPullToRefresh: (loadingState) {
-                      controller.hashratePage(loadingState: loadingState);
-                    },
-                    onLoadMore: (loadingState) {
-                      controller.hashratePage(loadingState: loadingState);
-                    },
-                    childBuilder: (context, physics) {
-                      return CustomScrollView(
-                        physics: physics,
-                        slivers: [
-                          SliverGrid.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: defaultPadding,
-                              mainAxisSpacing: defaultPadding,
-                              childAspectRatio: 0.42,
+        children: [
+          _tabBar(context),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              child: BaseSmartRefresher(
+                refreshController: controller.refreshController,
+                enableLoadMore: true,
+                uiState: controller.uiState.value,
+                isEmpty: controller.hasratePageList.isEmpty,
+                onPullToRefresh: (loadingState) {
+                  controller.hashratePage(loadingState: loadingState);
+                },
+                onLoadMore: (loadingState) {
+                  controller.hashratePage(loadingState: loadingState);
+                },
+                childBuilder: (context, physics) {
+                  return CustomScrollView(
+                    physics: physics,
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Column(
+                          children: [
+                            if (controller.loaded.value)
+                              HashrateHeader(
+                                powerInfo: controller.powerInfo.value,
+                                progressInfo: controller.progressInfo.value,
+                              ),
+                            Text(
+                              tr('hashrate.product_details'),
+                              style: fontDMBold.copyWith(
+                                color: BaseColors.white,
+                                fontSize: 18,
+                              ),
                             ),
-                            itemCount: controller.hasratePageList.length,
-                            // Number of items
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.hashrateRentalDetail,
-                                      arguments: HashrateRentalDetailScreenArgs(
-                                          hasratePageInfo: controller
-                                              .hasratePageList[index]));
-                                },
-                                child: _rentalItem(index),
-                              );
+                            const SizedBox(height: defaultPadding,),
+                          ],
+                        ),
+                      ),
+                      SliverGrid.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: defaultPadding,
+                          mainAxisSpacing: defaultPadding,
+                          childAspectRatio: 0.45,
+                        ),
+                        itemCount: controller.hasratePageList.length,
+                        // Number of items
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.hashrateRentalDetail,
+                                  arguments: HashrateRentalDetailScreenArgs(
+                                      hasratePageInfo: controller
+                                          .hasratePageList[index]));
                             },
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                            child: _rentalItem(index),
+                          );
+                        },
+                      )
+                    ],
+                  );
+                },
               ),
-            ],
-          )),
+            ),
+          ),
+        ],
+      )),
     );
   }
 
@@ -211,7 +216,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           _buildRow(
               tr('hashrate.rental_income'),
               '\$${NumberFormat('#0').format(hasratePageInfo.profitTotal)}'
-              '(${NumberFormat('#0').format((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal / hasratePageInfo.amount * 100)}%)',
+              '(${NumberFormat('#0').format(((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100)}%)',
               whiteText10,
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),

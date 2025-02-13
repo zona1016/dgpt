@@ -23,7 +23,7 @@ class HashrateHeader extends StatelessWidget {
 
   _header() {
     return Padding(
-      padding: const EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.symmetric(vertical: defaultPadding),
       child: Column(
         children: [
           _buildHeaderContainer(),

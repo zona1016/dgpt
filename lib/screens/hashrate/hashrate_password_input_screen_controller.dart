@@ -36,7 +36,7 @@ class HashratePasswordInputScreenController extends BaseController {
 
   aiPulseUserPlanApply() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.background,
+        loadingState: AppLoadingState.normal,
         request: () => aiPulseService.aiPulseUserPlanApply(
             id: args!.hasratePageInfo.id.toString(),
             quantity: args!.count.toString(),
