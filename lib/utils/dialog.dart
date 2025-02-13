@@ -444,7 +444,7 @@ class DialogUtils {
         image: 'assets/images/custom/dia_czcg.png',
         desc: '您已成功充值！',
         barrierDismissible: false,
-        confirmText: 'OK', onConfirmPressed: () {
+        confirmText: tr('button.ok'), onConfirmPressed: () {
       Get.back();
     });
   }
@@ -459,7 +459,7 @@ class DialogUtils {
         image: 'assets/images/custom/dia_czsb.png',
         desc: '看来存款过程被中断了。请稍后再试！',
         barrierDismissible: false,
-        confirmText: 'OK', onConfirmPressed: () {
+        confirmText: tr('button.ok'), onConfirmPressed: () {
       Get.back();
     });
   }
@@ -473,7 +473,7 @@ class DialogUtils {
         image: 'assets/images/custom/dia_zjcg.png',
         desc: '点击下方按键选择立马或稍后部署算力',
         barrierDismissible: false,
-        confirmText: '完成', onConfirmPressed: () {
+        confirmText: tr('button.done'), onConfirmPressed: () {
       Get.close(2);
     });
   }

@@ -264,5 +264,9 @@
   "tip": {
     "copy_success": "复制成功",
     "no_data": "暂无数据"
+  },
+  "income": {
+    "copy_success": "复制成功",
+    "no_data": "暂无数据"
   }
 }

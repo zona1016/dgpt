@@ -1,7 +1,5 @@
-import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
-import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -9,15 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class TeamHashrateAwardScreenBindings implements Bindings {
+class ActivatedUsersScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut(() => TeamHashrateAwardScreenController(), permanent: false, fenix: false);
+        .lazyPut(() => ActivatedUsersScreenController(), permanent: false, fenix: false);
   }
 }
 
-class TeamHashrateAwardScreenController extends BaseController {
+class ActivatedUsersScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
 
   Rxn<HasrateProgressInfo> progressInfo = Rxn<HasrateProgressInfo>();
@@ -53,7 +51,6 @@ class TeamHashrateAwardScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    loadUserHashrateData();
   }
 
   @override

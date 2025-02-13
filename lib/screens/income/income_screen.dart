@@ -69,9 +69,9 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                         ),
                         _makeProfitAndNodePartner(context, onTap: (index) {
                           if (index == 0) {
-                            Get.toNamed(AppRoutes.analyze);
+                            // Get.toNamed(AppRoutes.analyze);
                           } else {
-                            Get.toNamed(AppRoutes.nodePartner);
+                            Get.toNamed(AppRoutes.activatedUsers);
                           }
                         }),
                         const SizedBox(height: defaultPadding),
@@ -94,21 +94,26 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                 tr('hashrate.computing_power_rental'),
                                 controller.amountTotalInfo.value
                                         ?.directAwardAmountTotal ??
-                                    0, onTap: () {
+                                    0,
+                                'assets/images/income/income_slzj.png',
+                                onTap: () {
                               Get.toNamed(AppRoutes.hashrateLeasing);
                             }),
                             _buildIncomeCard(
                                 tr('hashrate.team_computing_power_bonus'),
                                 controller.amountTotalInfo.value
                                         ?.teamAwardAmountTotal ??
-                                    0, onTap: () {
+                                    0,
+                                'assets/images/income/income_tdslj.png',
+                                onTap: () {
                               Get.toNamed(AppRoutes.teamHashrateAwardn);
                             }),
                             _buildIncomeCard(
                                 tr('hashrate.invitation_bonus'),
                                 controller.amountTotalInfo.value
                                         ?.planAmountTotal ??
-                                    0, onTap: () {
+                                    0,
+                                'assets/images/income/income_yqj.png', onTap: () {
                               Get.toNamed(AppRoutes.invitationAward);
                             }),
                             _buildIncomeCard(
@@ -116,6 +121,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                 controller.amountTotalInfo.value
                                         ?.roiAmountTotal ??
                                     0,
+                                'assets/images/income/income_xz.png',
                                 onTap: () {}),
                           ],
                         ),
@@ -129,7 +135,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     );
   }
 
-  Widget _buildIncomeCard(String title, double amount,
+  Widget _buildIncomeCard(String title, double amount, String image,
       {GestureTapCallback? onTap}) {
     return InkWell(
       onTap: onTap,
@@ -148,7 +154,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             Row(
               children: [
                 Image.asset(
-                  'assets/images/home/day_return.png',
+                  image,
                   width: 25,
                   height: 25,
                 ),
@@ -401,49 +407,49 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     required String value,
     required Function() onTap,
   }) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Image.asset(
-                    imagePath,
-                    width: 25,
-                    height: 25,
-                  ),
-                  const SizedBox(width: defaultPadding / 4),
-                  Text(
-                    title,
-                    style: fontDMMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      imagePath,
+                      width: 25,
+                      height: 25,
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: defaultPadding),
-              GestureDetector(
-                onTap: onTap,
-                child: Text(
+                    const SizedBox(width: defaultPadding / 4),
+                    Text(
+                      title,
+                      style: fontDMMedium.copyWith(
+                        fontSize: 14,
+                        color: BaseColors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: defaultPadding),
+                Text(
                   value,
                   style: fontDMBold.copyWith(
                     fontSize: 18,
                     color: BaseColors.primaryColor,
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-        const Icon(
-          Icons.chevron_right,
-          size: 25,
-          color: BaseColors.white,
-        ),
-      ],
+          const Icon(
+            Icons.chevron_right,
+            size: 25,
+            color: BaseColors.white,
+          ),
+        ],
+      ),
     );
   }
 }

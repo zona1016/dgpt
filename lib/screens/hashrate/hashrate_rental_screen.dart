@@ -33,6 +33,14 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                   powerInfo: controller.powerInfo.value,
                   progressInfo: controller.progressInfo.value,
                 ),
+              Text(
+                tr('hashrate.product_details'),
+                style: fontDMBold.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: defaultPadding,),
               Expanded(
                 child: Padding(
                   padding:

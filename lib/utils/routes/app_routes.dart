@@ -4,6 +4,8 @@ import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
+import 'package:dgpt/screens/income/activated_users_screen.dart';
+import 'package:dgpt/screens/income/activated_users_screen_controller.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen_controller.dart';
 import 'package:dgpt/screens/income/invitation_award_screen.dart';
@@ -149,6 +151,7 @@ class AppRoutes {
   static String invitationAward = "/invitation_award";
   static String teamHashrateAwardn = "/team_hashrate_awardn";
 
+  static String activatedUsers = "/activated_users";
   static String hashrateRental = "/hashrate_rental";
   static String hashrateRentalDetail = "/hashrate_rental_detail";
   static String hashratePasswordInput = "/hashrate_password_input";
@@ -386,6 +389,11 @@ class AppRoutes {
         name: hashrateLoading,
         page: () => const HashrateLoadingScreen(),
         binding: HashrateLoadingScreenBindings()
+    ),
+    GetPage(
+        name: activatedUsers,
+        page: () => const ActivatedUsersScreen(),
+        binding: ActivatedUsersScreenBindings()
     ),
     GetPage(
         name: qrCode,

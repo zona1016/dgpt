@@ -1,16 +1,14 @@
-import 'package:dgpt/screens/hashrate/widgets/hashrate_header.dart';
-import 'package:dgpt/screens/income/team_hashrate_award_screen_controller.dart';
+import 'package:dgpt/screens/income/activated_users_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController> {
-  const TeamHashrateAwardScreen({super.key});
+class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
+  const ActivatedUsersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +16,13 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
       appBar: BaseAppBar(
-        title: '团队算力奖',
+        title: '激活人数',
         color: BaseColors.white,
       ),
-      body: Obx(() => SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            if (controller.loaded.value)
-              HashrateHeader(
-                powerInfo: controller.powerInfo.value,
-                progressInfo: controller.progressInfo.value,
-              ),
+            const SizedBox(height: defaultPadding,),
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -42,7 +36,7 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
             )
           ],
         ),
-      )),
+      ),
     );
   }
 
@@ -52,8 +46,8 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
       margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding),
-        color: controller.levelColorList[index]
+          borderRadius: BorderRadius.circular(defaultPadding),
+          color: controller.levelColorList[index]
       ),
       child: Column(
         children: [
@@ -105,8 +99,8 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding / 2),
-        color: const Color(0xFF000000).withOpacity(0.5)
+          borderRadius: BorderRadius.circular(defaultPadding / 2),
+          color: const Color(0xFF000000).withOpacity(0.5)
       ),
       child: Row(
         children: [

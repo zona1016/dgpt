@@ -27,14 +27,6 @@ class HashrateHeader extends StatelessWidget {
       child: Column(
         children: [
           _buildHeaderContainer(),
-          const SizedBox(height: defaultPadding),
-          Text(
-            tr('hashrate.product_details'),
-            style: fontDMBold.copyWith(
-              color: BaseColors.white,
-              fontSize: 18,
-            ),
-          ),
         ],
       ),
     );
