@@ -13,6 +13,7 @@ import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,12 +67,11 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                         ),
                       ),
                       SliverGrid.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: defaultPadding,
                           mainAxisSpacing: defaultPadding,
-                          childAspectRatio: 0.45,
+                          childAspectRatio: kIsWeb ? 0.4 : 0.45,
                         ),
                         itemCount: controller.hasratePageList.length,
                         // Number of items
