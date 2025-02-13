@@ -55,7 +55,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${tr('home.total_income')} \$${controller.total()}',
+                              '${tr('home.total_income')} \$${controller.totalAmount.value}',
                               style: fontDMBold.copyWith(
                                   color: BaseColors.white, fontSize: 20),
                             ),
@@ -206,7 +206,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 bottom: defaultPadding * 3,
                 left: defaultPadding,
                 child: Text(
-                  '0%',
+                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.planAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -221,13 +221,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                   size: const Size(1, 45)),
               CustomPaint(
                 size: const Size(50, 50),
-                painter: CustomCircularPainter(0.00, 1.5, Colors.cyan),
+                painter: CustomCircularPainter(controller.totalAmount.value > 0 ? (controller.amountTotalInfo.value?.planAmountTotal ?? 0) / controller.totalAmount.value : 0, 1.5, Colors.cyan),
               ),
               Positioned(
                 top: defaultPadding,
                 left: defaultPadding,
                 child: Text(
-                  '0%',
+                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -243,13 +243,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(100, 100),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter(0.00, 3, Colors.yellow),
+                painter: CustomCircularPainter((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value, 3, Colors.yellow),
               ),
               Positioned(
                 top: 0,
                 right: defaultPadding,
                 child: Text(
-                  '0%',
+                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -265,13 +265,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(150, 150),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter(0.00, 2.5, Colors.red),
+                painter: CustomCircularPainter((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value, 2.5, Colors.red),
               ),
               Positioned(
                 bottom: defaultPadding,
                 right: defaultPadding,
                 child: Text(
-                  '0%',
+                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -287,7 +287,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(200, 200),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter(0.00, 4, Colors.purple),
+                painter: CustomCircularPainter((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value, 4, Colors.purple),
               ),
             ],
           ),

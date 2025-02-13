@@ -24,6 +24,8 @@ class IncomeScreenController extends BaseController {
   final double dashWidth = 5.0;
   final double dashSpace = 2.0;
 
+  RxDouble totalAmount = 0.0.obs;
+
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
 
@@ -60,13 +62,10 @@ class IncomeScreenController extends BaseController {
         request: () => aiPulseService.aiPulseTotalAmountTotal());
     if (result != null) {
       amountTotalInfo.value = result;
+      totalAmount.value = (amountTotalInfo.value?.planAmountTotal ?? 0)
+          + (amountTotalInfo.value?.directAwardAmountTotal ?? 0)
+          + (amountTotalInfo.value?.teamAwardAmountTotal ?? 0)
+          + (amountTotalInfo.value?.roiAmountTotal ?? 0);
     }
-  }
-
-  double total() {
-    return (amountTotalInfo.value?.planAmountTotal ?? 0
-        + (amountTotalInfo.value?.directAwardAmountTotal ?? 0)
-        + (amountTotalInfo.value?.teamAwardAmountTotal ?? 0)
-        + (amountTotalInfo.value?.roiAmountTotal ?? 0));
   }
 }
