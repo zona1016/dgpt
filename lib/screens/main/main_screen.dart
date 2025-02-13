@@ -42,13 +42,13 @@ class MainScreen extends GetView<MainScreenController> {
                 ),
               ),
               Obx(() => Positioned(
-                top: -25,
+                top: -30,
                 left: 0,
                 right: 0,
                 child: Image.asset('assets/images/tab/bottom_app_bar_bg${controller.selectedTabIndex.value}.png'),
               )),
               Positioned(
-                top: -20,
+                top: -25,
                 left: 0,
                 right: 0,
                 child: BottomNavigationBar(
@@ -114,7 +114,8 @@ class MainScreen extends GetView<MainScreenController> {
       required String activeImg}) {
     return BottomNavigationBarItem(
       label: '',
-      icon: SizedBox(
+      icon: Container(
+        margin: const EdgeInsets.only(top: 10),
         height: 100,
         width: SizeUtil.width() / 5.0,
         child: Column(
@@ -137,7 +138,7 @@ class MainScreen extends GetView<MainScreenController> {
         ),
       ),
       activeIcon: Container(
-        margin: const EdgeInsets.only(bottom: 36),
+        margin: const EdgeInsets.only(bottom: 46),
         height: 64,
         width: SizeUtil.width() / 5.0,
         decoration: const BoxDecoration(
