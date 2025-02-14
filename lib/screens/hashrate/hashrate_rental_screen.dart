@@ -1,14 +1,13 @@
-import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/hashrate/widgets/hashrate_header.dart';
-import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
-import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
@@ -71,19 +70,48 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                           crossAxisCount: 2,
                           crossAxisSpacing: defaultPadding,
                           mainAxisSpacing: defaultPadding,
-                          childAspectRatio: kIsWeb ? 0.4 : 0.45,
+                          childAspectRatio: kIsWeb ? 0.4 : 0.43,
                         ),
                         itemCount: controller.hasratePageList.length,
                         // Number of items
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Get.toNamed(AppRoutes.hashrateRentalDetail,
-                                  arguments: HashrateRentalDetailScreenArgs(
-                                      hasratePageInfo: controller
-                                          .hasratePageList[index]));
-                            },
-                            child: _rentalItem(index),
+                          return Stack(
+                            children: [
+                              _rentalItem(index),
+                              if (!controller
+                                  .hasratePageList[index].isBuy &&
+                                  controller.hasratePageList[index]
+                                      .buyStatus == 1)
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: Container(
+                                    width: 60,
+                                    height: 60,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/hashrate/ty_bg.png'),
+                                        )),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: defaultPadding / 4,
+                                          horizontal: defaultPadding / 2),
+                                      child: Transform.rotate(
+                                        angle: 0.785, // -45° 角度
+                                        child: const Text(
+                                          "体验",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           );
                         },
                       )
@@ -124,7 +152,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     TextStyle whiteText10 =
         fontDMRegular.copyWith(color: BaseColors.white, fontSize: 10);
     TextStyle whiteText18 =
-        fontDMBold.copyWith(color: BaseColors.white, fontSize: 18);
+        fontDMBold.copyWith(color: BaseColors.white, fontSize: 16);
     TextStyle whiteText20 =
         fontDMBold.copyWith(color: BaseColors.white, fontSize: 20);
 
@@ -134,11 +162,11 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       return Row(
         children: [
           Expanded(
-            flex: 5,
+            flex: 1,
             child: Text(leftText, style: leftStyle, textAlign: TextAlign.left),
           ),
           Expanded(
-            flex: 3,
+            flex: 1,
             child: Text(
               rightText,
               style: rightStyle,
@@ -150,7 +178,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
       decoration: BoxDecoration(
           gradient: BaseColors.incomeLinearGradient,
           border: Border.all(color: BaseColors.primaryColor, width: 1),
@@ -159,9 +187,41 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: defaultPadding),
-          Text(
-            hasratePageInfo.name,
-            style: whiteText18,
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  hasratePageInfo.name,
+                  style: whiteText18,
+                ),
+              ),
+              if (controller
+                  .hasratePageList[index].isBuy &&
+                  controller.hasratePageList[index]
+                      .buyStatus == 1)
+                GestureDetector(
+                  onTap: () {
+                    // Get.toNamed(AppRoutes.hashrateRentalBuyDetail,
+                    //     arguments: HashrateRentalBuyDetailScreenArgs(
+                    //         planDetail: controller
+                    //             .hasratePageList[index]));
+                  },
+                  child: Container(
+                    width: 38,
+                    height: 15,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: BaseColors.primaryColor
+                    ),
+                    child: Center(
+                      child: Text(
+                        tr('hashrate.details'),
+                        style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 7),
+                      ),
+                    ),
+                  ),
+                )
+            ],
           ),
           Text(
             hasratePageInfo.code,
@@ -194,21 +254,49 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               ),
             ],
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(defaultPadding / 2),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(defaultPadding),
-                image: const DecorationImage(
-                    image: AssetImage(
-                        'assets/images/home/income_power_btn_bg.png'))),
-            child: Center(
-              child: Text(
-                tr('hashrate.rental'),
-                style: whiteText18,
+          if (!controller
+              .hasratePageList[index].isBuy ||
+              controller.hasratePageList[index]
+                  .buyStatus == 0)
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(AppRoutes.hashrateRentalDetail,
+                    arguments: HashrateRentalDetailScreenArgs(
+                        hasratePageInfo: controller
+                            .hasratePageList[index]));
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(defaultPadding / 2),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(defaultPadding),
+                    image: const DecorationImage(
+                        image: AssetImage(
+                            'assets/images/home/income_power_btn_bg.png'))),
+                child: Center(
+                  child: Text(
+                    tr('hashrate.rental'),
+                    style: whiteText18,
+                  ),
+                ),
               ),
             ),
-          ),
+          if (controller
+              .hasratePageList[index].isBuy &&
+              controller.hasratePageList[index]
+                  .buyStatus == 1)
+            BaseButton(
+              enabled: false,
+              disabledDecoration: BoxDecoration(
+                  gradient: BaseColors.baseButtonLinearGradient,
+                  color: Colors.white.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(15)
+              ),
+              height: 30,
+              onPressed: () {},
+              text: tr('hashrate.rental'),
+            ),
+          const Spacer(),
           _buildRow(tr('hashrate.contract_details'),
               '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
           _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.amount}',
@@ -221,6 +309,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),
               '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
+          const Spacer(),
         ],
       ),
     );

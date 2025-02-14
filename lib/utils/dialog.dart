@@ -1,3 +1,4 @@
+import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/utils/api/api_exception.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -474,7 +475,9 @@ class DialogUtils {
         desc: '点击下方按键选择立马或稍后部署算力',
         barrierDismissible: false,
         confirmText: tr('button.done'), onConfirmPressed: () {
-      Get.close(2);
+      Get.close(3);
+      HashrateRentalScreenController controller = Get.find();
+      controller.refreshController.callRefresh();
     });
   }
 

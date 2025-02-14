@@ -88,6 +88,22 @@ mixin _$PlanDetail {
   String get servicesName => throw _privateConstructorUsedError;
   @JsonKey(name: 'servicesDesc')
   String get servicesDesc => throw _privateConstructorUsedError;
+  @JsonKey(name: 'isBuy')
+  bool get isBuy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'buyStatus')
+  int get buyStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'planId')
+  int get planId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  int get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'beginDate')
+  String get beginDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'logicEndDate')
+  String get logicEndDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'endTimeDate')
+  String get endTimeDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'roiTotal')
+  double get roiTotal => throw _privateConstructorUsedError;
 
   /// Serializes this PlanDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -139,7 +155,15 @@ abstract class $PlanDetailCopyWith<$Res> {
       @JsonKey(name: 'virtualName') String virtualName,
       @JsonKey(name: 'virtualDesc') String virtualDesc,
       @JsonKey(name: 'servicesName') String servicesName,
-      @JsonKey(name: 'servicesDesc') String servicesDesc});
+      @JsonKey(name: 'servicesDesc') String servicesDesc,
+      @JsonKey(name: 'isBuy') bool isBuy,
+      @JsonKey(name: 'buyStatus') int buyStatus,
+      @JsonKey(name: 'planId') int planId,
+      @JsonKey(name: 'status') int status,
+      @JsonKey(name: 'beginDate') String beginDate,
+      @JsonKey(name: 'logicEndDate') String logicEndDate,
+      @JsonKey(name: 'endTimeDate') String endTimeDate,
+      @JsonKey(name: 'roiTotal') double roiTotal});
 }
 
 /// @nodoc
@@ -191,6 +215,14 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
     Object? virtualDesc = null,
     Object? servicesName = null,
     Object? servicesDesc = null,
+    Object? isBuy = null,
+    Object? buyStatus = null,
+    Object? planId = null,
+    Object? status = null,
+    Object? beginDate = null,
+    Object? logicEndDate = null,
+    Object? endTimeDate = null,
+    Object? roiTotal = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -329,6 +361,38 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
           ? _value.servicesDesc
           : servicesDesc // ignore: cast_nullable_to_non_nullable
               as String,
+      isBuy: null == isBuy
+          ? _value.isBuy
+          : isBuy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      buyStatus: null == buyStatus
+          ? _value.buyStatus
+          : buyStatus // ignore: cast_nullable_to_non_nullable
+              as int,
+      planId: null == planId
+          ? _value.planId
+          : planId // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      beginDate: null == beginDate
+          ? _value.beginDate
+          : beginDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      logicEndDate: null == logicEndDate
+          ? _value.logicEndDate
+          : logicEndDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endTimeDate: null == endTimeDate
+          ? _value.endTimeDate
+          : endTimeDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      roiTotal: null == roiTotal
+          ? _value.roiTotal
+          : roiTotal // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -375,7 +439,15 @@ abstract class _$$PlanDetailImplCopyWith<$Res>
       @JsonKey(name: 'virtualName') String virtualName,
       @JsonKey(name: 'virtualDesc') String virtualDesc,
       @JsonKey(name: 'servicesName') String servicesName,
-      @JsonKey(name: 'servicesDesc') String servicesDesc});
+      @JsonKey(name: 'servicesDesc') String servicesDesc,
+      @JsonKey(name: 'isBuy') bool isBuy,
+      @JsonKey(name: 'buyStatus') int buyStatus,
+      @JsonKey(name: 'planId') int planId,
+      @JsonKey(name: 'status') int status,
+      @JsonKey(name: 'beginDate') String beginDate,
+      @JsonKey(name: 'logicEndDate') String logicEndDate,
+      @JsonKey(name: 'endTimeDate') String endTimeDate,
+      @JsonKey(name: 'roiTotal') double roiTotal});
 }
 
 /// @nodoc
@@ -425,6 +497,14 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
     Object? virtualDesc = null,
     Object? servicesName = null,
     Object? servicesDesc = null,
+    Object? isBuy = null,
+    Object? buyStatus = null,
+    Object? planId = null,
+    Object? status = null,
+    Object? beginDate = null,
+    Object? logicEndDate = null,
+    Object? endTimeDate = null,
+    Object? roiTotal = null,
   }) {
     return _then(_$PlanDetailImpl(
       id: null == id
@@ -563,6 +643,38 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
           ? _value.servicesDesc
           : servicesDesc // ignore: cast_nullable_to_non_nullable
               as String,
+      isBuy: null == isBuy
+          ? _value.isBuy
+          : isBuy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      buyStatus: null == buyStatus
+          ? _value.buyStatus
+          : buyStatus // ignore: cast_nullable_to_non_nullable
+              as int,
+      planId: null == planId
+          ? _value.planId
+          : planId // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+      beginDate: null == beginDate
+          ? _value.beginDate
+          : beginDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      logicEndDate: null == logicEndDate
+          ? _value.logicEndDate
+          : logicEndDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      endTimeDate: null == endTimeDate
+          ? _value.endTimeDate
+          : endTimeDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      roiTotal: null == roiTotal
+          ? _value.roiTotal
+          : roiTotal // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -604,7 +716,15 @@ class _$PlanDetailImpl implements _PlanDetail {
       @JsonKey(name: 'virtualName') this.virtualName = '',
       @JsonKey(name: 'virtualDesc') this.virtualDesc = '',
       @JsonKey(name: 'servicesName') this.servicesName = '',
-      @JsonKey(name: 'servicesDesc') this.servicesDesc = ''});
+      @JsonKey(name: 'servicesDesc') this.servicesDesc = '',
+      @JsonKey(name: 'isBuy') this.isBuy = false,
+      @JsonKey(name: 'buyStatus') this.buyStatus = 0,
+      @JsonKey(name: 'planId') this.planId = 0,
+      @JsonKey(name: 'status') this.status = 0,
+      @JsonKey(name: 'beginDate') this.beginDate = '',
+      @JsonKey(name: 'logicEndDate') this.logicEndDate = '',
+      @JsonKey(name: 'endTimeDate') this.endTimeDate = '',
+      @JsonKey(name: 'roiTotal') this.roiTotal = 0});
 
   factory _$PlanDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlanDetailImplFromJson(json);
@@ -711,10 +831,34 @@ class _$PlanDetailImpl implements _PlanDetail {
   @override
   @JsonKey(name: 'servicesDesc')
   final String servicesDesc;
+  @override
+  @JsonKey(name: 'isBuy')
+  final bool isBuy;
+  @override
+  @JsonKey(name: 'buyStatus')
+  final int buyStatus;
+  @override
+  @JsonKey(name: 'planId')
+  final int planId;
+  @override
+  @JsonKey(name: 'status')
+  final int status;
+  @override
+  @JsonKey(name: 'beginDate')
+  final String beginDate;
+  @override
+  @JsonKey(name: 'logicEndDate')
+  final String logicEndDate;
+  @override
+  @JsonKey(name: 'endTimeDate')
+  final String endTimeDate;
+  @override
+  @JsonKey(name: 'roiTotal')
+  final double roiTotal;
 
   @override
   String toString() {
-    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc)';
+    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, roiTotal: $roiTotal)';
   }
 
   @override
@@ -776,7 +920,20 @@ class _$PlanDetailImpl implements _PlanDetail {
             (identical(other.servicesName, servicesName) ||
                 other.servicesName == servicesName) &&
             (identical(other.servicesDesc, servicesDesc) ||
-                other.servicesDesc == servicesDesc));
+                other.servicesDesc == servicesDesc) &&
+            (identical(other.isBuy, isBuy) || other.isBuy == isBuy) &&
+            (identical(other.buyStatus, buyStatus) ||
+                other.buyStatus == buyStatus) &&
+            (identical(other.planId, planId) || other.planId == planId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.beginDate, beginDate) ||
+                other.beginDate == beginDate) &&
+            (identical(other.logicEndDate, logicEndDate) ||
+                other.logicEndDate == logicEndDate) &&
+            (identical(other.endTimeDate, endTimeDate) ||
+                other.endTimeDate == endTimeDate) &&
+            (identical(other.roiTotal, roiTotal) ||
+                other.roiTotal == roiTotal));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -816,7 +973,15 @@ class _$PlanDetailImpl implements _PlanDetail {
         virtualName,
         virtualDesc,
         servicesName,
-        servicesDesc
+        servicesDesc,
+        isBuy,
+        buyStatus,
+        planId,
+        status,
+        beginDate,
+        logicEndDate,
+        endTimeDate,
+        roiTotal
       ]);
 
   /// Create a copy of PlanDetail
@@ -837,43 +1002,50 @@ class _$PlanDetailImpl implements _PlanDetail {
 
 abstract class _PlanDetail implements PlanDetail {
   factory _PlanDetail(
-          {@JsonKey(name: 'id') final int id,
-          @JsonKey(name: 'code') final String code,
-          @JsonKey(name: 'name') final String name,
-          @JsonKey(name: 'amount') final double amount,
-          @JsonKey(name: 'profitPreHour') final double profitPreHour,
-          @JsonKey(name: 'profitPreDay') final double profitPreDay,
-          @JsonKey(name: 'profitTotal') final double profitTotal,
-          @JsonKey(name: 'profitRate') final double profitRate,
-          @JsonKey(name: 'cycle') final double cycle,
-          @JsonKey(name: 'purchaseLimitType') final double purchaseLimitType,
-          @JsonKey(name: 'purchaseLimitQuantity')
-          final double purchaseLimitQuantity,
-          @JsonKey(name: 'description') final String description,
-          @JsonKey(name: 'remark') final String remark,
-          @JsonKey(name: 'enable') final double enable,
-          @JsonKey(name: 'logoFileId') final double logoFileId,
-          @JsonKey(name: 'logoFileIdUrl') final String logoFileIdUrl,
-          @JsonKey(name: 'speedLevel') final double speedLevel,
-          @JsonKey(name: 'pcieName') final String pcieName,
-          @JsonKey(name: 'upSpeed') final double upSpeed,
-          @JsonKey(name: 'downSpeed') final double downSpeed,
-          @JsonKey(name: 'ports') final double ports,
-          @JsonKey(name: 'ops') final double ops,
-          @JsonKey(name: 'maxCuda') final double maxCuda,
-          @JsonKey(name: 'ram') final double ram,
-          @JsonKey(name: 'speed') final double speed,
-          @JsonKey(name: 'graphicsIconFileId') final double graphicsIconFileId,
-          @JsonKey(name: 'graphicsIconFileIdUrl')
-          final String graphicsIconFileIdUrl,
-          @JsonKey(name: 'graphicsName') final String graphicsName,
-          @JsonKey(name: 'graphicsCpu') final String graphicsCpu,
-          @JsonKey(name: 'graphicsRam') final String graphicsRam,
-          @JsonKey(name: 'virtualName') final String virtualName,
-          @JsonKey(name: 'virtualDesc') final String virtualDesc,
-          @JsonKey(name: 'servicesName') final String servicesName,
-          @JsonKey(name: 'servicesDesc') final String servicesDesc}) =
-      _$PlanDetailImpl;
+      {@JsonKey(name: 'id') final int id,
+      @JsonKey(name: 'code') final String code,
+      @JsonKey(name: 'name') final String name,
+      @JsonKey(name: 'amount') final double amount,
+      @JsonKey(name: 'profitPreHour') final double profitPreHour,
+      @JsonKey(name: 'profitPreDay') final double profitPreDay,
+      @JsonKey(name: 'profitTotal') final double profitTotal,
+      @JsonKey(name: 'profitRate') final double profitRate,
+      @JsonKey(name: 'cycle') final double cycle,
+      @JsonKey(name: 'purchaseLimitType') final double purchaseLimitType,
+      @JsonKey(name: 'purchaseLimitQuantity')
+      final double purchaseLimitQuantity,
+      @JsonKey(name: 'description') final String description,
+      @JsonKey(name: 'remark') final String remark,
+      @JsonKey(name: 'enable') final double enable,
+      @JsonKey(name: 'logoFileId') final double logoFileId,
+      @JsonKey(name: 'logoFileIdUrl') final String logoFileIdUrl,
+      @JsonKey(name: 'speedLevel') final double speedLevel,
+      @JsonKey(name: 'pcieName') final String pcieName,
+      @JsonKey(name: 'upSpeed') final double upSpeed,
+      @JsonKey(name: 'downSpeed') final double downSpeed,
+      @JsonKey(name: 'ports') final double ports,
+      @JsonKey(name: 'ops') final double ops,
+      @JsonKey(name: 'maxCuda') final double maxCuda,
+      @JsonKey(name: 'ram') final double ram,
+      @JsonKey(name: 'speed') final double speed,
+      @JsonKey(name: 'graphicsIconFileId') final double graphicsIconFileId,
+      @JsonKey(name: 'graphicsIconFileIdUrl')
+      final String graphicsIconFileIdUrl,
+      @JsonKey(name: 'graphicsName') final String graphicsName,
+      @JsonKey(name: 'graphicsCpu') final String graphicsCpu,
+      @JsonKey(name: 'graphicsRam') final String graphicsRam,
+      @JsonKey(name: 'virtualName') final String virtualName,
+      @JsonKey(name: 'virtualDesc') final String virtualDesc,
+      @JsonKey(name: 'servicesName') final String servicesName,
+      @JsonKey(name: 'servicesDesc') final String servicesDesc,
+      @JsonKey(name: 'isBuy') final bool isBuy,
+      @JsonKey(name: 'buyStatus') final int buyStatus,
+      @JsonKey(name: 'planId') final int planId,
+      @JsonKey(name: 'status') final int status,
+      @JsonKey(name: 'beginDate') final String beginDate,
+      @JsonKey(name: 'logicEndDate') final String logicEndDate,
+      @JsonKey(name: 'endTimeDate') final String endTimeDate,
+      @JsonKey(name: 'roiTotal') final double roiTotal}) = _$PlanDetailImpl;
 
   factory _PlanDetail.fromJson(Map<String, dynamic> json) =
       _$PlanDetailImpl.fromJson;
@@ -980,6 +1152,30 @@ abstract class _PlanDetail implements PlanDetail {
   @override
   @JsonKey(name: 'servicesDesc')
   String get servicesDesc;
+  @override
+  @JsonKey(name: 'isBuy')
+  bool get isBuy;
+  @override
+  @JsonKey(name: 'buyStatus')
+  int get buyStatus;
+  @override
+  @JsonKey(name: 'planId')
+  int get planId;
+  @override
+  @JsonKey(name: 'status')
+  int get status;
+  @override
+  @JsonKey(name: 'beginDate')
+  String get beginDate;
+  @override
+  @JsonKey(name: 'logicEndDate')
+  String get logicEndDate;
+  @override
+  @JsonKey(name: 'endTimeDate')
+  String get endTimeDate;
+  @override
+  @JsonKey(name: 'roiTotal')
+  double get roiTotal;
 
   /// Create a copy of PlanDetail
   /// with the given fields replaced by the non-null parameter values.

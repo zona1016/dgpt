@@ -43,6 +43,14 @@ _$PlanDetailImpl _$$PlanDetailImplFromJson(Map<String, dynamic> json) =>
       virtualDesc: json['virtualDesc'] as String? ?? '',
       servicesName: json['servicesName'] as String? ?? '',
       servicesDesc: json['servicesDesc'] as String? ?? '',
+      isBuy: json['isBuy'] as bool? ?? false,
+      buyStatus: (json['buyStatus'] as num?)?.toInt() ?? 0,
+      planId: (json['planId'] as num?)?.toInt() ?? 0,
+      status: (json['status'] as num?)?.toInt() ?? 0,
+      beginDate: json['beginDate'] as String? ?? '',
+      logicEndDate: json['logicEndDate'] as String? ?? '',
+      endTimeDate: json['endTimeDate'] as String? ?? '',
+      roiTotal: (json['roiTotal'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$PlanDetailImplToJson(_$PlanDetailImpl instance) =>
@@ -81,4 +89,12 @@ Map<String, dynamic> _$$PlanDetailImplToJson(_$PlanDetailImpl instance) =>
       'virtualDesc': instance.virtualDesc,
       'servicesName': instance.servicesName,
       'servicesDesc': instance.servicesDesc,
+      'isBuy': instance.isBuy,
+      'buyStatus': instance.buyStatus,
+      'planId': instance.planId,
+      'status': instance.status,
+      'beginDate': instance.beginDate,
+      'logicEndDate': instance.logicEndDate,
+      'endTimeDate': instance.endTimeDate,
+      'roiTotal': instance.roiTotal,
     };

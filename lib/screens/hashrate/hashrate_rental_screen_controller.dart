@@ -1,4 +1,3 @@
-import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';

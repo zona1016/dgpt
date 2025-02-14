@@ -130,6 +130,9 @@ abstract class AiPulseService {
   Future<BaseResponse> aiPulseDepositDeposit();
 
   Future<BaseResponse<List<UserBalance>?>> aiPulseWalletGetUserBalance();
+
+  Future<BaseResponse<List<PlanDetail>>> aiPulseUserPlanUserPlan(
+      {required String status});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -682,6 +685,21 @@ class AiPulseServiceImpl extends AiPulseService {
               ? (data as List<dynamic>)
               .map((e) => UserBalance.fromJson(e))
               .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<PlanDetail>>> aiPulseUserPlanUserPlan(
+      {required String status}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseUserPlanUserPlan,
+          bearerToken: userController.token,
+          data: {'status': status},
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>).map((e) => PlanDetail.fromJson(e)).toList()
               : []);
     } on Exception catch (_) {
       rethrow;

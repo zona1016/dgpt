@@ -12,6 +12,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 
 class BaseController<S> extends GetxController {
   S? _args;
+
   S? get args => _args;
   final EasyRefreshController refreshController = EasyRefreshController(
     controlFinishRefresh: true,
@@ -43,7 +44,8 @@ class BaseController<S> extends GetxController {
 
   Future<T?> fetchData<T>(
       {required Future<BaseResponse<T>> Function() request,
-        AppLoadingState loadingState = AppLoadingState.normal, UIState state = UIState.loading}) async {
+      AppLoadingState loadingState = AppLoadingState.normal,
+      UIState state = UIState.loading}) async {
     updateState(state, loadingState);
     ongoingRequests++;
 
@@ -64,17 +66,18 @@ class BaseController<S> extends GetxController {
 
   Future<T?> fetchPaginatedData<T>(
       {required Future<BaseResponse<T>> Function() request,
-        dynamic Function(T response)? paginationResponseBuilder,
-        AppLoadingState loadingState = AppLoadingState.normal}) async {
+      dynamic Function(T response)? paginationResponseBuilder,
+      AppLoadingState loadingState = AppLoadingState.normal,
+      UIState state = UIState.loading}) async {
     updateState(UIState.loading, loadingState);
     ongoingRequests++;
 
     try {
       final response = await request();
       final paginationResponse = (paginationResponseBuilder == null
-          ? response.data
-          : paginationResponseBuilder(response.data as T))
-      as PaginationResponse;
+              ? response.data
+              : paginationResponseBuilder(response.data as T))
+          as PaginationResponse;
       currentPage = paginationResponse.currentPage;
       hasLoadMore.value = paginationResponse.hasLoadMore;
       debugPrint('loadmore = ${hasLoadMore.value.toString()}');
@@ -145,8 +148,8 @@ class BaseController<S> extends GetxController {
           refreshController.finishLoad(isError
               ? IndicatorResult.fail
               : hasLoadMore.isTrue
-              ? IndicatorResult.success
-              : IndicatorResult.noMore);
+                  ? IndicatorResult.success
+                  : IndicatorResult.noMore);
         }
         break;
       case AppLoadingState.loadMore:
@@ -154,8 +157,8 @@ class BaseController<S> extends GetxController {
           refreshController.finishLoad(isError
               ? IndicatorResult.fail
               : hasLoadMore.isTrue
-              ? IndicatorResult.success
-              : IndicatorResult.noMore);
+                  ? IndicatorResult.success
+                  : IndicatorResult.noMore);
         }
         break;
       case AppLoadingState.background:

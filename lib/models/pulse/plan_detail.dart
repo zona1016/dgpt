@@ -40,6 +40,15 @@ class PlanDetail with _$PlanDetail {
     @JsonKey(name: 'virtualDesc') @Default('') String virtualDesc,
     @JsonKey(name: 'servicesName') @Default('') String servicesName,
     @JsonKey(name: 'servicesDesc') @Default('') String servicesDesc,
+    @JsonKey(name: 'isBuy') @Default(false) bool isBuy,
+    @JsonKey(name: 'buyStatus') @Default(0) int buyStatus,
+    @JsonKey(name: 'planId') @Default(0) int planId,
+    @JsonKey(name: 'status') @Default(0) int status,
+    @JsonKey(name: 'beginDate') @Default('') String beginDate,
+    @JsonKey(name: 'logicEndDate') @Default('') String logicEndDate,
+    @JsonKey(name: 'endTimeDate') @Default('') String endTimeDate,
+    @JsonKey(name: 'roiTotal') @Default(0) double roiTotal,
+
   }) = _PlanDetail;
 
   factory PlanDetail.fromJson(Map<String, dynamic> json) =>

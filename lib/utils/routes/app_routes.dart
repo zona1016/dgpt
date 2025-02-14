@@ -4,6 +4,10 @@ import 'package:dgpt/screens/ai/ai_guidance_screen.dart';
 import 'package:dgpt/screens/ai/ai_guidance_screen_controller.dart';
 import 'package:dgpt/screens/ai/ai_start_screen.dart';
 import 'package:dgpt/screens/ai/ai_start_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_active_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_active_screen_controller.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen_controller.dart';
 import 'package:dgpt/screens/income/activated_users_screen.dart';
 import 'package:dgpt/screens/income/activated_users_screen_controller.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen.dart';
@@ -155,7 +159,9 @@ class AppRoutes {
 
   static String activatedUsers = "/activated_users";
   static String hashrateRental = "/hashrate_rental";
+  static String hashrateRentalActive = "/hashrate_rental_active";
   static String hashrateRentalDetail = "/hashrate_rental_detail";
+  static String hashrateRentalBuyDetail = "/hashrate_rental_buy_detail";
   static String hashratePasswordInput = "/hashrate_password_input";
   static String hashrateLoading = "/hashrate_loading";
   static String salary = "/salary";
@@ -379,9 +385,19 @@ class AppRoutes {
         binding: HashrateRentalScreenBindings()
     ),
     GetPage(
+        name: hashrateRentalActive,
+        page: () => const HashrateRentalActiveScreen(),
+        binding: HashrateRentalActiveScreeBindings()
+    ),
+    GetPage(
         name: hashrateRentalDetail,
         page: () => const HashrateRentalDetailScreen(),
         binding: HashrateRentalDetailScreenBindings()
+    ),
+    GetPage(
+        name: hashrateRentalBuyDetail,
+        page: () => const HashrateRentalBuyDetailScreen(),
+        binding: HashrateRentalBuyDetailScreenBindings()
     ),
     GetPage(
         name: hashratePasswordInput,

@@ -16,7 +16,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:marquee/marquee.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
@@ -56,7 +55,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: defaultPadding,
                   ),
                   // _carousel(context),
-                  GestureDetector(
+                  Obx(() => GestureDetector(
                     onTap: () {
                       final MainScreenController mainController = Get.find();
                       mainController.selectedTabIndex(1);
@@ -67,7 +66,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                       // 让所有子组件居中
                       children: [
                         Image.asset(
-                          'assets/images/home/header_bg.png',
+                          'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
                           fit: BoxFit.contain, // 图片自适应大小
                         ),
                         Positioned(
@@ -75,7 +74,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                           right: 0,
                           bottom: defaultPadding,
                           child: Text(
-                            tr('home.not_activated'),
+                            controller.isActivate.value ? tr('home.activated') : tr('home.not_activated'),
                             style: fontDMBold.copyWith(
                               color: BaseColors.white,
                               fontSize: 16,
@@ -85,7 +84,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         ),
                       ],
                     ),
-                  ),
+                  )),
                   const SizedBox(
                     height: defaultPadding,
                   ),

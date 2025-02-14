@@ -16,6 +16,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'dart:ui' as ui;
 
 import 'package:permission_handler/permission_handler.dart';
@@ -41,6 +42,7 @@ class HomeScreenController extends BaseController {
 
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   RxList<Banner> bannerList = <Banner>[].obs;
+  RxBool isActivate = false.obs;
   List<String> titles = [
     tr('home.notice'),
     tr('home.invite'),
@@ -57,17 +59,7 @@ class HomeScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    userIncomeTotal();
-    aiPulseBanner();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-    //     if (selectedBannerIndex < 3) {
-    //       carouselSliderController.nextPage();
-    //     } else {
-    //       carouselSliderController.jumpToPage(0);
-    //     }
-    //   });
-    // });
+    loadData();
   }
 
   @override
@@ -83,12 +75,41 @@ class HomeScreenController extends BaseController {
     ToastUtils.init(Get.context!);
   }
 
-  aiPulseBanner(
+  Future<void> loadData() async {
+    Get.context!.loaderOverlay.show();
+    await Future.wait([
+      userIncomeTotal(),
+      aiPulseBanner(),
+      aiPulseUserPlanUserPlan(),
+    ]);
+    Get.context!.loaderOverlay.hide();
+  }
+
+  Future<void> userIncomeTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.background,
+        request: () => aiPulseService.userIncomeTotal());
+    if (result != null) {
+      incomeTotal.value = result;
+    }
+  }
+
+  Future<void> aiPulseBanner(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
     final result = await fetchData(
         request: () => aiPulseService.aiPulseBannerUserPage(position: 0),
         loadingState: AppLoadingState.background);
     if (result != null) {}
+  }
+
+  Future<void> aiPulseUserPlanUserPlan(
+      {AppLoadingState loadingState = AppLoadingState.background}) async {
+    final result = await fetchData(
+        request: () => aiPulseService.aiPulseUserPlanUserPlan(status: '1'),
+        loadingState: AppLoadingState.background);
+    if (result != null && result.isNotEmpty) {
+      isActivate.value = true;
+    }
   }
 
   Future<void> capturePng(BuildContext context) async {
@@ -180,15 +201,6 @@ class HomeScreenController extends BaseController {
         );
       },
     );
-  }
-
-  userIncomeTotal() async {
-    final result = await fetchData(
-        loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => aiPulseService.userIncomeTotal());
-    if (result != null) {
-      incomeTotal.value = result;
-    }
   }
 
   logout() async {

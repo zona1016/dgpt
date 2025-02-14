@@ -98,11 +98,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                     0,
                                 'assets/images/income/income_slzj.png',
                                 onTap: () {
-                              final MainScreenController mainController =
-                                  Get.find();
-                              mainController.selectedTabIndex(1);
-                              mainController.pageController.jumpToPage(1);
-                              mainController.update();
+                              Get.toNamed(AppRoutes.hashrateRentalActive);
                             }),
                             _buildIncomeCard(
                                 tr('hashrate.team_computing_power_bonus'),
@@ -221,7 +217,14 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                   size: const Size(1, 45)),
               CustomPaint(
                 size: const Size(50, 50),
-                painter: CustomCircularPainter(controller.totalAmount.value > 0 ? (controller.amountTotalInfo.value?.planAmountTotal ?? 0) / controller.totalAmount.value : 0, 1.5, Colors.cyan),
+                painter: CustomCircularPainter(
+                    controller.totalAmount.value > 0
+                        ? (controller.amountTotalInfo.value?.planAmountTotal ??
+                                0) /
+                            controller.totalAmount.value
+                        : 0,
+                    1.5,
+                    Colors.cyan),
               ),
               Positioned(
                 top: defaultPadding,
@@ -243,7 +246,12 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(100, 100),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value, 3, Colors.yellow),
+                painter: CustomCircularPainter(
+                    (controller.amountTotalInfo.value?.directAwardAmountTotal ??
+                            0) /
+                        controller.totalAmount.value,
+                    3,
+                    Colors.yellow),
               ),
               Positioned(
                 top: 0,
@@ -265,7 +273,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(150, 150),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value, 2.5, Colors.red),
+                painter: CustomCircularPainter(
+                    (controller.amountTotalInfo.value?.roiAmountTotal ?? 0) /
+                        controller.totalAmount.value,
+                    2.5,
+                    Colors.red),
               ),
               Positioned(
                 bottom: defaultPadding,
@@ -287,7 +299,12 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               CustomPaint(
                 size: const Size(200, 200),
                 // You can adjust the size of the circle
-                painter: CustomCircularPainter((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value, 4, Colors.purple),
+                painter: CustomCircularPainter(
+                    (controller.amountTotalInfo.value?.teamAwardAmountTotal ??
+                            0) /
+                        controller.totalAmount.value,
+                    4,
+                    Colors.purple),
               ),
             ],
           ),

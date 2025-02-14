@@ -128,6 +128,7 @@
     "teaching": "教学",
     "enterprise": "企业",
     "not_activated": "未激活",
+    "activated": "已激活",
     "hourly_income": "每小时收益",
     "total_income": "总收益",
     "recommend_friends": "推荐好友",
@@ -176,6 +177,7 @@
     "fund_password_has_been_successfully_set": "资金密码设置成功"
   },
   "hashrate": {
+    "details": "详情",
     "connecting_computing_power_center": "正在链接算力中心",
     "please_wait": "请稍等",
     "computing_power_rental_in_progress": "算力租借进行中",

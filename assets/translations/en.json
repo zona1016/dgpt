@@ -128,6 +128,7 @@
     "teaching": "Teaching",
     "enterprise": "Enterprise",
     "not_activated": "Not activated",
+    "activated": "Activated",
     "hourly_income": "Hourly income",
     "total_income": "Total income",
     "recommend_friends": "Recommend friends",
@@ -176,6 +177,7 @@
     "fund_password_has_been_successfully_set": "Fund password has been successfully set"
   },
   "hashrate": {
+    "details": "Details",
     "connecting_computing_power_center": "Connecting to Hashrate center",
     "please_wait": "Please wait",
     "computing_power_rental_in_progress": "Hashrate rental in progress",

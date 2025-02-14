@@ -369,7 +369,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   : null,
               title: controller.profileTitles[startIndex],
               image: controller.profileImages[startIndex],
-              showRight: !showTop),
+              showRight: true),
           if (!showTop)
             Container(
               margin: const EdgeInsets.symmetric(horizontal: defaultPadding),

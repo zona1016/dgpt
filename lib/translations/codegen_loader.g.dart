@@ -144,6 +144,7 @@ class CodegenLoader extends AssetLoader{
     "teaching": "Teaching",
     "enterprise": "Enterprise",
     "not_activated": "Not activated",
+    "activated": "Activated",
     "hourly_income": "Hourly income",
     "total_income": "Total income",
     "recommend_friends": "Recommend friends",
@@ -192,6 +193,7 @@ class CodegenLoader extends AssetLoader{
     "fund_password_has_been_successfully_set": "Fund password has been successfully set"
   },
   "hashrate": {
+    "details": "Details",
     "connecting_computing_power_center": "Connecting to Hashrate center",
     "please_wait": "Please wait",
     "computing_power_rental_in_progress": "Hashrate rental in progress",
@@ -412,6 +414,7 @@ static const Map<String,dynamic> zh_Hans = {
     "teaching": "教学",
     "enterprise": "企业",
     "not_activated": "未激活",
+    "activated": "已激活",
     "hourly_income": "每小时收益",
     "total_income": "总收益",
     "recommend_friends": "推荐好友",
@@ -460,6 +463,7 @@ static const Map<String,dynamic> zh_Hans = {
     "fund_password_has_been_successfully_set": "资金密码设置成功"
   },
   "hashrate": {
+    "details": "详情",
     "connecting_computing_power_center": "正在链接算力中心",
     "please_wait": "请稍等",
     "computing_power_rental_in_progress": "算力租借进行中",
@@ -546,6 +550,10 @@ static const Map<String,dynamic> zh_Hans = {
     "aip_ai_description": "AIP-AI：驱动未来LLM模型。您全方位的人工智能助手，助力智能与创新无缝融合。"
   },
   "tip": {
+    "copy_success": "复制成功",
+    "no_data": "暂无数据"
+  },
+  "income": {
     "copy_success": "复制成功",
     "no_data": "暂无数据"
   }

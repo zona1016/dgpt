@@ -51,7 +51,7 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
 
   userHasTradingPwd() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.background,
+        loadingState: AppLoadingState.normal,
         request: () => aiPulseService.userHasTradingPwd());
     if (result != null) {
       if (result == true) {
