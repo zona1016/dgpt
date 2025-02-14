@@ -1,5 +1,4 @@
 import 'package:dgpt/screens/income/income_screen_controller.dart';
-import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -76,10 +75,44 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           }
                         }),
                         const SizedBox(height: defaultPadding),
-                        Text(
-                          tr('hashrate.income_details'),
-                          style: fontDMBold.copyWith(
-                              color: BaseColors.white, fontSize: 18),
+                        Row(
+                          children: [
+                            Text(
+                              tr('hashrate.income_details'),
+                              style: fontDMBold.copyWith(
+                                  color: BaseColors.white, fontSize: 18),
+                            ),
+                            Expanded(child: Container()),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.incomeHistory);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: defaultPadding / 2,
+                                    vertical: defaultPadding / 5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: BaseColors.primaryColor,
+                                ),
+                                child: Center(
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        '详情',
+                                        style: fontSFProMedium.copyWith(
+                                          fontSize: 12,
+                                          color: BaseColors.white,
+                                        ),
+                                      ),
+                                      const SizedBox(width: defaultPadding / 5,),
+                                      const Icon(Icons.chevron_right, color: BaseColors.white,size: 12,),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                         GridView.count(
                           shrinkWrap: true,

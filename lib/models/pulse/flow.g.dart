@@ -24,8 +24,8 @@ Flow _$FlowFromJson(Map<String, dynamic> json) => Flow(
       type: (json['type'] as num?)?.toInt() ?? 0,
       fromAccount: (json['fromAccount'] as num?)?.toInt() ?? 0,
       toAccount: (json['toAccount'] as num?)?.toInt() ?? 0,
-      balance: (json['balance'] as num?)?.toInt() ?? 0,
-      amount: (json['amount'] as num?)?.toInt() ?? 0,
+      balance: (json['balance'] as num?)?.toDouble() ?? 0,
+      amount: (json['amount'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$FlowToJson(Flow instance) => <String, dynamic>{

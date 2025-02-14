@@ -21,10 +21,10 @@ class Flow extends BaseModel {
   int? toAccount;
 
   @JsonKey(name: 'balance', defaultValue: 0)
-  int? balance;
+  double? balance;
 
   @JsonKey(name: 'amount', defaultValue: 0)
-  int? amount;
+  double? amount;
 
   Flow({
     super.id,

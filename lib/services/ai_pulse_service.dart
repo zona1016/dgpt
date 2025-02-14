@@ -1,4 +1,5 @@
 import 'package:dgpt/models/api/pagination_response.dart';
+import 'package:dgpt/models/pulse/flow.dart';
 import 'package:dgpt/models/pulse/notice_info.dart';
 import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
@@ -133,6 +134,9 @@ abstract class AiPulseService {
 
   Future<BaseResponse<List<PlanDetail>>> aiPulseUserPlanUserPlan(
       {String? status});
+
+  Future<BaseResponse<PaginationResponse<Flow>?>> aiPulseFlowUserPage(
+      {int page = 1, int perPage = 20});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -704,6 +708,27 @@ class AiPulseServiceImpl extends AiPulseService {
           deserializer: (data) => data != null
               ? (data as List<dynamic>).map((e) => PlanDetail.fromJson(e)).toList()
               : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<PaginationResponse<Flow>?>> aiPulseFlowUserPage(
+      {int page = 1, int perPage = 20}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseFlowUserPage,
+          bearerToken: userController.token,
+          data: {
+            'page': page,
+            'pageSize': perPage,
+          },
+          deserializer: (data) => data != null
+              ? PaginationResponse<Flow>.fromJson(
+              data,
+                  (json) =>
+                      Flow.fromJson(json as Map<String, dynamic>))
+              : null);
     } on Exception catch (_) {
       rethrow;
     }

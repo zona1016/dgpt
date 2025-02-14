@@ -12,6 +12,8 @@ import 'package:dgpt/screens/income/activated_users_screen.dart';
 import 'package:dgpt/screens/income/activated_users_screen_controller.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen_controller.dart';
+import 'package:dgpt/screens/income/income_history_screen.dart';
+import 'package:dgpt/screens/income/income_history_screen_controller.dart';
 import 'package:dgpt/screens/income/invitation_award_screen.dart';
 import 'package:dgpt/screens/income/invitation_award_screen_controller.dart';
 import 'package:dgpt/screens/income/salary_screen.dart';
@@ -153,6 +155,7 @@ class AppRoutes {
   static String systemMessageDetail = "/system_message_detail";
 
   static String income = "/income";
+  static String incomeHistory = "/income_history";
   static String hashrateLeasing = "/hashrate_leasing";
   static String invitationAward = "/invitation_award";
   static String teamHashrateAwardn = "/team_hashrate_awardn";
@@ -363,6 +366,11 @@ class AppRoutes {
         name: income,
         page: () => const IncomeScreen(),
         binding: IncomeScreenBindings()
+    ),
+    GetPage(
+        name: incomeHistory,
+        page: () => const IncomeHistoryScreen(),
+        binding: IncomeHistoryScreenBindings()
     ),
     GetPage(
         name: hashrateLeasing,
