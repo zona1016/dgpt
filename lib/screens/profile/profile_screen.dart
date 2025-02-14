@@ -1,4 +1,5 @@
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
+import 'package:dgpt/screens/transaction/my_assets_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
@@ -121,7 +122,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () => Get.toNamed(AppRoutes.myAssets),
+          onTap: () => Get.toNamed(AppRoutes.myAssets,
+              arguments: MyAssetsScreenArgs(
+                  userBalanceList: controller.userBalanceList.value)),
           child: Container(
             width: double.infinity,
             margin: const EdgeInsets.only(top: 90),
@@ -148,12 +151,13 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Obx(() => Text(
-                      NumberFormat('#,##0.000').format(controller.totalAmount.value),
-                      style: fontDMBold.copyWith(
-                        color: BaseColors.white,
-                        fontSize: 24,
-                      ),
-                    )),
+                          NumberFormat('#,##0.000')
+                              .format(controller.totalAmount.value),
+                          style: fontDMBold.copyWith(
+                            color: BaseColors.white,
+                            fontSize: 24,
+                          ),
+                        )),
                     const SizedBox(
                       width: defaultPadding / 4,
                     ),
@@ -210,64 +214,65 @@ class ProfileScreen extends GetView<ProfileScreenController> {
 
   _card({required Function(int index) cardTaps}) {
     return Obx(() => Row(
-      children: [
-        Expanded(
-          child: _cardItem(
-              callBack: () => cardTaps(0),
-              title: controller.profileActionTitles[0],
-              image: controller.profileActionImages[0],
-              amount: controller.zpTotalAmount.value,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF892EFF), // 起始颜色
-                  Color(0xFF1C4C99), // 结束颜色
-                ],
-              )),
-        ),
-        const SizedBox(
-          width: defaultPadding / 2,
-        ),
-        Expanded(
-          child: _cardItem(
-              callBack: () => cardTaps(1),
-              title: controller.profileActionTitles[1],
-              image: controller.profileActionImages[1],
-              amount: controller.xjTotalAmount.value,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFA193B3), // 起始颜色
-                  Color(0xFF767A80), // 结束颜色
-                ],
-              )),
-        ),
-        // const SizedBox(
-        //   width: defaultPadding / 2,
-        // ),
-        // Expanded(
-        //   child: _cardItem(
-        //       callBack: () => cardTaps(2),
-        //       title: controller.profileActionTitles[2],
-        //       image: controller.profileActionImages[2],
-        //       gradient: const LinearGradient(
-        //         begin: Alignment.topLeft,
-        //         end: Alignment.bottomRight,
-        //         colors: [
-        //           Color(0xFFA193B3), // 起始颜色
-        //           Color(0xFF767A80), // 结束颜色
-        //         ],
-        //       )),
-        // ),
-      ],
-    ));
+          children: [
+            Expanded(
+              child: _cardItem(
+                  callBack: () => cardTaps(0),
+                  title: controller.profileActionTitles[0],
+                  image: controller.profileActionImages[0],
+                  amount: controller.zpTotalAmount.value,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF892EFF), // 起始颜色
+                      Color(0xFF1C4C99), // 结束颜色
+                    ],
+                  )),
+            ),
+            const SizedBox(
+              width: defaultPadding / 2,
+            ),
+            Expanded(
+              child: _cardItem(
+                  callBack: () => cardTaps(1),
+                  title: controller.profileActionTitles[1],
+                  image: controller.profileActionImages[1],
+                  amount: controller.xjTotalAmount.value,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFA193B3), // 起始颜色
+                      Color(0xFF767A80), // 结束颜色
+                    ],
+                  )),
+            ),
+            // const SizedBox(
+            //   width: defaultPadding / 2,
+            // ),
+            // Expanded(
+            //   child: _cardItem(
+            //       callBack: () => cardTaps(2),
+            //       title: controller.profileActionTitles[2],
+            //       image: controller.profileActionImages[2],
+            //       gradient: const LinearGradient(
+            //         begin: Alignment.topLeft,
+            //         end: Alignment.bottomRight,
+            //         colors: [
+            //           Color(0xFFA193B3), // 起始颜色
+            //           Color(0xFF767A80), // 结束颜色
+            //         ],
+            //       )),
+            // ),
+          ],
+        ));
   }
 
   _cardItem(
       {required String title,
-      required String image, required double amount,
+      required String image,
+      required double amount,
       required LinearGradient gradient,
       GestureTapCallback? callBack}) {
     return GestureDetector(
@@ -537,8 +542,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                         const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(defaultPadding * 2),
-                      gradient: BaseColors.baseButtonLinearGradient
-                    ),
+                        gradient: BaseColors.baseButtonLinearGradient),
                     child: Row(
                       children: [
                         Text(

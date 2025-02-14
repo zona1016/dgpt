@@ -1,14 +1,18 @@
+import 'package:dgpt/models/pulse/plan_detail.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
-import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderItem extends StatefulWidget {
-  const OrderItem({super.key});
+  final PlanDetail planDetail;
+
+  const OrderItem({super.key, required this.planDetail});
 
   @override
   State<OrderItem> createState() => _OrderItemState();
@@ -24,6 +28,7 @@ class _OrderItemState extends State<OrderItem> {
           borderRadius: BorderRadius.circular(25),
           color: BaseColors.white.withOpacity(0.2)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: defaultPadding / 2,
@@ -31,29 +36,33 @@ class _OrderItemState extends State<OrderItem> {
           Row(
             children: [
               Text(
-                '011920365071396',
+                widget.planDetail.planId.toString(),
                 style: fontSFProMedium.copyWith(
                   fontSize: 16,
                   color: BaseColors.white,
                 ),
               ),
-              const Spacer(),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(defaultPadding),
-                    color: BaseColors.primaryColor),
-                child: Center(
-                  child: Text(
-                    '运行中',
-                    style: fontSFProMedium.copyWith(
-                      fontSize: 16,
-                      color: Colors.red,
+              Expanded(child: Container()),
+              if (widget.planDetail.status == 1)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding / 2,
+                      vertical: defaultPadding / 5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: BaseColors.secondPrimaryColor.withOpacity(0.1),
+                      border:
+                          Border.all(width: 2, color: BaseColors.primaryColor)),
+                  child: Center(
+                    child: Text(
+                      '运作中',
+                      style: fontSFProMedium.copyWith(
+                        fontSize: 10,
+                        color: BaseColors.secondPrimaryColor,
+                      ),
                     ),
                   ),
-                ),
-              )
+                )
             ],
           ),
           const SizedBox(
@@ -70,13 +79,13 @@ class _OrderItemState extends State<OrderItem> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 80,
+              SizedBox(
+                height: 90,
                 width: 80,
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: BaseNetworkImage(
-                    imageURL: '',
+                    imageURL: widget.planDetail.logoFileIdUrl,
                     placeholder: 'assets/images/home/income_icon.png',
                   ),
                 ),
@@ -89,7 +98,7 @@ class _OrderItemState extends State<OrderItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '加速器I',
+                      widget.planDetail.name,
                       style: fontDMBold.copyWith(
                         fontSize: 12,
                         color: BaseColors.white,
@@ -100,72 +109,68 @@ class _OrderItemState extends State<OrderItem> {
                     ),
                     Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '每日训练时长',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
+                        Expanded(
+                          child: Text(
+                            '下单日期',
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.weakTextColor,
                             ),
-                            const SizedBox(
-                              height: defaultPadding / 4,
-                            ),
-                            Text(
-                              '期限',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 4,
-                            ),
-                            Text(
-                              '总产量',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        const Spacer(),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '2H',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
+                        Expanded(
+                          child: Text(
+                            formatDateString(widget.planDetail.beginDate),
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.white,
                             ),
-                            const SizedBox(
-                              height: defaultPadding / 4,
-                            ),
-                            Text(
-                              '60天',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: defaultPadding / 4,
-                            ),
-                            Text(
-                              'U830',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        const Spacer(),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '租赁金额',
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.weakTextColor,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            'U ${widget.planDetail.amount}',
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '租赁收益',
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.weakTextColor,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            'U ${widget.planDetail.roiTotal}',
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.white,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -173,100 +178,73 @@ class _OrderItemState extends State<OrderItem> {
                     ),
                     Center(
                       child: Text(
-                        '进行中...',
+                        widget.planDetail.status == 1 ? '进行中' : '已失效',
                         style: fontDMBold.copyWith(
                           fontSize: 12,
-                          color: const Color(0xFF81E5FF),
+                          color: widget.planDetail.status == 1 ? const Color(0xFF81E5FF) : Colors.red,
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: defaultPadding / 2,
-                    ),
-                    Image.asset(
-                      'assets/images/home/order_progress.png'
-                    ),
-                    Center(
-                      child: Text(
-                        '已失效...',
-                        style: fontDMBold.copyWith(
-                          fontSize: 12,
-                          color: const Color(0xFF81E5FF),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: defaultPadding / 2,
-                    ),
-                    Image.asset(
-                        'assets/images/home/order_progress_fail.png'
                     ),
                     const SizedBox(
                       height: defaultPadding / 2,
                     ),
                     Container(
-                      height: 30,
-                      width: double.infinity,
+                      height: 25,
+                      // width: 220,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
-                          border: Border.all(
-                              width: 1, color: BaseColors.secondPrimaryColor)),
-                      child: Center(
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            Text(
-                              '实际需交付',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: defaultPadding / 4,
-                            ),
-                            Text(
-                              'U100.00',
-                              style: fontDMRegular.copyWith(
-                                fontSize: 10,
-                                color: BaseColors.secondPrimaryColor,
-                              ),
-                            ),
-                            const Spacer(),
-                          ],
-                        ),
+                          image: DecorationImage(
+                        image: AssetImage(
+                            'assets/images/transaction/icon_bg${widget.planDetail.status == 1 ? '' : '1'}.png'),
+                      )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(13, (index) {
+                          return Image.asset(
+                            'assets/images/transaction/icon${widget.planDetail.status == 2 ? '2' : index < progress() ? '1' : '2'}.png',
+                            height: 13,
+                            width: 16,
+                          );
+                        }),
                       ),
-                    ),
-                    const SizedBox(
-                      height: defaultPadding,
-                    ),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        Container(
-                          height: 24,
-                          width: 52,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding / 2),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(defaultPadding),
-                              color: BaseColors.primaryColor),
-                          child: Center(
-                            child: Text(
-                              '详情',
-                              style: fontDMBold.copyWith(
-                                fontSize: 12,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
                     ),
                     const SizedBox(
                       height: defaultPadding / 2,
                     ),
+                    if (widget.planDetail.status == 1)
+                      Row(
+                        children: [
+                          Expanded(child: Container()),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.hashrateRentalBuyDetail,
+                                  arguments: HashrateRentalBuyDetailScreenArgs(
+                                      planDetail: widget.planDetail));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: defaultPadding,
+                                  vertical: defaultPadding / 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: BaseColors.primaryColor,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '详情',
+                                  style: fontSFProMedium.copyWith(
+                                    fontSize: 12,
+                                    color: BaseColors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    if (widget.planDetail.status == 1)
+                      const SizedBox(
+                        height: defaultPadding / 2,
+                      ),
                   ],
                 ),
               ),
@@ -275,5 +253,22 @@ class _OrderItemState extends State<OrderItem> {
         ],
       ),
     );
+  }
+
+  int progress() {
+    DateTime sysDate = DateFormat("yyyy-MM-dd HH:mm:ss")
+        .parse(widget.planDetail.sysNowTime ?? '');
+    DateTime beginDateObj = DateFormat("yyyy-MM-dd HH:mm:ss")
+        .parse(widget.planDetail.beginDate ?? '');
+    int continueDay = sysDate.difference(beginDateObj).inDays;
+    return ((continueDay / widget.planDetail.cycle) * 13).toInt();
+  }
+
+  String formatDateString(String dateString) {
+    // 解析字符串为 DateTime
+    DateTime dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString);
+
+    // 格式化为 "dd.MM.yyyy"
+    return DateFormat("dd.MM.yyyy").format(dateTime);
   }
 }

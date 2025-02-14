@@ -1,6 +1,4 @@
-import 'package:dgpt/screens/notice/notice_tab.dart';
-import 'package:dgpt/screens/profile/widgets/company_tab.dart';
-import 'package:dgpt/screens/profile/widgets/contact_us_tab.dart';
+import 'package:dgpt/models/pulse/user_balance.dart';
 import 'package:dgpt/screens/transaction/assets_tab.dart';
 import 'package:dgpt/screens/transaction/my_assets_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
@@ -15,6 +13,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+class MyAssetsScreenArgs {
+  final List<UserBalance>? userBalanceList;
+  MyAssetsScreenArgs({required this.userBalanceList});
+}
 
 class MyAssetsScreen extends GetView<MyAssetsScreenController> {
   const MyAssetsScreen({super.key});
@@ -97,7 +100,8 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                 children: [
                   const Spacer(),
                   Text(
-                    '0.00',
+                    NumberFormat('#,##0.000')
+                        .format(controller.totalAmount.value),
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
                       fontSize: 24,

@@ -13,7 +13,6 @@ class AssetsTabController extends BaseController {
   void onInit() {
     super.onInit();
     print(type);
-    getTutorials();
   }
 
   getTutorials(

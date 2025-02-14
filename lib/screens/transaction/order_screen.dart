@@ -20,19 +20,18 @@ class OrderScreen extends GetView<OrderScreenController> {
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
-      body: Padding(
+      body: Obx(() => Padding(
         padding: const EdgeInsets.all(defaultPadding),
         child: ListView.separated(
-          itemCount: 0,
+          itemCount: controller.hasratePageList.length,
           itemBuilder: (_, index) {
-            return const OrderItem();
+            return OrderItem(planDetail: controller.hasratePageList.value[index],);
           },
           separatorBuilder: (_, index) {
             return const SizedBox(height: defaultPadding,);
           },
         ),
-      ),
+      )),
     );
   }
-
 }
