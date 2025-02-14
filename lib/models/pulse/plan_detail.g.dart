@@ -50,6 +50,7 @@ _$PlanDetailImpl _$$PlanDetailImplFromJson(Map<String, dynamic> json) =>
       beginDate: json['beginDate'] as String? ?? '',
       logicEndDate: json['logicEndDate'] as String? ?? '',
       endTimeDate: json['endTimeDate'] as String? ?? '',
+      sysNowTime: json['sysNowTime'] as String? ?? '',
       roiTotal: (json['roiTotal'] as num?)?.toDouble() ?? 0,
     );
 
@@ -96,5 +97,6 @@ Map<String, dynamic> _$$PlanDetailImplToJson(_$PlanDetailImpl instance) =>
       'beginDate': instance.beginDate,
       'logicEndDate': instance.logicEndDate,
       'endTimeDate': instance.endTimeDate,
+      'sysNowTime': instance.sysNowTime,
       'roiTotal': instance.roiTotal,
     };

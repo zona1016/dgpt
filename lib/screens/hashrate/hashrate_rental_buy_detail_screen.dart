@@ -5,7 +5,6 @@ import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
-import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -194,7 +193,7 @@ class HashrateRentalBuyDetailScreen
               child: Stack(
                 children: [
                   AnimatedContainer(
-                    width: (SizeUtil.width() - defaultPadding * 4) * .0,
+                    width: (SizeUtil.width() - defaultPadding * 2) * (controller.continueDay.value / (controller.planDetail.value?.cycle ?? 1)),
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -403,7 +402,7 @@ class HashrateRentalBuyDetailScreen
             ),
             const SizedBox(height: defaultPadding),
             _buildRow(tr('hashrate.contract_details'),
-                '${controller.planDetail.value?.cycle}days'
+                '${controller.continueDay.value}days'
                     '/${controller.planDetail.value?.cycle}days', whiteText10, whiteText10),
             _buildRow(tr('hashrate.rental_funds'), 'U${controller.planDetail.value?.amount}',
                 whiteText10, whiteText10),

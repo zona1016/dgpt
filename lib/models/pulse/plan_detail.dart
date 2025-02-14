@@ -47,6 +47,7 @@ class PlanDetail with _$PlanDetail {
     @JsonKey(name: 'beginDate') @Default('') String beginDate,
     @JsonKey(name: 'logicEndDate') @Default('') String logicEndDate,
     @JsonKey(name: 'endTimeDate') @Default('') String endTimeDate,
+    @JsonKey(name: 'sysNowTime') @Default('') String sysNowTime,
     @JsonKey(name: 'roiTotal') @Default(0) double roiTotal,
 
   }) = _PlanDetail;
