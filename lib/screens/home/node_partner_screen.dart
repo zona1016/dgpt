@@ -173,7 +173,7 @@ class NodePartnerScreen extends GetView<NodePartnerScreenController> {
             columns: const [
               DataColumn(label: Text('NODE TYPE', style: TextStyle(fontWeight: FontWeight.bold))),
               DataColumn(label: Text('REQUIRE', style: TextStyle(fontWeight: FontWeight.bold))),
-              DataColumn(label: Text('MONTHLY SALARY(\$)', style: TextStyle(fontWeight: FontWeight.bold))),
+              DataColumn(label: Text('MONTHLY SALARY(U)', style: TextStyle(fontWeight: FontWeight.bold))),
             ],
             rows: const [
               DataRow(cells: [

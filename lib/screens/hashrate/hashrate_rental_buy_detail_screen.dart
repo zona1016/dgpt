@@ -169,6 +169,8 @@ class HashrateRentalBuyDetailScreen
   }
 
   Widget _buildHardwareInfo() {
+    TextStyle whiteText10 =
+    fontDMRegular.copyWith(color: BaseColors.white, fontSize: 12);
     return Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -400,50 +402,36 @@ class HashrateRentalBuyDetailScreen
               ),
             ),
             const SizedBox(height: defaultPadding),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Quantity',
-                    style: fontDMBold.copyWith(
-                        color: BaseColors.white, fontSize: 12),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    if (controller.total.value > 0) {
-                      controller.total.value = controller.total.value - 1;
-                    }
-                  },
-                  child: Container(
-                    width: 24,
-                    height: 24,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/home/income_add_bg.png'))),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/images/home/income_minus.png',
-                        width: 12,
-                        height: 2,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: defaultPadding / 2),
-                  child: Text(
-                    controller.total.toString(),
-                    style: fontDMBold.copyWith(
-                        color: BaseColors.white, fontSize: 14),
-                  ),
-                ),
-              ],
-            ),
+            _buildRow(tr('hashrate.contract_details'),
+                '${controller.planDetail.value?.cycle}days'
+                    '/${controller.planDetail.value?.cycle}days', whiteText10, whiteText10),
+            _buildRow(tr('hashrate.rental_funds'), 'U${controller.planDetail.value?.amount}',
+                whiteText10, whiteText10),
+            _buildRow(tr('hashrate.rental_income'), 'U${controller.planDetail.value?.roiTotal}'
+                '/U${controller.planDetail.value?.amount}',
+                whiteText10, whiteText10),
             const SizedBox(height: defaultPadding / 2),
           ],
         ));
+  }
+
+  Widget _buildRow(String leftText, String rightText, TextStyle leftStyle,
+      TextStyle rightStyle) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: Text(leftText, style: leftStyle, textAlign: TextAlign.left),
+        ),
+        Expanded(
+          flex: 1,
+          child: Text(
+            rightText,
+            style: rightStyle,
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
+    );
   }
 }

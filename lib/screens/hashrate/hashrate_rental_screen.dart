@@ -201,10 +201,10 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                       .buyStatus == 1)
                 GestureDetector(
                   onTap: () {
-                    // Get.toNamed(AppRoutes.hashrateRentalBuyDetail,
-                    //     arguments: HashrateRentalBuyDetailScreenArgs(
-                    //         planDetail: controller
-                    //             .hasratePageList[index]));
+                    Get.toNamed(AppRoutes.hashrateRentalDetail,
+                        arguments: HashrateRentalDetailScreenArgs(
+                            hasratePageInfo: controller
+                                .hasratePageList[index]));
                   },
                   child: Container(
                     width: 38,
@@ -245,7 +245,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           Row(
             children: [
               Text(
-                '\$${hasratePageInfo.profitPreHour}',
+                'U${hasratePageInfo.profitPreHour}',
                 style: whiteText20,
               ),
               Text(
@@ -299,16 +299,16 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           const Spacer(),
           _buildRow(tr('hashrate.contract_details'),
               '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_funds'), '\$${hasratePageInfo.amount}',
+          _buildRow(tr('hashrate.rental_funds'), 'U${hasratePageInfo.amount}',
               whiteText10, whiteText10),
           _buildRow(
               tr('hashrate.rental_income'),
-              '\$${NumberFormat('#0').format(hasratePageInfo.profitTotal)}'
+              'U${NumberFormat('#0').format(hasratePageInfo.profitTotal)}'
               '(${NumberFormat('#0').format(((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100)}%)',
               whiteText10,
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),
-              '\$${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
+              'U${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
           const Spacer(),
         ],
       ),

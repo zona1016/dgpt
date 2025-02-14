@@ -157,7 +157,7 @@ class _OrderItemState extends State<OrderItem> {
                               height: defaultPadding / 4,
                             ),
                             Text(
-                              '\$830',
+                              'U830',
                               style: fontDMRegular.copyWith(
                                 fontSize: 10,
                                 color: BaseColors.white,
@@ -226,7 +226,7 @@ class _OrderItemState extends State<OrderItem> {
                               width: defaultPadding / 4,
                             ),
                             Text(
-                              '\$100.00',
+                              'U100.00',
                               style: fontDMRegular.copyWith(
                                 fontSize: 10,
                                 color: BaseColors.secondPrimaryColor,

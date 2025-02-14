@@ -405,7 +405,7 @@ class HashrateLeasingScreen
                     width: defaultPadding / 2,
                   ),
                   Text(
-                    '${controller.args!.hasratePageInfo?.amount ?? 0} \$',
+                    '${controller.args!.hasratePageInfo?.amount ?? 0} U',
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 20),
                   ),
@@ -488,7 +488,7 @@ class HashrateLeasingScreen
           children: [
             Expanded(
               child: Text(
-                'Total : \$ ${(controller.args!.hasratePageInfo?.amount ?? 0) * controller.total.value}',
+                'Total : U ${(controller.args!.hasratePageInfo?.amount ?? 0) * controller.total.value}',
                 style: fontDMBold.copyWith(
                     color: BaseColors.white, fontSize: 12),
               ),

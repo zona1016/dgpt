@@ -55,7 +55,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${tr('home.total_income')} \$${controller.totalAmount.value}',
+                              '${tr('home.total_income')} U${controller.totalAmount.value}',
                               style: fontDMBold.copyWith(
                                   color: BaseColors.white, fontSize: 20),
                             ),
@@ -178,7 +178,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               height: defaultPadding / 2,
             ),
             Text(
-              '\$${NumberFormat('#,##0.00').format(amount)}',
+              'U${NumberFormat('#,##0.00').format(amount)}',
               style: fontDMBold.copyWith(
                   color: BaseColors.primaryColor, fontSize: 18),
             ),

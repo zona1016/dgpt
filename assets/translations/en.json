@@ -186,6 +186,7 @@
     "product_details": "Product details",
     "in_progress": "In progress",
     "rental": "Rental",
+    "rented": "Rented",
     "computing_power_rental": "Hashrate rental",
     "computing_power_level": "Hashrate level",
     "income_analysis": "Income analysis",
