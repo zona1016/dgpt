@@ -13,8 +13,10 @@ class HashrateHeader extends StatelessWidget {
 
   PowerInfo? powerInfo;
   HasrateProgressInfo? progressInfo;
+  bool isIncome;
+  double totalRoi;
 
-  HashrateHeader({super.key, this.powerInfo, this.progressInfo});
+  HashrateHeader({super.key, this.powerInfo, this.progressInfo, this.isIncome = false, this.totalRoi = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class HashrateHeader extends StatelessWidget {
           ),
         ),
         Expanded(child: Container()),
-        if (powerInfo?.code != null)
+        if (powerInfo?.code != null && !isIncome)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 5),
             decoration: BoxDecoration(
@@ -89,32 +91,81 @@ class HashrateHeader extends StatelessWidget {
   }
 
   Widget _buildPowerLevel() {
-    return Container(
-      height: 70,
-      width: 70,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/home/income_power_level.png'),
-        ),
-      ),
-      child: Row(
-        children: [
-          const Spacer(),
-          Text(
-            powerInfo?.secondLayer.toString() ?? '',
-            style: fontDMBold.copyWith(
-              color: BaseColors.white,
-              fontSize: 20,
+    return Row(
+      children: [
+        Container(
+          height: 70,
+          width: 70,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/home/income_power_level.png'),
             ),
           ),
-          Image.asset(
-            'assets/images/home/income_power_icon.png',
-            width: 13,
-            height: 13,
+          child: Row(
+            children: [
+              const Spacer(),
+              Text(
+                powerInfo?.secondLayer.toString() ?? '',
+                style: fontDMBold.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 20,
+                ),
+              ),
+              Image.asset(
+                'assets/images/home/income_power_icon.png',
+                width: 13,
+                height: 13,
+              ),
+              const Spacer(),
+            ],
           ),
-          const Spacer(),
-        ],
-      ),
+        ),
+        Expanded(child: Container()),
+        if (isIncome)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(defaultPadding / 2),
+              gradient: LinearGradient(
+                colors: [
+                  const Color(0xFF892EFF).withOpacity(0.8),
+                  const Color(0xFF1C4C99).withOpacity(0.8),
+                ],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              )
+            ),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/images/income/sy.png',
+                  width: 20,
+                  height: 20,
+                ),
+                const SizedBox(width: defaultPadding / 2,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '总收益',
+                      style: fontDMRegular.copyWith(
+                        color: BaseColors.weakTextColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      '$totalRoi U',
+                      style: fontDMBold.copyWith(
+                        color: BaseColors.secondPrimaryColor,
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
+      ],
     );
   }
 

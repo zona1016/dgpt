@@ -2,6 +2,7 @@ import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
+import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -19,6 +20,7 @@ class TeamHashrateAwardScreenBindings implements Bindings {
 
 class TeamHashrateAwardScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
+  final IncomeScreenController incomeScreenController = Get.find();
 
   Rxn<HasrateProgressInfo> progressInfo = Rxn<HasrateProgressInfo>();
   Rxn<PowerInfo> powerInfo = Rxn<PowerInfo>();
@@ -37,7 +39,7 @@ class TeamHashrateAwardScreenController extends BaseController {
   ];
 
   List<String> teamTitleList = [
-    '等级A会员',
+    '总人数',
     '有效会员',
     '今日收益',
     '总收益'

@@ -4,57 +4,140 @@ import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController> {
+class TeamHashrateAwardScreen
+    extends GetView<TeamHashrateAwardScreenController> {
   const TeamHashrateAwardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.incomeBackgroundImage,
+      backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
         title: '团队算力奖',
         color: BaseColors.white,
       ),
-      body: Obx(() => SingleChildScrollView(
-        child: Column(
-          children: [
-            if (controller.loaded.value)
-              HashrateHeader(
-                powerInfo: controller.powerInfo.value,
-                progressInfo: controller.progressInfo.value,
+      body: Obx(() => Padding(
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  if (controller.loaded.value)
+                    HashrateHeader(
+                      powerInfo: controller.powerInfo.value,
+                      progressInfo: controller.progressInfo.value,
+                      isIncome: true,
+                      totalRoi: controller.incomeScreenController
+                          .amountTotalInfo.value?.roiAmountTotal ?? 0,
+                    ),
+                  _ranking(),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.levelColorList.length,
+                    itemBuilder: (_, index) {
+                      return _cardItem(index);
+                    },
+                    separatorBuilder: (_, index) {
+                      return Container(
+                        height: defaultPadding,
+                        color: Colors.transparent,
+                      );
+                    },
+                  )
+                ],
               ),
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: controller.levelColorList.length,
-              itemBuilder: (_, index) {
-                return _cardItem(index);
-              },
-              separatorBuilder: (_, index) {
-                return Container(height: defaultPadding, color: Colors.transparent,);
-              },
+            ),
+          )),
+    );
+  }
+
+  _ranking() {
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding).copyWith(top: 0),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            Expanded(child: _rankingDetail(isFirst: false, index: 2)),
+            Expanded(child: _rankingDetail(isFirst: true, index: 1)),
+            Expanded(child: _rankingDetail(isFirst: false, index: 3)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _rankingDetail({required bool isFirst, int? index = 1}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Stack(
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  height: isFirst ? 79 : 60,
+                  width: isFirst ? 79 : 60,
+                  child: const AspectRatio(
+                    aspectRatio: 1,
+                    child: BaseNetworkImage(
+                      imageURL: '',
+                      placeholder: 'assets/images/custom/logo.png',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: isFirst ? 18 : 8,
+                )
+              ],
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Image.asset(
+                'assets/images/income/rank_$index.png',
+                width: isFirst ? 30 : 21,
+                height: isFirst ? 40 : 30,
+              ),
             )
           ],
         ),
-      )),
+        const SizedBox(
+          height: defaultPadding / 5,
+        ),
+        Text(
+          'Wee',
+          style: fontDMBold.copyWith(
+              color: BaseColors.white, fontSize: isFirst ? 16 : 14),
+        ),
+        Text(
+          '2级算力',
+          style: fontDMBold.copyWith(
+              color: BaseColors.weakTextColor, fontSize: 10),
+        ),
+        Text(
+          '人数：25人',
+          style: fontDMBold.copyWith(
+              color: BaseColors.weakTextColor, fontSize: 10),
+        )
+      ],
     );
   }
 
   _cardItem(int index) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding),
-        color: controller.levelColorList[index]
-      ),
+          borderRadius: BorderRadius.circular(defaultPadding),
+          color: controller.levelColorList[index]),
       child: Column(
         children: [
           Row(
@@ -64,11 +147,13 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
                 width: 20,
                 height: 20,
               ),
-              const SizedBox(width: defaultPadding / 2,),
+              const SizedBox(
+                width: defaultPadding / 2,
+              ),
               Text(
                 controller.levelTitleList[index],
-                style: fontDMBold.copyWith(
-                    color: BaseColors.white, fontSize: 18),
+                style:
+                    fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
               ),
               Expanded(child: Container()),
               Text(
@@ -78,7 +163,9 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
               ),
             ],
           ),
-          const SizedBox(height: defaultPadding,),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           GridView.builder(
             itemCount: 4,
             shrinkWrap: true,
@@ -101,13 +188,12 @@ class TeamHashrateAwardScreen extends GetView<TeamHashrateAwardScreenController>
     );
   }
 
-  Widget _buildIncomeCard(int index) {
+  _buildIncomeCard(int index) {
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding / 2),
-        color: const Color(0xFF000000).withOpacity(0.5)
-      ),
+          borderRadius: BorderRadius.circular(defaultPadding / 2),
+          color: const Color(0xFF000000).withOpacity(0.5)),
       child: Row(
         children: [
           Image.asset(

@@ -1,8 +1,6 @@
 import 'package:dgpt/models/pulse/amount_total_info.dart';
-import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
-import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
