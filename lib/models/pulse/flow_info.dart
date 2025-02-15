@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'pulse_base_model.dart';
 
-part 'flow.g.dart';
+part 'flow_info.g.dart';
 
 @JsonSerializable()
-class Flow extends BaseModel {
+class FlowInfo extends BaseModel {
   @JsonKey(name: 'userId', defaultValue: 0)
   int? userId;
 
@@ -26,7 +26,7 @@ class Flow extends BaseModel {
   @JsonKey(name: 'amount', defaultValue: 0)
   double? amount;
 
-  Flow({
+  FlowInfo({
     super.id,
     super.createTime,
     super.updateTime,
@@ -48,8 +48,8 @@ class Flow extends BaseModel {
     this.amount,
   });
 
-  factory Flow.fromJson(Map<String, dynamic> json) => _$FlowFromJson(json);
+  factory FlowInfo.fromJson(Map<String, dynamic> json) => _$FlowInfoFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$FlowToJson(this);
+  Map<String, dynamic> toJson() => _$FlowInfoToJson(this);
 }

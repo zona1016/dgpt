@@ -1,6 +1,7 @@
 import 'package:dgpt/screens/hashrate/widgets/hashrate_header.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -131,13 +132,13 @@ class TeamHashrateAwardScreen
     );
   }
 
-  _cardItem(int index) {
+  _cardItem(int superIndex) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(defaultPadding),
-          color: controller.levelColorList[index]),
+          color: controller.levelColorList[superIndex]),
       child: Column(
         children: [
           Row(
@@ -151,7 +152,7 @@ class TeamHashrateAwardScreen
                 width: defaultPadding / 2,
               ),
               Text(
-                controller.levelTitleList[index],
+                controller.levelTitleList[superIndex],
                 style:
                     fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
               ),
@@ -178,7 +179,13 @@ class TeamHashrateAwardScreen
             ),
             itemBuilder: (_, index) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  if (index == 0) {
+                  } else if (index == 1) {
+                    Get.toNamed(AppRoutes.activeMember);
+                  } else if (index == 2) {
+                  } else {}
+                },
                 child: _buildIncomeCard(index),
               );
             },

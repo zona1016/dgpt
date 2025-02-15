@@ -1,7 +1,6 @@
 import 'package:dgpt/screens/income/income_history_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
-import 'package:dgpt/models/pulse/flow.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
@@ -103,7 +102,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
                         physics: physics,
                         slivers: [
                           SliverList.separated(
-                            itemCount: controller.flowList.length + 1,
+                            itemCount: controller.flowList.isNotEmpty ? controller.flowList.length + 1 : 0,
                             itemBuilder: (_, index) {
                               return index == controller.flowList.length
                                       ? _footer()

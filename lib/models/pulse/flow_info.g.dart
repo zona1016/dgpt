@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'flow.dart';
+part of 'flow_info.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Flow _$FlowFromJson(Map<String, dynamic> json) => Flow(
+FlowInfo _$FlowInfoFromJson(Map<String, dynamic> json) => FlowInfo(
       id: (json['id'] as num?)?.toInt() ?? 0,
       createTime: json['createTime'] as String? ?? '',
       updateTime: json['updateTime'] as String? ?? '',
@@ -28,7 +28,7 @@ Flow _$FlowFromJson(Map<String, dynamic> json) => Flow(
       amount: (json['amount'] as num?)?.toDouble() ?? 0,
     );
 
-Map<String, dynamic> _$FlowToJson(Flow instance) => <String, dynamic>{
+Map<String, dynamic> _$FlowInfoToJson(FlowInfo instance) => <String, dynamic>{
       'id': instance.id,
       'createTime': instance.createTime,
       'updateTime': instance.updateTime,
