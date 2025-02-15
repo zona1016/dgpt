@@ -10,6 +10,8 @@ import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen_controller.dart';
 import 'package:dgpt/screens/income/activated_users_screen.dart';
 import 'package:dgpt/screens/income/activated_users_screen_controller.dart';
+import 'package:dgpt/screens/income/active_member_detail_screen.dart';
+import 'package:dgpt/screens/income/active_member_detail_screen_controller.dart';
 import 'package:dgpt/screens/income/active_member_screen.dart';
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen.dart';
@@ -162,6 +164,7 @@ class AppRoutes {
   static String invitationAward = "/invitation_award";
   static String teamHashrateAwardn = "/team_hashrate_awardn";
   static String activeMember = "/active_member";
+  static String activeMemberDetail = "/active_member_detail";
 
   static String activatedUsers = "/activated_users";
   static String hashrateRental = "/hashrate_rental";
@@ -394,6 +397,11 @@ class AppRoutes {
         name: activeMember,
         page: () => const ActiveMemberScreen(),
         binding: ActiveMemberScreenBindings()
+    ),
+    GetPage(
+        name: activeMemberDetail,
+        page: () => const ActiveMemberDetailScreen(),
+        binding: ActiveMemberDetailScreenBindings()
     ),
     GetPage(
         name: hashrateRental,

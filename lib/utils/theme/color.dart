@@ -4,6 +4,7 @@ class BaseColors {
   static const primaryColor = Color(0xFF17CE92);
   static const secondPrimaryColor = Color(0xFF00FFA3);
   static const thirdPrimaryColor = Color(0xFF20AFFF);
+  static const fourPrimaryColor = Color(0xFFC08FFF);
   static const black = Color(0xFF1A1A1A);
   static const black10 = Color(0xFF1F222A);
   static const black15 = Color(0x261A1A1A);
@@ -173,6 +174,21 @@ class BaseColors {
       Color(0xFFD16B9B), // 99%
     ],
     stops: [0.0, 0.06, 0.13, 0.19, 0.25, 0.29, 0.52, 0.80, 0.99],
+  );
+
+  static LinearGradient memberDetailGradient = const LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFFFFFFFF), // 0%
+      Color(0xFFD8E4F1), // 6%
+      Color(0xFFB6CEE5), // 13%
+      Color(0xFF9DBDDC), // 19%
+      Color(0xFF8FB3D7), // 25%
+      Color(0xFF8AB0D6), // 29%
+      Color(0xFF5E6EA9),
+    ],
+    stops: [0.0, 0.06, 0.13, 0.19, 0.25, 0.29, 0.65],
   );
 }
 

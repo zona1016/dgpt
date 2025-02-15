@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -219,93 +220,98 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
               color: BaseColors.black10
             ),
           ),
-        Container(
-          padding: const EdgeInsets.all(defaultPadding),
-          decoration: const BoxDecoration(color: BaseColors.black10),
-          child: Row(
-            children: [
-              const SizedBox(
-                height: 33,
-                width: 33,
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: BaseNetworkImage(
-                    imageURL: '',
-                    placeholder: 'assets/images/custom/logo.png',
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(AppRoutes.activeMemberDetail);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(defaultPadding),
+            decoration: const BoxDecoration(color: BaseColors.black10),
+            child: Row(
+              children: [
+                const SizedBox(
+                  height: 33,
+                  width: 33,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: BaseNetworkImage(
+                      imageURL: '',
+                      placeholder: 'assets/images/custom/logo.png',
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: defaultPadding / 2,),
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Sam',
-                          style: fontDMMedium.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 12,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                        const Spacer(),
-                        Container(
-                          height: 20,
-                          padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: controller.memberColorList[index % 5],
-                                  width: 1
-                              )
-                          ),
-                          child: Text(
-                            '基础算力',
+                const SizedBox(width: defaultPadding / 2,),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Sam',
                             style: fontDMMedium.copyWith(
-                              color: controller.memberColorList[index % 5],
+                              color: BaseColors.white,
+                              fontSize: 12,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          const Spacer(),
+                          Container(
+                            height: 20,
+                            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: controller.memberColorList[index % 5],
+                                    width: 1
+                                )
+                            ),
+                            child: Text(
+                              '基础算力',
+                              style: fontDMMedium.copyWith(
+                                color: controller.memberColorList[index % 5],
+                                fontSize: 10,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            'Valid',
+                            style: fontDMRegular.copyWith(
+                              color: BaseColors.secondPrimaryColor,
                               fontSize: 10,
                             ),
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.right,
                           ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          'Valid',
-                          style: fontDMRegular.copyWith(
-                            color: BaseColors.secondPrimaryColor,
-                            fontSize: 10,
+                        ],
+                      ),
+                      const SizedBox(height: defaultPadding / 2,),
+                      Row(
+                        children: [
+                          Text(
+                            '加入： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now())}',
+                            style: fontDMMedium.copyWith(
+                              color: BaseColors.weakTextColor,
+                              fontSize: 8,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: defaultPadding / 2,),
-                    Row(
-                      children: [
-                        Text(
-                          '加入： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now())}',
-                          style: fontDMMedium.copyWith(
-                            color: BaseColors.weakTextColor,
-                            fontSize: 8,
+                          Expanded(child: Container()),
+                          Text(
+                            'Member：12',
+                            style: fontDMMedium.copyWith(
+                              color: BaseColors.white,
+                              fontSize: 8,
+                            ),
+                            textAlign: TextAlign.right,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Expanded(child: Container()),
-                        Text(
-                          'Member：12',
-                          style: fontDMMedium.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 8,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ],
