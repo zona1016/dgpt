@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/flow_info.dart';
+import 'package:dgpt/models/pulse/flow_type_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -18,11 +19,13 @@ class IncomeHistoryScreenController extends BaseController {
   RxInt type = 0.obs;
 
   RxList<FlowInfo> flowList = <FlowInfo>[].obs;
+  RxList<FlowTypeInfo> flowTypeList = <FlowTypeInfo>[].obs;
 
   @override
   void onInit() {
     super.onInit();
     aiPulseFlowUserPage();
+    aiPulseFlowTypeList();
   }
 
   @override
@@ -48,6 +51,16 @@ class IncomeHistoryScreenController extends BaseController {
       } else {
         flowList.assignAll(result.list);
       }
+    }
+  }
+
+  aiPulseFlowTypeList(
+      {AppLoadingState loadingState = AppLoadingState.background}) async {
+    final result = await fetchData(
+        request: () => aiPulseService.aiPulseFlowTypeList(),
+        loadingState: AppLoadingState.background);
+    if (result != null) {
+      flowTypeList.value = result;
     }
   }
 }

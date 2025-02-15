@@ -1,5 +1,6 @@
 import 'package:dgpt/models/api/pagination_response.dart';
 import 'package:dgpt/models/pulse/flow_info.dart';
+import 'package:dgpt/models/pulse/flow_type_info.dart';
 import 'package:dgpt/models/pulse/notice_info.dart';
 import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
@@ -137,6 +138,8 @@ abstract class AiPulseService {
 
   Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseFlowUserPage(
       {int page = 1, int perPage = 20});
+
+  Future<BaseResponse<List<FlowTypeInfo>>> aiPulseFlowTypeList();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -729,6 +732,19 @@ class AiPulseServiceImpl extends AiPulseService {
                   (json) =>
                       FlowInfo.fromJson(json as Map<String, dynamic>))
               : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<FlowTypeInfo>>> aiPulseFlowTypeList() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseFlowTypeList,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>).map((e) => FlowTypeInfo.fromJson(e)).toList()
+              : []);
     } on Exception catch (_) {
       rethrow;
     }

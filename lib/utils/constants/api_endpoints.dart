@@ -54,6 +54,7 @@ class ApiEndpoints {
   static const String aiPulseFlowUserPage = "/api/aiPulseFlow/userPage";
   static const String aiPulseFlowIncomeTotal = "/api/aiPulseFlow/userIncomeTotal";
   static const String aiPulseFlowDropdownData = "/api/aiPulseFlow/dropdownData";
+  static const String aiPulseFlowTypeList = "/api/aiPulseFlow/flowTypeList";
 
   static const String aiPulseHashratePage = "/api/aiPulseHashrate/page";
   static const String aiPulseHashrateDetail = "/api/aiPulseHashrate/detail";
