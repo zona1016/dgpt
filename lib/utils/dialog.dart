@@ -475,7 +475,7 @@ class DialogUtils {
         desc: '点击下方按键选择立马或稍后部署算力',
         barrierDismissible: false,
         confirmText: tr('button.done'), onConfirmPressed: () {
-      Get.close(3);
+      Get.close(4);
       HashrateRentalScreenController controller = Get.find();
       controller.refreshController.callRefresh();
     });
