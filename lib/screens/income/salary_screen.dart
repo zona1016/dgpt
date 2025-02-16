@@ -142,7 +142,11 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                             ),
                                           ),
                                           Expanded(
-                                            child: Text('等级3 + 3000美金月绩',
+                                            child: Text(
+                                                '${controller.getConditionDes(index: 0, conditionInfo: controller.userJobInfo.value?.conditionInfo)}'
+                                                '\n'
+                                                '${controller.formatAmount((controller.userJobInfo.value?.conditionInfo?.teamPlanAmountTotal ?? 0))}'
+                                                '美金业绩',
                                                 style: fontDMMedium.copyWith(
                                                   color: BaseColors.white,
                                                   fontSize: 8,
@@ -316,7 +320,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                               ),
                                               Expanded(
                                                 child: Text(
-                                                  '${controller.enableJobList[index].conditionInfo?.hashrateCode ?? ''}'
+                                                    '${controller.getConditionDes(index: index)}'
                                                     '\n'
                                                     '${controller.formatAmount((controller.enableJobList[index].conditionInfo?.teamPlanAmountTotal ?? 0))}'
                                                     '美金业绩',

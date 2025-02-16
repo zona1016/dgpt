@@ -7,13 +7,12 @@ import 'package:get/get.dart';
 class SalaryScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut(() => SalaryScreenController(), permanent: false, fenix: false);
+    GetInstance().lazyPut(() => SalaryScreenController(),
+        permanent: false, fenix: false);
   }
 }
 
 class SalaryScreenController extends BaseController {
-
   final AiPulseService aiPulseService = Get.find();
   Rxn<EnableJobInfo> userJobInfo = Rxn<EnableJobInfo>();
   RxList<EnableJobInfo> enableJobList = <EnableJobInfo>[].obs;
@@ -59,5 +58,29 @@ class SalaryScreenController extends BaseController {
     if (result != null) {
       enableJobList.value = result;
     }
+  }
+
+  String? getConditionDes({ConditionInfo? conditionInfo, required int index}) {
+    if (enableJobList.isEmpty) return '';
+    conditionInfo ??= enableJobList.value[index].conditionInfo;
+
+    String? result;
+    if (conditionInfo?.hashrateCode != 'none') {
+      result = conditionInfo?.hashrateCode;
+    } else if (conditionInfo?.directHashrateCode != 'none') {
+      result = conditionInfo?.directHashrateCode;
+      if (conditionInfo?.directHashrateCount != 0) {
+        result = '${result}X${conditionInfo?.directHashrateCount}(位)';
+      }
+    } else if (conditionInfo?.directJobTitleCode != 'none') {
+      result = conditionInfo?.directJobTitleCode;
+      if (conditionInfo?.directJobTitleCount != 0) {
+        result = '${result}X${conditionInfo?.directJobTitleCount}(位)';
+      }
+    } else {
+      result = '无条件';
+    }
+
+    return result;
   }
 }
