@@ -4,7 +4,7 @@ part 'user_income_total.freezed.dart';
 part 'user_income_total.g.dart';
 
 @freezed
-class UserIncomeTotal with _$UserIncomeTotal {
+class  UserIncomeTotal with _$UserIncomeTotal {
   factory UserIncomeTotal({
     @JsonKey(name: 'today') @Default(0) double today,
     @JsonKey(name: 'total') @Default(0) double total,

@@ -15,6 +15,7 @@ _$AmountTotalInfoImpl _$$AmountTotalInfoImplFromJson(
       teamAwardAmountTotal:
           (json['teamAwardAmountTotal'] as num?)?.toDouble() ?? 0,
       roiAmountTotal: (json['roiAmountTotal'] as num?)?.toDouble() ?? 0,
+      salaryAmountTotal: (json['salaryAmountTotal'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$AmountTotalInfoImplToJson(
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$AmountTotalInfoImplToJson(
       'directAwardAmountTotal': instance.directAwardAmountTotal,
       'teamAwardAmountTotal': instance.teamAwardAmountTotal,
       'roiAmountTotal': instance.roiAmountTotal,
+      'salaryAmountTotal': instance.salaryAmountTotal,
     };

@@ -22,7 +22,7 @@ class MainScreen extends GetView<MainScreenController> {
     return GetBuilder<MainScreenController>(
       builder: (_) {
         return BaseScreen(
-          safeAreaTop: controller.selectedTabIndex.value == 2,
+          safeAreaTop: false,
           backgroundColor: Colors.transparent,
           backgroundImage: BaseColors.baseBackgroundImage,
           body: PageView(

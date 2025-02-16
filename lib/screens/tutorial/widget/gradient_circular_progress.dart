@@ -6,12 +6,18 @@ import 'dart:math';
 class GradientCircularProgress extends StatelessWidget {
   final double progress; // 进度值 (0~100)
   final double size; // 进度条大小
+  final String? text;
+  final Color? backgroundPaintColor;
+  final Color? backgroundColor;
   final List<Color> gradientColors;
 
   const GradientCircularProgress({
     super.key,
     required this.progress,
     this.size = 60,
+    this.text,
+    this.backgroundPaintColor,
+    this.backgroundColor,
     required this.gradientColors,
   });
 
@@ -23,7 +29,7 @@ class GradientCircularProgress extends StatelessWidget {
       padding: const EdgeInsets.all(defaultPadding / 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular((size + defaultPadding / 2) / 2),
-        color: BaseColors.weakTextColor
+        color: backgroundColor ?? BaseColors.weakTextColor
       ),
       child: SizedBox(
         width: size,
@@ -31,11 +37,12 @@ class GradientCircularProgress extends StatelessWidget {
         child: CustomPaint(
           painter: _GradientCircularPainter(
             progress: progress,
+            backgroundPaintColor: backgroundPaintColor,
             gradientColors: gradientColors,
           ),
           child: Center(
             child: Text(
-              "${progress.toInt()}%",
+              text ?? "${progress.toInt()}%",
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 14,
@@ -52,8 +59,9 @@ class GradientCircularProgress extends StatelessWidget {
 class _GradientCircularPainter extends CustomPainter {
   final double progress;
   final List<Color> gradientColors;
+  final Color? backgroundPaintColor;
 
-  _GradientCircularPainter({required this.progress, required this.gradientColors});
+  _GradientCircularPainter({required this.progress, required this.gradientColors, this.backgroundPaintColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -64,7 +72,7 @@ class _GradientCircularPainter extends CustomPainter {
 
     // 背景灰色圆环
     Paint backgroundPaint = Paint()
-      ..color = Colors.grey.shade800
+      ..color = backgroundPaintColor ?? Colors.grey.shade800
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
 
@@ -74,7 +82,7 @@ class _GradientCircularPainter extends CustomPainter {
     Paint progressPaint = Paint()
       ..shader = SweepGradient(
         colors: gradientColors,
-        stops: [0.0, progress / 100],
+        stops: gradientColors.length == 2 ? [0.0, progress / 100] : [0.0, 0.02, 0.37, 0.66, 0.88, 1],
       ).createShader(rect)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round

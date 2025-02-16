@@ -28,6 +28,8 @@ mixin _$AmountTotalInfo {
   double get teamAwardAmountTotal => throw _privateConstructorUsedError;
   @JsonKey(name: 'roiAmountTotal')
   double get roiAmountTotal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'salaryAmountTotal')
+  double get salaryAmountTotal => throw _privateConstructorUsedError;
 
   /// Serializes this AmountTotalInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +51,8 @@ abstract class $AmountTotalInfoCopyWith<$Res> {
       {@JsonKey(name: 'planAmountTotal') double planAmountTotal,
       @JsonKey(name: 'directAwardAmountTotal') double directAwardAmountTotal,
       @JsonKey(name: 'teamAwardAmountTotal') double teamAwardAmountTotal,
-      @JsonKey(name: 'roiAmountTotal') double roiAmountTotal});
+      @JsonKey(name: 'roiAmountTotal') double roiAmountTotal,
+      @JsonKey(name: 'salaryAmountTotal') double salaryAmountTotal});
 }
 
 /// @nodoc
@@ -71,6 +74,7 @@ class _$AmountTotalInfoCopyWithImpl<$Res, $Val extends AmountTotalInfo>
     Object? directAwardAmountTotal = null,
     Object? teamAwardAmountTotal = null,
     Object? roiAmountTotal = null,
+    Object? salaryAmountTotal = null,
   }) {
     return _then(_value.copyWith(
       planAmountTotal: null == planAmountTotal
@@ -89,6 +93,10 @@ class _$AmountTotalInfoCopyWithImpl<$Res, $Val extends AmountTotalInfo>
           ? _value.roiAmountTotal
           : roiAmountTotal // ignore: cast_nullable_to_non_nullable
               as double,
+      salaryAmountTotal: null == salaryAmountTotal
+          ? _value.salaryAmountTotal
+          : salaryAmountTotal // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -105,7 +113,8 @@ abstract class _$$AmountTotalInfoImplCopyWith<$Res>
       {@JsonKey(name: 'planAmountTotal') double planAmountTotal,
       @JsonKey(name: 'directAwardAmountTotal') double directAwardAmountTotal,
       @JsonKey(name: 'teamAwardAmountTotal') double teamAwardAmountTotal,
-      @JsonKey(name: 'roiAmountTotal') double roiAmountTotal});
+      @JsonKey(name: 'roiAmountTotal') double roiAmountTotal,
+      @JsonKey(name: 'salaryAmountTotal') double salaryAmountTotal});
 }
 
 /// @nodoc
@@ -125,6 +134,7 @@ class __$$AmountTotalInfoImplCopyWithImpl<$Res>
     Object? directAwardAmountTotal = null,
     Object? teamAwardAmountTotal = null,
     Object? roiAmountTotal = null,
+    Object? salaryAmountTotal = null,
   }) {
     return _then(_$AmountTotalInfoImpl(
       planAmountTotal: null == planAmountTotal
@@ -143,6 +153,10 @@ class __$$AmountTotalInfoImplCopyWithImpl<$Res>
           ? _value.roiAmountTotal
           : roiAmountTotal // ignore: cast_nullable_to_non_nullable
               as double,
+      salaryAmountTotal: null == salaryAmountTotal
+          ? _value.salaryAmountTotal
+          : salaryAmountTotal // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -154,7 +168,8 @@ class _$AmountTotalInfoImpl implements _AmountTotalInfo {
       {@JsonKey(name: 'planAmountTotal') this.planAmountTotal = 0,
       @JsonKey(name: 'directAwardAmountTotal') this.directAwardAmountTotal = 0,
       @JsonKey(name: 'teamAwardAmountTotal') this.teamAwardAmountTotal = 0,
-      @JsonKey(name: 'roiAmountTotal') this.roiAmountTotal = 0});
+      @JsonKey(name: 'roiAmountTotal') this.roiAmountTotal = 0,
+      @JsonKey(name: 'salaryAmountTotal') this.salaryAmountTotal = 0});
 
   factory _$AmountTotalInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AmountTotalInfoImplFromJson(json);
@@ -171,10 +186,13 @@ class _$AmountTotalInfoImpl implements _AmountTotalInfo {
   @override
   @JsonKey(name: 'roiAmountTotal')
   final double roiAmountTotal;
+  @override
+  @JsonKey(name: 'salaryAmountTotal')
+  final double salaryAmountTotal;
 
   @override
   String toString() {
-    return 'AmountTotalInfo(planAmountTotal: $planAmountTotal, directAwardAmountTotal: $directAwardAmountTotal, teamAwardAmountTotal: $teamAwardAmountTotal, roiAmountTotal: $roiAmountTotal)';
+    return 'AmountTotalInfo(planAmountTotal: $planAmountTotal, directAwardAmountTotal: $directAwardAmountTotal, teamAwardAmountTotal: $teamAwardAmountTotal, roiAmountTotal: $roiAmountTotal, salaryAmountTotal: $salaryAmountTotal)';
   }
 
   @override
@@ -189,13 +207,20 @@ class _$AmountTotalInfoImpl implements _AmountTotalInfo {
             (identical(other.teamAwardAmountTotal, teamAwardAmountTotal) ||
                 other.teamAwardAmountTotal == teamAwardAmountTotal) &&
             (identical(other.roiAmountTotal, roiAmountTotal) ||
-                other.roiAmountTotal == roiAmountTotal));
+                other.roiAmountTotal == roiAmountTotal) &&
+            (identical(other.salaryAmountTotal, salaryAmountTotal) ||
+                other.salaryAmountTotal == salaryAmountTotal));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, planAmountTotal,
-      directAwardAmountTotal, teamAwardAmountTotal, roiAmountTotal);
+  int get hashCode => Object.hash(
+      runtimeType,
+      planAmountTotal,
+      directAwardAmountTotal,
+      teamAwardAmountTotal,
+      roiAmountTotal,
+      salaryAmountTotal);
 
   /// Create a copy of AmountTotalInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -220,8 +245,9 @@ abstract class _AmountTotalInfo implements AmountTotalInfo {
       @JsonKey(name: 'directAwardAmountTotal')
       final double directAwardAmountTotal,
       @JsonKey(name: 'teamAwardAmountTotal') final double teamAwardAmountTotal,
-      @JsonKey(name: 'roiAmountTotal')
-      final double roiAmountTotal}) = _$AmountTotalInfoImpl;
+      @JsonKey(name: 'roiAmountTotal') final double roiAmountTotal,
+      @JsonKey(name: 'salaryAmountTotal')
+      final double salaryAmountTotal}) = _$AmountTotalInfoImpl;
 
   factory _AmountTotalInfo.fromJson(Map<String, dynamic> json) =
       _$AmountTotalInfoImpl.fromJson;
@@ -238,6 +264,9 @@ abstract class _AmountTotalInfo implements AmountTotalInfo {
   @override
   @JsonKey(name: 'roiAmountTotal')
   double get roiAmountTotal;
+  @override
+  @JsonKey(name: 'salaryAmountTotal')
+  double get salaryAmountTotal;
 
   /// Create a copy of AmountTotalInfo
   /// with the given fields replaced by the non-null parameter values.

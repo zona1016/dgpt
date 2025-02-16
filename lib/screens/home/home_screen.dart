@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/screens/tutorial/widget/gradient_circular_progress.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -8,6 +9,7 @@ import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/default_navigation_header.dart';
@@ -25,7 +27,8 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
-      backgroundImage: BaseColors.customBackgroundImage,
+      backgroundImage: 'assets/images/custom/home_bg.png',
+      appBar: _appBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: CustomScrollView(
@@ -34,57 +37,31 @@ class HomeScreen extends GetView<HomeScreenController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DefaultNavigationHeader(
-                    defaultLeftTitle: tr('home.welcome_to_AI_PULSE'),
-                    rightImages: const [
-                      'assets/images/home/flag.png',
-                      'assets/images/home/service.png',
-                      'assets/images/home/notice.png'
-                    ],
-                    onRightImageTaps: (index) {
-                      if (index == 0) {
-                        Get.toNamed(AppRoutes.changeLanguage);
-                      } else if (index == 1) {
-                        Get.toNamed(AppRoutes.aboutUs);
-                      } else {
-                        Get.toNamed(AppRoutes.systemMessage);
-                      }
-                    },
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: defaultPadding),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/custom/logo.png',
+                        width: 65,
+                        height: 68,
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      tr('home.welcome_to_AI_PULSE'),
+                      style: fontDMBold.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  // _carousel(context),
-                  Obx(() => GestureDetector(
-                    onTap: () {
-                      final MainScreenController mainController = Get.find();
-                      mainController.selectedTabIndex(1);
-                      mainController.pageController.jumpToPage(1);
-                      mainController.update();
-                    },
-                    child: Stack(
-                      // 让所有子组件居中
-                      children: [
-                        Image.asset(
-                          'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
-                          fit: BoxFit.contain, // 图片自适应大小
-                        ),
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: defaultPadding,
-                          child: Text(
-                            controller.isActivate.value ? tr('home.activated') : tr('home.not_activated'),
-                            style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 16,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )),
+                  Obx(() => _status()),
                   const SizedBox(
                     height: defaultPadding,
                   ),
@@ -123,6 +100,130 @@ class HomeScreen extends GetView<HomeScreenController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  _appBar() {
+    return BaseAppBar(
+      color: BaseColors.white,
+      backgroundColor: Colors.transparent,
+      title: '',
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+          color: Colors.transparent,
+        ),
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () => Get.toNamed(AppRoutes.changeLanguage),
+          child: Image.asset(
+            'assets/images/home/flag.png',
+            width: 25,
+            height: 25,
+          ),
+        ),
+        const SizedBox(
+          width: defaultPadding,
+        ),
+        GestureDetector(
+          onTap: () => Get.toNamed(AppRoutes.aboutUs),
+          child: Image.asset(
+            'assets/images/home/service.png',
+            width: 25,
+            height: 25,
+          ),
+        ),
+        const SizedBox(
+          width: defaultPadding,
+        ),
+        GestureDetector(
+          onTap: () => Get.toNamed(AppRoutes.systemMessage),
+          child: Image.asset(
+            'assets/images/home/notice.png',
+            width: 25,
+            height: 25,
+          ),
+        ),
+        const SizedBox(
+          width: defaultPadding,
+        ),
+      ],
+    );
+  }
+
+  _status() {
+    return GestureDetector(
+      onTap: () {
+        final MainScreenController mainController = Get.find();
+        mainController.selectedTabIndex(1);
+        mainController.pageController.jumpToPage(1);
+        mainController.update();
+      },
+      child: Stack(
+        // 让所有子组件居中
+        children: [
+          Container(
+            padding: const EdgeInsets.only(bottom: 21),
+            child: Image.asset(
+              'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
+              fit: BoxFit.contain, // 图片自适应大小
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Center(
+              child: Container(
+                height: 42,
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    border: Border.all(
+                        width: 1,
+                        color: controller.isActivate.value
+                            ? BaseColors.primaryColor
+                            : BaseColors.white)),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(21),
+                      color: controller.isActivate.value
+                          ? BaseColors.primaryColor
+                          : BaseColors.darkGray10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(width: defaultPadding / 2,),
+                      Container(
+                        height: 15,
+                        width: 15,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7.5),
+                          color: controller.isActivate.value
+                              ? BaseColors.secondPrimaryColor
+                              : BaseColors.gray85
+                        ),
+                      ),
+                      const SizedBox(width: defaultPadding,),
+                      Text(
+                        controller.isActivate.value
+                            ? tr('home.activated')
+                            : tr('home.not_activated'),
+                        style: fontDMBold.copyWith(
+                          color: BaseColors.white,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(width: defaultPadding,),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -233,73 +334,110 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
-    return Obx(() => Container(
-          padding: const EdgeInsets.all(defaultPadding),
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/images/home/return_bg.png'),
-            fit: BoxFit.cover,
-          )),
-          child: Row(
-            children: [
-              Expanded(
-                  child: _buildInfoCard(
-                context: context,
-                imagePath: 'assets/images/home/day_return.png',
-                title: tr('home.hourly_income'),
-                value:
-                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
-                onTap: () => onTap(0),
-              )),
-              Expanded(
-                  child: _buildInfoCard(
-                context: context,
-                imagePath: 'assets/images/home/total_return.png',
-                title: tr('home.total_income'),
-                value:
-                    '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+    return Obx(() => IntrinsicHeight(
+      child: Row(
+        children: [
+          Expanded(
+              child: GestureDetector(
                 onTap: () => onTap(1),
-              )),
-            ],
+                child: _buildDayIncome()
+              )
           ),
-        ));
-  }
-
-  Widget _buildInfoCard({
-    required BuildContext context,
-    required String imagePath,
-    required String title,
-    required String value,
-    required Function() onTap,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.asset(
-          imagePath,
-          width: 25,
-          height: 25,
-        ),
-        const SizedBox(height: defaultPadding / 2),
-        Text(
-          title,
-          style: fontDMMedium.copyWith(
-            fontSize: 14,
-            color: BaseColors.weakTextColor,
-          ),
-        ),
-        const SizedBox(height: defaultPadding / 4),
-        GestureDetector(
-          onTap: onTap,
-          child: Text(
-            value,
-            style: fontDMBold.copyWith(
-              fontSize: 18,
-              color: BaseColors.primaryColor,
+          const SizedBox(width: defaultPadding,),
+          Expanded(
+            child: GestureDetector(
+              onTap: () => onTap(2),
+              child: _buildTotalIncome(),
             ),
           ),
-        )
-      ],
+        ],
+      ),
+    ));
+  }
+
+  Widget _buildDayIncome() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: BaseColors.dayIncomeGradient,
+        color: Colors.white.withOpacity(0.8)
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: defaultPadding,),
+          Padding(
+            padding: const EdgeInsets.only(left: defaultPadding),
+            child: Text(
+              tr('home.hourly_income'),
+              style: fontDMMedium.copyWith(
+                fontSize: 14,
+                color: BaseColors.white,
+              ),
+            ),
+          ),
+          const SizedBox(height: defaultPadding / 4),
+          Padding(
+            padding: const EdgeInsets.only(left: defaultPadding),
+            child: Text(
+              '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+              style: fontDMBold.copyWith(
+                fontSize: 18,
+                color: BaseColors.primaryColor,
+              ),
+            ),
+          ),
+          Image.asset(
+            'assets/images/income/income_line.png',
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTotalIncome() {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xFF04133D)
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: defaultPadding / 2),
+          Container(
+            width: 94,
+            height: 94,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/income/total_progress.png')
+              )
+            ),
+            child: Center(
+              child: Text(
+                tr('home.total_income'),
+                style: fontDMMedium.copyWith(
+                  fontSize: 14,
+                  color: BaseColors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          const Spacer(),
+          Expanded(
+            child: Text(
+              '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+              style: fontDMBold.copyWith(
+                fontSize: 18,
+                color: BaseColors.primaryColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const Spacer(),
+        ],
+      ),
     );
   }
 

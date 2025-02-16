@@ -12,6 +12,7 @@ import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/pulse/salary_award.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
 import 'package:dgpt/models/pulse/user_balance.dart';
@@ -140,6 +141,9 @@ abstract class AiPulseService {
       {int page = 1, int perPage = 20});
 
   Future<BaseResponse<List<FlowTypeInfo>>> aiPulseFlowTypeList();
+
+  Future<BaseResponse<PaginationResponse<SalaryAward>?>> aiPulseSalaryAwardUserPage(
+      {int page = 1, int perPage = 20});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -745,6 +749,27 @@ class AiPulseServiceImpl extends AiPulseService {
           deserializer: (data) => data != null
               ? (data as List<dynamic>).map((e) => FlowTypeInfo.fromJson(e)).toList()
               : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<PaginationResponse<SalaryAward>?>> aiPulseSalaryAwardUserPage(
+      {int page = 1, int perPage = 20}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseSalaryAwardUserPage,
+          bearerToken: userController.token,
+          data: {
+            'page': page,
+            'pageSize': perPage,
+          },
+          deserializer: (data) => data != null
+              ? PaginationResponse<SalaryAward>.fromJson(
+              data,
+                  (json) =>
+                      SalaryAward.fromJson(json as Map<String, dynamic>))
+              : null);
     } on Exception catch (_) {
       rethrow;
     }

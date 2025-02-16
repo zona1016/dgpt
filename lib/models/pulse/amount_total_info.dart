@@ -10,6 +10,7 @@ class AmountTotalInfo with _$AmountTotalInfo {
     @JsonKey(name: 'directAwardAmountTotal') @Default(0) double directAwardAmountTotal,
     @JsonKey(name: 'teamAwardAmountTotal') @Default(0) double teamAwardAmountTotal,
     @JsonKey(name: 'roiAmountTotal') @Default(0) double roiAmountTotal,
+    @JsonKey(name: 'salaryAmountTotal') @Default(0) double salaryAmountTotal,
   }) = _AmountTotalInfo;
 
   factory AmountTotalInfo.fromJson(Map<String, dynamic> json) =>

@@ -154,7 +154,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             _buildIncomeCard(
                                 tr('hashrate.salary'),
                                 controller.amountTotalInfo.value
-                                        ?.roiAmountTotal ??
+                                        ?.salaryAmountTotal ??
                                     0,
                                 'assets/images/income/income_xz.png',
                                 onTap: () {

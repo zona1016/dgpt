@@ -17,12 +17,14 @@ class SalaryScreenController extends BaseController {
 
   final AiPulseService aiPulseService = Get.find();
 
+  RxString ss = 'dd'.obs;
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
 
   @override
   void onInit() {
     super.onInit();
+    aiPulseSalaryAwardUserPage();
   }
 
   @override
@@ -45,12 +47,19 @@ class SalaryScreenController extends BaseController {
     }
   }
 
-  aiPulseTotalAmountTotal() async {
-    final result = await fetchData(
-        loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.aiPulseTotalAmountTotal());
-    if (result != null) {
-      amountTotalInfo.value = result;
+
+  aiPulseSalaryAwardUserPage(
+      {AppLoadingState loadingState = AppLoadingState.background}) async {
+    final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
+    final result = await fetchPaginatedData(
+        loadingState: loadingState,
+        request: () => aiPulseService.aiPulseSalaryAwardUserPage(page: page));
+    if (result != null && result.list.isNotEmpty) {
+      if (loadingState == AppLoadingState.loadMore) {
+        // flowList.addAll(result.list);
+      } else {
+        // flowList.assignAll(result.list);
+      }
     }
   }
 }

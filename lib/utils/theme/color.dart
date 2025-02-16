@@ -16,6 +16,7 @@ class BaseColors {
   static const lightGray = Color(0xFFCCCCCC);
   static const extraLightGray = Color(0xFFE6E6E6);
   static const darkGray = Color(0xFF666666);
+  static const darkGray10 = Color(0xFF555252);
   static const white = Colors.white;
   static const whiteGray = Color(0xFFF5F5F5);
   static const whiteGray1 = Color(0xFFE9EDED);
@@ -110,6 +111,17 @@ class BaseColors {
       Color(0xFF4A045C),
     ],
     stops: [0.0, 1.0],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  static LinearGradient dayIncomeGradient = const LinearGradient(
+    colors: [
+      Color(0xFF892EFF),
+      Color(0xFF533DCD),
+      Color(0xFF1C4C99),
+    ],
+    stops: [0.0, 0.49, 1.0],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );

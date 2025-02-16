@@ -1,10 +1,7 @@
-import 'package:dgpt/screens/income/hashrate_leasing_screen_controller.dart';
 import 'package:dgpt/screens/income/salary_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
-import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
-import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +15,9 @@ class SalaryScreen extends GetView<SalaryScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: 'assets/images/custom/salary_bg.png',
-      body: Column(
+      body: Obx(() => Column(
         children: [
+          Text(controller.ss.value),
           _tabBar(context),
           Expanded(
             child: SingleChildScrollView(
@@ -425,7 +423,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 
