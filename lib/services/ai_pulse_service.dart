@@ -1,12 +1,14 @@
 import 'package:dgpt/models/api/pagination_response.dart';
+import 'package:dgpt/models/pulse/direct_top_info.dart';
 import 'package:dgpt/models/pulse/flow_info.dart';
 import 'package:dgpt/models/pulse/flow_type_info.dart';
+import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
+import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/models/pulse/notice_info.dart';
 import 'package:dgpt/models/pulse/ai_chat_message.dart';
 import 'package:dgpt/models/pulse/ai_pulse_banner.dart';
 import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/deposit.dart';
-import 'package:dgpt/models/pulse/hashrate_page_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
@@ -35,8 +37,7 @@ abstract class AiPulseService {
 
   Future<BaseResponse<HasrateProgressInfo?>> aiPulseUserHashrateProgress();
 
-  Future<BaseResponse<PlanDetail?>> aiPulsePlanDetail(
-      {required String id});
+  Future<BaseResponse<PlanDetail?>> aiPulsePlanDetail({required String id});
 
   Future<BaseResponse<PaginationResponse<PlanDetail>?>> hashratePage(
       {int page = 1, int perPage = 20});
@@ -128,6 +129,7 @@ abstract class AiPulseService {
       String? avatar,
       String? verifyCodeId,
       String? verifyCode});
+
   Future<BaseResponse<UserInfo?>> userInfo();
 
   Future<BaseResponse> aiPulseDepositDeposit();
@@ -142,8 +144,15 @@ abstract class AiPulseService {
 
   Future<BaseResponse<List<FlowTypeInfo>>> aiPulseFlowTypeList();
 
-  Future<BaseResponse<PaginationResponse<SalaryAward>?>> aiPulseSalaryAwardUserPage(
-      {int page = 1, int perPage = 20});
+  Future<BaseResponse<PaginationResponse<SalaryAward>?>>
+      aiPulseSalaryAwardUserPage({int page = 1, int perPage = 20});
+
+  Future<BaseResponse<List<DirectTopInfo>>> aiPulseTotalDirectTop();
+
+  Future<BaseResponse<List<LayerInfo>>> aiPulseTotalLayerTotal();
+
+  Future<BaseResponse<List<LayerHashrateInfo>>> aiPulseTotalLayerHashrateTotal(
+      {required int layer});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -234,10 +243,8 @@ class AiPulseServiceImpl extends AiPulseService {
             'pageSize': perPage,
           },
           deserializer: (data) => data != null
-              ? PaginationResponse<PlanDetail>.fromJson(
-                  data,
-                  (json) =>
-                      PlanDetail.fromJson(json as Map<String, dynamic>))
+              ? PaginationResponse<PlanDetail>.fromJson(data,
+                  (json) => PlanDetail.fromJson(json as Map<String, dynamic>))
               : null);
     } on Exception catch (_) {
       rethrow;
@@ -637,12 +644,12 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse<UserInfo?>> userUpdateInfo(
       {required String nickName,
-        required String email,
-        required String phoneNation,
-        required String phoneNumber,
-        String? avatar,
-        String? verifyCodeId,
-        String? verifyCode}) async {
+      required String email,
+      required String phoneNation,
+      required String phoneNumber,
+      String? avatar,
+      String? verifyCodeId,
+      String? verifyCode}) async {
     try {
       return await _apiClient.request(ApiEndpoints.userUpdateInfo,
           bearerToken: userController.token,
@@ -656,7 +663,7 @@ class AiPulseServiceImpl extends AiPulseService {
             if (verifyCode != null) "verifyCode": verifyCode
           },
           deserializer: (data) =>
-          data != null ? UserInfo.fromJson(data) : null);
+              data != null ? UserInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -668,7 +675,7 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(ApiEndpoints.userInfo,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? UserInfo.fromJson(data) : null);
+              data != null ? UserInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -677,10 +684,8 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> aiPulseDepositDeposit() async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.aiPulseDepositDeposit,
-          bearerToken: userController.token,
-          deserializer: (data) => data);
+      return await _apiClient.request(ApiEndpoints.aiPulseDepositDeposit,
+          bearerToken: userController.token, deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
@@ -689,13 +694,12 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse<List<UserBalance>?>> aiPulseWalletGetUserBalance() async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.aiPulseWalletGetUserBalance,
+      return await _apiClient.request(ApiEndpoints.aiPulseWalletGetUserBalance,
           bearerToken: userController.token,
           deserializer: (data) => data != null
               ? (data as List<dynamic>)
-              .map((e) => UserBalance.fromJson(e))
-              .toList()
+                  .map((e) => UserBalance.fromJson(e))
+                  .toList()
               : []);
     } on Exception catch (_) {
       rethrow;
@@ -708,12 +712,11 @@ class AiPulseServiceImpl extends AiPulseService {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanUserPlan,
           bearerToken: userController.token,
-          data: {
-            if (status != null)
-              'status': status
-          },
+          data: {if (status != null) 'status': status},
           deserializer: (data) => data != null
-              ? (data as List<dynamic>).map((e) => PlanDetail.fromJson(e)).toList()
+              ? (data as List<dynamic>)
+                  .map((e) => PlanDetail.fromJson(e))
+                  .toList()
               : []);
     } on Exception catch (_) {
       rethrow;
@@ -729,14 +732,11 @@ class AiPulseServiceImpl extends AiPulseService {
           data: {
             'page': page,
             'pageSize': perPage,
-            if (type != null)
-              'type': type,
+            if (type != null) 'type': type,
           },
           deserializer: (data) => data != null
-              ? PaginationResponse<FlowInfo>.fromJson(
-              data,
-                  (json) =>
-                      FlowInfo.fromJson(json as Map<String, dynamic>))
+              ? PaginationResponse<FlowInfo>.fromJson(data,
+                  (json) => FlowInfo.fromJson(json as Map<String, dynamic>))
               : null);
     } on Exception catch (_) {
       rethrow;
@@ -749,7 +749,9 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(ApiEndpoints.aiPulseFlowTypeList,
           bearerToken: userController.token,
           deserializer: (data) => data != null
-              ? (data as List<dynamic>).map((e) => FlowTypeInfo.fromJson(e)).toList()
+              ? (data as List<dynamic>)
+                  .map((e) => FlowTypeInfo.fromJson(e))
+                  .toList()
               : []);
     } on Exception catch (_) {
       rethrow;
@@ -757,8 +759,8 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<PaginationResponse<SalaryAward>?>> aiPulseSalaryAwardUserPage(
-      {int page = 1, int perPage = 20}) async {
+  Future<BaseResponse<PaginationResponse<SalaryAward>?>>
+      aiPulseSalaryAwardUserPage({int page = 1, int perPage = 20}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseSalaryAwardUserPage,
           bearerToken: userController.token,
@@ -767,11 +769,57 @@ class AiPulseServiceImpl extends AiPulseService {
             'pageSize': perPage,
           },
           deserializer: (data) => data != null
-              ? PaginationResponse<SalaryAward>.fromJson(
-              data,
-                  (json) =>
-                      SalaryAward.fromJson(json as Map<String, dynamic>))
+              ? PaginationResponse<SalaryAward>.fromJson(data,
+                  (json) => SalaryAward.fromJson(json as Map<String, dynamic>))
               : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<DirectTopInfo>>> aiPulseTotalDirectTop() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseTotalDirectTop,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => DirectTopInfo.fromJson(e))
+                  .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<LayerInfo>>> aiPulseTotalLayerTotal() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseTotalLayerTotal,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => LayerInfo.fromJson(e))
+                  .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<LayerHashrateInfo>>> aiPulseTotalLayerHashrateTotal(
+      {required int layer}) async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseTotalLayerHashrateTotal,
+          bearerToken: userController.token,
+          data: {'layer': layer},
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => LayerHashrateInfo.fromJson(e))
+                  .toList()
+              : []);
     } on Exception catch (_) {
       rethrow;
     }

@@ -105,7 +105,7 @@ class HashrateHeader extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                powerInfo?.secondLayer.toString() ?? '',
+                powerInfo?.orderNo.toString() ?? '',
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 20,

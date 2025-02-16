@@ -1,3 +1,5 @@
+import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
+import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
@@ -23,131 +25,154 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
         title: '团队算力奖',
         color: BaseColors.white,
       ),
-      body: Obx(() =>
-          Padding(
+      body: Obx(() => Padding(
             padding: const EdgeInsets.all(defaultPadding),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(defaultPadding),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      gradient: BaseColors.profileLinearGradient,
-                      color: BaseColors.white.withOpacity(0.4)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '总数额',
-                        style: fontDMBold.copyWith(
-                          fontSize: 18,
-                          color: BaseColors.white,
-                        ),
-                      ),
-                      Expanded(child: Container()),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding / 2,
-                              vertical: defaultPadding / 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: BaseColors.primaryColor,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(defaultPadding),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        gradient: BaseColors.profileLinearGradient,
+                        color: BaseColors.white.withOpacity(0.4)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '总数额',
+                          style: fontDMBold.copyWith(
+                            fontSize: 18,
+                            color: BaseColors.white,
                           ),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                Text(
-                                  '全部',
-                                  style: fontDMBold.copyWith(
-                                    fontSize: 12,
-                                    color: BaseColors.white,
+                        ),
+                        Expanded(child: Container()),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding / 2,
+                                vertical: defaultPadding / 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: BaseColors.primaryColor,
+                            ),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '全部',
+                                    style: fontDMBold.copyWith(
+                                      fontSize: 12,
+                                      color: BaseColors.white,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: defaultPadding / 5,
-                                ),
-                                const Icon(
-                                  Icons.chevron_right,
-                                  color: BaseColors.white,
-                                  size: 12,
-                                ),
-                              ],
+                                  const SizedBox(
+                                    width: defaultPadding / 5,
+                                  ),
+                                  const Icon(
+                                    Icons.chevron_right,
+                                    color: BaseColors.white,
+                                    size: 12,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: defaultPadding,
-                ),
-                Row(
-                  children: [
-                    Expanded(child: _level(0)),
-                    const SizedBox(width: defaultPadding,),
-                    Expanded(child: _level(1)),
-                    const SizedBox(width: defaultPadding,),
-                    Expanded(child: _level(2)),
-                  ],
-                ),
-                const SizedBox(height: defaultPadding,),
-                Row(
-                  children: [
-                    Expanded(child: _level(3)),
-                    const SizedBox(width: defaultPadding,),
-                    Expanded(child: _level(4)),
-                    const SizedBox(width: defaultPadding,),
-                    Expanded(child: _level(5)),
-                  ],
-                ),
-                const SizedBox(height: defaultPadding,),
-                Expanded(
-                  child: BaseSmartRefresher(
-                    refreshController: controller.refreshController,
-                    enableLoadMore: true,
-                    uiState: controller.uiState.value,
-                    isEmpty: controller.flowList.isEmpty,
-                    onPullToRefresh: (loadingState) {
-                      controller.aiPulseFlowUserPage(
-                          loadingState: loadingState);
-                    },
-                    onLoadMore: (loadingState) {
-                      controller.aiPulseFlowUserPage(
-                          loadingState: loadingState);
-                    },
-                    childBuilder: (context, physics) {
-                      return CustomScrollView(
-                        physics: physics,
-                        slivers: [
-                          SliverList.separated(
-                            itemCount: controller.flowList.isNotEmpty
-                                ? controller.flowList.length + 1
-                                : 0,
-                            itemBuilder: (_, index) {
-                              return index == controller.flowList.length
-                                  ? _footer()
-                                  : _item(index);
-                            },
-                            separatorBuilder: (_, index) {
-                              return index == controller.flowList.length - 1
-                                  ? Container()
-                                  : Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: defaultPadding),
-                                height: 0.5,
-                                color: BaseColors.weakTextColor,
-                              );
-                            },
-                          )
-                        ],
-                      );
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    // Prevent scrolling inside GridView
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: defaultPadding,
+                      mainAxisSpacing: defaultPadding,
+                      childAspectRatio: 1,
+                    ),
+                    itemCount: controller.layerHashrateList.length,
+                    // Number of items
+                    itemBuilder: (context, index) {
+                      return _level(index);
                     },
                   ),
-                )
-              ],
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.memberList.isNotEmpty
+                        ? controller.memberList.length + 1
+                        : 0,
+                    itemBuilder: (_, index) {
+                      return index == controller.memberList.length
+                          ? _footer()
+                          : _item(index);
+                    },
+                    separatorBuilder: (_, index) {
+                      return index == controller.memberList.length - 1
+                          ? Container()
+                          : Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: defaultPadding),
+                              height: 0.5,
+                              color: BaseColors.weakTextColor,
+                            );
+                    },
+                  )
+                  // Expanded(
+                  //   child: BaseSmartRefresher(
+                  //     refreshController: controller.refreshController,
+                  //     enableLoadMore: true,
+                  //     uiState: controller.uiState.value,
+                  //     isEmpty: controller.layerHashrateList.isEmpty,
+                  //     onPullToRefresh: (loadingState) {
+                  //       // controller.aiPulseFlowUserPage(
+                  //       //     loadingState: loadingState);
+                  //     },
+                  //     onLoadMore: (loadingState) {
+                  //       // controller.aiPulseFlowUserPage(
+                  //       //     loadingState: loadingState);
+                  //     },
+                  //     childBuilder: (context, physics) {
+                  //       return CustomScrollView(
+                  //         physics: physics,
+                  //         slivers: [
+                  //           SliverList.separated(
+                  //             itemCount: controller.layerHashrateList.isNotEmpty
+                  //                 ? controller.layerHashrateList.length + 1
+                  //                 : 0,
+                  //             itemBuilder: (_, index) {
+                  //               return index == controller.layerHashrateList.length
+                  //                   ? _footer()
+                  //                   : _item(index);
+                  //             },
+                  //             separatorBuilder: (_, index) {
+                  //               return index == controller.layerHashrateList.length - 1
+                  //                   ? Container()
+                  //                   : Container(
+                  //                 margin: const EdgeInsets.symmetric(
+                  //                     horizontal: defaultPadding),
+                  //                 height: 0.5,
+                  //                 color: BaseColors.weakTextColor,
+                  //               );
+                  //             },
+                  //           )
+                  //         ],
+                  //       );
+                  //     },
+                  //   ),
+                  // )
+                ],
+              ),
             ),
           )),
     );
@@ -156,24 +181,22 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
   _level(index) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: controller.memberColorList[index],
-          width: 1
-        )
-      ),
+          borderRadius: BorderRadius.circular(10),
+          border:
+              Border.all(color: controller.memberColorList[index], width: 1)),
       child: Column(
         children: [
           Container(
             height: 30,
             width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-              color: controller.memberColorList[index]
-            ),
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(10),
+                    topLeft: Radius.circular(10)),
+                color: controller.memberColorList[index]),
             child: Center(
               child: Text(
-                controller.memberList[index],
+                controller.layerHashrateList[index].hashrate?.name ?? '',
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 12,
@@ -182,21 +205,23 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
               ),
             ),
           ),
-          Container(
-            height: 60,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
-                color: Colors.transparent
-            ),
-            child: Center(
-              child: Text(
-                '0',
-                style: fontDMBold.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 16,
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10)),
+                  color: Colors.transparent),
+              child: Center(
+                child: Text(
+                  (controller.layerHashrateList[index].count ?? 0).toString(),
+                  style: fontDMBold.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
           )
@@ -206,6 +231,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
   }
 
   _item(index) {
+    MemberList? member = controller.memberList[index];
     return Column(
       children: [
         if (index == 0)
@@ -213,12 +239,11 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
             height: 20,
             width: double.infinity,
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20),
-                topLeft: Radius.circular(20),
-              ),
-              color: BaseColors.black10
-            ),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                ),
+                color: BaseColors.black10),
           ),
         GestureDetector(
           onTap: () {
@@ -229,25 +254,27 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
             decoration: const BoxDecoration(color: BaseColors.black10),
             child: Row(
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 33,
                   width: 33,
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: BaseNetworkImage(
-                      imageURL: '',
+                      imageURL: member?.user?.user?.avatar ?? '',
                       placeholder: 'assets/images/custom/logo.png',
                     ),
                   ),
                 ),
-                const SizedBox(width: defaultPadding / 2,),
+                const SizedBox(
+                  width: defaultPadding / 2,
+                ),
                 Expanded(
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Text(
-                            'Sam',
+                            member?.user?.user?.nickName ?? '',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.white,
                               fontSize: 12,
@@ -257,39 +284,51 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           const Spacer(),
                           Container(
                             height: 20,
-                            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding / 2),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
-                                    color: controller.memberColorList[index % 5],
-                                    width: 1
-                                )
-                            ),
+                                    color: controller.memberColorList[
+                                        ((member.powerInfo?.orderNo ?? 0) > 5
+                                                ? 4
+                                                : (member.powerInfo?.orderNo ??
+                                                    0)) %
+                                            5],
+                                    width: 1)),
                             child: Text(
-                              '基础算力',
+                              member.powerInfo?.name ?? '',
                               style: fontDMMedium.copyWith(
-                                color: controller.memberColorList[index % 5],
+                                color: controller.memberColorList[
+                                    ((member.powerInfo?.orderNo ?? 0) > 5
+                                            ? 4
+                                            : (member.powerInfo?.orderNo ??
+                                                0)) %
+                                        5],
                                 fontSize: 10,
                               ),
                               textAlign: TextAlign.center,
                             ),
                           ),
                           const Spacer(),
-                          Text(
-                            'Valid',
-                            style: fontDMRegular.copyWith(
-                              color: BaseColors.secondPrimaryColor,
-                              fontSize: 10,
+                          if (member?.planValid == true)
+                            Text(
+                              'Valid',
+                              style: fontDMRegular.copyWith(
+                                color: BaseColors.secondPrimaryColor,
+                                fontSize: 10,
+                              ),
+                              textAlign: TextAlign.right,
                             ),
-                            textAlign: TextAlign.right,
-                          ),
                         ],
                       ),
-                      const SizedBox(height: defaultPadding / 2,),
+                      const SizedBox(
+                        height: defaultPadding / 2,
+                      ),
                       Row(
                         children: [
                           Text(
-                            '加入： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateTime.now())}',
+                            '加入： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateFormat("yyyy-MM-dd HH:mm:ss").parse(member.powerInfo?.createTime ?? ''))}',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.weakTextColor,
                               fontSize: 8,
@@ -298,7 +337,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           ),
                           Expanded(child: Container()),
                           Text(
-                            'Member：12',
+                            'Member：${member?.teamUserCount ?? 0}',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.white,
                               fontSize: 8,

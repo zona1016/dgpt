@@ -1,7 +1,7 @@
-import 'package:dgpt/models/pulse/amount_total_info.dart';
+import 'package:dgpt/models/pulse/direct_top_info.dart';
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
+import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
-import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
@@ -25,6 +25,8 @@ class TeamHashrateAwardScreenController extends BaseController {
   Rxn<HasrateProgressInfo> progressInfo = Rxn<HasrateProgressInfo>();
   Rxn<PowerInfo> powerInfo = Rxn<PowerInfo>();
   RxBool loaded = false.obs;
+  RxList<DirectTopInfo> directTopList = <DirectTopInfo>[].obs;
+  RxList<LayerInfo> layerList = <LayerInfo>[].obs;
 
   List <Color> levelColorList = [
     const Color(0xFF17CE92).withOpacity(0.5),
@@ -74,6 +76,8 @@ class TeamHashrateAwardScreenController extends BaseController {
     await Future.wait([
       userHashrate(),
       aiPulseUserHashrateProgress(),
+      aiPulseTotalDirectTop(),
+      aiPulseTotalLyaerTotal(),
     ]);
     Get.context!.loaderOverlay.hide();
     loaded.value = true;
@@ -94,6 +98,24 @@ class TeamHashrateAwardScreenController extends BaseController {
         request: () => aiPulseService.aiPulseUserHashrateProgress());
     if (result != null) {
       progressInfo.value = result;
+    }
+  }
+
+  Future<void> aiPulseTotalDirectTop() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.aiPulseTotalDirectTop());
+    if (result != null) {
+      directTopList.value = result;
+    }
+  }
+
+  Future<void> aiPulseTotalLyaerTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.aiPulseTotalLayerTotal());
+    if (result != null) {
+      layerList.value = result;
     }
   }
 }

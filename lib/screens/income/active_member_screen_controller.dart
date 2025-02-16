@@ -1,3 +1,4 @@
+import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -18,16 +19,8 @@ class ActiveMemberScreenController extends BaseController {
 
   RxInt type = 0.obs;
 
-  RxList<FlowInfo> flowList = <FlowInfo>[].obs;
-
-  List<String> memberList = [
-    '基础算力',
-    '1级算力',
-    '2级算力',
-    '3级算力',
-    '4级算力',
-    '高级算力',
-  ];
+  RxList<LayerHashrateInfo> layerHashrateList = <LayerHashrateInfo>[].obs;
+  RxList<MemberList> memberList = <MemberList>[].obs;
 
   List<Color> memberColorList = [
     const Color(0xFF17CE92),
@@ -41,7 +34,7 @@ class ActiveMemberScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    aiPulseFlowUserPage();
+    aiPulseTotalLayerHashrateTotal();
   }
 
   @override
@@ -55,18 +48,24 @@ class ActiveMemberScreenController extends BaseController {
     super.onReady();
   }
 
-  aiPulseFlowUserPage(
-      {AppLoadingState loadingState = AppLoadingState.background}) async {
-    final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
-    final result = await fetchPaginatedData(
-        loadingState: loadingState,
-        request: () => aiPulseService.aiPulseFlowUserPage(page: page));
-    if (result != null && result.list.isNotEmpty) {
-      if (loadingState == AppLoadingState.loadMore) {
-        flowList.addAll(result.list);
-      } else {
-        flowList.assignAll(result.list);
-      }
+  aiPulseTotalLayerHashrateTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () =>
+            aiPulseService.aiPulseTotalLayerHashrateTotal(layer: args!.layer));
+    if (result != null) {
+      layerHashrateList.value = result;
+
+      memberList.value = layerHashrateList
+          .where(
+              (layer) => layer.memberList != null) // 过滤掉 memberList 为 null 的项
+          .expand((layer) {
+        return layer.memberList!.map((member) {
+          // 为每个 member 赋值 layer 属性
+          return MemberList(layer?.hashrate, member.user, member.planValid,
+              member.teamUserCount);
+        });
+      }).toList();
     }
   }
 }

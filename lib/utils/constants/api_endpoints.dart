@@ -12,6 +12,9 @@ class ApiEndpoints {
   static const String aiPulseGoogleAuthUnBind = "/api/aiPulseGoogleAuth/unBind";
 
   static const String aiPulseTotalAmountTotal = "/api/aiPulseTotal/amountTotal";
+  static const String aiPulseTotalDirectTop = "/api/aiPulseTotal/directTop";
+  static const String aiPulseTotalLayerTotal = "/api/aiPulseTotal/lyaerTotal";
+  static const String aiPulseTotalLayerHashrateTotal = "/api/aiPulseTotal/layerHashrateTotal";
 
   // user
   static const String userRegister = "/api/user/userRegister";

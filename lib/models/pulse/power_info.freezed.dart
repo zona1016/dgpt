@@ -34,6 +34,12 @@ mixin _$PowerInfo {
   double get thirdLayer => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orderNo')
+  int get orderNo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'enable')
+  int get enable => throw _privateConstructorUsedError;
+  @JsonKey(name: 'createTime')
+  String get createTime => throw _privateConstructorUsedError;
 
   /// Serializes this PowerInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,7 +63,10 @@ abstract class $PowerInfoCopyWith<$Res> {
       @JsonKey(name: 'firstLayer') double firstLayer,
       @JsonKey(name: 'secondLayer') double secondLayer,
       @JsonKey(name: 'thirdLayer') double thirdLayer,
-      @JsonKey(name: 'description') String description});
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'orderNo') int orderNo,
+      @JsonKey(name: 'enable') int enable,
+      @JsonKey(name: 'createTime') String createTime});
 }
 
 /// @nodoc
@@ -82,6 +91,9 @@ class _$PowerInfoCopyWithImpl<$Res, $Val extends PowerInfo>
     Object? secondLayer = null,
     Object? thirdLayer = null,
     Object? description = null,
+    Object? orderNo = null,
+    Object? enable = null,
+    Object? createTime = null,
   }) {
     return _then(_value.copyWith(
       createDate: null == createDate
@@ -112,6 +124,18 @@ class _$PowerInfoCopyWithImpl<$Res, $Val extends PowerInfo>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      orderNo: null == orderNo
+          ? _value.orderNo
+          : orderNo // ignore: cast_nullable_to_non_nullable
+              as int,
+      enable: null == enable
+          ? _value.enable
+          : enable // ignore: cast_nullable_to_non_nullable
+              as int,
+      createTime: null == createTime
+          ? _value.createTime
+          : createTime // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -131,7 +155,10 @@ abstract class _$$PowerInfoImplCopyWith<$Res>
       @JsonKey(name: 'firstLayer') double firstLayer,
       @JsonKey(name: 'secondLayer') double secondLayer,
       @JsonKey(name: 'thirdLayer') double thirdLayer,
-      @JsonKey(name: 'description') String description});
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'orderNo') int orderNo,
+      @JsonKey(name: 'enable') int enable,
+      @JsonKey(name: 'createTime') String createTime});
 }
 
 /// @nodoc
@@ -154,6 +181,9 @@ class __$$PowerInfoImplCopyWithImpl<$Res>
     Object? secondLayer = null,
     Object? thirdLayer = null,
     Object? description = null,
+    Object? orderNo = null,
+    Object? enable = null,
+    Object? createTime = null,
   }) {
     return _then(_$PowerInfoImpl(
       createDate: null == createDate
@@ -184,6 +214,18 @@ class __$$PowerInfoImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      orderNo: null == orderNo
+          ? _value.orderNo
+          : orderNo // ignore: cast_nullable_to_non_nullable
+              as int,
+      enable: null == enable
+          ? _value.enable
+          : enable // ignore: cast_nullable_to_non_nullable
+              as int,
+      createTime: null == createTime
+          ? _value.createTime
+          : createTime // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -198,7 +240,10 @@ class _$PowerInfoImpl implements _PowerInfo {
       @JsonKey(name: 'firstLayer') this.firstLayer = 0.0,
       @JsonKey(name: 'secondLayer') this.secondLayer = 0.0,
       @JsonKey(name: 'thirdLayer') this.thirdLayer = 0.0,
-      @JsonKey(name: 'description') this.description = ''});
+      @JsonKey(name: 'description') this.description = '',
+      @JsonKey(name: 'orderNo') this.orderNo = 0,
+      @JsonKey(name: 'enable') this.enable = 0,
+      @JsonKey(name: 'createTime') this.createTime = ''});
 
   factory _$PowerInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PowerInfoImplFromJson(json);
@@ -224,10 +269,19 @@ class _$PowerInfoImpl implements _PowerInfo {
   @override
   @JsonKey(name: 'description')
   final String description;
+  @override
+  @JsonKey(name: 'orderNo')
+  final int orderNo;
+  @override
+  @JsonKey(name: 'enable')
+  final int enable;
+  @override
+  @JsonKey(name: 'createTime')
+  final String createTime;
 
   @override
   String toString() {
-    return 'PowerInfo(createDate: $createDate, code: $code, name: $name, firstLayer: $firstLayer, secondLayer: $secondLayer, thirdLayer: $thirdLayer, description: $description)';
+    return 'PowerInfo(createDate: $createDate, code: $code, name: $name, firstLayer: $firstLayer, secondLayer: $secondLayer, thirdLayer: $thirdLayer, description: $description, orderNo: $orderNo, enable: $enable, createTime: $createTime)';
   }
 
   @override
@@ -246,13 +300,27 @@ class _$PowerInfoImpl implements _PowerInfo {
             (identical(other.thirdLayer, thirdLayer) ||
                 other.thirdLayer == thirdLayer) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.orderNo, orderNo) || other.orderNo == orderNo) &&
+            (identical(other.enable, enable) || other.enable == enable) &&
+            (identical(other.createTime, createTime) ||
+                other.createTime == createTime));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, createDate, code, name,
-      firstLayer, secondLayer, thirdLayer, description);
+  int get hashCode => Object.hash(
+      runtimeType,
+      createDate,
+      code,
+      name,
+      firstLayer,
+      secondLayer,
+      thirdLayer,
+      description,
+      orderNo,
+      enable,
+      createTime);
 
   /// Create a copy of PowerInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -272,14 +340,16 @@ class _$PowerInfoImpl implements _PowerInfo {
 
 abstract class _PowerInfo implements PowerInfo {
   factory _PowerInfo(
-          {@JsonKey(name: 'createDate') final String createDate,
-          @JsonKey(name: 'code') final String code,
-          @JsonKey(name: 'name') final String name,
-          @JsonKey(name: 'firstLayer') final double firstLayer,
-          @JsonKey(name: 'secondLayer') final double secondLayer,
-          @JsonKey(name: 'thirdLayer') final double thirdLayer,
-          @JsonKey(name: 'description') final String description}) =
-      _$PowerInfoImpl;
+      {@JsonKey(name: 'createDate') final String createDate,
+      @JsonKey(name: 'code') final String code,
+      @JsonKey(name: 'name') final String name,
+      @JsonKey(name: 'firstLayer') final double firstLayer,
+      @JsonKey(name: 'secondLayer') final double secondLayer,
+      @JsonKey(name: 'thirdLayer') final double thirdLayer,
+      @JsonKey(name: 'description') final String description,
+      @JsonKey(name: 'orderNo') final int orderNo,
+      @JsonKey(name: 'enable') final int enable,
+      @JsonKey(name: 'createTime') final String createTime}) = _$PowerInfoImpl;
 
   factory _PowerInfo.fromJson(Map<String, dynamic> json) =
       _$PowerInfoImpl.fromJson;
@@ -305,6 +375,15 @@ abstract class _PowerInfo implements PowerInfo {
   @override
   @JsonKey(name: 'description')
   String get description;
+  @override
+  @JsonKey(name: 'orderNo')
+  int get orderNo;
+  @override
+  @JsonKey(name: 'enable')
+  int get enable;
+  @override
+  @JsonKey(name: 'createTime')
+  String get createTime;
 
   /// Create a copy of PowerInfo
   /// with the given fields replaced by the non-null parameter values.

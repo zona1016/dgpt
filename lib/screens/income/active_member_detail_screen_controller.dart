@@ -1,3 +1,5 @@
+import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
+import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -13,7 +15,7 @@ class ActiveMemberDetailScreenBindings implements Bindings {
   }
 }
 
-class ActiveMemberDetailScreenController extends BaseController {
+class ActiveMemberDetailScreenController extends BaseController<ActiveMemberDetailScreenArgs> {
   final AiPulseService aiPulseService = Get.find();
 
   @override
@@ -31,4 +33,6 @@ class ActiveMemberDetailScreenController extends BaseController {
     // TODO: implement onReady
     super.onReady();
   }
+
+
 }

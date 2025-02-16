@@ -1,4 +1,6 @@
+import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/screens/hashrate/widgets/hashrate_header.dart';
+import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
@@ -35,9 +37,10 @@ class TeamHashrateAwardScreen
                       progressInfo: controller.progressInfo.value,
                       isIncome: true,
                       totalRoi: controller.incomeScreenController
-                          .amountTotalInfo.value?.roiAmountTotal ?? 0,
+                              .amountTotalInfo.value?.roiAmountTotal ??
+                          0,
                     ),
-                  _ranking(),
+                  if (controller.directTopList.isNotEmpty) _ranking(),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -182,11 +185,13 @@ class TeamHashrateAwardScreen
                 onTap: () {
                   if (index == 0) {
                   } else if (index == 1) {
-                    Get.toNamed(AppRoutes.activeMember);
+                    Get.toNamed(AppRoutes.activeMember,
+                        arguments: ActiveMemberDetailScreenArgs(
+                            layer: controller.layerList.value[superIndex].layer ?? 0));
                   } else if (index == 2) {
                   } else {}
                 },
-                child: _buildIncomeCard(index),
+                child: _buildIncomeCard(superIndex, index),
               );
             },
           ),
@@ -195,7 +200,20 @@ class TeamHashrateAwardScreen
     );
   }
 
-  _buildIncomeCard(int index) {
+  _buildIncomeCard(int superIndex, int index) {
+    if (controller.layerList.isEmpty) return Container();
+    LayerInfo layerInfo = controller.layerList[superIndex];
+    double? count = 0;
+    if (index == 0) {
+      count = (layerInfo.userCount ?? 0).toDouble();
+    } else if (index == 2) {
+      count = (layerInfo.realUserCount ?? 0).toDouble();
+    } else if (index == 3) {
+      count = layerInfo.todyRoiTotal;
+    } else if (index == 4) {
+      count = layerInfo.roiTotal;
+    }
+
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
@@ -226,7 +244,7 @@ class TeamHashrateAwardScreen
                   height: defaultPadding / 5,
                 ),
                 Text(
-                  0.toString(),
+                  count.toString(),
                   style: fontDMBold.copyWith(
                       color: BaseColors.primaryColor, fontSize: 16),
                   maxLines: 1,

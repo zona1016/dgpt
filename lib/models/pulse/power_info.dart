@@ -13,6 +13,9 @@ class PowerInfo with _$PowerInfo {
     @JsonKey(name: 'secondLayer') @Default(0.0) double secondLayer,
     @JsonKey(name: 'thirdLayer') @Default(0.0) double thirdLayer,
     @JsonKey(name: 'description') @Default('') String description,
+    @JsonKey(name: 'orderNo') @Default(0) int orderNo,
+    @JsonKey(name: 'enable') @Default(0) int enable,
+    @JsonKey(name: 'createTime') @Default('') String createTime,
   }) = _PowerInfo;
 
   factory PowerInfo.fromJson(Map<String, dynamic> json) =>
