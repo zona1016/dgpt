@@ -1,7 +1,9 @@
 import 'package:dgpt/models/pulse/enable_job_info.dart';
+import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/packages/storage_utils.dart';
 import 'package:get/get.dart';
 
 class SalaryScreenBindings implements Bindings {
@@ -66,9 +68,9 @@ class SalaryScreenController extends BaseController {
 
     String? result;
     if (conditionInfo?.hashrateCode != 'none') {
-      result = conditionInfo?.hashrateCode;
+      result = getLevelName(conditionInfo?.hashrateCode);
     } else if (conditionInfo?.directHashrateCode != 'none') {
-      result = conditionInfo?.directHashrateCode;
+      result = getLevelName(conditionInfo?.directHashrateCode);
       if (conditionInfo?.directHashrateCount != 0) {
         result = '${result}X${conditionInfo?.directHashrateCount}(位)';
       }
@@ -82,5 +84,20 @@ class SalaryScreenController extends BaseController {
     }
 
     return result;
+  }
+
+  String? getLevelName(String? code) {
+    if (code == null) return '无算力';
+    if (code.contains('5')) {
+      return '高级算力';
+    } else if (code.contains('1')) {
+      return '1级算力';
+    } else if (code.contains('2')) {
+      return '2级算力';
+    } else if (code.contains('3')) {
+      return '3级算力';
+    } else if (code.contains('4')) {
+      return '4级算力';
+    }
   }
 }

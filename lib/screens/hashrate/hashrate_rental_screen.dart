@@ -78,10 +78,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                           return Stack(
                             children: [
                               _rentalItem(index),
-                              if (!controller
-                                  .hasratePageList[index].isBuy &&
-                                  controller.hasratePageList[index]
-                                      .buyStatus == 1)
+                              if (index == 0)
                                 Positioned(
                                   top: 0,
                                   right: 0,
