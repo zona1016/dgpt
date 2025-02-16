@@ -60,6 +60,7 @@ class ApiEndpoints {
   static const String aiPulseFlowTypeList = "/api/aiPulseFlow/flowTypeList";
 
   static const String aiPulseHashratePage = "/api/aiPulseHashrate/page";
+  static const String aiPulseHashrateEnableHashrateList = "/api/aiPulseHashrate/enableHashrateList";
   static const String aiPulseHashrateDetail = "/api/aiPulseHashrate/detail";
 
   static const String aiPulseKycPage = "/api/aiPulseKyc/page";
@@ -126,5 +127,7 @@ class ApiEndpoints {
 
   static const String aiPulseUserJobTitleUserJobTitle = "/api/aiPulseUserJobTitle/userJobTitle";
   static const String aiPulseJobTitleEnableJobTitleList = "/api/aiPulseJobTitle/enableJobTitleList";
+
+
 
 }

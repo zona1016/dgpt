@@ -19,7 +19,7 @@ class MyAssetsScreenController extends BaseController<MyAssetsScreenArgs> with G
   final selectedBannerIndex = 0.obs;
 
   late TabController tabController;
-  late RxInt tabIndex = 0.obs;
+  RxInt tabIndex = 0.obs;
   RxDouble totalAmount = 0.0.obs;
 
   List<String> tabList = [tr('profile.fund_records'), tr('profile.transfer_records')];

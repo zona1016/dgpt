@@ -158,6 +158,8 @@ abstract class AiPulseService {
   Future<BaseResponse<EnableJobInfo?>> aiPulseUserJobTitleUserJobTitle();
 
   Future<BaseResponse<List<EnableJobInfo>>> aiPulseJobTitleEnableJobTitleList();
+
+  Future<BaseResponse<List<PowerInfo>?>> aiPulseHashrateEnableHashrateList();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -844,15 +846,33 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<List<EnableJobInfo>>> aiPulseJobTitleEnableJobTitleList() async {
+  Future<BaseResponse<List<EnableJobInfo>>>
+      aiPulseJobTitleEnableJobTitleList() async {
     try {
       return await _apiClient.request(
           ApiEndpoints.aiPulseJobTitleEnableJobTitleList,
           bearerToken: userController.token,
           deserializer: (data) => data != null
               ? (data as List<dynamic>)
-              .map((e) => EnableJobInfo.fromJson(e))
-              .toList()
+                  .map((e) => EnableJobInfo.fromJson(e))
+                  .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<PowerInfo>?>>
+      aiPulseHashrateEnableHashrateList() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseHashrateEnableHashrateList,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+                  .map((e) => PowerInfo.fromJson(e))
+                  .toList()
               : []);
     } on Exception catch (_) {
       rethrow;

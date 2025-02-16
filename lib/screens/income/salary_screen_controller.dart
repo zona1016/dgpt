@@ -1,5 +1,6 @@
 import 'package:dgpt/models/pulse/enable_job_info.dart';
 import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
+import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -18,12 +19,14 @@ class SalaryScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
   Rxn<EnableJobInfo> userJobInfo = Rxn<EnableJobInfo>();
   RxList<EnableJobInfo> enableJobList = <EnableJobInfo>[].obs;
+  RxList<PowerInfo> hashrateList = <PowerInfo>[].obs;
 
   @override
   void onInit() {
     super.onInit();
     aiPulseUserJobTitleUserJobTitle();
     aiPulseJobTitleEnableJobTitleList();
+    aiPulseHashrateEnableHashrateList();
   }
 
   @override
@@ -62,6 +65,15 @@ class SalaryScreenController extends BaseController {
     }
   }
 
+  aiPulseHashrateEnableHashrateList() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseHashrateEnableHashrateList());
+    if (result != null) {
+      hashrateList.value = result;
+    }
+  }
+
   String? getConditionDes({ConditionInfo? conditionInfo, required int index}) {
     if (enableJobList.isEmpty) return '';
     conditionInfo ??= enableJobList.value[index].conditionInfo;
@@ -87,17 +99,8 @@ class SalaryScreenController extends BaseController {
   }
 
   String? getLevelName(String? code) {
-    if (code == null) return '无算力';
-    if (code.contains('5')) {
-      return '高级算力';
-    } else if (code.contains('1')) {
-      return '1级算力';
-    } else if (code.contains('2')) {
-      return '2级算力';
-    } else if (code.contains('3')) {
-      return '3级算力';
-    } else if (code.contains('4')) {
-      return '4级算力';
-    }
+    if (code == null || hashrateList.isEmpty) return '无算力';
+    return hashrateList.value
+        .firstWhereOrNull((info) => info.code == code)?.name ?? '无算力';
   }
 }
