@@ -1,5 +1,6 @@
 import 'package:dgpt/models/api/pagination_response.dart';
 import 'package:dgpt/models/pulse/direct_top_info.dart';
+import 'package:dgpt/models/pulse/enable_job_info.dart';
 import 'package:dgpt/models/pulse/flow_info.dart';
 import 'package:dgpt/models/pulse/flow_type_info.dart';
 import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
@@ -153,6 +154,10 @@ abstract class AiPulseService {
 
   Future<BaseResponse<List<LayerHashrateInfo>>> aiPulseTotalLayerHashrateTotal(
       {required int layer});
+
+  Future<BaseResponse<EnableJobInfo?>> aiPulseUserJobTitleUserJobTitle();
+
+  Future<BaseResponse<List<EnableJobInfo>>> aiPulseJobTitleEnableJobTitleList();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -819,6 +824,35 @@ class AiPulseServiceImpl extends AiPulseService {
               ? (data as List<dynamic>)
                   .map((e) => LayerHashrateInfo.fromJson(e))
                   .toList()
+              : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<EnableJobInfo?>> aiPulseUserJobTitleUserJobTitle() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseUserJobTitleUserJobTitle,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+              data != null ? EnableJobInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<EnableJobInfo>>> aiPulseJobTitleEnableJobTitleList() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseJobTitleEnableJobTitleList,
+          bearerToken: userController.token,
+          deserializer: (data) => data != null
+              ? (data as List<dynamic>)
+              .map((e) => EnableJobInfo.fromJson(e))
+              .toList()
               : []);
     } on Exception catch (_) {
       rethrow;

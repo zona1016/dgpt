@@ -122,6 +122,9 @@ class ApiEndpoints {
 
   static const String noticeUserNoticeList = "/api/notice/userNoticeList";
 
-  static const String aiPulseSalaryAwardUserPage= "/api/aiPulseSalaryAward/userPage";
+  static const String aiPulseSalaryAwardUserPage = "/api/aiPulseSalaryAward/userPage";
+
+  static const String aiPulseUserJobTitleUserJobTitle = "/api/aiPulseUserJobTitle/userJobTitle";
+  static const String aiPulseJobTitleEnableJobTitleList = "/api/aiPulseJobTitle/enableJobTitleList";
 
 }

@@ -1,5 +1,4 @@
-import 'package:dgpt/models/pulse/amount_total_info.dart';
-import 'package:dgpt/models/pulse/user_income_total.dart';
+import 'package:dgpt/models/pulse/enable_job_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -16,15 +15,14 @@ class SalaryScreenBindings implements Bindings {
 class SalaryScreenController extends BaseController {
 
   final AiPulseService aiPulseService = Get.find();
-
-  RxString ss = 'dd'.obs;
-  Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
-  Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
+  Rxn<EnableJobInfo> userJobInfo = Rxn<EnableJobInfo>();
+  RxList<EnableJobInfo> enableJobList = <EnableJobInfo>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    aiPulseSalaryAwardUserPage();
+    aiPulseUserJobTitleUserJobTitle();
+    aiPulseJobTitleEnableJobTitleList();
   }
 
   @override
@@ -38,28 +36,28 @@ class SalaryScreenController extends BaseController {
     super.onReady();
   }
 
-  userIncomeTotal() async {
+  String formatAmount(int amount) {
+    if (amount >= 10000) {
+      return '${(amount / 1000).toStringAsFixed(0)}K';
+    }
+    return amount.toString();
+  }
+
+  aiPulseUserJobTitleUserJobTitle() async {
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.userIncomeTotal());
+        request: () => aiPulseService.aiPulseUserJobTitleUserJobTitle());
     if (result != null) {
-      incomeTotal.value = result;
+      userJobInfo.value = result;
     }
   }
 
-
-  aiPulseSalaryAwardUserPage(
-      {AppLoadingState loadingState = AppLoadingState.background}) async {
-    final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
-    final result = await fetchPaginatedData(
-        loadingState: loadingState,
-        request: () => aiPulseService.aiPulseSalaryAwardUserPage(page: page));
-    if (result != null && result.list.isNotEmpty) {
-      if (loadingState == AppLoadingState.loadMore) {
-        // flowList.addAll(result.list);
-      } else {
-        // flowList.assignAll(result.list);
-      }
+  aiPulseJobTitleEnableJobTitleList() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseJobTitleEnableJobTitleList());
+    if (result != null) {
+      enableJobList.value = result;
     }
   }
 }

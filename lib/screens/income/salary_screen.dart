@@ -16,113 +16,114 @@ class SalaryScreen extends GetView<SalaryScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: 'assets/images/custom/salary_bg.png',
       body: Obx(() => Column(
-        children: [
-          Text(controller.ss.value),
-          _tabBar(context),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/images/income/income_salary.png',
-                      width: 100,
-                      height: 90,
-                    ),
-                  ),
-                  _header(),
-                  const SizedBox(
-                    height: defaultPadding / 2,
-                  ),
-                  Stack(
-                    clipBehavior: Clip.none,
+            children: [
+              _tabBar(context),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                        child: CustomPaint(
-                          painter: GradientBorderPainter(),
-                          child: Container(
-                            // margin: const EdgeInsets.all(defaultPadding),
-                            padding: const EdgeInsets.all(defaultPadding).copyWith(top: 15),
-                            alignment: Alignment.center,
-                            child: Column(
-                              children: [
-                                Row(
+                      Center(
+                        child: Image.asset(
+                          'assets/images/income/income_salary.png',
+                          width: 100,
+                          height: 90,
+                        ),
+                      ),
+                      _header(),
+                      const SizedBox(
+                        height: defaultPadding / 2,
+                      ),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: CustomPaint(
+                              painter: GradientBorderPainter(),
+                              child: Container(
+                                padding: const EdgeInsets.all(defaultPadding)
+                                    .copyWith(top: 15),
+                                alignment: Alignment.center,
+                                child: Column(
                                   children: [
-                                    Expanded(child: Container()),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: defaultPadding,
+                                              vertical: defaultPadding / 8),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            color: const Color(0xFF999999)
+                                                .withOpacity(0.4),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '日期：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 8,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: defaultPadding / 2,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            '公司职位',
+                                            style: fontDMBold.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 8,
+                                            ),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            '公司每个月薪资',
+                                            style: fontDMBold.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 10,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text('职位要求',
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 10,
+                                              ),
+                                              textAlign: TextAlign.center),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: defaultPadding / 2,
+                                    ),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: const Color(0xFF999999).withOpacity(0.4),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          '日期：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
-                                          style: fontDMBold.copyWith(
-                                            color: BaseColors.white,
-                                            fontSize: 8,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: defaultPadding / 2,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '公司职位',
-                                        style: fontDMBold.copyWith(
-                                          color: BaseColors.white,
-                                          fontSize: 8,
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
+                                      height: 1,
+                                      color: BaseColors.white.withOpacity(0.8),
                                     ),
-                                    Expanded(
-                                      child: Text(
-                                        '公司每个月薪资',
-                                        style: fontDMBold.copyWith(
-                                          color: BaseColors.white,
-                                          fontSize: 10,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text('职位要求',
-                                          style: fontDMBold.copyWith(
-                                            color: BaseColors.white,
-                                            fontSize: 10,
-                                          ),
-                                          textAlign: TextAlign.center),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: defaultPadding / 2,
-                                ),
-                                Container(
-                                  height: 1,
-                                  color: BaseColors.white.withOpacity(0.8),
-                                ),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: 2,
-                                  itemBuilder: (_, index) {
-                                    return Padding(
+                                    Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: defaultPadding / 2),
                                       child: Row(
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              'Agent (代理)',
+                                              controller.userJobInfo.value
+                                                      ?.name ??
+                                                  '',
                                               style: fontDMMedium.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 8,
@@ -132,7 +133,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              '200U',
+                                              '${controller.userJobInfo.value?.salary} U',
                                               style: fontDMMedium.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 8,
@@ -150,280 +151,296 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                         ],
                                       ),
-                                    );
-                                  },
-                                  separatorBuilder: (_, index) {
-                                    return Container(
-                                      height: 0.5,
-                                      color: BaseColors.weakTextColor,
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topCenter, // 顶部居中
-                        child: Transform.translate(
-                          offset: const Offset(0, -15), // 上移 15 个单位
-                          child: IntrinsicWidth(
-                            // 让 Container 宽度自适应
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: defaultPadding),
-                              height: 30,
-                              decoration: BoxDecoration(
-                                gradient: BaseColors.baseButtonLinearGradient,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '您的薪资',
-                                  style: fontDMBold.copyWith(
-                                    color: BaseColors.white,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: defaultPadding * 1.5,
-                  ),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                        child: CustomPaint(
-                          painter: GradientBorderPainter(),
-                          child: Container(
-                            padding: const EdgeInsets.all(defaultPadding).copyWith(top: 15),
-                            alignment: Alignment.center,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(child: Container()),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: const Color(0xFF999999).withOpacity(0.4),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          '日期：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
-                                          style: fontDMBold.copyWith(
-                                            color: BaseColors.white,
-                                            fontSize: 8,
-                                          ),
-                                        ),
-                                      ),
                                     )
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: defaultPadding / 2,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter, // 顶部居中
+                            child: Transform.translate(
+                              offset: const Offset(0, -15), // 上移 15 个单位
+                              child: IntrinsicWidth(
+                                // 让 Container 宽度自适应
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: defaultPadding),
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    gradient:
+                                        BaseColors.baseButtonLinearGradient,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '您的薪资',
+                                      style: fontDMBold.copyWith(
+                                        color: BaseColors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                Row(
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: defaultPadding * 1.5,
+                      ),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: CustomPaint(
+                              painter: GradientBorderPainter(),
+                              child: Container(
+                                padding: const EdgeInsets.all(defaultPadding)
+                                    .copyWith(top: 15),
+                                alignment: Alignment.center,
+                                child: Column(
                                   children: [
-                                    Expanded(
-                                      child: Text(
-                                        '公司职位',
-                                        style: fontDMBold.copyWith(
-                                          color: BaseColors.white,
-                                          fontSize: 8,
-                                        ),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        '公司每个月薪资',
-                                        style: fontDMBold.copyWith(
-                                          color: BaseColors.white,
-                                          fontSize: 10,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text('职位要求',
-                                          style: fontDMBold.copyWith(
-                                            color: BaseColors.white,
-                                            fontSize: 10,
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: defaultPadding,
+                                              vertical: defaultPadding / 8),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            color: const Color(0xFF999999)
+                                                .withOpacity(0.4),
                                           ),
-                                          textAlign: TextAlign.center),
-                                    ),
-                                    Expanded(
-                                      child: Text('月绩保持',
-                                          style: fontDMBold.copyWith(
-                                            color: BaseColors.white,
-                                            fontSize: 10,
+                                          child: Center(
+                                            child: Text(
+                                              '日期：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 8,
+                                              ),
+                                            ),
                                           ),
-                                          textAlign: TextAlign.right),
+                                        )
+                                      ],
                                     ),
+                                    const SizedBox(
+                                      height: defaultPadding / 2,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            '公司职位',
+                                            style: fontDMBold.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 8,
+                                            ),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            '公司每个月薪资',
+                                            style: fontDMBold.copyWith(
+                                              color: BaseColors.white,
+                                              fontSize: 10,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text('职位要求',
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 10,
+                                              ),
+                                              textAlign: TextAlign.center),
+                                        ),
+                                        Expanded(
+                                          child: Text('月绩保持',
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 10,
+                                              ),
+                                              textAlign: TextAlign.right),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: defaultPadding / 2,
+                                    ),
+                                    Container(
+                                      height: 1,
+                                      color: BaseColors.white.withOpacity(0.8),
+                                    ),
+                                    ListView.separated(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          controller.enableJobList.length,
+                                      itemBuilder: (_, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: defaultPadding / 2),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  controller
+                                                          .enableJobList[index]
+                                                          .name ??
+                                                      '',
+                                                  style: fontDMMedium.copyWith(
+                                                    color: BaseColors.white,
+                                                    fontSize: 8,
+                                                  ),
+                                                  textAlign: TextAlign.left,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.enableJobList[index].salary}U',
+                                                  style: fontDMMedium.copyWith(
+                                                    color: BaseColors.white,
+                                                    fontSize: 8,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.enableJobList[index].conditionInfo?.hashrateCode ?? ''}'
+                                                    '\n'
+                                                    '${controller.formatAmount((controller.enableJobList[index].conditionInfo?.teamPlanAmountTotal ?? 0))}'
+                                                    '美金业绩',
+                                                    style:
+                                                        fontDMMedium.copyWith(
+                                                      color: BaseColors.white,
+                                                      fontSize: 8,
+                                                    ),
+                                                    textAlign:
+                                                        TextAlign.center),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                    '${controller.enableJobList[index].monthPlanAmount}U',
+                                                    style:
+                                                        fontDMMedium.copyWith(
+                                                      color: BaseColors.white,
+                                                      fontSize: 8,
+                                                    ),
+                                                    textAlign: TextAlign.right),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      separatorBuilder: (_, index) {
+                                        return Container(
+                                          height: 0.5,
+                                          color: BaseColors.weakTextColor,
+                                        );
+                                      },
+                                    )
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: defaultPadding / 2,
-                                ),
-                                Container(
-                                  height: 1,
-                                  color: BaseColors.white.withOpacity(0.8),
-                                ),
-                                ListView.separated(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: 4,
-                                  itemBuilder: (_, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: defaultPadding / 2),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              'Agent (代理)',
-                                              style: fontDMMedium.copyWith(
-                                                color: BaseColors.white,
-                                                fontSize: 8,
-                                              ),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              '200U',
-                                              style: fontDMMedium.copyWith(
-                                                color: BaseColors.white,
-                                                fontSize: 8,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text('等级3 + 3000美金月绩',
-                                                style: fontDMMedium.copyWith(
-                                                  color: BaseColors.white,
-                                                  fontSize: 8,
-                                                ),
-                                                textAlign: TextAlign.center),
-                                          ),
-                                          Expanded(
-                                            child: Text('1500U',
-                                                style: fontDMMedium.copyWith(
-                                                  color: BaseColors.white,
-                                                  fontSize: 8,
-                                                ),
-                                                textAlign: TextAlign.right),
-                                          ),
-                                        ],
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter, // 顶部居中
+                            child: Transform.translate(
+                              offset: const Offset(0, -15), // 上移 15 个单位
+                              child: IntrinsicWidth(
+                                // 让 Container 宽度自适应
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: defaultPadding / 2),
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    gradient:
+                                        BaseColors.baseButtonLinearGradient,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '您的权利',
+                                      style: fontDMBold.copyWith(
+                                        color: BaseColors.white,
+                                        fontSize: 12,
                                       ),
-                                    );
-                                  },
-                                  separatorBuilder: (_, index) {
-                                    return Container(
-                                      height: 0.5,
-                                      color: BaseColors.weakTextColor,
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topCenter, // 顶部居中
-                        child: Transform.translate(
-                          offset: const Offset(0, -15), // 上移 15 个单位
-                          child: IntrinsicWidth(
-                            // 让 Container 宽度自适应
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: defaultPadding / 2),
-                              height: 30,
-                              decoration: BoxDecoration(
-                                gradient: BaseColors.baseButtonLinearGradient,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '您的权利',
-                                  style: fontDMBold.copyWith(
-                                    color: BaseColors.white,
-                                    fontSize: 12,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: defaultPadding * 1.5,
-                  ),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                        child: CustomPaint(
-                          painter: GradientBorderPainter(),
-                          child: Container(
-                            padding: const EdgeInsets.all(defaultPadding).copyWith(top: defaultPadding * 1.5),
-                            alignment: Alignment.center,
-                            child: _card(cardTaps: (index) {
-                              if (index == 0) {
-                              } else if (index == 1) {}
-                            }),
-                          ),
-                        ),
+                          )
+                        ],
                       ),
-                      Align(
-                        alignment: Alignment.topCenter, // 顶部居中
-                        child: Transform.translate(
-                          offset: const Offset(0, -15), // 上移 15 个单位
-                          child: IntrinsicWidth(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: defaultPadding / 2),
-                              height: 30,
-                              decoration: BoxDecoration(
-                                gradient: BaseColors.baseButtonLinearGradient,
-                                borderRadius: BorderRadius.circular(15),
+                      const SizedBox(
+                        height: defaultPadding * 1.5,
+                      ),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: defaultPadding),
+                            child: CustomPaint(
+                              painter: GradientBorderPainter(),
+                              child: Container(
+                                padding: const EdgeInsets.all(defaultPadding)
+                                    .copyWith(top: defaultPadding * 1.5),
+                                alignment: Alignment.center,
+                                child: _card(cardTaps: (index) {
+                                  if (index == 0) {
+                                  } else if (index == 1) {}
+                                }),
                               ),
-                              child: Center(
-                                child: Text(
-                                  '额外好处解析',
-                                  style: fontDMBold.copyWith(
-                                    color: BaseColors.white,
-                                    fontSize: 12,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter, // 顶部居中
+                            child: Transform.translate(
+                              offset: const Offset(0, -15), // 上移 15 个单位
+                              child: IntrinsicWidth(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: defaultPadding / 2),
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    gradient:
+                                        BaseColors.baseButtonLinearGradient,
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '额外好处解析',
+                                      style: fontDMBold.copyWith(
+                                        color: BaseColors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ],
-      )),
+            ],
+          )),
     );
   }
 
