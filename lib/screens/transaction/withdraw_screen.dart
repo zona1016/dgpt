@@ -139,7 +139,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                           height: 40,
                           child: BaseButton(
                             onPressed: () {},
-                            text: '确认充值',
+                            text: '确认提现',
                           ),
                         ),
                       )

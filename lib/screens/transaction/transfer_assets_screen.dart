@@ -27,9 +27,9 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: Column(
+        child: Obx(() => Column(
           children: [
-            Obx(() => Expanded(
+            Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,8 +40,8 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                     Container(
                       padding: const EdgeInsets.all(defaultPadding),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xFF272F57)
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF272F57)
                       ),
                       child: Column(
                         children: [
@@ -139,6 +139,9 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                               color: BaseColors.white, fontSize: 14),
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.left,
+                          onChanged: (value) {
+                            controller.amount.value = value;
+                          },
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(
                                 RegExp(r'^\d*\.?\d{0,2}')),
@@ -149,15 +152,15 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                   ],
                 ),
               ),
-            )),
+            ),
             BaseButton(
               enabled: controller
-                  .enabled.value && controller.selectedMerchant != null,
+                  .amount.value.isNotEmpty,
               onPressed: () {},
-              text: tr('profile.confirm_deposit'),
+              text: '确认转移',
             )
           ],
-        ),
+        )),
       ),
     );
   }
