@@ -7,6 +7,7 @@ import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -41,36 +42,137 @@ class ProfileScreen extends GetView<ProfileScreenController> {
               const SizedBox(
                 height: defaultPadding,
               ),
-              _list(
-                  showTop: true,
-                  startIndex: 0,
-                  itemTap: (index) async {
-                    if (index == 0) {
-                      Get.toNamed(AppRoutes.order);
-                    } else if (index == 1) {
-                      // final shareResult = await Share.share('分享的内容');
-                      _showShare(context);
-                    } else if (index == 2) {
-                      Get.toNamed(AppRoutes.kyc);
-                    }
-                  }),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(defaultPadding),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF23135C), // 起始颜色
+                      Color(0xFF321537), // 结束颜色
+                    ],
+                  ),
+                ),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 3,
+                  itemBuilder: (_, index) {
+                    return _listItem(
+                        onTap: () {
+                          if (index == 0) {
+                            Get.toNamed(AppRoutes.order);
+                          } else if (index == 1) {
+                            // final shareResult = await Share.share('分享的内容');
+                            _showShare(context);
+                          } else if (index == 2) {
+                            Get.toNamed(AppRoutes.kyc);
+                          }
+                        },
+                        gradient: index == 0
+                            ? const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color(0xFF05CCFF),
+                              Color(0xFF04A2FF),
+                              Color(0xFF0486FF),
+                              Color(0xFF047CFF),
+                            ],
+                            stops: [
+                              0.0,
+                              0.43,
+                              0.79,
+                              1.0
+                            ])
+                            : null,
+                        title: controller.profileTitles[index],
+                        image: controller.profileImages[index],
+                        showRight: true);
+                  },
+                  separatorBuilder: (_, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      height: 1,
+                      width: double.infinity,
+                      color: BaseColors.white.withOpacity(0.2),
+                    );
+                  },
+                ),
+              ),
               const SizedBox(
                 height: defaultPadding,
               ),
-              _list(
-                  showTop: false,
-                  startIndex: 3,
-                  itemTap: (index) {
-                    if (index == 3) {
-                      Get.toNamed(AppRoutes.helpCenter);
-                    } else if (index == 4) {
-                      Get.toNamed(AppRoutes.changeLanguage);
-                    } else if (index == 5) {
-                      Get.toNamed(AppRoutes.aboutUs);
-                    }
-                  }),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(defaultPadding),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF23135C), // 起始颜色
+                      Color(0xFF321537), // 结束颜色
+                    ],
+                  ),
+                ),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 3,
+                  itemBuilder: (_, index) {
+                    return _listItem(
+                        onTap: () {
+                          if (index == 0) {
+                            Get.toNamed(AppRoutes.helpCenter);
+                          } else if (index == 1) {
+                            Get.toNamed(AppRoutes.changeLanguage);
+                          } else if (index == 2) {
+                            Get.toNamed(AppRoutes.aboutUs);
+                          }
+                        },
+                        title: controller.profileTitles[3 + index],
+                        image: controller.profileImages[3 + index],
+                        showRight: true);
+                  },
+                  separatorBuilder: (_, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      height: 1,
+                      width: double.infinity,
+                      color: BaseColors.white.withOpacity(0.2),
+                    );
+                  },
+                ),
+              ),
               const SizedBox(
                 height: defaultPadding,
+              ),
+              BaseButton(
+                onPressed: () => controller.logout(),
+                customDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: LinearGradient(
+                    colors: [
+                      const Color(0xFFEA4335).withOpacity(0.5),
+                      const Color(0xFF84261E).withOpacity(0.5),
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                ),
+                leftIcon: Padding(
+                  padding: const EdgeInsets.only(right: defaultPadding / 2),
+                  child: Image.asset(
+                    'assets/images/home/dcdl.png',
+                    height: 20,
+                    width: 18,
+                  ),
+                ),
+                text: tr('button.logout'),
+              ),
+              const SizedBox(
+                height: defaultPadding * 2,
               ),
             ],
           ),
@@ -248,23 +350,6 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                     ],
                   )),
             ),
-            // const SizedBox(
-            //   width: defaultPadding / 2,
-            // ),
-            // Expanded(
-            //   child: _cardItem(
-            //       callBack: () => cardTaps(2),
-            //       title: controller.profileActionTitles[2],
-            //       image: controller.profileActionImages[2],
-            //       gradient: const LinearGradient(
-            //         begin: Alignment.topLeft,
-            //         end: Alignment.bottomRight,
-            //         colors: [
-            //           Color(0xFFA193B3), // 起始颜色
-            //           Color(0xFF767A80), // 结束颜色
-            //         ],
-            //       )),
-            // ),
           ],
         ));
   }
@@ -323,82 +408,6 @@ class ProfileScreen extends GetView<ProfileScreenController> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  _list(
-      {required bool showTop,
-      required int startIndex,
-      required Function(int index) itemTap}) {
-    return Container(
-      height: 152,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: showTop
-            ? BorderRadius.circular(defaultPadding).copyWith(
-                topLeft: const Radius.circular(25),
-                topRight: const Radius.circular(25),
-              )
-            : BorderRadius.circular(defaultPadding),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF23135C), // 起始颜色
-            Color(0xFF321537), // 结束颜色
-          ],
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _listItem(
-              onTap: () => itemTap(startIndex),
-              gradient: showTop
-                  ? const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                          Color(0xFF05CCFF),
-                          Color(0xFF04A2FF),
-                          Color(0xFF0486FF),
-                          Color(0xFF047CFF),
-                        ],
-                      stops: [
-                          0.0,
-                          0.43,
-                          0.79,
-                          1.0
-                        ])
-                  : null,
-              title: controller.profileTitles[startIndex],
-              image: controller.profileImages[startIndex],
-              showRight: true),
-          if (!showTop)
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              height: 1,
-              width: double.infinity,
-              color: BaseColors.white.withOpacity(0.2),
-            ),
-          _listItem(
-              onTap: () => itemTap(startIndex + 1),
-              title: controller.profileTitles[startIndex + 1],
-              image: controller.profileImages[startIndex + 1],
-              showRight: true),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            height: 1,
-            width: double.infinity,
-            color: BaseColors.white.withOpacity(0.2),
-          ),
-          _listItem(
-              onTap: () => itemTap(startIndex + 2),
-              title: controller.profileTitles[startIndex + 2],
-              image: controller.profileImages[startIndex + 2],
-              showRight: true),
-        ],
       ),
     );
   }

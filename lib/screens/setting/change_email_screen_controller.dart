@@ -13,24 +13,24 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart' as dio;
 
-class AccountProfileScreenBindings implements Bindings {
+class ChangeEmailScreenBindings implements Bindings {
   @override
   void dependencies() {
     GetInstance()
-        .lazyPut(() => AccountProfileScreenController(), permanent: false, fenix: false);
+        .lazyPut(() => ChangeEmailScreenController(), permanent: false, fenix: false);
   }
 }
 
-class AccountProfileScreenController extends BaseController {
+class ChangeEmailScreenController extends BaseController {
 
   final AiPulseService aiPulseService = Get.find();
   final UserController userController = Get.find();
 
   final ImagePicker _picker = ImagePicker();
 
-  RxString pickedFilePath = ''.obs;
-  RxString nickName = ''.obs;
-  RxString phoneNumber = ''.obs;
+  RxString email = ''.obs;
+  RxString verifyCode = ''.obs;
+  String verifyCodeId = '';
   final RxString error = "".obs;
 
   RxInt seconds = 60.obs;
@@ -41,12 +41,10 @@ class AccountProfileScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    nickName.value = userController.userInfo.nickName ?? '';
+    email.value = userController.userInfo.email ?? '';
     if (userController.userInfo.phoneNation != null && userController.userInfo.phoneNation != 0) {
       code.value = CountryCode.fromDialCode('+${userController.userInfo.phoneNation}');
     }
-    phoneNumber.value = userController.userInfo.phone ?? '';
-    pickedFilePath.value = userController.userInfo.avatar ?? '';
   }
 
   @override
@@ -60,32 +58,26 @@ class AccountProfileScreenController extends BaseController {
     super.onReady();
   }
 
-  Future<void> onPickCoverImage({required BuildContext context}) async {
-    try {
-      final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery,
-      );
-      if (pickedFile != null) {
-        pickedFilePath.value = pickedFile.path;
-      }
-    } catch (e) {}
-  }
+  aiPulseCommonRegisterVerifyCode() async {
 
-  aiPulseCommonUploadImageFile() async {
-    String fileExtension = pickedFilePath.value.split('.').last.toLowerCase();
-    List<String> allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
-
-    if (!allowedExtensions.contains(fileExtension)) {
-      DialogUtils.showBaseDialog(title: '不支持的文件类型');
+    if (!CustomFormBuilderValidators.isEmail(email.value)) {
+      error.value = tr('error.email');
       return;
+    } else {
+      error.value = '';
     }
-    var file = await dio.MultipartFile.fromFile(pickedFilePath.value,
-        contentType: DioMediaType('image', fileExtension));
+
+    if (!isResendEnabled.value) return;
+    seconds.value = 60;
+    isResendEnabled.value = false;
+    startTimer();
+
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
+      request: () =>
+          aiPulseService.aiPulseCommonUpdateInfoVerifyCode(),
+    );
     if (result != null) {
-      pickedFilePath.value = '${AppConfigurations.baseUrl}/${result.url}';
+      verifyCodeId = result;
     }
   }
 
@@ -102,18 +94,22 @@ class AccountProfileScreenController extends BaseController {
   }
 
   conform() async {
-    userUpdateInfo();
+    if (email.value != userController.userInfo.email) {
+      aiPulseCommonRegisterVerifyCode();
+    }
   }
 
   userUpdateInfo() async {
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.userUpdateInfo(
-          nickName: nickName.value,
-          phoneNation: code.value.dialCode ?? '',
-          phoneNumber: phoneNumber.value,
-          email: userController.userInfo.email ?? '',
-          avatar: pickedFilePath.value,
+            nickName: userController.userInfo.nickName ?? '',
+            phoneNation: userController.userInfo.phoneNation!.toString(),
+            phoneNumber:userController.userInfo.phone ?? '',
+            email: email.value,
+            avatar: userController.userInfo.avatar,
+            verifyCodeId: verifyCodeId,
+            verifyCode: verifyCode.value
         ));
     if (result != null) {
       userController.setUserInfo(result);

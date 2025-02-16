@@ -24,6 +24,8 @@ import 'package:dgpt/screens/income/salary_screen.dart';
 import 'package:dgpt/screens/income/salary_screen_controller.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen_controller.dart';
+import 'package:dgpt/screens/setting/change_email_screen.dart';
+import 'package:dgpt/screens/setting/change_email_screen_controller.dart';
 import 'package:dgpt/screens/setting/change_language_screen.dart';
 import 'package:dgpt/screens/setting/change_language_screen_controller.dart';
 import 'package:dgpt/screens/setting/change_password_screen.dart';
@@ -144,6 +146,7 @@ class AppRoutes {
   static String helpCenter = "/help_center";
   static String resetFundPsd = "/reset_fund_psd";
   static String changeFundPsd = "/change_fund_psd";
+  static String changeEmail = "/change_email";
   static String settingFundPsd = "/setting_fund_psd";
   static String forgotFundPsd = "/forgot_fund_psd";
   static String emailVerification = "/email_verification";
@@ -292,6 +295,11 @@ class AppRoutes {
         name: changeFundPsd,
         page: () => const ChangeFundPsdScreen(),
         binding: ChangeFundPsdScreenBindings()
+    ),
+    GetPage(
+        name: changeEmail,
+        page: () => const ChangeEmailScreen(),
+        binding: ChangeEmailScreenBindings()
     ),
     GetPage(
         name: resetFundPsd,

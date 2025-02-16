@@ -119,119 +119,19 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
         ),
         BaseTextFormField(
           name: "email",
+          enabled: false,
           title: tr('profile.email'),
           type: TextFormFieldType.golden,
           fillColor: Colors.transparent,
           style: fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
           hintText: tr('error.please_enter_email'),
-          suffixIcon: GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/images/home/edit_email.png',
-              height: 25,
-              width: 25,
-            ),
-          ),
           radius: 10,
           initialValue: controller.userController.userInfo.email,
-          onChanged: (value) {
-            controller.email.value = value ?? '';
-          },
         ),
         const SizedBox(
           height: 20,
         ),
         _enterMobile(context),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        BaseTextFormField(
-          name: 'verifyCode',
-          hintText: tr('home.email_verification_code'),
-          fillColor: Colors.transparent,
-          radius: 10,
-          style: fontDMMedium.copyWith(
-            color: BaseColors.white
-          ),
-          type: TextFormFieldType.golden,
-          suffixIcon: Container(
-            width: 120,
-            height: 32,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFEFEFEF), // 起始颜色
-                  Color(0xFFB8CDDB), // 结束颜色
-                ],
-              ),
-            ),
-            child: GestureDetector(
-              onTap: () {},
-              child: Row(
-                children: [
-                  const Spacer(),
-                  Text(
-                    tr('button.send'),
-                    style: fontDMMedium.copyWith(
-                      fontSize: 16,
-                      color: BaseColors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: defaultPadding / 4,
-                  ),
-                  Image.asset(
-                    'assets/images/custom/register_send_code.png',
-                    width: 15,
-                    height: 15,
-                  ),
-                  const Spacer(),
-                ],
-              ),
-            ),
-          ),
-          onChanged: (value) {
-            controller.verifyCode.value = value ?? '';
-          },
-        ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        Obx(() => GestureDetector(
-              onTap: () => controller.aiPulseCommonRegisterVerifyCode(),
-              child: Row(
-                children: [
-                  Expanded(child: Container()),
-                  Text(
-                    tr('home.did_not_receive_resend_again'),
-                    style: fontDMMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
-                      decoration: TextDecoration.underline,
-                      decorationColor: BaseColors.white,
-                      // Optional: Changes the underline color
-                      decorationThickness: 1.0,
-                    ),
-                  ),
-                  if (!controller.isResendEnabled.value &&
-                      controller.seconds > 0)
-                    Text(
-                      '${controller.seconds.value}s',
-                      style: fontDMMedium.copyWith(
-                        fontSize: 14,
-                        color: BaseColors.purpleGlowColor,
-                        decoration: TextDecoration.underline,
-                        decorationColor: BaseColors.purpleGlowColor,
-                        // Optional: Changes the underline color
-                        decorationThickness: 1.0,
-                      ),
-                    ),
-                ],
-              ),
-            )),
         const SizedBox(
           height: 20 * 2,
         ),
@@ -352,13 +252,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
               color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(30)),
           enabled: (controller.nickName.isNotEmpty &&
-                  controller.email.isNotEmpty &&
-                  controller.phoneNumber.isNotEmpty) &&
-              ((controller.email.value ==
-                      controller.userController.userInfo.email)
-                  ? true
-                  : (controller.verifyCode.isNotEmpty &&
-                      controller.verifyCodeId.isNotEmpty)),
+                  controller.phoneNumber.isNotEmpty),
           text: tr('button.confirm'),
         ));
   }

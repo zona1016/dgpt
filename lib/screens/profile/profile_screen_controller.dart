@@ -6,6 +6,7 @@ import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -197,5 +198,33 @@ class ProfileScreenController extends BaseController {
         );
       },
     );
+  }
+
+  logout()  {
+    DialogUtils.showDGPTBaseDialog(
+        title: tr('button.logout'),
+        desc: '',
+        confirmText: tr('button.confirm'),
+        cancelText: tr('button.cancel'),
+        onConfirmPressed: () {
+          Get.back();
+          loadLogout();
+        });
+  }
+
+  loadLogout() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => authService.logout());
+    if (result != null) {
+      DialogUtils.showDGPTBaseDialog(
+          title: tr('profile.logout_success'),
+          desc: '',
+          confirmText: tr('button.confirm'),
+          onConfirmPressed: () {
+            Get.back();
+            userController.clearUser();
+          });
+    }
   }
 }

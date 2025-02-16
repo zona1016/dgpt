@@ -31,11 +31,11 @@ class SettingScreen extends GetView<SettingScreenController> {
               if (index == 0) {
                 Get.toNamed(AppRoutes.accountProfile);
               } else if (index == 1) {
-                controller.userHasTradingPwd();
+                Get.toNamed(AppRoutes.changeEmail);
               } else if (index == 2) {
-                Get.toNamed(AppRoutes.changePassword);
+                controller.userHasTradingPwd();
               } else if (index == 3) {
-                controller.logout();
+                Get.toNamed(AppRoutes.changePassword);
               }
             }
         ),

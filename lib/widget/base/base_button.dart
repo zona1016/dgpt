@@ -25,6 +25,7 @@ class BaseButton extends StatelessWidget {
   final BoxDecoration? disabledDecoration;
   final EdgeInsetsGeometry? padding;
   final Widget? icon;
+  final Widget? leftIcon;
 
   const BaseButton({
     super.key,
@@ -45,6 +46,7 @@ class BaseButton extends StatelessWidget {
     this.fontSize,
     this.padding,
     this.icon,
+    this.leftIcon,
     this.disabledDecoration,
   });
 
@@ -74,6 +76,7 @@ class BaseButton extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                if (leftIcon != null) leftIcon!,
                 Flexible(
                     child: AutoSizeText(
                       text,
