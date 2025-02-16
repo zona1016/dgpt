@@ -142,7 +142,7 @@ class _OrderItemState extends State<OrderItem> {
                         ),
                         Expanded(
                           child: Text(
-                            'U ${widget.planDetail.amount}',
+                            '${widget.planDetail.amount} U',
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.white,
@@ -164,7 +164,7 @@ class _OrderItemState extends State<OrderItem> {
                         ),
                         Expanded(
                           child: Text(
-                            'U ${widget.planDetail.roiTotal}',
+                            '${widget.planDetail.roiTotal} U',
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.white,

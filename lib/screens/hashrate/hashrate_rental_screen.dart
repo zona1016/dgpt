@@ -242,7 +242,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           Row(
             children: [
               Text(
-                'U${hasratePageInfo.profitPreHour}',
+                '${hasratePageInfo.profitPreHour} U',
                 style: whiteText20,
               ),
               Text(
@@ -296,16 +296,16 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
           const Spacer(),
           _buildRow(tr('hashrate.contract_details'),
               '${hasratePageInfo.cycle}days', whiteText10, whiteText10),
-          _buildRow(tr('hashrate.rental_funds'), 'U${hasratePageInfo.amount}',
+          _buildRow(tr('hashrate.rental_funds'), '${hasratePageInfo.amount} U',
               whiteText10, whiteText10),
           _buildRow(
               tr('hashrate.rental_income'),
-              'U${NumberFormat('#0').format(hasratePageInfo.profitTotal)}'
+              '${NumberFormat('#0').format(hasratePageInfo.profitTotal)} U'
               '(${NumberFormat('#0').format(((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100)}%)',
               whiteText10,
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),
-              'U${hasratePageInfo.profitPreDay}', whiteText10, whiteText10),
+              '${hasratePageInfo.profitPreDay} U', whiteText10, whiteText10),
           const Spacer(),
         ],
       ),

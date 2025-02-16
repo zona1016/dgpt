@@ -404,9 +404,9 @@ class HashrateRentalBuyDetailScreen
             _buildRow(tr('hashrate.contract_details'),
                 '${controller.continueDay.value}days'
                     '/${controller.planDetail.value?.cycle}days', whiteText10, whiteText10),
-            _buildRow(tr('hashrate.rental_funds'), 'U${controller.planDetail.value?.amount}',
+            _buildRow(tr('hashrate.rental_funds'), '${controller.planDetail.value?.amount} U',
                 whiteText10, whiteText10),
-            _buildRow(tr('hashrate.rental_income'), 'U${controller.planDetail.value?.roiTotal}'
+            _buildRow(tr('hashrate.rental_income'), '${controller.planDetail.value?.roiTotal} U'
                 '/U${controller.planDetail.value?.amount}',
                 whiteText10, whiteText10),
             const SizedBox(height: defaultPadding / 2),

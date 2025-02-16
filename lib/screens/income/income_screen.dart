@@ -211,7 +211,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               height: defaultPadding / 2,
             ),
             Text(
-              'U${NumberFormat('#,##0.00').format(amount)}',
+              '${NumberFormat('#,##0.00').format(amount)} U',
               style: fontDMBold.copyWith(
                   color: BaseColors.primaryColor, fontSize: 18),
             ),
