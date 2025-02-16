@@ -23,6 +23,7 @@ class BaseDropDownFormField extends StatelessWidget {
   final bool isDense;
   final bool isExpanded;
   final double? menuMaxHeight;
+  final double? width;
   final bool? enableFeedback;
   final AlignmentGeometry alignment;
   final BorderRadius? borderRadius;
@@ -46,6 +47,7 @@ class BaseDropDownFormField extends StatelessWidget {
         this.style,
         this.selectedItemBuilder,
         this.menuMaxHeight,
+        this.width,
         this.enableFeedback,
         this.borderRadius,
         this.alignment = AlignmentDirectional.centerStart,
@@ -95,8 +97,8 @@ class BaseDropDownFormField extends StatelessWidget {
                     fillColor: fillColor ?? BaseColors.black,
                     contentPadding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-                    prefix: const Padding(padding: EdgeInsets.only(left: 20)),
-                    suffix: const Padding(padding: EdgeInsets.only(left: 20)),
+                    // prefix: const Padding(padding: EdgeInsets.only(left: 20)),
+                    // suffix: const Padding(padding: EdgeInsets.only(left: 20)),
                     border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(radius)),
@@ -163,6 +165,7 @@ class BaseDropDownFormField extends StatelessWidget {
             alignment: alignment,
             dropdownStyleData: DropdownStyleData(
               elevation: 0,
+              width: width,
               maxHeight: menuMaxHeight,
               offset: const Offset(0, -10),
               decoration: BoxDecoration(
