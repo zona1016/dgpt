@@ -29,13 +29,71 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
           children: [
-            Expanded(
+            Obx(() => Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: defaultPadding,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(defaultPadding),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xFF272F57)
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'From: ',
+                                style: fontDMMedium.copyWith(
+                                  fontSize: 16,
+                                  color: BaseColors.white,
+                                ),
+                              ),
+                              Text(
+                                '现金账户',
+                                style: fontDMMedium.copyWith(
+                                  fontSize: 16,
+                                  color: BaseColors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: defaultPadding * 2,),
+                          Row(
+                            children: [
+                              Text(
+                                'To: ',
+                                style: fontDMMedium.copyWith(
+                                  fontSize: 16,
+                                  color: BaseColors.white,
+                                ),
+                              ),
+                              Text(
+                                '租赁账户',
+                                style: fontDMMedium.copyWith(
+                                  fontSize: 16,
+                                  color: BaseColors.white,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: defaultPadding,
+                    ),
+                    Text(
+                      '代币',
+                      style: fontDMMedium.copyWith(
+                        fontSize: 16,
+                        color: BaseColors.white,
+                      ),
                     ),
                     BaseDropDownFormField(
                         items: controller.merchantList,
@@ -44,20 +102,9 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                         onChanged: (value) {
                           controller.selectedMerchant = value?.value;
                         },
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(
-                              left: defaultPadding,
-                              top: defaultPadding / 2,
-                              bottom: defaultPadding / 2),
-                          child: Image.asset(
-                            'assets/images/home/recharge_icon.png',
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
                         name: 'paymentMethodType',
                         style: fontDMMedium.copyWith(color: BaseColors.white),
-                        hintText: tr('profile.payment_method'),
+                        hintText: (controller.merchantList.isNotEmpty) ? controller.merchantList.first.label : '请选择种类',
                         menuMaxHeight: 250),
                     const SizedBox(
                       height: defaultPadding / 2,
@@ -74,69 +121,35 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                     ),
                     Container(
                       padding:
-                          const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      const EdgeInsets.symmetric(horizontal: defaultPadding),
                       height: 40,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
                           color: const Color(0xFF282F54).withOpacity(0.6)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              child: TextField(
-                                  controller: controller.textEditingController,
-                                  decoration: InputDecoration(
-                                      hintText: tr('profile.enter_amount'),
-                                      hintStyle: fontDMMedium.copyWith(
-                                          color: BaseColors.white, fontSize: 14),
-                                      contentPadding:
-                                          const EdgeInsets.only(bottom: 10),
-                                      border: InputBorder.none),
-                                  style: fontDMMedium.copyWith(
-                                      color: BaseColors.white, fontSize: 14),
-                                  keyboardType: TextInputType.number,
-                                  textAlign: TextAlign.left,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'^\d*\.?\d{0,2}')),
-                                    // 限制为合法数字，两位小数
-                                  ]),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: defaultPadding / 2,
-                          ),
-                          Container(
-                            height: 20,
-                            width: 1,
-                            color: BaseColors.white,
-                          ),
-                          const SizedBox(
-                            width: defaultPadding / 2,
-                          ),
-                          Text(
-                            'USDT',
-                            style: fontDMMedium.copyWith(
-                              fontSize: 16,
-                              color: BaseColors.white,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: defaultPadding / 5,
-                          ),
-                          const Icon(
-                            Icons.chevron_right,
-                            size: 25,
-                            color: BaseColors.white,
-                          )
-                        ],
-                      ),
+                      child: TextField(
+                          controller: controller.textEditingController,
+                          decoration: InputDecoration(
+                              hintText: 'Minimum 0.00000001',
+                              hintStyle: fontDMMedium.copyWith(
+                                  color: BaseColors.weakTextColor, fontSize: 14),
+                              contentPadding:
+                              const EdgeInsets.only(bottom: 10),
+                              border: InputBorder.none),
+                          style: fontDMMedium.copyWith(
+                              color: BaseColors.white, fontSize: 14),
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.left,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r'^\d*\.?\d{0,2}')),
+                            // 限制为合法数字，两位小数
+                          ]),
                     ),
                     const SizedBox(height: defaultPadding),
                   ],
                 ),
               ),
-            ),
+            )),
             BaseButton(
               enabled: controller
                   .enabled.value && controller.selectedMerchant != null,

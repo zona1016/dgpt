@@ -26,6 +26,7 @@ class TransferAssetsScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    aiPulseChatGptSend();
     textEditingController.addListener(() {
       String inputText = textEditingController.text;
       if (inputText.isEmpty || inputText == '.') return;
