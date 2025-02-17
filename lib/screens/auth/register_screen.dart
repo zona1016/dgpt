@@ -104,8 +104,8 @@ class RegisterScreen extends GetView<RegisterScreenController> {
       children: [
         Row(
           children: [
-            Expanded(child: Container()),
-            GestureDetector(
+            Expanded(child: Container(color: Colors.transparent,)),
+            InkWell(
               onTap: () {
                 Get.back();
               },
