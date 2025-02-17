@@ -6,6 +6,7 @@ import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class WithdrawScreen extends GetView<WithdrawScreenController> {
@@ -29,6 +30,49 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: defaultPadding,),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    height: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: const Color(0xFF282F54).withOpacity(0.6)
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            child: TextField(
+                              style: fontDMMedium.copyWith(
+                                  color: BaseColors.white,
+                                  fontSize: 14
+                              ),
+                              onChanged: (value) {
+                                controller.address.value = value ?? '';
+                              },
+                              controller: controller.addressEditingController,
+                              decoration: InputDecoration(
+                                  hintText: '输入钱包地址',
+                                  hintStyle: fontDMMedium.copyWith(
+                                      color: BaseColors.white,
+                                      fontSize: 14
+                                  ),
+                                  contentPadding: const EdgeInsets.only(bottom: 10),
+                                  border: InputBorder.none
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: defaultPadding / 5,),
+                        Image.asset(
+                          'assets/images/income/withdraw.png',
+                          width: 20,
+                          height: 20,
+                        )
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: defaultPadding,),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -85,6 +129,18 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                           child: SizedBox(
                             child: TextField(
                               controller: controller.textEditingController,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.amount.value = double.parse(value);
+                                }
+                              },
+                              style: fontDMMedium.copyWith(
+                                  color: BaseColors.white,
+                                  fontSize: 14
+                              ),
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$')), // 仅允许输入数字和一个小数点
+                              ],
                               decoration: InputDecoration(
                                   hintText: '请输入金额',
                                   hintStyle: fontDMMedium.copyWith(
@@ -137,10 +193,11 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                       Expanded(
                         child: SizedBox(
                           height: 40,
-                          child: BaseButton(
-                            onPressed: () {},
+                          child: Obx(() => BaseButton(
+                            enabled: controller.address.isNotEmpty && controller.amount.value > 10,
+                            onPressed: () => controller.withdraw(),
                             text: '确认提现',
-                          ),
+                          )),
                         ),
                       )
                     ],

@@ -164,10 +164,20 @@ abstract class AiPulseService {
   Future<BaseResponse<List<PowerInfo>?>> aiPulseHashrateEnableHashrateList();
 
   Future<BaseResponse<GoogleAuthInfo?>> aiPulseGoogleAuthGetBindCode();
+
   Future<BaseResponse> aiPulseGoogleAuthBind({required String code});
+
   Future<BaseResponse> aiPulseGoogleAuthUnBind({required String code});
+
   Future<BaseResponse> aiPulseGoogleAuthHasBind();
+
   Future<BaseResponse<UserTeamTotalInfo?>> userTeamDataTotal();
+
+  Future<BaseResponse> aiPulseWithdrawalWithdrawal(
+      {required String address,
+      required String traderPassword,
+      String? googleCode,
+      required double amount});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -890,11 +900,10 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse<GoogleAuthInfo?>> aiPulseGoogleAuthGetBindCode() async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.aiPulseGoogleAuthGetBindCode,
+      return await _apiClient.request(ApiEndpoints.aiPulseGoogleAuthGetBindCode,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? GoogleAuthInfo.fromJson(data) : null);
+              data != null ? GoogleAuthInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -903,9 +912,8 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> aiPulseGoogleAuthBind({required String code}) async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.aiPulseGoogleAuthBind,
-          data: {'code' : code},
+      return await _apiClient.request(ApiEndpoints.aiPulseGoogleAuthBind,
+          data: {'code': code},
           bearerToken: userController.token,
           deserializer: (data) => data);
     } on Exception catch (_) {
@@ -916,9 +924,8 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> aiPulseGoogleAuthUnBind({required String code}) async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.aiPulseGoogleAuthUnBind,
-          data: {'code' : code},
+      return await _apiClient.request(ApiEndpoints.aiPulseGoogleAuthUnBind,
+          data: {'code': code},
           bearerToken: userController.token,
           deserializer: (data) => data);
     } on Exception catch (_) {
@@ -929,10 +936,8 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse> aiPulseGoogleAuthHasBind() async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.aiPulseGoogleAuthHasBind,
-          bearerToken: userController.token,
-          deserializer: (data) => data);
+      return await _apiClient.request(ApiEndpoints.aiPulseGoogleAuthHasBind,
+          bearerToken: userController.token, deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
@@ -941,11 +946,31 @@ class AiPulseServiceImpl extends AiPulseService {
   @override
   Future<BaseResponse<UserTeamTotalInfo?>> userTeamDataTotal() async {
     try {
-      return await _apiClient.request(
-          ApiEndpoints.userTeamDataTotal,
+      return await _apiClient.request(ApiEndpoints.userTeamDataTotal,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? UserTeamTotalInfo.fromJson(data) : null);
+              data != null ? UserTeamTotalInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseWithdrawalWithdrawal(
+      {required String address,
+      required String traderPassword,
+      String? googleCode,
+      required double amount}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalWithdrawal,
+          bearerToken: userController.token,
+          data: {
+            'addressId': address,
+            'amount': amount,
+            'traderPassword': traderPassword,
+            if (googleCode != null) 'googleCode': googleCode,
+          },
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
