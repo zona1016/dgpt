@@ -1,5 +1,6 @@
 import 'package:dgpt/models/pulse/amount_total_info.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
+import 'package:dgpt/models/pulse/user_team_total_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -26,12 +27,14 @@ class IncomeScreenController extends BaseController {
 
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   Rxn<AmountTotalInfo> amountTotalInfo = Rxn<AmountTotalInfo>();
+  Rxn<UserTeamTotalInfo> userTeamTotalInfo = Rxn<UserTeamTotalInfo>();
 
   @override
   void onInit() {
     super.onInit();
     userIncomeTotal();
     aiPulseTotalAmountTotal();
+    userTeamDataTotal();
   }
 
   @override
@@ -51,6 +54,15 @@ class IncomeScreenController extends BaseController {
         request: () => aiPulseService.userIncomeTotal());
     if (result != null) {
       incomeTotal.value = result;
+    }
+  }
+
+  userTeamDataTotal() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.userTeamDataTotal());
+    if (result != null) {
+      userTeamTotalInfo.value = result;
     }
   }
 

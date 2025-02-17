@@ -22,6 +22,7 @@ import 'package:dgpt/models/pulse/team_member_list.dart';
 import 'package:dgpt/models/pulse/user_balance.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/models/pulse/user_kyc_info.dart';
+import 'package:dgpt/models/pulse/user_team_total_info.dart';
 import 'package:dgpt/models/user/user_info.dart';
 import 'package:dgpt/utils/api/api_client.dart';
 import 'package:dgpt/utils/api/base_response.dart';
@@ -166,6 +167,7 @@ abstract class AiPulseService {
   Future<BaseResponse> aiPulseGoogleAuthBind({required String code});
   Future<BaseResponse> aiPulseGoogleAuthUnBind({required String code});
   Future<BaseResponse> aiPulseGoogleAuthHasBind();
+  Future<BaseResponse<UserTeamTotalInfo?>> userTeamDataTotal();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -931,6 +933,19 @@ class AiPulseServiceImpl extends AiPulseService {
           ApiEndpoints.aiPulseGoogleAuthHasBind,
           bearerToken: userController.token,
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<UserTeamTotalInfo?>> userTeamDataTotal() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.userTeamDataTotal,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+          data != null ? UserTeamTotalInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

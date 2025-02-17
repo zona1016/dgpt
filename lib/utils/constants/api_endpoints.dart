@@ -31,6 +31,7 @@ class ApiEndpoints {
   static const String userResetTradingPwdSubmit = "/api/user/resetTradingPwdSubmit";
   static const String userUpdateInfo = "/api/user/userUpdateInfo";
   static const String userInfo = "/api/user/userInfo";
+  static const String userTeamDataTotal = "/api/user/userTeamDataTotal";
 
   // aiPulse
   static const String aiPulseAddressPage = "/api/aiPulseAddress/page";

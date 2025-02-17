@@ -402,7 +402,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
 
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
-    return Column(
+    return Obx(() => Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
@@ -427,7 +427,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                   context: context,
                   imagePath: 'assets/images/income/zrs.png',
                   title: '总人数',
-                  value: '0',
+                  value: (controller.userTeamTotalInfo.value?.memberCount ?? 0).toString(),
                   onTap: () => onTap(0),
                 ),
               ),
@@ -440,14 +440,14 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 padding: const EdgeInsets.all(defaultPadding),
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                  image: AssetImage('assets/images/home/return_bg.png'),
-                  fit: BoxFit.cover,
-                )),
+                      image: AssetImage('assets/images/home/return_bg.png'),
+                      fit: BoxFit.cover,
+                    )),
                 child: _buildInfoCard(
                   context: context,
                   imagePath: 'assets/images/income/jhrs.png',
                   title: '激活人数',
-                  value: '0',
+                  value: (controller.userTeamTotalInfo.value?.realMemberCount ?? 0).toString(),
                   onTap: () => onTap(1),
                 ),
               ),
@@ -455,7 +455,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           ],
         )
       ],
-    );
+    ));
   }
 
   Widget _buildInfoCard({

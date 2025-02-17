@@ -27,7 +27,7 @@ class TeamHashrateAwardScreen
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: SingleChildScrollView(
               child: Column(
                 children: [
