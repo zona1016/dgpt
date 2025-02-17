@@ -54,7 +54,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${tr('home.total_income')} U${controller.totalAmount.value}',
+                              '${tr('home.total_income')} ${controller.totalAmount.value} U',
                               style: fontDMBold.copyWith(
                                   color: BaseColors.white, fontSize: 20),
                             ),
