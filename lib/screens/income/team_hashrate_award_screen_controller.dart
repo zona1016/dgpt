@@ -27,6 +27,7 @@ class TeamHashrateAwardScreenController extends BaseController {
   RxBool loaded = false.obs;
   RxList<DirectTopInfo> directTopList = <DirectTopInfo>[].obs;
   RxList<LayerInfo> layerList = <LayerInfo>[].obs;
+  RxList<PowerInfo> hashrateList = <PowerInfo>[].obs;
 
   List <Color> levelColorList = [
     const Color(0xFF17CE92).withOpacity(0.5),
@@ -78,6 +79,7 @@ class TeamHashrateAwardScreenController extends BaseController {
       aiPulseUserHashrateProgress(),
       aiPulseTotalDirectTop(),
       aiPulseTotalLyaerTotal(),
+      aiPulseHashrateEnableHashrateList(),
     ]);
     Get.context!.loaderOverlay.hide();
     loaded.value = true;
@@ -117,5 +119,20 @@ class TeamHashrateAwardScreenController extends BaseController {
     if (result != null) {
       layerList.value = result;
     }
+  }
+
+  Future<void> aiPulseHashrateEnableHashrateList() async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.backgroundWithoutError,
+        request: () => aiPulseService.aiPulseHashrateEnableHashrateList());
+    if (result != null) {
+      hashrateList.value = result;
+    }
+  }
+
+  String? getLevelName(String? code) {
+    if (code == null || hashrateList.isEmpty) return '无算力';
+    return hashrateList.value
+        .firstWhereOrNull((info) => info.code == code)?.name ?? '无算力';
   }
 }

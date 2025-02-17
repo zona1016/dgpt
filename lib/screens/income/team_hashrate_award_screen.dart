@@ -40,7 +40,7 @@ class TeamHashrateAwardScreen
                               .amountTotalInfo.value?.roiAmountTotal ??
                           0,
                     ),
-                  if (controller.directTopList.isNotEmpty) _ranking(),
+                  _ranking(),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -68,16 +68,19 @@ class TeamHashrateAwardScreen
       child: IntrinsicHeight(
         child: Row(
           children: [
-            Expanded(child: _rankingDetail(isFirst: false, index: 2)),
-            Expanded(child: _rankingDetail(isFirst: true, index: 1)),
-            Expanded(child: _rankingDetail(isFirst: false, index: 3)),
+              Expanded(child: _rankingDetail(isFirst: false, index: 1)),
+              Expanded(child: _rankingDetail(isFirst: true, index: 0)),
+              Expanded(child: _rankingDetail(isFirst: false, index: 2)),
           ],
         ),
       ),
     );
   }
 
-  _rankingDetail({required bool isFirst, int? index = 1}) {
+  _rankingDetail({required bool isFirst, required int index}) {
+
+    if (controller.directTopList.length <= index) return Container();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -88,10 +91,10 @@ class TeamHashrateAwardScreen
                 SizedBox(
                   height: isFirst ? 79 : 60,
                   width: isFirst ? 79 : 60,
-                  child: const AspectRatio(
+                  child: AspectRatio(
                     aspectRatio: 1,
                     child: BaseNetworkImage(
-                      imageURL: '',
+                      imageURL: controller.directTopList.value[index].user?.avatar ?? '',
                       placeholder: 'assets/images/custom/logo.png',
                     ),
                   ),
@@ -106,7 +109,7 @@ class TeamHashrateAwardScreen
               left: 0,
               right: 0,
               child: Image.asset(
-                'assets/images/income/rank_$index.png',
+                'assets/images/income/rank_${index + 1}.png',
                 width: isFirst ? 30 : 21,
                 height: isFirst ? 40 : 30,
               ),
@@ -117,17 +120,17 @@ class TeamHashrateAwardScreen
           height: defaultPadding / 5,
         ),
         Text(
-          'Wee',
+          controller.directTopList.value[index].user?.nickName ?? '',
           style: fontDMBold.copyWith(
               color: BaseColors.white, fontSize: isFirst ? 16 : 14),
         ),
         Text(
-          '2级算力',
+          controller.getLevelName(controller.directTopList.value[index].hashrate?.code) ?? '',
           style: fontDMBold.copyWith(
               color: BaseColors.weakTextColor, fontSize: 10),
         ),
         Text(
-          '人数：25人',
+          '人数：${controller.directTopList.value[index].teamCount}人',
           style: fontDMBold.copyWith(
               color: BaseColors.weakTextColor, fontSize: 10),
         )
