@@ -72,10 +72,10 @@ class IncomeScreenController extends BaseController {
         request: () => aiPulseService.aiPulseTotalAmountTotal());
     if (result != null) {
       amountTotalInfo.value = result;
-      totalAmount.value = (amountTotalInfo.value?.planAmountTotal ?? 0)
-          + (amountTotalInfo.value?.directAwardAmountTotal ?? 0)
+      totalAmount.value = (amountTotalInfo.value?.roiAmountTotal ?? 0)
           + (amountTotalInfo.value?.teamAwardAmountTotal ?? 0)
-          + (amountTotalInfo.value?.roiAmountTotal ?? 0);
+          + (amountTotalInfo.value?.directAwardAmountTotal ?? 0)
+          + (amountTotalInfo.value?.salaryAmountTotal ?? 0);
     }
   }
 }

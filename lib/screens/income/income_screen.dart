@@ -105,8 +105,14 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                           color: BaseColors.white,
                                         ),
                                       ),
-                                      const SizedBox(width: defaultPadding / 5,),
-                                      const Icon(Icons.chevron_right, color: BaseColors.white,size: 12,),
+                                      const SizedBox(
+                                        width: defaultPadding / 5,
+                                      ),
+                                      const Icon(
+                                        Icons.chevron_right,
+                                        color: BaseColors.white,
+                                        size: 12,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -127,7 +133,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             _buildIncomeCard(
                                 tr('hashrate.computing_power_rental'),
                                 controller.amountTotalInfo.value
-                                        ?.planAmountTotal ??
+                                        ?.roiAmountTotal ??
                                     0,
                                 'assets/images/income/income_slzj.png',
                                 onTap: () {
@@ -235,7 +241,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 bottom: defaultPadding * 3,
                 left: defaultPadding,
                 child: Text(
-                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.planAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                  '${controller.totalAmount.value > 0
+                      ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -252,7 +259,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 size: const Size(50, 50),
                 painter: CustomCircularPainter(
                     controller.totalAmount.value > 0
-                        ? (controller.amountTotalInfo.value?.planAmountTotal ??
+                        ? (controller.amountTotalInfo.value?.roiAmountTotal ??
                                 0) /
                             controller.totalAmount.value
                         : 0,
@@ -290,7 +297,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 top: 0,
                 right: defaultPadding,
                 child: Text(
-                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                  '${controller.totalAmount.value > 0
+                      ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -307,7 +315,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 size: const Size(150, 150),
                 // You can adjust the size of the circle
                 painter: CustomCircularPainter(
-                    (controller.amountTotalInfo.value?.roiAmountTotal ?? 0) /
+                    (controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) /
                         controller.totalAmount.value,
                     2.5,
                     Colors.red),
@@ -316,7 +324,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 bottom: defaultPadding,
                 right: defaultPadding,
                 child: Text(
-                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                  '${controller.totalAmount.value > 0
+                      ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -333,7 +342,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 size: const Size(200, 200),
                 // You can adjust the size of the circle
                 painter: CustomCircularPainter(
-                    (controller.amountTotalInfo.value?.teamAwardAmountTotal ??
+                    (controller.amountTotalInfo.value?.directAwardAmountTotal ??
                             0) /
                         controller.totalAmount.value,
                     4,
@@ -403,59 +412,64 @@ class IncomeScreen extends GetView<IncomeScreenController> {
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
     return Obx(() => Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          tr('hashrate.team_data'),
-          style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
-        ),
-        const SizedBox(
-          height: defaultPadding,
-        ),
-        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(defaultPadding),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/home/return_bg.png'),
-                      fit: BoxFit.cover,
-                    )),
-                child: _buildInfoCard(
-                  context: context,
-                  imagePath: 'assets/images/income/zrs.png',
-                  title: '总人数',
-                  value: (controller.userTeamTotalInfo.value?.memberCount ?? 0).toString(),
-                  onTap: () => onTap(0),
-                ),
-              ),
+            Text(
+              tr('hashrate.team_data'),
+              style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
             ),
             const SizedBox(
-              width: defaultPadding,
+              height: defaultPadding,
             ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(defaultPadding),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(defaultPadding),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/home/return_bg.png'),
+                          fit: BoxFit.cover,
+                        )),
+                    child: _buildInfoCard(
+                      context: context,
+                      imagePath: 'assets/images/income/zrs.png',
+                      title: '总人数',
+                      value:
+                          (controller.userTeamTotalInfo.value?.memberCount ?? 0)
+                              .toString(),
+                      onTap: () => onTap(0),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: defaultPadding,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(defaultPadding),
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
                       image: AssetImage('assets/images/home/return_bg.png'),
                       fit: BoxFit.cover,
                     )),
-                child: _buildInfoCard(
-                  context: context,
-                  imagePath: 'assets/images/income/jhrs.png',
-                  title: '激活人数',
-                  value: (controller.userTeamTotalInfo.value?.realMemberCount ?? 0).toString(),
-                  onTap: () => onTap(1),
+                    child: _buildInfoCard(
+                      context: context,
+                      imagePath: 'assets/images/income/jhrs.png',
+                      title: '激活人数',
+                      value: (controller
+                                  .userTeamTotalInfo.value?.realMemberCount ??
+                              0)
+                          .toString(),
+                      onTap: () => onTap(1),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              ],
+            )
           ],
-        )
-      ],
-    ));
+        ));
   }
 
   Widget _buildInfoCard({

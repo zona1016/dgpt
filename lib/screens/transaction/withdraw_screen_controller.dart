@@ -1,6 +1,7 @@
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,13 +17,17 @@ class WithdrawScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
   final TextEditingController textEditingController = TextEditingController();
   final TextEditingController addressEditingController = TextEditingController();
+  final TextEditingController googleEditingController = TextEditingController();
 
+  RxBool showGoogleAuth = false.obs;
   RxString address = ''.obs;
   RxDouble amount = 0.0.obs;
+  RxString googleAuth = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
+    aiPulseGoogleAuthHasBind();
   }
 
   @override
@@ -37,7 +42,7 @@ class WithdrawScreenController extends BaseController {
   }
 
   withdraw() {
-
+    Get.toNamed(AppRoutes.hashratePasswordInput);
   }
 
   aiPulseGoogleAuthHasBind() async {
@@ -46,9 +51,7 @@ class WithdrawScreenController extends BaseController {
           aiPulseService.aiPulseGoogleAuthHasBind(),
     );
     if (result != null) {
-      if (result == true) {
-
-      }
+      showGoogleAuth.value = true;
     }
   }
 }

@@ -35,7 +35,7 @@ class ActivatedUsersScreenController extends BaseController {
   ];
 
   List<String> teamTitleList = [
-    '等级A会员',
+    '总人数',
     '有效会员',
     '今日收益',
     '总收益'
