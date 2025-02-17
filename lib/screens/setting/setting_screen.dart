@@ -22,109 +22,70 @@ class SettingScreen extends GetView<SettingScreenController> {
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(defaultPadding),
-        child: _list(
-            showTop: true,
-            startIndex: 0,
-            itemTap: (index) {
-              if (index == 0) {
-                Get.toNamed(AppRoutes.accountProfile);
-              } else if (index == 1) {
-                Get.toNamed(AppRoutes.changeEmail);
-              } else if (index == 2) {
-                controller.userHasTradingPwd();
-              } else if (index == 3) {
-                Get.toNamed(AppRoutes.changePassword);
-              }
-            }
-        ),
-      ),
-    );
-  }
-
-  _list(
-      {required bool showTop,
-        required int startIndex,
-        required Function(int index) itemTap}) {
-    return Container(
-      height: 203,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: showTop
-            ? BorderRadius.circular(defaultPadding).copyWith(
-          topLeft: const Radius.circular(25),
-          topRight: const Radius.circular(25),
-        )
-            : BorderRadius.circular(defaultPadding),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF23135C), // 起始颜色
-            Color(0xFF321537), // 结束颜色
-          ],
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
         children: [
-          _listItem(
-              onTap: () => itemTap(startIndex),
-              gradient: showTop
-                  ? const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF05CCFF),
-                    Color(0xFF04A2FF),
-                    Color(0xFF0486FF),
-                    Color(0xFF047CFF),
-                  ],
-                  stops: [
-                    0.0,
-                    0.43,
-                    0.79,
-                    1.0
-                  ])
-                  : null,
-              title: controller.settingTitles[startIndex],
-              image: controller.settingImages[startIndex],
-              showRight: !showTop),
-          if (!showTop)
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              height: 1,
-              width: double.infinity,
-              color: BaseColors.white.withOpacity(0.2),
+          Container(
+            margin: const EdgeInsets.all(defaultPadding),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF23135C), // 起始颜色
+                  Color(0xFF321537), // 结束颜色
+                ],
+              )
             ),
-          _listItem(
-              onTap: () => itemTap(startIndex + 1),
-              title: controller.settingTitles[startIndex + 1],
-              image: controller.settingImages[startIndex + 1],
-              showRight: true),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            height: 1,
-            width: double.infinity,
-            color: BaseColors.white.withOpacity(0.2),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.settingTitles.length,
+              itemBuilder: (_, index) {
+                return _listItem(
+                    onTap: () {
+                      if (index == 0) {
+                        Get.toNamed(AppRoutes.accountProfile);
+                      } else if (index == 1) {
+                        Get.toNamed(AppRoutes.changeEmail);
+                      } else if (index == 2) {
+                        controller.userHasTradingPwd();
+                      } else if (index == 3) {
+                        Get.toNamed(AppRoutes.changePassword);
+                      } else if (index == 4) {
+                        Get.toNamed(AppRoutes.googleSFA);
+                      }
+                    },
+                    gradient: index == 0
+                        ? const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xFF05CCFF),
+                          Color(0xFF04A2FF),
+                          Color(0xFF0486FF),
+                          Color(0xFF047CFF),
+                        ],
+                        stops: [
+                          0.0,
+                          0.43,
+                          0.79,
+                          1.0
+                        ])
+                        : null,
+                    title: controller.settingTitles[index],
+                    image: controller.settingImages[index]);
+              },
+              separatorBuilder: (_, index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  height: 1,
+                  width: double.infinity,
+                  color: BaseColors.white.withOpacity(0.2),
+                );
+              },
+            )
           ),
-          _listItem(
-              onTap: () => itemTap(startIndex + 2),
-              title: controller.settingTitles[startIndex + 2],
-              image: controller.settingImages[startIndex + 2],
-              showRight: true),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
-            height: 1,
-            width: double.infinity,
-            color: BaseColors.white.withOpacity(0.2),
-          ),
-          _listItem(
-              onTap: () => itemTap(startIndex + 3),
-              title: controller.settingTitles[startIndex + 3],
-              image: controller.settingImages[startIndex + 3],
-              showRight: true),
         ],
       ),
     );
@@ -134,7 +95,6 @@ class SettingScreen extends GetView<SettingScreenController> {
       {LinearGradient? gradient,
         required String image,
         required String title,
-        bool showRight = false,
         GestureTapCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,

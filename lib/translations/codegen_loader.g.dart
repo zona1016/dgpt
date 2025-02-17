@@ -141,12 +141,12 @@ class CodegenLoader extends AssetLoader{
     "welcome_to_AI_PULSE": "Welcome To AI PULSE",
     "notice": "Notice",
     "invite": "Invite",
-    "teaching": "Teaching",
-    "enterprise": "Enterprise",
+    "teaching": "Tutorial",
+    "enterprise": "About Us",
     "not_activated": "Not activated",
     "activated": "Activated",
     "hourly_income": "Hourly income",
-    "total_income": "Total income",
+    "total_income": "Total\nincome",
     "recommend_friends": "Recommend friends",
     "unlock_unlimited_rewards": "Unlock unlimited rewards",
     "copy_invitation_link": "Copy invitation link",
@@ -203,7 +203,7 @@ class CodegenLoader extends AssetLoader{
     "in_progress": "In progress",
     "rental": "Rental",
     "rented": "Rented",
-    "computing_power_rental": "Hashrate rental",
+    "computing_power_rental": "Rental",
     "computing_power_level": "Hashrate level",
     "income_analysis": "Income analysis",
     "help_friends_achieve_level": "Help {} friends achieve level {}",
@@ -215,7 +215,7 @@ class CodegenLoader extends AssetLoader{
     "rental_income": "Rental income",
     "daily_income": "Daily income",
     "income_details": "Income details",
-    "team_computing_power_bonus": "Team Hashrate bonus",
+    "team_computing_power_bonus": "Team bonus",
     "invitation_bonus": "Invitation bonus",
     "salary": "Salary",
     "team_data": "Team data",
@@ -272,7 +272,9 @@ class CodegenLoader extends AssetLoader{
     "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
     "logout_success": "Logout Success! ",
     "login_success": "Login Success! ",
-    "payment_method": "Payment method"
+    "payment_method": "Payment method",
+    "reset_mailbox": "Reset Mailbox",
+    "fa_settings": "2FA Settings"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -283,6 +285,12 @@ class CodegenLoader extends AssetLoader{
   "tip": {
     "copy_success": "Copy success",
     "no_data": "No Data"
+  },
+  "tab": {
+    "rental": "Rental",
+    "home": "Home",
+    "statement": "Statement",
+    "profile": "Profile"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -350,7 +358,7 @@ static const Map<String,dynamic> zh_Hans = {
     "next": "下一步",
     "back": "上一步",
     "delete_account": "删除账户",
-    "logout": "退出账号",
+    "logout": "退出登录",
     "register": "创建账户",
     "back_to_home": "回到首页",
     "forgot_password": "忘记密码？",
@@ -409,7 +417,7 @@ static const Map<String,dynamic> zh_Hans = {
     "complete_now": "立即完成"
   },
   "home": {
-    "welcome_to_AI_PULSE": "欢迎来到AI PULSE",
+    "welcome_to_AI_PULSE": "AI PULSE欢迎您",
     "notice": "通告",
     "invite": "邀请",
     "teaching": "教学",
@@ -543,7 +551,9 @@ static const Map<String,dynamic> zh_Hans = {
     "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
     "logout_success": "退出成功! ",
     "login_success": "登录成功! ",
-    "payment_method": "支付方式"
+    "payment_method": "支付方式",
+    "reset_mailbox": "重置邮件箱",
+    "fa_settings": "2FA设置"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",
@@ -558,6 +568,12 @@ static const Map<String,dynamic> zh_Hans = {
   "income": {
     "copy_success": "复制成功",
     "no_data": "暂无数据"
+  },
+  "tab": {
+    "rental": "算力租借",
+    "home": "首页",
+    "statement": "交易明细",
+    "profile": "个人资料"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

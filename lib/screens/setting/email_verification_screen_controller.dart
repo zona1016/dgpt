@@ -1,7 +1,4 @@
-import 'package:dgpt/screens/setting/email_verification_screen.dart';
-import 'package:dgpt/screens/setting/change_fund_psd_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
-import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
 import 'package:get/get.dart';
 
 class HashrateLoadingScreenBindings implements Bindings {
@@ -32,6 +33,10 @@ class HashrateLoadingScreenController extends BaseController {
     super.onInit();
     timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
       currentIndex.value = (currentIndex.value + 1) % images.length;
+    });
+
+    Future.delayed(Duration(seconds: 3), () {
+      DialogUtils.showRentalSuccess();
     });
   }
 

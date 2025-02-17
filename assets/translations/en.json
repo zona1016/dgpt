@@ -125,8 +125,8 @@
     "welcome_to_AI_PULSE": "Welcome To AI PULSE",
     "notice": "Notice",
     "invite": "Invite",
-    "teaching": "Teaching",
-    "enterprise": "Enterprise",
+    "teaching": "Tutorial",
+    "enterprise": "About Us",
     "not_activated": "Not activated",
     "activated": "Activated",
     "hourly_income": "Hourly income",
@@ -187,7 +187,7 @@
     "in_progress": "In progress",
     "rental": "Rental",
     "rented": "Rented",
-    "computing_power_rental": "Hashrate rental",
+    "computing_power_rental": "Rental",
     "computing_power_level": "Hashrate level",
     "income_analysis": "Income analysis",
     "help_friends_achieve_level": "Help {} friends achieve level {}",
@@ -199,7 +199,7 @@
     "rental_income": "Rental income",
     "daily_income": "Daily income",
     "income_details": "Income details",
-    "team_computing_power_bonus": "Team Hashrate bonus",
+    "team_computing_power_bonus": "Team bonus",
     "invitation_bonus": "Invitation bonus",
     "salary": "Salary",
     "team_data": "Team data",
@@ -256,7 +256,9 @@
     "reset_login_password_tip": "For the security of your funds and information, please reset your login password.",
     "logout_success": "Logout Success! ",
     "login_success": "Login Success! ",
-    "payment_method": "Payment method"
+    "payment_method": "Payment method",
+    "reset_mailbox": "Reset Mailbox",
+    "fa_settings": "2FA Settings"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -267,5 +269,11 @@
   "tip": {
     "copy_success": "Copy success",
     "no_data": "No Data"
+  },
+  "tab": {
+    "rental": "Rental",
+    "home": "Home",
+    "statement": "Statement",
+    "profile": "Profile"
   }
 }

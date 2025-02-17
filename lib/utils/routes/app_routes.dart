@@ -33,6 +33,14 @@ import 'package:dgpt/screens/setting/email_code_screen.dart';
 import 'package:dgpt/screens/setting/email_code_screen_controller.dart';
 import 'package:dgpt/screens/setting/forget_password_screen.dart';
 import 'package:dgpt/screens/setting/forget_password_screen_controller.dart';
+import 'package:dgpt/screens/setting/google/google_auth_screen.dart';
+import 'package:dgpt/screens/setting/google/google_auth_screen_controller.dart';
+import 'package:dgpt/screens/setting/google/google_sfa_screen.dart';
+import 'package:dgpt/screens/setting/google/google_sfa_screen_controller.dart';
+import 'package:dgpt/screens/setting/google/google_tip_screen.dart';
+import 'package:dgpt/screens/setting/google/google_tip_screen_controller.dart';
+import 'package:dgpt/screens/setting/google/google_verify_screen.dart';
+import 'package:dgpt/screens/setting/google/google_verify_screen_controller.dart';
 import 'package:dgpt/screens/setting/kyc_screen.dart';
 import 'package:dgpt/screens/setting/kyc_screen_controller.dart';
 import 'package:dgpt/screens/auth/login_screen.dart';
@@ -155,6 +163,10 @@ class AppRoutes {
   static String forgotFundPsd = "/forgot_fund_psd";
   static String emailVerification = "/email_verification";
   static String changeLanguage = "/change_language";
+  static String googleTip = "/google_tip";
+  static String googleSFA = "/google_sfa";
+  static String googleVerify = "/google_verify";
+  static String googleAuth = "/google_auth";
 
   static String myAssets = "/my_assets";
   static String order = "/order";
@@ -331,6 +343,26 @@ class AppRoutes {
         name: changeLanguage,
         page: () => const ChangeLanguageScreen(),
         binding: ChangeLanguageScreenBindings()
+    ),
+    GetPage(
+        name: googleAuth,
+        page: () => const GoogleAuthScreen(),
+        binding: GoogleAuthScreenBindings()
+    ),
+    GetPage(
+        name: googleSFA,
+        page: () => const GoogleSfaScreen(),
+        binding: GoogleSfaScreenBindings()
+    ),
+    GetPage(
+        name: googleTip,
+        page: () => const GoogleTipScreen(),
+        binding: GoogleTipScreenBindings()
+    ),
+    GetPage(
+        name: googleVerify,
+        page: () => const GoogleVerifyScreen(),
+        binding: GoogleVerifyScreenBindings()
     ),
     GetPage(
         name: accountProfile,

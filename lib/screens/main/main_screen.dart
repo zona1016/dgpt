@@ -10,6 +10,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_auto_keep_alive.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,20 +83,20 @@ class MainScreen extends GetView<MainScreenController> {
                         inactiveImg: 'assets/images/tab/ai_inactive.png',
                         activeImg: 'assets/images/tab/ai_active.png'),
                     _bottomNavigationBarItem(
-                        title: '算力租借',
+                        title: tr('tab.rental'),
                         inactiveImg: 'assets/images/tab/power_inactive.png',
                         activeImg: 'assets/images/tab/power_active.png'),
                     _bottomNavigationBarItem(
-                        title: '首页',
+                        title: tr('tab.home'),
                         inactiveImg: 'assets/images/tab/home_inactive.png',
                         activeImg: 'assets/images/tab/home_active.png'),
                     _bottomNavigationBarItem(
-                        title: '交易明细',
+                        title: tr('tab.statement'),
                         inactiveImg:
                             'assets/images/tab/transaction_inactive.png',
                         activeImg: 'assets/images/tab/transaction_active.png'),
                     _bottomNavigationBarItem(
-                        title: '个人资料',
+                        title: tr('tab.profile'),
                         inactiveImg: 'assets/images/tab/profile_inactive.png',
                         activeImg: 'assets/images/tab/profile_active.png'),
                   ],

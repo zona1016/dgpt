@@ -48,6 +48,10 @@ class UserInfo {
   final int? tenantId;
   @JsonKey(name: "roleIds", defaultValue: [])
   final List<int>? roleIds;
+  @JsonKey(name: "hasBind", defaultValue: false)
+  bool? hasBind;
+  @JsonKey(name: "lastLogin", defaultValue: '')
+  final String? lastLogin;
 
   UserInfo({
     this.id,
@@ -71,7 +75,9 @@ class UserInfo {
     this.roleIds,
     this.phoneNation,
     this.nickName,
-    this.inviteCode
+    this.inviteCode,
+    this.hasBind,
+    this.lastLogin
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {

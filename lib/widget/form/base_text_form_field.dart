@@ -41,6 +41,7 @@ class BaseTextFormField extends StatefulWidget {
   final AutovalidateMode? autovalidateMode;
   final bool notPaddingPrefixIcon;
   final double radius;
+  final InputBorder? inputBorder;
 
   const BaseTextFormField({
     super.key,
@@ -77,6 +78,7 @@ class BaseTextFormField extends StatefulWidget {
     this.autovalidateMode,
     this.radius = 30,
     this.notPaddingPrefixIcon = false,
+    this.inputBorder
   });
 
   @override
@@ -122,13 +124,13 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
                   : null,
               fillColor: widget.fillColor ?? getFillColor(context),
               hintStyle: widget.hintStyle ?? getHintStyle(context),
-              disabledBorder: getInputBorder(context),
-              enabledBorder: getInputBorder(context),
-              border: getInputBorder(context),
-              focusedBorder: getInputBorder(context),
-              focusedErrorBorder: getInputBorder(context)
+              disabledBorder: widget.inputBorder ?? getInputBorder(context),
+              enabledBorder: widget.inputBorder ??getInputBorder(context),
+              border: widget.inputBorder ??getInputBorder(context),
+              focusedBorder: widget.inputBorder ??getInputBorder(context),
+              focusedErrorBorder: widget.inputBorder ??getInputBorder(context)
                   .copyWith(borderSide: const BorderSide(color: Colors.red)),
-              errorBorder: getInputBorder(context)
+              errorBorder: widget.inputBorder ??getInputBorder(context)
                   .copyWith(borderSide: const BorderSide(color: Colors.red)),
               prefixIcon: widget.notPaddingPrefixIcon
                   ? widget.prefixIcon

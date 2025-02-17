@@ -256,7 +256,9 @@
     "reset_login_password_tip": "为了您的资金及信息安全，请重置登录密码。",
     "logout_success": "退出成功! ",
     "login_success": "登录成功! ",
-    "payment_method": "支付方式"
+    "payment_method": "支付方式",
+    "reset_mailbox": "重置邮件箱",
+    "fa_settings": "2FA设置"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",
@@ -271,5 +273,11 @@
   "income": {
     "copy_success": "复制成功",
     "no_data": "暂无数据"
+  },
+  "tab": {
+    "rental": "算力租借",
+    "home": "首页",
+    "statement": "交易明细",
+    "profile": "个人资料"
   }
 }

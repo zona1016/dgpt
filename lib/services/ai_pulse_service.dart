@@ -3,6 +3,7 @@ import 'package:dgpt/models/pulse/direct_top_info.dart';
 import 'package:dgpt/models/pulse/enable_job_info.dart';
 import 'package:dgpt/models/pulse/flow_info.dart';
 import 'package:dgpt/models/pulse/flow_type_info.dart';
+import 'package:dgpt/models/pulse/google_auth_info.dart';
 import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
 import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/models/pulse/notice_info.dart';
@@ -160,6 +161,10 @@ abstract class AiPulseService {
   Future<BaseResponse<List<EnableJobInfo>>> aiPulseJobTitleEnableJobTitleList();
 
   Future<BaseResponse<List<PowerInfo>?>> aiPulseHashrateEnableHashrateList();
+
+  Future<BaseResponse<GoogleAuthInfo?>> aiPulseGoogleAuthGetBindCode();
+  Future<BaseResponse> aiPulseGoogleAuthBind({required String code});
+  Future<BaseResponse> aiPulseGoogleAuthUnBind({required String code});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -874,6 +879,45 @@ class AiPulseServiceImpl extends AiPulseService {
                   .map((e) => PowerInfo.fromJson(e))
                   .toList()
               : []);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<GoogleAuthInfo?>> aiPulseGoogleAuthGetBindCode() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseGoogleAuthGetBindCode,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+          data != null ? GoogleAuthInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseGoogleAuthBind({required String code}) async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseGoogleAuthBind,
+          data: {'code' : code},
+          bearerToken: userController.token,
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseGoogleAuthUnBind({required String code}) async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseGoogleAuthUnBind,
+          data: {'code' : code},
+          bearerToken: userController.token,
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }

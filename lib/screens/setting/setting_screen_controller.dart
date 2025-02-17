@@ -24,9 +24,10 @@ class SettingScreenController extends BaseController {
 
   List<String> settingTitles = [
     tr('profile.profile_details'),
-    "重置邮件箱",
+    tr('profile.reset_mailbox'),
     tr('profile.reset_transaction_password'),
     tr('profile.change_login_password'),
+    tr('profile.fa_settings'),
   ];
 
   List<String> settingImages = [
@@ -34,6 +35,7 @@ class SettingScreenController extends BaseController {
     'assets/images/home/setting_czyjx.png',
     'assets/images/home/setting_czzjmm.png',
     'assets/images/home/setting_ggdrmm.png',
+    'assets/images/home/setting_fa.png',
   ];
 
   @override
