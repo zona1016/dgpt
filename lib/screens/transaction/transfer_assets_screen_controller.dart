@@ -2,7 +2,10 @@ import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/widget/form/menu_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,11 +29,11 @@ class TransferAssetsScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    aiPulseChatGptSend();
+    aiPulseMerchantEnableList();
     textEditingController.addListener(() {
       String inputText = textEditingController.text;
       if (inputText.isEmpty || inputText == '.') return;
-      enabled.value = (double.tryParse(inputText) ?? 0.0) > 10;
+      enabled.value = (double.tryParse(inputText) ?? 0.0) > 0.00000001;
     });
   }
 
@@ -46,7 +49,7 @@ class TransferAssetsScreenController extends BaseController {
     super.onReady();
   }
 
-  aiPulseChatGptSend(
+  aiPulseMerchantEnableList(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
     final result = await fetchData(
         loadingState: loadingState,
@@ -54,6 +57,26 @@ class TransferAssetsScreenController extends BaseController {
     if (result != null) {
       merchantList
           .assignAll(result.map((e) => MenuItem(label: e.currency!, value: e)));
+    }
+  }
+
+  aiPulseWalletTransfer() async {
+    final result = await fetchData(
+        request: () =>
+            aiPulseService.aiPulseWalletTransfer(amount: amount.value));
+    if (result != null) {
+      DialogUtils.showSuccessDialog('恭喜 ！',
+          topTitle: '转移资产成功',
+          width: 200,
+          height: 151,
+          comBorderRadius: BorderRadius.circular(10),
+          gradient: BaseColors.diaCzcg,
+          image: 'assets/images/custom/dia_czcg.png',
+          desc: '您已成功转移资产！',
+          barrierDismissible: false,
+          confirmText: tr('button.ok'), onConfirmPressed: () {
+        Get.back();
+      });
     }
   }
 }

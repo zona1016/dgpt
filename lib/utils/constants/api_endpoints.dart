@@ -112,6 +112,7 @@ class ApiEndpoints {
   static const String aiPulseWalletDetail = "/api/aiPulseWallet/detail";
   static const String aiPulseWalletDropdownData = "/api/aiPulseWallet/dropdownData";
   static const String aiPulseWalletGetUserBalance = "/api/aiPulseWallet/getUserBalance";
+  static const String aiPulseWalletTransfer = "/api/aiPulseWallet/transfer";
 
   static const String aiPulseWithdrawalPage = "/api/aiPulseWithdrawal/page";
   static const String aiPulseWithdrawalDetail = "/api/aiPulseWithdrawal/detail";

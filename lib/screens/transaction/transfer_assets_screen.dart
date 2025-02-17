@@ -137,15 +137,12 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                               border: InputBorder.none),
                           style: fontDMMedium.copyWith(
                               color: BaseColors.white, fontSize: 14),
-                          keyboardType: TextInputType.number,
                           textAlign: TextAlign.left,
                           onChanged: (value) {
                             controller.amount.value = value;
                           },
                           inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r'^\d*\.?\d{0,2}')),
-                            // 限制为合法数字，两位小数
+                            FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*$')), // 仅允许输入数字和一个小数点
                           ]),
                     ),
                     const SizedBox(height: defaultPadding),
@@ -153,12 +150,12 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                 ),
               ),
             ),
-            BaseButton(
+            Obx(() => BaseButton(
               enabled: controller
-                  .amount.value.isNotEmpty,
-              onPressed: () {},
+                  .amount.value.isNotEmpty && controller.enabled.value,
+              onPressed: () => controller.aiPulseWalletTransfer(),
               text: '确认转移',
-            )
+            ))
           ],
         )),
       ),

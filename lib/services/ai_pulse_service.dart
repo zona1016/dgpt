@@ -178,6 +178,8 @@ abstract class AiPulseService {
       required String traderPassword,
       String? googleCode,
       required double amount});
+
+  Future<BaseResponse> aiPulseWalletTransfer({required String amount});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -969,6 +971,20 @@ class AiPulseServiceImpl extends AiPulseService {
             'amount': amount,
             'traderPassword': traderPassword,
             if (googleCode != null) 'googleCode': googleCode,
+          },
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseWalletTransfer({required String amount}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseWalletTransfer,
+          bearerToken: userController.token,
+          data: {
+            'amount': amount,
           },
           deserializer: (data) => data);
     } on Exception catch (_) {
