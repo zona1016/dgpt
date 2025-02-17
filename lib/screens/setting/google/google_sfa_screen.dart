@@ -35,14 +35,14 @@ class GoogleSfaScreen extends GetView<GoogleSfaScreenController> {
               ),
             ),
             Text(
-              '上次登入时间：',
+              '上次登入时间：${controller.userController.userInfo.logicEndDate ?? '无'}',
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.weakTextColor,
               ),
             ),
             Text(
-              '登入设备：',
+              '登入设备：无',
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.weakTextColor,
@@ -62,10 +62,7 @@ class GoogleSfaScreen extends GetView<GoogleSfaScreenController> {
                 Obx(() => Switch(
                   value: controller.isSwitched.value,
                   onChanged: (value) {
-                    if (controller.isSwitched.value == false) {
-                      Get.toNamed(AppRoutes.googleTip);
-                    }
-                    controller.isSwitched.value = value;
+                    Get.toNamed(AppRoutes.googleTip);
                   },
                   activeColor: BaseColors.secondPrimaryColor,
                   activeTrackColor: BaseColors.primaryColor,

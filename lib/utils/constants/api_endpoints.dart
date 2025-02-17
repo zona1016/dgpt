@@ -10,6 +10,7 @@ class ApiEndpoints {
   static const String aiPulseGoogleAuthGetBindCode = "/api/aiPulseGoogleAuth/getBindCode";
   static const String aiPulseGoogleAuthBind = "/api/aiPulseGoogleAuth/bind";
   static const String aiPulseGoogleAuthUnBind = "/api/aiPulseGoogleAuth/unBind";
+  static const String aiPulseGoogleAuthHasBind = "/api/aiPulseGoogleAuth/hasBind";
 
   static const String aiPulseTotalAmountTotal = "/api/aiPulseTotal/amountTotal";
   static const String aiPulseTotalDirectTop = "/api/aiPulseTotal/directTop";
@@ -50,7 +51,6 @@ class ApiEndpoints {
   static const String aiPulseDepositDetail = "/api/aiPulseDeposit/detail";
   static const String aiPulseDepositDeposit = "/api/aiPulseDeposit/deposit";
   static const String aiPulseDepositUserPage = "/api/aiPulseDeposit/userPage";
-
 
   static const String aiPulseFlowPage = "/api/aiPulseFlow/page";
   static const String aiPulseFlowDetail = "/api/aiPulseFlow/detail";

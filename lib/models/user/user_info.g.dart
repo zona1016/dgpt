@@ -37,6 +37,10 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => UserInfo(
       inviteCode: json['inviteCode'] as String? ?? '',
       hasBind: json['hasBind'] as bool? ?? false,
       lastLogin: json['lastLogin'] as String? ?? '',
+      beginDate: json['beginDate'] as String? ?? '',
+      logicEndDate: json['logicEndDate'] as String? ?? '',
+      endTimeDate: json['endTimeDate'] as String? ?? '',
+      sysNowTime: json['sysNowTime'] as String? ?? '',
     );
 
 Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
@@ -64,4 +68,8 @@ Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
       'roleIds': instance.roleIds,
       'hasBind': instance.hasBind,
       'lastLogin': instance.lastLogin,
+      'beginDate': instance.beginDate,
+      'logicEndDate': instance.logicEndDate,
+      'endTimeDate': instance.endTimeDate,
+      'sysNowTime': instance.sysNowTime,
     };

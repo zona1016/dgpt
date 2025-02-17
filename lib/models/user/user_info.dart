@@ -52,6 +52,14 @@ class UserInfo {
   bool? hasBind;
   @JsonKey(name: "lastLogin", defaultValue: '')
   final String? lastLogin;
+  @JsonKey(name: "beginDate", defaultValue: '')
+  final String? beginDate;
+  @JsonKey(name: "logicEndDate", defaultValue: '')
+  final String? logicEndDate;
+  @JsonKey(name: "endTimeDate", defaultValue: '')
+  final String? endTimeDate;
+  @JsonKey(name: "sysNowTime", defaultValue: '')
+  final String? sysNowTime;
 
   UserInfo({
     this.id,
@@ -77,7 +85,11 @@ class UserInfo {
     this.nickName,
     this.inviteCode,
     this.hasBind,
-    this.lastLogin
+    this.lastLogin,
+    this.beginDate,
+    this.logicEndDate,
+    this.endTimeDate,
+    this.sysNowTime
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {

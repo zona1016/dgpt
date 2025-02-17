@@ -20,6 +20,7 @@ class GoogleSfaScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    aiPulseGoogleAuthHasBind();
   }
 
   @override
@@ -33,4 +34,15 @@ class GoogleSfaScreenController extends BaseController {
     super.onReady();
   }
 
+  aiPulseGoogleAuthHasBind() async {
+    final result = await fetchData(
+      request: () =>
+          aiPulseService.aiPulseGoogleAuthHasBind(),
+    );
+    if (result != null) {
+      isSwitched.value = result;
+      userController.userInfo.hasBind = result;
+      userController.setUserInfo(userController.userInfo);
+    }
+  }
 }

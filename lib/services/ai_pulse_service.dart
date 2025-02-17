@@ -165,6 +165,7 @@ abstract class AiPulseService {
   Future<BaseResponse<GoogleAuthInfo?>> aiPulseGoogleAuthGetBindCode();
   Future<BaseResponse> aiPulseGoogleAuthBind({required String code});
   Future<BaseResponse> aiPulseGoogleAuthUnBind({required String code});
+  Future<BaseResponse> aiPulseGoogleAuthHasBind();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -916,6 +917,18 @@ class AiPulseServiceImpl extends AiPulseService {
       return await _apiClient.request(
           ApiEndpoints.aiPulseGoogleAuthUnBind,
           data: {'code' : code},
+          bearerToken: userController.token,
+          deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseGoogleAuthHasBind() async {
+    try {
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseGoogleAuthHasBind,
           bearerToken: userController.token,
           deserializer: (data) => data);
     } on Exception catch (_) {

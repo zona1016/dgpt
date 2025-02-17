@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/google_auth_info.dart';
+import 'package:dgpt/screens/setting/google/google_sfa_screen_controller.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
@@ -18,8 +19,10 @@ class GoogleVerifyScreenBindings implements Bindings {
 class GoogleVerifyScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
   final UserController userController = Get.find();
+  final GoogleSfaScreenController googleController = Get.find();
   TextEditingController textController = TextEditingController();
 
+  RxBool hasBind = false.obs;
   Rxn<GoogleAuthInfo> googleAuthInfo = Rxn<GoogleAuthInfo>();
 
   RxString textValue = ''.obs;
@@ -27,6 +30,7 @@ class GoogleVerifyScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    hasBind.value = userController.userInfo.hasBind ?? false;
   }
 
   @override
@@ -54,6 +58,9 @@ class GoogleVerifyScreenController extends BaseController {
           aiPulseService.aiPulseGoogleAuthBind(code: textController.text),
     );
     if (result != null) {
+      userController.userInfo.hasBind = true;
+      googleController.isSwitched.value = true;
+      userController.setUserInfo(userController.userInfo);
       DialogUtils.showDGPTBaseDialog(
         barrierDismissible: false,
         title: '绑定成功',
@@ -71,6 +78,9 @@ class GoogleVerifyScreenController extends BaseController {
           aiPulseService.aiPulseGoogleAuthUnBind(code: textController.text),
     );
     if (result != null) {
+      userController.userInfo.hasBind = false;
+      googleController.isSwitched.value = false;
+      userController.setUserInfo(userController.userInfo);
       DialogUtils.showDGPTBaseDialog(
           barrierDismissible: false,
           title: '解绑成功',
