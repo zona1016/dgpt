@@ -15,7 +15,8 @@ class HashrateRentalDetailScreenBindings implements Bindings {
   }
 }
 
-class HashrateRentalDetailScreenController extends BaseController<HashrateRentalDetailScreenArgs> {
+class HashrateRentalDetailScreenController
+    extends BaseController<HashrateRentalDetailScreenArgs> {
   final AiPulseService aiPulseService = Get.find();
 
   RxString dd = 'dd'.obs;
@@ -43,7 +44,8 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
   aiPulsePlanDetail() async {
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.aiPulsePlanDetail(id: args!.hasratePageInfo!.id.toString()));
+        request: () => aiPulseService.aiPulsePlanDetail(
+            id: args!.hasratePageInfo!.id.toString()));
     if (result != null) {
       planDetail.value = result;
     }
@@ -57,8 +59,8 @@ class HashrateRentalDetailScreenController extends BaseController<HashrateRental
       if (result == true) {
         Get.toNamed(AppRoutes.hashratePasswordInput,
             arguments: HashratePasswordInputScreenArgs(
-                hasratePageInfo: args!.hasratePageInfo,
-                count: total.value));
+                pram: {'id': planDetail.value?.id, 'quantity': total.value},
+                type: HashratePasswordInputType.hasrate));
       } else {
         Get.toNamed(AppRoutes.settingFundPsd);
       }

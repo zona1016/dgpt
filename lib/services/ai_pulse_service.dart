@@ -51,11 +51,7 @@ abstract class AiPulseService {
 
   Future<BaseResponse> aiPulseCommonRegisterVerifyCode({required String email});
 
-  Future<BaseResponse> aiPulseUserPlanApply({
-    required String id,
-    required String quantity,
-    required String code,
-  });
+  Future<BaseResponse> aiPulseUserPlanApply({required Map<String, dynamic> pram});
 
   Future<BaseResponse<List<AiChatMessage>?>> aiPulseChatGptSend(
       {required String prompt});
@@ -173,11 +169,7 @@ abstract class AiPulseService {
 
   Future<BaseResponse<UserTeamTotalInfo?>> userTeamDataTotal();
 
-  Future<BaseResponse> aiPulseWithdrawalWithdrawal(
-      {required String address,
-      required String traderPassword,
-      String? googleCode,
-      required double amount});
+  Future<BaseResponse> aiPulseWithdrawalWithdrawal({required Map<String, dynamic> pram});
 
   Future<BaseResponse> aiPulseWalletTransfer({required String amount});
 }
@@ -305,14 +297,11 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> aiPulseUserPlanApply(
-      {required String id,
-      required String quantity,
-      required String code}) async {
+  Future<BaseResponse> aiPulseUserPlanApply({required Map<String, dynamic> pram}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanApply,
           bearerToken: userController.token,
-          data: {'id': id, 'quantity': quantity, 'code': code},
+          data: pram,
           deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
@@ -958,20 +947,11 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> aiPulseWithdrawalWithdrawal(
-      {required String address,
-      required String traderPassword,
-      String? googleCode,
-      required double amount}) async {
+  Future<BaseResponse> aiPulseWithdrawalWithdrawal({required Map<String, dynamic> pram}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalWithdrawal,
           bearerToken: userController.token,
-          data: {
-            'addressId': address,
-            'amount': amount,
-            'traderPassword': traderPassword,
-            if (googleCode != null) 'googleCode': googleCode,
-          },
+          data: pram,
           deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;

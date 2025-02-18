@@ -200,81 +200,74 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                       const SizedBox(
                         height: defaultPadding,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'Google验证码',
-                            style: fontDMMedium.copyWith(
-                              fontSize: 16,
-                              color: BaseColors.white,
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: defaultPadding / 4,
-                      ),
-                      GetBuilder<WithdrawScreenController>(
-                        builder: (_) {
-                          return BaseTextFormField(
-                            controller: controller.googleEditingController,
-                            radius: 10,
-                            name: 'auth',
-                            style: fontDMMedium.copyWith(
-                                color: BaseColors.white, fontSize: 14),
-                            fillColor: Colors.transparent,
-                            inputBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: BaseColors.white.withOpacity(0.5)),
-                                borderRadius: BorderRadius.circular(10)),
-                            suffixIcon: GestureDetector(
-                              onTap: () async {
-                                try {
-                                  ClipboardData? data =
-                                      await Clipboard.getData('text/plain');
-                                  controller.googleEditingController.text =
-                                      data?.text ?? '';
-                                } catch (e) {
-                                  controller.googleEditingController.text = '';
-                                }
-                                controller.update();
-                              },
-                              child: Container(
-                                height: 26,
-                                width: 56,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: defaultPadding / 2),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Color(0xFFEFEFEF), // 起始颜色
-                                      Color(0xFFB8CDDB), // 结束颜色
-                                    ],
+                      if (controller.googleAuth.value == true)
+                        GetBuilder<WithdrawScreenController>(
+                          builder: (_) {
+                            return BaseTextFormField(
+                              controller: controller.googleEditingController,
+                              contentPadding: EdgeInsets.zero,
+                              radius: 10,
+                              title: 'Google验证码',
+                              name: 'auth',
+                              style: fontDMMedium.copyWith(
+                                  color: BaseColors.white, fontSize: 14),
+                              fillColor: const Color(0xFF282F54).withOpacity(0.6),
+                              inputBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: BaseColors.white.withOpacity(0.1)),
+                                  borderRadius: BorderRadius.circular(30)),
+                              suffixIcon: GestureDetector(
+                                onTap: () async {
+                                  try {
+                                    ClipboardData? data =
+                                    await Clipboard.getData('text/plain');
+                                    controller.googleEditingController.text =
+                                        data?.text ?? '';
+                                    controller.googleAuth.value = data?.text ?? '';
+                                  } catch (e) {
+                                    controller.googleEditingController.text = '';
+                                    controller.googleAuth.value = '';
+                                  }
+                                  controller.update();
+                                },
+                                child: Container(
+                                  height: 26,
+                                  width: 56,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: defaultPadding / 2),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color(0xFFEFEFEF), // 起始颜色
+                                        Color(0xFFB8CDDB), // 结束颜色
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '贴上',
-                                    style: fontDMMedium.copyWith(
-                                      fontSize: 14,
-                                      color: BaseColors.black,
+                                  child: Center(
+                                    child: Text(
+                                      '贴上',
+                                      style: fontDMMedium.copyWith(
+                                        fontSize: 14,
+                                        color: BaseColors.black,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            onChanged: (value) {
-                              controller.googleEditingController.text =
-                                  value ?? '';
-                              controller.update();
-                            },
-                          );
-                        },
-                      ),
-                      const SizedBox(height: defaultPadding),
+                              onChanged: (value) {
+                                controller.googleEditingController.text =
+                                    value ?? '';
+                                controller.googleAuth.value = value ?? '';
+                                controller.update();
+                              },
+                            );
+                          },
+                        ),
+                      if (controller.googleAuth.value == true)
+                        const SizedBox(height: defaultPadding),
                       Row(
                         children: [
                           SizedBox(
@@ -294,8 +287,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                     enabled: controller.address.isNotEmpty &&
                                         controller.amount.value > 10 &&
                                         (controller.showGoogleAuth.value
-                                            ? controller.googleEditingController
-                                                .text.isNotEmpty
+                                            ? controller.googleAuth.isNotEmpty
                                             : true),
                                     onPressed: () => controller.withdraw(),
                                     text: '确认提现',

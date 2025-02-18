@@ -18,7 +18,6 @@ class HashrateLeasingScreenBindings implements Bindings {
 class HashrateLeasingScreenController extends BaseController<HashrateRentalDetailScreenArgs> {
   final AiPulseService aiPulseService = Get.find();
 
-  RxString dd = 'dd'.obs;
   Rxn<PlanDetail> planDetail = Rxn<PlanDetail>();
 
   RxInt total = 0.obs;
@@ -57,8 +56,8 @@ class HashrateLeasingScreenController extends BaseController<HashrateRentalDetai
       if (result == true) {
         Get.toNamed(AppRoutes.hashratePasswordInput,
             arguments: HashratePasswordInputScreenArgs(
-                hasratePageInfo: args!.hasratePageInfo,
-                count: total.value));
+                pram: {'id': planDetail.value?.id, 'quantity': total.value},
+                type: HashratePasswordInputType.hasrate));
       } else {
         Get.toNamed(AppRoutes.settingFundPsd);
       }

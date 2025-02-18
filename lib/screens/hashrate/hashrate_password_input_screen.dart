@@ -11,14 +11,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HashratePasswordInputScreenArgs {
-  final PlanDetail? hasratePageInfo;
-  final int count;
+enum HashratePasswordInputType { hasrate, withdraw }
 
-  HashratePasswordInputScreenArgs({required this.hasratePageInfo, required this.count});
+class HashratePasswordInputScreenArgs {
+  final Map<String, dynamic> pram;
+  final HashratePasswordInputType type;
+
+  HashratePasswordInputScreenArgs({
+    required this.pram,
+    required this.type,
+  });
 }
 
-class HashratePasswordInputScreen extends GetView<HashratePasswordInputScreenController> {
+class HashratePasswordInputScreen
+    extends GetView<HashratePasswordInputScreenController> {
   const HashratePasswordInputScreen({super.key});
 
   @override
@@ -31,7 +37,9 @@ class HashratePasswordInputScreen extends GetView<HashratePasswordInputScreenCon
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
           children: [
-            const SizedBox(height: defaultPadding,),
+            const SizedBox(
+              height: defaultPadding,
+            ),
             Expanded(child: SingleChildScrollView(child: _buildHeader())),
             _buildActionButton(),
           ],
@@ -50,16 +58,14 @@ class HashratePasswordInputScreen extends GetView<HashratePasswordInputScreenCon
 
   Widget _buildActionButton() {
     return Obx(
-          () => BaseButton(
+      () => BaseButton(
         enabled: controller.password.isNotEmpty,
         disabledDecoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/custom/register_btn_border.png'),
           ),
         ),
-        onPressed: () {
-          controller.aiPulseUserPlanApply();
-        },
+        onPressed: () => controller.confirm(),
         text: tr("button.confirm"),
       ),
     );

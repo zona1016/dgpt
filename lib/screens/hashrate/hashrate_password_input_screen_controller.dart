@@ -1,3 +1,4 @@
+import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
@@ -13,7 +14,7 @@ class HashratePasswordInputScreenBindings implements Bindings {
   }
 }
 
-class HashratePasswordInputScreenController extends BaseController {
+class HashratePasswordInputScreenController extends BaseController<HashratePasswordInputScreenArgs> {
   final AiPulseService aiPulseService = Get.find();
 
   final RxString password = "".obs;
@@ -34,13 +35,32 @@ class HashratePasswordInputScreenController extends BaseController {
     super.onReady();
   }
 
+  confirm() {
+
+    if (args!.type == HashratePasswordInputType.hasrate) {
+      aiPulseUserPlanApply();
+    } else if (args!.type == HashratePasswordInputType.withdraw) {
+
+    }
+  }
+
   aiPulseUserPlanApply() async {
+    Map<String, dynamic> pram = args!.pram;
+    pram['code'] = password.value;
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
-        request: () => aiPulseService.aiPulseUserPlanApply(
-            id: args!.hasratePageInfo.id.toString(),
-            quantity: args!.count.toString(),
-            code: password.value));
+        request: () => aiPulseService.aiPulseUserPlanApply(pram: pram));
+    if (result != null) {
+      Get.toNamed(AppRoutes.hashrateLoading);
+    }
+  }
+
+  aiPulseWithdrawalWithdrawal() async {
+    Map<String, dynamic> pram = args!.pram;
+    pram['traderPassword'] = password.value;
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseWithdrawalWithdrawal(pram: pram));
     if (result != null) {
       Get.toNamed(AppRoutes.hashrateLoading);
     }

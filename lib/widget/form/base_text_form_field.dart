@@ -42,6 +42,7 @@ class BaseTextFormField extends StatefulWidget {
   final bool notPaddingPrefixIcon;
   final double radius;
   final InputBorder? inputBorder;
+  final EdgeInsetsGeometry? contentPadding;
 
   const BaseTextFormField({
     super.key,
@@ -78,7 +79,8 @@ class BaseTextFormField extends StatefulWidget {
     this.autovalidateMode,
     this.radius = 30,
     this.notPaddingPrefixIcon = false,
-    this.inputBorder
+    this.inputBorder,
+    this.contentPadding
   });
 
   @override
@@ -93,13 +95,13 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.title != null && widget.type == TextFormFieldType.golden)
+        if (widget.title != null)
           Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: Text(
               widget.title!,
               style: fontSFProRegular.copyWith(
-                  fontSize: 17, color: BaseColors.white),
+                  fontSize: 16, color: BaseColors.white),
             ),
           ),
         FormBuilderTextField(
@@ -118,7 +120,7 @@ class BaseTextFormFieldState extends State<BaseTextFormField> {
                   fontSize: 12, color: Colors.red, height: 1.5),
               errorMaxLines: 3,
               filled: true,
-              contentPadding: const EdgeInsets.symmetric(vertical: 20),
+              contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(vertical: 20),
               hintText: widget.hintText != null
                   ? "${widget.hintText}${widget.isRequired ? "*" : ""}"
                   : null,
