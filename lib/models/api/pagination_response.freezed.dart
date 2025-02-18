@@ -27,6 +27,10 @@ mixin _$PaginationResponse<T> {
   int get pageSize => throw _privateConstructorUsedError;
   @JsonKey(name: 'total')
   int get total => throw _privateConstructorUsedError;
+  @JsonKey(name: 'amountTotal')
+  int get amountTotal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'memberCount')
+  int get memberCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalPages')
   int get totalPages => throw _privateConstructorUsedError;
   @JsonKey(name: 'hasPrevPage')
@@ -57,6 +61,8 @@ abstract class $PaginationResponseCopyWith<T, $Res> {
       {@JsonKey(name: 'page') int currentPage,
       @JsonKey(name: 'pageSize') int pageSize,
       @JsonKey(name: 'total') int total,
+      @JsonKey(name: 'amountTotal') int amountTotal,
+      @JsonKey(name: 'memberCount') int memberCount,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'hasPrevPage') bool hasPrevPage,
       @JsonKey(name: 'hasNextPage') bool hasNextPage,
@@ -82,6 +88,8 @@ class _$PaginationResponseCopyWithImpl<T, $Res,
     Object? currentPage = null,
     Object? pageSize = null,
     Object? total = null,
+    Object? amountTotal = null,
+    Object? memberCount = null,
     Object? totalPages = null,
     Object? hasPrevPage = null,
     Object? hasNextPage = null,
@@ -99,6 +107,14 @@ class _$PaginationResponseCopyWithImpl<T, $Res,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      amountTotal: null == amountTotal
+          ? _value.amountTotal
+          : amountTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      memberCount: null == memberCount
+          ? _value.memberCount
+          : memberCount // ignore: cast_nullable_to_non_nullable
               as int,
       totalPages: null == totalPages
           ? _value.totalPages
@@ -132,6 +148,8 @@ abstract class _$$PaginationResponseImplCopyWith<T, $Res>
       {@JsonKey(name: 'page') int currentPage,
       @JsonKey(name: 'pageSize') int pageSize,
       @JsonKey(name: 'total') int total,
+      @JsonKey(name: 'amountTotal') int amountTotal,
+      @JsonKey(name: 'memberCount') int memberCount,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'hasPrevPage') bool hasPrevPage,
       @JsonKey(name: 'hasNextPage') bool hasNextPage,
@@ -155,6 +173,8 @@ class __$$PaginationResponseImplCopyWithImpl<T, $Res>
     Object? currentPage = null,
     Object? pageSize = null,
     Object? total = null,
+    Object? amountTotal = null,
+    Object? memberCount = null,
     Object? totalPages = null,
     Object? hasPrevPage = null,
     Object? hasNextPage = null,
@@ -172,6 +192,14 @@ class __$$PaginationResponseImplCopyWithImpl<T, $Res>
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      amountTotal: null == amountTotal
+          ? _value.amountTotal
+          : amountTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      memberCount: null == memberCount
+          ? _value.memberCount
+          : memberCount // ignore: cast_nullable_to_non_nullable
               as int,
       totalPages: null == totalPages
           ? _value.totalPages
@@ -200,6 +228,8 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
       {@JsonKey(name: 'page') this.currentPage = 1,
       @JsonKey(name: 'pageSize') this.pageSize = 20,
       @JsonKey(name: 'total') this.total = 0,
+      @JsonKey(name: 'amountTotal') this.amountTotal = 0,
+      @JsonKey(name: 'memberCount') this.memberCount = 0,
       @JsonKey(name: 'totalPages') this.totalPages = 0,
       @JsonKey(name: 'hasPrevPage') this.hasPrevPage = false,
       @JsonKey(name: 'hasNextPage') this.hasNextPage = false,
@@ -221,6 +251,12 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
   @JsonKey(name: 'total')
   final int total;
   @override
+  @JsonKey(name: 'amountTotal')
+  final int amountTotal;
+  @override
+  @JsonKey(name: 'memberCount')
+  final int memberCount;
+  @override
   @JsonKey(name: 'totalPages')
   final int totalPages;
   @override
@@ -240,7 +276,7 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
 
   @override
   String toString() {
-    return 'PaginationResponse<$T>(currentPage: $currentPage, pageSize: $pageSize, total: $total, totalPages: $totalPages, hasPrevPage: $hasPrevPage, hasNextPage: $hasNextPage, list: $list)';
+    return 'PaginationResponse<$T>(currentPage: $currentPage, pageSize: $pageSize, total: $total, amountTotal: $amountTotal, memberCount: $memberCount, totalPages: $totalPages, hasPrevPage: $hasPrevPage, hasNextPage: $hasNextPage, list: $list)';
   }
 
   @override
@@ -253,6 +289,10 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
             (identical(other.pageSize, pageSize) ||
                 other.pageSize == pageSize) &&
             (identical(other.total, total) || other.total == total) &&
+            (identical(other.amountTotal, amountTotal) ||
+                other.amountTotal == amountTotal) &&
+            (identical(other.memberCount, memberCount) ||
+                other.memberCount == memberCount) &&
             (identical(other.totalPages, totalPages) ||
                 other.totalPages == totalPages) &&
             (identical(other.hasPrevPage, hasPrevPage) ||
@@ -269,6 +309,8 @@ class _$PaginationResponseImpl<T> extends _PaginationResponse<T> {
       currentPage,
       pageSize,
       total,
+      amountTotal,
+      memberCount,
       totalPages,
       hasPrevPage,
       hasNextPage,
@@ -294,6 +336,8 @@ abstract class _PaginationResponse<T> extends PaginationResponse<T> {
           {@JsonKey(name: 'page') final int currentPage,
           @JsonKey(name: 'pageSize') final int pageSize,
           @JsonKey(name: 'total') final int total,
+          @JsonKey(name: 'amountTotal') final int amountTotal,
+          @JsonKey(name: 'memberCount') final int memberCount,
           @JsonKey(name: 'totalPages') final int totalPages,
           @JsonKey(name: 'hasPrevPage') final bool hasPrevPage,
           @JsonKey(name: 'hasNextPage') final bool hasNextPage,
@@ -314,6 +358,12 @@ abstract class _PaginationResponse<T> extends PaginationResponse<T> {
   @override
   @JsonKey(name: 'total')
   int get total;
+  @override
+  @JsonKey(name: 'amountTotal')
+  int get amountTotal;
+  @override
+  @JsonKey(name: 'memberCount')
+  int get memberCount;
   @override
   @JsonKey(name: 'totalPages')
   int get totalPages;

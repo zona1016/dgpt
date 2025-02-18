@@ -11,6 +11,8 @@ class PaginationResponse<T> with _$PaginationResponse<T> {
     @JsonKey(name: 'page') @Default(1) int currentPage,
     @JsonKey(name: 'pageSize') @Default(20) int pageSize,
     @JsonKey(name: 'total') @Default(0) int total,
+    @JsonKey(name: 'amountTotal') @Default(0) int amountTotal,
+    @JsonKey(name: 'memberCount') @Default(0) int memberCount,
     @JsonKey(name: 'totalPages') @Default(0) int totalPages,
     @JsonKey(name: 'hasPrevPage') @Default(false) bool hasPrevPage,
     @JsonKey(name: 'hasNextPage') @Default(false) bool hasNextPage,

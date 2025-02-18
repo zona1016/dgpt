@@ -16,6 +16,7 @@ import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/pulse/recommend_info.dart';
 import 'package:dgpt/models/pulse/salary_award.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
 import 'package:dgpt/models/pulse/team_member_list.dart';
@@ -147,11 +148,11 @@ abstract class AiPulseService {
       aiPulseSalaryAwardUserPage({int page = 1, int perPage = 20});
 
   Future<BaseResponse<List<DirectTopInfo>>> aiPulseTotalDirectTop();
-
   Future<BaseResponse<List<LayerInfo>>> aiPulseTotalLayerTotal();
-
   Future<BaseResponse<List<LayerHashrateInfo>>> aiPulseTotalLayerHashrateTotal(
       {required int layer});
+  Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
+  aiPulseTotalRecommendAwardTotal({int page = 1, int perPage = 20});
 
   Future<BaseResponse<EnableJobInfo?>> aiPulseUserJobTitleUserJobTitle();
 
@@ -967,6 +968,25 @@ class AiPulseServiceImpl extends AiPulseService {
             'amount': amount,
           },
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
+  aiPulseTotalRecommendAwardTotal({int page = 1, int perPage = 20}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseTotalRecommendAwardTotal,
+          bearerToken: userController.token,
+          data: {
+            'page': page,
+            'pageSize': perPage,
+          },
+          deserializer: (data) => data != null
+              ? PaginationResponse<RecommendInfo>.fromJson(data,
+                  (json) => RecommendInfo.fromJson(json as Map<String, dynamic>))
+              : null);
     } on Exception catch (_) {
       rethrow;
     }
