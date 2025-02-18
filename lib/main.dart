@@ -93,7 +93,7 @@ class MainApp extends StatelessWidget {
 
     return RestartWidget(
         child: GetMaterialApp(
-      navigatorObservers: [],
+      navigatorObservers: [GetObserver()],
       scrollBehavior: AppScrollBehavior(),
       localizationsDelegates: [
         ...context.localizationDelegates,

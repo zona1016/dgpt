@@ -41,18 +41,18 @@ class HashrateRentalScreenController extends BaseController {
     super.onReady();
   }
 
-  Future<void> loadUserHashrateData() async {
+  Future<void> loadUserHashrateData({AppLoadingState loadingState = AppLoadingState.normal}) async {
     await Future.wait([
-      userHashrate(),
+      userHashrate(loadingState: loadingState),
       aiPulseUserHashrateProgress(),
     ]);
     loaded.value = true;
     hashratePage();
   }
 
-  Future<void> userHashrate() async {
+  Future<void> userHashrate({AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
+        loadingState: loadingState,
         request: () => aiPulseService.userHashrate());
     if (result != null) {
       powerInfo.value = result;

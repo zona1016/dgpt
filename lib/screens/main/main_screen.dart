@@ -1,9 +1,14 @@
 import 'package:dgpt/screens/ai/ai_screen.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/home/home_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_screen.dart';
+import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/income/income_screen.dart';
+import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/screens/profile/profile_screen.dart';
+import 'package:dgpt/screens/profile/profile_screen_controller.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -72,6 +77,33 @@ class MainScreen extends GetView<MainScreenController> {
                     if (value == 0) {
                       Get.toNamed(AppRoutes.aiGuidance);
                       return;
+                    }
+                    // 重新加载数据
+                    if (value == 4) {
+                      if (Get.isRegistered<ProfileScreenController>()) {
+                         Get.find<ProfileScreenController>().aiPulseWalletGetUserBalance(
+                           loadingState: AppLoadingState.backgroundWithoutError
+                         );
+                      }
+                    }
+                    if (value == 3) {
+                      if (Get.isRegistered<IncomeScreenController>()) {
+                        Get.find<IncomeScreenController>().loadData(
+                            loadingState: AppLoadingState.backgroundWithoutError
+                        );
+                      }
+                    }
+                    if (value == 2) {
+                      if (Get.isRegistered<HomeScreenController>()) {
+                        Get.find<HomeScreenController>().loadData();
+                      }
+                    }
+                    if (value == 1) {
+                      if (Get.isRegistered<HashrateRentalScreenController>()) {
+                        Get.find<HashrateRentalScreenController>().loadUserHashrateData(
+                            loadingState: AppLoadingState.backgroundWithoutError
+                        );
+                      }
                     }
                     controller.selectedTabIndex(value);
                     controller.pageController.jumpToPage(value);

@@ -14,6 +14,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'dart:ui' as ui;
 
 import 'package:permission_handler/permission_handler.dart';
@@ -85,10 +86,11 @@ class ProfileScreenController extends BaseController {
     super.onReady();
   }
 
-  Future<void> aiPulseWalletGetUserBalance() async {
+  Future<void> aiPulseWalletGetUserBalance({AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
+        loadingState: loadingState,
         request: () => aiPulseService.aiPulseWalletGetUserBalance());
+    Get.context!.loaderOverlay.hide();
     if (result != null) {
       userBalanceList.value = result;
       zpTotalAmount.value = userBalanceList.value.fold(0.0, (sum, item) {

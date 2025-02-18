@@ -5,6 +5,7 @@ import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class IncomeScreenBindings implements Bindings {
   @override
@@ -32,9 +33,7 @@ class IncomeScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    userIncomeTotal();
-    aiPulseTotalAmountTotal();
-    userTeamDataTotal();
+    loadData();
   }
 
   @override
@@ -48,27 +47,34 @@ class IncomeScreenController extends BaseController {
     super.onReady();
   }
 
-  userIncomeTotal() async {
+  loadData({AppLoadingState loadingState = AppLoadingState.normal}) async {
+    await userIncomeTotal(loadingState: loadingState);
+    await aiPulseTotalAmountTotal(loadingState: loadingState);
+    await userTeamDataTotal(loadingState: loadingState);
+    Get.context!.loaderOverlay.hide();
+  }
+
+  Future<void> userIncomeTotal({AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
+        loadingState: loadingState,
         request: () => aiPulseService.userIncomeTotal());
     if (result != null) {
       incomeTotal.value = result;
     }
   }
 
-  userTeamDataTotal() async {
+  Future<void> userTeamDataTotal({AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
+        loadingState: loadingState,
         request: () => aiPulseService.userTeamDataTotal());
     if (result != null) {
       userTeamTotalInfo.value = result;
     }
   }
 
-  aiPulseTotalAmountTotal() async {
+  Future<void> aiPulseTotalAmountTotal({AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
-        loadingState: AppLoadingState.normal,
+        loadingState: loadingState,
         request: () => aiPulseService.aiPulseTotalAmountTotal());
     if (result != null) {
       amountTotalInfo.value = result;
