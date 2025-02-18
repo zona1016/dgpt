@@ -3,9 +3,7 @@ import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:dgpt/models/pulse/flow_info.dart';
 
 class ActiveMemberDetailScreenBindings implements Bindings {
   @override

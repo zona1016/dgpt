@@ -48,7 +48,9 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                         ),
                         Expanded(child: Container()),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(AppRoutes.activeMemberDetail);
+                          },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: defaultPadding / 2,

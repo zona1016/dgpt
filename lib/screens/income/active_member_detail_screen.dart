@@ -41,7 +41,18 @@ class ActiveMemberDetailScreen
                 height: defaultPadding,
               ),
               _threeTotal(context, onTap: (index) {}),
-              _secondTotal(context, onTap: (index) {})
+              _secondTotal(context, onTap: (index) {}),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 3,
+                itemBuilder: (_, index) {
+                  return _item(index);
+                },
+                separatorBuilder: (_, index) {
+                  return Container(height: defaultPadding,);
+                },
+              )
             ],
           ),
         ),
@@ -220,7 +231,7 @@ class ActiveMemberDetailScreen
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: defaultPadding / 4),
+                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
                     child: Container(
                       margin: const EdgeInsets.symmetric(
                           horizontal: defaultPadding),
@@ -272,39 +283,41 @@ class ActiveMemberDetailScreen
   }
 
   _threeTotal(context, {required Function(int index) onTap}) {
-    return Row(
-      children: [
-        Expanded(
-            child: _buildInfoCard(
-          context: context,
-          imagePath: 'assets/images/home/day_return.png',
-          title: tr('home.hourly_income'),
-          value: '0',
-          onTap: () => onTap(0),
-        )),
-        const SizedBox(
-          width: defaultPadding,
-        ),
-        Expanded(
-            child: _buildInfoCard(
-          context: context,
-          imagePath: 'assets/images/home/total_return.png',
-          title: tr('home.total_income'),
-          value: '0',
-          onTap: () => onTap(1),
-        )),
-        const SizedBox(
-          width: defaultPadding,
-        ),
-        Expanded(
-            child: _buildInfoCard(
-          context: context,
-          imagePath: 'assets/images/home/total_return.png',
-          title: tr('home.total_income'),
-          value: '0',
-          onTap: () => onTap(2),
-        )),
-      ],
+    return IntrinsicHeight(
+      child: Row(
+        children: [
+          Expanded(
+              child: _buildInfoCard(
+            context: context,
+            imagePath: 'assets/images/income/mxssy.png',
+            title: 'Total Rent',
+            value: '0',
+            onTap: () => onTap(0),
+          )),
+          const SizedBox(
+            width: defaultPadding,
+          ),
+          Expanded(
+              child: _buildInfoCard(
+            context: context,
+            imagePath: 'assets/images/income/team_djhy.png',
+            title: 'Total member',
+            value: '0',
+            onTap: () => onTap(1),
+          )),
+          const SizedBox(
+            width: defaultPadding,
+          ),
+          Expanded(
+              child: _buildInfoCard(
+            context: context,
+            imagePath: 'assets/images/income/team_jrsy.png',
+            title: 'Total Profit',
+            value: '0',
+            onTap: () => onTap(2),
+          )),
+        ],
+      ),
     );
   }
 
@@ -362,9 +375,9 @@ class ActiveMemberDetailScreen
             Expanded(
                 child: _buildSecondInfoCard(
               context: context,
-              imagePath: 'assets/images/home/day_return.png',
-              title: tr('home.hourly_income'),
-              value: '0',
+              imagePath: 'assets/images/income/total_sub.png',
+              title: 'Total Subscription',
+              value: '0 USDT',
               onTap: () => onTap(0),
             )),
             const SizedBox(
@@ -373,9 +386,9 @@ class ActiveMemberDetailScreen
             Expanded(
                 child: _buildSecondInfoCard(
               context: context,
-              imagePath: 'assets/images/home/day_return.png',
-              title: tr('home.hourly_income'),
-              value: '0',
+              imagePath: 'assets/images/income/total_rev.png',
+              title: 'Total Revenue',
+              value: '0 USDT',
               onTap: () => onTap(0),
             )),
           ],
@@ -436,6 +449,76 @@ class ActiveMemberDetailScreen
           ),
         ],
       ),
+    );
+  }
+
+  _item(index) {
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: const Color(0xFF395C96).withOpacity(0.3)),
+      child: Column(
+        children: [
+          _rowTitle(title: 'Type', detail: 'Gdepin'),
+          const SizedBox(height: defaultPadding / 2,),
+          _rowTitle(title: 'Purchasing Price', detail: '100 USDT', detailColor: Colors.purpleAccent),
+          const SizedBox(height: defaultPadding / 2,),
+          _rowTitle(
+              title: 'Purchasing Time', detail: '2023-05-23 23:38:50'),
+          const SizedBox(height: defaultPadding / 2,),
+          _rowTitle(title: 'Expire Date', detail: '2023-05-23 23:38:50'),
+          const SizedBox(height: defaultPadding / 2,),
+          _rowTitle(title: 'Status', detail: 'Running', status: true, statusColor: Colors.red),
+        ],
+      ),
+    );
+  }
+
+  _rowTitle(
+      {required String title,
+      required String detail,
+      Color detailColor = BaseColors.white,
+      bool status = false,
+      Color statusColor = BaseColors.primaryColor}) {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: fontDMRegular.copyWith(
+            color: BaseColors.weakTextColor,
+            fontSize: 12,
+          ),
+          textAlign: TextAlign.left,
+        ),
+        Expanded(child: Container()),
+        if (status)
+          Container(
+            height: 20,
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: statusColor, width: 1)),
+            child: Center(
+              child: Text(
+                detail,
+                style: fontDMMedium.copyWith(
+                  color: statusColor,
+                  fontSize: 8,
+                ),
+              ),
+            ),
+          ),
+        if (!status)
+          Text(
+            detail,
+            style: fontDMBold.copyWith(
+              color: detailColor,
+              fontSize: 12,
+            ),
+            textAlign: TextAlign.right,
+          )
+      ],
     );
   }
 }
