@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
@@ -7,6 +9,7 @@ import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class IncomeScreen extends GetView<IncomeScreenController> {
   const IncomeScreen({super.key});
@@ -20,10 +23,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
       body: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).padding.top + 44,
+            height: MediaQuery
+                .of(context)
+                .padding
+                .top + 44,
             width: double.infinity,
             decoration:
-                BoxDecoration(gradient: BaseColors.appBarLinearGradient),
+            BoxDecoration(gradient: BaseColors.appBarLinearGradient),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -31,16 +37,17 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 child: Text(
                   tr('hashrate.income_analysis'),
                   style:
-                      fontBold.copyWith(fontSize: 20, color: BaseColors.white),
+                  fontBold.copyWith(fontSize: 20, color: BaseColors.white),
                 ),
               ),
             ),
           ),
           Expanded(
             child: SingleChildScrollView(
-              child: Obx(() => Padding(
+              child: Obx(() =>
+                  Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
+                    const EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: Column(
                       children: [
                         Container(
@@ -54,7 +61,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           ),
                           child: Center(
                             child: Text(
-                              '${tr('home.total_income')} ${controller.totalAmount.value} U',
+                              '${tr('home.total_income')} ${controller
+                                  .totalAmount.value} U',
                               style: fontDMBold.copyWith(
                                   color: BaseColors.white, fontSize: 20),
                             ),
@@ -133,39 +141,39 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             _buildIncomeCard(
                                 tr('hashrate.computing_power_rental'),
                                 controller.amountTotalInfo.value
-                                        ?.roiAmountTotal ??
+                                    ?.roiAmountTotal ??
                                     0,
                                 'assets/images/income/income_slzj.png',
                                 onTap: () {
-                              Get.toNamed(AppRoutes.hashrateRentalActive);
-                            }),
+                                  Get.toNamed(AppRoutes.hashrateRentalActive);
+                                }),
                             _buildIncomeCard(
                                 tr('hashrate.team_computing_power_bonus'),
                                 controller.amountTotalInfo.value
-                                        ?.teamAwardAmountTotal ??
+                                    ?.teamAwardAmountTotal ??
                                     0,
                                 'assets/images/income/income_tdslj.png',
                                 onTap: () {
-                              Get.toNamed(AppRoutes.teamHashrateAwardn);
-                            }),
+                                  Get.toNamed(AppRoutes.teamHashrateAwardn);
+                                }),
                             _buildIncomeCard(
                                 tr('hashrate.invitation_bonus'),
                                 controller.amountTotalInfo.value
-                                        ?.directAwardAmountTotal ??
+                                    ?.directAwardAmountTotal ??
                                     0,
                                 'assets/images/income/income_yqj.png',
                                 onTap: () {
-                              Get.toNamed(AppRoutes.invitationAward);
-                            }),
+                                  Get.toNamed(AppRoutes.invitationAward);
+                                }),
                             _buildIncomeCard(
                                 tr('hashrate.salary'),
                                 controller.amountTotalInfo.value
-                                        ?.salaryAmountTotal ??
+                                    ?.salaryAmountTotal ??
                                     0,
                                 'assets/images/income/income_xz.png',
                                 onTap: () {
-                              Get.toNamed(AppRoutes.salary);
-                            }),
+                                  Get.toNamed(AppRoutes.salary);
+                                }),
                           ],
                         ),
                       ],
@@ -242,7 +250,9 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 left: defaultPadding,
                 child: Text(
                   '${controller.totalAmount.value > 0
-                      ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                      ? NumberFormat('#,##0.00').format(
+                      (controller.amountTotalInfo.value?.roiAmountTotal ?? 0) /
+                          controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -260,8 +270,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 painter: CustomCircularPainter(
                     controller.totalAmount.value > 0
                         ? (controller.amountTotalInfo.value?.roiAmountTotal ??
-                                0) /
-                            controller.totalAmount.value
+                        0) /
+                        controller.totalAmount.value
                         : 0,
                     1.5,
                     Colors.cyan),
@@ -270,7 +280,10 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 top: defaultPadding,
                 left: defaultPadding,
                 child: Text(
-                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                  '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00')
+                      .format((controller.amountTotalInfo.value
+                      ?.directAwardAmountTotal ?? 0) /
+                      controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -288,7 +301,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 // You can adjust the size of the circle
                 painter: CustomCircularPainter(
                     (controller.amountTotalInfo.value?.directAwardAmountTotal ??
-                            0) /
+                        0) /
                         controller.totalAmount.value,
                     3,
                     Colors.yellow),
@@ -298,7 +311,9 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 right: defaultPadding,
                 child: Text(
                   '${controller.totalAmount.value > 0
-                      ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                      ? NumberFormat('#,##0.00').format(
+                      (controller.amountTotalInfo.value?.salaryAmountTotal ??
+                          0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -325,7 +340,9 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 right: defaultPadding,
                 child: Text(
                   '${controller.totalAmount.value > 0
-                      ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+                      ? NumberFormat('#,##0.00').format(
+                      (controller.amountTotalInfo.value?.teamAwardAmountTotal ??
+                          0) / controller.totalAmount.value * 100) : 0}%',
                   style: fontDMBold.copyWith(
                       color: BaseColors.white, fontSize: 20),
                 ),
@@ -343,7 +360,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 // You can adjust the size of the circle
                 painter: CustomCircularPainter(
                     (controller.amountTotalInfo.value?.directAwardAmountTotal ??
-                            0) /
+                        0) /
                         controller.totalAmount.value,
                     4,
                     Colors.purple),
@@ -353,12 +370,14 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         ),
         Row(
           children: [
-            Expanded(child: _circularDetail(title: '算力租借', color: Colors.blue)),
+            Expanded(
+                child: _circularDetail(title: '算力租借', color: Colors.blue)),
             Expanded(
                 child: _circularDetail(title: '邀请奖', color: Colors.yellow)),
             Expanded(child: _circularDetail(title: '薪资', color: Colors.red)),
             Expanded(
-                child: _circularDetail(title: '团队算力奖', color: Colors.purple)),
+                child: _circularDetail(
+                    title: '团队算力奖', color: Colors.purple)),
           ],
         )
       ],
@@ -411,7 +430,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
 
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
-    return Obx(() => Column(
+    return Obx(() =>
+        Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
@@ -437,8 +457,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                       imagePath: 'assets/images/income/zrs.png',
                       title: '总人数',
                       value:
-                          (controller.userTeamTotalInfo.value?.memberCount ?? 0)
-                              .toString(),
+                      (controller.userTeamTotalInfo.value?.memberCount ?? 0)
+                          .toString(),
                       onTap: () => onTap(0),
                     ),
                   ),
@@ -451,16 +471,16 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                     padding: const EdgeInsets.all(defaultPadding),
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage('assets/images/home/return_bg.png'),
-                      fit: BoxFit.cover,
-                    )),
+                          image: AssetImage('assets/images/home/return_bg.png'),
+                          fit: BoxFit.cover,
+                        )),
                     child: _buildInfoCard(
                       context: context,
                       imagePath: 'assets/images/income/jhrs.png',
                       title: '激活人数',
                       value: (controller
-                                  .userTeamTotalInfo.value?.realMemberCount ??
-                              0)
+                          .userTeamTotalInfo.value?.realMemberCount ??
+                          0)
                           .toString(),
                       onTap: () => onTap(1),
                     ),
@@ -524,6 +544,48 @@ class IncomeScreen extends GetView<IncomeScreenController> {
       ),
     );
   }
+}
+
+class Circular3DPainter extends CustomPainter {
+  final double progress;
+  final double strokeWidth;
+
+  Circular3DPainter({required this.progress, this.strokeWidth = 12.0});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint shadowPaint = Paint()
+      ..shader = RadialGradient(
+        colors: [Colors.black.withOpacity(0.3), Colors.transparent],
+        radius: 1.2,
+      ).createShader(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: size.width / 2))
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth;
+
+    Paint progressPaint = Paint()
+      ..shader = LinearGradient(
+        colors: [Colors.blue.shade700, Colors.blue.shade200],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round;
+
+    Offset center = Offset(size.width / 2, size.height / 2);
+    double radius = size.width / 2;
+
+    // 底部阴影
+    canvas.drawCircle(center, radius, shadowPaint);
+
+    // 画进度条
+    double startAngle = -pi / 2;
+    double sweepAngle = 2 * pi * progress;
+    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), startAngle, sweepAngle, false, progressPaint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
 class CustomCircularPainter extends CustomPainter {

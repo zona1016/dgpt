@@ -16,6 +16,7 @@ import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/pulse/recommend_award_total_info.dart';
 import 'package:dgpt/models/pulse/recommend_info.dart';
 import 'package:dgpt/models/pulse/salary_award.dart';
 import 'package:dgpt/models/pulse/team_hashrate_count_total.dart';
@@ -151,8 +152,9 @@ abstract class AiPulseService {
   Future<BaseResponse<List<LayerInfo>>> aiPulseTotalLayerTotal();
   Future<BaseResponse<List<LayerHashrateInfo>>> aiPulseTotalLayerHashrateTotal(
       {required int layer});
+  Future<BaseResponse<RecommendAwardTotalInfo?>> aiPulseTotalRecommendAwardTotal();
   Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
-  aiPulseTotalRecommendAwardTotal({int page = 1, int perPage = 20});
+  aiPulseTotalRecommendAwardUserList({int page = 1, int perPage = 20});
 
   Future<BaseResponse<EnableJobInfo?>> aiPulseUserJobTitleUserJobTitle();
 
@@ -974,10 +976,22 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
-  aiPulseTotalRecommendAwardTotal({int page = 1, int perPage = 20}) async {
+  Future<BaseResponse<RecommendAwardTotalInfo?>> aiPulseTotalRecommendAwardTotal() async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseTotalRecommendAwardTotal,
+          bearerToken: userController.token,
+          deserializer: (data) =>
+          data != null ? RecommendAwardTotalInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
+  aiPulseTotalRecommendAwardUserList({int page = 1, int perPage = 20}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseTotalRecommendAwardUserList,
           bearerToken: userController.token,
           data: {
             'page': page,

@@ -17,6 +17,7 @@ class ApiEndpoints {
   static const String aiPulseTotalLayerTotal = "/api/aiPulseTotal/lyaerTotal";
   static const String aiPulseTotalLayerHashrateTotal = "/api/aiPulseTotal/layerHashrateTotal";
   static const String aiPulseTotalRecommendAwardTotal = "/api/aiPulseTotal/recommendAwardTotal";
+  static const String aiPulseTotalRecommendAwardUserList = "/api/aiPulseTotal/recommendAwardUserList";
 
   // user
   static const String userRegister = "/api/user/userRegister";

@@ -17,108 +17,73 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      appBar: BaseAppBar(
+      appBar: const BaseAppBar(
         title: '邀请奖',
         color: BaseColors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: Column(
             children: [
-              const SizedBox(height: defaultPadding,),
+              const SizedBox(
+                height: defaultPadding,
+              ),
               _card(cardTaps: (index) {
                 if (index == 0) {
-                } else if (index == 1) {
-                }
+                } else if (index == 1) {}
               }),
-              const SizedBox(height: defaultPadding,),
-              Container(
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(defaultPadding),
-                  color: const Color(0xFF1F222A)
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '账号',
-                            style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 10,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '金额',
-                            style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 10,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '奖金',
-                            style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 10,
-                            ),
-                            textAlign: TextAlign.center
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '日期',
-                            style: fontDMBold.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 10,
-                            ),
-                            textAlign: TextAlign.right
-                          ),
-                        ),
-                      ],
+              const SizedBox(
+                height: defaultPadding,
+              ),
+              if (controller.recommendInfoList.isNotEmpty)
+                _header(),
+              Obx(() => Expanded(
+                    child: BaseSmartRefresher(
+                      refreshController: controller.refreshController,
+                      enableLoadMore: true,
+                      uiState: controller.uiState.value,
+                      isEmpty: controller.recommendInfoList.isEmpty,
+                      onPullToRefresh: (loadingState) {
+                        controller.aiPulseTotalRecommendAwardTotal(
+                            loadingState: loadingState);
+                      },
+                      onLoadMore: (loadingState) {
+                        controller.aiPulseTotalRecommendAwardTotal(
+                            loadingState: loadingState);
+                      },
+                      childBuilder: (context, physics) {
+                        return CustomScrollView(
+                          physics: physics,
+                          slivers: [
+                            SliverList.separated(
+                              itemCount: controller.recommendInfoList.isNotEmpty
+                                  ? controller.recommendInfoList.length + 1
+                                  : 0,
+                              itemBuilder: (_, index) {
+                                return index ==
+                                        controller.recommendInfoList.length
+                                    ? _footer()
+                                    : _item(index);
+                              },
+                              separatorBuilder: (_, index) {
+                                return index == 0
+                                    ? Container()
+                                    : Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: defaultPadding),
+                                        height: 0.5,
+                                        color: BaseColors.weakTextColor,
+                                      );
+                              },
+                            )
+                          ],
+                        );
+                      },
                     ),
-                    _amountListView()
-                  ],
-                ),
-              )
+                  )),
             ],
-          ),
-        ),
-      ),
+          )),
     );
-  }
-
-  _amountListView() {
-    return Obx(() => BaseSmartRefresher(
-      refreshController: controller.refreshController,
-      enableLoadMore: true,
-      uiState: controller.uiState.value,
-      isEmpty: controller.recommendInfoList.isEmpty,
-      onPullToRefresh: (loadingState) {
-        controller.aiPulseTotalRecommendAwardTotal(loadingState: loadingState);
-      },
-      onLoadMore: (loadingState) {
-        controller.aiPulseTotalRecommendAwardTotal(loadingState: loadingState);
-      },
-      childBuilder: (context, physics) {
-        return ListView.builder(
-          physics: physics,
-          padding: const EdgeInsets.all(defaultPadding),
-          itemCount: controller.recommendInfoList.length,
-          itemBuilder: (context, index) {
-            return Text('$index------------------------');
-          },
-        );
-      },
-    ));
   }
 
   _card({required Function(int index) cardTaps}) {
@@ -130,7 +95,9 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
                 callBack: () => cardTaps(0),
                 title: controller.actionTitles[0],
                 image: controller.actionImages[0],
-                amount: (controller.paginationResponse.value?.amountTotal ?? 0).toDouble(),
+                amount:
+                    (controller.recommendAwardTotalInfo.value?.amountTotal ?? 0)
+                        .toDouble(),
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -148,7 +115,9 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
                 callBack: () => cardTaps(1),
                 title: controller.actionTitles[1],
                 image: controller.actionImages[1],
-                amount: (controller.paginationResponse.value?.memberCount ?? 0).toDouble(),
+                amount:
+                    (controller.recommendAwardTotalInfo.value?.memberCount ?? 0)
+                        .toDouble(),
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -165,9 +134,10 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
 
   _cardItem(
       {required String title,
-        required String image, required double amount,
-        required LinearGradient gradient,
-        GestureTapCallback? callBack}) {
+      required String image,
+      required double amount,
+      required LinearGradient gradient,
+      GestureTapCallback? callBack}) {
     return GestureDetector(
       onTap: callBack,
       child: Container(
@@ -184,7 +154,9 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
               width: 40,
               height: 40,
             ),
-            const SizedBox(height: defaultPadding / 5,),
+            const SizedBox(
+              height: defaultPadding / 5,
+            ),
             Text(
               title,
               style: fontDMMedium.copyWith(
@@ -201,6 +173,122 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  _header() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      height: 44,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          color: BaseColors.black10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              '账号',
+              style: fontDMBold.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              '金额',
+              style: fontDMBold.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              '金额',
+              style: fontDMBold.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: Text('日期',
+                style: fontDMBold.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.right),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _footer() {
+    return Container(
+      height: 20,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
+          color: BaseColors.black10),
+    );
+  }
+
+  _item(index) {
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding),
+      decoration: const BoxDecoration(color: BaseColors.black10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              controller.recommendInfoList[index].account ?? '',
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              '${controller.recommendInfoList[index].planAmount}U',
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              '${controller.recommendInfoList[index].awardAmount}U',
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: Text(
+                DateFormat("dd/MM/yyyy").format(
+                    DateFormat("yyyy-MM-dd HH:mm:ss").parse(
+                        controller.recommendInfoList[index].createTime ?? '')),
+                style: fontDMMedium.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.right),
+          ),
+        ],
       ),
     );
   }

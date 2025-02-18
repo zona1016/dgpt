@@ -1,5 +1,6 @@
 import 'package:dgpt/models/api/pagination_response.dart';
 import 'package:dgpt/models/pulse/amount_total_info.dart';
+import 'package:dgpt/models/pulse/recommend_award_total_info.dart';
 import 'package:dgpt/models/pulse/recommend_info.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
@@ -31,12 +32,12 @@ class InvitationAwardScreenController extends BaseController {
   ];
 
   RxList<RecommendInfo> recommendInfoList = <RecommendInfo>[].obs;
-  Rxn<PaginationResponse> paginationResponse = Rxn<PaginationResponse>();
+  Rxn<RecommendAwardTotalInfo> recommendAwardTotalInfo = Rxn<RecommendAwardTotalInfo>();
 
   @override
   void onInit() {
     super.onInit();
-    aiPulseTotalRecommendAwardTotal();
+    aiPulseTotalRecommendAwardUserList();
   }
 
   @override
@@ -50,14 +51,22 @@ class InvitationAwardScreenController extends BaseController {
     super.onReady();
   }
 
-  aiPulseTotalRecommendAwardTotal(
+ aiPulseTotalRecommendAwardTotal({AppLoadingState loadingState = AppLoadingState.backgroundWithoutError}) async {
+    final result = await fetchData(
+        loadingState: loadingState,
+        request: () => aiPulseService.aiPulseTotalRecommendAwardTotal());
+    if (result != null) {
+      recommendAwardTotalInfo.value = result;
+    }
+  }
+
+  aiPulseTotalRecommendAwardUserList(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
     final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
     final result = await fetchPaginatedData(
         loadingState: loadingState,
-        request: () => aiPulseService.aiPulseTotalRecommendAwardTotal(page: page));
+        request: () => aiPulseService.aiPulseTotalRecommendAwardUserList(page: page));
     if (result != null ) {
-      paginationResponse.value = result;
       if (result.list.isNotEmpty) {
         if (loadingState == AppLoadingState.loadMore) {
           recommendInfoList.addAll(result.list);
