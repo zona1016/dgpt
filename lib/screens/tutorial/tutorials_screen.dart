@@ -16,6 +16,7 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       backgroundColor: Colors.transparent,
+      backgroundImage: BaseColors.customBackgroundImage,
       appBar: const BaseAppBar(
         title: '教程中心',
         color: BaseColors.white,
@@ -30,8 +31,9 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
               onTap: () => Get.toNamed(AppRoutes.tutorialDetail),
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFF2A2A3D),
                   borderRadius: BorderRadius.circular(16),
+                  gradient: BaseColors.profileLinearGradient,
+                  color: Colors.white.withOpacity(0.4)
                 ),
                 padding: const EdgeInsets.all(16),
                 child: Row(

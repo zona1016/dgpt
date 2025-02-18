@@ -413,6 +413,8 @@ class DialogUtils {
       if (msg.contains('W100000')) {
         // 余额不足
         showRecharge();
+      } else if (msg.contains('401')) {
+        showErrorDialog('您的账户已在其他设备登录，本设备已下线，请重新登录');
       } else {
         showErrorDialog(msg);
       }

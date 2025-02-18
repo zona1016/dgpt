@@ -40,19 +40,19 @@ class ChangePasswordScreenController extends BaseController {
 
   userChangePwd() async {
     final result = await fetchData(
-        loadingState: AppLoadingState.background,
+        loadingState: AppLoadingState.normal,
         request: () => aiPulseService.userChangePwd(
             passwordOld: oldPsd.value,
             passwordNew: newPsdAgain.value));
     if (result != null) {
-      DialogUtils.showDGPTBaseDialog(
-          barrierDismissible: false,
-          title: tr('profile.password_changed_successfully'),
-          confirmText: tr('button.confirm'),
-          onConfirmPressed: () {
-            Get.close(2);
-          }
+      DialogUtils.showSuccessDialog(
+        tr('profile.password_changed_successfully'),
+        barrierDismissible: false,
+        showCircularProgressIndicator: true,
       );
+      Future.delayed(const Duration(seconds: 2), () {
+        Get.close(2);
+      });
     }
   }
 
