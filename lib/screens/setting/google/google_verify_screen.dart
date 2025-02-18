@@ -121,7 +121,6 @@ class GoogleVerifyScreen extends GetView<GoogleVerifyScreenController> {
                     ),
                   ),
                   onChanged: (value) {
-                    controller.textController.text = value ?? '';
                     controller.update();
                   },
                 );
