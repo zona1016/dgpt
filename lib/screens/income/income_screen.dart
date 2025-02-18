@@ -9,7 +9,6 @@ import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class IncomeScreen extends GetView<IncomeScreenController> {
   const IncomeScreen({super.key});
@@ -42,6 +41,46 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               ),
             ),
           ),
+          // Stack(
+          //   alignment: Alignment.center,
+          //   children: [
+          //     Center(
+          //       child: Image.asset(
+          //         'assets/images/income/progress_bg4.png',
+          //         width: 310,
+          //         height: 310,
+          //       ),
+          //     ),
+          //     Center(
+          //       child: Image.asset(
+          //         'assets/images/income/progress_sbg4.png',
+          //         width: 310,
+          //         height: 310,
+          //       ),
+          //     ),
+          //     Center(
+          //       child: Image.asset(
+          //         'assets/images/income/progress_bg3.png',
+          //         width: 260,
+          //         height: 260,
+          //       ),
+          //     ),
+          //     Center(
+          //       child: Image.asset(
+          //         'assets/images/income/progress_bg2.png',
+          //         width: 210,
+          //         height: 210,
+          //       ),
+          //     ),
+          //     Center(
+          //       child: Image.asset(
+          //         'assets/images/income/progress_bg1.png',
+          //         width: 160,
+          //         height: 160,
+          //       ),
+          //     ),
+          //   ],
+          // ),
           Expanded(
             child: SingleChildScrollView(
               child: Obx(() =>
