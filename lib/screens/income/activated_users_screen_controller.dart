@@ -1,4 +1,5 @@
 import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
+import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
@@ -21,6 +22,7 @@ class ActivatedUsersScreenController extends BaseController {
   Rxn<HasrateProgressInfo> progressInfo = Rxn<HasrateProgressInfo>();
   Rxn<PowerInfo> powerInfo = Rxn<PowerInfo>();
   RxBool loaded = false.obs;
+  RxList<LayerInfo> layerList = <LayerInfo>[].obs;
 
   List <Color> levelColorList = [
     const Color(0xFF17CE92).withOpacity(0.5),
@@ -51,6 +53,7 @@ class ActivatedUsersScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    aiPulseTotalLayerTotal();
   }
 
   @override
@@ -64,31 +67,12 @@ class ActivatedUsersScreenController extends BaseController {
     super.onReady();
   }
 
-  Future<void> loadUserHashrateData() async {
-    Get.context!.loaderOverlay.show();
-    await Future.wait([
-      userHashrate(),
-      aiPulseUserHashrateProgress(),
-    ]);
-    Get.context!.loaderOverlay.hide();
-    loaded.value = true;
-  }
-
-  Future<void> userHashrate() async {
+  aiPulseTotalLayerTotal() async {
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => aiPulseService.userHashrate());
+        request: () => aiPulseService.aiPulseTotalLayerTotal());
     if (result != null) {
-      powerInfo.value = result;
-    }
-  }
-
-  Future<void> aiPulseUserHashrateProgress() async {
-    final result = await fetchData(
-        loadingState: AppLoadingState.backgroundWithoutError,
-        request: () => aiPulseService.aiPulseUserHashrateProgress());
-    if (result != null) {
-      progressInfo.value = result;
+      layerList.value = result;
     }
   }
 }

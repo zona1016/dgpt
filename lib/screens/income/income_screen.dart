@@ -277,7 +277,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
   }
 
   _progress() {
-    return Stack(
+    return Obx(() => Stack(
       alignment: Alignment.center,
       children: [
         Center(
@@ -292,11 +292,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             clipper: ArcClipper(
                 startPoint: 0.7,
                 progress: (controller.totalAmount.value > 0
-                        ? (controller.amountTotalInfo.value
-                                    ?.directAwardAmountTotal ??
-                                0) /
-                            controller.totalAmount.value
-                        : 0) *
+                    ? (controller.amountTotalInfo.value
+                    ?.directAwardAmountTotal ??
+                    0) /
+                    controller.totalAmount.value
+                    : 0) *
                     -1),
             child: Image.asset(
               'assets/images/income/progress_sbg4.png',
@@ -318,7 +318,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 startPoint: -0.55,
                 progress: controller.totalAmount.value > 0
                     ? (controller.amountTotalInfo.value?.roiAmountTotal ?? 0) /
-                        controller.totalAmount.value
+                    controller.totalAmount.value
                     : 0),
             child: Image.asset(
               'assets/images/income/progress_sbg3.png',
@@ -339,11 +339,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             clipper: ArcClipper(
                 startPoint: -0.45,
                 progress: (controller.totalAmount.value > 0
-                        ? (controller.amountTotalInfo.value
-                                    ?.teamAwardAmountTotal ??
-                                0) /
-                            controller.totalAmount.value
-                        : 0) *
+                    ? (controller.amountTotalInfo.value
+                    ?.teamAwardAmountTotal ??
+                    0) /
+                    controller.totalAmount.value
+                    : 0) *
                     -1),
             child: Image.asset(
               'assets/images/income/progress_sbg2.png',
@@ -365,8 +365,8 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 startPoint: 0.5,
                 progress: controller.totalAmount.value > 0
                     ? (controller.amountTotalInfo.value?.salaryAmountTotal ??
-                            0) /
-                        controller.totalAmount.value
+                    0) /
+                    controller.totalAmount.value
                     : 0),
             child: Image.asset(
               'assets/images/income/progress_sbg1.png',
@@ -440,7 +440,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             right: 105 + defaultPadding,
             size: const Size(1, 25)),
       ],
-    );
+    ));
   }
 
   _positioned({
@@ -634,7 +634,10 @@ class ArcClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(covariant ArcClipper oldClipper) {
+    // 这里返回 true，确保 progress 变化时 ClipPath 重新渲染
+    return oldClipper.progress != progress || oldClipper.startPoint != startPoint;
+  }
 }
 
 class DashedLinePainter extends CustomPainter {

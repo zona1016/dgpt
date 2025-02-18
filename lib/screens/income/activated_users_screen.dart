@@ -1,5 +1,8 @@
+import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/screens/income/activated_users_screen_controller.dart';
+import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -19,36 +22,33 @@ class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
         title: '激活人数',
         color: BaseColors.white,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: defaultPadding,),
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: controller.levelColorList.length,
-              itemBuilder: (_, index) {
-                return _cardItem(index);
-              },
-              separatorBuilder: (_, index) {
-                return Container(height: defaultPadding, color: Colors.transparent,);
-              },
-            )
-          ],
+      body: Obx(() => Padding(
+        padding: const EdgeInsets.all(defaultPadding),
+        child: ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.levelColorList.length,
+          itemBuilder: (_, index) {
+            return _cardItem(index);
+          },
+          separatorBuilder: (_, index) {
+            return Container(
+              height: defaultPadding,
+              color: Colors.transparent,
+            );
+          },
         ),
-      ),
+      )),
     );
   }
 
-  _cardItem(int index) {
+  _cardItem(int superIndex) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(defaultPadding),
-          color: controller.levelColorList[index]
-      ),
+          color: controller.levelColorList[superIndex]),
       child: Column(
         children: [
           Row(
@@ -58,11 +58,13 @@ class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
                 width: 20,
                 height: 20,
               ),
-              const SizedBox(width: defaultPadding / 2,),
+              const SizedBox(
+                width: defaultPadding / 2,
+              ),
               Text(
-                controller.levelTitleList[index],
-                style: fontDMBold.copyWith(
-                    color: BaseColors.white, fontSize: 18),
+                controller.levelTitleList[superIndex],
+                style:
+                fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
               ),
               Expanded(child: Container()),
               Text(
@@ -72,7 +74,9 @@ class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
               ),
             ],
           ),
-          const SizedBox(height: defaultPadding,),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           GridView.builder(
             itemCount: 4,
             shrinkWrap: true,
@@ -85,8 +89,16 @@ class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
             ),
             itemBuilder: (_, index) {
               return InkWell(
-                onTap: () {},
-                child: _buildIncomeCard(index),
+                onTap: () {
+                  if (index == 0) {
+                  } else if (index == 1) {
+                    Get.toNamed(AppRoutes.activeMember,
+                        arguments: ActiveMemberDetailScreenArgs(
+                            layer: controller.layerList.value[superIndex].layer ?? 0));
+                  } else if (index == 2) {
+                  } else {}
+                },
+                child: _buildIncomeCard(superIndex, index),
               );
             },
           ),
@@ -95,13 +107,25 @@ class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
     );
   }
 
-  Widget _buildIncomeCard(int index) {
+  _buildIncomeCard(int superIndex, int index) {
+    if (controller.layerList.isEmpty) return Container();
+    LayerInfo layerInfo = controller.layerList[superIndex];
+    double? count = 0;
+    if (index == 0) {
+      count = (layerInfo.userCount ?? 0).toDouble();
+    } else if (index == 2) {
+      count = (layerInfo.realUserCount ?? 0).toDouble();
+    } else if (index == 3) {
+      count = layerInfo.todyRoiTotal;
+    } else if (index == 4) {
+      count = layerInfo.roiTotal;
+    }
+
     return Container(
       padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(defaultPadding / 2),
-          color: const Color(0xFF000000).withOpacity(0.5)
-      ),
+          color: const Color(0xFF000000).withOpacity(0.5)),
       child: Row(
         children: [
           Image.asset(
@@ -127,7 +151,7 @@ class ActivatedUsersScreen extends GetView<ActivatedUsersScreenController> {
                   height: defaultPadding / 5,
                 ),
                 Text(
-                  0.toString(),
+                  count.toString(),
                   style: fontDMBold.copyWith(
                       color: BaseColors.primaryColor, fontSize: 16),
                   maxLines: 1,

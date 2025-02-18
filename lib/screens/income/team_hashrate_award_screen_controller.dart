@@ -78,7 +78,7 @@ class TeamHashrateAwardScreenController extends BaseController {
       userHashrate(),
       aiPulseUserHashrateProgress(),
       aiPulseTotalDirectTop(),
-      aiPulseTotalLyaerTotal(),
+      aiPulseTotalLayerTotal(),
       aiPulseHashrateEnableHashrateList(),
     ]);
     Get.context!.loaderOverlay.hide();
@@ -112,7 +112,7 @@ class TeamHashrateAwardScreenController extends BaseController {
     }
   }
 
-  Future<void> aiPulseTotalLyaerTotal() async {
+  Future<void> aiPulseTotalLayerTotal() async {
     final result = await fetchData(
         loadingState: AppLoadingState.backgroundWithoutError,
         request: () => aiPulseService.aiPulseTotalLayerTotal());
