@@ -29,32 +29,6 @@ class TeamHashrateAwardScreenController extends BaseController {
   RxList<LayerInfo> layerList = <LayerInfo>[].obs;
   RxList<PowerInfo> hashrateList = <PowerInfo>[].obs;
 
-  List <Color> levelColorList = [
-    const Color(0xFF17CE92).withOpacity(0.5),
-    const Color(0xFF126FA5).withOpacity(0.5),
-    const Color(0xFF7912A5).withOpacity(0.5),
-  ];
-
-  List <String> levelTitleList = [
-    '第一代',
-    '第二代',
-    '第三代',
-  ];
-
-  List<String> teamTitleList = [
-    '总人数',
-    '有效会员',
-    '今日收益',
-    '总收益'
-  ];
-
-  List<String> teamTitleImageList = [
-    'assets/images/income/team_djhy.png',
-    'assets/images/income/team_yxhy.png',
-    'assets/images/income/team_jrsy.png',
-    'assets/images/income/team_zsy.png'
-  ];
-
   @override
   void onInit() {
     super.onInit();

@@ -237,7 +237,17 @@ class ProfileScreen extends GetView<ProfileScreenController> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: defaultPadding * 3,
+                  height: defaultPadding,
+                ),
+                Text(
+                  '${tr('profile.nickname')}：${controller.userController.userInfo.nickName}',
+                  style: fontDMMedium.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 12,
+                  ),
+                ),
+                const SizedBox(
+                  height: defaultPadding / 2,
                 ),
                 Text(
                   tr('profile.total_assets_usdt'),
