@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'dart:html' as html;
+
 import 'package:dgpt/models/pulse/user_balance.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
@@ -9,6 +11,7 @@ import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -111,6 +114,14 @@ class ProfileScreenController extends BaseController {
     }
   }
 
+  loadImage(BuildContext context) async {
+    if (kIsWeb) {
+      capturePngWeb(context);
+    } else {
+      await capturePng(context);
+    }
+  }
+
   Future<void> capturePng(BuildContext context) async {
     try {
       // 获取 RenderRepaintBoundary
@@ -134,6 +145,35 @@ class ProfileScreenController extends BaseController {
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  Future<void> capturePngWeb(BuildContext context) async {
+    try {
+
+      // 获取 RenderRepaintBoundary
+      RenderRepaintBoundary boundary =
+      globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+
+      // 转换为图像
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+
+      // 转换为字节数据
+      ByteData? byteData =
+      await image.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+      // 创建 Blob 并生成下载链接
+      final blob = html.Blob([pngBytes]);
+      final url = html.Url.createObjectUrlFromBlob(blob);
+      final anchor = html.AnchorElement(href: url)
+        ..setAttribute("download", "column_image.png")
+        ..click();
+
+      // 释放 URL
+      html.Url.revokeObjectUrl(url);
+    } catch (e) {
+      print("Error: $e");
     }
   }
 

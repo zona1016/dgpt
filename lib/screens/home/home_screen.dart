@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
-import 'package:dgpt/screens/tutorial/widget/gradient_circular_progress.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -12,7 +11,6 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:dgpt/widget/default_navigation_header.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -194,18 +192,21 @@ class HomeScreen extends GetView<HomeScreenController> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(width: defaultPadding / 2,),
+                      const SizedBox(
+                        width: defaultPadding / 2,
+                      ),
                       Container(
                         height: 15,
                         width: 15,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7.5),
-                          color: controller.isActivate.value
-                              ? BaseColors.secondPrimaryColor
-                              : BaseColors.gray85
-                        ),
+                            borderRadius: BorderRadius.circular(7.5),
+                            color: controller.isActivate.value
+                                ? BaseColors.secondPrimaryColor
+                                : BaseColors.gray85),
                       ),
-                      const SizedBox(width: defaultPadding,),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
                       Text(
                         controller.isActivate.value
                             ? tr('home.activated')
@@ -216,7 +217,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: defaultPadding,),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
                     ],
                   ),
                 ),
@@ -335,37 +338,37 @@ class HomeScreen extends GetView<HomeScreenController> {
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
     return Obx(() => IntrinsicHeight(
-      child: Row(
-        children: [
-          Expanded(
-              child: GestureDetector(
-                onTap: () => onTap(1),
-                child: _buildDayIncome()
-              )
+          child: Row(
+            children: [
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () => onTap(1), child: _buildDayIncome())),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () => onTap(2),
+                  child: _buildTotalIncome(),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: defaultPadding,),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => onTap(2),
-              child: _buildTotalIncome(),
-            ),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 
   Widget _buildDayIncome() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: BaseColors.dayIncomeGradient,
-        color: Colors.white.withOpacity(0.8)
-      ),
+          borderRadius: BorderRadius.circular(20),
+          gradient: BaseColors.dayIncomeGradient,
+          color: Colors.white.withOpacity(0.8)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: defaultPadding,),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: defaultPadding),
             child: Text(
@@ -399,8 +402,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color(0xFF04133D)
-      ),
+          color: const Color(0xFF04133D)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -409,10 +411,9 @@ class HomeScreen extends GetView<HomeScreenController> {
             width: 94,
             height: 94,
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/income/total_progress.png')
-              )
-            ),
+                image: DecorationImage(
+                    image:
+                        AssetImage('assets/images/income/total_progress.png'))),
             child: Center(
               child: Text(
                 tr('home.total_income'),
@@ -441,120 +442,19 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _showShare(BuildContext context) async {
-    DialogUtils.showShareDialog(
-        key: controller.globalKey,
-        barrierDismissible: false,
-        title: '推荐好友',
-        desc: '解锁无限奖励',
-        image: 'assets/images/home/share_header.png',
-        bgImage: 'assets/images/home/share_bg.png',
-        showBottomClose: true,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(defaultPadding / 2),
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage('assets/images/home/share_qr_code.png'),
-                  fit: BoxFit.cover,
-                )),
-                child: SizedBox(
-                  height: 157,
-                  width: 157,
-                  child: QrImageView(
-                    data:
-                        "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
-                    version: QrVersions.auto,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Text(
-                '邀请码：${controller.userController.userInfo.inviteCode}',
-                style: fontDMMedium.copyWith(
-                    color: BaseColors.white, fontSize: 14),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 44,
-                    width: double.infinity,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        color: BaseColors.whiteGray3),
-                    child: Row(
-                      children: [
-                        Text(
-                          '复制邀请链接',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 16),
-                        ),
-                        Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: () {
-                            Clipboard.setData(ClipboardData(
-                                text:
-                                    "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
-                            ToastUtils.showToast(title: tr('tip.copy_success'));
-                          },
-                          child: Image.asset(
-                            'assets/images/home/share_copy.png',
-                            height: 20,
-                            width: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding / 2),
-                  Container(
-                    height: 44,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        gradient: BaseColors.baseButtonLinearGradient),
-                    child: Row(
-                      children: [
-                        Text(
-                          '下载保存图片',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 16),
-                        ),
-                        Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: () async {
-                            controller.capturePng(context);
-                          },
-                          child: Image.asset(
-                            'assets/images/home/share_download.png',
-                            width: 20,
-                            height: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding),
-                ],
-              ),
-            ],
-          ),
-        ));
+  _showShare(BuildContext context) {
+    DialogUtils.showShareDialogDefault(
+      globalKey: controller.globalKey,
+      inviteCode: '${controller.userController.userInfo.inviteCode}',
+      copyTap: () {
+        Clipboard.setData(ClipboardData(
+            text:
+            "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
+        ToastUtils.showToast(title: tr('tip.copy_success'));
+      },
+      download: () {
+        controller.loadImage(context);
+      },
+    );
   }
 }

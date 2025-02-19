@@ -48,14 +48,14 @@ class ResetPasswordScreenController extends BaseController {
           email: emailCodeScreenController.email.value,
         ));
     if (result != null) {
-      DialogUtils.showDGPTBaseDialog(
-          barrierDismissible: false,
-          title: tr('profile.password_reset_successfully'),
-          confirmText: tr('button.confirm'),
-          onConfirmPressed: () {
-            Get.close(4);
-          }
+      DialogUtils.showSuccessDialog(
+        tr('profile.password_reset_successfully'),
+        barrierDismissible: false,
+        showCircularProgressIndicator: true,
       );
+      Future.delayed(const Duration(seconds: 2), () {
+        Get.close(4);
+      });
     }
   }
 

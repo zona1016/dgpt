@@ -514,6 +514,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                       context: context,
                       imagePath: 'assets/images/income/zrs.png',
                       title: '总人数',
+                      hideRight: true,
                       value:
                           (controller.userTeamTotalInfo.value?.memberCount ?? 0)
                               .toString(),
@@ -556,6 +557,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     required String title,
     required String value,
     required Function() onTap,
+    bool hideRight = false,
   }) {
     return InkWell(
       onTap: onTap,
@@ -593,11 +595,12 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               ],
             ),
           ),
-          const Icon(
-            Icons.chevron_right,
-            size: 25,
-            color: BaseColors.white,
-          ),
+          if (!hideRight)
+            const Icon(
+              Icons.chevron_right,
+              size: 25,
+              color: BaseColors.white,
+            ),
         ],
       ),
     );

@@ -465,119 +465,18 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   }
 
   _showShare(BuildContext context) {
-    DialogUtils.showShareDialog(
-        key: controller.globalKey,
-        barrierDismissible: false,
-        title: '推荐好友',
-        desc: '解锁无限奖励',
-        image: 'assets/images/home/share_header.png',
-        bgImage: 'assets/images/home/share_bg.png',
-        showBottomClose: true,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(defaultPadding / 2),
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage('assets/images/home/share_qr_code.png'),
-                  fit: BoxFit.cover,
-                )),
-                child: SizedBox(
-                  height: 157,
-                  width: 157,
-                  child: QrImageView(
-                    data:
-                        "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}", // 要编码的字符串数据
-                    version: QrVersions.auto,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Text(
-                '邀请码：${controller.userController.userInfo.inviteCode}',
-                style: fontDMMedium.copyWith(
-                    color: BaseColors.white, fontSize: 14),
-              ),
-              const SizedBox(
-                height: defaultPadding / 2,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 44,
-                    width: double.infinity,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        color: BaseColors.whiteGray3),
-                    child: Row(
-                      children: [
-                        Text(
-                          '复制邀请链接',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 16),
-                        ),
-                        Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: () {
-                            Clipboard.setData(ClipboardData(
-                                text:
-                                    "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
-                            ToastUtils.showToast(title: tr('tip.copy_success'));
-                          },
-                          child: Image.asset(
-                            'assets/images/home/share_copy.png',
-                            height: 20,
-                            width: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding / 2),
-                  Container(
-                    height: 44,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        gradient: BaseColors.baseButtonLinearGradient),
-                    child: Row(
-                      children: [
-                        Text(
-                          '下载保存图片',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 16),
-                        ),
-                        Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: () async {
-                            controller.capturePng(context);
-                          },
-                          child: Image.asset(
-                            'assets/images/home/share_download.png',
-                            width: 20,
-                            height: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: defaultPadding),
-                ],
-              ),
-            ],
-          ),
-        ));
+    DialogUtils.showShareDialogDefault(
+      globalKey: controller.globalKey,
+      inviteCode: '${controller.userController.userInfo.inviteCode}',
+      copyTap: () {
+        Clipboard.setData(ClipboardData(
+            text:
+            "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
+        ToastUtils.showToast(title: tr('tip.copy_success'));
+      },
+      download: () {
+        controller.loadImage(context);
+      },
+    );
   }
 }

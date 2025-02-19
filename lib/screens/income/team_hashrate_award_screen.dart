@@ -163,11 +163,11 @@ class TeamHashrateAwardScreen
                     fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
               ),
               Expanded(child: Container()),
-              Text(
-                '比率：5%',
-                style: fontDMBold.copyWith(
-                    color: BaseColors.weakTextColor, fontSize: 10),
-              ),
+              // Text(
+              //   '比率：5%',
+              //   style: fontDMBold.copyWith(
+              //       color: BaseColors.weakTextColor, fontSize: 10),
+              // ),
             ],
           ),
           const SizedBox(

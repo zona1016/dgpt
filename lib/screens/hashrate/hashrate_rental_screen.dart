@@ -195,7 +195,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               if (controller
                   .hasratePageList[index].isBuy &&
                   controller.hasratePageList[index]
-                      .buyStatus == 1)
+                      .buyStatus == 1 && index != 0)
                 GestureDetector(
                   onTap: () {
                     Get.toNamed(AppRoutes.hashrateRentalDetail,

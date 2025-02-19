@@ -175,6 +175,8 @@ abstract class AiPulseService {
   Future<BaseResponse> aiPulseWithdrawalWithdrawal({required Map<String, dynamic> pram});
 
   Future<BaseResponse> aiPulseWalletTransfer({required String amount});
+
+  Future<BaseResponse> userSetLang({required String long});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -1001,6 +1003,17 @@ class AiPulseServiceImpl extends AiPulseService {
               ? PaginationResponse<RecommendInfo>.fromJson(data,
                   (json) => RecommendInfo.fromJson(json as Map<String, dynamic>))
               : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> userSetLang({required String long}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userSetLang + long,
+          method: HttpMethod.get,
+          deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
