@@ -19,8 +19,8 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '提现',
+      appBar: BaseAppBar(
+        title: tr('profile.withdraw_assets'),
         color: BaseColors.white,
         backgroundColor: Colors.black,
       ),
@@ -56,7 +56,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                   controller:
                                       controller.addressEditingController,
                                   decoration: InputDecoration(
-                                      hintText: '输入钱包地址',
+                                      hintText: tr('placeholder.enter_wallet_address'),
                                       hintStyle: fontDMMedium.copyWith(
                                           color: BaseColors.white,
                                           fontSize: 14),
@@ -122,7 +122,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                         height: defaultPadding / 2,
                       ),
                       Text(
-                        '数额',
+                        tr('profile.amount'),
                         style: fontDMMedium.copyWith(
                           fontSize: 16,
                           color: BaseColors.white,
@@ -158,7 +158,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                     // 仅允许输入数字和一个小数点
                                   ],
                                   decoration: InputDecoration(
-                                      hintText: '请输入金额',
+                                      hintText: tr('placeholder.please_enter_the_amount'),
                                       hintStyle: fontDMMedium.copyWith(
                                           color: BaseColors.white,
                                           fontSize: 14),
@@ -277,7 +277,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                             child: BaseButton(
                               type: BaseButtonType.secondary,
                               onPressed: () => Get.back(),
-                              text: '取消',
+                              text: tr('button.cancel'),
                             ),
                           ),
                           const SizedBox(width: defaultPadding),
@@ -291,7 +291,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                             ? controller.googleAuth.isNotEmpty
                                             : true),
                                     onPressed: () => controller.withdraw(),
-                                    text: '确认提现',
+                                    text: tr('button.confirm') + ' ' +  tr('profile.withdraw_assets'),
                                   )),
                             ),
                           )

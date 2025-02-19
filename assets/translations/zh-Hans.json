@@ -281,5 +281,9 @@
     "home": "首页",
     "statement": "交易明细",
     "profile": "个人资料"
+  },
+  "placeholder": {
+    "enter_wallet_address": "输入钱包地址",
+    "please_enter_the_amount": "请输入金额"
   }
 }

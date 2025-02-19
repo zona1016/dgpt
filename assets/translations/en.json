@@ -281,5 +281,9 @@
     "home": "Home",
     "statement": "Statement",
     "profile": "Profile"
+  },
+  "placeholder": {
+    "enter_wallet_address": "Enter Wallet Address",
+    "please_enter_the_amount": "Please enter the amount"
   }
 }

@@ -297,6 +297,10 @@ class CodegenLoader extends AssetLoader{
     "home": "Home",
     "statement": "Statement",
     "profile": "Profile"
+  },
+  "placeholder": {
+    "enter_wallet_address": "Enter Wallet Address",
+    "please_enter_the_amount": "Please enter the amount"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -582,6 +586,10 @@ static const Map<String,dynamic> zh_Hans = {
     "home": "首页",
     "statement": "交易明细",
     "profile": "个人资料"
+  },
+  "placeholder": {
+    "enter_wallet_address": "输入钱包地址",
+    "please_enter_the_amount": "请输入金额"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};
