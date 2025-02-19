@@ -82,7 +82,7 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
               height: 90,
               child: Column(
                 children: [
-                  Image.asset(controller.tabPathList[index], width: 44),
+                  Image.asset(controller.tabPathList[index], width: 50),
                   const Spacer(),
                   Text(
                     key,

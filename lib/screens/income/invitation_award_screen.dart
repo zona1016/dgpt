@@ -279,7 +279,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
           ),
           Expanded(
             child: Text(
-                DateFormat("dd/MM/yyyy").format(
+                DateFormat("dd/MM/yyyy HH:mm:ss").format(
                     DateFormat("yyyy-MM-dd HH:mm:ss").parse(
                         controller.recommendInfoList[index].createTime ?? '')),
                 style: fontDMMedium.copyWith(

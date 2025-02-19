@@ -82,7 +82,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                               return Stack(
                                 children: [
                                   _rentalItem(index),
-                                  if (index == 0)
+                                  if (controller.hasratePageList[index].code == 'B0001')
                                     Positioned(
                                       top: 0,
                                       right: 0,

@@ -113,7 +113,7 @@ dependencies:
 #  word_cloud: ^1.0.3
 #  html: ^0.15.4
 #  timeago: ^3.7.0
-#  card_swiper: ^3.0.1
+  card_swiper: ^3.0.1
 #  comment_tree: ^0.3.0
   store_checker: ^1.6.0
 #  extended_text_field: ^16.0.0

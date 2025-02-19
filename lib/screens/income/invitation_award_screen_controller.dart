@@ -37,7 +37,7 @@ class InvitationAwardScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    aiPulseTotalRecommendAwardUserList();
+    aiPulseTotalRecommendAwardTotal();
   }
 
   @override
@@ -57,6 +57,7 @@ class InvitationAwardScreenController extends BaseController {
         request: () => aiPulseService.aiPulseTotalRecommendAwardTotal());
     if (result != null) {
       recommendAwardTotalInfo.value = result;
+      aiPulseTotalRecommendAwardUserList();
     }
   }
 

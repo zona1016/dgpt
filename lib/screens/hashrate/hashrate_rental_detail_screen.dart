@@ -389,51 +389,85 @@ class HashrateRentalDetailScreen
               ),
             ),
             const SizedBox(height: defaultPadding),
-            Container(
-              padding: const EdgeInsets.all(defaultPadding),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF05CCFF), // 0%
-                    Color(0xFF04A2FF), // 43%
-                    Color(0xFF0486FF), // 79%
-                    Color(0xFF047CFF), // 100%
-                  ],
-                  stops: [0.0, 0.43, 0.79, 1.0], // 对应的百分比
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    tr('hashrate.price_per_unit'),
-                    style: fontDMRegular.copyWith(
-                        color: BaseColors.white, fontSize: 12),
+            Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFF05CCFF), // 0%
+                        Color(0xFF04A2FF), // 43%
+                        Color(0xFF0486FF), // 79%
+                        Color(0xFF047CFF), // 100%
+                      ],
+                      stops: [0.0, 0.43, 0.79, 1.0], // 对应的百分比
+                    ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Column(
                     children: [
-                      const Spacer(),
-                      Image.asset(
-                        'assets/images/home/income_qb.png',
-                        width: 25,
-                        height: 25,
-                      ),
-                      const SizedBox(
-                        width: defaultPadding / 2,
-                      ),
                       Text(
-                        '${controller.args!.hasratePageInfo?.amount ?? 0} U',
-                        style: fontDMBold.copyWith(
-                            color: BaseColors.white, fontSize: 20),
+                        tr('hashrate.price_per_unit'),
+                        style: fontDMRegular.copyWith(
+                            color: BaseColors.white, fontSize: 12),
                       ),
-                      const Spacer(),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Spacer(),
+                          Image.asset(
+                            'assets/images/home/income_qb.png',
+                            width: 25,
+                            height: 25,
+                          ),
+                          const SizedBox(
+                            width: defaultPadding / 2,
+                          ),
+                          Text(
+                            '${controller.args!.hasratePageInfo?.amount ?? 0} U',
+                            style: fontDMBold.copyWith(
+                                color: BaseColors.white, fontSize: 20),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                if (controller.args!.hasratePageInfo?.code == 'B0001')
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/hashrate/ty_bg.png'),
+                          )),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: defaultPadding / 4,
+                            horizontal: defaultPadding / 2),
+                        child: Transform.rotate(
+                          angle: 0.785, // -45° 角度
+                          child: const Text(
+                            "体验",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(height: defaultPadding),
             Row(

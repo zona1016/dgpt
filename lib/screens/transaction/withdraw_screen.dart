@@ -201,7 +201,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                       const SizedBox(
                         height: defaultPadding,
                       ),
-                      if (controller.googleAuth.value == true)
+                      if (controller.showGoogleAuth.value)
                         GetBuilder<WithdrawScreenController>(
                           builder: (_) {
                             return BaseTextFormField(
@@ -267,7 +267,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                             );
                           },
                         ),
-                      if (controller.googleAuth.value == true)
+                      if (controller.showGoogleAuth.value)
                         const SizedBox(height: defaultPadding),
                       Row(
                         children: [
@@ -291,7 +291,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                             ? controller.googleAuth.isNotEmpty
                                             : true),
                                     onPressed: () => controller.withdraw(),
-                                    text: tr('button.confirm') + ' ' +  tr('profile.withdraw_assets'),
+                                    text: '${tr('button.confirm')} ${tr('profile.withdraw_assets')}',
                                   )),
                             ),
                           )
