@@ -376,7 +376,7 @@ class DialogUtils {
     showDGPTBaseDialog(
         imageWidget: Image.asset(
           image ?? 'assets/images/custom/dio_login_success.png',
-          height: height ?? 44,
+          height: height ?? 144,
           width: width ?? 144,
         ),
         title: title,

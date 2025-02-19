@@ -14,7 +14,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class ProfileScreen extends GetView<ProfileScreenController> {
   const ProfileScreen({super.key});
@@ -240,7 +239,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   height: defaultPadding,
                 ),
                 Text(
-                  '${tr('profile.nickname')}：${controller.userController.userInfo.nickName}',
+                  '${controller.userController.userInfo.account}',
                   style: fontDMMedium.copyWith(
                     color: BaseColors.white,
                     fontSize: 12,

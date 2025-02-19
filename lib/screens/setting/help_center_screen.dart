@@ -16,7 +16,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black.withOpacity(0.8),
       backgroundImage: 'assets/images/home/help_center.png',
       appBar: const BaseAppBar(
         title: '帮助中心',

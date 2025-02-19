@@ -5,6 +5,7 @@ import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/controllers/user_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/widget/form/custom_form_builder_validators.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -61,6 +62,7 @@ class LoginScreenController extends BaseController {
     if (result != null) {
       DialogUtils.showSuccessDialog(
         tr('profile.login_success'),
+        titleColor: BaseColors.primaryColor,
         barrierDismissible: false,
         showCircularProgressIndicator: true
       );
