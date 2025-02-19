@@ -26,100 +26,104 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
       body: Obx(() => Column(
-        children: [
-          _tabBar(context),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: BaseSmartRefresher(
-                refreshController: controller.refreshController,
-                enableLoadMore: true,
-                uiState: controller.uiState.value,
-                isEmpty: controller.hasratePageList.isEmpty,
-                onPullToRefresh: (loadingState) {
-                  controller.hashratePage(loadingState: loadingState);
-                },
-                onLoadMore: (loadingState) {
-                  controller.hashratePage(loadingState: loadingState);
-                },
-                childBuilder: (context, physics) {
-                  return CustomScrollView(
-                    physics: physics,
-                    slivers: [
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            if (controller.loaded.value)
-                              HashrateHeader(
-                                powerInfo: controller.powerInfo.value,
-                                progressInfo: controller.progressInfo.value,
-                              ),
-                            Text(
-                              tr('hashrate.product_details'),
-                              style: fontDMBold.copyWith(
-                                color: BaseColors.white,
-                                fontSize: 18,
-                              ),
+            children: [
+              _tabBar(context),
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  child: BaseSmartRefresher(
+                    refreshController: controller.refreshController,
+                    enableLoadMore: true,
+                    uiState: controller.uiState.value,
+                    isEmpty: controller.hasratePageList.isEmpty,
+                    onPullToRefresh: (loadingState) {
+                      controller.hashratePage(loadingState: loadingState);
+                    },
+                    onLoadMore: (loadingState) {
+                      controller.hashratePage(loadingState: loadingState);
+                    },
+                    childBuilder: (context, physics) {
+                      return CustomScrollView(
+                        physics: physics,
+                        slivers: [
+                          SliverToBoxAdapter(
+                            child: Column(
+                              children: [
+                                if (controller.loaded.value)
+                                  HashrateHeader(
+                                    powerInfo: controller.powerInfo.value,
+                                    progressInfo: controller.progressInfo.value,
+                                  ),
+                                Text(
+                                  tr('hashrate.product_details'),
+                                  style: fontDMBold.copyWith(
+                                    color: BaseColors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: defaultPadding,
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: defaultPadding,),
-                          ],
-                        ),
-                      ),
-                      SliverGrid.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: defaultPadding,
-                          mainAxisSpacing: defaultPadding,
-                          childAspectRatio: kIsWeb ? 0.4 : 0.43,
-                        ),
-                        itemCount: controller.hasratePageList.length,
-                        // Number of items
-                        itemBuilder: (context, index) {
-                          return Stack(
-                            children: [
-                              _rentalItem(index),
-                              if (index == 0)
-                                Positioned(
-                                  top: 0,
-                                  right: 0,
-                                  child: Container(
-                                    width: 60,
-                                    height: 60,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
+                          ),
+                          SliverGrid.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: defaultPadding,
+                              mainAxisSpacing: defaultPadding,
+                              childAspectRatio: kIsWeb ? 0.4 : 0.43,
+                            ),
+                            itemCount: controller.hasratePageList.length,
+                            // Number of items
+                            itemBuilder: (context, index) {
+                              return Stack(
+                                children: [
+                                  _rentalItem(index),
+                                  if (index == 0)
+                                    Positioned(
+                                      top: 0,
+                                      right: 0,
+                                      child: Container(
+                                        width: 60,
+                                        height: 60,
+                                        decoration: const BoxDecoration(
+                                            image: DecorationImage(
                                           image: AssetImage(
                                               'assets/images/hashrate/ty_bg.png'),
                                         )),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: defaultPadding / 4,
-                                          horizontal: defaultPadding / 2),
-                                      child: Transform.rotate(
-                                        angle: 0.785, // -45° 角度
-                                        child: const Text(
-                                          "体验",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: defaultPadding / 4,
+                                              horizontal: defaultPadding / 2),
+                                          child: Transform.rotate(
+                                            angle: 0.785, // -45° 角度
+                                            child: const Text(
+                                              "体验",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                            ],
-                          );
-                        },
-                      )
-                    ],
-                  );
-                },
+                                ],
+                              );
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
-      )),
+            ],
+          )),
     );
   }
 
@@ -192,28 +196,24 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                   style: whiteText18,
                 ),
               ),
-              if (controller
-                  .hasratePageList[index].isBuy &&
-                  controller.hasratePageList[index]
-                      .buyStatus == 1 && index != 0)
+              if (controller.hasratePageList[index].isBuy &&
+                  controller.hasratePageList[index].buyStatus == 1 &&
+                  index != 0)
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRoutes.hashrateRentalDetail,
-                        arguments: HashrateRentalDetailScreenArgs(
-                            hasratePageInfo: controller
-                                .hasratePageList[index]));
+                    Get.toNamed(AppRoutes.hashrateRentalActive);
                   },
                   child: Container(
                     width: 38,
                     height: 15,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: BaseColors.primaryColor
-                    ),
+                        color: BaseColors.primaryColor),
                     child: Center(
                       child: Text(
                         tr('hashrate.details'),
-                        style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 7),
+                        style: fontDMBold.copyWith(
+                            color: BaseColors.white, fontSize: 7),
                       ),
                     ),
                   ),
@@ -251,16 +251,13 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               ),
             ],
           ),
-          if (!controller
-              .hasratePageList[index].isBuy ||
-              controller.hasratePageList[index]
-                  .buyStatus == 0)
+          if (!controller.hasratePageList[index].isBuy ||
+              controller.hasratePageList[index].buyStatus == 0)
             GestureDetector(
               onTap: () {
                 Get.toNamed(AppRoutes.hashrateRentalDetail,
                     arguments: HashrateRentalDetailScreenArgs(
-                        hasratePageInfo: controller
-                            .hasratePageList[index]));
+                        hasratePageInfo: controller.hasratePageList[index]));
               },
               child: Container(
                 width: double.infinity,
@@ -278,17 +275,14 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                 ),
               ),
             ),
-          if (controller
-              .hasratePageList[index].isBuy &&
-              controller.hasratePageList[index]
-                  .buyStatus == 1)
+          if (controller.hasratePageList[index].isBuy &&
+              controller.hasratePageList[index].buyStatus == 1)
             BaseButton(
               enabled: false,
               disabledDecoration: BoxDecoration(
                   gradient: BaseColors.baseButtonLinearGradient,
                   color: Colors.white.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(15)
-              ),
+                  borderRadius: BorderRadius.circular(15)),
               height: 30,
               onPressed: () {},
               text: tr('hashrate.rental'),
