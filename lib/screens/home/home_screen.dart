@@ -51,7 +51,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                       tr('home.welcome_to_AI_PULSE'),
                       style: fontDMBold.copyWith(
                         color: BaseColors.white,
-                        fontSize: 16,
+                        fontSize: 24,
                       ),
                       textAlign: TextAlign.center,
                     ),

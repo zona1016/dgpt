@@ -114,7 +114,6 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             ),
                           ],
                         ),
-
                         const SizedBox(
                           height: defaultPadding,
                         ),
@@ -532,8 +531,9 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.all(defaultPadding),
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(defaultPadding),
+                        image: const DecorationImage(
                       image: AssetImage('assets/images/home/return_bg.png'),
                       fit: BoxFit.cover,
                     )),
