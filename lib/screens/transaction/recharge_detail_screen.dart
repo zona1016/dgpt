@@ -4,8 +4,8 @@ import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
+import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:dgpt/widget/form/base_dropdown_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,92 +25,173 @@ class RechargeDetailScreen extends GetView<RechargeDetailScreenController> {
         color: BaseColors.white,
         backgroundColor: Colors.black,
       ),
-      body: Obx(() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: defaultPadding,),
-              Center(
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  color: Colors.white,
-                  child: QrImageView(
-                    data: controller.url.value, // 要编码的字符串数据
-                    version: QrVersions.auto,
-                  ),
+      body: Obx(() => SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: defaultPadding,
                 ),
-              ),
-              const SizedBox(height: defaultPadding,),
-              Text(
-                '钱包地址：',
-                style: fontDMMedium.copyWith(
-                  fontSize: 16,
-                  color: BaseColors.white,
-                ),
-              ),
-              const SizedBox(height: defaultPadding / 2,),
-              Row(
-                children: [
-                  Text(
-                    controller.url.value,
-                    style: fontDMMedium.copyWith(
-                      fontSize: 14,
-                      color: BaseColors.white,
+                Container(
+                  padding: const EdgeInsets.all(defaultPadding),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/transaction/code_bg.png'),
                     ),
                   ),
-                  Expanded(child: Container()),
-                  GestureDetector(
-                    onTap: () {
-                      Clipboard.setData(ClipboardData(
-                          text: controller.url.value));
+                  child: Center(
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      color: Colors.white,
+                      child: QrImageView(
+                        data: controller.url.value, // 要编码的字符串数据
+                        version: QrVersions.auto,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: defaultPadding,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 2),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/transaction/qblx.png',
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
+                      Text(
+                        tr('profile.wallet_address'),
+                        style: fontDMMedium.copyWith(
+                          fontSize: 16,
+                          color: BaseColors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
+                      Expanded(
+                        child: Text(
+                          controller.url.value,
+                          style: fontDMMedium.copyWith(
+                            fontSize: 16,
+                            color: BaseColors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: defaultPadding,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 2),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/transaction/qblx.png',
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
+                      Text(
+                        tr('profile.wallet_type'),
+                        style: fontDMMedium.copyWith(
+                          fontSize: 16,
+                          color: BaseColors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: defaultPadding,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'USDT-TRC20',
+                          style: fontDMMedium.copyWith(
+                            fontSize: 16,
+                            color: BaseColors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: defaultPadding,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5),
+                  child: BaseButton(
+                    onPressed: () {
+                      Clipboard.setData(
+                          ClipboardData(text: controller.url.value));
                       ToastUtils.showToast(title: tr('tip.copy_success'));
                     },
-                    child: Image.asset(
+                    text: '${tr('button.copy_address')}  ',
+                    icon: Image.asset(
                       'assets/images/home/share_copy.png',
-                      height: 16,
-                      width: 16,
+                      width: 20,
+                      height: 20,
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(height: defaultPadding,),
-              Text(
-                '所属网络',
-                style: fontDMMedium.copyWith(
-                  fontSize: 16,
-                  color: BaseColors.white,
+                  ),
                 ),
-              ),
-              const SizedBox(height: defaultPadding / 2,),
-              BaseDropDownFormField(
-                  items: controller.merchantList,
-                  fillColor: const Color(0xFF282F54).withOpacity(0.6),
-                  dropDownColor: const Color(0xFF282F54),
-                  onChanged: (value) {
-                    controller.selectedMerchant = value?.value;
-                  },
-                  // prefixIcon: Padding(
-                  //   padding: const EdgeInsets.only(
-                  //       left: defaultPadding,
-                  //       top: defaultPadding / 2,
-                  //       bottom: defaultPadding / 2),
-                  //   child: Image.asset(
-                  //     'assets/images/home/recharge_icon.png',
-                  //     width: 20,
-                  //     height: 20,
-                  //   ),
-                  // ),
-                  name: 'paymentMethodType',
-                  style: fontDMMedium.copyWith(color: BaseColors.white),
-                  hintText: 'TRC20',
-                  menuMaxHeight: 250)
-            ],
-          ),
-        ),
-      )),
+                const SizedBox(
+                  height: defaultPadding,
+                ),
+                Container(
+                  width: double.infinity,
+                  color: const Color(0xFFFF5449).withOpacity(0.2),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: defaultPadding,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/transaction/tip.png',
+                            width: 20,
+                            height: 20,
+                          ),
+                          const SizedBox(
+                            width: defaultPadding,
+                          ),
+                          Expanded(
+                            child: Text(
+                              tr('tip.recharge_tip'),
+                              style: fontDMMedium.copyWith(
+                                fontSize: 16,
+                                color: BaseColors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: defaultPadding,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )),
     );
   }
 }
