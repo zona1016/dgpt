@@ -1,3 +1,4 @@
+import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
 import 'package:dgpt/screens/income/active_member_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -10,9 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ActiveMemberDetailScreenArgs {
-  final int layer;
+  final MemberList memberList;
 
-  ActiveMemberDetailScreenArgs({required this.layer});
+  ActiveMemberDetailScreenArgs({required this.memberList});
 }
 
 class ActiveMemberDetailScreen
@@ -82,10 +83,10 @@ class ActiveMemberDetailScreen
                           'assets/images/custom/profile_icon_bg.png'),
                       fit: BoxFit.cover),
                 ),
-                child: const ClipOval(
+                child: ClipOval(
                   // 裁剪成圆形
                   child: BaseNetworkImage(
-                    imageURL: '',
+                    imageURL: controller.memberList.value?.user?.user?.avatar ?? '',
                     placeholder:
                         "assets/images/placeholder/profile_placeholder.png",
                     fit: BoxFit.cover,
@@ -104,7 +105,7 @@ class ActiveMemberDetailScreen
                     Row(
                       children: [
                         Text(
-                          'Shdow',
+                          controller.memberList.value?.user?.user?.nickName ?? '',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 20,
@@ -123,7 +124,7 @@ class ActiveMemberDetailScreen
                                   width: 1)),
                           child: Center(
                             child: Text(
-                              '基础算力',
+                              controller.memberList.value?.powerInfo?.name ?? '',
                               style: fontDMMedium.copyWith(
                                 color: BaseColors.secondPrimaryColor,
                                 fontSize: 8,

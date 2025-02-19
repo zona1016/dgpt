@@ -1,5 +1,6 @@
 import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
@@ -12,6 +13,12 @@ import 'package:dgpt/widget/base/base_smart_refresher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+class ActiveMemberScreenArgs {
+  final int layer;
+
+  ActiveMemberScreenArgs({required this.layer});
+}
 
 class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
   const ActiveMemberScreen({super.key});
@@ -48,9 +55,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                         ),
                         Expanded(child: Container()),
                         GestureDetector(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.activeMemberDetail);
-                          },
+                          onTap: () {},
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: defaultPadding / 2,
@@ -249,7 +254,8 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
           ),
         GestureDetector(
           onTap: () {
-            Get.toNamed(AppRoutes.activeMemberDetail);
+            Get.toNamed(AppRoutes.activeMemberDetail,
+                arguments: ActiveMemberDetailScreenArgs(memberList: member));
           },
           child: Container(
             padding: const EdgeInsets.all(defaultPadding),
@@ -262,7 +268,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: BaseNetworkImage(
-                      imageURL: member?.user?.user?.avatar ?? '',
+                      imageURL: member.user?.user?.avatar ?? '',
                       placeholder: 'assets/images/custom/logo.png',
                     ),
                   ),
@@ -276,7 +282,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                       Row(
                         children: [
                           Text(
-                            member?.user?.user?.nickName ?? '',
+                            member.user?.user?.nickName ?? '',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.white,
                               fontSize: 12,

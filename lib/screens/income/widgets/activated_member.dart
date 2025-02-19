@@ -1,5 +1,6 @@
 import 'package:dgpt/models/pulse/layer_info.dart';
 import 'package:dgpt/screens/income/active_member_detail_screen.dart';
+import 'package:dgpt/screens/income/active_member_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -114,7 +115,7 @@ class _ActivatedMemberState extends State<ActivatedMember> {
                   if (index == 0) {
                   } else if (index == 1) {
                     Get.toNamed(AppRoutes.activeMember,
-                        arguments: ActiveMemberDetailScreenArgs(
+                        arguments: ActiveMemberScreenArgs(
                             layer: widget.layerList[superIndex].layer ?? 0));
                   } else if (index == 2) {
                   } else {}
