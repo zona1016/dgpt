@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'dart:html' as html;
+// import 'dart:html' as html;
 
 import 'package:dgpt/models/pulse/user_balance.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
@@ -164,14 +164,14 @@ class ProfileScreenController extends BaseController {
       Uint8List pngBytes = byteData!.buffer.asUint8List();
 
       // 创建 Blob 并生成下载链接
-      final blob = html.Blob([pngBytes]);
-      final url = html.Url.createObjectUrlFromBlob(blob);
-      final anchor = html.AnchorElement(href: url)
-        ..setAttribute("download", "column_image.png")
-        ..click();
-
-      // 释放 URL
-      html.Url.revokeObjectUrl(url);
+      // final blob = html.Blob([pngBytes]);
+      // final url = html.Url.createObjectUrlFromBlob(blob);
+      // final anchor = html.AnchorElement(href: url)
+      //   ..setAttribute("download", "column_image.png")
+      //   ..click();
+      //
+      // // 释放 URL
+      // html.Url.revokeObjectUrl(url);
     } catch (e) {
       print("Error: $e");
     }

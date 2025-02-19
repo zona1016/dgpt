@@ -64,54 +64,57 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           height: defaultPadding,
                         ),
                         _progress(),
-                        Row(
+                        Wrap(
+                          spacing: defaultPadding, // 设置主轴间距
+                          runSpacing: 8.0, // 设置交叉轴间距
                           children: [
-                            Expanded(
-                                child: _circularDetail(
-                                    title: '算力租借',
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFF6B4EC4), // 0%
-                                        Color(0xFF33255E), // 6%
-                                      ],
-                                    ))),
-                            Expanded(
-                                child: _circularDetail(
-                                    title: '邀请奖',
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFFC5679E), // 0%
-                                        Color(0xFF5F324C), // 6%
-                                      ],
-                                    ))),
-                            Expanded(
-                                child: _circularDetail(
-                                    title: '薪资',
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFF4BADAF), // 0%
-                                        Color(0xFF1F4849), // 6%
-                                      ],
-                                    ))),
-                            Expanded(
-                                child: _circularDetail(
-                                    title: '团队算力奖',
-                                    gradient: const LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Color(0xFF4062B2), // 0%
-                                        Color(0xFF192A8A), // 6%
-                                      ],
-                                    ))),
+                            _circularDetail(
+                              title: tr('hashrate.computing_power_rental'),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xFF6B4EC4), // 0%
+                                  Color(0xFF33255E), // 6%
+                                ],
+                              ),
+                            ),
+                            _circularDetail(
+                              title: tr('hashrate.invitation_bonus'),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xFFC5679E), // 0%
+                                  Color(0xFF5F324C), // 6%
+                                ],
+                              ),
+                            ),
+                            _circularDetail(
+                              title: tr('hashrate.salary'),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xFF4BADAF), // 0%
+                                  Color(0xFF1F4849), // 6%
+                                ],
+                              ),
+                            ),
+                            _circularDetail(
+                              title: tr('hashrate.team_computing_power_bonus'),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xFF4062B2), // 0%
+                                  Color(0xFF192A8A), // 6%
+                                ],
+                              ),
+                            ),
                           ],
                         ),
+
                         const SizedBox(
                           height: defaultPadding,
                         ),
@@ -147,7 +150,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        '详情',
+                                        tr('income.detail'),
                                         style: fontSFProMedium.copyWith(
                                           fontSize: 12,
                                           color: BaseColors.white,
@@ -173,7 +176,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           crossAxisCount: 2,
                           crossAxisSpacing: defaultPadding,
                           mainAxisSpacing: defaultPadding,
-                          childAspectRatio: 1.7,
+                          childAspectRatio: 1.5,
                           padding: const EdgeInsets.symmetric(
                               vertical: defaultPadding),
                           physics: const NeverScrollableScrollPhysics(),
@@ -469,6 +472,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
 
   _circularDetail({required String title, required Gradient gradient}) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           height: 10,
@@ -513,7 +517,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                     child: _buildInfoCard(
                       context: context,
                       imagePath: 'assets/images/income/zrs.png',
-                      title: '总人数',
+                      title: tr('income.total_members'),
                       hideRight: true,
                       value:
                           (controller.userTeamTotalInfo.value?.memberCount ?? 0)
@@ -536,7 +540,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                     child: _buildInfoCard(
                       context: context,
                       imagePath: 'assets/images/income/jhrs.png',
-                      title: '激活人数',
+                      title: tr('income.activated_members'),
                       value: (controller
                                   .userTeamTotalInfo.value?.realMemberCount ??
                               0)
@@ -575,11 +579,13 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                       height: 25,
                     ),
                     const SizedBox(width: defaultPadding / 4),
-                    Text(
-                      title,
-                      style: fontDMMedium.copyWith(
-                        fontSize: 14,
-                        color: BaseColors.white,
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: fontDMMedium.copyWith(
+                          fontSize: 14,
+                          color: BaseColors.white,
+                        ),
                       ),
                     ),
                   ],

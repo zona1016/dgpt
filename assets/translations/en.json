@@ -187,7 +187,7 @@
     "in_progress": "In progress",
     "rental": "Rental",
     "rented": "Rented",
-    "computing_power_rental": "Rental",
+    "computing_power_rental": "Hashrate Rental ",
     "computing_power_level": "Hashrate level",
     "income_analysis": "Income analysis",
     "help_friends_achieve_level": "Help {} friends achieve level {}",
@@ -199,10 +199,10 @@
     "rental_income": "Rental income",
     "daily_income": "Daily income",
     "income_details": "Income details",
-    "team_computing_power_bonus": "Team bonus",
-    "invitation_bonus": "Invitation bonus",
+    "team_computing_power_bonus": "Team Hashrate Reward",
+    "invitation_bonus": "Invitation Reward",
     "salary": "Salary",
-    "team_data": "Team data",
+    "team_data": "Team Data",
     "price_per_unit": "Price per unit"
   },
   "profile": {
@@ -268,7 +268,13 @@
   },
   "tip": {
     "copy_success": "Copy success",
-    "no_data": "No Data"
+    "no_data": "No Data",
+    "withdrawTip": "Tips:\n\t•\tProcessing time: T+3\n\t•\tFee: 2 USDT per transaction + taxes\n\nTax Rate:\n\t•\tWithdrawal amount ≤ 100 USDT: 8% tax\n\t•\t101 USDT - 500 USDT: 5% tax\n\t•\t501 USDT - 1000 USDT: 3% tax\n\t•\tOver 1000 USDT: 1% tax\n\nMinimum withdrawal amount: 10 USDT\n"
+  },
+  "income": {
+    "total_members": "Total Members",
+    "activated_members": "Activated Members",
+    "detail": "Detail"
   },
   "tab": {
     "rental": "Rental",

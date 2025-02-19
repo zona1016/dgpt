@@ -6,6 +6,7 @@ import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -312,24 +313,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                     height: defaultPadding,
                   ),
                   Text(
-                    '贴士',
-                    style: fontDMMedium.copyWith(
-                      fontSize: 16,
-                      color: BaseColors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultPadding / 2,
-                  ),
-                  Text(
-                    '处理时间： T+3\n\n'
-                    '手续费： 每笔 2U + 税费\n\n'
-                    '税费标准：\n'
-                    '提现金额 ≤ 100U：税费 8%\n'
-                    '101U – 500U：税费 5%\n'
-                    '501U – 1000U：税费 3%\n'
-                    '1000U 以上：税费 1%\n\n'
-                    '最低提现金额为 10U',
+                    tr('tip.withdrawTip'),
                     style: fontDMMedium.copyWith(
                       fontSize: 16,
                       color: BaseColors.white,

@@ -203,7 +203,7 @@ class CodegenLoader extends AssetLoader{
     "in_progress": "In progress",
     "rental": "Rental",
     "rented": "Rented",
-    "computing_power_rental": "Rental",
+    "computing_power_rental": "Hashrate Rental ",
     "computing_power_level": "Hashrate level",
     "income_analysis": "Income analysis",
     "help_friends_achieve_level": "Help {} friends achieve level {}",
@@ -215,10 +215,10 @@ class CodegenLoader extends AssetLoader{
     "rental_income": "Rental income",
     "daily_income": "Daily income",
     "income_details": "Income details",
-    "team_computing_power_bonus": "Team bonus",
-    "invitation_bonus": "Invitation bonus",
+    "team_computing_power_bonus": "Team Hashrate Reward",
+    "invitation_bonus": "Invitation Reward",
     "salary": "Salary",
-    "team_data": "Team data",
+    "team_data": "Team Data",
     "price_per_unit": "Price per unit"
   },
   "profile": {
@@ -284,7 +284,13 @@ class CodegenLoader extends AssetLoader{
   },
   "tip": {
     "copy_success": "Copy success",
-    "no_data": "No Data"
+    "no_data": "No Data",
+    "withdrawTip": "Tips:\n\t•\tProcessing time: T+3\n\t•\tFee: 2 USDT per transaction + taxes\n\nTax Rate:\n\t•\tWithdrawal amount ≤ 100 USDT: 8% tax\n\t•\t101 USDT - 500 USDT: 5% tax\n\t•\t501 USDT - 1000 USDT: 3% tax\n\t•\tOver 1000 USDT: 1% tax\n\nMinimum withdrawal amount: 10 USDT\n"
+  },
+  "income": {
+    "total_members": "Total Members",
+    "activated_members": "Activated Members",
+    "detail": "Detail"
   },
   "tab": {
     "rental": "Rental",
@@ -563,11 +569,13 @@ static const Map<String,dynamic> zh_Hans = {
   },
   "tip": {
     "copy_success": "复制成功",
-    "no_data": "暂无数据"
+    "no_data": "暂无数据",
+    "withdrawTip": "贴士 \n\n处理时间： T+3\n\n手续费： 每笔 2U + 税费\n\n税费标准：\n提现金额 ≤ 100U：税费 8%\n101U – 500U：税费 5%\n501U – 1000U：税费 3%\n1000U 以上：税费 1%\n\n最低提现金额为 10U'"
   },
   "income": {
-    "copy_success": "复制成功",
-    "no_data": "暂无数据"
+    "total_members": "总人数",
+    "activated_members": "激活人数",
+    "detail": "详情"
   },
   "tab": {
     "rental": "算力租借",

@@ -62,7 +62,7 @@ class HashrateHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          powerInfo?.name ?? '无算力',
+          powerInfo?.name ?? 'N/A',
           style: fontDMBold.copyWith(
             color: BaseColors.white,
             fontSize: 16,
