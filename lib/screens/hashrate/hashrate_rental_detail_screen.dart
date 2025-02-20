@@ -452,9 +452,9 @@ class HashrateRentalDetailScreen
                             horizontal: defaultPadding / 2),
                         child: Transform.rotate(
                           angle: 0.785, // -45° 角度
-                          child: const Text(
-                            "体验",
-                            style: TextStyle(
+                          child: Text(
+                            tr('profile.trial'),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,

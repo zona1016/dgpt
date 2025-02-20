@@ -264,6 +264,7 @@
     "fa_settings": "2FA设置",
     "wallet_address": "钱包地址",
     "wallet_type": "所属类型",
+    "trial": "体验"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",

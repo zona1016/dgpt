@@ -279,7 +279,8 @@ class CodegenLoader extends AssetLoader{
     "reset_mailbox": "Reset Mailbox",
     "fa_settings": "2FA Settings",
     "wallet_address": "Wallet Address",
-    "wallet_type": "Wallet Type"
+    "wallet_type": "Wallet Type",
+    "trial": "Trial"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -576,7 +577,8 @@ static const Map<String,dynamic> zh_Hans = {
     "reset_mailbox": "重置邮件箱",
     "fa_settings": "2FA设置",
     "wallet_address": "钱包地址",
-    "wallet_type": "所属类型"
+    "wallet_type": "所属类型",
+    "trial": "体验"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",

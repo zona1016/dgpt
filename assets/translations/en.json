@@ -263,7 +263,8 @@
     "reset_mailbox": "Reset Mailbox",
     "fa_settings": "2FA Settings",
     "wallet_address": "Wallet Address",
-    "wallet_type": "Wallet Type"
+    "wallet_type": "Wallet Type",
+    "trial": "Trial"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
