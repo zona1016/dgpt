@@ -14,12 +14,16 @@ import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/screens/income/active_member_detail_screen_controller.dart';
 import 'package:dgpt/screens/income/active_member_screen.dart';
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
+import 'package:dgpt/screens/income/cash_wallet_history_screen.dart';
+import 'package:dgpt/screens/income/cash_wallet_history_screen_controller.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen.dart';
 import 'package:dgpt/screens/income/hashrate_leasing_screen_controller.dart';
 import 'package:dgpt/screens/income/income_history_screen.dart';
 import 'package:dgpt/screens/income/income_history_screen_controller.dart';
 import 'package:dgpt/screens/income/invitation_award_screen.dart';
 import 'package:dgpt/screens/income/invitation_award_screen_controller.dart';
+import 'package:dgpt/screens/income/power_wallet_history_screen.dart';
+import 'package:dgpt/screens/income/power_wallet_history_screen_controller.dart';
 import 'package:dgpt/screens/income/salary_screen.dart';
 import 'package:dgpt/screens/income/salary_screen_controller.dart';
 import 'package:dgpt/screens/income/team_hashrate_award_screen.dart';
@@ -181,6 +185,8 @@ class AppRoutes {
 
   static String income = "/income";
   static String incomeHistory = "/income_history";
+  static String cashWalletHistory = "/cash_wallet_history";
+  static String powerWalletHistory = "/power_wallet_history";
   static String hashrateLeasing = "/hashrate_leasing";
   static String invitationAward = "/invitation_award";
   static String teamHashrateAwardn = "/team_hashrate_awardn";
@@ -433,6 +439,16 @@ class AppRoutes {
         name: incomeHistory,
         page: () => const IncomeHistoryScreen(),
         binding: IncomeHistoryScreenBindings()
+    ),
+    GetPage(
+        name: powerWalletHistory,
+        page: () => const PowerWalletHistoryScreen(),
+        binding: PowerWalletHistoryScreenBindings()
+    ),
+    GetPage(
+        name: cashWalletHistory,
+        page: () => const CashWalletHistoryScreen(),
+        binding: CashWalletHistoryScreenBindings()
     ),
     GetPage(
         name: hashrateLeasing,

@@ -36,7 +36,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
               ),
               _card(cardTaps: (index) {
                 if (index == 0) {
+                  Get.toNamed(AppRoutes.powerWalletHistory);
                 } else if (index == 1) {
+                  Get.toNamed(AppRoutes.cashWalletHistory);
                 } else {}
               }),
               const SizedBox(
