@@ -21,7 +21,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
         title: '邀请奖',
         color: BaseColors.white,
       ),
-      body: Padding(
+      body: Obx(() => Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: Column(
             children: [
@@ -38,56 +38,56 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
               if (controller.recommendInfoList.isNotEmpty)
                 _header(),
               Obx(() => Expanded(
-                    child: BaseSmartRefresher(
-                      refreshController: controller.refreshController,
-                      enableLoadMore: true,
-                      uiState: controller.uiState.value,
-                      isEmpty: controller.recommendInfoList.isEmpty,
-                      onPullToRefresh: (loadingState) {
-                        controller.aiPulseTotalRecommendAwardTotal(
-                            loadingState: loadingState);
-                      },
-                      onLoadMore: (loadingState) {
-                        controller.aiPulseTotalRecommendAwardTotal(
-                            loadingState: loadingState);
-                      },
-                      childBuilder: (context, physics) {
-                        return CustomScrollView(
-                          physics: physics,
-                          slivers: [
-                            SliverList.separated(
-                              itemCount: controller.recommendInfoList.isNotEmpty
-                                  ? controller.recommendInfoList.length + 1
-                                  : 0,
-                              itemBuilder: (_, index) {
-                                return index ==
-                                        controller.recommendInfoList.length
-                                    ? _footer()
-                                    : _item(index);
-                              },
-                              separatorBuilder: (_, index) {
-                                return index == 0
-                                    ? Container()
-                                    : Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: defaultPadding),
-                                        height: 0.5,
-                                        color: BaseColors.weakTextColor,
-                                      );
-                              },
-                            )
-                          ],
-                        );
-                      },
-                    ),
-                  )),
+                child: BaseSmartRefresher(
+                  refreshController: controller.refreshController,
+                  enableLoadMore: true,
+                  uiState: controller.uiState.value,
+                  isEmpty: controller.recommendInfoList.isEmpty,
+                  onPullToRefresh: (loadingState) {
+                    controller.aiPulseTotalRecommendAwardTotal(
+                        loadingState: loadingState);
+                  },
+                  onLoadMore: (loadingState) {
+                    controller.aiPulseTotalRecommendAwardTotal(
+                        loadingState: loadingState);
+                  },
+                  childBuilder: (context, physics) {
+                    return CustomScrollView(
+                      physics: physics,
+                      slivers: [
+                        SliverList.separated(
+                          itemCount: controller.recommendInfoList.isNotEmpty
+                              ? controller.recommendInfoList.length + 1
+                              : 0,
+                          itemBuilder: (_, index) {
+                            return index ==
+                                controller.recommendInfoList.length
+                                ? _footer()
+                                : _item(index);
+                          },
+                          separatorBuilder: (_, index) {
+                            return index == 0
+                                ? Container()
+                                : Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: defaultPadding),
+                              height: 0.5,
+                              color: BaseColors.weakTextColor,
+                            );
+                          },
+                        )
+                      ],
+                    );
+                  },
+                ),
+              )),
             ],
-          )),
+          ))),
     );
   }
 
   _card({required Function(int index) cardTaps}) {
-    return IntrinsicHeight(
+    return Obx(() => IntrinsicHeight(
       child: Row(
         children: [
           Expanded(
@@ -96,8 +96,8 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
                 title: controller.actionTitles[0],
                 image: controller.actionImages[0],
                 amount:
-                    (controller.recommendAwardTotalInfo.value?.amountTotal ?? 0)
-                        .toDouble(),
+                (controller.recommendAwardTotalInfo.value?.amountTotal ?? 0)
+                    .toDouble(),
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -116,8 +116,8 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
                 title: controller.actionTitles[1],
                 image: controller.actionImages[1],
                 amount:
-                    (controller.recommendAwardTotalInfo.value?.memberCount ?? 0)
-                        .toDouble(),
+                (controller.recommendAwardTotalInfo.value?.memberCount ?? 0)
+                    .toDouble(),
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -129,7 +129,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
           ),
         ],
       ),
-    );
+    ));
   }
 
   _cardItem(

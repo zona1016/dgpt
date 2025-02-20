@@ -275,7 +275,7 @@ class HashrateRentalDetailScreen
                             '',
                     placeholder: controller.planDetail.value?.code == 'B0001'
                         ? 'assets/images/home/income_detail_icon.png'
-                        : 'assets/images/home/income_detail_icon.png1',
+                        : 'assets/images/home/income_detail_icon1.png',
                     height: 46,
                     width: 100,
                   ),

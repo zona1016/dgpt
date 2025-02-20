@@ -1,11 +1,16 @@
-import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:dgpt/services/auth_service.dart';
+import 'package:dgpt/services/ai_pulse_service.dart';
+import 'package:dgpt/utils/constants/app_configurations.dart';
+import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
-import 'package:dgpt/widget/form/menu_item.dart';
+import 'package:dgpt/utils/dialog.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'package:dio/dio.dart' as dio;
 
 class HelpCenterScreenBindings implements Bindings {
   @override
@@ -16,13 +21,13 @@ class HelpCenterScreenBindings implements Bindings {
 }
 
 class HelpCenterScreenController extends BaseController {
-  final AuthService authService = Get.find();
+  final AiPulseService aiPulseService = Get.find();
 
   final ImagePicker _picker = ImagePicker();
-  final formKey = GlobalKey<FormState>();
-  final phoneController = TextEditingController();
-  final messageController = TextEditingController();
-  File? image;
+  RxString pickedFilePath = ''.obs;
+  Uint8List? imageData;
+  RxString phone = ''.obs;
+  RxString content = ''.obs;
 
   @override
   void onInit() {
@@ -46,19 +51,42 @@ class HelpCenterScreenController extends BaseController {
         source: ImageSource.gallery,
       );
       if (pickedFile != null) {
-        print(pickedFile.path);
+        imageData = await pickedFile.readAsBytes();
+        pickedFilePath.value = pickedFile.path;
       }
     } catch (e) {}
   }
 
-  void submitForm() {
-    if (formKey.currentState!.validate()) {
-      // 这里可以处理表单提交逻辑
-      print('Phone: ${phoneController.text}');
-      print('Message: ${messageController.text}');
-      if (image != null) {
-        print('Image path: ${image!.path}');
-      }
+  aiPulseCommonUploadImageFile() async {
+    // String fileExtension = pickedFilePath.value.split('.').last.toLowerCase();
+    // List<String> allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+    //
+    // print(fileExtension);
+    // if (!allowedExtensions.contains(fileExtension)) {
+    //   DialogUtils.showBaseDialog(title: '不支持的文件类型');
+    //   return;
+    // }
+    String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+    var file = dio.MultipartFile.fromBytes(imageData!,filename: timestamp,
+        contentType: DioMediaType('image', 'png'));
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
+    if (result != null) {
+      pickedFilePath.value = '${AppConfigurations.baseUrl}/${result.url}';
+      aiPulseMessageUserAdd(result.id.toString());
+    }
+  }
+
+  aiPulseMessageUserAdd(String imageFileId) async {
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseMessageUserAdd(
+            phone: phone.value,
+            content: content.value,
+            imageFileId: imageFileId));
+    if (result != null) {
+      // DialogUtils.showDGPTBaseDialog(title: '修改资料成功');
     }
   }
 }

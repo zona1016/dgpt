@@ -109,19 +109,26 @@ class HashrateHeader extends StatelessWidget {
           child: Row(
             children: [
               const Spacer(),
-              Text(
-                ((powerInfo?.orderNo ?? 0) - 1) >= 0
-                    ? ((powerInfo?.orderNo ?? 0) - 1).toString()
-                    : 'N/A',
-                style: fontDMBold.copyWith(
-                  color: BaseColors.white,
-                  fontSize: 20,
+              if (powerInfo?.orderNo != 0 && powerInfo?.orderNo != 6)
+                Text(
+                  ((powerInfo?.orderNo ?? 0) - 1).toString(),
+                  style: fontDMBold.copyWith(
+                    color: BaseColors.white,
+                    fontSize: 20,
+                  ),
                 ),
-              ),
               Image.asset(
                 'assets/images/home/income_power_icon.png',
-                width: 13,
-                height: 13,
+                width: (powerInfo?.orderNo ?? 0) == 6
+                    ? 15
+                    : (powerInfo?.orderNo ?? 0) < 2
+                        ? 11
+                        : 13,
+                height: (powerInfo?.orderNo ?? 0) == 6
+                    ? 15
+                    : (powerInfo?.orderNo ?? 0) < 2
+                        ? 11
+                        : 13,
               ),
               const Spacer(),
             ],
@@ -181,13 +188,14 @@ class HashrateHeader extends StatelessWidget {
   Widget _buildActionRow() {
     return Row(
       children: [
-        Text(
-          tr('hashrate.in_progress'),
-          style: fontDMMedium.copyWith(
-            color: BaseColors.white,
-            fontSize: 14,
+        if (powerInfo?.orderNo != 0)
+          Text(
+            tr('hashrate.in_progress'),
+            style: fontDMMedium.copyWith(
+              color: BaseColors.white,
+              fontSize: 14,
+            ),
           ),
-        ),
         Expanded(child: Container()),
         GestureDetector(
           onTap: () {
@@ -261,33 +269,44 @@ class HashrateHeader extends StatelessWidget {
   * */
   Widget _buildConditionalRows() {
     String detail = '';
-    switch ((powerInfo?.orderNo ?? 0) - 1) {
+    switch (powerInfo?.orderNo ?? 0) {
       case 0:
-        detail = '${tr('home.invite')} 5';
+        detail = tr('profile.deposit');
+        break;
       case 1:
-        detail = tr('hashrate.directly_refer_become_level', args: ['1']);
+        detail = '${tr('home.invite')} 5';
+        break;
       case 2:
-        detail = tr('hashrate.directly_refer_become_level', args: ['2']);
+        detail = tr('hashrate.directly_refer_become_level', args: ['1']);
+        break;
       case 3:
-        detail = tr('hashrate.directly_refer_become_level', args: ['3']);
+        detail = tr('hashrate.directly_refer_become_level', args: ['2']);
+        break;
       case 4:
+        detail = tr('hashrate.directly_refer_become_level', args: ['3']);
+        break;
+      case 5:
         detail = tr('hashrate.directly_refer_become_level', args: ['4']);
+        break;
     }
     return Column(
       children: [
-        if (progressInfo?.next?.conditionDto != null && (powerInfo?.orderNo ?? 0) == 0)
+        if (progressInfo?.next?.conditionDto != null &&
+            (powerInfo?.orderNo ?? 0) == 0)
           ..._buildConditionalRow1(
             tr('hashrate.computing_power_rental'),
             progressInfo!.next!.conditionDto!.minPlanAmount,
             progressInfo!.planAmount,
           ),
-        if (progressInfo?.next?.conditionDto != null && (powerInfo?.orderNo ?? 0) != 0)
+        if (progressInfo?.next?.conditionDto != null &&
+            (powerInfo?.orderNo ?? 0) != 0)
           ..._buildConditionalRow(
             detail,
             progressInfo!.next!.conditionDto!.directCount,
             progressInfo!.directCount,
           ),
-        if (progressInfo?.next?.conditionDto != null && (powerInfo?.orderNo ?? 0) > 1)
+        if (progressInfo?.next?.conditionDto != null &&
+            (powerInfo?.orderNo ?? 0) > 1)
           ..._buildConditionalRow(
             tr('hashrate.team_members'),
             progressInfo!.next!.conditionDto!.teamCount,

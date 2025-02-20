@@ -56,7 +56,7 @@ class ChangeLanguageScreen extends GetView<ChangeLanguageScreenController> {
                   return InkWell(
                     onTap: () {
                       if (locale != controller.selectedLocale) {
-                        controller.userSetLang(AppLanguage.languages[index].formatKey);
+                        // controller.userSetLang(AppLanguage.languages[index].formatKey);
                         context.setLocale(locale);
                         Get.updateLocale(locale);
                         Get.find<UserController>().setLocale(locale);

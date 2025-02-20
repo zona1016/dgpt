@@ -263,7 +263,7 @@
     "reset_mailbox": "重置邮件箱",
     "fa_settings": "2FA设置",
     "wallet_address": "钱包地址",
-    "wallet_type": "所属类型"
+    "wallet_type": "所属类型",
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",
@@ -274,6 +274,7 @@
   "tip": {
     "copy_success": "复制成功",
     "no_data": "暂无数据",
+    "login_success_tip": "请稍等片刻，\n即将进入产品主页~",
     "recharge_tip": "注意 \n在进行资金转账前，请确认钱包类型和地址与上述信息完全匹配，以确保资金安全。",
     "withdrawTip": "贴士 \n\n处理时间： T+3\n\n手续费： 每笔 2U + 税费\n\n税费标准：\n提现金额 ≤ 100U：税费 8%\n101U – 500U：税费 5%\n501U – 1000U：税费 3%\n1000U 以上：税费 1%\n\n最低提现金额为 10U'"
   },

@@ -274,6 +274,7 @@
   "tip": {
     "copy_success": "Copy success",
     "no_data": "No Data",
+    "login_success_tip": "Please wait a moment,\nyou will soon enter the product homepage~",
     "recharge_tip": "Notice:\nBefore proceeding with the fund transfer, please ensure that the wallet type and address completely match the information provided above to guarantee the security of your funds.",
     "withdrawTip": "Tips:\n\t•\tProcessing time: T+3\n\t•\tFee: 2 USDT per transaction + taxes\n\nTax Rate:\n\t•\tWithdrawal amount ≤ 100 USDT: 8% tax\n\t•\t101 USDT - 500 USDT: 5% tax\n\t•\t501 USDT - 1000 USDT: 3% tax\n\t•\tOver 1000 USDT: 1% tax\n\nMinimum withdrawal amount: 10 USDT\n"
   },

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dgpt/screens/setting/help_center_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -7,6 +9,7 @@ import 'package:dgpt/widget/base/base_button.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/form/base_text_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,7 +61,9 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                     hintText: '手机号',
                     fillColor: BaseColors.gray85,
                     radius: 10,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      controller.phone.value = value ?? '';
+                    },
                   ),
                   const SizedBox(
                     height: defaultPadding,
@@ -68,30 +73,69 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                     hintText: '信息',
                     fillColor: BaseColors.gray85,
                     radius: 10,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      controller.content.value = value ?? '';
+                    },
                   ),
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 150,
-                        color: BaseColors.gray85,
-                      ),
-                      const SizedBox(
-                        width: defaultPadding / 2,
-                      ),
-                      Expanded(
-                        child: Text(
-                          '您可上传图像不超过 5MB 的图片。',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  )
+                  Obx(() => Row(
+                        children: [
+                          if (controller.pickedFilePath.isEmpty)
+                            GestureDetector(
+                              onTap: () =>
+                                  controller.onPickCoverImage(context: context),
+                              child: Container(
+                                height: 100,
+                                width: 150,
+                                color: BaseColors.gray85,
+                                child: Column(
+                                  children: [
+                                    const Spacer(),
+                                    Text(
+                                      tr('button.upload'),
+                                      style: fontDMMedium.copyWith(
+                                          color: BaseColors.weakTextColor,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      '+',
+                                      style: fontDMBold.copyWith(
+                                          color: BaseColors.weakTextColor,
+                                          fontSize: 26),
+                                    ),
+                                    const Spacer(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          if (controller.pickedFilePath.isNotEmpty)
+                            kIsWeb
+                                ? Image.memory(
+                                    controller.imageData as Uint8List,
+                                    fit: BoxFit.cover,
+                                    height: 100,
+                                    width: 150,
+                                  )
+                                : Image.file(
+                                    File(controller.pickedFilePath.value),
+                                    fit: BoxFit.cover,
+                                    height: 100,
+                                    width: 150,
+                                  ),
+                          const SizedBox(
+                            width: defaultPadding / 2,
+                          ),
+                          Expanded(
+                            child: Text(
+                              '您可上传图像不超过 5MB 的图片。',
+                              style: fontDMMedium.copyWith(
+                                  color: BaseColors.white, fontSize: 14),
+                            ),
+                          ),
+                        ],
+                      ))
                 ],
               ),
             ),
@@ -103,13 +147,15 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
   }
 
   _buildConfirm() {
-    return BaseButton(
-      onPressed: () {},
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: true,
-      text: tr('button.confirm'),
-    );
+    return Obx(() => Padding(
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      child: BaseButton(
+        enabled: controller.phone.isNotEmpty &&
+            controller.content.isNotEmpty &&
+            controller.pickedFilePath.isNotEmpty,
+        onPressed: () => controller.aiPulseCommonUploadImageFile(),
+        text: tr('button.confirm'),
+      ),
+    ));
   }
 }

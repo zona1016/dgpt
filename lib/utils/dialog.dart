@@ -384,7 +384,7 @@ class DialogUtils {
         topTitle: topTitle,
         titleColor: titleColor,
         barrierDismissible: barrierDismissible,
-        desc: desc ?? '请稍等片刻，即将进入产品主页~',
+        desc: desc ?? tr('tip.login_success_tip'),
         showCircularProgressIndicator: showCircularProgressIndicator,
         confirmText: confirmText,
         comBorderRadius: comBorderRadius,

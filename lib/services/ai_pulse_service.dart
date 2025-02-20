@@ -53,7 +53,8 @@ abstract class AiPulseService {
 
   Future<BaseResponse> aiPulseCommonRegisterVerifyCode({required String email});
 
-  Future<BaseResponse> aiPulseUserPlanApply({required Map<String, dynamic> pram});
+  Future<BaseResponse> aiPulseUserPlanApply(
+      {required Map<String, dynamic> pram});
 
   Future<BaseResponse<List<AiChatMessage>?>> aiPulseChatGptSend(
       {required String prompt});
@@ -149,12 +150,17 @@ abstract class AiPulseService {
       aiPulseSalaryAwardUserPage({int page = 1, int perPage = 20});
 
   Future<BaseResponse<List<DirectTopInfo>>> aiPulseTotalDirectTop();
+
   Future<BaseResponse<List<LayerInfo>>> aiPulseTotalLayerTotal();
+
   Future<BaseResponse<List<LayerHashrateInfo>>> aiPulseTotalLayerHashrateTotal(
       {required int layer});
-  Future<BaseResponse<RecommendAwardTotalInfo?>> aiPulseTotalRecommendAwardTotal();
+
+  Future<BaseResponse<RecommendAwardTotalInfo?>>
+      aiPulseTotalRecommendAwardTotal();
+
   Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
-  aiPulseTotalRecommendAwardUserList({int page = 1, int perPage = 20});
+      aiPulseTotalRecommendAwardUserList({int page = 1, int perPage = 20});
 
   Future<BaseResponse<EnableJobInfo?>> aiPulseUserJobTitleUserJobTitle();
 
@@ -172,11 +178,17 @@ abstract class AiPulseService {
 
   Future<BaseResponse<UserTeamTotalInfo?>> userTeamDataTotal();
 
-  Future<BaseResponse> aiPulseWithdrawalWithdrawal({required Map<String, dynamic> pram});
+  Future<BaseResponse> aiPulseWithdrawalWithdrawal(
+      {required Map<String, dynamic> pram});
 
   Future<BaseResponse> aiPulseWalletTransfer({required String amount});
 
   Future<BaseResponse> userSetLang({required String long});
+
+  Future<BaseResponse> aiPulseMessageUserAdd(
+      {required String phone,
+      required String content,
+      required String imageFileId});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -302,7 +314,8 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> aiPulseUserPlanApply({required Map<String, dynamic> pram}) async {
+  Future<BaseResponse> aiPulseUserPlanApply(
+      {required Map<String, dynamic> pram}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanApply,
           bearerToken: userController.token,
@@ -952,7 +965,8 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse> aiPulseWithdrawalWithdrawal({required Map<String, dynamic> pram}) async {
+  Future<BaseResponse> aiPulseWithdrawalWithdrawal(
+      {required Map<String, dynamic> pram}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalWithdrawal,
           bearerToken: userController.token,
@@ -978,12 +992,14 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<RecommendAwardTotalInfo?>> aiPulseTotalRecommendAwardTotal() async {
+  Future<BaseResponse<RecommendAwardTotalInfo?>>
+      aiPulseTotalRecommendAwardTotal() async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseTotalRecommendAwardTotal,
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseTotalRecommendAwardTotal,
           bearerToken: userController.token,
           deserializer: (data) =>
-          data != null ? RecommendAwardTotalInfo.fromJson(data) : null);
+              data != null ? RecommendAwardTotalInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }
@@ -991,17 +1007,21 @@ class AiPulseServiceImpl extends AiPulseService {
 
   @override
   Future<BaseResponse<PaginationResponse<RecommendInfo>?>>
-  aiPulseTotalRecommendAwardUserList({int page = 1, int perPage = 20}) async {
+      aiPulseTotalRecommendAwardUserList(
+          {int page = 1, int perPage = 20}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseTotalRecommendAwardUserList,
+      return await _apiClient.request(
+          ApiEndpoints.aiPulseTotalRecommendAwardUserList,
           bearerToken: userController.token,
           data: {
             'page': page,
             'pageSize': perPage,
           },
           deserializer: (data) => data != null
-              ? PaginationResponse<RecommendInfo>.fromJson(data,
-                  (json) => RecommendInfo.fromJson(json as Map<String, dynamic>))
+              ? PaginationResponse<RecommendInfo>.fromJson(
+                  data,
+                  (json) =>
+                      RecommendInfo.fromJson(json as Map<String, dynamic>))
               : null);
     } on Exception catch (_) {
       rethrow;
@@ -1012,7 +1032,25 @@ class AiPulseServiceImpl extends AiPulseService {
   Future<BaseResponse> userSetLang({required String long}) async {
     try {
       return await _apiClient.request(ApiEndpoints.userSetLang + long,
-          method: HttpMethod.get,
+          method: HttpMethod.get, deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseMessageUserAdd(
+      {required String phone,
+      required String content,
+      required String imageFileId}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseMessageUserAdd,
+          bearerToken: userController.token,
+          data: {
+            'phone': phone,
+            'content': content,
+            'imageFileId': imageFileId,
+          },
           deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
