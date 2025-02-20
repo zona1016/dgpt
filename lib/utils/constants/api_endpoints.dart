@@ -129,7 +129,11 @@ class ApiEndpoints {
 
   static const String aiPulseSalaryAwardUserPage = "/api/aiPulseSalaryAward/userPage";
 
+  // 用户职称信息
   static const String aiPulseUserJobTitleUserJobTitle = "/api/aiPulseUserJobTitle/userJobTitle";
   static const String aiPulseJobTitleEnableJobTitleList = "/api/aiPulseJobTitle/enableJobTitleList";
 
+  // 留言
+  static const String aiPulseMessageUserPage = "/api/aiPulseMessage/userPage";
+  static const String aiPulseMessageUserAdd = "/api/aiPulseMessage/userAdd";
 }
