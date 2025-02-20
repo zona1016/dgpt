@@ -402,7 +402,7 @@ class HashrateRentalDetailScreen
                 Container(
                   padding: const EdgeInsets.all(defaultPadding),
                   decoration: BoxDecoration(
-                    gradient: BaseColors.profileLinearGradient,
+                    gradient: BaseColors.baseButtonLinearGradient,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
