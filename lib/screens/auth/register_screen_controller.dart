@@ -24,6 +24,7 @@ class RegisterScreenController extends BaseController {
   final UserController userController = Get.find();
 
   final RxString error = "".obs;
+  final RxString account = ''.obs;
   final RxString email = ''.obs;
   final RxString password = ''.obs;
   final RxString passwordAgain = ''.obs;
@@ -79,6 +80,7 @@ class RegisterScreenController extends BaseController {
 
     final result = await fetchData(
       request: () => authService.register(
+          account: account.value,
           email: email.value,
           password: password.value,
           confirmPassword: passwordAgain.value,
@@ -87,18 +89,14 @@ class RegisterScreenController extends BaseController {
           inviteCode: inviteCode.value),
     );
     if (result != null) {
-      DialogUtils.showSuccessDialog(
-          '注册成功！',
-          barrierDismissible: false,
-          showCircularProgressIndicator: true
-      );
+      DialogUtils.showSuccessDialog('注册成功！',
+          barrierDismissible: false, showCircularProgressIndicator: true);
       getUserInfo(result.accessToken);
       userController.saveUser(null, result.accessToken);
     }
   }
 
   aiPulseCommonRegisterVerifyCode() async {
-
     if (!CustomFormBuilderValidators.isEmail(email.value)) {
       error.value = tr('error.email');
       return;

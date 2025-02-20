@@ -140,6 +140,7 @@ class CodegenLoader extends AssetLoader{
   "home": {
     "welcome_to_AI_PULSE": "Welcome To AI PULSE",
     "notice": "Notice",
+    "account": "Account",
     "invite": "Invite",
     "teaching": "Tutorial",
     "enterprise": "About Us",
@@ -433,6 +434,7 @@ static const Map<String,dynamic> zh_Hans = {
   },
   "home": {
     "welcome_to_AI_PULSE": "AI PULSE欢迎您",
+    "account": "账号",
     "notice": "通告",
     "invite": "邀请",
     "teaching": "教学",

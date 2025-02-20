@@ -104,7 +104,10 @@ class RegisterScreen extends GetView<RegisterScreenController> {
       children: [
         Row(
           children: [
-            Expanded(child: Container(color: Colors.transparent,)),
+            Expanded(
+                child: Container(
+              color: Colors.transparent,
+            )),
             InkWell(
               onTap: () {
                 Get.back();
@@ -141,6 +144,20 @@ class RegisterScreen extends GetView<RegisterScreenController> {
     return Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            BaseTextFormField(
+              name: 'amount',
+              hintText: tr('home.account'),
+              fillColor: controller.account.isNotEmpty
+                  ? BaseColors.white
+                  : BaseColors.gray85.withOpacity(0.5),
+              radius: 10,
+              onChanged: (value) {
+                controller.account.value = value ?? '';
+              },
+            ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
             BaseTextFormField(
               name: 'userName',
               hintText: 'Email@.com',
@@ -318,7 +335,8 @@ class RegisterScreen extends GetView<RegisterScreenController> {
         ),
         Obx(
           () => BaseButton(
-            enabled: controller.password.isNotEmpty &&
+            enabled: controller.account.isNotEmpty &&
+                    controller.password.isNotEmpty &&
                     controller.email.isNotEmpty &&
                     controller.passwordAgain.isNotEmpty &&
                     controller.verifyCode.isNotEmpty &&
