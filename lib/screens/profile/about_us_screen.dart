@@ -3,6 +3,7 @@ import 'package:dgpt/screens/profile/widgets/company_tab.dart';
 import 'package:dgpt/screens/profile/widgets/contact_us_tab.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
@@ -56,7 +57,7 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
 
   Widget _buildTabBar(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+      padding: EdgeInsets.symmetric(horizontal: SizeUtil.width() / 6.0),
       child: TabBar(
         isScrollable: false,
         dividerHeight: 0,

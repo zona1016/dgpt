@@ -51,6 +51,9 @@ class ContactUsTab extends GetView<AboutUsScreenController> {
               )
             ],
           ),
+          const SizedBox(
+            height: defaultPadding,
+          ),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
