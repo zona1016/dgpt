@@ -79,6 +79,7 @@ class HelpCenterScreenController extends BaseController {
   }
 
   aiPulseMessageUserAdd(String imageFileId) async {
+
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.aiPulseMessageUserAdd(
@@ -86,7 +87,7 @@ class HelpCenterScreenController extends BaseController {
             content: content.value,
             imageFileId: imageFileId));
     if (result != null) {
-      // DialogUtils.showDGPTBaseDialog(title: '修改资料成功');
+      DialogUtils.showMessageSuccess();
     }
   }
 }

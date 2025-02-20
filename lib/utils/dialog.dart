@@ -483,6 +483,93 @@ class DialogUtils {
     });
   }
 
+  static void showMessageSuccess() async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    showDialog<void>(
+      context: Get.context!,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shadowColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          contentPadding: EdgeInsets.zero,
+          content: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(defaultPadding * 1.5)
+                    .copyWith(top: defaultPadding * 2),
+                decoration: BoxDecoration(
+                    gradient: BaseColors.diaYebz,
+                    borderRadius: BorderRadius.circular(36).copyWith(
+                        topLeft: const Radius.circular(72),
+                        topRight: const Radius.circular(72))),
+                width: SizeUtil.width() * 0.7,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: defaultPadding * 8,
+                    ),
+                    Text(
+                      '信息已发送',
+                      textAlign: TextAlign.center,
+                      style: fontDMMedium.copyWith(
+                          fontSize: 18,
+                          color: BaseColors.white),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: defaultPadding / 2),
+                      child: Text(
+                        '我们会尽快联系您',
+                        textAlign: TextAlign.center,
+                        style: fontDMRegular.copyWith(
+                            fontSize: 14, color: BaseColors.white),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    FractionallySizedBox(
+                      widthFactor: 0.6,
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 3,
+                              child: BaseButton(
+                                customDecoration: BoxDecoration(
+                                    color: BaseColors.white.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(30)),
+                                height: 35,
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                text: '其他留言',
+                              ))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                left: 20,
+                right: 20,
+                top: -120,
+                child: Image.asset(
+                  'assets/images/custom/dia_fscg.png',
+                  width: 250,
+                  height: 300,
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   static void showShareDialogDefault(
       {required GlobalKey globalKey,
       required String inviteCode,
