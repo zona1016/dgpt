@@ -518,21 +518,22 @@ class HomeScreen extends GetView<HomeScreenController> {
   }
 
   _showShare(BuildContext context) {
+    String url = "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}";
     DialogUtils.showShareDialogDefault(
-      globalKey: controller.globalKey,
-      inviteCode: '${controller.userController.userInfo.inviteCode}',
-      copyTap: () {
-        Clipboard.setData(ClipboardData(
-            text:
-                "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
-        ToastUtils.showToast(title: tr('tip.copy_success'));
-      },
-      download: () {
-        controller.loadImage(context);
-      },
-      shareTap: () async {
-        await Share.share('${controller.userController.userInfo.inviteCode}');
-      }
+        globalKey: controller.globalKey,
+        inviteCode: '${controller.userController.userInfo.inviteCode}',
+        url: url,
+        copyTap: () {
+          Clipboard.setData(ClipboardData(
+              text:url));
+          ToastUtils.showToast(title: tr('tip.copy_success'));
+        },
+        download: () {
+          controller.loadImage(context);
+        },
+        shareTap: () async {
+          await Share.share(url);
+        }
     );
   }
 }

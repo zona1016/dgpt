@@ -486,6 +486,7 @@ class DialogUtils {
   static void showShareDialogDefault(
       {required GlobalKey globalKey,
       required String inviteCode,
+      required String url,
       GestureTapCallback? copyTap,
       GestureTapCallback? download,
       GestureTapCallback? shareTap}) async {
@@ -512,8 +513,7 @@ class DialogUtils {
                   height: 157,
                   width: 157,
                   child: QrImageView(
-                    data:
-                        "https://apiluse-h5.pages.dev/#/register?inviteCode=$inviteCode",
+                    data: url,
                     // 要编码的字符串数据
                     version: QrVersions.auto,
                   ),
@@ -627,7 +627,8 @@ class DialogUtils {
                 onTap: shareTap,
                 child: Container(
                   height: 38,
-                  margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: defaultPadding),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(defaultPadding * 2),
                       gradient: BaseColors.baseButtonLinearGradient),
