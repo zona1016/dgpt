@@ -22,6 +22,7 @@ class PlanDetail with _$PlanDetail {
     @JsonKey(name: 'enable') @Default(0) double enable,
     @JsonKey(name: 'logoFileId') @Default(0) double logoFileId,
     @JsonKey(name: 'logoFileIdUrl') @Default('') String logoFileIdUrl,
+    @JsonKey(name: 'logoDynamicFileIdUrl') @Default('') String logoDynamicFileIdUrl,
     @JsonKey(name: 'speedLevel') @Default(0) double speedLevel,
     @JsonKey(name: 'pcieName') @Default('') String pcieName,
     @JsonKey(name: 'upSpeed') @Default(0) double upSpeed,

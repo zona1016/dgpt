@@ -394,17 +394,7 @@ class HashrateRentalDetailScreen
                 Container(
                   padding: const EdgeInsets.all(defaultPadding),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFF05CCFF), // 0%
-                        Color(0xFF04A2FF), // 43%
-                        Color(0xFF0486FF), // 79%
-                        Color(0xFF047CFF), // 100%
-                      ],
-                      stops: [0.0, 0.43, 0.79, 1.0], // 对应的百分比
-                    ),
+                    gradient: BaseColors.profileLinearGradient,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(

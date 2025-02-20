@@ -45,9 +45,9 @@ class HashrateHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildTitleRow(),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: defaultPadding / 2),
           _buildPowerLevel(),
-          const SizedBox(height: defaultPadding),
+          const SizedBox(height: defaultPadding / 2),
           _buildActionRow(),
           const SizedBox(height: defaultPadding / 4),
           _buildProgressBar(),
@@ -62,15 +62,16 @@ class HashrateHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          powerInfo?.orderNo == 0 ? 'N/A' : tr('hashrate.computing_power_level'),
+          tr('hashrate.computing_power_level'),
           style: fontDMBold.copyWith(
             color: BaseColors.white,
             fontSize: 16,
           ),
         ),
         Expanded(child: Container()),
-        if (powerInfo?.code != null && !isIncome)
+        if (powerInfo?.orderNo != 0 && !isIncome)
           Container(
+            height: 18,
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(defaultPadding),
@@ -105,7 +106,7 @@ class HashrateHeader extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                powerInfo?.orderNo.toString() ?? '',
+                (powerInfo?.code != 'none') ? powerInfo?.orderNo.toString() ?? '' : 'N/A',
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 20,
@@ -241,6 +242,15 @@ class HashrateHeader extends StatelessWidget {
     );
   }
 
+  /*
+  * 无算力
+  基础算力 存款 100U
+  1级算力 1st：邀请5人
+  2级算力 直推3位成为1级算力（团队总人数20人）
+  3级算力 直推3位成为2级算力（团队总人数65人）
+  4级算力 直推3位成为3级算力（团队总人数200人）
+  高级算力 直推3位成为4级算力（团队总人数605人）
+  * */
   Widget _buildConditionalRows() {
     return Column(
       children: [

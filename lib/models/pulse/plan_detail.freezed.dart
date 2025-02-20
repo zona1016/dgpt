@@ -52,6 +52,8 @@ mixin _$PlanDetail {
   double get logoFileId => throw _privateConstructorUsedError;
   @JsonKey(name: 'logoFileIdUrl')
   String get logoFileIdUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'logoDynamicFileIdUrl')
+  String get logoDynamicFileIdUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'speedLevel')
   double get speedLevel => throw _privateConstructorUsedError;
   @JsonKey(name: 'pcieName')
@@ -140,6 +142,7 @@ abstract class $PlanDetailCopyWith<$Res> {
       @JsonKey(name: 'enable') double enable,
       @JsonKey(name: 'logoFileId') double logoFileId,
       @JsonKey(name: 'logoFileIdUrl') String logoFileIdUrl,
+      @JsonKey(name: 'logoDynamicFileIdUrl') String logoDynamicFileIdUrl,
       @JsonKey(name: 'speedLevel') double speedLevel,
       @JsonKey(name: 'pcieName') String pcieName,
       @JsonKey(name: 'upSpeed') double upSpeed,
@@ -200,6 +203,7 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
     Object? enable = null,
     Object? logoFileId = null,
     Object? logoFileIdUrl = null,
+    Object? logoDynamicFileIdUrl = null,
     Object? speedLevel = null,
     Object? pcieName = null,
     Object? upSpeed = null,
@@ -292,6 +296,10 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
       logoFileIdUrl: null == logoFileIdUrl
           ? _value.logoFileIdUrl
           : logoFileIdUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      logoDynamicFileIdUrl: null == logoDynamicFileIdUrl
+          ? _value.logoDynamicFileIdUrl
+          : logoDynamicFileIdUrl // ignore: cast_nullable_to_non_nullable
               as String,
       speedLevel: null == speedLevel
           ? _value.speedLevel
@@ -430,6 +438,7 @@ abstract class _$$PlanDetailImplCopyWith<$Res>
       @JsonKey(name: 'enable') double enable,
       @JsonKey(name: 'logoFileId') double logoFileId,
       @JsonKey(name: 'logoFileIdUrl') String logoFileIdUrl,
+      @JsonKey(name: 'logoDynamicFileIdUrl') String logoDynamicFileIdUrl,
       @JsonKey(name: 'speedLevel') double speedLevel,
       @JsonKey(name: 'pcieName') String pcieName,
       @JsonKey(name: 'upSpeed') double upSpeed,
@@ -488,6 +497,7 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
     Object? enable = null,
     Object? logoFileId = null,
     Object? logoFileIdUrl = null,
+    Object? logoDynamicFileIdUrl = null,
     Object? speedLevel = null,
     Object? pcieName = null,
     Object? upSpeed = null,
@@ -580,6 +590,10 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
       logoFileIdUrl: null == logoFileIdUrl
           ? _value.logoFileIdUrl
           : logoFileIdUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      logoDynamicFileIdUrl: null == logoDynamicFileIdUrl
+          ? _value.logoDynamicFileIdUrl
+          : logoDynamicFileIdUrl // ignore: cast_nullable_to_non_nullable
               as String,
       speedLevel: null == speedLevel
           ? _value.speedLevel
@@ -713,6 +727,7 @@ class _$PlanDetailImpl implements _PlanDetail {
       @JsonKey(name: 'enable') this.enable = 0,
       @JsonKey(name: 'logoFileId') this.logoFileId = 0,
       @JsonKey(name: 'logoFileIdUrl') this.logoFileIdUrl = '',
+      @JsonKey(name: 'logoDynamicFileIdUrl') this.logoDynamicFileIdUrl = '',
       @JsonKey(name: 'speedLevel') this.speedLevel = 0,
       @JsonKey(name: 'pcieName') this.pcieName = '',
       @JsonKey(name: 'upSpeed') this.upSpeed = 0,
@@ -792,6 +807,9 @@ class _$PlanDetailImpl implements _PlanDetail {
   @override
   @JsonKey(name: 'logoFileIdUrl')
   final String logoFileIdUrl;
+  @override
+  @JsonKey(name: 'logoDynamicFileIdUrl')
+  final String logoDynamicFileIdUrl;
   @override
   @JsonKey(name: 'speedLevel')
   final double speedLevel;
@@ -876,7 +894,7 @@ class _$PlanDetailImpl implements _PlanDetail {
 
   @override
   String toString() {
-    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, sysNowTime: $sysNowTime, roiTotal: $roiTotal)';
+    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, logoDynamicFileIdUrl: $logoDynamicFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, sysNowTime: $sysNowTime, roiTotal: $roiTotal)';
   }
 
   @override
@@ -909,6 +927,8 @@ class _$PlanDetailImpl implements _PlanDetail {
                 other.logoFileId == logoFileId) &&
             (identical(other.logoFileIdUrl, logoFileIdUrl) ||
                 other.logoFileIdUrl == logoFileIdUrl) &&
+            (identical(other.logoDynamicFileIdUrl, logoDynamicFileIdUrl) ||
+                other.logoDynamicFileIdUrl == logoDynamicFileIdUrl) &&
             (identical(other.speedLevel, speedLevel) ||
                 other.speedLevel == speedLevel) &&
             (identical(other.pcieName, pcieName) ||
@@ -976,6 +996,7 @@ class _$PlanDetailImpl implements _PlanDetail {
         enable,
         logoFileId,
         logoFileIdUrl,
+        logoDynamicFileIdUrl,
         speedLevel,
         pcieName,
         upSpeed,
@@ -1040,6 +1061,7 @@ abstract class _PlanDetail implements PlanDetail {
       @JsonKey(name: 'enable') final double enable,
       @JsonKey(name: 'logoFileId') final double logoFileId,
       @JsonKey(name: 'logoFileIdUrl') final String logoFileIdUrl,
+      @JsonKey(name: 'logoDynamicFileIdUrl') final String logoDynamicFileIdUrl,
       @JsonKey(name: 'speedLevel') final double speedLevel,
       @JsonKey(name: 'pcieName') final String pcieName,
       @JsonKey(name: 'upSpeed') final double upSpeed,
@@ -1120,6 +1142,9 @@ abstract class _PlanDetail implements PlanDetail {
   @override
   @JsonKey(name: 'logoFileIdUrl')
   String get logoFileIdUrl;
+  @override
+  @JsonKey(name: 'logoDynamicFileIdUrl')
+  String get logoDynamicFileIdUrl;
   @override
   @JsonKey(name: 'speedLevel')
   double get speedLevel;

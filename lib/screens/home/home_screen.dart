@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
+import 'package:dgpt/utils/constants/app_configurations.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
@@ -97,7 +98,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                                     },
                                     itemBuilder: (context, index) => Stack(
                                       children: [
-                                        _status(showBorder: true),
+                                        _status(showBorder: true, index: index),
                                       ],
                                     ),
                                   ),
@@ -109,7 +110,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                               bottom: 0, // 控制左侧箭头的位置
                               child: IconButton(
                                 icon: Icon(Icons.arrow_back_ios,
-                                    color: Colors.green),
+                                    color: BaseColors.primaryColor),
                                 onPressed: () {
                                   controller.swiperController
                                       .previous(); // 切换到上一页
@@ -124,7 +125,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                               right: -5, // 控制右侧箭头的位置
                               child: IconButton(
                                 icon: Icon(Icons.arrow_forward_ios,
-                                    color: Colors.green),
+                                    color: BaseColors.primaryColor),
                                 onPressed: () {
                                   controller.swiperController.next(); // 切换到下一页
                                 },
@@ -222,7 +223,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _status({bool showBorder = false}) {
+  _status({bool showBorder = false, int index = 0}) {
     return Stack(
       children: [
         Container(
@@ -238,9 +239,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                 border: showBorder
                     ? Border.all(color: BaseColors.secondPrimaryColor, width: 1)
                     : null),
-            child: Image.asset(
-              'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
-              fit: BoxFit.fill, // 图片自适应大小
+            child: Image.asset(showBorder
+                ? 'assets/images/income/${controller.planList[index].name}.gif'
+                : 'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
+              fit: BoxFit.fill,
             ),
           ),
         ),
@@ -304,63 +306,6 @@ class HomeScreen extends GetView<HomeScreenController> {
         ),
       ],
     );
-  }
-
-  _carousel(BuildContext context) {
-    final banners = [
-      'https://pic.rmb.bdstatic.com/bjh/events/c1e0c639d8e35ee85ec722988ec059e38721.png@h_1280',
-      'https://q0.itc.cn/q_70/images01/20240304/0b8e5c32de4d4277a64c9f9e606273e1.jpeg',
-      'https://q0.itc.cn/q_70/images01/20240304/0b8e5c32de4d4277a64c9f9e606273e1.jpeg'
-    ];
-    return banners.isNotEmpty
-        ? Column(children: [
-            Container(
-                height: 200,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20), color: Colors.red),
-                child: CarouselSlider.builder(
-                    carouselController: controller.carouselSliderController,
-                    itemCount: banners.length,
-                    itemBuilder: (context, index, realIndex) {
-                      return GestureDetector(
-                        onTap: () {
-                          print(index);
-                          print(realIndex);
-                        },
-                        child: BaseNetworkImage(
-                          imageURL: banners[index] ?? '',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      );
-                    },
-                    options: CarouselOptions(
-                      viewportFraction: 1,
-                      aspectRatio: 1,
-                      autoPlay: false,
-                      onPageChanged: (index, reason) {
-                        controller.selectedBannerIndex.value = index;
-                      },
-                    ))),
-            const SizedBox(height: 5),
-            Obx(() => DotsIndicator(
-                  dotsCount: banners.length,
-                  position: controller.selectedBannerIndex.value,
-                  decorator: DotsDecorator(
-                    spacing: const EdgeInsets.all(3.0),
-                    color: context.appTheme.indicatorColor,
-                    activeColor: BaseColors.primaryColor,
-                    size: const Size(10, 10),
-                    activeSize: const Size(10, 10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                    activeShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
-                  ),
-                ))
-          ])
-        : Container();
   }
 
   _collectionOfFeatures({required Function(int index) onTap}) {
@@ -535,7 +480,8 @@ class HomeScreen extends GetView<HomeScreenController> {
         await Share.share(url);
       },
       copyCodeTap: () {
-        Clipboard.setData(ClipboardData(text: '${controller.userController.userInfo.inviteCode}'));
+        Clipboard.setData(ClipboardData(
+            text: '${controller.userController.userInfo.inviteCode}'));
         ToastUtils.showToast(title: tr('tip.copy_success'));
       },
     );

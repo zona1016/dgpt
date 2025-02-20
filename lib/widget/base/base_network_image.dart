@@ -50,6 +50,7 @@ class BaseNetworkImage extends StatelessWidget {
               cache: true,
               gaplessPlayback: true,
               color: color,
+              enableMemoryCache: true,
               loadStateChanged: (ExtendedImageState state) {
                 switch (state.extendedImageLoadState) {
                   case LoadState.loading:
