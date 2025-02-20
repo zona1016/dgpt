@@ -413,24 +413,24 @@ class HomeScreen extends GetView<HomeScreenController> {
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
     return Obx(() => SizedBox(
-      height: (SizeUtil.width() - 3 * defaultPadding) / 2.0,
-      child: Row(
-        children: [
-          Expanded(
-              child: GestureDetector(
-                  onTap: () => onTap(1), child: _buildDayIncome())),
-          const SizedBox(
-            width: defaultPadding,
+          height: (SizeUtil.width() - 3 * defaultPadding) / 2.0,
+          child: Row(
+            children: [
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () => onTap(1), child: _buildDayIncome())),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () => onTap(2),
+                  child: _buildTotalIncome(),
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => onTap(2),
-              child: _buildTotalIncome(),
-            ),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 
   Widget _buildDayIncome() {
@@ -518,22 +518,26 @@ class HomeScreen extends GetView<HomeScreenController> {
   }
 
   _showShare(BuildContext context) {
-    String url = "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}";
+    String url =
+        "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}";
     DialogUtils.showShareDialogDefault(
-        globalKey: controller.globalKey,
-        inviteCode: '${controller.userController.userInfo.inviteCode}',
-        url: url,
-        copyTap: () {
-          Clipboard.setData(ClipboardData(
-              text:url));
-          ToastUtils.showToast(title: tr('tip.copy_success'));
-        },
-        download: () {
-          controller.loadImage(context);
-        },
-        shareTap: () async {
-          await Share.share(url);
-        }
+      globalKey: controller.globalKey,
+      inviteCode: '${controller.userController.userInfo.inviteCode}',
+      url: url,
+      copyTap: () {
+        Clipboard.setData(ClipboardData(text: url));
+        ToastUtils.showToast(title: tr('tip.copy_success'));
+      },
+      download: () {
+        controller.loadImage(context);
+      },
+      shareTap: () async {
+        await Share.share(url);
+      },
+      copyCodeTap: () {
+        Clipboard.setData(ClipboardData(text: '${controller.userController.userInfo.inviteCode}'));
+        ToastUtils.showToast(title: tr('tip.copy_success'));
+      },
     );
   }
 }

@@ -72,20 +72,20 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                         },
                         gradient: index == 0
                             ? const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color(0xFF05CCFF),
-                              Color(0xFF04A2FF),
-                              Color(0xFF0486FF),
-                              Color(0xFF047CFF),
-                            ],
-                            stops: [
-                              0.0,
-                              0.43,
-                              0.79,
-                              1.0
-                            ])
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                    Color(0xFF05CCFF),
+                                    Color(0xFF04A2FF),
+                                    Color(0xFF0486FF),
+                                    Color(0xFF047CFF),
+                                  ],
+                                stops: [
+                                    0.0,
+                                    0.43,
+                                    0.79,
+                                    1.0
+                                  ])
                             : null,
                         title: controller.profileTitles[index],
                         image: controller.profileImages[index],
@@ -93,7 +93,8 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   },
                   separatorBuilder: (_, index) {
                     return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
                       height: 1,
                       width: double.infinity,
                       color: BaseColors.white.withOpacity(0.2),
@@ -137,7 +138,8 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   },
                   separatorBuilder: (_, index) {
                     return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
                       height: 1,
                       width: double.infinity,
                       color: BaseColors.white.withOpacity(0.2),
@@ -475,14 +477,14 @@ class ProfileScreen extends GetView<ProfileScreenController> {
   }
 
   _showShare(BuildContext context) {
-    String url = "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}";
+    String url =
+        "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}";
     DialogUtils.showShareDialogDefault(
       globalKey: controller.globalKey,
       inviteCode: '${controller.userController.userInfo.inviteCode}',
       url: url,
       copyTap: () {
-        Clipboard.setData(ClipboardData(
-            text:url));
+        Clipboard.setData(ClipboardData(text: url));
         ToastUtils.showToast(title: tr('tip.copy_success'));
       },
       download: () {
@@ -490,7 +492,12 @@ class ProfileScreen extends GetView<ProfileScreenController> {
       },
       shareTap: () async {
         await Share.share(url);
-      }
+      },
+      copyCodeTap: () {
+        Clipboard.setData(ClipboardData(
+            text: '${controller.userController.userInfo.inviteCode}'));
+        ToastUtils.showToast(title: tr('tip.copy_success'));
+      },
     );
   }
 }

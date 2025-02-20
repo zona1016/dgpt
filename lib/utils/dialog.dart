@@ -488,6 +488,7 @@ class DialogUtils {
       required String inviteCode,
       required String url,
       GestureTapCallback? copyTap,
+      GestureTapCallback? copyCodeTap,
       GestureTapCallback? download,
       GestureTapCallback? shareTap}) async {
     DialogUtils.showShareDialog(
@@ -550,34 +551,34 @@ class DialogUtils {
                     width: defaultPadding,
                   ),
                   Expanded(
-                    child: Container(
-                      height: 38,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(defaultPadding * 2),
-                          color: BaseColors.whiteGray3),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          Text(
-                            '复制邀请链接',
-                            style: fontDMMedium.copyWith(
-                                color: BaseColors.white, fontSize: 12),
-                          ),
-                          const SizedBox(
-                            width: defaultPadding / 5,
-                          ),
-                          GestureDetector(
-                            onTap: copyTap,
-                            child: Image.asset(
+                    child: GestureDetector(
+                      onTap: copyTap,
+                      child: Container(
+                        height: 38,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(defaultPadding * 2),
+                            color: BaseColors.whiteGray3),
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            Text(
+                              '复制邀请链接',
+                              style: fontDMMedium.copyWith(
+                                  color: BaseColors.white, fontSize: 12),
+                            ),
+                            const SizedBox(
+                              width: defaultPadding / 5,
+                            ),
+                            Image.asset(
                               'assets/images/home/share_copy.png',
                               height: 15,
                               width: 15,
                             ),
-                          ),
-                          const Spacer(),
-                        ],
+                            const Spacer(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -585,33 +586,33 @@ class DialogUtils {
                     width: defaultPadding,
                   ),
                   Expanded(
-                    child: Container(
-                      height: 38,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(defaultPadding * 2),
-                          gradient: BaseColors.baseButtonLinearGradient),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          Text(
-                            '下载保存图片',
-                            style: fontDMMedium.copyWith(
-                                color: BaseColors.white, fontSize: 12),
-                          ),
-                          const SizedBox(
-                            width: defaultPadding / 5,
-                          ),
-                          GestureDetector(
-                            onTap: download,
-                            child: Image.asset(
+                    child: GestureDetector(
+                      onTap: download,
+                      child: Container(
+                        height: 38,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(defaultPadding * 2),
+                            gradient: BaseColors.baseButtonLinearGradient),
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            Text(
+                              '下载保存图片',
+                              style: fontDMMedium.copyWith(
+                                  color: BaseColors.white, fontSize: 12),
+                            ),
+                            const SizedBox(
+                              width: defaultPadding / 5,
+                            ),
+                            Image.asset(
                               'assets/images/home/share_download.png',
                               width: 20,
                               height: 20,
                             ),
-                          ),
-                          const Spacer(),
-                        ],
+                            const Spacer(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -683,25 +684,28 @@ class DialogUtils {
                           Expanded(
                             child: Text(
                               inviteCode,
-                              style: fontDMMedium.copyWith(
+                              style: fontDMBold.copyWith(
                                   color: Colors.black, fontSize: 16),
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: Container(
-                              width: 70,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                gradient: BaseColors.dayIncomeGradient,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  tr('button.copy'),
-                                  style: fontDMMedium.copyWith(
-                                      color: BaseColors.white, fontSize: 12),
+                          GestureDetector(
+                            onTap: copyCodeTap,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Container(
+                                width: 70,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  gradient: BaseColors.dayIncomeGradient,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    tr('button.copy'),
+                                    style: fontDMMedium.copyWith(
+                                        color: BaseColors.white, fontSize: 12),
+                                  ),
                                 ),
                               ),
                             ),
