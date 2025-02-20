@@ -19,6 +19,7 @@ class BaseScreen extends StatelessWidget {
   final String? backgroundImage;
   final DecorationImage? decorationBackgroundImage;
   final bool? resizeToAvoidBottomInset;
+  final Color? backgroundImageColor;
 
   const BaseScreen({
     super.key,
@@ -35,6 +36,7 @@ class BaseScreen extends StatelessWidget {
     this.statusBarTheme = SystemUiOverlayStyle.dark,
     this.extendBodyBehindAppBar = false,
     this.backgroundImage,
+    this.backgroundImageColor,
     this.decorationBackgroundImage,
     this.resizeToAvoidBottomInset,
   });
@@ -52,6 +54,7 @@ class BaseScreen extends StatelessWidget {
           decoration:
               backgroundImage != null || decorationBackgroundImage != null
                   ? BoxDecoration(
+                color: backgroundImageColor,
                       image: decorationBackgroundImage ??
                           DecorationImage(
                               fit: BoxFit.cover,
