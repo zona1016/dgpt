@@ -296,7 +296,8 @@ class CodegenLoader extends AssetLoader{
   "income": {
     "total_members": "Total Members",
     "activated_members": "Activated Members",
-    "detail": "Detail"
+    "detail": "Detail",
+    "registration_time": "Registration time"
   },
   "tab": {
     "rental": "Rental",
@@ -591,7 +592,8 @@ static const Map<String,dynamic> zh_Hans = {
   "income": {
     "total_members": "总人数",
     "activated_members": "激活人数",
-    "detail": "详情"
+    "detail": "详情",
+    "registration_time": "注册时间"
   },
   "tab": {
     "rental": "算力租借",

@@ -60,6 +60,10 @@ class UserInfo {
   final String? endTimeDate;
   @JsonKey(name: "sysNowTime", defaultValue: '')
   final String? sysNowTime;
+  @JsonKey(name: "createTime", defaultValue: '')
+  final String? createTime;
+  @JsonKey(name: "layer", defaultValue: 0)
+  final int? layer;
 
   UserInfo({
     this.id,
@@ -89,7 +93,9 @@ class UserInfo {
     this.beginDate,
     this.logicEndDate,
     this.endTimeDate,
-    this.sysNowTime
+    this.sysNowTime,
+    this.createTime,
+    this.layer
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {

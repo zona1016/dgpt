@@ -280,7 +280,8 @@
   "income": {
     "total_members": "总人数",
     "activated_members": "激活人数",
-    "detail": "详情"
+    "detail": "详情",
+    "registration_time": "注册时间"
   },
   "tab": {
     "rental": "算力租借",

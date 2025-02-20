@@ -280,7 +280,8 @@
   "income": {
     "total_members": "Total Members",
     "activated_members": "Activated Members",
-    "detail": "Detail"
+    "detail": "Detail",
+    "registration_time": "Registration time"
   },
   "tab": {
     "rental": "Rental",

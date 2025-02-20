@@ -114,9 +114,9 @@ class ActiveMemberDetailScreen
                         ),
                         Expanded(child: Container()),
                         Container(
-                          height: 20,
+                          height: 16,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding / 2),
+                              horizontal: defaultPadding),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
@@ -138,16 +138,16 @@ class ActiveMemberDetailScreen
                       children: [
                         Expanded(
                           child: Text(
-                            'Shdow',
+                            'UID: ${controller.memberList.value?.user?.id}',
                             style: fontDMRegular.copyWith(
                               color: BaseColors.weakTextColor,
-                              fontSize: 10,
+                              fontSize: 8,
                             ),
                             textAlign: TextAlign.left,
                           ),
                         ),
                         Container(
-                          height: 20,
+                          height: 16,
                           padding: const EdgeInsets.symmetric(
                               horizontal: defaultPadding / 2),
                           decoration: BoxDecoration(
@@ -158,7 +158,7 @@ class ActiveMemberDetailScreen
                               'Valid',
                               style: fontDMMedium.copyWith(
                                 color: BaseColors.white,
-                                fontSize: 10,
+                                fontSize: 8,
                               ),
                             ),
                           ),
@@ -166,18 +166,18 @@ class ActiveMemberDetailScreen
                       ],
                     ),
                     Text(
-                      'Shdow',
+                      tr('income.registration_time'),
                       style: fontDMRegular.copyWith(
                         color: BaseColors.weakTextColor,
-                        fontSize: 10,
+                        fontSize: 8,
                       ),
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      'Shdow',
+                      '${controller.memberList.value?.user?.createTime}',
                       style: fontDMRegular.copyWith(
                         color: BaseColors.weakTextColor,
-                        fontSize: 10,
+                        fontSize: 8,
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -221,7 +221,7 @@ class ActiveMemberDetailScreen
                           height: defaultPadding / 5,
                         ),
                         Text(
-                          '+012 345 6789',
+                          '+ ${controller.memberList.value?.user?.phoneNation} ${controller.memberList.value?.user?.phone}',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 12,
@@ -348,7 +348,7 @@ class ActiveMemberDetailScreen
             title,
             style: fontDMMedium.copyWith(
               fontSize: 14,
-              color: BaseColors.weakTextColor,
+              color: BaseColors.white,
             ),
           ),
           const SizedBox(height: defaultPadding / 4),
