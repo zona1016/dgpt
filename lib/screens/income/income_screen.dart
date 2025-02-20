@@ -50,7 +50,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                           padding: const EdgeInsets.all(defaultPadding),
                           decoration: BoxDecoration(
                             color: BaseColors.primaryColor.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(defaultPadding),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: BaseColors.primaryColor,
+                              width: 1
+                            )
                           ),
                           child: Center(
                             child: Text(

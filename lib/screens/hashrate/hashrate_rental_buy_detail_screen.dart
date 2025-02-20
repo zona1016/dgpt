@@ -31,20 +31,20 @@ class HashrateRentalBuyDetailScreen
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(
-        padding: const EdgeInsets.all(defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(),
-              const SizedBox(
-                height: defaultPadding / 2,
+            padding: const EdgeInsets.all(defaultPadding),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeader(),
+                  const SizedBox(
+                    height: defaultPadding / 2,
+                  ),
+                  _buildHardwareInfo(),
+                ],
               ),
-              _buildHardwareInfo(),
-            ],
-          ),
-        ),
-      )),
+            ),
+          )),
     );
   }
 
@@ -94,7 +94,9 @@ class HashrateRentalBuyDetailScreen
                   ),
                 ],
               ),
-              const SizedBox(width: defaultPadding / 5,),
+              const SizedBox(
+                width: defaultPadding / 5,
+              ),
               Text(
                 controller.planDetail.value?.pcieName ?? '',
                 style: fontDMMedium.copyWith(
@@ -109,7 +111,9 @@ class HashrateRentalBuyDetailScreen
                     height: 10,
                     width: 10,
                   ),
-                  const SizedBox(width: defaultPadding / 5,),
+                  const SizedBox(
+                    width: defaultPadding / 5,
+                  ),
                   Text(
                     '${controller.planDetail.value?.upSpeed ?? ''} Mbps',
                     style: fontDMRegular.copyWith(
@@ -122,7 +126,7 @@ class HashrateRentalBuyDetailScreen
               Row(
                 children: [
                   Image.asset(
-                      'assets/images/hashrate/download.png',
+                    'assets/images/hashrate/download.png',
                     height: 10,
                     width: 10,
                   ),
@@ -169,7 +173,7 @@ class HashrateRentalBuyDetailScreen
 
   Widget _buildHardwareInfo() {
     TextStyle whiteText10 =
-    fontDMRegular.copyWith(color: BaseColors.white, fontSize: 12);
+        fontDMRegular.copyWith(color: BaseColors.white, fontSize: 12);
     return Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -193,7 +197,9 @@ class HashrateRentalBuyDetailScreen
               child: Stack(
                 children: [
                   AnimatedContainer(
-                    width: (SizeUtil.width() - defaultPadding * 2) * (controller.continueDay.value / (controller.planDetail.value?.cycle ?? 1)),
+                    width: (SizeUtil.width() - defaultPadding * 2) *
+                        (controller.continueDay.value /
+                            (controller.planDetail.value?.cycle ?? 1)),
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -254,7 +260,9 @@ class HashrateRentalBuyDetailScreen
               child: Row(
                 children: [
                   BaseNetworkImage(
-                    imageURL: controller.planDetail.value?.graphicsIconFileIdUrl ?? '',
+                    imageURL:
+                        controller.planDetail.value?.graphicsIconFileIdUrl ??
+                            '',
                     placeholder: 'assets/images/home/income_detail_icon.png',
                     height: 46,
                     width: 100,
@@ -381,9 +389,9 @@ class HashrateRentalBuyDetailScreen
               padding: const EdgeInsets.all(defaultPadding),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: BaseColors.primaryColor.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(8),
-              ),
+                  color: BaseColors.primaryColor.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: BaseColors.primaryColor, width: 1)),
               child: Column(
                 children: [
                   Text(
@@ -391,7 +399,9 @@ class HashrateRentalBuyDetailScreen
                     style: fontDMRegular.copyWith(
                         color: BaseColors.white, fontSize: 12),
                   ),
-                  const SizedBox(height: defaultPadding / 4,),
+                  const SizedBox(
+                    height: defaultPadding / 4,
+                  ),
                   Text(
                     '${controller.planDetail.value?.roiTotal ?? 0} U',
                     style: fontDMBold.copyWith(
@@ -401,14 +411,23 @@ class HashrateRentalBuyDetailScreen
               ),
             ),
             const SizedBox(height: defaultPadding),
-            _buildRow(tr('hashrate.contract_details'),
+            _buildRow(
+                tr('hashrate.contract_details'),
                 '${controller.continueDay.value}days'
-                    '/${controller.planDetail.value?.cycle}days', whiteText10, whiteText10),
-            _buildRow(tr('hashrate.rental_funds'), '${controller.planDetail.value?.amount} U',
-                whiteText10, whiteText10),
-            _buildRow(tr('hashrate.rental_income'), '${controller.planDetail.value?.roiTotal} U'
+                '/${controller.planDetail.value?.cycle}days',
+                whiteText10,
+                whiteText10),
+            _buildRow(
+                tr('hashrate.rental_funds'),
+                '${controller.planDetail.value?.amount} U',
+                whiteText10,
+                whiteText10),
+            _buildRow(
+                tr('hashrate.rental_income'),
+                '${controller.planDetail.value?.roiTotal} U'
                 '/U${controller.planDetail.value?.amount}',
-                whiteText10, whiteText10),
+                whiteText10,
+                whiteText10),
             const SizedBox(height: defaultPadding / 2),
           ],
         ));
