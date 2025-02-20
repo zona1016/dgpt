@@ -10,6 +10,7 @@ import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
+import 'package:dgpt/widget/form/base_dropdown_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,43 +48,28 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '总数额',
+                          '总数额：${controller.memberList.length}',
                           style: fontDMBold.copyWith(
                             fontSize: 18,
                             color: BaseColors.white,
                           ),
                         ),
                         Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: defaultPadding / 2,
-                                vertical: defaultPadding / 5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: BaseColors.primaryColor,
-                            ),
-                            child: Center(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '全部',
-                                    style: fontDMBold.copyWith(
-                                      fontSize: 12,
-                                      color: BaseColors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: defaultPadding / 5,
-                                  ),
-                                  const Icon(
-                                    Icons.chevron_right,
-                                    color: BaseColors.white,
-                                    size: 12,
-                                  ),
-                                ],
-                              ),
+                        IntrinsicWidth(
+                          child: SizedBox(
+                            width: 100,
+                            height: 25,
+                            child: BaseDropDownFormField(
+                              isExpanded: true,
+                              menuMaxHeight: 250,
+                              width: 170,
+                              fillColor: BaseColors.primaryColor,
+                              hintText: '全部',
+                              items: controller.layerList,
+                              name: "all",
+                              onChanged: (item) {
+                                controller.loadLayerItem(item?.value);
+                              },
                             ),
                           ),
                         )
@@ -268,7 +254,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: BaseNetworkImage(
-                      imageURL: member.user?.user?.avatar ?? '',
+                      imageURL: member.user?.avatar ?? '',
                       placeholder: 'assets/images/custom/logo.png',
                     ),
                   ),
@@ -282,7 +268,10 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                       Row(
                         children: [
                           Text(
-                            member.user?.user?.nickName ?? '',
+                            member.user?.nickName ??
+                                member.user?.account ??
+                                member.user?.email ??
+                                '',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.white,
                               fontSize: 12,
@@ -319,7 +308,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                             ),
                           ),
                           const Spacer(),
-                          if (member?.planValid == true)
+                          if (member.planValid == true)
                             Text(
                               'Valid',
                               style: fontDMRegular.copyWith(
@@ -345,7 +334,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           ),
                           Expanded(child: Container()),
                           Text(
-                            'Member：${member?.teamUserCount ?? 0}',
+                            'Member：${member.teamUserCount ?? 0}',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.white,
                               fontSize: 8,

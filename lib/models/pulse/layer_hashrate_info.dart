@@ -1,9 +1,9 @@
 import 'package:dgpt/models/pulse/direct_top_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/user/user_info.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'layer_hashrate_info.g.dart';
-
 
 @JsonSerializable()
 class LayerHashrateInfo extends Object {
@@ -32,7 +32,7 @@ class MemberList extends Object {
   PowerInfo? powerInfo;
 
   @JsonKey(name: 'user')
-  DirectTopInfo? user;
+  UserInfo? user;
 
   @JsonKey(name: 'planValid', defaultValue: false)
   bool? planValid;

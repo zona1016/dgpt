@@ -20,7 +20,6 @@ class TeamHashrateAwardScreenBindings implements Bindings {
 
 class TeamHashrateAwardScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
-  final IncomeScreenController incomeScreenController = Get.find();
 
   Rxn<HasrateProgressInfo> progressInfo = Rxn<HasrateProgressInfo>();
   Rxn<PowerInfo> powerInfo = Rxn<PowerInfo>();
@@ -28,6 +27,7 @@ class TeamHashrateAwardScreenController extends BaseController {
   RxList<DirectTopInfo> directTopList = <DirectTopInfo>[].obs;
   RxList<LayerInfo> layerList = <LayerInfo>[].obs;
   RxList<PowerInfo> hashrateList = <PowerInfo>[].obs;
+  RxDouble totalRois = 0.0.obs;
 
   @override
   void onInit() {
@@ -92,6 +92,11 @@ class TeamHashrateAwardScreenController extends BaseController {
         request: () => aiPulseService.aiPulseTotalLayerTotal());
     if (result != null) {
       layerList.value = result;
+      double totalRoi = 0;
+      for (LayerInfo layerInfo in layerList) {
+        totalRoi += layerInfo.roiTotal;
+      }
+      totalRois.value = totalRoi;
     }
   }
 

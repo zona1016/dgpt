@@ -2,6 +2,7 @@ import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
+import 'package:dgpt/widget/form/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dgpt/models/pulse/flow_info.dart';
@@ -21,6 +22,7 @@ class ActiveMemberScreenController extends BaseController {
 
   RxList<LayerHashrateInfo> layerHashrateList = <LayerHashrateInfo>[].obs;
   RxList<MemberList> memberList = <MemberList>[].obs;
+  RxList<MenuItem> layerList = <MenuItem>[].obs;
 
   List<Color> memberColorList = [
     const Color(0xFF17CE92),
@@ -62,10 +64,26 @@ class ActiveMemberScreenController extends BaseController {
           .expand((layer) {
         return layer.memberList!.map((member) {
           // 为每个 member 赋值 layer 属性
-          return MemberList(layer?.hashrate, member.user, member.planValid,
-              member.teamUserCount);
+          member.powerInfo = layer.hashrate;
+          return member;
         });
       }).toList();
+
+      layerList.value = result.map((e) => MenuItem(label: e.hashrate?.name ?? '', value: e.hashrate?.code))
+          .toList();
     }
+  }
+
+  loadLayerItem(String code) {
+    memberList.value = layerHashrateList
+        .where(
+            (layer) => layer.memberList != null && layer.hashrate?.code == code) // 过滤掉 memberList 为 null 的项
+        .expand((layer) {
+      return layer.memberList!.map((member) {
+        // 为每个 member 赋值 layer 属性
+        member.powerInfo = layer.hashrate;
+        return member;
+      });
+    }).toList();
   }
 }

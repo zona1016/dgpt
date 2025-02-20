@@ -110,8 +110,8 @@ class HashrateHeader extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                (powerInfo!.orderNo - 1) >= 0
-                    ? (powerInfo!.orderNo - 1).toString()
+                ((powerInfo?.orderNo ?? 0) - 1) >= 0
+                    ? ((powerInfo?.orderNo ?? 0) - 1).toString()
                     : 'N/A',
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
@@ -261,7 +261,7 @@ class HashrateHeader extends StatelessWidget {
   * */
   Widget _buildConditionalRows() {
     String detail = '';
-    switch (powerInfo!.orderNo - 1) {
+    switch ((powerInfo?.orderNo ?? 0) - 1) {
       case 0:
         detail = '${tr('home.invite')} 5';
       case 1:
@@ -275,19 +275,19 @@ class HashrateHeader extends StatelessWidget {
     }
     return Column(
       children: [
-        if (progressInfo?.next?.conditionDto != null && powerInfo!.orderNo == 0)
+        if (progressInfo?.next?.conditionDto != null && (powerInfo?.orderNo ?? 0) == 0)
           ..._buildConditionalRow1(
             tr('hashrate.computing_power_rental'),
             progressInfo!.next!.conditionDto!.minPlanAmount,
             progressInfo!.planAmount,
           ),
-        if (progressInfo?.next?.conditionDto != null && powerInfo!.orderNo != 0)
+        if (progressInfo?.next?.conditionDto != null && (powerInfo?.orderNo ?? 0) != 0)
           ..._buildConditionalRow(
             detail,
             progressInfo!.next!.conditionDto!.directCount,
             progressInfo!.directCount,
           ),
-        if (progressInfo?.next?.conditionDto != null && powerInfo!.orderNo > 1)
+        if (progressInfo?.next?.conditionDto != null && (powerInfo?.orderNo ?? 0) > 1)
           ..._buildConditionalRow(
             tr('hashrate.team_members'),
             progressInfo!.next!.conditionDto!.teamCount,
@@ -371,7 +371,7 @@ class HashrateHeader extends StatelessWidget {
         count += 1;
       }
 
-      if (powerInfo!.orderNo > 1 &&
+      if ((powerInfo?.orderNo ?? 0) > 1 &&
           progressInfo!.next!.conditionDto!.teamCount > 0) {
         progress += progressInfo!.teamCount /
             progressInfo!.next!.conditionDto!.teamCount;
@@ -381,7 +381,7 @@ class HashrateHeader extends StatelessWidget {
         count += 1;
       }
 
-      if (powerInfo!.orderNo != 0 &&
+      if ((powerInfo?.orderNo ?? 0) != 0 &&
           progressInfo!.next!.conditionDto!.directCount > 0) {
         progress += progressInfo!.directCount /
             progressInfo!.next!.conditionDto!.directCount;

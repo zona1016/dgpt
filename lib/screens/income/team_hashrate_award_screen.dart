@@ -37,9 +37,7 @@ class TeamHashrateAwardScreen
                       powerInfo: controller.powerInfo.value,
                       progressInfo: controller.progressInfo.value,
                       isIncome: true,
-                      totalRoi: controller.incomeScreenController
-                              .amountTotalInfo.value?.roiAmountTotal ??
-                          0,
+                      totalRoi: controller.totalRois.value,
                     ),
                   _ranking(),
                   ActivatedMember(layerList: controller.layerList)
@@ -82,7 +80,7 @@ class TeamHashrateAwardScreen
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: BaseNetworkImage(
-                      imageURL: controller.directTopList.value[index].user?.avatar ?? '',
+                      imageURL: controller.directTopList[index].user?.avatar ?? '',
                       placeholder: 'assets/images/custom/logo.png',
                     ),
                   ),
@@ -108,17 +106,17 @@ class TeamHashrateAwardScreen
           height: defaultPadding / 5,
         ),
         Text(
-          controller.directTopList.value[index].user?.nickName ?? '',
+          controller.directTopList[index].user?.nickName ?? '',
           style: fontDMBold.copyWith(
               color: BaseColors.white, fontSize: isFirst ? 16 : 14),
         ),
         Text(
-          controller.getLevelName(controller.directTopList.value[index].hashrate?.code) ?? '',
+          controller.getLevelName(controller.directTopList[index].hashrate?.code) ?? '',
           style: fontDMBold.copyWith(
               color: BaseColors.weakTextColor, fontSize: 10),
         ),
         Text(
-          '人数：${controller.directTopList.value[index].teamCount}人',
+          '人数：${controller.directTopList[index].teamCount}人',
           style: fontDMBold.copyWith(
               color: BaseColors.weakTextColor, fontSize: 10),
         )

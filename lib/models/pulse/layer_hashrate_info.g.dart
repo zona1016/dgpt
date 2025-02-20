@@ -31,7 +31,7 @@ MemberList _$MemberListFromJson(Map<String, dynamic> json) => MemberList(
           : PowerInfo.fromJson(json['powerInfo'] as Map<String, dynamic>),
       json['user'] == null
           ? null
-          : DirectTopInfo.fromJson(json['user'] as Map<String, dynamic>),
+          : UserInfo.fromJson(json['user'] as Map<String, dynamic>),
       json['planValid'] as bool? ?? false,
       (json['teamUserCount'] as num?)?.toInt() ?? 0,
     );

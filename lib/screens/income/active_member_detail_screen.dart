@@ -86,7 +86,7 @@ class ActiveMemberDetailScreen
                 child: ClipOval(
                   // 裁剪成圆形
                   child: BaseNetworkImage(
-                    imageURL: controller.memberList.value?.user?.user?.avatar ?? '',
+                    imageURL: controller.memberList.value?.user?.avatar ?? '',
                     placeholder:
                         "assets/images/placeholder/profile_placeholder.png",
                     fit: BoxFit.cover,
@@ -105,7 +105,7 @@ class ActiveMemberDetailScreen
                     Row(
                       children: [
                         Text(
-                          controller.memberList.value?.user?.user?.nickName ?? '',
+                          controller.memberList.value?.user?.nickName ?? '',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 20,
