@@ -502,54 +502,56 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             const SizedBox(
               height: defaultPadding,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(defaultPadding),
-                    decoration: BoxDecoration(
+            IntrinsicHeight(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(defaultPadding),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(defaultPadding),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/home/return_bg.png'),
+                            fit: BoxFit.cover,
+                          )),
+                      child: _buildInfoCard(
+                        context: context,
+                        imagePath: 'assets/images/income/zrs.png',
+                        title: tr('income.total_members'),
+                        hideRight: true,
+                        value:
+                            (controller.userTeamTotalInfo.value?.memberCount ?? 0)
+                                .toString(),
+                        onTap: () => onTap(0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(defaultPadding),
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(defaultPadding),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/images/home/return_bg.png'),
-                          fit: BoxFit.cover,
-                        )),
-                    child: _buildInfoCard(
-                      context: context,
-                      imagePath: 'assets/images/income/zrs.png',
-                      title: tr('income.total_members'),
-                      hideRight: true,
-                      value:
-                          (controller.userTeamTotalInfo.value?.memberCount ?? 0)
-                              .toString(),
-                      onTap: () => onTap(0),
+                          image: const DecorationImage(
+                        image: AssetImage('assets/images/home/return_bg.png'),
+                        fit: BoxFit.cover,
+                      )),
+                      child: _buildInfoCard(
+                        context: context,
+                        imagePath: 'assets/images/income/jhrs.png',
+                        title: tr('income.activated_members'),
+                        value: (controller
+                                    .userTeamTotalInfo.value?.realMemberCount ??
+                                0)
+                            .toString(),
+                        onTap: () => onTap(1),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: defaultPadding,
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(defaultPadding),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(defaultPadding),
-                        image: const DecorationImage(
-                      image: AssetImage('assets/images/home/return_bg.png'),
-                      fit: BoxFit.cover,
-                    )),
-                    child: _buildInfoCard(
-                      context: context,
-                      imagePath: 'assets/images/income/jhrs.png',
-                      title: tr('income.activated_members'),
-                      value: (controller
-                                  .userTeamTotalInfo.value?.realMemberCount ??
-                              0)
-                          .toString(),
-                      onTap: () => onTap(1),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ));

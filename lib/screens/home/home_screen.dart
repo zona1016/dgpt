@@ -438,7 +438,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                         AssetImage('assets/images/income/total_progress.png'))),
             child: Center(
               child: Text(
-                tr('home.total_income'),
+                tr('home.total_income1'),
                 style: fontDMMedium.copyWith(
                   fontSize: 14,
                   color: BaseColors.white,
