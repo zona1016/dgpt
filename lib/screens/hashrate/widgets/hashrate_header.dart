@@ -10,13 +10,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HashrateHeader extends StatelessWidget {
-
   PowerInfo? powerInfo;
   HasrateProgressInfo? progressInfo;
   bool isIncome;
   double totalRoi;
 
-  HashrateHeader({super.key, this.powerInfo, this.progressInfo, this.isIncome = false, this.totalRoi = 0});
+  HashrateHeader(
+      {super.key,
+      this.powerInfo,
+      this.progressInfo,
+      this.isIncome = false,
+      this.totalRoi = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +80,7 @@ class HashrateHeader extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(defaultPadding),
               border:
-              Border.all(color: BaseColors.secondPrimaryColor, width: 1),
+                  Border.all(color: BaseColors.secondPrimaryColor, width: 1),
               color: BaseColors.secondPrimaryColor.withOpacity(0.1),
             ),
             child: Text(
@@ -106,7 +110,9 @@ class HashrateHeader extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                (powerInfo?.code != 'none') ? powerInfo?.orderNo.toString() ?? '' : 'N/A',
+                (powerInfo!.orderNo - 1) >= 0
+                    ? (powerInfo!.orderNo - 1).toString()
+                    : 'N/A',
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 20,
@@ -124,18 +130,18 @@ class HashrateHeader extends StatelessWidget {
         Expanded(child: Container()),
         if (isIncome)
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding / 2),
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding / 2),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(defaultPadding / 2),
-              gradient: LinearGradient(
-                colors: [
-                  const Color(0xFF892EFF).withOpacity(0.8),
-                  const Color(0xFF1C4C99).withOpacity(0.8),
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              )
-            ),
+                borderRadius: BorderRadius.circular(defaultPadding / 2),
+                gradient: LinearGradient(
+                  colors: [
+                    const Color(0xFF892EFF).withOpacity(0.8),
+                    const Color(0xFF1C4C99).withOpacity(0.8),
+                  ],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                )),
             child: Row(
               children: [
                 Image.asset(
@@ -143,12 +149,14 @@ class HashrateHeader extends StatelessWidget {
                   width: 20,
                   height: 20,
                 ),
-                const SizedBox(width: defaultPadding / 2,),
+                const SizedBox(
+                  width: defaultPadding / 2,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '总收益',
+                      tr('home.total_income'),
                       style: fontDMRegular.copyWith(
                         color: BaseColors.weakTextColor,
                         fontSize: 12,
@@ -252,21 +260,34 @@ class HashrateHeader extends StatelessWidget {
   高级算力 直推3位成为4级算力（团队总人数605人）
   * */
   Widget _buildConditionalRows() {
+    String detail = '';
+    switch (powerInfo!.orderNo - 1) {
+      case 0:
+        detail = '${tr('home.invite')} 5';
+      case 1:
+        detail = tr('hashrate.directly_refer_become_level', args: ['1']);
+      case 2:
+        detail = tr('hashrate.directly_refer_become_level', args: ['2']);
+      case 3:
+        detail = tr('hashrate.directly_refer_become_level', args: ['3']);
+      case 4:
+        detail = tr('hashrate.directly_refer_become_level', args: ['4']);
+    }
     return Column(
       children: [
-        if (progressInfo?.next?.conditionDto != null)
+        if (progressInfo?.next?.conditionDto != null && powerInfo!.orderNo == 0)
           ..._buildConditionalRow1(
             tr('hashrate.computing_power_rental'),
             progressInfo!.next!.conditionDto!.minPlanAmount,
             progressInfo!.planAmount,
           ),
-        if (progressInfo?.next?.conditionDto != null)
+        if (progressInfo?.next?.conditionDto != null && powerInfo!.orderNo != 0)
           ..._buildConditionalRow(
-            tr('hashrate.direct_referral_count'),
+            detail,
             progressInfo!.next!.conditionDto!.directCount,
             progressInfo!.directCount,
           ),
-        if (progressInfo?.next?.conditionDto != null)
+        if (progressInfo?.next?.conditionDto != null && powerInfo!.orderNo > 1)
           ..._buildConditionalRow(
             tr('hashrate.team_members'),
             progressInfo!.next!.conditionDto!.teamCount,
@@ -333,7 +354,6 @@ class HashrateHeader extends StatelessWidget {
   }
 
   double getProgress() {
-
     if (powerInfo == null) {
       return 0;
     }
@@ -341,25 +361,30 @@ class HashrateHeader extends StatelessWidget {
     double progress = 0;
     double count = 0;
     if (progressInfo?.next?.conditionDto != null) {
-
-      if (progressInfo!.next!.conditionDto!.minPlanAmount > 0) {
-        progress += progressInfo!.planAmount / progressInfo!.next!.conditionDto!.minPlanAmount;
+      if (powerInfo!.orderNo == 0 &&
+          progressInfo!.next!.conditionDto!.minPlanAmount > 0) {
+        progress += progressInfo!.planAmount /
+            progressInfo!.next!.conditionDto!.minPlanAmount;
         if (progress > 1) {
           progress = 1;
         }
         count += 1;
       }
 
-      if (progressInfo!.next!.conditionDto!.teamCount > 0) {
-        progress += progressInfo!.teamCount / progressInfo!.next!.conditionDto!.teamCount;
+      if (powerInfo!.orderNo > 1 &&
+          progressInfo!.next!.conditionDto!.teamCount > 0) {
+        progress += progressInfo!.teamCount /
+            progressInfo!.next!.conditionDto!.teamCount;
         if (progress > 1) {
           progress = 1;
         }
         count += 1;
       }
 
-      if (progressInfo!.next!.conditionDto!.directCount > 0) {
-        progress += progressInfo!.directCount / progressInfo!.next!.conditionDto!.directCount;
+      if (powerInfo!.orderNo != 0 &&
+          progressInfo!.next!.conditionDto!.directCount > 0) {
+        progress += progressInfo!.directCount /
+            progressInfo!.next!.conditionDto!.directCount;
         if (progress > 1) {
           progress = 1;
         }

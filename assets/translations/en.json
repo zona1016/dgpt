@@ -203,7 +203,8 @@
     "invitation_bonus": "Invitation Reward",
     "salary": "Salary",
     "team_data": "Team Data",
-    "price_per_unit": "Price per unit"
+    "price_per_unit": "Price per unit",
+    "directly_refer_become_level": "Directly refer 3 people to become level {} power"
   },
   "profile": {
     "place_enter_a_nickname": "Place enter a nickname",

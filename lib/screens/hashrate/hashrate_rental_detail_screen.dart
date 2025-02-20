@@ -32,32 +32,32 @@ class HashrateRentalDetailScreen
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(
-        padding: const EdgeInsets.all(defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(defaultPadding),
-                    border: Border.all(color: BaseColors.primaryColor, width: 1),
-                  color: Colors.transparent
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildHeader(),
-                    const SizedBox(
-                      height: defaultPadding / 2,
+            padding: const EdgeInsets.all(defaultPadding),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(defaultPadding),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(defaultPadding),
+                        border: Border.all(
+                            color: BaseColors.primaryColor, width: 1),
+                        color: Colors.transparent),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildHeader(),
+                        const SizedBox(
+                          height: defaultPadding / 2,
+                        ),
+                        _buildHardwareInfo(),
+                      ],
                     ),
-                    _buildHardwareInfo(),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      )),
+                  )
+                ],
+              ),
+            ),
+          )),
     );
   }
 
@@ -108,7 +108,9 @@ class HashrateRentalDetailScreen
                   ),
                 ],
               ),
-              const SizedBox(width: defaultPadding / 5,),
+              const SizedBox(
+                width: defaultPadding / 5,
+              ),
               Text(
                 controller.planDetail.value?.pcieName ?? '',
                 style: fontDMMedium.copyWith(
@@ -123,7 +125,9 @@ class HashrateRentalDetailScreen
                     height: 10,
                     width: 10,
                   ),
-                  const SizedBox(width: defaultPadding / 5,),
+                  const SizedBox(
+                    width: defaultPadding / 5,
+                  ),
                   Text(
                     '${controller.planDetail.value?.upSpeed ?? ''} Mbps',
                     style: fontDMRegular.copyWith(
@@ -136,7 +140,7 @@ class HashrateRentalDetailScreen
               Row(
                 children: [
                   Image.asset(
-                      'assets/images/hashrate/download.png',
+                    'assets/images/hashrate/download.png',
                     height: 10,
                     width: 10,
                   ),
@@ -266,8 +270,12 @@ class HashrateRentalDetailScreen
               child: Row(
                 children: [
                   BaseNetworkImage(
-                    imageURL: controller.planDetail.value?.graphicsIconFileIdUrl ?? '',
-                    placeholder: 'assets/images/home/income_detail_icon.png',
+                    imageURL:
+                        controller.planDetail.value?.graphicsIconFileIdUrl ??
+                            '',
+                    placeholder: controller.planDetail.value?.code == 'B0001'
+                        ? 'assets/images/home/income_detail_icon.png'
+                        : 'assets/images/home/income_detail_icon.png1',
                     height: 46,
                     width: 100,
                   ),
@@ -436,9 +444,8 @@ class HashrateRentalDetailScreen
                       height: 60,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/hashrate/ty_bg.png'),
-                          )),
+                        image: AssetImage('assets/images/hashrate/ty_bg.png'),
+                      )),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: defaultPadding / 4,
