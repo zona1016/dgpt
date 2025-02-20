@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'dart:html' as html;
 
+import 'package:card_swiper/card_swiper.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/user_income_total.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
@@ -35,6 +37,8 @@ class HomeScreenController extends BaseController {
   final AuthService authService = Get.find();
   final AiPulseService aiPulseService = Get.find();
   final UserController userController = Get.find();
+  final SwiperController swiperController = SwiperController();
+
   GlobalKey globalKey = GlobalKey();
 
   final selectedBannerIndex = 0.obs;
@@ -44,7 +48,11 @@ class HomeScreenController extends BaseController {
 
   Rxn<UserIncomeTotal> incomeTotal = Rxn<UserIncomeTotal>();
   RxList<Banner> bannerList = <Banner>[].obs;
+  RxList<PlanDetail> planList = <PlanDetail>[].obs;
   RxBool isActivate = false.obs;
+
+  RxInt selectedPlanIndex = 0.obs;
+
   List<String> titles = [
     tr('home.notice'),
     tr('home.invite'),
@@ -110,6 +118,7 @@ class HomeScreenController extends BaseController {
         request: () => aiPulseService.aiPulseUserPlanUserPlan(status: '1'),
         loadingState: AppLoadingState.background);
     if (result != null && result.isNotEmpty) {
+      planList.value = result;
       isActivate.value = true;
     }
   }

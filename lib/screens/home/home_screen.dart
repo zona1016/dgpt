@@ -1,4 +1,6 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
@@ -59,7 +61,76 @@ class HomeScreen extends GetView<HomeScreenController> {
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  Obx(() => _status()),
+                  Obx(() => Stack(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            height: 250, // 确保整个 Swiper 居中
+                            child: controller.planList.isEmpty
+                                ? GestureDetector(
+                                    onTap: () {
+                                      final MainScreenController
+                                          mainController = Get.find();
+                                      mainController.selectedTabIndex(1);
+                                      mainController.pageController
+                                          .jumpToPage(1);
+                                      mainController.update();
+                                    },
+                                    child: _status(),
+                                  ) // 等待数据加载
+                                : Swiper(
+                                    controller: controller.swiperController,
+                                    itemCount: controller.planList.length,
+                                    loop: false,
+                                    onIndexChanged: (index) {
+                                      controller.selectedPlanIndex.value =
+                                          index;
+                                    },
+                                    onTap: (index) {
+                                      Get.toNamed(
+                                          AppRoutes.hashrateRentalBuyDetail,
+                                          arguments:
+                                              HashrateRentalBuyDetailScreenArgs(
+                                                  planDetail: controller
+                                                      .planList[index]));
+                                    },
+                                    itemBuilder: (context, index) => Stack(
+                                      children: [
+                                        _status(),
+                                      ],
+                                    ),
+                                  ),
+                          ),
+                          if (controller.selectedPlanIndex.value > 0)
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              bottom: 0, // 控制左侧箭头的位置
+                              child: IconButton(
+                                icon: Icon(Icons.arrow_back_ios,
+                                    color: Colors.green),
+                                onPressed: () {
+                                  controller.swiperController
+                                      .previous(); // 切换到上一页
+                                },
+                              ),
+                            ),
+                          if (controller.planList.length >
+                              controller.selectedPlanIndex.value + 1)
+                            Positioned(
+                              top: 0,
+                              bottom: 0,
+                              right: -5, // 控制右侧箭头的位置
+                              child: IconButton(
+                                icon: Icon(Icons.arrow_forward_ios,
+                                    color: Colors.green),
+                                onPressed: () {
+                                  controller.swiperController.next(); // 切换到下一页
+                                },
+                              ),
+                            ),
+                        ],
+                      )),
                   const SizedBox(
                     height: defaultPadding,
                   ),
@@ -151,83 +222,76 @@ class HomeScreen extends GetView<HomeScreenController> {
   }
 
   _status() {
-    return GestureDetector(
-      onTap: () {
-        final MainScreenController mainController = Get.find();
-        mainController.selectedTabIndex(1);
-        mainController.pageController.jumpToPage(1);
-        mainController.update();
-      },
-      child: Stack(
-        // 让所有子组件居中
-        children: [
-          Container(
-            padding: const EdgeInsets.only(bottom: 21),
-            child: Image.asset(
-              'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
-              fit: BoxFit.contain, // 图片自适应大小
-            ),
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          padding: const EdgeInsets.only(bottom: 21),
+          child: Image.asset(
+            'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
+            fit: BoxFit.fill, // 图片自适应大小
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Center(
-              child: Container(
-                height: 42,
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(21),
-                    border: Border.all(
-                        width: 1,
-                        color: controller.isActivate.value
-                            ? BaseColors.primaryColor
-                            : BaseColors.white)),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: Center(
+            child: Container(
+              height: 42,
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(21),
+                  border: Border.all(
+                      width: 1,
                       color: controller.isActivate.value
                           ? BaseColors.primaryColor
-                          : BaseColors.darkGray10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(
-                        width: defaultPadding / 2,
+                          : BaseColors.white)),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    color: controller.isActivate.value
+                        ? BaseColors.primaryColor
+                        : BaseColors.darkGray10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      width: defaultPadding / 2,
+                    ),
+                    Container(
+                      height: 15,
+                      width: 15,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7.5),
+                          color: controller.isActivate.value
+                              ? BaseColors.secondPrimaryColor
+                              : BaseColors.gray85),
+                    ),
+                    const SizedBox(
+                      width: defaultPadding,
+                    ),
+                    Text(
+                      controller.isActivate.value
+                          ? tr('home.activated')
+                          : tr('home.not_activated'),
+                      style: fontDMBold.copyWith(
+                        color: BaseColors.white,
+                        fontSize: 16,
                       ),
-                      Container(
-                        height: 15,
-                        width: 15,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.5),
-                            color: controller.isActivate.value
-                                ? BaseColors.secondPrimaryColor
-                                : BaseColors.gray85),
-                      ),
-                      const SizedBox(
-                        width: defaultPadding,
-                      ),
-                      Text(
-                        controller.isActivate.value
-                            ? tr('home.activated')
-                            : tr('home.not_activated'),
-                        style: fontDMBold.copyWith(
-                          color: BaseColors.white,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        width: defaultPadding,
-                      ),
-                    ],
-                  ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      width: defaultPadding,
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -449,7 +513,7 @@ class HomeScreen extends GetView<HomeScreenController> {
       copyTap: () {
         Clipboard.setData(ClipboardData(
             text:
-            "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
+                "https://apiluse-h5.pages.dev/#/register?inviteCode=${controller.userController.userInfo.inviteCode}"));
         ToastUtils.showToast(title: tr('tip.copy_success'));
       },
       download: () {
