@@ -14,6 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileScreen extends GetView<ProfileScreenController> {
   const ProfileScreen({super.key});
@@ -486,6 +487,9 @@ class ProfileScreen extends GetView<ProfileScreenController> {
       download: () {
         controller.loadImage(context);
       },
+      shareTap: () async {
+        await Share.share('${controller.userController.userInfo.inviteCode}');
+      }
     );
   }
 }

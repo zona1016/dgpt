@@ -487,7 +487,8 @@ class DialogUtils {
       {required GlobalKey globalKey,
       required String inviteCode,
       GestureTapCallback? copyTap,
-      GestureTapCallback? download}) async {
+      GestureTapCallback? download,
+      GestureTapCallback? shareTap}) async {
     DialogUtils.showShareDialog(
         key: globalKey,
         barrierDismissible: false,
@@ -521,77 +522,200 @@ class DialogUtils {
               const SizedBox(
                 height: defaultPadding / 2,
               ),
-              Text(
-                '邀请码：$inviteCode',
-                style: fontDMMedium.copyWith(
-                    color: BaseColors.white, fontSize: 14),
+              Row(
+                children: [
+                  const Spacer(),
+                  Image.asset(
+                    'assets/images/home/share_scan.png',
+                    width: 25,
+                    height: 25,
+                  ),
+                  const SizedBox(
+                    width: defaultPadding / 4,
+                  ),
+                  Text(
+                    '扫描二维码加入',
+                    style: fontDMMedium.copyWith(
+                        color: Colors.black, fontSize: 12),
+                  ),
+                  const Spacer(),
+                ],
               ),
               const SizedBox(
                 height: defaultPadding / 2,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
-                  Container(
-                    height: 44,
-                    width: double.infinity,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        color: BaseColors.whiteGray3),
-                    child: Row(
-                      children: [
-                        Text(
-                          '复制邀请链接',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 16),
-                        ),
-                        Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: copyTap,
-                          child: Image.asset(
-                            'assets/images/home/share_copy.png',
-                            height: 20,
-                            width: 20,
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 38,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(defaultPadding * 2),
+                          color: BaseColors.whiteGray3),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          Text(
+                            '复制邀请链接',
+                            style: fontDMMedium.copyWith(
+                                color: BaseColors.white, fontSize: 12),
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            width: defaultPadding / 5,
+                          ),
+                          GestureDetector(
+                            onTap: copyTap,
+                            child: Image.asset(
+                              'assets/images/home/share_copy.png',
+                              height: 15,
+                              width: 15,
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: defaultPadding / 2),
-                  Container(
-                    height: 44,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: defaultPadding),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(defaultPadding * 2),
-                        gradient: BaseColors.baseButtonLinearGradient),
-                    child: Row(
-                      children: [
-                        Text(
-                          '下载保存图片',
-                          style: fontDMMedium.copyWith(
-                              color: BaseColors.white, fontSize: 16),
-                        ),
-                        Expanded(child: Container()),
-                        GestureDetector(
-                          onTap: download,
-                          child: Image.asset(
-                            'assets/images/home/share_download.png',
-                            width: 20,
-                            height: 20,
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 38,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(defaultPadding * 2),
+                          gradient: BaseColors.baseButtonLinearGradient),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          Text(
+                            '下载保存图片',
+                            style: fontDMMedium.copyWith(
+                                color: BaseColors.white, fontSize: 12),
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            width: defaultPadding / 5,
+                          ),
+                          GestureDetector(
+                            onTap: download,
+                            child: Image.asset(
+                              'assets/images/home/share_download.png',
+                              width: 20,
+                              height: 20,
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: defaultPadding),
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
                 ],
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              GestureDetector(
+                onTap: shareTap,
+                child: Container(
+                  height: 38,
+                  margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(defaultPadding * 2),
+                      gradient: BaseColors.baseButtonLinearGradient),
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        tr('button.share'),
+                        style: fontDMMedium.copyWith(
+                            color: BaseColors.white, fontSize: 16),
+                      ),
+                      const SizedBox(
+                        width: defaultPadding / 5,
+                      ),
+                      GestureDetector(
+                        onTap: download,
+                        child: Image.asset(
+                          'assets/images/home/share_share.png',
+                          width: 15,
+                          height: 15,
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: defaultPadding,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
+                  Text(
+                    '邀请码',
+                    style: fontDMRegular.copyWith(
+                        color: Colors.black, fontSize: 12),
+                  ),
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 38,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: BaseColors.white),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              inviteCode,
+                              style: fontDMMedium.copyWith(
+                                  color: Colors.black, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: Container(
+                              width: 70,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                gradient: BaseColors.dayIncomeGradient,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  tr('button.copy'),
+                                  style: fontDMMedium.copyWith(
+                                      color: BaseColors.white, fontSize: 12),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: defaultPadding,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: defaultPadding,
               ),
             ],
           ),
@@ -630,44 +754,43 @@ class DialogUtils {
                       image,
                       width: SizeUtil.width() * 0.7,
                     ),
-                  Container(
-                    decoration: BoxDecoration(
-                        image: (bgImage != null)
-                            ? DecorationImage(
-                                image: AssetImage(bgImage), fit: BoxFit.cover)
-                            : null),
-                    width: SizeUtil.width() * 0.7,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        imageWidget ?? Container(),
-                        if (title.isNotEmpty)
-                          Text(
-                            title,
-                            textAlign: TextAlign.center,
-                            style: fontDMBold.copyWith(
-                                fontSize: 24, color: BaseColors.textColor),
-                          ),
-                        if (desc != null)
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: defaultPadding / 4,
-                                bottom: defaultPadding / 2),
-                            child: Text(
-                              desc,
+                  Transform.translate(
+                    offset: const Offset(0, -10), // Y 轴向下移动 20
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: (bgImage != null)
+                              ? DecorationImage(
+                                  image: AssetImage(bgImage), fit: BoxFit.cover)
+                              : null),
+                      width: SizeUtil.width() * 0.7,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          imageWidget ?? Container(),
+                          if (title.isNotEmpty)
+                            Text(
+                              title,
                               textAlign: TextAlign.center,
-                              style: fontDMMedium.copyWith(
-                                  fontSize: 18, color: BaseColors.textColor),
+                              style: fontDMBold.copyWith(
+                                  fontSize: 24, color: BaseColors.textColor),
                             ),
-                          ),
-                        if (child != null) child,
-                      ],
+                          if (desc != null)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: defaultPadding / 4,
+                                  bottom: defaultPadding / 2),
+                              child: Text(
+                                desc,
+                                textAlign: TextAlign.center,
+                                style: fontDMMedium.copyWith(
+                                    fontSize: 18, color: BaseColors.textColor),
+                              ),
+                            ),
+                          if (child != null) child,
+                        ],
+                      ),
                     ),
                   ),
-                  if (showBottomClose)
-                    const SizedBox(
-                      height: defaultPadding,
-                    ),
                   if (showBottomClose)
                     GestureDetector(
                       onTap: () {

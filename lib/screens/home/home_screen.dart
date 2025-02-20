@@ -8,6 +8,7 @@ import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -19,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
   const HomeScreen({super.key});
@@ -38,8 +40,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: defaultPadding),
+                    padding: const EdgeInsets.only(bottom: defaultPadding / 2),
                     child: Center(
                       child: Image.asset(
                         'assets/images/custom/logo.png',
@@ -96,7 +97,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                                     },
                                     itemBuilder: (context, index) => Stack(
                                       children: [
-                                        _status(),
+                                        _status(showBorder: true),
                                       ],
                                     ),
                                   ),
@@ -196,7 +197,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           width: defaultPadding,
         ),
         GestureDetector(
-          onTap: () => Get.toNamed(AppRoutes.aboutUs),
+          onTap: () => Get.toNamed(AppRoutes.helpCenter),
           child: Image.asset(
             'assets/images/home/service.png',
             width: 25,
@@ -221,16 +222,26 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  _status() {
+  _status({bool showBorder = false}) {
     return Stack(
       children: [
         Container(
           width: double.infinity,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
           padding: const EdgeInsets.only(bottom: 21),
-          child: Image.asset(
-            'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
-            fit: BoxFit.fill, // 图片自适应大小
+          child: Container(
+            padding: const EdgeInsets.all(1),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: showBorder
+                    ? Border.all(color: BaseColors.secondPrimaryColor, width: 1)
+                    : null),
+            child: Image.asset(
+              'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
+              fit: BoxFit.fill, // 图片自适应大小
+            ),
           ),
         ),
         Positioned(
@@ -401,24 +412,25 @@ class HomeScreen extends GetView<HomeScreenController> {
 
   _makeProfitAndNodePartner(BuildContext context,
       {required Function(int index) onTap}) {
-    return Obx(() => IntrinsicHeight(
-          child: Row(
-            children: [
-              Expanded(
-                  child: GestureDetector(
-                      onTap: () => onTap(1), child: _buildDayIncome())),
-              const SizedBox(
-                width: defaultPadding,
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () => onTap(2),
-                  child: _buildTotalIncome(),
-                ),
-              ),
-            ],
+    return Obx(() => SizedBox(
+      height: (SizeUtil.width() - 3 * defaultPadding) / 2.0,
+      child: Row(
+        children: [
+          Expanded(
+              child: GestureDetector(
+                  onTap: () => onTap(1), child: _buildDayIncome())),
+          const SizedBox(
+            width: defaultPadding,
           ),
-        ));
+          Expanded(
+            child: GestureDetector(
+              onTap: () => onTap(2),
+              child: _buildTotalIncome(),
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 
   Widget _buildDayIncome() {
@@ -431,7 +443,7 @@ class HomeScreen extends GetView<HomeScreenController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: defaultPadding,
+            height: defaultPadding / 2 * 1.5,
           ),
           Padding(
             padding: const EdgeInsets.only(left: defaultPadding),
@@ -469,8 +481,9 @@ class HomeScreen extends GetView<HomeScreenController> {
           color: const Color(0xFF04133D)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(height: defaultPadding / 2),
+          Expanded(child: Container()),
           Container(
             width: 94,
             height: 94,
@@ -489,18 +502,16 @@ class HomeScreen extends GetView<HomeScreenController> {
               ),
             ),
           ),
-          const Spacer(),
-          Expanded(
-            child: Text(
-              '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
-              style: fontDMBold.copyWith(
-                fontSize: 18,
-                color: BaseColors.primaryColor,
-              ),
-              textAlign: TextAlign.center,
+          Expanded(child: Container()),
+          Text(
+            '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+            style: fontDMBold.copyWith(
+              fontSize: 18,
+              color: BaseColors.primaryColor,
             ),
+            textAlign: TextAlign.center,
           ),
-          const Spacer(),
+          Expanded(child: Container()),
         ],
       ),
     );
@@ -519,6 +530,9 @@ class HomeScreen extends GetView<HomeScreenController> {
       download: () {
         controller.loadImage(context);
       },
+      shareTap: () async {
+        await Share.share('${controller.userController.userInfo.inviteCode}');
+      }
     );
   }
 }
