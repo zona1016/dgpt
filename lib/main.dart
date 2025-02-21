@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dgpt/models/app_language.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
@@ -101,7 +103,7 @@ class MainApp extends StatelessWidget {
     return RestartWidget(
         child: GetMaterialApp(
       navigatorObservers: [GetObserver()],
-      scrollBehavior: AppScrollBehavior(),
+      scrollBehavior: CustomScrollBehavior(),
       localizationsDelegates: [
         ...context.localizationDelegates,
         FormBuilderLocalizations.delegate
@@ -160,4 +162,13 @@ class AppScrollBehavior extends ScrollBehavior {
   ) {
     return child;
   }
+}
+
+class CustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.trackpad,
+  };
 }
