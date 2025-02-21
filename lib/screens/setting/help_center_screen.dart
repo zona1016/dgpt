@@ -22,8 +22,8 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: 'assets/images/home/help_center.png',
       backgroundImageColor: Colors.black,
-      appBar: const BaseAppBar(
-        title: '帮助中心',
+      appBar: BaseAppBar(
+        title: tr('help.help_center'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -37,7 +37,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    '给我们留言',
+                    tr('help.leave_message'),
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 32),
                   ),
@@ -50,7 +50,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                     height: 250,
                   ),
                   Text(
-                    '您好！非常抱歉，我们暂时无法为您提供服务。如果您需要帮助，请留下信息，我们将会尽快与您联系并提供解决方案！',
+                    tr('help.sorry_message'),
                     style: fontDMMedium.copyWith(
                         color: BaseColors.white, fontSize: 16),
                   ),
@@ -59,7 +59,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                   ),
                   BaseTextFormField(
                     name: 'phone',
-                    hintText: '手机号',
+                    hintText: tr('profile.phone_number'),
                     fillColor: BaseColors.gray85,
                     radius: 10,
                     onChanged: (value) {
@@ -71,7 +71,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                   ),
                   BaseTextFormField(
                     name: 'phone',
-                    hintText: '信息',
+                    hintText: tr('help.information'),
                     fillColor: BaseColors.gray85,
                     radius: 10,
                     onChanged: (value) {
@@ -130,7 +130,7 @@ class HelpCenterScreen extends GetView<HelpCenterScreenController> {
                           ),
                           Expanded(
                             child: Text(
-                              '您可上传图像不超过 5MB 的图片。',
+                              tr('help.upload_image_limit'),
                               style: fontDMMedium.copyWith(
                                   color: BaseColors.white, fontSize: 14),
                             ),

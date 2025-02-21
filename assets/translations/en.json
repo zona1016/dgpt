@@ -308,5 +308,12 @@
   "placeholder": {
     "enter_wallet_address": "Enter Wallet Address",
     "please_enter_the_amount": "Please enter the amount"
+  },
+  "help": {
+    "help_center": "Help Center",
+    "leave_message": "Leave us a message",
+    "sorry_message": "Hello! We're very sorry, but we're currently unable to provide service. If you need help, please leave a message, and we will contact you as soon as possible with a solution!",
+    "information": "Information",
+    "upload_image_limit": "You can upload images up to 5MB in size."
   }
 }

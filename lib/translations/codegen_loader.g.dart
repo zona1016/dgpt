@@ -324,6 +324,13 @@ class CodegenLoader extends AssetLoader{
   "placeholder": {
     "enter_wallet_address": "Enter Wallet Address",
     "please_enter_the_amount": "Please enter the amount"
+  },
+  "help": {
+    "help_center": "Help Center",
+    "leave_message": "Leave us a message",
+    "sorry_message": "Hello! We're very sorry, but we're currently unable to provide service. If you need help, please leave a message, and we will contact you as soon as possible with a solution!",
+    "information": "Information",
+    "upload_image_limit": "You can upload images up to 5MB in size."
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -636,6 +643,13 @@ static const Map<String,dynamic> zh_Hans = {
   "placeholder": {
     "enter_wallet_address": "输入钱包地址",
     "please_enter_the_amount": "请输入金额"
+  },
+  "help": {
+    "help_center": "帮助中心",
+    "leave_message": "给我们留言",
+    "sorry_message": "您好！非常抱歉，我们暂时无法为您提供服务。如果您需要帮助，请留下信息，我们将会尽快与您联系并提供解决方案！",
+    "information": "信息",
+    "upload_image_limit": "您可上传图像不超过 5MB 的图片。"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};
