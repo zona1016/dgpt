@@ -20,7 +20,7 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
-        title: '转移资产',
+        title: tr('profile.transfer_assets'),
         color: BaseColors.white,
         backgroundColor: Colors.black,
       ),
@@ -54,7 +54,7 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                                 ),
                               ),
                               Text(
-                                '现金账户',
+                                tr('profile.cash_wallet'),
                                 style: fontDMMedium.copyWith(
                                   fontSize: 16,
                                   color: BaseColors.white,
@@ -73,7 +73,7 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                                 ),
                               ),
                               Text(
-                                '租赁账户',
+                                tr('profile.computing_power_wallet'),
                                 style: fontDMMedium.copyWith(
                                   fontSize: 16,
                                   color: BaseColors.white,
@@ -88,7 +88,7 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                       height: defaultPadding,
                     ),
                     Text(
-                      '代币',
+                      tr('profile.type'),
                       style: fontDMMedium.copyWith(
                         fontSize: 16,
                         color: BaseColors.white,
@@ -103,7 +103,7 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
                         },
                         name: 'paymentMethodType',
                         style: fontDMMedium.copyWith(color: BaseColors.white),
-                        hintText: (controller.merchantList.isNotEmpty) ? controller.merchantList.first.label : '请选择种类',
+                        hintText: (controller.merchantList.isNotEmpty) ? controller.merchantList.first.label : tr('profile.type'),
                         menuMaxHeight: 250),
                     const SizedBox(
                       height: defaultPadding / 2,

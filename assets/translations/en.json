@@ -265,7 +265,8 @@
     "wallet_address": "Wallet Address",
     "wallet_type": "Wallet Type",
     "trial": "Trial",
-    "google_authenticator": "Google authenticator"
+    "google_authenticator": "Google authenticator",
+    "type": "Type"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",

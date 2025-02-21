@@ -281,7 +281,8 @@ class CodegenLoader extends AssetLoader{
     "wallet_address": "Wallet Address",
     "wallet_type": "Wallet Type",
     "trial": "Trial",
-    "google_authenticator": "Google authenticator"
+    "google_authenticator": "Google authenticator",
+    "type": "Type"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -581,7 +582,8 @@ static const Map<String,dynamic> zh_Hans = {
     "wallet_address": "钱包地址",
     "wallet_type": "所属类型",
     "trial": "体验",
-    "google_authenticator": "Google验证码"
+    "google_authenticator": "Google验证码",
+    "type": "种类"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",

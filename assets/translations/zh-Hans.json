@@ -265,7 +265,8 @@
     "wallet_address": "钱包地址",
     "wallet_type": "所属类型",
     "trial": "体验",
-    "google_authenticator": "Google验证码"
+    "google_authenticator": "Google验证码",
+    "type": "种类"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",
