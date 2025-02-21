@@ -117,19 +117,20 @@ class HashrateHeader extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-              Image.asset(
-                'assets/images/home/income_power_icon.png',
-                width: (powerInfo?.orderNo ?? 0) == 6
-                    ? 15
-                    : (powerInfo?.orderNo ?? 0) < 2
-                        ? 11
-                        : 13,
-                height: (powerInfo?.orderNo ?? 0) == 6
-                    ? 15
-                    : (powerInfo?.orderNo ?? 0) < 2
-                        ? 11
-                        : 13,
-              ),
+              if (powerInfo?.orderNo != 0)
+                Image.asset(
+                  'assets/images/home/income_power_icon.png',
+                  width: (powerInfo?.orderNo ?? 0) == 6
+                      ? 15
+                      : (powerInfo?.orderNo ?? 0) < 2
+                          ? 11
+                          : 13,
+                  height: (powerInfo?.orderNo ?? 0) == 6
+                      ? 15
+                      : (powerInfo?.orderNo ?? 0) < 2
+                          ? 11
+                          : 13,
+                ),
               const Spacer(),
             ],
           ),

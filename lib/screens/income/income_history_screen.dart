@@ -191,7 +191,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
           ),
           Expanded(
             child: Text(
-                DateFormat("dd/MM/yyyy").format(
+                DateFormat("dd/MM/yyyy HH:mm:ss").format(
                     DateFormat("yyyy-MM-dd HH:mm:ss")
                         .parse(controller.flowList[index].createTime ?? '')),
                 style: fontDMMedium.copyWith(

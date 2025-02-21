@@ -28,6 +28,7 @@ class CashWalletHistoryScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    aiPulseFlowTypeList();
     aiPulseFlowUserPage();
   }
 
@@ -58,12 +59,24 @@ class CashWalletHistoryScreenController extends BaseController {
     }
   }
 
+  aiPulseFlowTypeList(
+      {AppLoadingState loadingState = AppLoadingState.background}) async {
+    final result = await fetchData(
+        request: () => aiPulseService.aiPulseFlowTypeList(),
+        loadingState: AppLoadingState.background);
+    if (result != null) {
+      flowTypeList.value = result;
+      historyList.value =
+          result.map((e) => MenuItem(label: e.text, value: e.value)).toList();
+    }
+  }
+
   String getNameByType(int? type) {
     try {
-      final flowType = flowTypeList.firstWhere((item) => item.value == type);
+      final flowType = flowTypeList.value.firstWhere((item) => item.value == type);
       return flowType.text;
     } catch (e) {
-      return '未找到对应的名称'; // 如果没有找到匹配的 type，返回默认值
+      return '其他类型'; // 如果没有找到匹配的 type，返回默认值
     }
   }
 }

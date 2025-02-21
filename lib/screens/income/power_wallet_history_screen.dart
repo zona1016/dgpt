@@ -20,8 +20,8 @@ class PowerWalletHistoryScreen extends GetView<PowerWalletHistoryScreenControlle
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '现金钱包交易历史',
+      appBar: BaseAppBar(
+        title: tr('profile.computing_power_wallet'),
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(
@@ -151,7 +151,7 @@ class PowerWalletHistoryScreen extends GetView<PowerWalletHistoryScreenControlle
           ),
           Expanded(
             child: Text(
-                DateFormat("dd/MM/yyyy").format(
+                DateFormat("dd/MM/yyyy HH:mm:ss").format(
                     DateFormat("yyyy-MM-dd HH:mm:ss")
                         .parse(controller.flowList[index].createTime ?? '')),
                 style: fontDMMedium.copyWith(

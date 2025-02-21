@@ -77,7 +77,7 @@ class PowerWalletHistoryScreenController extends BaseController {
           flowTypeList.value.firstWhere((item) => item.value == type);
       return flowType.text;
     } catch (e) {
-      return '未找到对应的名称'; // 如果没有找到匹配的 type，返回默认值
+      return '其他类型'; // 如果没有找到匹配的 type，返回默认值
     }
   }
 }
