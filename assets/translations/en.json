@@ -336,5 +336,31 @@
     "running": "Running",
     "expired": "Expired",
     "member_detail": "Member Detail"
+  },
+  "dia": {
+    "account_logged_in_elsewhere": "Your account has been logged in on another device. This device has been logged out. Please log in again.",
+    "insufficient_balance": "Insufficient balance",
+    "wallet_insufficient_balance": "Wallet balance is insufficient. Please recharge immediately.",
+    "top_up_now": "Top up now",
+    "congratulations": "Congratulations!",
+    "top_up_successful": "Top-up successful",
+    "top_up_success_message": "You have successfully recharged!",
+    "oh_no": "Oh no!",
+    "top_up_failed": "Top-up failed",
+    "top_up_failed_message": "It looks like the deposit process was interrupted. Please try again later!",
+    "rental_successful": "Rental successful",
+    "rental_option_message": "Click the button below to choose whether to deploy computing power immediately or later.",
+    "information_sent": "Information sent",
+    "we_will_contact_you": "We will contact you as soon as possible.",
+    "other_message": "Other message",
+    "refer_friend": "Refer a friend",
+    "unlock_unlimited_rewards": "Unlock unlimited rewards",
+    "scan_qr_to_join": "Scan the QR code to join",
+    "copy_invite_link": "Copy invite link",
+    "download_save_image": "Download image",
+    "invitation_code": "Invitation code",
+    "connecting_to_computing_power_center": "Connecting to the computing power center",
+    "please_wait": "Please wait...",
+    "computing_power_rental_in_progress": "Computing power rental in progress"
   }
 }

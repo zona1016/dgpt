@@ -4,6 +4,7 @@ import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,7 @@ class HashrateLoadingScreen extends GetView<HashrateLoadingScreenController> {
             const Spacer(flex: 4,),
             Center(
               child: Text(
-                '正在链接算力中心',
+                tr('dia.connecting_to_computing_power_center'),
                 style: fontDMBold.copyWith(
                   fontSize: 24,
                   color: BaseColors.white
@@ -33,7 +34,7 @@ class HashrateLoadingScreen extends GetView<HashrateLoadingScreenController> {
             const SizedBox(height: defaultPadding / 2,),
             Center(
               child: Text(
-                '请稍等...',
+                tr('dia.please_wait'),
                 style: fontDMRegular.copyWith(
                     fontSize: 20,
                     color: BaseColors.white
@@ -73,7 +74,7 @@ class HashrateLoadingScreen extends GetView<HashrateLoadingScreenController> {
 
   BaseAppBar _buildAppBar() {
     return BaseAppBar(
-      title: '算力租借进行中',
+      title: tr('dia.computing_power_rental_in_progress'),
       color: Colors.white,
       backgroundColor: Colors.transparent,
       flexibleSpace: FlexibleSpaceBar(

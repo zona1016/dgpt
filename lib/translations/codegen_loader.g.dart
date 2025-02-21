@@ -352,6 +352,32 @@ class CodegenLoader extends AssetLoader{
     "running": "Running",
     "expired": "Expired",
     "member_detail": "Member Detail"
+  },
+  "dia": {
+    "account_logged_in_elsewhere": "Your account has been logged in on another device. This device has been logged out. Please log in again.",
+    "insufficient_balance": "Insufficient balance",
+    "wallet_insufficient_balance": "Wallet balance is insufficient. Please recharge immediately.",
+    "top_up_now": "Top up now",
+    "congratulations": "Congratulations!",
+    "top_up_successful": "Top-up successful",
+    "top_up_success_message": "You have successfully recharged!",
+    "oh_no": "Oh no!",
+    "top_up_failed": "Top-up failed",
+    "top_up_failed_message": "It looks like the deposit process was interrupted. Please try again later!",
+    "rental_successful": "Rental successful",
+    "rental_option_message": "Click the button below to choose whether to deploy computing power immediately or later.",
+    "information_sent": "Information sent",
+    "we_will_contact_you": "We will contact you as soon as possible.",
+    "other_message": "Other message",
+    "refer_friend": "Refer a friend",
+    "unlock_unlimited_rewards": "Unlock unlimited rewards",
+    "scan_qr_to_join": "Scan the QR code to join",
+    "copy_invite_link": "Copy invite link",
+    "download_save_image": "Download image",
+    "invitation_code": "Invitation code",
+    "connecting_to_computing_power_center": "Connecting to the computing power center",
+    "please_wait": "Please wait...",
+    "computing_power_rental_in_progress": "Computing power rental in progress"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -692,6 +718,32 @@ static const Map<String,dynamic> zh_Hans = {
     "running": "进行中",
     "expired": "已过期",
     "member_detail": "会员详情"
+  },
+  "dia": {
+    "account_logged_in_elsewhere": "您的账户已在其他设备登录，本设备已下线，请重新登录",
+    "insufficient_balance": "余额不足",
+    "wallet_insufficient_balance": "钱包余额不足，请立即充值",
+    "top_up_now": "立马充值",
+    "congratulations": "恭喜！",
+    "top_up_successful": "充值成功",
+    "top_up_success_message": "您已成功充值！",
+    "oh_no": "不好了！",
+    "top_up_failed": "充值失败",
+    "top_up_failed_message": "看来存款过程被中断了。请稍后再试！",
+    "rental_successful": "租借成功",
+    "rental_option_message": "点击下方按键选择立马或稍后部署算力",
+    "information_sent": "信息已发送",
+    "we_will_contact_you": "我们会尽快联系您",
+    "other_message": "其他留言",
+    "refer_friend": "推荐好友",
+    "unlock_unlimited_rewards": "解锁无限奖励",
+    "scan_qr_to_join": "扫描二维码加入",
+    "copy_invite_link": "复制邀请链接",
+    "download_save_image": "下载保存图片",
+    "invitation_code": "邀请码",
+    "connecting_to_computing_power_center": "正在链接算力中心",
+    "please_wait": "请稍等...",
+    "computing_power_rental_in_progress": "算力租借进行中"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

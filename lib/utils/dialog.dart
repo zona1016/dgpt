@@ -414,7 +414,7 @@ class DialogUtils {
         // 余额不足
         showRecharge();
       } else if (msg.contains('401')) {
-        showErrorDialog('您的账户已在其他设备登录，本设备已下线，请重新登录');
+        showErrorDialog(tr('dia.account_logged_in_elsewhere'));
       } else {
         showErrorDialog(msg);
       }
@@ -422,30 +422,30 @@ class DialogUtils {
   }
 
   static void showRecharge() {
-    DialogUtils.showSuccessDialog('余额不足',
+    DialogUtils.showSuccessDialog(tr('dia.insufficient_balance'),
         titleColor: Colors.red,
         width: 200,
         height: 170,
         comBorderRadius: BorderRadius.circular(10),
         gradient: BaseColors.diaYebz,
         image: 'assets/images/custom/dia_yebz.png',
-        desc: '钱包余额不足，请立即充值',
+        desc: tr('dia.wallet_insufficient_balance'),
         barrierDismissible: false,
-        confirmText: '立马充值', onConfirmPressed: () {
+        confirmText: tr('dia.top_up_now'), onConfirmPressed: () {
       Get.back();
       Get.toNamed(AppRoutes.rechargeDetail);
     });
   }
 
   static void showRechargeSuccess() {
-    DialogUtils.showSuccessDialog('恭喜 ！',
-        topTitle: '充值成功',
+    DialogUtils.showSuccessDialog(tr('dia.congratulations'),
+        topTitle: tr('dia.top_up_successful'),
         width: 200,
         height: 151,
         comBorderRadius: BorderRadius.circular(10),
         gradient: BaseColors.diaCzcg,
         image: 'assets/images/custom/dia_czcg.png',
-        desc: '您已成功充值！',
+        desc: tr('dia.top_up_success_message'),
         barrierDismissible: false,
         confirmText: tr('button.ok'), onConfirmPressed: () {
       Get.back();
@@ -453,14 +453,14 @@ class DialogUtils {
   }
 
   static void showRechargeFail() {
-    DialogUtils.showSuccessDialog('不好了 ！',
-        topTitle: '充值失败',
+    DialogUtils.showSuccessDialog(tr('dia.oh_no'),
+        topTitle: tr('dia.top_up_failed'),
         width: 200,
         height: 151,
         comBorderRadius: BorderRadius.circular(10),
         gradient: BaseColors.diaCzsb,
         image: 'assets/images/custom/dia_czsb.png',
-        desc: '看来存款过程被中断了。请稍后再试！',
+        desc: tr('dia.top_up_failed_message'),
         barrierDismissible: false,
         confirmText: tr('button.ok'), onConfirmPressed: () {
       Get.back();
@@ -468,13 +468,13 @@ class DialogUtils {
   }
 
   static void showRentalSuccess() {
-    DialogUtils.showSuccessDialog('租借成功',
+    DialogUtils.showSuccessDialog(tr('dia.rental_successful'),
         width: 250,
         height: 197,
         comBorderRadius: BorderRadius.circular(10),
         gradient: BaseColors.diaYebz,
         image: 'assets/images/custom/dia_zjcg.png',
-        desc: '点击下方按键选择立马或稍后部署算力',
+        desc: tr('dia.rental_option_message'),
         barrierDismissible: false,
         confirmText: tr('button.done'), onConfirmPressed: () {
       Get.close(4);
@@ -515,7 +515,7 @@ class DialogUtils {
                       height: defaultPadding * 8,
                     ),
                     Text(
-                      '信息已发送',
+                      tr('dia.information_sent'),
                       textAlign: TextAlign.center,
                       style: fontDMMedium.copyWith(
                           fontSize: 18,
@@ -524,7 +524,7 @@ class DialogUtils {
                     Padding(
                       padding: const EdgeInsets.only(top: defaultPadding / 2),
                       child: Text(
-                        '我们会尽快联系您',
+                        tr('dia.we_will_contact_you'),
                         textAlign: TextAlign.center,
                         style: fontDMRegular.copyWith(
                             fontSize: 14, color: BaseColors.white),
@@ -545,7 +545,7 @@ class DialogUtils {
                                 onPressed: () {
                                   Get.back();
                                 },
-                                text: '其他留言',
+                                text: tr('dia.other_message'),
                               ))
                         ],
                       ),
@@ -581,8 +581,8 @@ class DialogUtils {
     DialogUtils.showShareDialog(
         key: globalKey,
         barrierDismissible: false,
-        title: '推荐好友',
-        desc: '解锁无限奖励',
+        title: tr('dia.refer_friend'),
+        desc: tr('dia.unlock_unlimited_rewards'),
         image: 'assets/images/home/share_header.png',
         bgImage: 'assets/images/home/share_bg.png',
         showBottomClose: true,
@@ -622,7 +622,7 @@ class DialogUtils {
                     width: defaultPadding / 4,
                   ),
                   Text(
-                    '扫描二维码加入',
+                    tr('dia.scan_qr_to_join'),
                     style: fontDMMedium.copyWith(
                         color: Colors.black, fontSize: 12),
                   ),
@@ -651,7 +651,7 @@ class DialogUtils {
                           children: [
                             const Spacer(),
                             Text(
-                              '复制邀请链接',
+                              tr('dia.copy_invite_link'),
                               style: fontDMMedium.copyWith(
                                   color: BaseColors.white, fontSize: 12),
                             ),
@@ -685,7 +685,7 @@ class DialogUtils {
                           children: [
                             const Spacer(),
                             Text(
-                              '下载保存图片',
+                              tr('dia.download_save_image'),
                               style: fontDMMedium.copyWith(
                                   color: BaseColors.white, fontSize: 12),
                             ),
@@ -753,7 +753,7 @@ class DialogUtils {
                     width: defaultPadding,
                   ),
                   Text(
-                    '邀请码',
+                    tr('dia.invitation_code'),
                     style: fontDMRegular.copyWith(
                         color: Colors.black, fontSize: 12),
                   ),
