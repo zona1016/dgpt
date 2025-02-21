@@ -27,8 +27,9 @@ class HashrateLoadingScreen extends GetView<HashrateLoadingScreenController> {
                 tr('dia.connecting_to_computing_power_center'),
                 style: fontDMBold.copyWith(
                   fontSize: 24,
-                  color: BaseColors.white
+                  color: BaseColors.white,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: defaultPadding / 2,),
