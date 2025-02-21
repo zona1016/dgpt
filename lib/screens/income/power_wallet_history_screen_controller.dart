@@ -49,7 +49,7 @@ class PowerWalletHistoryScreenController extends BaseController {
     final result = await fetchPaginatedData(
         loadingState: loadingState,
         request: () =>
-            aiPulseService.aiPulseFlowUserPage(page: page, fromAccount: 0));
+            aiPulseService.aiPulseFlowUserPage(page: page, fromAccount: 1));
     if (result != null && result.list.isNotEmpty) {
       if (loadingState == AppLoadingState.loadMore) {
         flowList.addAll(result.list);
