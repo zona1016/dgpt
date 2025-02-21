@@ -31,7 +31,16 @@ class ChangeFundPsdScreen extends GetView<ChangeFundPsdScreenController> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [_buildHeader(context), _textFields(context)],
+                  children: [
+                    _buildHeader(context),
+                    Text(
+                      tr('tip.reset_fund_tip'),
+                      style: fontDMRegular.copyWith(
+                          fontSize: 14, color: BaseColors.white),
+                    ),
+                    const SizedBox(height: defaultPadding / 2,),
+                    _textFields(context)
+                  ],
                 ),
               ),
             ),

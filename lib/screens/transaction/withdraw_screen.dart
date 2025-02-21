@@ -208,7 +208,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                               controller: controller.googleEditingController,
                               contentPadding: EdgeInsets.zero,
                               radius: 10,
-                              title: 'Google验证码',
+                              title: tr('profile.google_authenticator'),
                               name: 'auth',
                               style: fontDMMedium.copyWith(
                                   color: BaseColors.white, fontSize: 14),

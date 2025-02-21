@@ -25,6 +25,8 @@ import 'dart:ui' as ui;
 
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../utils/constants/app_default_size.dart';
+
 class HomeScreenBindings implements Bindings {
   @override
   void dependencies() {
@@ -124,7 +126,7 @@ class HomeScreenController extends BaseController {
   }
 
   loadImage(BuildContext context) async {
-    if (kIsWeb) {
+    if (isMobile()) {
       capturePngWeb(context);
     } else {
       await capturePng(context);

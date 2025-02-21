@@ -30,7 +30,15 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [_buildHeader(context), _textFields(context)],
+                  children: [
+                    _buildHeader(context),
+                    Text(
+                      tr('tip.reset_fund_tip'),
+                      style: fontDMRegular.copyWith(
+                          fontSize: 14, color: BaseColors.white),
+                    ),
+                    _textFields(context)
+                  ],
                 ),
               ),
             ),
@@ -91,14 +99,14 @@ class ResetFundPsdScreen extends GetView<ResetFundPsdScreenController> {
 
   _buildConfirm() {
     return Obx(() => BaseButton(
-      onPressed: () => controller.userResetTradingPwdSubmit(),
-      disabledDecoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30)),
-      enabled: controller.newPsd.isNotEmpty &&
-          controller.newPsdAgain.isNotEmpty &&
-          (controller.newPsd == controller.newPsdAgain),
-      text: tr('button.confirm'),
-    ));
+          onPressed: () => controller.userResetTradingPwdSubmit(),
+          disabledDecoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(30)),
+          enabled: controller.newPsd.isNotEmpty &&
+              controller.newPsdAgain.isNotEmpty &&
+              (controller.newPsd == controller.newPsdAgain),
+          text: tr('button.confirm'),
+        ));
   }
 }

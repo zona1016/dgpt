@@ -57,7 +57,7 @@ class GoogleVerifyScreen extends GetView<GoogleVerifyScreenController> {
             Row(
               children: [
                 Text(
-                  'Google验证码',
+                  tr('profile.google_authenticator'),
                   style: fontDMMedium.copyWith(
                     fontSize: 16,
                     color: BaseColors.white,
