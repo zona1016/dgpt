@@ -282,7 +282,18 @@ class CodegenLoader extends AssetLoader{
     "wallet_type": "Wallet Type",
     "trial": "Trial",
     "google_authenticator": "Google authenticator",
-    "type": "Type"
+    "type": "Type",
+    "enable_google_verification": "Enable Google Verification",
+    "copy_the_key_and_add_it_to_Google_Authenticator": "Copy the key and add it to Google Authenticator",
+    "copy_the_key": "Copy the key",
+    "SFA_settings": "SFA Settings",
+    "account_activity": "Account Activity",
+    "last_login_time": "Last Login Time",
+    "login_device": "Login Device",
+    "google_authentication": "Google Authentication",
+    "please_install_Google_Authenticator_on_your_phone": "Please install Google Authenticator on your phone",
+    "paste_the_key": "Paste the key",
+    "paste": "Paste"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -583,7 +594,18 @@ static const Map<String,dynamic> zh_Hans = {
     "wallet_type": "所属类型",
     "trial": "体验",
     "google_authenticator": "Google验证码",
-    "type": "种类"
+    "type": "种类",
+    "enable_google_verification": "开启谷歌验证",
+    "copy_the_key_and_add_it_to_Google_Authenticator": "复制密钥，添加至谷歌身份验证器",
+    "copy_the_key": "复制密钥",
+    "SFA_settings": "SFA设置",
+    "account_activity": "账号活动",
+    "last_login_time": "上次登入时间",
+    "login_device": "登入设备",
+    "google_authentication": "谷歌身份验证",
+    "please_install_Google_Authenticator_on_your_phone": "请在手机安装谷歌身份验证器",
+    "paste_the_key": "贴上密钥",
+    "paste": "贴上"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",

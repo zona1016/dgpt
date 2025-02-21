@@ -266,7 +266,18 @@
     "wallet_type": "Wallet Type",
     "trial": "Trial",
     "google_authenticator": "Google authenticator",
-    "type": "Type"
+    "type": "Type",
+    "enable_google_verification": "Enable Google Verification",
+    "copy_the_key_and_add_it_to_Google_Authenticator": "Copy the key and add it to Google Authenticator",
+    "copy_the_key": "Copy the key",
+    "SFA_settings": "SFA Settings",
+    "account_activity": "Account Activity",
+    "last_login_time": "Last Login Time",
+    "login_device": "Login Device",
+    "google_authentication": "Google Authentication",
+    "please_install_Google_Authenticator_on_your_phone": "Please install Google Authenticator on your phone",
+    "paste_the_key": "Paste the key",
+    "paste": "Paste"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",

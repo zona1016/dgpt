@@ -249,7 +249,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '贴上',
+                                      tr('profile.paste'),
                                       style: fontDMMedium.copyWith(
                                         fontSize: 14,
                                         color: BaseColors.black,

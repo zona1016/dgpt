@@ -18,7 +18,7 @@ class GoogleSfaScreen extends GetView<GoogleSfaScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
-        title: 'SFA设置',
+        title: tr('profile.SFA_settings'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -28,21 +28,21 @@ class GoogleSfaScreen extends GetView<GoogleSfaScreenController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '账号活动',
+              tr('profile.account_activity'),
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.white,
               ),
             ),
             Text(
-              '上次登入时间：${controller.userController.userInfo.logicEndDate ?? '无'}',
+              '${tr('profile.last_login_time')}：${controller.userController.userInfo.logicEndDate ?? '无'}',
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.weakTextColor,
               ),
             ),
             Text(
-              '登入设备：无',
+              tr('profile.login_device'),
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.weakTextColor,
@@ -52,7 +52,7 @@ class GoogleSfaScreen extends GetView<GoogleSfaScreenController> {
               children: [
                 Expanded(
                   child: Text(
-                    '谷歌身份验证',
+                    tr('profile.google_authentication'),
                     style: fontDMMedium.copyWith(
                       fontSize: 16,
                       color: BaseColors.white,

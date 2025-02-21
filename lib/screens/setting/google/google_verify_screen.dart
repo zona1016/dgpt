@@ -21,7 +21,7 @@ class GoogleVerifyScreen extends GetView<GoogleVerifyScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
-        title: '开启谷歌验证',
+        title: tr('profile.enable_google_verification'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -38,7 +38,7 @@ class GoogleVerifyScreen extends GetView<GoogleVerifyScreenController> {
               height: defaultPadding,
             ),
             Text(
-              '贴上密钥',
+              tr('profile.paste_the_key'),
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.white,
@@ -111,7 +111,7 @@ class GoogleVerifyScreen extends GetView<GoogleVerifyScreenController> {
                       ),
                       child: Center(
                         child: Text(
-                          '贴上',
+                          tr('profile.paste'),
                           style: fontDMMedium.copyWith(
                             fontSize: 14,
                             color: BaseColors.black,

@@ -21,7 +21,7 @@ class GoogleAuthScreen extends GetView<GoogleAuthScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
-        title: '开启谷歌验证',
+        title: tr('profile.enable_google_verification'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -38,7 +38,7 @@ class GoogleAuthScreen extends GetView<GoogleAuthScreenController> {
               height: defaultPadding,
             ),
             Text(
-              '复制密钥，添加至谷歌身份验证器',
+              tr('profile.copy_the_key_and_add_it_to_Google_Authenticator'),
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.white,
@@ -97,7 +97,7 @@ class GoogleAuthScreen extends GetView<GoogleAuthScreenController> {
                       },
                       child: Center(
                         child: Text(
-                          '复制密钥',
+                          tr('profile.copy_the_key'),
                           style: fontDMMedium.copyWith(
                             fontSize: 14,
                             color: BaseColors.black,

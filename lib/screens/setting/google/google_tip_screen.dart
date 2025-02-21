@@ -19,7 +19,7 @@ class GoogleTipScreen extends GetView<GoogleSfaScreenController> {
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
-        title: '开启谷歌验证',
+        title: tr('profile.enable_google_verification'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),
@@ -34,7 +34,7 @@ class GoogleTipScreen extends GetView<GoogleSfaScreenController> {
             ),
             const SizedBox(height: defaultPadding,),
             Text(
-              '请在手机安装谷歌身份验证器',
+              tr('profile.please_install_Google_Authenticator_on_your_phone'),
               style: fontDMMedium.copyWith(
                 fontSize: 16,
                 color: BaseColors.white,
