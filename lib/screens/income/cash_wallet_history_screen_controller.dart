@@ -47,7 +47,8 @@ class CashWalletHistoryScreenController extends BaseController {
     final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
     final result = await fetchPaginatedData(
         loadingState: loadingState,
-        request: () => aiPulseService.aiPulseFlowUserPage(page: page, type: selectedType));
+        request: () =>
+            aiPulseService.aiPulseFlowUserPage(page: page, fromAccount: 0));
     if (result != null && result.list.isNotEmpty) {
       if (loadingState == AppLoadingState.loadMore) {
         flowList.addAll(result.list);
@@ -59,7 +60,7 @@ class CashWalletHistoryScreenController extends BaseController {
 
   String getNameByType(int? type) {
     try {
-      final flowType = flowTypeList.value.firstWhere((item) => item.value == type);
+      final flowType = flowTypeList.firstWhere((item) => item.value == type);
       return flowType.text;
     } catch (e) {
       return '未找到对应的名称'; // 如果没有找到匹配的 type，返回默认值

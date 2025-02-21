@@ -142,7 +142,7 @@ abstract class AiPulseService {
       {String? status});
 
   Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseFlowUserPage(
-      {int page = 1, int perPage = 20, int? type});
+      {int page = 1, int perPage = 20, int? type, int? fromAccount});
 
   Future<BaseResponse<List<FlowTypeInfo>>> aiPulseFlowTypeList();
 
@@ -759,7 +759,7 @@ class AiPulseServiceImpl extends AiPulseService {
 
   @override
   Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseFlowUserPage(
-      {int page = 1, int perPage = 20, int? type}) async {
+      {int page = 1, int perPage = 20, int? type, int? fromAccount}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseFlowUserPage,
           bearerToken: userController.token,
@@ -767,6 +767,7 @@ class AiPulseServiceImpl extends AiPulseService {
             'page': page,
             'pageSize': perPage,
             if (type != null) 'type': type,
+            if (fromAccount != null) 'fromAccount': fromAccount,
           },
           deserializer: (data) => data != null
               ? PaginationResponse<FlowInfo>.fromJson(data,

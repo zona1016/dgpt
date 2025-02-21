@@ -1,26 +1,20 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_buy_detail_screen.dart';
 import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
-import 'package:dgpt/utils/constants/app_configurations.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
-import 'package:dgpt/utils/extensions/context_extension.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
-import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 class HomeScreen extends GetView<HomeScreenController> {
@@ -239,10 +233,13 @@ class HomeScreen extends GetView<HomeScreenController> {
                 border: showBorder
                     ? Border.all(color: BaseColors.secondPrimaryColor, width: 1)
                     : null),
-            child: Image.asset(showBorder
-                ? 'assets/images/income/${controller.planList[index].name}.gif'
-                : 'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
-              fit: BoxFit.fill,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(showBorder
+                  ? 'assets/images/income/${controller.planList[index].name}.gif'
+                  : 'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
