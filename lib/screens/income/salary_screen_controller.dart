@@ -5,6 +5,7 @@ import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/packages/storage_utils.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 
 class SalaryScreenBindings implements Bindings {
@@ -84,23 +85,23 @@ class SalaryScreenController extends BaseController {
     } else if (conditionInfo?.directHashrateCode != 'none') {
       result = getLevelName(conditionInfo?.directHashrateCode);
       if (conditionInfo?.directHashrateCount != 0) {
-        result = '${result}X${conditionInfo?.directHashrateCount}(位)';
+        result = '${result}X${conditionInfo?.directHashrateCount}(${tr('income.positions')})';
       }
     } else if (conditionInfo?.directJobTitleCode != 'none') {
       result = conditionInfo?.directJobTitleCode;
       if (conditionInfo?.directJobTitleCount != 0) {
-        result = '${result}X${conditionInfo?.directJobTitleCount}(位)';
+        result = '${result}X${conditionInfo?.directJobTitleCount}(${tr('income.positions')})';
       }
     } else {
-      result = '无条件';
+      result = tr('income.unconditional');
     }
 
     return result;
   }
 
   String? getLevelName(String? code) {
-    if (code == null || hashrateList.isEmpty) return '无算力';
+    if (code == null || hashrateList.isEmpty) return tr('income.no_computing_power');
     return hashrateList.value
-        .firstWhereOrNull((info) => info.code == code)?.name ?? '无算力';
+        .firstWhereOrNull((info) => info.code == code)?.name ?? tr('income.no_computing_power');
   }
 }

@@ -1,5 +1,4 @@
 import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
-import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
@@ -9,7 +8,6 @@ import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_network_image.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
-import 'package:dgpt/widget/base/base_smart_refresher.dart';
 import 'package:dgpt/widget/form/base_dropdown_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +27,8 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '团队算力奖',
+      appBar: BaseAppBar(
+        title: tr('hashrate.team_computing_power_bonus'),
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(
@@ -64,7 +62,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                               menuMaxHeight: 250,
                               width: 170,
                               fillColor: BaseColors.primaryColor,
-                              hintText: '全部',
+                              hintText: tr('income.all'),
                               items: controller.layerList,
                               name: "all",
                               onChanged: (item) {

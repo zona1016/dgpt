@@ -51,6 +51,7 @@ class ResetPasswordScreenController extends BaseController {
     if (result != null) {
       DialogUtils.showSuccessDialog(
         tr('profile.password_reset_successfully'),
+        image: 'assets/images/custom/dio_psd_success.png',
         titleColor: BaseColors.primaryColor,
         barrierDismissible: false,
         showCircularProgressIndicator: true,

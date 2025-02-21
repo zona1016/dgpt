@@ -189,7 +189,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
         children: [
           Expanded(
             child: Text(
-              '账号',
+              tr('income.account'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -199,7 +199,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
           ),
           Expanded(
             child: Text(
-              '金额',
+              tr('income.amount'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -209,7 +209,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
           ),
           Expanded(
             child: Text(
-              '金额',
+              tr('income.amount'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -218,7 +218,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
             ),
           ),
           Expanded(
-            child: Text('日期',
+            child: Text(tr('income.date'),
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 10,

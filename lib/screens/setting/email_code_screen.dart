@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/setting/email_code_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -130,7 +131,7 @@ class EmailCodeScreen extends GetView<EmailCodeScreenController> {
           ),
         ),
         Text(
-          tr('home.verification_email_sent_message', args: ['ceshi@gmail.com']),
+          tr('home.verification_email_sent_message', args: [controller.args!.email.toString().maskEmail()]),
           style: fontDMRegular.copyWith(fontSize: 14, color: BaseColors.white),
         ),
       ],

@@ -234,7 +234,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ? Border.all(color: BaseColors.secondPrimaryColor, width: 1)
                     : null),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: showBorder ? BorderRadius.circular(20) : BorderRadius.zero,
               child: Image.asset(showBorder
                   ? 'assets/images/income/${controller.planList[index].name}.gif'
                   : 'assets/images/home/header_bg${controller.isActivate.value ? '_activate' : ''}.png',

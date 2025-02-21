@@ -23,7 +23,7 @@ class InvitationAwardScreenController extends BaseController {
 
   List<String> actionTitles = [
     tr('home.total_income'),
-    '总人数',
+    tr('income.total_people'),
   ];
 
   List<String> actionImages = [

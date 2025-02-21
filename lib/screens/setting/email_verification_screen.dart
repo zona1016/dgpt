@@ -46,7 +46,7 @@ class EmailVerificationScreen
               fillColor: Colors.transparent,
               style:
                   fontDMMedium.copyWith(color: BaseColors.white, fontSize: 16),
-              hintText: '输入验证码',
+              hintText: tr('profile.enter_verification_code'),
               radius: 10,
               onChanged: (value) {
                 controller.verifyCode.value = value ?? '';
@@ -62,7 +62,7 @@ class EmailVerificationScreen
                 children: [
                   Expanded(child: Container()),
                   Text(
-                    '未收到？重新发送 ',
+                    tr('home.did_not_receive_resend_again'),
                     style: fontDMMedium.copyWith(
                       fontSize: 14,
                       color: BaseColors.white,

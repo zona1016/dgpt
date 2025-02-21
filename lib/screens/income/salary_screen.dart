@@ -62,7 +62,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '日期：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
+                                              '${tr('income.date')}：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 8,
@@ -79,7 +79,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            '公司职位',
+                                            tr('income.company_position'),
                                             style: fontDMBold.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 8,
@@ -89,7 +89,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                         ),
                                         Expanded(
                                           child: Text(
-                                            '公司每个月薪资',
+                                            tr('income.company_monthly_salary'),
                                             style: fontDMBold.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 10,
@@ -98,7 +98,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Text('职位要求',
+                                          child: Text(tr('income.position_requirements'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -146,7 +146,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                                 '${controller.getConditionDes(index: 0, conditionInfo: controller.userJobInfo.value?.conditionInfo)}'
                                                 '\n'
                                                 '${controller.formatAmount((controller.userJobInfo.value?.conditionInfo?.teamPlanAmountTotal ?? 0))}'
-                                                '美金业绩',
+                                                '${tr('income.usd_performance')}',
                                                 style: fontDMMedium.copyWith(
                                                   color: BaseColors.white,
                                                   fontSize: 8,
@@ -178,7 +178,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '您的薪资',
+                                      tr('income.your_salary'),
                                       style: fontDMBold.copyWith(
                                         color: BaseColors.white,
                                         fontSize: 12,
@@ -223,7 +223,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '日期：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
+                                              '${tr('income.date')}：${DateFormat("dd/MM/yyyy").format(DateTime.now())}',
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 8,
@@ -240,7 +240,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            '公司职位',
+                                            tr('income.company_position'),
                                             style: fontDMBold.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 8,
@@ -250,7 +250,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                         ),
                                         Expanded(
                                           child: Text(
-                                            '公司每个月薪资',
+                                            tr('income.company_monthly_salary'),
                                             style: fontDMBold.copyWith(
                                               color: BaseColors.white,
                                               fontSize: 10,
@@ -259,7 +259,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Text('职位要求',
+                                          child: Text(tr('income.position_requirements'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -267,7 +267,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                               textAlign: TextAlign.center),
                                         ),
                                         Expanded(
-                                          child: Text('月绩保持',
+                                          child: Text(tr('income.monthly_performance_maintenance'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -323,7 +323,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                                     '${controller.getConditionDes(index: index)}'
                                                     '\n'
                                                     '${controller.formatAmount((controller.enableJobList[index].conditionInfo?.teamPlanAmountTotal ?? 0))}'
-                                                    '美金业绩',
+                                                    '${tr('income.usd_performance')}',
                                                     style:
                                                         fontDMMedium.copyWith(
                                                       color: BaseColors.white,
@@ -375,7 +375,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '您的权利',
+                                      tr('income.your_rights'),
                                       style: fontDMBold.copyWith(
                                         color: BaseColors.white,
                                         fontSize: 12,
@@ -426,7 +426,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      '额外好处解析',
+                                      tr('income.extra_benefits_analysis'),
                                       style: fontDMBold.copyWith(
                                         color: BaseColors.white,
                                         fontSize: 12,
@@ -476,14 +476,14 @@ class SalaryScreen extends GetView<SalaryScreenController> {
       child: Column(
         children: [
           Text(
-            '愿景与使命',
+            tr('income.vision_and_mission'),
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 18),
           ),
           const SizedBox(
             height: defaultPadding,
           ),
           Text(
-            'AI时代的到来将颠覆我们对过往应用的了解。 计算能力和数据训练将成为推动AI领域发展的主要核心。AI Pulse让每个人轻松参与其中并从中获取好处。',
+            tr('income.ai_era_disruption'),
             style:
                 fontDMRegular.copyWith(color: BaseColors.white, fontSize: 10),
           ),
@@ -499,7 +499,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
           Expanded(
             child: _cardItem(
                 callBack: () => cardTaps(0),
-                title: '任何合作伙伴的利益都将与有效的加速任务相应',
+                title: tr('income.partner_benefits_mission'),
                 image: 'assets/images/income/income_js.png',
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -516,7 +516,7 @@ class SalaryScreen extends GetView<SalaryScreenController> {
           Expanded(
             child: _cardItem(
                 callBack: () => cardTaps(1),
-                title: '计算能力社区线下协助',
+                title: tr('income.computing_community_offline_support'),
                 image: 'assets/images/income/income_xx.png',
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,

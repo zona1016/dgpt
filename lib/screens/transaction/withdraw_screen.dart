@@ -233,7 +233,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                 },
                                 child: Container(
                                   height: 26,
-                                  width: 56,
+                                  width: 60,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: defaultPadding / 2),
                                   decoration: BoxDecoration(

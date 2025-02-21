@@ -24,7 +24,7 @@ class TeamHashrateAwardScreen
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
-        title: '团队算力奖',
+        title: tr('hashrate.team_computing_power_bonus'),
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(

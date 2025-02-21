@@ -278,6 +278,7 @@ class HashrateRentalDetailScreen
                         : 'assets/images/home/income_detail_icon1.png',
                     height: 46,
                     width: 100,
+                    fit: BoxFit.fitHeight,
                   ),
                   const SizedBox(
                     width: defaultPadding / 2,

@@ -95,7 +95,6 @@ class GoogleVerifyScreen extends GetView<GoogleVerifyScreenController> {
                     },
                     child: Container(
                       height: 26,
-                      width: 56,
                       padding:
                       const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
                       decoration: BoxDecoration(

@@ -1,10 +1,10 @@
 import 'package:dgpt/models/pulse/layer_info.dart';
-import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/screens/income/active_member_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,16 +27,16 @@ class _ActivatedMemberState extends State<ActivatedMember> {
   ];
 
   List <String> levelTitleList = [
-    '第一代',
-    '第二代',
-    '第三代',
+    tr('income.first_generation'),
+    tr('income.second_generation'),
+    tr('income.third_generation'),
   ];
 
   List<String> teamTitleList = [
-    '总人数',
-    '有效会员',
-    '今日收益',
-    '总收益'
+    tr('income.total_people'),
+    tr('income.active_members'),
+    tr('income.today_earnings'),
+    tr('income.total_earnings'),
   ];
 
   List<String> teamTitleImageList = [
@@ -107,7 +107,7 @@ class _ActivatedMemberState extends State<ActivatedMember> {
               crossAxisCount: 2,
               crossAxisSpacing: defaultPadding / 2,
               mainAxisSpacing: defaultPadding / 2,
-              childAspectRatio: 2,
+              childAspectRatio: 1.8,
             ),
             itemBuilder: (_, index) {
               return InkWell(
