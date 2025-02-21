@@ -155,7 +155,7 @@ class ActiveMemberDetailScreen
                               color: BaseColors.primaryColor),
                           child: Center(
                             child: Text(
-                              'Valid',
+                              tr('income.valid'),
                               style: fontDMMedium.copyWith(
                                 color: BaseColors.white,
                                 fontSize: 8,

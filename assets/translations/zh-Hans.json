@@ -297,7 +297,11 @@
     "total_members": "总人数",
     "activated_members": "激活人数",
     "detail": "详情",
-    "registration_time": "注册时间"
+    "registration_time": "注册时间",
+    "valid": "有效的",
+    "total_amount": "总数额",
+    "member": "会员",
+    "join_time": "加入时间"
   },
   "tab": {
     "rental": "算力租借",

@@ -48,7 +48,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '总数额：${controller.memberList.length}',
+                          '${tr('income.total_amount')}：${controller.memberList.length}',
                           style: fontDMBold.copyWith(
                             fontSize: 18,
                             color: BaseColors.white,
@@ -310,7 +310,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           const Spacer(),
                           if (member.planValid == true)
                             Text(
-                              'Valid',
+                              tr('income.valid'),
                               style: fontDMRegular.copyWith(
                                 color: BaseColors.secondPrimaryColor,
                                 fontSize: 10,
@@ -325,7 +325,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                       Row(
                         children: [
                           Text(
-                            '加入： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateFormat("yyyy-MM-dd HH:mm:ss").parse(member.powerInfo?.createTime ?? ''))}',
+                            '${tr('income.join_time')}： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateFormat("yyyy-MM-dd HH:mm:ss").parse(member.powerInfo?.createTime ?? ''))}',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.weakTextColor,
                               fontSize: 8,
@@ -334,7 +334,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           ),
                           Expanded(child: Container()),
                           Text(
-                            'Member：${member.teamUserCount ?? 0}',
+                            '${tr('income.member')}：${member.teamUserCount ?? 0}',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.white,
                               fontSize: 8,

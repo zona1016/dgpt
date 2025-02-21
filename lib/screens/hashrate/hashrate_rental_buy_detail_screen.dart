@@ -261,9 +261,11 @@ class HashrateRentalBuyDetailScreen
                 children: [
                   BaseNetworkImage(
                     imageURL:
-                        controller.planDetail.value?.graphicsIconFileIdUrl ??
-                            '',
-                    placeholder: 'assets/images/home/income_detail_icon.png',
+                    controller.planDetail.value?.graphicsIconFileIdUrl ??
+                        '',
+                    placeholder: controller.planDetail.value?.code == 'B0001'
+                        ? 'assets/images/home/income_detail_icon.png'
+                        : 'assets/images/home/income_detail_icon1.png',
                     height: 46,
                     width: 100,
                   ),

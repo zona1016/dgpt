@@ -297,7 +297,11 @@
     "total_members": "Total Members",
     "activated_members": "Activated Members",
     "detail": "Detail",
-    "registration_time": "Registration time"
+    "registration_time": "Registration time",
+    "valid": "Valid",
+    "total_amount": "Total Amount",
+    "member": "Member",
+    "join_time": "Join Time"
   },
   "tab": {
     "rental": "Rental",
