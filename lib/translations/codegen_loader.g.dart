@@ -313,7 +313,11 @@ class CodegenLoader extends AssetLoader{
     "total_members": "Total Members",
     "activated_members": "Activated Members",
     "detail": "Detail",
-    "registration_time": "Registration time"
+    "registration_time": "Registration time",
+    "valid": "Valid",
+    "total_amount": "Total Amount",
+    "member": "Member",
+    "join_time": "Join Time"
   },
   "tab": {
     "rental": "Rental",
@@ -331,6 +335,23 @@ class CodegenLoader extends AssetLoader{
     "sorry_message": "Hello! We're very sorry, but we're currently unable to provide service. If you need help, please leave a message, and we will contact you as soon as possible with a solution!",
     "information": "Information",
     "upload_image_limit": "You can upload images up to 5MB in size."
+  },
+  "member": {
+    "email": "Email",
+    "superior": "Superior",
+    "total_rent": "Total Rent",
+    "total_member": "Total member",
+    "total_profit": "Total Profit",
+    "total_subscription": "Total Subscription",
+    "total_revenue": "Total Revenue",
+    "type": "Type",
+    "purchasing_price": "Purchasing Price",
+    "purchasing_time": "Purchasing Time",
+    "expire_date": "Expire Date",
+    "status": "Status",
+    "running": "Running",
+    "expired": "Expired",
+    "member_detail": "Member Detail"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -632,7 +653,11 @@ static const Map<String,dynamic> zh_Hans = {
     "total_members": "总人数",
     "activated_members": "激活人数",
     "detail": "详情",
-    "registration_time": "注册时间"
+    "registration_time": "注册时间",
+    "valid": "有效的",
+    "total_amount": "总数额",
+    "member": "会员",
+    "join_time": "加入时间"
   },
   "tab": {
     "rental": "算力租借",
@@ -650,6 +675,23 @@ static const Map<String,dynamic> zh_Hans = {
     "sorry_message": "您好！非常抱歉，我们暂时无法为您提供服务。如果您需要帮助，请留下信息，我们将会尽快与您联系并提供解决方案！",
     "information": "信息",
     "upload_image_limit": "您可上传图像不超过 5MB 的图片。"
+  },
+  "member": {
+    "email": "邮件",
+    "superior": "上级",
+    "total_rent": "总租金",
+    "total_member": "总成员数",
+    "total_profit": "总利润",
+    "total_subscription": "总订阅数",
+    "total_revenue": "总收入",
+    "type": "类型",
+    "purchasing_price": "购买价格",
+    "purchasing_time": "购买时间",
+    "expire_date": "到期日期",
+    "status": "状态",
+    "running": "进行中",
+    "expired": "已过期",
+    "member_detail": "会员详情"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

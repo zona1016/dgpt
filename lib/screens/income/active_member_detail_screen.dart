@@ -25,8 +25,8 @@ class ActiveMemberDetailScreen
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '会员详情',
+      appBar: BaseAppBar(
+        title: tr('member.member_detail'),
         color: BaseColors.white,
       ),
       body: Padding(
@@ -116,7 +116,7 @@ class ActiveMemberDetailScreen
                         Container(
                           height: 16,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding),
+                              horizontal: defaultPadding / 2),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
@@ -210,7 +210,7 @@ class ActiveMemberDetailScreen
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Phone number',
+                          tr('member.email'),
                           style: fontDMRegular.copyWith(
                             color: BaseColors.white,
                             fontSize: 10,
@@ -221,7 +221,7 @@ class ActiveMemberDetailScreen
                           height: defaultPadding / 5,
                         ),
                         Text(
-                          '+ ${controller.memberList.value?.user?.phoneNation} ${controller.memberList.value?.user?.phone}',
+                          controller.memberList.value?.user?.email ?? '',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 12,
@@ -253,7 +253,7 @@ class ActiveMemberDetailScreen
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Superior',
+                          tr('member.superior'),
                           style: fontDMRegular.copyWith(
                             color: BaseColors.white,
                             fontSize: 10,
@@ -291,7 +291,7 @@ class ActiveMemberDetailScreen
               child: _buildInfoCard(
             context: context,
             imagePath: 'assets/images/income/mxssy.png',
-            title: 'Total Rent',
+            title: tr('member.total_rent'),
             value: '0',
             onTap: () => onTap(0),
           )),
@@ -302,7 +302,7 @@ class ActiveMemberDetailScreen
               child: _buildInfoCard(
             context: context,
             imagePath: 'assets/images/income/team_djhy.png',
-            title: 'Total member',
+            title: tr('member.total_member'),
             value: '0',
             onTap: () => onTap(1),
           )),
@@ -313,7 +313,7 @@ class ActiveMemberDetailScreen
               child: _buildInfoCard(
             context: context,
             imagePath: 'assets/images/income/team_jrsy.png',
-            title: 'Total Profit',
+            title: tr('member.total_profit'),
             value: '0',
             onTap: () => onTap(2),
           )),
@@ -377,7 +377,7 @@ class ActiveMemberDetailScreen
                 child: _buildSecondInfoCard(
               context: context,
               imagePath: 'assets/images/income/total_sub.png',
-              title: 'Total Subscription',
+              title: tr('member.total_subscription'),
               value: '0 USDT',
               onTap: () => onTap(0),
             )),
@@ -388,7 +388,7 @@ class ActiveMemberDetailScreen
                 child: _buildSecondInfoCard(
               context: context,
               imagePath: 'assets/images/income/total_rev.png',
-              title: 'Total Revenue',
+              title: tr('member.total_revenue'),
               value: '0 USDT',
               onTap: () => onTap(0),
             )),
@@ -461,16 +461,16 @@ class ActiveMemberDetailScreen
           color: const Color(0xFF395C96).withOpacity(0.3)),
       child: Column(
         children: [
-          _rowTitle(title: 'Type', detail: 'Gdepin'),
+          _rowTitle(title: tr('member.type'), detail: 'Gdepin'),
           const SizedBox(height: defaultPadding / 2,),
-          _rowTitle(title: 'Purchasing Price', detail: '100 USDT', detailColor: Colors.purpleAccent),
+          _rowTitle(title: tr('member.purchasing_price'), detail: '100 USDT', detailColor: Colors.purpleAccent),
           const SizedBox(height: defaultPadding / 2,),
           _rowTitle(
-              title: 'Purchasing Time', detail: '2023-05-23 23:38:50'),
+              title: tr('member.purchasing_time'), detail: '2023-05-23 23:38:50'),
           const SizedBox(height: defaultPadding / 2,),
-          _rowTitle(title: 'Expire Date', detail: '2023-05-23 23:38:50'),
+          _rowTitle(title: tr('member.expire_date'), detail: '2023-05-23 23:38:50'),
           const SizedBox(height: defaultPadding / 2,),
-          _rowTitle(title: 'Status', detail: 'Running', status: true, statusColor: Colors.red),
+          _rowTitle(title: tr('member.status'), detail: tr('member.running'), status: true, statusColor: Colors.red),
         ],
       ),
     );

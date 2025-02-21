@@ -17,8 +17,8 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.incomeBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '邀请奖',
+      appBar: BaseAppBar(
+        title: tr('hashrate.invitation_bonus'),
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(

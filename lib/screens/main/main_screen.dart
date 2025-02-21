@@ -42,7 +42,7 @@ class MainScreen extends GetView<MainScreenController> {
             clipBehavior: Clip.none,
             children: [
               Container(
-                height: 80,
+                height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30)
                 ),
@@ -149,7 +149,7 @@ class MainScreen extends GetView<MainScreenController> {
       label: '',
       icon: Container(
         margin: const EdgeInsets.only(top: 10),
-        height: 100,
+        height: 80,
         width: SizeUtil.width() / 5.0,
         child: Column(
           children: [
@@ -171,7 +171,7 @@ class MainScreen extends GetView<MainScreenController> {
         ),
       ),
       activeIcon: Container(
-        margin: const EdgeInsets.only(bottom: 46),
+        margin: const EdgeInsets.only(bottom: 26),
         height: 64,
         width: SizeUtil.width() / 5.0,
         decoration: const BoxDecoration(
