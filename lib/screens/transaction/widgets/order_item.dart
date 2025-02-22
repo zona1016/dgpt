@@ -111,7 +111,7 @@ class _OrderItemState extends State<OrderItem> {
                       children: [
                         Expanded(
                           child: Text(
-                            '下单日期',
+                            tr('order.order_date'),
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.weakTextColor,
@@ -133,7 +133,7 @@ class _OrderItemState extends State<OrderItem> {
                       children: [
                         Expanded(
                           child: Text(
-                            '租赁金额',
+                            tr('order.rental_amount'),
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.weakTextColor,
@@ -155,7 +155,7 @@ class _OrderItemState extends State<OrderItem> {
                       children: [
                         Expanded(
                           child: Text(
-                            '租赁收益',
+                            tr('order.rental_earnings'),
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.weakTextColor,
@@ -178,7 +178,7 @@ class _OrderItemState extends State<OrderItem> {
                     ),
                     Center(
                       child: Text(
-                        widget.planDetail.status == 1 ? '进行中' : '已失效',
+                        widget.planDetail.status == 1 ? tr('hashrate.in_progress') : tr('order.expired'),
                         style: fontDMBold.copyWith(
                           fontSize: 12,
                           color: widget.planDetail.status == 1 ? const Color(0xFF81E5FF) : Colors.red,
@@ -198,7 +198,7 @@ class _OrderItemState extends State<OrderItem> {
                       )),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(13, (index) {
+                        children: List.generate(12, (index) {
                           return Image.asset(
                             'assets/images/transaction/icon${widget.planDetail.status == 2 ? '2' : index < progress() ? '1' : '2'}.png',
                             height: 13,
@@ -230,7 +230,7 @@ class _OrderItemState extends State<OrderItem> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '详情',
+                                  tr('income.detail'),
                                   style: fontSFProMedium.copyWith(
                                     fontSize: 12,
                                     color: BaseColors.white,

@@ -405,5 +405,11 @@
     "basic_course": "基础课",
     "intermediate_course": "进阶课",
     "advanced_course": "高级课"
+  },
+  "order": {
+    "order_date": "下单日期",
+    "rental_amount": "租赁金额",
+    "rental_earnings": "租赁收益",
+    "expired": "已失效"
   }
 }

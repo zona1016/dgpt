@@ -421,6 +421,12 @@ class CodegenLoader extends AssetLoader{
     "basic_course": "Basic Course",
     "intermediate_course": "Intermediate Course",
     "advanced_course": "Advanced Course"
+  },
+  "order": {
+    "order_date": "Order date",
+    "rental_amount": "Rental amount",
+    "rental_earnings": "Rental earnings",
+    "expired": "Expired"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -830,6 +836,12 @@ static const Map<String,dynamic> zh_Hans = {
     "basic_course": "基础课",
     "intermediate_course": "进阶课",
     "advanced_course": "高级课"
+  },
+  "order": {
+    "order_date": "下单日期",
+    "rental_amount": "租赁金额",
+    "rental_earnings": "租赁收益",
+    "expired": "已失效"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

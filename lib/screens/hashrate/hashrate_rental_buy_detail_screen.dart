@@ -263,11 +263,12 @@ class HashrateRentalBuyDetailScreen
                     imageURL:
                     controller.planDetail.value?.graphicsIconFileIdUrl ??
                         '',
-                    placeholder: controller.planDetail.value?.code == 'B0001'
+                    placeholder: controller.planDetail.value?.name == 'GDEPIN'
                         ? 'assets/images/home/income_detail_icon.png'
                         : 'assets/images/home/income_detail_icon1.png',
                     height: 46,
                     width: 100,
+                    fit: BoxFit.fitHeight,
                   ),
                   const SizedBox(
                     width: defaultPadding / 2,

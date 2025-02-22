@@ -420,9 +420,6 @@ class HashrateHeader extends StatelessWidget {
       }
     }
 
-    print('-----------');
-    print(count);
-    print(progress);
     String formattedResult = '0';
     if (count > 0) {
       formattedResult = (progress / (count * 1.0)).toStringAsFixed(4);

@@ -128,10 +128,10 @@ class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenContr
               child: BaseNetworkImage(
             imageURL: hasratePageInfo.logoFileIdUrl,
             placeholder:
-                'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
-            height: 106,
+                'assets/images/home/income_icon${controller.hasratePageList[index]?.code == 'B0001' ? 1 : ''}.png',
+            height: 46,
             width: 100,
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
           )),
           const SizedBox(height: defaultPadding),
           Text(

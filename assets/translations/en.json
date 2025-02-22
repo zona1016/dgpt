@@ -405,5 +405,11 @@
     "basic_course": "Basic Course",
     "intermediate_course": "Intermediate Course",
     "advanced_course": "Advanced Course"
+  },
+  "order": {
+    "order_date": "Order date",
+    "rental_amount": "Rental amount",
+    "rental_earnings": "Rental earnings",
+    "expired": "Expired"
   }
 }
