@@ -3,6 +3,7 @@ import 'package:dgpt/screens/income/active_member_detail_screen.dart';
 import 'package:dgpt/screens/income/active_member_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -266,16 +267,19 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            member.user?.nickName ??
-                                member.user?.account ??
-                                member.user?.email ??
-                                '',
-                            style: fontDMMedium.copyWith(
-                              color: BaseColors.white,
-                              fontSize: 12,
+                          SizedBox(
+                            width: SizeUtil.width() / 4,
+                            child: Text(
+                              member.user?.nickName ??
+                                  member.user?.account ??
+                                  member.user?.email ??
+                                  '',
+                              style: fontDMMedium.copyWith(
+                                color: BaseColors.white,
+                                fontSize: 12,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
-                            textAlign: TextAlign.left,
                           ),
                           const Spacer(),
                           Container(
@@ -300,9 +304,10 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                                             : (member.powerInfo?.orderNo ??
                                                 0)) %
                                         5],
-                                fontSize: 10,
+                                fontSize: 8,
                               ),
                               textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           const Spacer(),
@@ -323,7 +328,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                       Row(
                         children: [
                           Text(
-                            '${tr('income.join_time')}： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateFormat("yyyy-MM-dd HH:mm:ss").parse(member.powerInfo?.createTime ?? ''))}',
+                            '${tr('income.join_time')}： ${DateFormat("yyyy-MM-dd HH:mm:ss").format(DateFormat("yyyy-MM-dd HH:mm:ss").parse(member.user?.createTime ?? ''))}',
                             style: fontDMMedium.copyWith(
                               color: BaseColors.weakTextColor,
                               fontSize: 8,
