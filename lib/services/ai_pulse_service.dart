@@ -16,6 +16,7 @@ import 'package:dgpt/models/pulse/image_info.dart';
 import 'package:dgpt/models/pulse/merchant.dart';
 import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
+import 'package:dgpt/models/pulse/re_user_info.dart';
 import 'package:dgpt/models/pulse/recommend_award_total_info.dart';
 import 'package:dgpt/models/pulse/recommend_info.dart';
 import 'package:dgpt/models/pulse/salary_award.dart';
@@ -139,7 +140,7 @@ abstract class AiPulseService {
   Future<BaseResponse<List<UserBalance>?>> aiPulseWalletGetUserBalance();
 
   Future<BaseResponse<List<PlanDetail>>> aiPulseUserPlanUserPlan(
-      {String? status});
+      {String? status, int? userId});
 
   Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseFlowUserPage(
       {int page = 1, int perPage = 20, int? type, int? fromAccount});
@@ -189,6 +190,9 @@ abstract class AiPulseService {
       {required String phone,
       required String content,
       required String imageFileId});
+
+  Future<BaseResponse<ReUserInfo?>> userRecommandUserInfo(
+      {required int userId});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -742,11 +746,14 @@ class AiPulseServiceImpl extends AiPulseService {
 
   @override
   Future<BaseResponse<List<PlanDetail>>> aiPulseUserPlanUserPlan(
-      {String? status}) async {
+      {String? status, int? userId}) async {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseUserPlanUserPlan,
           bearerToken: userController.token,
-          data: {if (status != null) 'status': status},
+          data: {
+            if (status != null) 'status': status,
+            if (userId != null) 'userId': userId
+          },
           deserializer: (data) => data != null
               ? (data as List<dynamic>)
                   .map((e) => PlanDetail.fromJson(e))
@@ -1053,6 +1060,20 @@ class AiPulseServiceImpl extends AiPulseService {
             'imageFileId': imageFileId,
           },
           deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<ReUserInfo?>> userRecommandUserInfo(
+      {required int userId}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.userRecommandUserInfo,
+          bearerToken: userController.token,
+          data: {'userId': userId},
+          deserializer: (data) =>
+              data != null ? ReUserInfo.fromJson(data) : null);
     } on Exception catch (_) {
       rethrow;
     }

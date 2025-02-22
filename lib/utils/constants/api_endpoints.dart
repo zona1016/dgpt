@@ -35,6 +35,7 @@ class ApiEndpoints {
   static const String userInfo = "/api/user/userInfo";
   static const String userTeamDataTotal = "/api/user/userTeamDataTotal";
   static const String userSetLang = "/api/user/setLang/";
+  static const String userRecommandUserInfo = "/api/user/recommandUserInfo";
 
   // aiPulse
   static const String aiPulseAddressPage = "/api/aiPulseAddress/page";

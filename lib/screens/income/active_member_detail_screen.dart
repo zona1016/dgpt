@@ -1,6 +1,8 @@
 import 'package:dgpt/models/pulse/layer_hashrate_info.dart';
+import 'package:dgpt/models/pulse/plan_detail.dart';
 import 'package:dgpt/screens/income/active_member_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -43,17 +45,19 @@ class ActiveMemberDetailScreen
               ),
               _threeTotal(context, onTap: (index) {}),
               _secondTotal(context, onTap: (index) {}),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                itemBuilder: (_, index) {
-                  return _item(index);
-                },
-                separatorBuilder: (_, index) {
-                  return Container(height: defaultPadding,);
-                },
-              )
+              Obx(() => ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: controller.planDetailList.length,
+                    itemBuilder: (_, index) {
+                      return _item(index);
+                    },
+                    separatorBuilder: (_, index) {
+                      return Container(
+                        height: defaultPadding,
+                      );
+                    },
+                  ))
             ],
           ),
         ),
@@ -68,138 +72,139 @@ class ActiveMemberDetailScreen
         gradient: BaseColors.incomeLinearGradient,
         borderRadius: BorderRadius.circular(15), // 圆角
       ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      child: Obx(() => Column(
             children: [
-              Container(
-                height: 140,
-                width: 140,
-                padding: const EdgeInsets.all(defaultPadding),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                          'assets/images/custom/profile_icon_bg.png'),
-                      fit: BoxFit.cover),
-                ),
-                child: ClipOval(
-                  // 裁剪成圆形
-                  child: BaseNetworkImage(
-                    imageURL: controller.memberList.value?.user?.avatar ?? '',
-                    placeholder:
-                        "assets/images/placeholder/profile_placeholder.png",
-                    fit: BoxFit.cover,
-                    height: 100,
-                    width: 100,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: defaultPadding * 2,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 120,
+                    width: 120,
+                    padding: const EdgeInsets.all(defaultPadding),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/custom/profile_icon_bg.png'),
+                          fit: BoxFit.cover),
                     ),
-                    Row(
+                    child: ClipOval(
+                      // 裁剪成圆形
+                      child: BaseNetworkImage(
+                        imageURL:
+                            controller.memberList.value?.user?.avatar ?? '',
+                        placeholder:
+                            "assets/images/placeholder/profile_placeholder.png",
+                        fit: BoxFit.cover,
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(
+                          height: defaultPadding * 2,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: SizeUtil.width() / 3.5,
+                              child: Text(
+                                controller.memberList.value?.user?.nickName ??
+                                    '',
+                                style: fontDMBold.copyWith(
+                                  color: BaseColors.white,
+                                  fontSize: 20,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                            Expanded(child: Container()),
+                            Container(
+                              width: 60,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: defaultPadding / 2),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: BaseColors.secondPrimaryColor,
+                                      width: 1)),
+                              child: Center(
+                                child: Text(
+                                  controller
+                                          .memberList.value?.powerInfo?.name ??
+                                      '',
+                                  style: fontDMMedium.copyWith(
+                                    color: BaseColors.secondPrimaryColor,
+                                    fontSize: 8,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'UID: ${controller.memberList.value?.user?.id}',
+                                style: fontDMRegular.copyWith(
+                                  color: BaseColors.weakTextColor,
+                                  fontSize: 8,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
+                            Container(
+                              height: 16,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: defaultPadding / 2),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: BaseColors.primaryColor),
+                              child: Center(
+                                child: Text(
+                                  tr('income.valid'),
+                                  style: fontDMMedium.copyWith(
+                                    color: BaseColors.white,
+                                    fontSize: 8,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         Text(
-                          controller.memberList.value?.user?.nickName ?? '',
-                          style: fontDMBold.copyWith(
-                            color: BaseColors.white,
-                            fontSize: 20,
+                          tr('income.registration_time'),
+                          style: fontDMRegular.copyWith(
+                            color: BaseColors.weakTextColor,
+                            fontSize: 8,
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        Expanded(child: Container()),
-                        Container(
-                          height: 16,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding / 2),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: BaseColors.secondPrimaryColor,
-                                  width: 1)),
-                          child: Center(
-                            child: Text(
-                              controller.memberList.value?.powerInfo?.name ?? '',
-                              style: fontDMMedium.copyWith(
-                                color: BaseColors.secondPrimaryColor,
-                                fontSize: 8,
-                              ),
-                            ),
+                        Text(
+                          '${controller.memberList.value?.user?.createTime}',
+                          style: fontDMRegular.copyWith(
+                            color: BaseColors.weakTextColor,
+                            fontSize: 8,
                           ),
+                          textAlign: TextAlign.left,
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'UID: ${controller.memberList.value?.user?.id}',
-                            style: fontDMRegular.copyWith(
-                              color: BaseColors.weakTextColor,
-                              fontSize: 8,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                        Container(
-                          height: 16,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding / 2),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: BaseColors.primaryColor),
-                          child: Center(
-                            child: Text(
-                              tr('income.valid'),
-                              style: fontDMMedium.copyWith(
-                                color: BaseColors.white,
-                                fontSize: 8,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      tr('income.registration_time'),
-                      style: fontDMRegular.copyWith(
-                        color: BaseColors.weakTextColor,
-                        fontSize: 8,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(
-                      '${controller.memberList.value?.user?.createTime}',
-                      style: fontDMRegular.copyWith(
-                        color: BaseColors.weakTextColor,
-                        fontSize: 8,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            width: defaultPadding,
-          ),
-          IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-              child: Row(
+                  )
+                ],
+              ),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Row(
                 children: [
-                  const SizedBox(
-                    width: defaultPadding,
-                  ),
                   Image.asset(
                     'assets/images/income/phone.png',
-                    width: 14,
+                    width: 25,
                     height: 25,
                   ),
                   const SizedBox(
@@ -230,16 +235,14 @@ class ActiveMemberDetailScreen
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: defaultPadding),
-                      color: BaseColors.white,
-                      width: 1,
-                    ),
-                  ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: defaultPadding / 2,
+              ),
+              Row(
+                children: [
                   Image.asset(
                     'assets/images/income/profile.png',
                     width: 25,
@@ -264,7 +267,8 @@ class ActiveMemberDetailScreen
                           height: defaultPadding / 5,
                         ),
                         Text(
-                          'super001',
+                          controller.reUserInfo.value?.referenceUser?.account ??
+                              '',
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 12,
@@ -276,57 +280,58 @@ class ActiveMemberDetailScreen
                   ),
                 ],
               ),
-            ),
-          )
-        ],
-      ),
+              const SizedBox(
+                height: defaultPadding,
+              ),
+            ],
+          )),
     );
   }
 
   _threeTotal(context, {required Function(int index) onTap}) {
-    return IntrinsicHeight(
-      child: Row(
-        children: [
-          Expanded(
-              child: _buildInfoCard(
-            context: context,
-            imagePath: 'assets/images/income/mxssy.png',
-            title: tr('member.total_rent'),
-            value: '0',
-            onTap: () => onTap(0),
-          )),
-          const SizedBox(
-            width: defaultPadding,
+    return Obx(() => IntrinsicHeight(
+          child: Row(
+            children: [
+              Expanded(
+                  child: _buildInfoCard(
+                context: context,
+                imagePath: 'assets/images/income/mxssy.png',
+                title: tr('member.total_rent'),
+                value: controller.reUserInfo.value?.totalRent ?? 0,
+                onTap: () => onTap(0),
+              )),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Expanded(
+                  child: _buildInfoCard(
+                context: context,
+                imagePath: 'assets/images/income/team_djhy.png',
+                title: tr('member.total_member'),
+                value: controller.reUserInfo.value?.totalMember ?? 0,
+                onTap: () => onTap(1),
+              )),
+              const SizedBox(
+                width: defaultPadding,
+              ),
+              Expanded(
+                  child: _buildInfoCard(
+                context: context,
+                imagePath: 'assets/images/income/team_jrsy.png',
+                title: tr('member.total_profit'),
+                value: controller.reUserInfo.value?.totalProfit ?? 0,
+                onTap: () => onTap(2),
+              )),
+            ],
           ),
-          Expanded(
-              child: _buildInfoCard(
-            context: context,
-            imagePath: 'assets/images/income/team_djhy.png',
-            title: tr('member.total_member'),
-            value: '0',
-            onTap: () => onTap(1),
-          )),
-          const SizedBox(
-            width: defaultPadding,
-          ),
-          Expanded(
-              child: _buildInfoCard(
-            context: context,
-            imagePath: 'assets/images/income/team_jrsy.png',
-            title: tr('member.total_profit'),
-            value: '0',
-            onTap: () => onTap(2),
-          )),
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _buildInfoCard({
     required BuildContext context,
     required String imagePath,
     required String title,
-    required String value,
+    required int value,
     required Function() onTap,
   }) {
     return Container(
@@ -355,7 +360,7 @@ class ActiveMemberDetailScreen
           GestureDetector(
             onTap: onTap,
             child: Text(
-              value,
+              value.toString(),
               style: fontDMBold.copyWith(
                 fontSize: 18,
                 color: BaseColors.fourPrimaryColor,
@@ -368,34 +373,36 @@ class ActiveMemberDetailScreen
   }
 
   _secondTotal(context, {required Function(int index) onTap}) {
-    return IntrinsicHeight(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-        child: Row(
-          children: [
-            Expanded(
-                child: _buildSecondInfoCard(
-              context: context,
-              imagePath: 'assets/images/income/total_sub.png',
-              title: tr('member.total_subscription'),
-              value: '0 USDT',
-              onTap: () => onTap(0),
-            )),
-            const SizedBox(
-              width: defaultPadding,
+    return Obx(() => IntrinsicHeight(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+            child: Row(
+              children: [
+                Expanded(
+                    child: _buildSecondInfoCard(
+                  context: context,
+                  imagePath: 'assets/images/income/total_sub.png',
+                  title: tr('member.total_subscription'),
+                  value:
+                      '${controller.reUserInfo.value?.totalSubscription ?? 0} USDT',
+                  onTap: () => onTap(0),
+                )),
+                const SizedBox(
+                  width: defaultPadding,
+                ),
+                Expanded(
+                    child: _buildSecondInfoCard(
+                  context: context,
+                  imagePath: 'assets/images/income/total_rev.png',
+                  title: tr('member.total_revenue'),
+                  value:
+                      '${controller.reUserInfo.value?.totalRevenue ?? 0} USDT',
+                  onTap: () => onTap(0),
+                )),
+              ],
             ),
-            Expanded(
-                child: _buildSecondInfoCard(
-              context: context,
-              imagePath: 'assets/images/income/total_rev.png',
-              title: tr('member.total_revenue'),
-              value: '0 USDT',
-              onTap: () => onTap(0),
-            )),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget _buildSecondInfoCard({
@@ -454,6 +461,7 @@ class ActiveMemberDetailScreen
   }
 
   _item(index) {
+    PlanDetail planDetail = controller.planDetailList[index];
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -461,16 +469,32 @@ class ActiveMemberDetailScreen
           color: const Color(0xFF395C96).withOpacity(0.3)),
       child: Column(
         children: [
-          _rowTitle(title: tr('member.type'), detail: 'Gdepin'),
-          const SizedBox(height: defaultPadding / 2,),
-          _rowTitle(title: tr('member.purchasing_price'), detail: '100 USDT', detailColor: Colors.purpleAccent),
-          const SizedBox(height: defaultPadding / 2,),
+          _rowTitle(title: tr('member.type'), detail: planDetail.name),
+          const SizedBox(
+            height: defaultPadding / 2,
+          ),
           _rowTitle(
-              title: tr('member.purchasing_time'), detail: '2023-05-23 23:38:50'),
-          const SizedBox(height: defaultPadding / 2,),
-          _rowTitle(title: tr('member.expire_date'), detail: '2023-05-23 23:38:50'),
-          const SizedBox(height: defaultPadding / 2,),
-          _rowTitle(title: tr('member.status'), detail: tr('member.running'), status: true, statusColor: Colors.red),
+              title: tr('member.purchasing_price'),
+              detail: '${planDetail.amount} USDT',
+              detailColor: Colors.purpleAccent),
+          const SizedBox(
+            height: defaultPadding / 2,
+          ),
+          _rowTitle(
+              title: tr('member.purchasing_time'),
+              detail: planDetail.beginDate),
+          const SizedBox(
+            height: defaultPadding / 2,
+          ),
+          _rowTitle(
+              title: tr('member.expire_date'), detail: planDetail.endTimeDate),
+          const SizedBox(
+            height: defaultPadding / 2,
+          ),
+          _rowTitle(
+              title: tr('member.status'),
+              detail: tr('member.running'),
+              status: planDetail.status == 1 ? true : false),
         ],
       ),
     );
@@ -498,13 +522,14 @@ class ActiveMemberDetailScreen
             height: 20,
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
             decoration: BoxDecoration(
+              color: status ? BaseColors.secondPrimaryColor.withOpacity(0.1) : Colors.red.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: statusColor, width: 1)),
+                border: Border.all(color: status ? BaseColors.primaryColor : Colors.red, width: 1)),
             child: Center(
               child: Text(
                 detail,
                 style: fontDMMedium.copyWith(
-                  color: statusColor,
+                  color: status ? BaseColors.secondPrimaryColor : Colors.red,
                   fontSize: 8,
                 ),
               ),

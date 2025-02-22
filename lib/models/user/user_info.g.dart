@@ -41,6 +41,8 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => UserInfo(
       logicEndDate: json['logicEndDate'] as String? ?? '',
       endTimeDate: json['endTimeDate'] as String? ?? '',
       sysNowTime: json['sysNowTime'] as String? ?? '',
+      createTime: json['createTime'] as String? ?? '',
+      layer: (json['layer'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
@@ -72,4 +74,6 @@ Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
       'logicEndDate': instance.logicEndDate,
       'endTimeDate': instance.endTimeDate,
       'sysNowTime': instance.sysNowTime,
+      'createTime': instance.createTime,
+      'layer': instance.layer,
     };
