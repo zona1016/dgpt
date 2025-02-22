@@ -279,7 +279,6 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           ),
                           const Spacer(),
                           Container(
-                            height: 20,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: defaultPadding / 2),
                             decoration: BoxDecoration(
