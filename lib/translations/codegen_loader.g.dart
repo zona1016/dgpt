@@ -201,6 +201,7 @@ class CodegenLoader extends AssetLoader{
     "computing_power_rental_in_progress": "Hashrate rental in progress",
     "enter_account_password": "Enter account password",
     "enter_transaction_password": "Enter your transaction password",
+    "please_enter_your_account_transaction_password": "Please enter transaction password",
     "product_details": "Product details",
     "in_progress": "In progress",
     "rental": "Rental",
@@ -293,7 +294,8 @@ class CodegenLoader extends AssetLoader{
     "google_authentication": "Google Authentication",
     "please_install_Google_Authenticator_on_your_phone": "Please install Google Authenticator on your phone",
     "paste_the_key": "Paste the key",
-    "paste": "Paste"
+    "paste": "Paste",
+    "confirm_transfer": "Confirm transfer"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -404,6 +406,16 @@ class CodegenLoader extends AssetLoader{
     "connecting_to_computing_power_center": "Connecting to the computing power center",
     "please_wait": "Please wait...",
     "computing_power_rental_in_progress": "Computing power rental in progress"
+  },
+  "tutorial": {
+    "lesson1": "Lesson 1",
+    "lesson2": "Lesson 2",
+    "lesson3": "Lesson 3",
+    "lesson4": "Lesson 4",
+    "duration": "Duration",
+    "basic_course": "Basic Course",
+    "intermediate_course": "Intermediate Course",
+    "advanced_course": "Advanced Course"
   }
 };
 static const Map<String,dynamic> zh_Hans = {
@@ -593,6 +605,7 @@ static const Map<String,dynamic> zh_Hans = {
     "computing_power_rental_in_progress": "算力租借进行中",
     "enter_account_password": "输入账户密码",
     "enter_transaction_password": "请输入您的账户交易密码",
+    "please_enter_your_account_transaction_password": "请输入账户交易密码",
     "product_details": "产品详情",
     "in_progress": "进行中",
     "rental": "租借",
@@ -685,7 +698,8 @@ static const Map<String,dynamic> zh_Hans = {
     "google_authentication": "谷歌身份验证",
     "please_install_Google_Authenticator_on_your_phone": "请在手机安装谷歌身份验证器",
     "paste_the_key": "贴上密钥",
-    "paste": "贴上"
+    "paste": "贴上",
+    "confirm_transfer": "确认转移"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "如何发起 HTTP 请求？",
@@ -796,6 +810,16 @@ static const Map<String,dynamic> zh_Hans = {
     "connecting_to_computing_power_center": "正在链接算力中心",
     "please_wait": "请稍等...",
     "computing_power_rental_in_progress": "算力租借进行中"
+  },
+  "tutorial": {
+    "lesson1": "第一课",
+    "lesson2": "第二课",
+    "lesson3": "第三课",
+    "lesson4": "第四课",
+    "duration": "时长",
+    "basic_course": "基础课",
+    "intermediate_course": "进阶课",
+    "advanced_course": "高级课"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "zh_Hans": zh_Hans};

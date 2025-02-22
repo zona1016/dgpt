@@ -6,6 +6,7 @@ import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +18,8 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '教程中心',
+      appBar: BaseAppBar(
+        title: tr('profile.tutorial_center'),
         color: BaseColors.white,
       ),
       body: Padding(
@@ -28,7 +29,9 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
           itemBuilder: (context, index) {
             final course = controller.courses[index];
             return InkWell(
-              onTap: () => Get.toNamed(AppRoutes.tutorialDetail),
+              onTap: () {
+                // Get.toNamed(AppRoutes.tutorialDetail);
+              },
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
@@ -48,7 +51,7 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            "时长：${course["duration"]}",
+                            "${tr('tutorial.duration')}：${course[tr('tutorial.duration')]}",
                             style: const TextStyle(color: Colors.white54, fontSize: 14),
                           ),
                           const SizedBox(height: 8),

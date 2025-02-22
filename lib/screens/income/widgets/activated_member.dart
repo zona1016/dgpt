@@ -26,6 +26,12 @@ class _ActivatedMemberState extends State<ActivatedMember> {
     const Color(0xFF7912A5).withOpacity(0.5),
   ];
 
+  List <Color> borderColorList = [
+    const Color(0xFF17CE92),
+    const Color(0xFF126FA5),
+    const Color(0xFF7912A5),
+  ];
+
   List <String> levelTitleList = [
     tr('income.first_generation'),
     tr('income.second_generation'),
@@ -70,6 +76,10 @@ class _ActivatedMemberState extends State<ActivatedMember> {
       padding: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(defaultPadding),
+          border: Border.all(
+            color: borderColorList[superIndex],
+            width: 1
+          ),
           color: levelColorList[superIndex]),
       child: Column(
         children: [

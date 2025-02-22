@@ -109,7 +109,7 @@ class HashrateHeader extends StatelessWidget {
           child: Row(
             children: [
               const Spacer(),
-              if (powerInfo?.orderNo != 0 && powerInfo?.orderNo != 6)
+              if (powerInfo?.orderNo != 0  && powerInfo?.orderNo != 1 && powerInfo?.orderNo != 6)
                 Text(
                   ((powerInfo?.orderNo ?? 0) - 1).toString(),
                   style: fontDMBold.copyWith(
@@ -351,14 +351,15 @@ class HashrateHeader extends StatelessWidget {
       return [
         Row(
           children: [
-            Text(
-              label,
-              style: fontDMMedium.copyWith(
-                color: BaseColors.white,
-                fontSize: 14,
+            Expanded(
+              child: Text(
+                label,
+                style: fontDMMedium.copyWith(
+                  color: BaseColors.white,
+                  fontSize: 14,
+                ),
               ),
             ),
-            Expanded(child: Container()),
             Text(
               '$count/$conditionValue',
               style: fontDMMedium.copyWith(

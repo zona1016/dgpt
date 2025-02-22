@@ -41,7 +41,7 @@ class HashrateRentalDetailScreen
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(defaultPadding),
                         border: Border.all(
-                            color: BaseColors.primaryColor, width: 1),
+                            color: BaseColors.thirdLightPrimaryColor, width: 1),
                         color: Colors.transparent),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -540,7 +540,7 @@ class HashrateRentalDetailScreen
               children: [
                 Expanded(
                   child: Text(
-                    'Total : U ${(controller.args!.hasratePageInfo?.amount ?? 0) * controller.total.value}',
+                    'Total : ${(controller.args!.hasratePageInfo?.amount ?? 0) * controller.total.value} U',
                     style: fontDMBold.copyWith(
                         color: BaseColors.white, fontSize: 12),
                   ),

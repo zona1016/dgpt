@@ -37,13 +37,14 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
               child: Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(defaultPadding),
+                    height: 55,
+                    padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(20),
                         gradient: BaseColors.profileLinearGradient,
                         color: BaseColors.white.withOpacity(0.4)),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           '${tr('income.total_amount')}：${controller.memberList.length}',

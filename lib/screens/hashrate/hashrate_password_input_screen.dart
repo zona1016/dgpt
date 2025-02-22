@@ -49,8 +49,8 @@ class HashratePasswordInputScreen
   }
 
   BaseAppBar _buildAppBar() {
-    return const BaseAppBar(
-      title: '输入账户密码',
+    return BaseAppBar(
+      title: tr('hashrate.enter_account_password'),
       color: Colors.white,
       backgroundColor: Colors.transparent,
     );
@@ -77,7 +77,7 @@ class HashratePasswordInputScreen
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '请输入您的账户交易密码',
+            tr('hashrate.enter_transaction_password'),
             style: fontDMMedium.copyWith(
               color: BaseColors.white,
               fontSize: 16,
@@ -93,7 +93,7 @@ class HashratePasswordInputScreen
   Widget _buildEmailField() {
     return BaseTextFormField(
       name: 'password',
-      hintText: '请输入账户交易密码',
+      hintText: tr('hashrate.please_enter_your_account_transaction_password'),
       obscureText: true,
       keyboardType: TextInputType.number,
       radius: 10,

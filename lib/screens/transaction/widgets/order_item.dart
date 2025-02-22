@@ -55,7 +55,7 @@ class _OrderItemState extends State<OrderItem> {
                           Border.all(width: 2, color: BaseColors.primaryColor)),
                   child: Center(
                     child: Text(
-                      '运作中',
+                      tr('member.running'),
                       style: fontSFProMedium.copyWith(
                         fontSize: 10,
                         color: BaseColors.secondPrimaryColor,

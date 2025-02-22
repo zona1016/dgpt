@@ -185,6 +185,7 @@
     "computing_power_rental_in_progress": "Hashrate rental in progress",
     "enter_account_password": "Enter account password",
     "enter_transaction_password": "Enter your transaction password",
+    "please_enter_your_account_transaction_password": "Please enter transaction password",
     "product_details": "Product details",
     "in_progress": "In progress",
     "rental": "Rental",
@@ -277,7 +278,8 @@
     "google_authentication": "Google Authentication",
     "please_install_Google_Authenticator_on_your_phone": "Please install Google Authenticator on your phone",
     "paste_the_key": "Paste the key",
-    "paste": "Paste"
+    "paste": "Paste",
+    "confirm_transfer": "Confirm transfer"
   },
   "ai": {
     "how_do_I_make_an_HTTP": "How do I make an HTTP?",
@@ -388,5 +390,15 @@
     "connecting_to_computing_power_center": "Connecting to the computing power center",
     "please_wait": "Please wait...",
     "computing_power_rental_in_progress": "Computing power rental in progress"
+  },
+  "tutorial": {
+    "lesson1": "Lesson 1",
+    "lesson2": "Lesson 2",
+    "lesson3": "Lesson 3",
+    "lesson4": "Lesson 4",
+    "duration": "Duration",
+    "basic_course": "Basic Course",
+    "intermediate_course": "Intermediate Course",
+    "advanced_course": "Advanced Course"
   }
 }

@@ -153,7 +153,7 @@ class TransferAssetsScreen extends GetView<TransferAssetsScreenController> {
               enabled: controller
                   .amount.value.isNotEmpty && controller.enabled.value,
               onPressed: () => controller.aiPulseWalletTransfer(),
-              text: '确认转移',
+              text: tr('profile.confirm_transfer'),
             ))
           ],
         )),

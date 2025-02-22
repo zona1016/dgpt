@@ -51,14 +51,12 @@ class TeamHashrateAwardScreen
   _ranking() {
     return Container(
       padding: const EdgeInsets.all(defaultPadding).copyWith(top: 0),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-              Expanded(child: _rankingDetail(isFirst: false, index: 1)),
-              Expanded(child: _rankingDetail(isFirst: true, index: 0)),
-              Expanded(child: _rankingDetail(isFirst: false, index: 2)),
-          ],
-        ),
+      child: Row(
+        children: [
+            Expanded(child: _rankingDetail(isFirst: false, index: 1)),
+            Expanded(child: _rankingDetail(isFirst: true, index: 0)),
+            Expanded(child: _rankingDetail(isFirst: false, index: 2)),
+        ],
       ),
     );
   }
@@ -67,60 +65,66 @@ class TeamHashrateAwardScreen
 
     if (controller.directTopList.length <= index) return Container();
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Stack(
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: isFirst ? 79 : 60,
-                  width: isFirst ? 79 : 60,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: BaseNetworkImage(
-                      imageURL: controller.directTopList[index].user?.avatar ?? '',
-                      placeholder: 'assets/images/custom/logo.png',
+    return SizedBox(
+      height: 160,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Stack(
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: isFirst ? 79 : 60,
+                    width: isFirst ? 79 : 60,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: BaseNetworkImage(
+                        imageURL: controller.directTopList[index].user?.avatar ?? '',
+                        placeholder: 'assets/images/custom/logo.png',
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: isFirst ? 18 : 8,
-                )
-              ],
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Image.asset(
-                'assets/images/income/rank_${index + 1}.png',
-                width: isFirst ? 30 : 21,
-                height: isFirst ? 40 : 30,
+                  SizedBox(
+                    height: isFirst ? 18 : 8,
+                  )
+                ],
               ),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: defaultPadding / 5,
-        ),
-        Text(
-          controller.directTopList[index].user?.nickName ?? '',
-          style: fontDMBold.copyWith(
-              color: BaseColors.white, fontSize: isFirst ? 16 : 14),
-        ),
-        Text(
-          controller.getLevelName(controller.directTopList[index].hashrate?.code) ?? '',
-          style: fontDMBold.copyWith(
-              color: BaseColors.weakTextColor, fontSize: 10),
-        ),
-        Text(
-          '人数：${controller.directTopList[index].teamCount}人',
-          style: fontDMBold.copyWith(
-              color: BaseColors.weakTextColor, fontSize: 10),
-        )
-      ],
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Image.asset(
+                  'assets/images/income/rank_${index + 1}.png',
+                  width: isFirst ? 30 : 21,
+                  height: isFirst ? 40 : 30,
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: defaultPadding / 5,
+          ),
+          Text(
+            controller.directTopList[index].user?.nickName ?? '',
+            style: fontDMBold.copyWith(
+                color: BaseColors.white, fontSize: isFirst ? 16 : 14),
+            maxLines: 1,
+          ),
+          Text(
+            controller.getLevelName(controller.directTopList[index].hashrate?.code) ?? '',
+            style: fontDMBold.copyWith(
+                color: BaseColors.weakTextColor, fontSize: 10),
+            maxLines: 1,
+          ),
+          Text(
+            '人数：${controller.directTopList[index].teamCount}人',
+            style: fontDMBold.copyWith(
+                color: BaseColors.weakTextColor, fontSize: 10),
+            maxLines: 1,
+          )
+        ],
+      ),
     );
   }
 }

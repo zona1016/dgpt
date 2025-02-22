@@ -5,6 +5,7 @@ class BaseColors {
   static const secondPrimaryColor = Color(0xFF00FFA3);
   static const thirdPrimaryColor = Color(0xFF20AFFF);
   static const fourPrimaryColor = Color(0xFFC08FFF);
+  static const thirdLightPrimaryColor = Color(0xFF66BFD6);
   static const black = Color(0xFF1A1A1A);
   static const black10 = Color(0xFF1F222A);
   static const black15 = Color(0x261A1A1A);
