@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/models/pulse/user_kyc_info.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
@@ -12,6 +14,9 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart' as dio;
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class KycScreenBindings implements Bindings {
   @override
   void dependencies() {
@@ -23,7 +28,7 @@ class KycScreenBindings implements Bindings {
 class KycScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
   final ImagePicker _picker = ImagePicker();
-  Rx<CountryCode> countryCode = CountryCode.fromCountryCode('MY').obs;
+  Rx<CountryCode> countryCode = CountryCode().obs;
 
   Rxn<UserKYCInfo> userKYCInfo = Rxn<UserKYCInfo>();
   RxString selectedDocument = tr('home.passport').obs;
@@ -58,7 +63,10 @@ class KycScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    aiPulseKycUserKyc();
+    getCountry().then((code) {
+      countryCode.value = CountryCode.fromCountryCode(code);
+      aiPulseKycUserKyc();
+    });
   }
 
   @override
@@ -126,4 +134,20 @@ class KycScreenController extends BaseController {
 
     }
   }
+}
+
+Future<String> getCountry() async {
+  final url = Uri.parse('https://ipinfo.io/json');  // 使用 ipinfo.io API
+  try {
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return data['country']; // 返回国家代码，如 "US"
+    } else {
+      print("请求失败: ${response.statusCode}");
+    }
+  } catch (e) {
+    print("获取国家失败: $e");
+  }
+  return '';
 }

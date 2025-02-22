@@ -18,8 +18,8 @@ class ChangeEmailScreen extends GetView<ChangeEmailScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: "重置邮件箱",
+      appBar: BaseAppBar(
+        title: tr('profile.reset_mailbox'),
         color: BaseColors.white,
         backgroundColor: Colors.transparent,
       ),

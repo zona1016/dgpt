@@ -192,7 +192,8 @@ class CodegenLoader extends AssetLoader{
     "id_card": "ID",
     "driver_license": "DL",
     "residence_permit": "RP",
-    "fund_password_has_been_successfully_set": "Fund password has been successfully set"
+    "fund_password_has_been_successfully_set": "Fund password has been successfully set",
+    "authentication_failed": "Authentication Failed"
   },
   "hashrate": {
     "details": "Details",
@@ -345,7 +346,11 @@ class CodegenLoader extends AssetLoader{
     "computing_community_offline_support": "Computing Community Offline Support",
     "unconditional": "Unconditional",
     "positions": "Positions",
-    "no_computing_power": "No computing power"
+    "no_computing_power": "No computing power",
+    "history": "History",
+    "data_overview": "DataOverview",
+    "data": "Data",
+    "time": "Time"
   },
   "tab": {
     "rental": "Rental",
@@ -596,7 +601,8 @@ static const Map<String,dynamic> zh_Hans = {
     "id_card": "身份证",
     "driver_license": "驾驶证",
     "residence_permit": "居留证",
-    "fund_password_has_been_successfully_set": "资金密码设置成功"
+    "fund_password_has_been_successfully_set": "资金密码设置成功",
+    "authentication_failed": "认证失败"
   },
   "hashrate": {
     "details": "详情",
@@ -749,7 +755,11 @@ static const Map<String,dynamic> zh_Hans = {
     "computing_community_offline_support": "计算能力社区线下协助",
     "unconditional": "无条件",
     "positions": "位",
-    "no_computing_power": "无算力"
+    "no_computing_power": "无算力",
+    "history": "历史",
+    "data_overview": "数据预览",
+    "data": "数据",
+    "time": "时间"
   },
   "tab": {
     "rental": "算力租借",

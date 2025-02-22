@@ -19,8 +19,8 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
     return BaseScreen(
       backgroundColor: Colors.transparent,
       backgroundImage: BaseColors.customBackgroundImage,
-      appBar: const BaseAppBar(
-        title: '历史',
+      appBar: BaseAppBar(
+        title: tr('income.history'),
         color: BaseColors.white,
       ),
       body: Obx(() => Padding(
@@ -28,16 +28,17 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(defaultPadding),
+                  height: 56,
+                  padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(20),
                       gradient: BaseColors.profileLinearGradient,
                       color: BaseColors.white.withOpacity(0.4)),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '数据预览',
+                        tr('income.data_overview'),
                         style: fontDMBold.copyWith(
                           fontSize: 18,
                           color: BaseColors.white,
@@ -53,7 +54,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
                             menuMaxHeight: 250,
                             width: 170,
                             fillColor: BaseColors.primaryColor,
-                            hintText: '全部',
+                            hintText: tr('income.all'),
                             items: controller.historyList,
                             name: "all",
                             onChanged: (item) {
@@ -132,7 +133,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
         children: [
           Expanded(
             child: Text(
-              '类型',
+              tr('member.type'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -142,7 +143,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
           ),
           Expanded(
             child: Text(
-              '数据',
+              tr('income.data'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -151,7 +152,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
             ),
           ),
           Expanded(
-            child: Text('时间',
+            child: Text(tr('income.time'),
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 10,

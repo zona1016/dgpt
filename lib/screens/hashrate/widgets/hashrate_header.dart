@@ -384,35 +384,45 @@ class HashrateHeader extends StatelessWidget {
     if (progressInfo?.next?.conditionDto != null) {
       if (powerInfo!.orderNo == 0 &&
           progressInfo!.next!.conditionDto!.minPlanAmount > 0) {
-        progress += progressInfo!.planAmount /
-            progressInfo!.next!.conditionDto!.minPlanAmount;
-        if (progress > 1) {
-          progress = 1;
+        if (progressInfo!.planAmount /
+            progressInfo!.next!.conditionDto!.minPlanAmount > 1) {
+          progress += 1;
+        } else {
+          progress += progressInfo!.planAmount /
+              progressInfo!.next!.conditionDto!.minPlanAmount;
         }
         count += 1;
       }
 
       if ((powerInfo?.orderNo ?? 0) > 1 &&
           progressInfo!.next!.conditionDto!.teamCount > 0) {
-        progress += progressInfo!.teamCount /
-            progressInfo!.next!.conditionDto!.teamCount;
-        if (progress > 1) {
-          progress = 1;
+        if (progressInfo!.teamCount /
+            progressInfo!.next!.conditionDto!.teamCount > 1) {
+          progress += 1;
+        } else {
+          progress += progressInfo!.teamCount /
+              progressInfo!.next!.conditionDto!.teamCount;
         }
         count += 1;
       }
 
       if ((powerInfo?.orderNo ?? 0) != 0 &&
           progressInfo!.next!.conditionDto!.directCount > 0) {
-        progress += progressInfo!.directCount /
-            progressInfo!.next!.conditionDto!.directCount;
-        if (progress > 1) {
-          progress = 1;
+
+        if (progressInfo!.directCount /
+            progressInfo!.next!.conditionDto!.directCount > 1) {
+          progress += 1;
+        } else {
+          progress += progressInfo!.directCount /
+              progressInfo!.next!.conditionDto!.directCount;
         }
         count += 1;
       }
     }
 
+    print('-----------');
+    print(count);
+    print(progress);
     String formattedResult = '0';
     if (count > 0) {
       formattedResult = (progress / (count * 1.0)).toStringAsFixed(4);

@@ -176,7 +176,8 @@
     "id_card": "ID",
     "driver_license": "DL",
     "residence_permit": "RP",
-    "fund_password_has_been_successfully_set": "Fund password has been successfully set"
+    "fund_password_has_been_successfully_set": "Fund password has been successfully set",
+    "authentication_failed": "Authentication Failed"
   },
   "hashrate": {
     "details": "Details",
@@ -329,7 +330,11 @@
     "computing_community_offline_support": "Computing Community Offline Support",
     "unconditional": "Unconditional",
     "positions": "Positions",
-    "no_computing_power": "No computing power"
+    "no_computing_power": "No computing power",
+    "history": "History",
+    "data_overview": "DataOverview",
+    "data": "Data",
+    "time": "Time"
   },
   "tab": {
     "rental": "Rental",

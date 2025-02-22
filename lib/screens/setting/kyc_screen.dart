@@ -132,18 +132,18 @@ class KycScreen extends GetView<KycScreenController> {
     String statusName = '';
     if (controller.userKYCInfo.value == null) {
       statusImage = 'kyc_scwj';
-      statusName = '上传文件';
+      statusName = tr('home.upload_document');
     } else {
       // 0待审核，1通过，2否定
       if (controller.userKYCInfo.value?.status == 0) {
         statusImage = 'kyc_ddrztg';
-        statusName = '等待通过认证';
+        statusName = tr('home.waiting_for_certification');
       } else if (controller.userKYCInfo.value?.status == 1) {
         statusImage = 'kyc_yrz';
-        statusName = '已认证';
+        statusName = tr('home.certified');
       } else if (controller.userKYCInfo.value?.status == 2) {
         statusImage = 'kyc_ddrztg';
-        statusName = '认证失败';
+        statusName = tr('home.authentication_failed');
       }
     }
 
