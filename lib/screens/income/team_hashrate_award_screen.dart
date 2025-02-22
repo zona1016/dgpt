@@ -118,7 +118,7 @@ class TeamHashrateAwardScreen
             maxLines: 1,
           ),
           Text(
-            '人数：${controller.directTopList[index].teamCount}人',
+            tr('income.number_of_people', args:['${controller.directTopList[index].teamCount}']),
             style: fontDMBold.copyWith(
                 color: BaseColors.weakTextColor, fontSize: 10),
             maxLines: 1,

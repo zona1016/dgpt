@@ -334,7 +334,8 @@
     "history": "History",
     "data_overview": "DataOverview",
     "data": "Data",
-    "time": "Time"
+    "time": "Time",
+    "number_of_people": "Number：{}"
   },
   "tab": {
     "rental": "Rental",
