@@ -49,6 +49,7 @@ class ChangePasswordScreenController extends BaseController {
         tr('profile.password_changed_successfully'),
         barrierDismissible: false,
         showCircularProgressIndicator: true,
+        image: 'assets/images/custom/dio_psd_success.png',
       );
       Future.delayed(const Duration(seconds: 2), () {
         Get.close(2);
