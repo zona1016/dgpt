@@ -267,7 +267,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Obx(() => Text(
-                          NumberFormat('#,##0.000')
+                          NumberFormat('#,##0.0000')
                               .format(controller.totalAmount.value),
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
@@ -412,7 +412,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   width: defaultPadding / 4,
                 ),
                 Text(
-                  NumberFormat('#,##0.000').format(amount),
+                  NumberFormat('#,##0.0000').format(amount),
                   style: fontDMMedium.copyWith(
                     color: BaseColors.white,
                     fontSize: 11,

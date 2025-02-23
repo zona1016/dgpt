@@ -428,7 +428,7 @@ class HashrateRentalBuyDetailScreen
             _buildRow(
                 tr('hashrate.rental_income'),
                 '${controller.planDetail.value?.roiTotal} U'
-                '/U${controller.planDetail.value?.amount}',
+                '/${controller.planDetail.value?.amount} U',
                 whiteText10,
                 whiteText10),
             const SizedBox(height: defaultPadding / 2),

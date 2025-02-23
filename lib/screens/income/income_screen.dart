@@ -271,7 +271,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               height: defaultPadding / 2,
             ),
             Text(
-              '${NumberFormat('#,##0.00').format(amount)} U',
+              '${NumberFormat('#,##0.0000').format(amount)} U',
               style: fontDMBold.copyWith(
                   color: BaseColors.primaryColor, fontSize: 18),
             ),
@@ -385,7 +385,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           bottom: defaultPadding * 3,
           left: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
@@ -401,7 +401,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           top: defaultPadding,
           left: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
@@ -417,7 +417,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           top: 0,
           right: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
@@ -433,7 +433,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           bottom: defaultPadding,
           right: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.00').format((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),

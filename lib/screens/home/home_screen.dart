@@ -401,7 +401,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           Padding(
             padding: const EdgeInsets.only(left: defaultPadding),
             child: Text(
-              '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.today ?? 0)} USDT',
+              '${NumberFormat('#,##0.0000').format(controller.incomeTotal.value?.today ?? 0)} USDT',
               style: fontDMBold.copyWith(
                 fontSize: 18,
                 color: BaseColors.primaryColor,
@@ -446,7 +446,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           ),
           Expanded(child: Container()),
           Text(
-            '${NumberFormat('#,##0.00').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+            '${NumberFormat('#,##0.0000').format(controller.incomeTotal.value?.total ?? 0)} USDT',
             style: fontDMBold.copyWith(
               fontSize: 18,
               color: BaseColors.primaryColor,

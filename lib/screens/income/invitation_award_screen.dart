@@ -165,7 +165,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
               ),
             ),
             Text(
-              NumberFormat('#,##0.000').format(amount),
+              NumberFormat('#,##0.0000').format(amount),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 20,

@@ -100,7 +100,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                 children: [
                   const Spacer(),
                   Text(
-                    NumberFormat('#,##0.000')
+                    NumberFormat('#,##0.0000')
                         .format(controller.totalAmount.value),
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
