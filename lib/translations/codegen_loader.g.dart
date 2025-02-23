@@ -224,7 +224,9 @@ class CodegenLoader extends AssetLoader{
     "salary": "Salary",
     "team_data": "Team Data",
     "price_per_unit": "Price per unit",
-    "directly_refer_become_level": "Directly refer 3 people to become level {} power"
+    "directly_refer_become_level": "Directly refer 3 people to become level {} power",
+    "basic_computing_power": "Basic computing power",
+    "advanced_computing_power": "Advanced computing power"
   },
   "profile": {
     "place_enter_a_nickname": "Place enter a nickname",
@@ -640,7 +642,9 @@ static const Map<String,dynamic> zh_Hans = {
     "salary": "薪资",
     "team_data": "团队数据",
     "price_per_unit": "每个单位价格",
-    "directly_refer_become_level": "直推3位成为{}级算力"
+    "directly_refer_become_level": "直推3位成为{}级算力",
+    "basic_computing_power": "基础算力",
+    "advanced_computing_power": "高级算力"
   },
   "profile": {
     "place_enter_a_nickname": "请输入昵称",

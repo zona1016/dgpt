@@ -66,7 +66,11 @@ class HashrateHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          tr('hashrate.computing_power_level'),
+          powerInfo?.orderNo == 1
+              ? tr('hashrate.basic_computing_power')
+              : powerInfo?.orderNo == 6
+                  ? tr('hashrate.advanced_computing_power')
+                  : tr('hashrate.computing_power_level'),
           style: fontDMBold.copyWith(
             color: BaseColors.white,
             fontSize: 16,
@@ -109,7 +113,9 @@ class HashrateHeader extends StatelessWidget {
           child: Row(
             children: [
               const Spacer(),
-              if (powerInfo?.orderNo != 0  && powerInfo?.orderNo != 1 && powerInfo?.orderNo != 6)
+              if (powerInfo?.orderNo != 0 &&
+                  powerInfo?.orderNo != 1 &&
+                  powerInfo?.orderNo != 6)
                 Text(
                   ((powerInfo?.orderNo ?? 0) - 1).toString(),
                   style: fontDMBold.copyWith(
@@ -306,13 +312,13 @@ class HashrateHeader extends StatelessWidget {
             progressInfo!.next!.conditionDto!.directCount,
             progressInfo!.directCount,
           ),
-        if (progressInfo?.next?.conditionDto != null &&
-            (powerInfo?.orderNo ?? 0) > 1)
-          ..._buildConditionalRow(
-            tr('hashrate.team_members'),
-            progressInfo!.next!.conditionDto!.teamCount,
-            progressInfo!.teamCount,
-          ),
+        // if (progressInfo?.next?.conditionDto != null &&
+        //     (powerInfo?.orderNo ?? 0) > 1)
+        //   ..._buildConditionalRow(
+        //     tr('hashrate.team_members'),
+        //     progressInfo!.next!.conditionDto!.teamCount,
+        //     progressInfo!.teamCount,
+        //   ),
       ],
     );
   }
@@ -385,7 +391,8 @@ class HashrateHeader extends StatelessWidget {
       if (powerInfo!.orderNo == 0 &&
           progressInfo!.next!.conditionDto!.minPlanAmount > 0) {
         if (progressInfo!.planAmount /
-            progressInfo!.next!.conditionDto!.minPlanAmount > 1) {
+                progressInfo!.next!.conditionDto!.minPlanAmount >
+            1) {
           progress += 1;
         } else {
           progress += progressInfo!.planAmount /
@@ -394,23 +401,24 @@ class HashrateHeader extends StatelessWidget {
         count += 1;
       }
 
-      if ((powerInfo?.orderNo ?? 0) > 1 &&
-          progressInfo!.next!.conditionDto!.teamCount > 0) {
-        if (progressInfo!.teamCount /
-            progressInfo!.next!.conditionDto!.teamCount > 1) {
-          progress += 1;
-        } else {
-          progress += progressInfo!.teamCount /
-              progressInfo!.next!.conditionDto!.teamCount;
-        }
-        count += 1;
-      }
+      // if ((powerInfo?.orderNo ?? 0) > 1 &&
+      //     progressInfo!.next!.conditionDto!.teamCount > 0) {
+      //   if (progressInfo!.teamCount /
+      //           progressInfo!.next!.conditionDto!.teamCount >
+      //       1) {
+      //     progress += 1;
+      //   } else {
+      //     progress += progressInfo!.teamCount /
+      //         progressInfo!.next!.conditionDto!.teamCount;
+      //   }
+      //   count += 1;
+      // }
 
       if ((powerInfo?.orderNo ?? 0) != 0 &&
           progressInfo!.next!.conditionDto!.directCount > 0) {
-
         if (progressInfo!.directCount /
-            progressInfo!.next!.conditionDto!.directCount > 1) {
+                progressInfo!.next!.conditionDto!.directCount >
+            1) {
           progress += 1;
         } else {
           progress += progressInfo!.directCount /

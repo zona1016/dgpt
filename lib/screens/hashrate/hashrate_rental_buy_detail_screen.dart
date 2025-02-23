@@ -52,7 +52,9 @@ class HashrateRentalBuyDetailScreen
     return Row(
       children: [
         Image.asset(
-          'assets/images/home/income_icon.png',
+          controller.planDetail.value?.name == 'GDEPIN'
+              ? 'assets/images/home/income_icon1.png'
+              : 'assets/images/home/income_icon.png',
           width: 120,
           height: 128,
           fit: BoxFit.cover,
@@ -261,8 +263,8 @@ class HashrateRentalBuyDetailScreen
                 children: [
                   BaseNetworkImage(
                     imageURL:
-                    controller.planDetail.value?.graphicsIconFileIdUrl ??
-                        '',
+                        controller.planDetail.value?.graphicsIconFileIdUrl ??
+                            '',
                     placeholder: controller.planDetail.value?.name == 'GDEPIN'
                         ? 'assets/images/home/income_detail_icon.png'
                         : 'assets/images/home/income_detail_icon1.png',

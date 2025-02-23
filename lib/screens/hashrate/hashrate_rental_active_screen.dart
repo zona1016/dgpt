@@ -14,7 +14,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenController> {
+class HashrateRentalActiveScreen
+    extends GetView<HashrateRentalActiveScreenController> {
   const HashrateRentalActiveScreen({super.key});
 
   @override
@@ -28,19 +29,19 @@ class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenContr
         color: BaseColors.white,
       ),
       body: Obx(() => GridView.builder(
-        padding: const EdgeInsets.all(defaultPadding),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: defaultPadding,
-          mainAxisSpacing: defaultPadding,
-          childAspectRatio: kIsWeb ? 0.4 : 0.43,
-        ),
-        itemCount: controller.hasratePageList.length,
-        // Number of items
-        itemBuilder: (context, index) {
-          return _rentalItem(index);
-        },
-      )),
+            padding: const EdgeInsets.all(defaultPadding),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: kIsWeb ? 0.4 : 0.43,
+            ),
+            itemCount: controller.hasratePageList.length,
+            // Number of items
+            itemBuilder: (context, index) {
+              return _rentalItem(index);
+            },
+          )),
     );
   }
 
@@ -81,7 +82,8 @@ class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenContr
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
       decoration: BoxDecoration(
           gradient: BaseColors.incomeLinearGradient,
-          border: Border.all(color: BaseColors.thirdLightPrimaryColor, width: 1),
+          border:
+              Border.all(color: BaseColors.thirdLightPrimaryColor, width: 1),
           borderRadius: BorderRadius.circular(defaultPadding / 2)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,20 +101,19 @@ class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenContr
                 onTap: () {
                   Get.toNamed(AppRoutes.hashrateRentalBuyDetail,
                       arguments: HashrateRentalBuyDetailScreenArgs(
-                          planDetail: controller
-                              .hasratePageList[index]));
+                          planDetail: controller.hasratePageList[index]));
                 },
                 child: Container(
                   width: 38,
                   height: 15,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: BaseColors.primaryColor
-                  ),
+                      color: BaseColors.primaryColor),
                   child: Center(
                     child: Text(
                       tr('hashrate.details'),
-                      style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 7),
+                      style: fontDMBold.copyWith(
+                          color: BaseColors.white, fontSize: 7),
                     ),
                   ),
                 ),
@@ -125,13 +126,20 @@ class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenContr
           ),
           const SizedBox(height: defaultPadding),
           Center(
-              child: BaseNetworkImage(
-            imageURL: hasratePageInfo.logoFileIdUrl,
-            placeholder:
-                'assets/images/home/income_icon${controller.hasratePageList[index]?.code == 'B0001' ? 1 : ''}.png',
-            height: 46,
-            width: 100,
-            fit: BoxFit.fitHeight,
+              child: GestureDetector(
+            onTap: () {
+              Get.toNamed(AppRoutes.hashrateRentalBuyDetail,
+                  arguments: HashrateRentalBuyDetailScreenArgs(
+                      planDetail: controller.hasratePageList[index]));
+            },
+            child: BaseNetworkImage(
+              imageURL: hasratePageInfo.logoFileIdUrl,
+              placeholder:
+                  'assets/images/home/income_icon${controller.hasratePageList[index]?.code == 'B0001' ? 1 : ''}.png',
+              height: 106,
+              width: 100,
+              fit: BoxFit.fitHeight,
+            ),
           )),
           const SizedBox(height: defaultPadding),
           Text(
@@ -155,8 +163,7 @@ class HashrateRentalActiveScreen extends GetView<HashrateRentalActiveScreenContr
             disabledDecoration: BoxDecoration(
                 gradient: BaseColors.baseButtonLinearGradient,
                 color: Colors.white.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(15)
-            ),
+                borderRadius: BorderRadius.circular(15)),
             height: 30,
             onPressed: () {},
             text: tr('hashrate.rented'),

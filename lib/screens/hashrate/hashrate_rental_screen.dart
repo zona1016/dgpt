@@ -225,15 +225,23 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             style: whiteText14,
           ),
           const SizedBox(height: defaultPadding),
-          Center(
-              child: BaseNetworkImage(
-            imageURL: hasratePageInfo.logoFileIdUrl,
-            placeholder:
-                'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
-            height: 106,
-            width: 100,
-            fit: BoxFit.cover,
-          )),
+          GestureDetector(
+            onTap: () {
+              if (controller.hasratePageList[index].isBuy &&
+                  controller.hasratePageList[index].buyStatus == 1) {
+                Get.toNamed(AppRoutes.hashrateRentalActive);
+              }
+            },
+            child: Center(
+                child: BaseNetworkImage(
+              imageURL: hasratePageInfo.logoFileIdUrl,
+              placeholder:
+                  'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
+              height: 106,
+              width: 100,
+              fit: BoxFit.cover,
+            )),
+          ),
           const SizedBox(height: defaultPadding),
           Text(
             tr('hashrate.rent_to_earn'),

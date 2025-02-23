@@ -256,7 +256,7 @@ class RegisterScreen extends GetView<RegisterScreenController> {
                     ],
                   ),
                 ),
-                child: GestureDetector(
+                child: InkWell(
                   onTap: () {
                     controller.aiPulseCommonRegisterVerifyCode();
                   },
