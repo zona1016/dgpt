@@ -135,7 +135,7 @@ class HashrateRentalActiveScreen
             child: BaseNetworkImage(
               imageURL: hasratePageInfo.logoFileIdUrl,
               placeholder:
-                  'assets/images/home/income_icon${controller.hasratePageList[index]?.code == 'B0001' ? 1 : ''}.png',
+                  'assets/images/home/income_icon_${hasratePageInfo.name}.png',
               height: 106,
               width: 100,
               fit: BoxFit.fitHeight,

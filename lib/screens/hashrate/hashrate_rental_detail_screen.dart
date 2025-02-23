@@ -65,7 +65,7 @@ class HashrateRentalDetailScreen
     return Row(
       children: [
         Image.asset(
-          'assets/images/home/income_icon.png',
+          'assets/images/home/income_icon_${controller.planDetail.value?.name}.png',
           width: 120,
           height: 128,
           fit: BoxFit.cover,

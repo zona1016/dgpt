@@ -236,7 +236,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
                 child: BaseNetworkImage(
               imageURL: hasratePageInfo.logoFileIdUrl,
               placeholder:
-                  'assets/images/home/income_icon${index == 0 ? 1 : ''}.png',
+                  'assets/images/home/income_icon_${hasratePageInfo.name}.png',
               height: 106,
               width: 100,
               fit: BoxFit.cover,

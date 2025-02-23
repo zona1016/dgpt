@@ -86,7 +86,7 @@ class _OrderItemState extends State<OrderItem> {
                   aspectRatio: 1,
                   child: BaseNetworkImage(
                     imageURL: widget.planDetail.logoFileIdUrl,
-                    placeholder: 'assets/images/home/income_icon.png',
+                    placeholder: 'assets/images/home/income_icon_${widget.planDetail.name}.png',
                   ),
                 ),
               ),
