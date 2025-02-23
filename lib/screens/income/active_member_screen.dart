@@ -270,7 +270,6 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
                           SizedBox(
                             width: SizeUtil.width() / 4,
                             child: Text(
-                              member.user?.nickName ??
                                   member.user?.account ??
                                   member.user?.email ??
                                   '',

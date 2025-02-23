@@ -106,7 +106,7 @@ class TeamHashrateAwardScreen
             height: defaultPadding / 5,
           ),
           Text(
-            controller.directTopList[index].user?.nickName ?? '',
+            controller.directTopList[index].user?.account ?? '',
             style: fontDMBold.copyWith(
                 color: BaseColors.white, fontSize: isFirst ? 16 : 14),
             maxLines: 1,

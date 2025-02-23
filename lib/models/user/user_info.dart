@@ -40,8 +40,6 @@ class UserInfo {
   final List<String>? buttons;
   @JsonKey(name: "watermarkText", defaultValue: '')
   final String? watermarkText;
-  @JsonKey(name: "nickName", defaultValue: '')
-  final String? nickName;
   @JsonKey(name: "phoneNation", defaultValue: 0)
   final int? phoneNation;
   @JsonKey(name: "tenantId", defaultValue: 0)
@@ -86,7 +84,6 @@ class UserInfo {
     this.tenantId,
     this.roleIds,
     this.phoneNation,
-    this.nickName,
     this.inviteCode,
     this.hasBind,
     this.lastLogin,

@@ -102,6 +102,7 @@ class AccountProfileScreen extends GetView<AccountProfileScreenController> {
     return Column(
       children: [
         BaseTextFormField(
+          enabled: false,
           name: "nickname",
           title: tr('profile.nickname'),
           type: TextFormFieldType.golden,

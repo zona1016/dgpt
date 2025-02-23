@@ -103,7 +103,7 @@ class ChangeEmailScreenController extends BaseController {
     final result = await fetchData(
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.userUpdateInfo(
-            nickName: userController.userInfo.nickName ?? '',
+            nickName: userController.userInfo.account ?? '',
             phoneNation: userController.userInfo.phoneNation!.toString(),
             phoneNumber:userController.userInfo.phone ?? '',
             email: email.value,

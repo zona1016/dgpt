@@ -33,7 +33,6 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => UserInfo(
               .toList() ??
           [],
       phoneNation: (json['phoneNation'] as num?)?.toInt() ?? 0,
-      nickName: json['nickName'] as String? ?? '',
       inviteCode: json['inviteCode'] as String? ?? '',
       hasBind: json['hasBind'] as bool? ?? false,
       lastLogin: json['lastLogin'] as String? ?? '',
@@ -64,7 +63,6 @@ Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
       'posName': instance.posName,
       'buttons': instance.buttons,
       'watermarkText': instance.watermarkText,
-      'nickName': instance.nickName,
       'phoneNation': instance.phoneNation,
       'tenantId': instance.tenantId,
       'roleIds': instance.roleIds,

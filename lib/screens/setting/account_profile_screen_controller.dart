@@ -41,7 +41,7 @@ class AccountProfileScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    nickName.value = userController.userInfo.nickName ?? '';
+    nickName.value = userController.userInfo.account ?? '';
     if (userController.userInfo.phoneNation != null && userController.userInfo.phoneNation != 0) {
       code.value = CountryCode.fromDialCode('+${userController.userInfo.phoneNation}');
     }

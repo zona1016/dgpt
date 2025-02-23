@@ -30,7 +30,7 @@ class GoogleVerifyScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    hasBind.value = userController.userInfo.hasBind ?? false;
+    aiPulseGoogleAuthHasBind();
   }
 
   @override
@@ -45,10 +45,19 @@ class GoogleVerifyScreenController extends BaseController {
   }
 
   confirm() {
-    if (userController.userInfo.nickName != null) {
+    if (userController.userInfo.hasBind == false) {
       aiPulseGoogleAuthGetBindCode();
     } else {
       aiPulseGoogleAuthUnBind();
+    }
+  }
+
+  aiPulseGoogleAuthHasBind() async {
+    final result = await fetchData(
+      request: () => aiPulseService.aiPulseGoogleAuthHasBind(),
+    );
+    if (result != null) {
+      hasBind.value = result;
     }
   }
 

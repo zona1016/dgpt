@@ -112,7 +112,7 @@ class ActiveMemberDetailScreen
                             SizedBox(
                               width: SizeUtil.width() / 3.5,
                               child: Text(
-                                controller.memberList.value?.user?.nickName ??
+                                controller.memberList.value?.user?.account ??
                                     '',
                                 style: fontDMBold.copyWith(
                                   color: BaseColors.white,
