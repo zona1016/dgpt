@@ -28,5 +28,5 @@ class PaginationResponse<T> with _$PaginationResponse<T> {
     return super.toJson(toJsonT);
   }
 
-  bool get hasLoadMore => hasPrevPage && hasNextPage;
+  bool get hasLoadMore => hasNextPage;
 }
