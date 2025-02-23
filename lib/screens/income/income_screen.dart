@@ -17,7 +17,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
   Widget build(BuildContext context) {
     return BaseScreen(
       safeAreaTop: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF892EFF).withOpacity(0.1),
       backgroundImage: BaseColors.incomeBackgroundImage,
       body: Column(
         children: [

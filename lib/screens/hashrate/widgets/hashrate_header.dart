@@ -177,7 +177,8 @@ class HashrateHeader extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '$totalRoi U',
+                      '${NumberFormat('#,##0.0000')
+                          .format(totalRoi)} U',
                       style: fontDMBold.copyWith(
                         color: BaseColors.secondPrimaryColor,
                         fontSize: 18,

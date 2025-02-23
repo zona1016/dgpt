@@ -16,7 +16,7 @@ class TutorialsScreen extends GetView<TutorialsScreenController> {
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      backgroundColor: Colors.transparent,
+      backgroundColor: const Color(0xFF892EFF).withOpacity(0.1),
       backgroundImage: BaseColors.customBackgroundImage,
       appBar: BaseAppBar(
         title: tr('profile.tutorial_center'),

@@ -18,7 +18,7 @@ class AboutUsScreen extends GetView<AboutUsScreenController> {
     return BaseScreen(
         safeAreaTop: false,
         backgroundColor: Colors.transparent,
-        backgroundImage: 'assets/images/custom/about_us_bg.png',
+        backgroundImage: 'assets/images/custom/about_us_bg.jpg',
         body: Column(
           children: [
             SizedBox(
