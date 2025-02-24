@@ -144,7 +144,7 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
           ),
           Expanded(
             child: Text(
-              tr('income.data'),
+              tr('income.amount'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -193,8 +193,8 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
           ),
           Expanded(
             child: Text(
-                DateFormat("dd/MM/yyyy HH:mm:ss").format(
-                    DateFormat("yyyy-MM-dd HH:mm:ss")
+                DateFormat("dd/MM/yyyy HH:mm").format(
+                    DateFormat("yyyy-MM-dd HH:mm")
                         .parse(controller.flowList[index].createTime ?? '')),
                 style: fontDMMedium.copyWith(
                   color: BaseColors.white,
