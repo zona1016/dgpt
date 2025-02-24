@@ -1,3 +1,4 @@
+import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/screens/transaction/withdraw_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -141,32 +142,30 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: SizedBox(
-                                child: TextField(
-                                  controller: controller.textEditingController,
-                                  onChanged: (value) {
-                                    if (value.isNotEmpty) {
-                                      controller.amount.value =
-                                          double.parse(value);
-                                    }
-                                  },
-                                  style: fontDMMedium.copyWith(
-                                      color: BaseColors.white, fontSize: 14),
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'^\d*\.?\d*$')),
-                                    // 仅允许输入数字和一个小数点
-                                  ],
-                                  decoration: InputDecoration(
-                                      hintText: tr('placeholder.please_enter_the_amount'),
-                                      hintStyle: fontDMMedium.copyWith(
-                                          color: BaseColors.white,
-                                          fontSize: 14),
-                                      contentPadding:
-                                          const EdgeInsets.only(bottom: 10),
-                                      border: InputBorder.none),
-                                  textAlign: TextAlign.left,
-                                ),
+                              child: TextField(
+                                controller: controller.textEditingController,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.amount.value =
+                                        double.parse(value);
+                                  }
+                                },
+                                style: fontDMMedium.copyWith(
+                                    color: BaseColors.white, fontSize: 14),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'^\d*\.?\d*$')),
+                                  // 仅允许输入数字和一个小数点
+                                ],
+                                decoration: InputDecoration(
+                                    hintText: tr('placeholder.please_enter_the_amount'),
+                                    hintStyle: fontDMMedium.copyWith(
+                                        color: BaseColors.white,
+                                        fontSize: 14),
+                                    contentPadding:
+                                        const EdgeInsets.only(bottom: 10),
+                                    border: InputBorder.none),
+                                textAlign: TextAlign.left,
                               ),
                             ),
                             const SizedBox(
@@ -190,11 +189,20 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                             const SizedBox(
                               width: defaultPadding / 5,
                             ),
-                            const Icon(
-                              Icons.chevron_right,
-                              size: 25,
-                              color: BaseColors.white,
-                            )
+                            GestureDetector(
+                              onTap: () {
+                                ProfileScreenController profileController = Get.find();
+                                controller.amount = profileController.xjTotalAmount;
+                                controller.textEditingController.text = profileController.xjTotalAmount.toString();
+                              },
+                              child: Text(
+                                tr('income.all'),
+                                style: fontDMMedium.copyWith(
+                                  fontSize: 14,
+                                  color: BaseColors.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
