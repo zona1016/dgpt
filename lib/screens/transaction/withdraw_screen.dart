@@ -190,7 +190,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                                     color: BaseColors.primaryColor.withOpacity(0.2)
                                 ),
                                 child: Text(
-                                  tr('Max'),
+                                  tr('income.max'),
                                   style: fontDMMedium.copyWith(
                                     fontSize: 12,
                                     color: BaseColors.primaryColor,

@@ -4,6 +4,7 @@ import 'package:dgpt/screens/hashrate/hashrate_rental_detail_screen.dart';
 import 'package:dgpt/screens/hashrate/hashrate_rental_screen_controller.dart';
 import 'package:dgpt/screens/hashrate/widgets/hashrate_header.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -302,12 +303,12 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
               whiteText10, whiteText10),
           _buildRow(
               tr('hashrate.rental_income'),
-              '${hasratePageInfo.profitTotal} U'
-              '(${((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100}%)',
+              '${formatNumber(hasratePageInfo.profitTotal)} U'
+              '(${formatNumber(((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100)}%)',
               whiteText10,
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),
-              '${hasratePageInfo.profitPreDay} U', whiteText10, whiteText10),
+              '${formatNumber(hasratePageInfo.profitPreDay)} U', whiteText10, whiteText10),
           const Spacer(),
         ],
       ),

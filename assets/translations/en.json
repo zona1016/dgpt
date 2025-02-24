@@ -338,7 +338,8 @@
     "data": "Data",
     "time": "Time",
     "number_of_people": "Number：{}",
-    "username": "Username"
+    "username": "Username",
+    "max": "Max"
   },
   "tab": {
     "rental": "Rental",
