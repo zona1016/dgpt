@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_screen.dart';
@@ -392,10 +393,10 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         _positioned(
             bottom: defaultPadding * 3,
             left: defaultPadding,
-            size: const Size(150, 1)),
+            size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding, 1)),
         _positioned(
             bottom: defaultPadding * 3,
-            left: 150 + defaultPadding,
+            left: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding + defaultPadding,
             size: const Size(1, 45)),
         Positioned(
           top: defaultPadding,
@@ -408,11 +409,11 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         _positioned(
             top: defaultPadding + controller.textHeight,
             left: defaultPadding,
-            size: Size(controller.circleHeight / 2, 1)),
+            size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2, 1)),
         _positioned(
             top: defaultPadding + controller.textHeight,
-            left: controller.circleHeight / 2 + defaultPadding,
-            size: const Size(1, 50)),
+            left: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2 + defaultPadding,
+            size: const Size(1, 45)),
         Positioned(
           top: 0,
           right: defaultPadding,
@@ -424,10 +425,10 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         _positioned(
             top: controller.textHeight,
             right: defaultPadding,
-            size: Size(controller.circleHeight / 2, 1)),
+            size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2, 1)),
         _positioned(
             top: controller.textHeight,
-            right: controller.circleHeight / 2 + defaultPadding,
+            right: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2 + defaultPadding,
             size: const Size(1, 35)),
         Positioned(
           bottom: defaultPadding,
@@ -440,10 +441,10 @@ class IncomeScreen extends GetView<IncomeScreenController> {
         _positioned(
             bottom: defaultPadding,
             right: defaultPadding,
-            size: const Size(105, 1)),
+            size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 4, 1)),
         _positioned(
             bottom: defaultPadding,
-            right: 105 + defaultPadding,
+            right: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 4 + defaultPadding,
             size: const Size(1, 25)),
       ],
     ));
