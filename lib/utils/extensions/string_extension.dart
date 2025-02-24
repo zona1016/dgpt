@@ -20,5 +20,15 @@ extension StringExtension on String {
 String formatNumber(double value) {
   final formatter = NumberFormat('#,##0.0000');
   String formatted = formatter.format(value);
-  return formatted.replaceAll(RegExp(r'(\.\d*?[1-9])0+$'), r'$1').replaceAll(RegExp(r'\.0+$'), '');
+  if (formatted.contains('.')) {
+    while (formatted.endsWith('0')) {
+      formatted = formatted.substring(0, formatted.length - 1);
+    }
+    // 如果去掉0后是个小数点，就去掉小数点
+    if (formatted.endsWith('.')) {
+      formatted = formatted.substring(0, formatted.length - 1);
+    }
+  }
+
+  return formatted;
 }
