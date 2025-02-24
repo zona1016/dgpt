@@ -4,6 +4,7 @@ import 'package:dgpt/screens/home/home_screen_controller.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/size.dart';
@@ -401,7 +402,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           Padding(
             padding: const EdgeInsets.only(left: defaultPadding),
             child: Text(
-              '${NumberFormat('#,##0.0000').format(controller.incomeTotal.value?.today ?? 0)} USDT',
+              '${formatNumber(controller.incomeTotal.value?.today ?? 0)} USDT',
               style: fontDMBold.copyWith(
                 fontSize: 18,
                 color: BaseColors.primaryColor,
@@ -446,7 +447,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           ),
           Expanded(child: Container()),
           Text(
-            '${NumberFormat('#,##0.0000').format(controller.incomeTotal.value?.total ?? 0)} USDT',
+            '${formatNumber(controller.incomeTotal.value?.total ?? 0)} USDT',
             style: fontDMBold.copyWith(
               fontSize: 18,
               color: BaseColors.primaryColor,

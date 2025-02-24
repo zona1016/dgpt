@@ -142,30 +142,60 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                         child: Row(
                           children: [
                             Expanded(
-                              child: TextField(
-                                controller: controller.textEditingController,
-                                onChanged: (value) {
-                                  if (value.isNotEmpty) {
-                                    controller.amount.value =
-                                        double.parse(value);
-                                  }
-                                },
-                                style: fontDMMedium.copyWith(
-                                    color: BaseColors.white, fontSize: 14),
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp(r'^\d*\.?\d*$')),
-                                  // 仅允许输入数字和一个小数点
-                                ],
-                                decoration: InputDecoration(
-                                    hintText: tr('placeholder.please_enter_the_amount'),
-                                    hintStyle: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 14),
-                                    contentPadding:
-                                        const EdgeInsets.only(bottom: 10),
-                                    border: InputBorder.none),
-                                textAlign: TextAlign.left,
+                              child: SizedBox(
+                                child: TextField(
+                                  controller: controller.textEditingController,
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      controller.amount.value =
+                                          double.parse(value);
+                                    }
+                                  },
+                                  style: fontDMMedium.copyWith(
+                                      color: BaseColors.white, fontSize: 14),
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'^\d*\.?\d*$')),
+                                    // 仅允许输入数字和一个小数点
+                                  ],
+                                  decoration: InputDecoration(
+                                      hintText: tr('placeholder.please_enter_the_amount'),
+                                      hintStyle: fontDMMedium.copyWith(
+                                          color: BaseColors.white,
+                                          fontSize: 14),
+                                      contentPadding:
+                                          const EdgeInsets.only(bottom: 10),
+                                      border: InputBorder.none),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: defaultPadding / 2,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                ProfileScreenController profileController = Get.find();
+                                controller.amount = profileController.xjTotalAmount;
+                                controller.textEditingController.text = profileController.xjTotalAmount.toString();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 4),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: BaseColors.primaryColor
+                                    ),
+                                    color: BaseColors.primaryColor.withOpacity(0.2)
+                                ),
+                                child: Text(
+                                  tr('Max'),
+                                  style: fontDMMedium.copyWith(
+                                    fontSize: 12,
+                                    color: BaseColors.primaryColor,
+                                  ),
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -189,20 +219,11 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                             const SizedBox(
                               width: defaultPadding / 5,
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                ProfileScreenController profileController = Get.find();
-                                controller.amount = profileController.xjTotalAmount;
-                                controller.textEditingController.text = profileController.xjTotalAmount.toString();
-                              },
-                              child: Text(
-                                tr('income.all'),
-                                style: fontDMMedium.copyWith(
-                                  fontSize: 14,
-                                  color: BaseColors.white,
-                                ),
-                              ),
-                            ),
+                            const Icon(
+                              Icons.chevron_right,
+                              size: 25,
+                              color: BaseColors.white,
+                            )
                           ],
                         ),
                       ),

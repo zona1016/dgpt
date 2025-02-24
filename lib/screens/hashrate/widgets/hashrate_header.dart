@@ -2,6 +2,7 @@ import 'package:dgpt/models/pulse/hasrate_progress_info.dart';
 import 'package:dgpt/models/pulse/power_info.dart';
 import 'package:dgpt/screens/main/main_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -177,8 +178,7 @@ class HashrateHeader extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${NumberFormat('#,##0.0000')
-                          .format(totalRoi)} U',
+                      '${formatNumber(totalRoi)} U',
                       style: fontDMBold.copyWith(
                         color: BaseColors.secondPrimaryColor,
                         fontSize: 18,

@@ -1,4 +1,6 @@
 
+import 'package:easy_localization/easy_localization.dart';
+
 extension StringExtension on String {
   String maskEmail() {
     final regex = RegExp(r'^(.)(.*)(@.*)$');
@@ -13,4 +15,10 @@ extension StringExtension on String {
       return '$firstChar$maskedMiddle$domain';
     });
   }
+}
+
+String formatNumber(double value) {
+  final formatter = NumberFormat('#,##0.0000');
+  String formatted = formatter.format(value);
+  return formatted.replaceAll(RegExp(r'(\.\d*?[1-9])0+$'), r'$1').replaceAll(RegExp(r'\.0+$'), '');
 }

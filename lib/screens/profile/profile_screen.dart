@@ -2,6 +2,7 @@ import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/screens/transaction/my_assets_screen.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/dialog.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/packages/toast.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -267,8 +268,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Obx(() => Text(
-                          NumberFormat('#,##0.0000')
-                              .format(controller.totalAmount.value),
+                          formatNumber(controller.totalAmount.value),
                           style: fontDMBold.copyWith(
                             color: BaseColors.white,
                             fontSize: 24,
@@ -412,7 +412,7 @@ class ProfileScreen extends GetView<ProfileScreenController> {
                   width: defaultPadding / 4,
                 ),
                 Text(
-                  NumberFormat('#,##0.0000').format(amount),
+                  formatNumber(amount),
                   style: fontDMMedium.copyWith(
                     color: BaseColors.white,
                     fontSize: 11,

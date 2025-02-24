@@ -175,8 +175,8 @@ class HashrateRentalActiveScreen
               whiteText10, whiteText10),
           _buildRow(
               tr('hashrate.rental_income'),
-              '${NumberFormat('#,##0.0000').format(hasratePageInfo.profitTotal)} U'
-              '(${NumberFormat('#,##0.0000').format(((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100)}%)',
+              '${hasratePageInfo.profitTotal} U'
+              '(${((hasratePageInfo.profitTotal - hasratePageInfo.amount) > 0 ? (hasratePageInfo.profitTotal - hasratePageInfo.amount) : hasratePageInfo.profitTotal) / hasratePageInfo.amount * 100}%)',
               whiteText10,
               whiteText10),
           _buildRow(tr('hashrate.daily_income'),

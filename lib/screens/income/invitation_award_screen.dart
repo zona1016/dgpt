@@ -1,5 +1,6 @@
 import 'package:dgpt/screens/income/invitation_award_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -165,7 +166,7 @@ class InvitationAwardScreen extends GetView<InvitationAwardScreenController> {
               ),
             ),
             Text(
-              NumberFormat('#,##0.0000').format(amount),
+              formatNumber(amount),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 20,

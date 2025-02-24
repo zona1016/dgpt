@@ -3,6 +3,7 @@ import 'package:dgpt/screens/transaction/assets_tab.dart';
 import 'package:dgpt/screens/transaction/my_assets_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/extensions/context_extension.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
@@ -100,8 +101,7 @@ class MyAssetsScreen extends GetView<MyAssetsScreenController> {
                 children: [
                   const Spacer(),
                   Text(
-                    NumberFormat('#,##0.0000')
-                        .format(controller.totalAmount.value),
+                    formatNumber(controller.totalAmount.value),
                     style: fontDMBold.copyWith(
                       color: BaseColors.white,
                       fontSize: 24,

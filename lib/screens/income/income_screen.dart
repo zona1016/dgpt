@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dgpt/screens/income/income_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
 import 'package:dgpt/utils/size.dart';
 import 'package:dgpt/utils/theme/color.dart';
@@ -272,7 +273,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               height: defaultPadding / 2,
             ),
             Text(
-              '${NumberFormat('#,##0.0000').format(amount)} U',
+              '${formatNumber(amount)} U',
               style: fontDMBold.copyWith(
                   color: BaseColors.primaryColor, fontSize: 18),
             ),
@@ -386,7 +387,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           bottom: defaultPadding * 3,
           left: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
@@ -402,7 +403,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           top: defaultPadding,
           left: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.teamAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
@@ -418,7 +419,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           top: 0,
           right: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
@@ -434,7 +435,7 @@ class IncomeScreen extends GetView<IncomeScreenController> {
           bottom: defaultPadding,
           right: defaultPadding,
           child: Text(
-            '${controller.totalAmount.value > 0 ? NumberFormat('#,##0.0000').format((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.directAwardAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
             style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
           ),
         ),
