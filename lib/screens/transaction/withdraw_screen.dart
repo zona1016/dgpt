@@ -1,6 +1,7 @@
 import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/screens/transaction/withdraw_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
+import 'package:dgpt/utils/extensions/string_extension.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_app_bar.dart';
@@ -36,6 +37,13 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                     children: [
                       const SizedBox(
                         height: defaultPadding,
+                      ),
+                      Text(
+                        tr('profile.wallet_address'),
+                        style: fontDMMedium.copyWith(
+                          fontSize: 16,
+                          color: BaseColors.white,
+                        ),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -128,9 +136,6 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                           fontSize: 16,
                           color: BaseColors.white,
                         ),
-                      ),
-                      const SizedBox(
-                        height: defaultPadding / 2,
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -227,9 +232,26 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: defaultPadding,
+                      Row(
+                        children: [
+                          Text(
+                            tr('income.available'),
+                            style: fontDMMedium.copyWith(
+                              fontSize: 16,
+                              color: BaseColors.white,
+                            ),
+                          ),
+                          Expanded(child: Container()),
+                          Text(
+                            '${formatNumber(controller.profileScreenController.xjTotalAmount.value)}USDT',
+                            style: fontDMMedium.copyWith(
+                              fontSize: 16,
+                              color: BaseColors.white,
+                            ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: defaultPadding),
                       if (controller.showGoogleAuth.value)
                         GetBuilder<WithdrawScreenController>(
                           builder: (_) {

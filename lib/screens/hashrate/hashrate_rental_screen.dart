@@ -222,7 +222,7 @@ class HashrateRentalScreen extends GetView<HashrateRentalScreenController> {
             ],
           ),
           Text(
-            hasratePageInfo.code,
+            hasratePageInfo.pcieName,
             style: whiteText14,
           ),
           const SizedBox(height: defaultPadding),

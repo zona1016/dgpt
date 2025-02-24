@@ -339,7 +339,8 @@
     "time": "Time",
     "number_of_people": "Number：{}",
     "username": "Username",
-    "max": "Max"
+    "max": "Max",
+    "available": "Available"
   },
   "tab": {
     "rental": "Rental",

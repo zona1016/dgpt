@@ -1,4 +1,5 @@
 import 'package:dgpt/screens/hashrate/hashrate_password_input_screen.dart';
+import 'package:dgpt/screens/profile/profile_screen_controller.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/utils/constants/app_enums.dart';
@@ -17,6 +18,8 @@ class WithdrawScreenBindings implements Bindings {
 
 class WithdrawScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
+  final ProfileScreenController profileScreenController = Get.find();
+
   final TextEditingController textEditingController = TextEditingController();
   final TextEditingController addressEditingController =
       TextEditingController();

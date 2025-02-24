@@ -98,6 +98,8 @@ mixin _$PlanDetail {
   int get planId => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'createTime')
+  String get createTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'beginDate')
   String get beginDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'logicEndDate')
@@ -165,6 +167,7 @@ abstract class $PlanDetailCopyWith<$Res> {
       @JsonKey(name: 'buyStatus') int buyStatus,
       @JsonKey(name: 'planId') int planId,
       @JsonKey(name: 'status') int status,
+      @JsonKey(name: 'createTime') String createTime,
       @JsonKey(name: 'beginDate') String beginDate,
       @JsonKey(name: 'logicEndDate') String logicEndDate,
       @JsonKey(name: 'endTimeDate') String endTimeDate,
@@ -226,6 +229,7 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
     Object? buyStatus = null,
     Object? planId = null,
     Object? status = null,
+    Object? createTime = null,
     Object? beginDate = null,
     Object? logicEndDate = null,
     Object? endTimeDate = null,
@@ -389,6 +393,10 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
+      createTime: null == createTime
+          ? _value.createTime
+          : createTime // ignore: cast_nullable_to_non_nullable
+              as String,
       beginDate: null == beginDate
           ? _value.beginDate
           : beginDate // ignore: cast_nullable_to_non_nullable
@@ -461,6 +469,7 @@ abstract class _$$PlanDetailImplCopyWith<$Res>
       @JsonKey(name: 'buyStatus') int buyStatus,
       @JsonKey(name: 'planId') int planId,
       @JsonKey(name: 'status') int status,
+      @JsonKey(name: 'createTime') String createTime,
       @JsonKey(name: 'beginDate') String beginDate,
       @JsonKey(name: 'logicEndDate') String logicEndDate,
       @JsonKey(name: 'endTimeDate') String endTimeDate,
@@ -520,6 +529,7 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
     Object? buyStatus = null,
     Object? planId = null,
     Object? status = null,
+    Object? createTime = null,
     Object? beginDate = null,
     Object? logicEndDate = null,
     Object? endTimeDate = null,
@@ -683,6 +693,10 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
+      createTime: null == createTime
+          ? _value.createTime
+          : createTime // ignore: cast_nullable_to_non_nullable
+              as String,
       beginDate: null == beginDate
           ? _value.beginDate
           : beginDate // ignore: cast_nullable_to_non_nullable
@@ -750,6 +764,7 @@ class _$PlanDetailImpl implements _PlanDetail {
       @JsonKey(name: 'buyStatus') this.buyStatus = 0,
       @JsonKey(name: 'planId') this.planId = 0,
       @JsonKey(name: 'status') this.status = 0,
+      @JsonKey(name: 'createTime') this.createTime = '',
       @JsonKey(name: 'beginDate') this.beginDate = '',
       @JsonKey(name: 'logicEndDate') this.logicEndDate = '',
       @JsonKey(name: 'endTimeDate') this.endTimeDate = '',
@@ -877,6 +892,9 @@ class _$PlanDetailImpl implements _PlanDetail {
   @JsonKey(name: 'status')
   final int status;
   @override
+  @JsonKey(name: 'createTime')
+  final String createTime;
+  @override
   @JsonKey(name: 'beginDate')
   final String beginDate;
   @override
@@ -894,7 +912,7 @@ class _$PlanDetailImpl implements _PlanDetail {
 
   @override
   String toString() {
-    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, logoDynamicFileIdUrl: $logoDynamicFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, sysNowTime: $sysNowTime, roiTotal: $roiTotal)';
+    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, logoDynamicFileIdUrl: $logoDynamicFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, createTime: $createTime, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, sysNowTime: $sysNowTime, roiTotal: $roiTotal)';
   }
 
   @override
@@ -964,6 +982,8 @@ class _$PlanDetailImpl implements _PlanDetail {
                 other.buyStatus == buyStatus) &&
             (identical(other.planId, planId) || other.planId == planId) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.createTime, createTime) ||
+                other.createTime == createTime) &&
             (identical(other.beginDate, beginDate) ||
                 other.beginDate == beginDate) &&
             (identical(other.logicEndDate, logicEndDate) ||
@@ -1019,6 +1039,7 @@ class _$PlanDetailImpl implements _PlanDetail {
         buyStatus,
         planId,
         status,
+        createTime,
         beginDate,
         logicEndDate,
         endTimeDate,
@@ -1085,6 +1106,7 @@ abstract class _PlanDetail implements PlanDetail {
       @JsonKey(name: 'buyStatus') final int buyStatus,
       @JsonKey(name: 'planId') final int planId,
       @JsonKey(name: 'status') final int status,
+      @JsonKey(name: 'createTime') final String createTime,
       @JsonKey(name: 'beginDate') final String beginDate,
       @JsonKey(name: 'logicEndDate') final String logicEndDate,
       @JsonKey(name: 'endTimeDate') final String endTimeDate,
@@ -1211,6 +1233,9 @@ abstract class _PlanDetail implements PlanDetail {
   @override
   @JsonKey(name: 'status')
   int get status;
+  @override
+  @JsonKey(name: 'createTime')
+  String get createTime;
   @override
   @JsonKey(name: 'beginDate')
   String get beginDate;

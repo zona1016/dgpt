@@ -120,7 +120,51 @@ class _OrderItemState extends State<OrderItem> {
                         ),
                         Expanded(
                           child: Text(
+                            formatDateString(widget.planDetail.createTime),
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            tr('member.purchasing_time'),
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.weakTextColor,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
                             formatDateString(widget.planDetail.beginDate),
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            tr('member.expire_date'),
+                            style: fontDMRegular.copyWith(
+                              fontSize: 10,
+                              color: BaseColors.weakTextColor,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            formatDateString(widget.planDetail.endTimeDate),
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.white,

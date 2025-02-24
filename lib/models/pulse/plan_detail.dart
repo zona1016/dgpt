@@ -45,6 +45,7 @@ class PlanDetail with _$PlanDetail {
     @JsonKey(name: 'buyStatus') @Default(0) int buyStatus,
     @JsonKey(name: 'planId') @Default(0) int planId,
     @JsonKey(name: 'status') @Default(0) int status,
+    @JsonKey(name: 'createTime') @Default('') String createTime,
     @JsonKey(name: 'beginDate') @Default('') String beginDate,
     @JsonKey(name: 'logicEndDate') @Default('') String logicEndDate,
     @JsonKey(name: 'endTimeDate') @Default('') String endTimeDate,
