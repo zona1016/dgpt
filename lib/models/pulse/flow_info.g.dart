@@ -26,6 +26,7 @@ FlowInfo _$FlowInfoFromJson(Map<String, dynamic> json) => FlowInfo(
       toAccount: (json['toAccount'] as num?)?.toInt() ?? 0,
       balance: (json['balance'] as num?)?.toDouble() ?? 0,
       amount: (json['amount'] as num?)?.toDouble() ?? 0,
+      targetAccount: json['targetAccount'] as String? ?? '',
     );
 
 Map<String, dynamic> _$FlowInfoToJson(FlowInfo instance) => <String, dynamic>{
@@ -48,4 +49,5 @@ Map<String, dynamic> _$FlowInfoToJson(FlowInfo instance) => <String, dynamic>{
       'toAccount': instance.toAccount,
       'balance': instance.balance,
       'amount': instance.amount,
+      'targetAccount': instance.targetAccount,
     };

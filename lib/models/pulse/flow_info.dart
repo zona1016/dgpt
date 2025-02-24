@@ -26,6 +26,9 @@ class FlowInfo extends BaseModel {
   @JsonKey(name: 'amount', defaultValue: 0)
   double? amount;
 
+  @JsonKey(name: 'targetAccount', defaultValue: '')
+  String? targetAccount;
+
   FlowInfo({
     super.id,
     super.createTime,
@@ -46,6 +49,7 @@ class FlowInfo extends BaseModel {
     this.toAccount,
     this.balance,
     this.amount,
+    this.targetAccount
   });
 
   factory FlowInfo.fromJson(Map<String, dynamic> json) => _$FlowInfoFromJson(json);

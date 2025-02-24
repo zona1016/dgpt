@@ -205,7 +205,8 @@ class HashrateHeader extends StatelessWidget {
             ),
           ),
         Expanded(child: Container()),
-        GestureDetector(
+        if (!isIncome)
+          GestureDetector(
           onTap: () {
             final MainScreenController mainController = Get.find();
             mainController.selectedTabIndex(3);

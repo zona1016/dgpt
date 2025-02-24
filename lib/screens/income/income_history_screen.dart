@@ -144,6 +144,16 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
           ),
           Expanded(
             child: Text(
+              tr('income.account'),
+              style: fontDMBold.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: Text(
               tr('income.amount'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
@@ -179,6 +189,16 @@ class IncomeHistoryScreen extends GetView<IncomeHistoryScreenController> {
                 fontSize: 10,
               ),
               textAlign: TextAlign.left,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              controller.flowList[index].targetAccount ?? '',
+              style: fontDMMedium.copyWith(
+                color: BaseColors.white,
+                fontSize: 10,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
           Expanded(
