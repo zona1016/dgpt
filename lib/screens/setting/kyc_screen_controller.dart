@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dgpt/models/pulse/user_kyc_info.dart';
@@ -9,6 +10,7 @@ import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -36,6 +38,7 @@ class KycScreenController extends BaseController {
   var selectedIndex = 0.obs;
 
   RxString pickedFilePath = ''.obs;
+  Uint8List? imageData;
 
   void selectItem(int index) {
     selectedIndex.value = (selectedIndex.value == index) ? -1 : index;
@@ -87,11 +90,32 @@ class KycScreenController extends BaseController {
       );
       if (pickedFile != null) {
         pickedFilePath.value = pickedFile.path;
+        imageData = await pickedFile.readAsBytes();
       }
     } catch (e) {}
   }
 
-  aiPulseCommonUploadImageFile() async {
+  aiPulseCommonUploadImageFile() {
+    if (kIsWeb) {
+      aiPulseCommonUploadImageFileWeb();
+    } else {
+      aiPulseCommonUploadImageFileMobile();
+    }
+  }
+
+  aiPulseCommonUploadImageFileWeb() async {
+    String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+    var file = dio.MultipartFile.fromBytes(imageData!,filename: timestamp,
+        contentType: DioMediaType('image', 'png'));
+    final result = await fetchData(
+        loadingState: AppLoadingState.normal,
+        request: () => aiPulseService.aiPulseCommonUploadImageFile(file: file));
+    if (result != null) {
+      aiPulseKycApply(result.id.toString());
+    }
+  }
+
+  aiPulseCommonUploadImageFileMobile() async {
     String fileExtension = pickedFilePath.value.split('.').last.toLowerCase();
     List<String> allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
 
@@ -131,7 +155,6 @@ class KycScreenController extends BaseController {
       countryCode.value = CountryCode.fromCountryCode(result.country);
       selectedIndex.value = result.idType;
       pickedFilePath.value = '${AppConfigurations.baseUrl}/${result.imageFileIdUrl}';
-
     }
   }
 }
