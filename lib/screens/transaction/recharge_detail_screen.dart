@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dgpt/screens/transaction/recharge_detail_screen_controller.dart';
 import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/packages/toast.dart';
@@ -151,42 +153,49 @@ class RechargeDetailScreen extends GetView<RechargeDetailScreenController> {
                 const SizedBox(
                   height: defaultPadding,
                 ),
-                Container(
-                  width: double.infinity,
-                  color: const Color(0xFFFF5449).withOpacity(0.2),
+                Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: defaultPadding,
-                      ),
-                      Row(
+                      const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  child: CustomPaint(
+                    painter: DottedBorderPainter(),
+                    child: Container(
+                      width: double.infinity,
+                      color: const Color(0xFFFF5449).withOpacity(0.2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset(
-                            'assets/images/transaction/tip.png',
-                            width: 20,
-                            height: 20,
+                          const SizedBox(
+                            height: defaultPadding,
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/transaction/tip.png',
+                                width: 20,
+                                height: 20,
+                              ),
+                              const SizedBox(
+                                width: defaultPadding,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  tr('tip.recharge_tip'),
+                                  style: fontDMMedium.copyWith(
+                                    fontSize: 16,
+                                    color: BaseColors.white,
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                           const SizedBox(
-                            width: defaultPadding,
+                            height: defaultPadding,
                           ),
-                          Expanded(
-                            child: Text(
-                              tr('tip.recharge_tip'),
-                              style: fontDMMedium.copyWith(
-                                fontSize: 16,
-                                color: BaseColors.white,
-                              ),
-                            ),
-                          )
                         ],
                       ),
-                      const SizedBox(
-                        height: defaultPadding,
-                      ),
-                    ],
+                    ),
                   ),
                 )
               ],
@@ -194,4 +203,48 @@ class RechargeDetailScreen extends GetView<RechargeDetailScreenController> {
           )),
     );
   }
+}
+
+class DottedBorderPainter extends CustomPainter {
+  final Color color;
+  final double strokeWidth;
+  final double dashWidth;
+  final double dashSpace;
+
+  DottedBorderPainter({
+    this.color = Colors.red,
+    this.strokeWidth = 2.0,
+    this.dashWidth = 5.0,
+    this.dashSpace = 3.0,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = color
+      ..strokeWidth = strokeWidth
+      ..style = PaintingStyle.stroke;
+
+    Path path = Path();
+    path.addRect(Rect.fromLTWH(0, 0, size.width, size.height));
+
+    Path dashPath = Path();
+    double distance = 0.0;
+    PathMetrics pathMetrics = path.computeMetrics();
+
+    for (PathMetric pathMetric in pathMetrics) {
+      while (distance < pathMetric.length) {
+        dashPath.addPath(
+          pathMetric.extractPath(distance, distance + dashWidth),
+          Offset.zero,
+        );
+        distance += dashWidth + dashSpace;
+      }
+    }
+
+    canvas.drawPath(dashPath, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

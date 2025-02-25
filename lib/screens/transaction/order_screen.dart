@@ -26,7 +26,7 @@ class OrderScreen extends GetView<OrderScreenController> {
         child: ListView.separated(
           itemCount: controller.hasratePageList.length,
           itemBuilder: (_, index) {
-            return OrderItem(planDetail: controller.hasratePageList.value[index],);
+            return OrderItem(planDetail: controller.hasratePageList[index],);
           },
           separatorBuilder: (_, index) {
             return const SizedBox(height: defaultPadding,);

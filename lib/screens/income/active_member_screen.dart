@@ -180,7 +180,7 @@ class ActiveMemberScreen extends GetView<ActiveMemberScreenController> {
       child: Column(
         children: [
           Container(
-            height: 30,
+            height: 45,
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
