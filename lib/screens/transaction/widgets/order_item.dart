@@ -86,7 +86,8 @@ class _OrderItemState extends State<OrderItem> {
                   aspectRatio: 1,
                   child: BaseNetworkImage(
                     imageURL: widget.planDetail.logoFileIdUrl,
-                    placeholder: 'assets/images/home/income_icon_${widget.planDetail.name}.png',
+                    placeholder:
+                        'assets/images/home/income_icon_${widget.planDetail.name}.png',
                   ),
                 ),
               ),
@@ -164,7 +165,9 @@ class _OrderItemState extends State<OrderItem> {
                         ),
                         Expanded(
                           child: Text(
-                            formatDateString(widget.planDetail.realEndDate),
+                            formatDateString(widget.planDetail.status == 1
+                                ? widget.planDetail.logicEndDate
+                                : widget.planDetail.realEndDate),
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.white,
@@ -222,10 +225,14 @@ class _OrderItemState extends State<OrderItem> {
                     ),
                     Center(
                       child: Text(
-                        widget.planDetail.status == 1 ? tr('hashrate.in_progress') : tr('order.expired'),
+                        widget.planDetail.status == 1
+                            ? tr('hashrate.in_progress')
+                            : tr('order.expired'),
                         style: fontDMBold.copyWith(
                           fontSize: 12,
-                          color: widget.planDetail.status == 1 ? const Color(0xFF81E5FF) : Colors.red,
+                          color: widget.planDetail.status == 1
+                              ? const Color(0xFF81E5FF)
+                              : Colors.red,
                         ),
                       ),
                     ),
