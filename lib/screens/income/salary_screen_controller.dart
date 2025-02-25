@@ -19,6 +19,7 @@ class SalaryScreenBindings implements Bindings {
 class SalaryScreenController extends BaseController {
   final AiPulseService aiPulseService = Get.find();
   Rxn<EnableJobInfo> userJobInfo = Rxn<EnableJobInfo>();
+  Rxn<EnableJobInfo> userNextJobInfo = Rxn<EnableJobInfo>();
   RxList<EnableJobInfo> enableJobList = <EnableJobInfo>[].obs;
   RxList<PowerInfo> hashrateList = <PowerInfo>[].obs;
 
@@ -26,7 +27,6 @@ class SalaryScreenController extends BaseController {
   void onInit() {
     super.onInit();
     aiPulseUserJobTitleUserJobTitle();
-    aiPulseJobTitleEnableJobTitleList();
     aiPulseHashrateEnableHashrateList();
   }
 
@@ -54,6 +54,7 @@ class SalaryScreenController extends BaseController {
         request: () => aiPulseService.aiPulseUserJobTitleUserJobTitle());
     if (result != null) {
       userJobInfo.value = result;
+      aiPulseJobTitleEnableJobTitleList();
     }
   }
 
@@ -63,6 +64,7 @@ class SalaryScreenController extends BaseController {
         request: () => aiPulseService.aiPulseJobTitleEnableJobTitleList());
     if (result != null) {
       enableJobList.value = result;
+      userNextJobInfo.value = result.firstWhere((item) => item.orderNo == (userJobInfo.value?.orderNo ?? 0) + 1);
     }
   }
 
@@ -77,7 +79,7 @@ class SalaryScreenController extends BaseController {
 
   String? getConditionDes({ConditionInfo? conditionInfo, required int index}) {
     if (enableJobList.isEmpty) return '';
-    conditionInfo ??= enableJobList.value[index].conditionInfo;
+    conditionInfo ??= enableJobList[index].conditionInfo;
 
     String? result;
     if (conditionInfo?.hashrateCode != 'none') {

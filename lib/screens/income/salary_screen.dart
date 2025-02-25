@@ -98,7 +98,8 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Text(tr('income.position_requirements'),
+                                          child: Text(
+                                              tr('income.position_requirements'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -106,7 +107,8 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                               textAlign: TextAlign.center),
                                         ),
                                         Expanded(
-                                          child: Text(tr('income.monthly_achievement'),
+                                          child: Text(
+                                              tr('income.monthly_achievement'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -150,16 +152,69 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                             ),
                                           ),
                                           Expanded(
-                                            child: Text(
-                                                '${controller.getConditionDes(index: 0, conditionInfo: controller.userJobInfo.value?.conditionInfo)}'
-                                                '\n'
-                                                '${controller.formatAmount((controller.userJobInfo.value?.conditionInfo?.teamPlanAmountTotal ?? 0))}'
-                                                '${tr('income.usd_performance')}',
-                                                style: fontDMMedium.copyWith(
-                                                  color: BaseColors.white,
-                                                  fontSize: 8,
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 15,
+                                                  padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 4),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(defaultPadding),
+                                                    border: Border.all(
+                                                      color: BaseColors.primaryColor,
+                                                      width: 1
+                                                    ),
+                                                    color: Colors.transparent,
+                                                  ),
+                                                  child: IntrinsicWidth(
+                                                    child: Center(
+                                                      child: Row(
+                                                        children: [
+                                                          Image.asset(
+                                                            'assets/images/income/income_up.png',
+                                                            width: 8,
+                                                            height: 8,
+                                                          ),
+                                                          const SizedBox(width: defaultPadding / 8,),
+                                                          Text(
+                                                            controller.userNextJobInfo.value
+                                                                ?.name ??
+                                                                '',
+                                                            style: fontDMMedium.copyWith(
+                                                              color: BaseColors.primaryColor,
+                                                              fontSize: 8,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                                textAlign: TextAlign.center),
+                                                Text(
+                                                    '${controller.getConditionDes(index: 0, conditionInfo: controller.userJobInfo.value?.conditionInfo)}'
+                                                    '/'
+                                                    '${controller.getConditionDes(index: 0, conditionInfo: controller.userNextJobInfo.value?.conditionInfo)}',
+                                                    style:
+                                                        fontDMMedium.copyWith(
+                                                      color: BaseColors.white,
+                                                      fontSize: 8,
+                                                    ),
+                                                    textAlign:
+                                                        TextAlign.center),
+                                                Text(
+                                                    '${controller.formatAmount((controller.userJobInfo.value?.conditionInfo?.teamPlanAmountTotal ?? 0))}'
+                                                    '${tr('income.usd_performance')}'
+                                                    '/'
+                                                    '${controller.formatAmount((controller.userNextJobInfo.value?.conditionInfo?.teamPlanAmountTotal ?? 0))}'
+                                                    '${tr('income.usd_performance')}',
+                                                    style:
+                                                        fontDMMedium.copyWith(
+                                                      color: BaseColors.white,
+                                                      fontSize: 8,
+                                                    ),
+                                                    textAlign:
+                                                        TextAlign.center),
+                                              ],
+                                            ),
                                           ),
                                           Expanded(
                                             child: Text(
@@ -276,7 +331,8 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Text(tr('income.position_requirements'),
+                                          child: Text(
+                                              tr('income.position_requirements'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -284,7 +340,8 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                               textAlign: TextAlign.center),
                                         ),
                                         Expanded(
-                                          child: Text(tr('income.monthly_performance_maintenance'),
+                                          child: Text(
+                                              tr('income.monthly_performance_maintenance'),
                                               style: fontDMBold.copyWith(
                                                 color: BaseColors.white,
                                                 fontSize: 10,
@@ -315,9 +372,8 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                               Expanded(
                                                 child: Text(
                                                   controller
-                                                          .enableJobList[index]
-                                                          .name ??
-                                                      '',
+                                                      .enableJobList[index]
+                                                      .name,
                                                   style: fontDMMedium.copyWith(
                                                     color: BaseColors.white,
                                                     fontSize: 8,
