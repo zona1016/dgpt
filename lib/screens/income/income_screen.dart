@@ -288,31 +288,33 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     return Obx(() => Stack(
       alignment: Alignment.center,
       children: [
-        // Center(
-        //   child: Image.asset(
-        //     'assets/images/income/progress_bg4.png',
-        //     width: 310,
-        //     height: 310,
-        //   ),
-        // ),
-        // Center(
-        //   child: ClipPath(
-        //     clipper: ArcClipper(
-        //         startPoint: 0.7,
-        //         progress: (controller.totalAmount.value > 0
-        //             ? (controller.amountTotalInfo.value
-        //             ?.directAwardAmountTotal ??
-        //             0) /
-        //             controller.totalAmount.value
-        //             : 0) *
-        //             -1),
-        //     child: Image.asset(
-        //       'assets/images/income/progress_sbg4.png',
-        //       width: 310,
-        //       height: 310,
-        //     ),
-        //   ),
-        // ),
+        Center(
+          child: Image.asset(
+            'assets/images/income/progress_bg4.png',
+            width: 310,
+            height: 310,
+            color: Colors.transparent,
+          ),
+        ),
+        Center(
+          child: ClipPath(
+            clipper: ArcClipper(
+                startPoint: 0.7,
+                progress: (controller.totalAmount.value > 0
+                    ? (controller.amountTotalInfo.value
+                    ?.directAwardAmountTotal ??
+                    0) /
+                    controller.totalAmount.value
+                    : 0) *
+                    -1),
+            child: Image.asset(
+              'assets/images/income/progress_sbg4.png',
+              width: 310,
+              height: 310,
+              color: Colors.transparent,
+            ),
+          ),
+        ),
         Center(
           child: Image.asset(
             'assets/images/income/progress_bg3.png',
@@ -415,22 +417,22 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             top: defaultPadding + controller.textHeight,
             left: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2 + defaultPadding,
             size: const Size(1, 45)),
-        // Positioned(
-        //   top: 0,
-        //   right: defaultPadding,
-        //   child: Text(
-        //     '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
-        //     style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
-        //   ),
-        // ),
-        // _positioned(
-        //     top: controller.textHeight,
-        //     right: defaultPadding,
-        //     size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2, 1)),
-        // _positioned(
-        //     top: controller.textHeight,
-        //     right: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2 + defaultPadding,
-        //     size: const Size(1, 35)),
+        Positioned(
+          top: 0,
+          right: defaultPadding,
+          child: Text(
+            '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.roiAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+            style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
+          ),
+        ),
+        _positioned(
+            top: controller.textHeight,
+            right: defaultPadding,
+            size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2, 1)),
+        _positioned(
+            top: controller.textHeight,
+            right: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding * 2 + defaultPadding,
+            size: const Size(1, 35)),
         Positioned(
           bottom: defaultPadding,
           right: defaultPadding,
