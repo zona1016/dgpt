@@ -340,7 +340,8 @@
     "number_of_people": "Number：{}",
     "username": "Username",
     "max": "Max",
-    "available": "Available"
+    "available": "Available",
+    "monthly_achievement": "Monthly Achievement"
   },
   "tab": {
     "rental": "Rental",

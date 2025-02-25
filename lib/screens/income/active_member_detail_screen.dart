@@ -487,7 +487,7 @@ class ActiveMemberDetailScreen
             height: defaultPadding / 2,
           ),
           _rowTitle(
-              title: tr('member.expire_date'), detail: planDetail.endTimeDate),
+              title: tr('member.expire_date'), detail: planDetail.realEndDate),
           const SizedBox(
             height: defaultPadding / 2,
           ),

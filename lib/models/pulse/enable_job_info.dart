@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'enable_job_info.freezed.dart';
+
 part 'enable_job_info.g.dart';
 
 @freezed
@@ -11,6 +12,9 @@ class EnableJobInfo with _$EnableJobInfo {
     @JsonKey(name: 'orderNo') @Default(0) int orderNo,
     @JsonKey(name: 'condition') @Default('') String condition,
     @JsonKey(name: 'salary') @Default(0) double salary,
+    @JsonKey(name: 'nowMonthPlanAmountTotal')
+    @Default(0)
+    double nowMonthPlanAmountTotal,
     @JsonKey(name: 'monthPlanAmount') @Default(0) double monthPlanAmount,
     @JsonKey(name: 'description') @Default('') String description,
     @JsonKey(name: 'enable') @Default(0) int enable,

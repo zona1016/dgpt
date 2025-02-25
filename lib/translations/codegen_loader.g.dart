@@ -356,7 +356,8 @@ class CodegenLoader extends AssetLoader{
     "number_of_people": "Number：{}",
     "username": "Username",
     "max": "Max",
-    "available": "Available"
+    "available": "Available",
+    "monthly_achievement": "Monthly Achievement"
   },
   "tab": {
     "rental": "Rental",
@@ -777,7 +778,8 @@ static const Map<String,dynamic> zh_Hans = {
     "number_of_people": "人数：{}人",
     "username": "用户名",
     "max": "全部",
-    "available": "可用"
+    "available": "可用",
+    "monthly_achievement": "月业绩"
   },
   "tab": {
     "rental": "算力租借",

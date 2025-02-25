@@ -164,7 +164,7 @@ class _OrderItemState extends State<OrderItem> {
                         ),
                         Expanded(
                           child: Text(
-                            formatDateString(widget.planDetail.endTimeDate),
+                            formatDateString(widget.planDetail.realEndDate),
                             style: fontDMRegular.copyWith(
                               fontSize: 10,
                               color: BaseColors.white,

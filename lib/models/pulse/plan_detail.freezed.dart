@@ -110,6 +110,8 @@ mixin _$PlanDetail {
   String get sysNowTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'roiTotal')
   double get roiTotal => throw _privateConstructorUsedError;
+  @JsonKey(name: 'realEndDate')
+  String get realEndDate => throw _privateConstructorUsedError;
 
   /// Serializes this PlanDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -172,7 +174,8 @@ abstract class $PlanDetailCopyWith<$Res> {
       @JsonKey(name: 'logicEndDate') String logicEndDate,
       @JsonKey(name: 'endTimeDate') String endTimeDate,
       @JsonKey(name: 'sysNowTime') String sysNowTime,
-      @JsonKey(name: 'roiTotal') double roiTotal});
+      @JsonKey(name: 'roiTotal') double roiTotal,
+      @JsonKey(name: 'realEndDate') String realEndDate});
 }
 
 /// @nodoc
@@ -235,6 +238,7 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
     Object? endTimeDate = null,
     Object? sysNowTime = null,
     Object? roiTotal = null,
+    Object? realEndDate = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -417,6 +421,10 @@ class _$PlanDetailCopyWithImpl<$Res, $Val extends PlanDetail>
           ? _value.roiTotal
           : roiTotal // ignore: cast_nullable_to_non_nullable
               as double,
+      realEndDate: null == realEndDate
+          ? _value.realEndDate
+          : realEndDate // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -474,7 +482,8 @@ abstract class _$$PlanDetailImplCopyWith<$Res>
       @JsonKey(name: 'logicEndDate') String logicEndDate,
       @JsonKey(name: 'endTimeDate') String endTimeDate,
       @JsonKey(name: 'sysNowTime') String sysNowTime,
-      @JsonKey(name: 'roiTotal') double roiTotal});
+      @JsonKey(name: 'roiTotal') double roiTotal,
+      @JsonKey(name: 'realEndDate') String realEndDate});
 }
 
 /// @nodoc
@@ -535,6 +544,7 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
     Object? endTimeDate = null,
     Object? sysNowTime = null,
     Object? roiTotal = null,
+    Object? realEndDate = null,
   }) {
     return _then(_$PlanDetailImpl(
       id: null == id
@@ -717,6 +727,10 @@ class __$$PlanDetailImplCopyWithImpl<$Res>
           ? _value.roiTotal
           : roiTotal // ignore: cast_nullable_to_non_nullable
               as double,
+      realEndDate: null == realEndDate
+          ? _value.realEndDate
+          : realEndDate // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -769,7 +783,8 @@ class _$PlanDetailImpl implements _PlanDetail {
       @JsonKey(name: 'logicEndDate') this.logicEndDate = '',
       @JsonKey(name: 'endTimeDate') this.endTimeDate = '',
       @JsonKey(name: 'sysNowTime') this.sysNowTime = '',
-      @JsonKey(name: 'roiTotal') this.roiTotal = 0});
+      @JsonKey(name: 'roiTotal') this.roiTotal = 0,
+      @JsonKey(name: 'realEndDate') this.realEndDate = ''});
 
   factory _$PlanDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlanDetailImplFromJson(json);
@@ -909,10 +924,13 @@ class _$PlanDetailImpl implements _PlanDetail {
   @override
   @JsonKey(name: 'roiTotal')
   final double roiTotal;
+  @override
+  @JsonKey(name: 'realEndDate')
+  final String realEndDate;
 
   @override
   String toString() {
-    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, logoDynamicFileIdUrl: $logoDynamicFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, createTime: $createTime, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, sysNowTime: $sysNowTime, roiTotal: $roiTotal)';
+    return 'PlanDetail(id: $id, code: $code, name: $name, amount: $amount, profitPreHour: $profitPreHour, profitPreDay: $profitPreDay, profitTotal: $profitTotal, profitRate: $profitRate, cycle: $cycle, purchaseLimitType: $purchaseLimitType, purchaseLimitQuantity: $purchaseLimitQuantity, description: $description, remark: $remark, enable: $enable, logoFileId: $logoFileId, logoFileIdUrl: $logoFileIdUrl, logoDynamicFileIdUrl: $logoDynamicFileIdUrl, speedLevel: $speedLevel, pcieName: $pcieName, upSpeed: $upSpeed, downSpeed: $downSpeed, ports: $ports, ops: $ops, maxCuda: $maxCuda, ram: $ram, speed: $speed, graphicsIconFileId: $graphicsIconFileId, graphicsIconFileIdUrl: $graphicsIconFileIdUrl, graphicsName: $graphicsName, graphicsCpu: $graphicsCpu, graphicsRam: $graphicsRam, virtualName: $virtualName, virtualDesc: $virtualDesc, servicesName: $servicesName, servicesDesc: $servicesDesc, isBuy: $isBuy, buyStatus: $buyStatus, planId: $planId, status: $status, createTime: $createTime, beginDate: $beginDate, logicEndDate: $logicEndDate, endTimeDate: $endTimeDate, sysNowTime: $sysNowTime, roiTotal: $roiTotal, realEndDate: $realEndDate)';
   }
 
   @override
@@ -993,7 +1011,9 @@ class _$PlanDetailImpl implements _PlanDetail {
             (identical(other.sysNowTime, sysNowTime) ||
                 other.sysNowTime == sysNowTime) &&
             (identical(other.roiTotal, roiTotal) ||
-                other.roiTotal == roiTotal));
+                other.roiTotal == roiTotal) &&
+            (identical(other.realEndDate, realEndDate) ||
+                other.realEndDate == realEndDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1044,7 +1064,8 @@ class _$PlanDetailImpl implements _PlanDetail {
         logicEndDate,
         endTimeDate,
         sysNowTime,
-        roiTotal
+        roiTotal,
+        realEndDate
       ]);
 
   /// Create a copy of PlanDetail
@@ -1111,7 +1132,9 @@ abstract class _PlanDetail implements PlanDetail {
       @JsonKey(name: 'logicEndDate') final String logicEndDate,
       @JsonKey(name: 'endTimeDate') final String endTimeDate,
       @JsonKey(name: 'sysNowTime') final String sysNowTime,
-      @JsonKey(name: 'roiTotal') final double roiTotal}) = _$PlanDetailImpl;
+      @JsonKey(name: 'roiTotal') final double roiTotal,
+      @JsonKey(name: 'realEndDate')
+      final String realEndDate}) = _$PlanDetailImpl;
 
   factory _PlanDetail.fromJson(Map<String, dynamic> json) =
       _$PlanDetailImpl.fromJson;
@@ -1251,6 +1274,9 @@ abstract class _PlanDetail implements PlanDetail {
   @override
   @JsonKey(name: 'roiTotal')
   double get roiTotal;
+  @override
+  @JsonKey(name: 'realEndDate')
+  String get realEndDate;
 
   /// Create a copy of PlanDetail
   /// with the given fields replaced by the non-null parameter values.

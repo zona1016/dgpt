@@ -105,6 +105,14 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                               ),
                                               textAlign: TextAlign.center),
                                         ),
+                                        Expanded(
+                                          child: Text(tr('income.monthly_achievement'),
+                                              style: fontDMBold.copyWith(
+                                                color: BaseColors.white,
+                                                fontSize: 10,
+                                              ),
+                                              textAlign: TextAlign.right),
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -152,6 +160,15 @@ class SalaryScreen extends GetView<SalaryScreenController> {
                                                   fontSize: 8,
                                                 ),
                                                 textAlign: TextAlign.center),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                                '${controller.userJobInfo.value?.nowMonthPlanAmountTotal} U',
+                                                style: fontDMMedium.copyWith(
+                                                  color: BaseColors.white,
+                                                  fontSize: 8,
+                                                ),
+                                                textAlign: TextAlign.right),
                                           ),
                                         ],
                                       ),

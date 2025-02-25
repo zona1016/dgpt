@@ -30,6 +30,8 @@ mixin _$EnableJobInfo {
   String get condition => throw _privateConstructorUsedError;
   @JsonKey(name: 'salary')
   double get salary => throw _privateConstructorUsedError;
+  @JsonKey(name: 'nowMonthPlanAmountTotal')
+  double get nowMonthPlanAmountTotal => throw _privateConstructorUsedError;
   @JsonKey(name: 'monthPlanAmount')
   double get monthPlanAmount => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -67,6 +69,7 @@ abstract class $EnableJobInfoCopyWith<$Res> {
       @JsonKey(name: 'orderNo') int orderNo,
       @JsonKey(name: 'condition') String condition,
       @JsonKey(name: 'salary') double salary,
+      @JsonKey(name: 'nowMonthPlanAmountTotal') double nowMonthPlanAmountTotal,
       @JsonKey(name: 'monthPlanAmount') double monthPlanAmount,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'enable') int enable,
@@ -98,6 +101,7 @@ class _$EnableJobInfoCopyWithImpl<$Res, $Val extends EnableJobInfo>
     Object? orderNo = null,
     Object? condition = null,
     Object? salary = null,
+    Object? nowMonthPlanAmountTotal = null,
     Object? monthPlanAmount = null,
     Object? description = null,
     Object? enable = null,
@@ -126,6 +130,10 @@ class _$EnableJobInfoCopyWithImpl<$Res, $Val extends EnableJobInfo>
       salary: null == salary
           ? _value.salary
           : salary // ignore: cast_nullable_to_non_nullable
+              as double,
+      nowMonthPlanAmountTotal: null == nowMonthPlanAmountTotal
+          ? _value.nowMonthPlanAmountTotal
+          : nowMonthPlanAmountTotal // ignore: cast_nullable_to_non_nullable
               as double,
       monthPlanAmount: null == monthPlanAmount
           ? _value.monthPlanAmount
@@ -187,6 +195,7 @@ abstract class _$$EnableJobInfoImplCopyWith<$Res>
       @JsonKey(name: 'orderNo') int orderNo,
       @JsonKey(name: 'condition') String condition,
       @JsonKey(name: 'salary') double salary,
+      @JsonKey(name: 'nowMonthPlanAmountTotal') double nowMonthPlanAmountTotal,
       @JsonKey(name: 'monthPlanAmount') double monthPlanAmount,
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'enable') int enable,
@@ -217,6 +226,7 @@ class __$$EnableJobInfoImplCopyWithImpl<$Res>
     Object? orderNo = null,
     Object? condition = null,
     Object? salary = null,
+    Object? nowMonthPlanAmountTotal = null,
     Object? monthPlanAmount = null,
     Object? description = null,
     Object? enable = null,
@@ -245,6 +255,10 @@ class __$$EnableJobInfoImplCopyWithImpl<$Res>
       salary: null == salary
           ? _value.salary
           : salary // ignore: cast_nullable_to_non_nullable
+              as double,
+      nowMonthPlanAmountTotal: null == nowMonthPlanAmountTotal
+          ? _value.nowMonthPlanAmountTotal
+          : nowMonthPlanAmountTotal // ignore: cast_nullable_to_non_nullable
               as double,
       monthPlanAmount: null == monthPlanAmount
           ? _value.monthPlanAmount
@@ -287,6 +301,8 @@ class _$EnableJobInfoImpl implements _EnableJobInfo {
       @JsonKey(name: 'orderNo') this.orderNo = 0,
       @JsonKey(name: 'condition') this.condition = '',
       @JsonKey(name: 'salary') this.salary = 0,
+      @JsonKey(name: 'nowMonthPlanAmountTotal')
+      this.nowMonthPlanAmountTotal = 0,
       @JsonKey(name: 'monthPlanAmount') this.monthPlanAmount = 0,
       @JsonKey(name: 'description') this.description = '',
       @JsonKey(name: 'enable') this.enable = 0,
@@ -314,6 +330,9 @@ class _$EnableJobInfoImpl implements _EnableJobInfo {
   @JsonKey(name: 'salary')
   final double salary;
   @override
+  @JsonKey(name: 'nowMonthPlanAmountTotal')
+  final double nowMonthPlanAmountTotal;
+  @override
   @JsonKey(name: 'monthPlanAmount')
   final double monthPlanAmount;
   @override
@@ -337,7 +356,7 @@ class _$EnableJobInfoImpl implements _EnableJobInfo {
 
   @override
   String toString() {
-    return 'EnableJobInfo(code: $code, name: $name, orderNo: $orderNo, condition: $condition, salary: $salary, monthPlanAmount: $monthPlanAmount, description: $description, enable: $enable, conditionInfo: $conditionInfo, createTime: $createTime, isDelete: $isDelete, id: $id)';
+    return 'EnableJobInfo(code: $code, name: $name, orderNo: $orderNo, condition: $condition, salary: $salary, nowMonthPlanAmountTotal: $nowMonthPlanAmountTotal, monthPlanAmount: $monthPlanAmount, description: $description, enable: $enable, conditionInfo: $conditionInfo, createTime: $createTime, isDelete: $isDelete, id: $id)';
   }
 
   @override
@@ -351,6 +370,9 @@ class _$EnableJobInfoImpl implements _EnableJobInfo {
             (identical(other.condition, condition) ||
                 other.condition == condition) &&
             (identical(other.salary, salary) || other.salary == salary) &&
+            (identical(
+                    other.nowMonthPlanAmountTotal, nowMonthPlanAmountTotal) ||
+                other.nowMonthPlanAmountTotal == nowMonthPlanAmountTotal) &&
             (identical(other.monthPlanAmount, monthPlanAmount) ||
                 other.monthPlanAmount == monthPlanAmount) &&
             (identical(other.description, description) ||
@@ -374,6 +396,7 @@ class _$EnableJobInfoImpl implements _EnableJobInfo {
       orderNo,
       condition,
       salary,
+      nowMonthPlanAmountTotal,
       monthPlanAmount,
       description,
       enable,
@@ -405,6 +428,8 @@ abstract class _EnableJobInfo implements EnableJobInfo {
       @JsonKey(name: 'orderNo') final int orderNo,
       @JsonKey(name: 'condition') final String condition,
       @JsonKey(name: 'salary') final double salary,
+      @JsonKey(name: 'nowMonthPlanAmountTotal')
+      final double nowMonthPlanAmountTotal,
       @JsonKey(name: 'monthPlanAmount') final double monthPlanAmount,
       @JsonKey(name: 'description') final String description,
       @JsonKey(name: 'enable') final int enable,
@@ -431,6 +456,9 @@ abstract class _EnableJobInfo implements EnableJobInfo {
   @override
   @JsonKey(name: 'salary')
   double get salary;
+  @override
+  @JsonKey(name: 'nowMonthPlanAmountTotal')
+  double get nowMonthPlanAmountTotal;
   @override
   @JsonKey(name: 'monthPlanAmount')
   double get monthPlanAmount;

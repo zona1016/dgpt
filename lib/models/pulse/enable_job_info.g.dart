@@ -13,6 +13,8 @@ _$EnableJobInfoImpl _$$EnableJobInfoImplFromJson(Map<String, dynamic> json) =>
       orderNo: (json['orderNo'] as num?)?.toInt() ?? 0,
       condition: json['condition'] as String? ?? '',
       salary: (json['salary'] as num?)?.toDouble() ?? 0,
+      nowMonthPlanAmountTotal:
+          (json['nowMonthPlanAmountTotal'] as num?)?.toDouble() ?? 0,
       monthPlanAmount: (json['monthPlanAmount'] as num?)?.toDouble() ?? 0,
       description: json['description'] as String? ?? '',
       enable: (json['enable'] as num?)?.toInt() ?? 0,
@@ -32,6 +34,7 @@ Map<String, dynamic> _$$EnableJobInfoImplToJson(_$EnableJobInfoImpl instance) =>
       'orderNo': instance.orderNo,
       'condition': instance.condition,
       'salary': instance.salary,
+      'nowMonthPlanAmountTotal': instance.nowMonthPlanAmountTotal,
       'monthPlanAmount': instance.monthPlanAmount,
       'description': instance.description,
       'enable': instance.enable,

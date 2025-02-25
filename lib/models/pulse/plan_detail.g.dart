@@ -54,6 +54,7 @@ _$PlanDetailImpl _$$PlanDetailImplFromJson(Map<String, dynamic> json) =>
       endTimeDate: json['endTimeDate'] as String? ?? '',
       sysNowTime: json['sysNowTime'] as String? ?? '',
       roiTotal: (json['roiTotal'] as num?)?.toDouble() ?? 0,
+      realEndDate: json['realEndDate'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$PlanDetailImplToJson(_$PlanDetailImpl instance) =>
@@ -103,4 +104,5 @@ Map<String, dynamic> _$$PlanDetailImplToJson(_$PlanDetailImpl instance) =>
       'endTimeDate': instance.endTimeDate,
       'sysNowTime': instance.sysNowTime,
       'roiTotal': instance.roiTotal,
+      'realEndDate': instance.realEndDate,
     };
