@@ -4,6 +4,9 @@ import 'package:dgpt/utils/constants/app_enums.dart';
 import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:dgpt/utils/dialog.dart';
 import 'package:dgpt/utils/routes/app_routes.dart';
+import 'package:dgpt/utils/theme/color.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HashratePasswordInputScreenBindings implements Bindings {
@@ -36,11 +39,10 @@ class HashratePasswordInputScreenController extends BaseController<HashratePassw
   }
 
   confirm() {
-
     if (args!.type == HashratePasswordInputType.hasrate) {
       aiPulseUserPlanApply();
     } else if (args!.type == HashratePasswordInputType.withdraw) {
-
+      aiPulseWithdrawalWithdrawal();
     }
   }
 
@@ -62,7 +64,17 @@ class HashratePasswordInputScreenController extends BaseController<HashratePassw
         loadingState: AppLoadingState.normal,
         request: () => aiPulseService.aiPulseWithdrawalWithdrawal(pram: pram));
     if (result != null) {
-      Get.toNamed(AppRoutes.hashrateLoading);
+      DialogUtils.showSuccessDialog(tr('profile.withdraw_assets'),
+          width: 250,
+          height: 197,
+          comBorderRadius: BorderRadius.circular(10),
+          gradient: BaseColors.diaYebz,
+          image: 'assets/images/custom/dia_zjcg.png',
+          desc: tr('dia.withdrawal_success_tip'),
+          barrierDismissible: false,
+          confirmText: tr('button.done'), onConfirmPressed: () {
+            Get.close(3);
+          });
     }
   }
 }

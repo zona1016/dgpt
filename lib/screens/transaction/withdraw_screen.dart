@@ -335,7 +335,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                       height: 40,
                       child: Obx(() => BaseButton(
                         enabled: controller.address.isNotEmpty &&
-                            controller.amount.value > 10 &&
+                            controller.amount.value >= 10 &&
                             (controller.showGoogleAuth.value
                                 ? controller.googleAuth.isNotEmpty
                                 : true),

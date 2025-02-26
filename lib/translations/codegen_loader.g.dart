@@ -417,7 +417,8 @@ class CodegenLoader extends AssetLoader{
     "invitation_code": "Invite code",
     "connecting_to_computing_power_center": "Connecting to the computing power center",
     "please_wait": "Please wait...",
-    "computing_power_rental_in_progress": "Computing power rental in progress"
+    "computing_power_rental_in_progress": "Computing power rental in progress",
+    "withdrawal_success_tip": "Your withdrawal has been successful and is being processed"
   },
   "tutorial": {
     "lesson1": "Lesson 1",
@@ -839,7 +840,8 @@ static const Map<String,dynamic> zh_Hans = {
     "invitation_code": "邀请码",
     "connecting_to_computing_power_center": "正在链接算力中心",
     "please_wait": "请稍等...",
-    "computing_power_rental_in_progress": "算力租借进行中"
+    "computing_power_rental_in_progress": "算力租借进行中",
+    "withdrawal_success_tip": "您已提现成功您的提现正在处理中"
   },
   "tutorial": {
     "lesson1": "第一课",
