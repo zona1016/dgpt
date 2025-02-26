@@ -293,7 +293,6 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             'assets/images/income/progress_bg4.png',
             width: 310,
             height: 310,
-            color: Colors.transparent,
           ),
         ),
         Center(
@@ -311,7 +310,6 @@ class IncomeScreen extends GetView<IncomeScreenController> {
               'assets/images/income/progress_sbg4.png',
               width: 310,
               height: 310,
-              color: Colors.transparent,
             ),
           ),
         ),
@@ -362,45 +360,45 @@ class IncomeScreen extends GetView<IncomeScreenController> {
             ),
           ),
         ),
-        Center(
-          child: Image.asset(
-            'assets/images/income/progress_bg1.png',
-            width: 160,
-            height: 160,
-          ),
-        ),
-        Center(
-          child: ClipPath(
-            clipper: ArcClipper(
-                startPoint: 0.5,
-                progress: controller.totalAmount.value > 0
-                    ? (controller.amountTotalInfo.value?.salaryAmountTotal ??
-                    0) /
-                    controller.totalAmount.value
-                    : 0),
-            child: Image.asset(
-              'assets/images/income/progress_sbg1.png',
-              width: 160,
-              height: 160,
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: defaultPadding * 3,
-          left: defaultPadding,
-          child: Text(
-            '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
-            style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
-          ),
-        ),
-        _positioned(
-            bottom: defaultPadding * 3,
-            left: defaultPadding,
-            size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding, 1)),
-        _positioned(
-            bottom: defaultPadding * 3,
-            left: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding + defaultPadding,
-            size: const Size(1, 45)),
+        // Center(
+        //   child: Image.asset(
+        //     'assets/images/income/progress_bg1.png',
+        //     width: 160,
+        //     height: 160,
+        //   ),
+        // ),
+        // Center(
+        //   child: ClipPath(
+        //     clipper: ArcClipper(
+        //         startPoint: 0.5,
+        //         progress: controller.totalAmount.value > 0
+        //             ? (controller.amountTotalInfo.value?.salaryAmountTotal ??
+        //             0) /
+        //             controller.totalAmount.value
+        //             : 0),
+        //     child: Image.asset(
+        //       'assets/images/income/progress_sbg1.png',
+        //       width: 160,
+        //       height: 160,
+        //     ),
+        //   ),
+        // ),
+        // Positioned(
+        //   bottom: defaultPadding * 3,
+        //   left: defaultPadding,
+        //   child: Text(
+        //     '${controller.totalAmount.value > 0 ? formatNumber((controller.amountTotalInfo.value?.salaryAmountTotal ?? 0) / controller.totalAmount.value * 100) : 0}%',
+        //     style: fontDMBold.copyWith(color: BaseColors.white, fontSize: 20),
+        //   ),
+        // ),
+        // _positioned(
+        //     bottom: defaultPadding * 3,
+        //     left: defaultPadding,
+        //     size: Size((SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding, 1)),
+        // _positioned(
+        //     bottom: defaultPadding * 3,
+        //     left: (SizeUtil.width() - defaultPadding * 4) / 2.0 - defaultPadding + defaultPadding,
+        //     size: const Size(1, 45)),
         Positioned(
           top: defaultPadding,
           left: defaultPadding,

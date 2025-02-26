@@ -10,13 +10,12 @@ import 'package:loader_overlay/loader_overlay.dart';
 class IncomeScreenBindings implements Bindings {
   @override
   void dependencies() {
-    GetInstance()
-        .lazyPut(() => IncomeScreenController(), permanent: false, fenix: false);
+    GetInstance().lazyPut(() => IncomeScreenController(),
+        permanent: false, fenix: false);
   }
 }
 
 class IncomeScreenController extends BaseController {
-
   final AiPulseService aiPulseService = Get.find();
 
   final double circleHeight = 250.0;
@@ -54,7 +53,8 @@ class IncomeScreenController extends BaseController {
     Get.context!.loaderOverlay.hide();
   }
 
-  Future<void> userIncomeTotal({AppLoadingState loadingState = AppLoadingState.normal}) async {
+  Future<void> userIncomeTotal(
+      {AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
         loadingState: loadingState,
         request: () => aiPulseService.userIncomeTotal());
@@ -63,7 +63,8 @@ class IncomeScreenController extends BaseController {
     }
   }
 
-  Future<void> userTeamDataTotal({AppLoadingState loadingState = AppLoadingState.normal}) async {
+  Future<void> userTeamDataTotal(
+      {AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
         loadingState: loadingState,
         request: () => aiPulseService.userTeamDataTotal());
@@ -72,16 +73,18 @@ class IncomeScreenController extends BaseController {
     }
   }
 
-  Future<void> aiPulseTotalAmountTotal({AppLoadingState loadingState = AppLoadingState.normal}) async {
+  Future<void> aiPulseTotalAmountTotal(
+      {AppLoadingState loadingState = AppLoadingState.normal}) async {
     final result = await fetchData(
         loadingState: loadingState,
         request: () => aiPulseService.aiPulseTotalAmountTotal());
     if (result != null) {
+
       amountTotalInfo.value = result;
-      totalAmount.value = (amountTotalInfo.value?.roiAmountTotal ?? 0)
-          + (amountTotalInfo.value?.teamAwardAmountTotal ?? 0)
-          + (amountTotalInfo.value?.directAwardAmountTotal ?? 0)
-          + (amountTotalInfo.value?.salaryAmountTotal ?? 0);
+
+      totalAmount.value = (amountTotalInfo.value?.roiAmountTotal ?? 0) +
+          (amountTotalInfo.value?.teamAwardAmountTotal ?? 0) +
+          (amountTotalInfo.value?.directAwardAmountTotal ?? 0);
     }
   }
 }
