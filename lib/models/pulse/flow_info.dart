@@ -20,6 +20,10 @@ class FlowInfo extends BaseModel {
   @JsonKey(name: 'toAccount', defaultValue: 0)
   int? toAccount;
 
+  // 0：待审核，1：同意，2：拒绝
+  @JsonKey(name: 'status', defaultValue: 0)
+  int? status;
+
   @JsonKey(name: 'balance', defaultValue: 0)
   double? balance;
 

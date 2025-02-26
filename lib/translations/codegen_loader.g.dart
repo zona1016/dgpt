@@ -391,7 +391,10 @@ class CodegenLoader extends AssetLoader{
     "status": "Status",
     "running": "Running",
     "expired": "Expired",
-    "member_detail": "Member Detail"
+    "member_detail": "Member Detail",
+    "pending_review": "Pending review",
+    "approved": "Approved",
+    "rejected": "Rejected"
   },
   "dia": {
     "account_logged_in_elsewhere": "Your account has been logged in on another device. This device has been logged out. Please log in again.",
@@ -815,7 +818,10 @@ static const Map<String,dynamic> zh_Hans = {
     "status": "状态",
     "running": "进行中",
     "expired": "已过期",
-    "member_detail": "会员详情"
+    "member_detail": "会员详情",
+    "pending_review": "待审核",
+    "approved": "同意",
+    "rejected": "拒绝"
   },
   "dia": {
     "account_logged_in_elsewhere": "您的账户已在其他设备登录，本设备已下线，请重新登录",

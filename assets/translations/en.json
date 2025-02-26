@@ -375,7 +375,10 @@
     "status": "Status",
     "running": "Running",
     "expired": "Expired",
-    "member_detail": "Member Detail"
+    "member_detail": "Member Detail",
+    "pending_review": "Pending review",
+    "approved": "Approved",
+    "rejected": "Rejected"
   },
   "dia": {
     "account_logged_in_elsewhere": "Your account has been logged in on another device. This device has been logged out. Please log in again.",

@@ -3,6 +3,7 @@ import 'package:dgpt/utils/constants/app_default_size.dart';
 import 'package:dgpt/utils/theme/color.dart';
 import 'package:dgpt/utils/theme/typography.dart';
 import 'package:dgpt/widget/base/base_smart_refresher.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,8 @@ class AssetsTab extends StatelessWidget {
   final Widget? injector;
   final String type;
 
-  const AssetsTab({super.key,
-    required this.type,
-    this.scrollViewKey,
-    this.injector});
+  const AssetsTab(
+      {super.key, required this.type, this.scrollViewKey, this.injector});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +24,7 @@ class AssetsTab extends StatelessWidget {
       init: AssetsTabController(type: type),
       tag: shortHash(UniqueKey()),
       builder: (controller) {
-        return Obx(() =>
-            BaseSmartRefresher(
+        return Obx(() => BaseSmartRefresher(
               isCustomFooterPosition: true,
               isCustomHeaderPosition: true,
               refreshController: controller.refreshController,
@@ -58,15 +56,12 @@ class AssetsTab extends StatelessWidget {
                               horizontal: defaultPadding,
                               vertical: defaultPadding / 2),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                defaultPadding / 2 * 3),
+                            borderRadius:
+                                BorderRadius.circular(defaultPadding / 2 * 3),
                             color: const Color(0xFF292250),
                           ),
                           child: Row(
                             children: [
-                              const SizedBox(
-                                width: defaultPadding / 2,
-                              ),
                               Image.asset(
                                 'assets/images/home/recharge_icon.png',
                                 width: 20,
@@ -78,7 +73,22 @@ class AssetsTab extends StatelessWidget {
                               Text(
                                 'USDT-TRC20',
                                 style: fontDMRegular.copyWith(
-                                    color: BaseColors.white,
+                                    color: BaseColors.white, fontSize: 12),
+                              ),
+                              Expanded(child: Container()),
+                              Text(
+                                controller.flowList[index].status == 1
+                                    ? tr('member.approved')
+                                    : controller.flowList[index].status == 2
+                                        ? tr('member.rejected')
+                                        : tr('member.pending_review'),
+                                style: fontDMRegular.copyWith(
+                                    color: controller.flowList[index].status ==
+                                            1
+                                        ? BaseColors.primaryColor
+                                        : controller.flowList[index].status == 2
+                                            ? Colors.red
+                                            : BaseColors.white,
                                     fontSize: 12),
                               ),
                               Expanded(child: Container()),
@@ -86,18 +96,20 @@ class AssetsTab extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    '${controller.flowList[index]
-                                        .amount}',
+                                    '${controller.flowList[index].amount} USDT',
                                     style: fontDMMedium.copyWith(
                                         color: (controller.flowList[index]
-                                            .amount ?? 0) > 0 ? Colors.green : Colors.red,
+                                                        .amount ??
+                                                    0) >
+                                                0
+                                            ? Colors.green
+                                            : Colors.red,
                                         fontSize: 8),
                                   ),
                                   Text(
                                     controller.flowList[index].createTime ?? '',
                                     style: fontDMMedium.copyWith(
-                                        color: BaseColors.white,
-                                        fontSize: 8),
+                                        color: BaseColors.white, fontSize: 8),
                                   ),
                                 ],
                               )

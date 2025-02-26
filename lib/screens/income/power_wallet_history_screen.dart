@@ -92,7 +92,7 @@ class PowerWalletHistoryScreen extends GetView<PowerWalletHistoryScreenControlle
         children: [
           Expanded(
             child: Text(
-              '类型',
+              tr('member.type'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -102,7 +102,7 @@ class PowerWalletHistoryScreen extends GetView<PowerWalletHistoryScreenControlle
           ),
           Expanded(
             child: Text(
-              '数据',
+              tr('income.data'),
               style: fontDMBold.copyWith(
                 color: BaseColors.white,
                 fontSize: 10,
@@ -111,7 +111,7 @@ class PowerWalletHistoryScreen extends GetView<PowerWalletHistoryScreenControlle
             ),
           ),
           Expanded(
-            child: Text('时间',
+            child: Text(tr('income.time'),
                 style: fontDMBold.copyWith(
                   color: BaseColors.white,
                   fontSize: 10,
