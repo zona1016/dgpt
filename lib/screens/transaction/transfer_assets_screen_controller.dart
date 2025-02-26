@@ -65,14 +65,13 @@ class TransferAssetsScreenController extends BaseController {
         request: () =>
             aiPulseService.aiPulseWalletTransfer(amount: amount.value));
     if (result != null) {
-      DialogUtils.showSuccessDialog('恭喜 ！',
-          topTitle: '转移资产成功',
-          width: 200,
-          height: 151,
+      DialogUtils.showSuccessDialog(tr('profile.transfer_assets'),
+          width: 250,
+          height: 197,
           comBorderRadius: BorderRadius.circular(10),
-          gradient: BaseColors.diaCzcg,
-          image: 'assets/images/custom/dia_czcg.png',
-          desc: '您已成功转移资产！',
+          gradient: BaseColors.appBarLinearGradient,
+          image: 'assets/images/custom/dia_zjcg.png',
+          desc: tr('dia.transferred_success_tip'),
           barrierDismissible: false,
           confirmText: tr('button.ok'), onConfirmPressed: () {
         Get.back();

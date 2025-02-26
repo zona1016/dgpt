@@ -402,7 +402,8 @@
     "connecting_to_computing_power_center": "Connecting to the computing power center",
     "please_wait": "Please wait...",
     "computing_power_rental_in_progress": "Computing power rental in progress",
-    "withdrawal_success_tip": "Your withdrawal has been successful and is being processed"
+    "withdrawal_success_tip": "Your withdrawal has been successful and is being processed",
+    "transferred_success_tip": "You have successfully transferred assets"
   },
   "tutorial": {
     "lesson1": "Lesson 1",

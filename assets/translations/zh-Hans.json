@@ -402,7 +402,8 @@
     "connecting_to_computing_power_center": "正在链接算力中心",
     "please_wait": "请稍等...",
     "computing_power_rental_in_progress": "算力租借进行中",
-    "withdrawal_success_tip": "您已提现成功您的提现正在处理中"
+    "withdrawal_success_tip": "您已提现成功您的提现正在处理中",
+    "transferred_success_tip": "您已成功转移资产"
   },
   "tutorial": {
     "lesson1": "第一课",

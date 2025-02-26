@@ -68,7 +68,7 @@ class HashratePasswordInputScreenController extends BaseController<HashratePassw
           width: 250,
           height: 197,
           comBorderRadius: BorderRadius.circular(10),
-          gradient: BaseColors.diaYebz,
+          gradient: BaseColors.appBarLinearGradient,
           image: 'assets/images/custom/dia_zjcg.png',
           desc: tr('dia.withdrawal_success_tip'),
           barrierDismissible: false,
