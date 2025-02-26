@@ -32,6 +32,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
         child: Obx(() => Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
                 height: defaultPadding,
@@ -309,10 +310,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                         ),
                       ),
                       onChanged: (value) {
-                        controller.googleEditingController.text =
-                            value ?? '';
                         controller.googleAuth.value = value ?? '';
-                        controller.update();
                       },
                     );
                   },
