@@ -29,11 +29,13 @@ class WithdrawScreenController extends BaseController {
   RxString address = ''.obs;
   RxDouble amount = 0.0.obs;
   RxString googleAuth = ''.obs;
+  RxBool addressEnable = true.obs;
 
   @override
   void onInit() {
     super.onInit();
     aiPulseGoogleAuthHasBind();
+    aiPulseWithdrawalLastAddress();
   }
 
   @override
@@ -71,6 +73,17 @@ class WithdrawScreenController extends BaseController {
     );
     if (result != null) {
       showGoogleAuth.value = result;
+    }
+  }
+
+  aiPulseWithdrawalLastAddress() async {
+    final result = await fetchData(
+      request: () => aiPulseService.aiPulseWithdrawalLastAddress(),
+    );
+    if (result != null) {
+      addressEditingController.text = result;
+      address.value = result;
+      addressEnable.value = false;
     }
   }
 }

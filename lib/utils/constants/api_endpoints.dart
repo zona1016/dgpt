@@ -123,6 +123,7 @@ class ApiEndpoints {
   static const String aiPulseWithdrawalWithdrawal = "/api/aiPulseWithdrawal/withdrawal";
   static const String aiPulseWithdrawalAudit = "/api/aiPulseWithdrawal/audit";
   static const String aiPulseWithdrawalUserPage = "/api/aiPulseWithdrawal/userPage";
+  static const String aiPulseWithdrawalLastAddress = "/api/aiPulseWithdrawal/lastAddress";
 
   static const String configValueCode = "/api/config/configValue/{code}";
 

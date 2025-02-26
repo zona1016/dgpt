@@ -55,6 +55,7 @@ class WithdrawScreen extends GetView<WithdrawScreenController> {
                     Expanded(
                       child: SizedBox(
                         child: TextField(
+                          enabled: controller.addressEnable.value,
                           style: fontDMMedium.copyWith(
                               color: BaseColors.white, fontSize: 14),
                           onChanged: (value) {

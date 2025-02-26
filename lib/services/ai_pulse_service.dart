@@ -193,6 +193,8 @@ abstract class AiPulseService {
 
   Future<BaseResponse<ReUserInfo?>> userRecommandUserInfo(
       {required int userId});
+
+  Future<BaseResponse> aiPulseWithdrawalLastAddress();
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -1074,6 +1076,16 @@ class AiPulseServiceImpl extends AiPulseService {
           data: {'userId': userId},
           deserializer: (data) =>
               data != null ? ReUserInfo.fromJson(data) : null);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse> aiPulseWithdrawalLastAddress() async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalLastAddress,
+          bearerToken: userController.token, deserializer: (data) => data);
     } on Exception catch (_) {
       rethrow;
     }
