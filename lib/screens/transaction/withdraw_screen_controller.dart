@@ -72,7 +72,7 @@ class WithdrawScreenController extends BaseController {
       request: () => aiPulseService.aiPulseGoogleAuthHasBind(),
     );
     if (result != null) {
-      showGoogleAuth.value = true;
+      showGoogleAuth.value = result;
     }
   }
 
