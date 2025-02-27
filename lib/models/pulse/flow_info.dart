@@ -11,6 +11,7 @@ class FlowInfo extends BaseModel {
   @JsonKey(name: 'userFkDisplayName', defaultValue: '')
   String? userFkDisplayName;
 
+  // 0：充值 1：提现
   @JsonKey(name: 'type', defaultValue: 0)
   int? type;
 
@@ -33,6 +34,15 @@ class FlowInfo extends BaseModel {
   @JsonKey(name: 'targetAccount', defaultValue: '')
   String? targetAccount;
 
+  @JsonKey(name: 'orderSn', defaultValue: '')
+  String? orderSn;
+
+  @JsonKey(name: 'auditDate', defaultValue: '')
+  String? auditDate;
+
+  @JsonKey(name: 'createDate', defaultValue: '')
+  String? createDate;
+
   FlowInfo({
     super.id,
     super.createTime,
@@ -53,7 +63,11 @@ class FlowInfo extends BaseModel {
     this.toAccount,
     this.balance,
     this.amount,
-    this.targetAccount
+    this.targetAccount,
+    this.createDate,
+    this.auditDate,
+    this.orderSn,
+    this.status
   });
 
   factory FlowInfo.fromJson(Map<String, dynamic> json) => _$FlowInfoFromJson(json);

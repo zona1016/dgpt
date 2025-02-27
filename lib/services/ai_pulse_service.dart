@@ -195,7 +195,7 @@ abstract class AiPulseService {
       {required int userId});
 
   Future<BaseResponse> aiPulseWithdrawalLastAddress();
-  Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseWithdrawalUserPage(
+  Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseCommonFundList(
       {int page = 1, int perPage = 20});
 }
 
@@ -1094,10 +1094,10 @@ class AiPulseServiceImpl extends AiPulseService {
   }
 
   @override
-  Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseWithdrawalUserPage(
+  Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseCommonFundList(
       {int page = 1, int perPage = 20}) async {
     try {
-      return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalUserPage,
+      return await _apiClient.request(ApiEndpoints.aiPulseCommonFundList,
           bearerToken: userController.token,
           data: {
             'page': page,

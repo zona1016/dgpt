@@ -28,7 +28,7 @@ class AssetsTabController extends BaseController {
 
   loadData({AppLoadingState loadingState = AppLoadingState.background}) {
     if (type == 'fundRecords') {
-      aiPulseWithdrawalUserPage(loadingState: loadingState);
+      aiPulseCommonFundList(loadingState: loadingState);
     }
 
     if (type == 'transferRecords') {
@@ -52,13 +52,13 @@ class AssetsTabController extends BaseController {
     }
   }
 
-  aiPulseWithdrawalUserPage(
+  aiPulseCommonFundList(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
 
     final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
     final result = await fetchPaginatedData(
         loadingState: loadingState,
-        request: () => aiPulseService.aiPulseWithdrawalUserPage(page: page));
+        request: () => aiPulseService.aiPulseCommonFundList(page: page));
     if (result != null && result.list.isNotEmpty) {
       if (loadingState == AppLoadingState.loadMore) {
         flowList.addAll(result.list);

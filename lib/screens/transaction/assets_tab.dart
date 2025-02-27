@@ -50,73 +50,9 @@ class AssetsTab extends StatelessWidget {
                     SliverList.separated(
                       itemCount: controller.flowList.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                          height: 50,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding,
-                              vertical: defaultPadding / 2),
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(defaultPadding / 2 * 3),
-                            color: const Color(0xFF292250),
-                          ),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/home/recharge_icon.png',
-                                width: 20,
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                width: defaultPadding / 2,
-                              ),
-                              Text(
-                                'USDT-TRC20',
-                                style: fontDMRegular.copyWith(
-                                    color: BaseColors.white, fontSize: 12),
-                              ),
-                              Expanded(child: Container()),
-                              if (controller.isFundRecords.value)
-                                Text(
-                                controller.flowList[index].status == 1
-                                    ? tr('member.approved')
-                                    : controller.flowList[index].status == 2
-                                        ? tr('member.rejected')
-                                        : tr('member.pending_review'),
-                                style: fontDMRegular.copyWith(
-                                    color: controller.flowList[index].status ==
-                                            1
-                                        ? BaseColors.primaryColor
-                                        : controller.flowList[index].status == 2
-                                            ? Colors.red
-                                            : BaseColors.white,
-                                    fontSize: 12),
-                              ),
-                              Expanded(child: Container()),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    '${controller.flowList[index].amount} USDT',
-                                    style: fontDMMedium.copyWith(
-                                        color: (controller.flowList[index]
-                                                        .amount ??
-                                                    0) >
-                                                0
-                                            ? Colors.green
-                                            : Colors.red,
-                                        fontSize: 8),
-                                  ),
-                                  Text(
-                                    controller.flowList[index].createTime ?? '',
-                                    style: fontDMMedium.copyWith(
-                                        color: BaseColors.white, fontSize: 8),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        );
+                        return controller.isFundRecords.value
+                            ? _fundRecordsItem(controller, index)
+                            : _transferRecordsItem(controller, index);
                       },
                       separatorBuilder: (context, index) {
                         return Container(
@@ -131,6 +67,119 @@ class AssetsTab extends StatelessWidget {
               },
             ));
       },
+    );
+  }
+
+  _fundRecordsItem(AssetsTabController controller, int index) {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(
+          horizontal: defaultPadding, vertical: defaultPadding / 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(defaultPadding / 2 * 3),
+        color: const Color(0xFF292250),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/images/home/recharge_icon.png',
+            width: 20,
+            height: 20,
+          ),
+          const SizedBox(
+            width: defaultPadding / 2,
+          ),
+          Text(
+            controller.flowList[index].type == 0
+                ? tr('profile.deposit')
+                : tr('profile.withdraw_assets'),
+            style:
+                fontDMRegular.copyWith(color: BaseColors.white, fontSize: 12),
+          ),
+          Expanded(child: Container()),
+          Text(
+            controller.flowList[index].status == 1
+                ? tr('member.approved')
+                : controller.flowList[index].status == 2
+                    ? tr('member.rejected')
+                    : tr('member.pending_review'),
+            style: fontDMRegular.copyWith(
+                color: controller.flowList[index].status == 1
+                    ? BaseColors.primaryColor
+                    : controller.flowList[index].status == 2
+                        ? Colors.red
+                        : BaseColors.white,
+                fontSize: 12),
+          ),
+          Expanded(child: Container()),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '${controller.flowList[index].amount} USDT',
+                style: fontDMMedium.copyWith(
+                    color: (controller.flowList[index].amount ?? 0) > 0
+                        ? Colors.green
+                        : Colors.red,
+                    fontSize: 8),
+              ),
+              Text(
+                controller.flowList[index].createDate ?? '',
+                style:
+                    fontDMMedium.copyWith(color: BaseColors.white, fontSize: 8),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  _transferRecordsItem(AssetsTabController controller, int index) {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(
+          horizontal: defaultPadding, vertical: defaultPadding / 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(defaultPadding / 2 * 3),
+        color: const Color(0xFF292250),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/images/home/recharge_icon.png',
+            width: 20,
+            height: 20,
+          ),
+          const SizedBox(
+            width: defaultPadding / 2,
+          ),
+          Text(
+            'USDT-TRC20',
+            style:
+                fontDMRegular.copyWith(color: BaseColors.white, fontSize: 12),
+          ),
+          Expanded(child: Container()),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '${controller.flowList[index].amount} USDT',
+                style: fontDMMedium.copyWith(
+                    color: (controller.flowList[index].amount ?? 0) > 0
+                        ? Colors.green
+                        : Colors.red,
+                    fontSize: 8),
+              ),
+              Text(
+                controller.flowList[index].createTime ?? '',
+                style:
+                    fontDMMedium.copyWith(color: BaseColors.white, fontSize: 8),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

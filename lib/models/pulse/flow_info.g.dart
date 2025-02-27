@@ -27,6 +27,10 @@ FlowInfo _$FlowInfoFromJson(Map<String, dynamic> json) => FlowInfo(
       balance: (json['balance'] as num?)?.toDouble() ?? 0,
       amount: (json['amount'] as num?)?.toDouble() ?? 0,
       targetAccount: json['targetAccount'] as String? ?? '',
+      createDate: json['createDate'] as String? ?? '',
+      auditDate: json['auditDate'] as String? ?? '',
+      orderSn: json['orderSn'] as String? ?? '',
+      status: (json['status'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$FlowInfoToJson(FlowInfo instance) => <String, dynamic>{
@@ -47,7 +51,11 @@ Map<String, dynamic> _$FlowInfoToJson(FlowInfo instance) => <String, dynamic>{
       'type': instance.type,
       'fromAccount': instance.fromAccount,
       'toAccount': instance.toAccount,
+      'status': instance.status,
       'balance': instance.balance,
       'amount': instance.amount,
       'targetAccount': instance.targetAccount,
+      'orderSn': instance.orderSn,
+      'auditDate': instance.auditDate,
+      'createDate': instance.createDate,
     };
