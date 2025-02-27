@@ -176,54 +176,46 @@ class IncomeScreen extends GetView<IncomeScreenController> {
                             )
                           ],
                         ),
-                        GridView.count(
-                          shrinkWrap: true,
-                          crossAxisCount: 2,
-                          crossAxisSpacing: defaultPadding,
-                          mainAxisSpacing: defaultPadding,
-                          childAspectRatio: 1.5,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: defaultPadding),
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            _buildIncomeCard(
-                                tr('hashrate.computing_power_rental'),
-                                controller.amountTotalInfo.value
-                                        ?.roiAmountTotal ??
-                                    0,
-                                'assets/images/income/income_slzj.png',
-                                onTap: () {
+                        const SizedBox(height: defaultPadding),
+                        _buildIncomeCard(
+                            tr('hashrate.computing_power_rental'),
+                            controller.amountTotalInfo.value
+                                ?.roiAmountTotal ??
+                                0,
+                            'assets/images/income/income_slzj.png',
+                            onTap: () {
                               Get.toNamed(AppRoutes.hashrateRentalActive);
                             }),
-                            _buildIncomeCard(
-                                tr('hashrate.team_computing_power_bonus'),
-                                controller.amountTotalInfo.value
-                                        ?.teamAwardAmountTotal ??
-                                    0,
-                                'assets/images/income/income_tdslj.png',
-                                onTap: () {
+                        const SizedBox(height: defaultPadding),
+                        _buildIncomeCard(
+                            tr('hashrate.team_computing_power_bonus'),
+                            controller.amountTotalInfo.value
+                                ?.teamAwardAmountTotal ??
+                                0,
+                            'assets/images/income/income_tdslj.png',
+                            onTap: () {
                               Get.toNamed(AppRoutes.teamHashrateAwardn);
                             }),
-                            _buildIncomeCard(
-                                tr('hashrate.invitation_bonus'),
-                                controller.amountTotalInfo.value
-                                        ?.directAwardAmountTotal ??
-                                    0,
-                                'assets/images/income/income_yqj.png',
-                                onTap: () {
+                        const SizedBox(height: defaultPadding),
+                        _buildIncomeCard(
+                            tr('hashrate.invitation_bonus'),
+                            controller.amountTotalInfo.value
+                                ?.directAwardAmountTotal ??
+                                0,
+                            'assets/images/income/income_yqj.png',
+                            onTap: () {
                               Get.toNamed(AppRoutes.invitationAward);
                             }),
-                            // _buildIncomeCard(
-                            //     tr('hashrate.salary'),
-                            //     controller.amountTotalInfo.value
-                            //             ?.salaryAmountTotal ??
-                            //         0,
-                            //     'assets/images/income/income_xz.png',
-                            //     onTap: () {
-                            //   Get.toNamed(AppRoutes.salary);
-                            // }),
-                          ],
-                        ),
+                        const SizedBox(height: defaultPadding),
+                        // _buildIncomeCard(
+                        //     tr('hashrate.salary'),
+                        //     controller.amountTotalInfo.value
+                        //             ?.salaryAmountTotal ??
+                        //         0,
+                        //     'assets/images/income/income_xz.png',
+                        //     onTap: () {
+                        //   Get.toNamed(AppRoutes.salary);
+                        // }),
                       ],
                     ),
                   )),
@@ -239,45 +231,44 @@ class IncomeScreen extends GetView<IncomeScreenController> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+        padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: defaultPadding),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(defaultPadding),
             image: const DecorationImage(
               image: AssetImage('assets/images/home/return_bg.png'),
               fit: BoxFit.cover,
             )),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Spacer(),
-            Row(
-              children: [
-                Image.asset(
-                  image,
-                  width: 25,
-                  height: 25,
-                ),
-                const SizedBox(
-                  width: defaultPadding / 2,
-                ),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: fontDMMedium.copyWith(
-                        color: BaseColors.weakTextColor, fontSize: 15),
-                  ),
-                ),
-              ],
+            Image.asset(
+              image,
+              width: 25,
+              height: 25,
             ),
             const SizedBox(
-              height: defaultPadding / 2,
+              width: defaultPadding / 2,
+            ),
+            Expanded(
+              child: Text(
+                title,
+                style: fontDMMedium.copyWith(
+                    color: BaseColors.weakTextColor, fontSize: 15),
+              ),
             ),
             Text(
               '${formatNumber(amount)} U',
               style: fontDMBold.copyWith(
                   color: BaseColors.primaryColor, fontSize: 18),
             ),
-            const Spacer(),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            const Icon(
+              Icons.chevron_right,
+              size: 25,
+              color: BaseColors.white,
+            ),
           ],
         ),
       ),
