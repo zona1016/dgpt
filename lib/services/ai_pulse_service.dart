@@ -195,6 +195,8 @@ abstract class AiPulseService {
       {required int userId});
 
   Future<BaseResponse> aiPulseWithdrawalLastAddress();
+  Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseWithdrawalUserPage(
+      {int page = 1, int perPage = 20});
 }
 
 class AiPulseServiceImpl extends AiPulseService {
@@ -1086,6 +1088,25 @@ class AiPulseServiceImpl extends AiPulseService {
     try {
       return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalLastAddress,
           bearerToken: userController.token, deserializer: (data) => data);
+    } on Exception catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BaseResponse<PaginationResponse<FlowInfo>?>> aiPulseWithdrawalUserPage(
+      {int page = 1, int perPage = 20}) async {
+    try {
+      return await _apiClient.request(ApiEndpoints.aiPulseWithdrawalUserPage,
+          bearerToken: userController.token,
+          data: {
+            'page': page,
+            'pageSize': perPage,
+          },
+          deserializer: (data) => data != null
+              ? PaginationResponse<FlowInfo>.fromJson(data,
+                  (json) => FlowInfo.fromJson(json as Map<String, dynamic>))
+              : null);
     } on Exception catch (_) {
       rethrow;
     }

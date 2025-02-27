@@ -5,36 +5,60 @@ import 'package:dgpt/utils/controllers/base_controller.dart';
 import 'package:get/get.dart';
 
 class AssetsTabController extends BaseController {
-  // final TutorialService tutorialService = Get.find();
-  //
   final String type;
 
   AssetsTabController({required this.type});
 
   final AiPulseService aiPulseService = Get.find();
   RxList<FlowInfo> flowList = <FlowInfo>[].obs;
+  RxBool isFundRecords = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    aiPulseFlowUserPage();
+    if (type == 'fundRecords') {
+      isFundRecords.value = true;
+    }
+
+    if (type == 'transferRecords') {
+      isFundRecords.value = false;
+    }
+    loadData();
+  }
+
+  loadData({AppLoadingState loadingState = AppLoadingState.background}) {
+    if (type == 'fundRecords') {
+      aiPulseWithdrawalUserPage(loadingState: loadingState);
+    }
+
+    if (type == 'transferRecords') {
+      aiPulseFlowUserPage(loadingState: loadingState);
+    }
   }
 
   aiPulseFlowUserPage(
       {AppLoadingState loadingState = AppLoadingState.background}) async {
-    int selectedType = 2;
-    if (type == 'fundRecords') {
-      selectedType = 2;
-    }
-
-    if (type == 'transferRecords') {
-      selectedType = 0;
-    }
 
     final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
     final result = await fetchPaginatedData(
         loadingState: loadingState,
-        request: () => aiPulseService.aiPulseFlowUserPage(page: page, type: selectedType));
+        request: () => aiPulseService.aiPulseFlowUserPage(page: page, type: 0));
+    if (result != null && result.list.isNotEmpty) {
+      if (loadingState == AppLoadingState.loadMore) {
+        flowList.addAll(result.list);
+      } else {
+        flowList.assignAll(result.list);
+      }
+    }
+  }
+
+  aiPulseWithdrawalUserPage(
+      {AppLoadingState loadingState = AppLoadingState.background}) async {
+
+    final page = loadingState == AppLoadingState.loadMore ? currentPage + 1 : 1;
+    final result = await fetchPaginatedData(
+        loadingState: loadingState,
+        request: () => aiPulseService.aiPulseWithdrawalUserPage(page: page));
     if (result != null && result.list.isNotEmpty) {
       if (loadingState == AppLoadingState.loadMore) {
         flowList.addAll(result.list);

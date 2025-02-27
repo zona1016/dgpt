@@ -36,10 +36,10 @@ class AssetsTab extends StatelessWidget {
                 const HeaderLocator.sliver(clearExtent: false),
               ],
               onPullToRefresh: (loadingState) {
-                controller.aiPulseFlowUserPage(loadingState: loadingState);
+                controller.loadData(loadingState: loadingState);
               },
               onLoadMore: (loadingState) {
-                controller.aiPulseFlowUserPage(loadingState: loadingState);
+                controller.loadData(loadingState: loadingState);
               },
               childBuilder: (context, physics) {
                 return CustomScrollView(
@@ -76,7 +76,8 @@ class AssetsTab extends StatelessWidget {
                                     color: BaseColors.white, fontSize: 12),
                               ),
                               Expanded(child: Container()),
-                              Text(
+                              if (controller.isFundRecords.value)
+                                Text(
                                 controller.flowList[index].status == 1
                                     ? tr('member.approved')
                                     : controller.flowList[index].status == 2
