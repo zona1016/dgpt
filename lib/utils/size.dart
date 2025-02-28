@@ -1,15 +1,14 @@
+import 'package:dgpt/screens/handling/functionality.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'constants/app_default_size.dart';
 
 class SizeUtil {
   /// 返回符合指定宽高比的 Size
   static Size getAspectRatioSize({double aspectRatio = 9 / 16}) {
 
     if (kIsWeb) {
-      if (isMobile()) {
+      if (Functionality.isMobile()) {
         return Get.size;
       }
       double width = Get.size.width;

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dgpt/models/app_language.dart';
+import 'package:dgpt/screens/handling/functionality.dart';
 import 'package:dgpt/services/ai_pulse_service.dart';
 import 'package:dgpt/services/auth_service.dart';
 import 'package:dgpt/services/system_service.dart';
@@ -26,7 +27,6 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/services.dart';
-import 'dart:html' as html;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,11 +77,6 @@ void main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  bool isMobile() {
-    final userAgent = html.window.navigator.userAgent.toLowerCase();
-    return userAgent.contains('mobile') || userAgent.contains('android') || userAgent.contains('iphone');
-  }
-
   @override
   Widget build(BuildContext context) {
     final TransitionBuilder fToastBuilder = FToastBuilder();
@@ -129,7 +124,7 @@ class MainApp extends StatelessWidget {
                   color: BaseColors.primaryColor,
                 ),
               ),
-          child: !isMobile()
+          child: !Functionality.isMobile()
               ? Center(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
