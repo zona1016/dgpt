@@ -8,5 +8,3 @@ const double defaultBorderRadius = 20;
 
 double safeAreaTopHeight = MediaQuery.of(Get.context!).padding.top;
 double safeAreaBottomHeight = MediaQuery.of(Get.context!).padding.bottom;
-
-

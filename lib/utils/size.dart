@@ -8,9 +8,9 @@ class SizeUtil {
   static Size getAspectRatioSize({double aspectRatio = 9 / 16}) {
 
     if (kIsWeb) {
-      if (Functionality.isMobile()) {
-        return Get.size;
-      }
+      // if (Functionality.isMobile()) {
+      //   return Get.size;
+      // }
       double width = Get.size.width;
       double height = Get.size.height;
 
